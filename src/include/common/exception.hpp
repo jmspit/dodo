@@ -12,24 +12,45 @@
 namespace dodo::common {
 
   /**
-   * Any thing that can cast to a string that describes it to humans for debugging purposes.
-   * Such things can be passed as is to Exception and display accordingly.
+   * Interface to objects that support dumping their state to a string.
    */
   class DebugObject {
     public:
+
+      /**
+       * Default constructor does nothing.
+       */
       DebugObject() {};
 
+      /**
+       * Destructor does nothing.
+       */
       virtual ~DebugObject() {};
 
-      virtual std::string debugString() const;
-
-      virtual std::string debugDetail() const { return ""; };
+      /**
+       * Return the object dump to string. debugHeader() and debugDetail() is integrated in the dump.
+       * @see debugHeader()
+       * @see debugDetail()
+       */
+      std::string debugString() const;
 
     protected:
+
+      /**
+       * Descendant classes can override to dump details speciufic to the class. By default, returns nothing.
+       */
+      virtual std::string debugDetail() const { return ""; };
+
+      /**
+       * Generates a debug header (address of this object and a demangled class name.
+       */
       std::string debugHeader() const;
 
   };
 
+  /**
+   * Exception with source code origin / a (file, line) tuple.
+   */
   class Exception : public std::runtime_error {
     public:
       Exception( const std::string &file,
@@ -49,6 +70,10 @@ namespace dodo::common {
       std::string  msg_;
   };
 
+  /**
+   * Decsending from Exception, speciically for execptions based on a system error code.
+   * @see SystemError
+   */
   class SystemException : public Exception {
     public:
       SystemException( const std::string &file,

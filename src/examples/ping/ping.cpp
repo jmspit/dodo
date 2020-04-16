@@ -227,7 +227,8 @@ void ping( const network::AddrInfoItem &item, ping_stats &stats ) {
   common::SystemError error;
 
   string reverse;
-  item.address.getNameInfo( reverse );
+  if ( error = item.address.getNameInfo( reverse ) != common::SystemError::ecOK )
+    throw_SystemException( "address.getNameInfo", error );
 
   network::SocketParams sock_params = network::SocketParams( item.params.getAddressFamily(),
                                                              network::SocketParams::stRAW,
@@ -282,7 +283,8 @@ void ping6( const network::AddrInfoItem &item, ping_stats &stats ) {
   common::SystemError error;
 
   string reverse;
-  item.address.getNameInfo( reverse );
+  if ( error = item.address.getNameInfo( reverse ) != common::SystemError::ecOK )
+    throw_SystemException( "address.getNameInfo", error );
 
   network::SocketParams sock_params = network::SocketParams( item.params.getAddressFamily(),
                                                              network::SocketParams::stRAW,
@@ -399,7 +401,8 @@ int main( int argc, char* argv[] ) {
     signal( SIGINT, intHandler );
     //options.dump();
     try {
-      network::Address::getHostAddrInfo( hostname, addrinfo );
+      common::SystemError error = network::Address::getHostAddrInfo( hostname, addrinfo );
+      if ( error != common::SystemError::ecOK ) throw_SystemException( "network::Address::getHostAddrInfo", error );
       size_t address_pinged = 0;
       for ( auto i : addrinfo.items ) {
         if ( ( i.address.getAddressFamily() == network::SocketParams::afINET ||

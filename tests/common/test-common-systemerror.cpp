@@ -1,36 +1,54 @@
 #include <iostream>
 #include <dodo.hpp>
 
-bool test1() {
-  dodo::common::SystemError e( ENOENT );
-  return e == dodo::common::SystemError::ecENOENT;
+#include <common/unittest.hpp>
+
+using namespace dodo;
+
+class SystemErrorTest : public common::UnitTest {
+  public:
+    SystemErrorTest( const string &name, const string &description, ostream *out ) :
+      UnitTest( name, description, out ) {};
+  protected:
+    virtual void doRun();
+
+    bool test1();
+    bool test2();
+    bool test3();
+};
+
+void SystemErrorTest::doRun() {
+  test1();
+  test2();
+  test3();
 }
 
-bool test2() {
+bool SystemErrorTest::test1() {
+  dodo::common::SystemError e( ENOENT );
+  return writeSubTestResult( "test SystemErrorTest",
+                             "test assignment and equality",
+                             e == dodo::common::SystemError::ecENOENT );
+}
+
+bool SystemErrorTest::test2() {
   dodo::common::SystemError e;
   e = EPERM;
-  return e == dodo::common::SystemError::ecEPERM;
+  return writeSubTestResult( "test SystemErrorTest",
+                             "test assignment and equality",
+                             e == dodo::common::SystemError::ecEPERM );
 }
 
-bool test3() {
+bool SystemErrorTest::test3() {
   dodo::common::SystemError e(dodo::common::SystemError::ecENOENT);
   std::stringstream ss;
   ss << e.asString();
   std::cout << ss.str() << std::endl;
-  return ss.str() == "No such file or directory (2)";
+  return writeSubTestResult( "test SystemErrorTest",
+                             "test init as string conversion",
+                             ss.str() == "No such file or directory (2)" );
 }
 
 int main() {
-  std::cout << dodo::BuildEnv::getDescription();
-  bool ok = true;
-  ok = ok && test1();
-  if ( !ok ) return 1;
-
-  ok = ok && test2();
-  if ( !ok ) return 1;
-
-  ok = ok && test3();
-  if ( !ok ) return 1;
-
-  return 0;
+  SystemErrorTest test( "common::SystemError tests", "Testing SystemError class", &cout );
+  return test.run() == false;
 }

@@ -1,5 +1,5 @@
 /*
- * This file is part of the arca library (https://github.com/jmspit/arca).
+ * This file is part of the dodo library (https://github.com/jmspit/dodo).
  * Copyright (c) 2019 Jan-Marten Spit.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
 
 /**
  * @file basesocket.cpp
- * Implements the arca::network::BaseSocket class.
+ * Implements the dodo::network::BaseSocket class.
  */
 
 #include "network/basesocket.hpp"
@@ -49,7 +49,7 @@ namespace dodo::network {
   }
 
   SystemError BaseSocket::connect( const Address &address ) {
-    int rc = ::connect( socket_, (const sockaddr*)address.getAddress(), sizeof(sockaddr_storage) );
+    auto rc = ::connect( socket_, (const sockaddr*)address.getAddress(), sizeof(sockaddr_storage) );
     if ( rc < 0 ) {
       switch ( errno ) {
         case SystemError::ecEACCES :
@@ -69,7 +69,7 @@ namespace dodo::network {
 
   void BaseSocket::close() {
     if ( socket_ != -1 ) {
-      int rc = ::close( socket_ );
+      auto rc = ::close( socket_ );
       socket_ = -1;
       if ( rc == -1 ) throw_SystemExceptionObject( "socket close failed", errno, this );
     }
@@ -120,28 +120,28 @@ namespace dodo::network {
   void BaseSocket::setReUseAddress() {
     if ( !isValid() ) throw_Exception( "setReUseAddress on invalid socket" );
     int opt_enable = 1;
-    int rc = setsockopt( socket_,
-                         SOL_SOCKET,
-                         SO_REUSEADDR,
-                         (char *)&opt_enable,
-                         sizeof(opt_enable) );
+    auto rc = setsockopt( socket_,
+                          SOL_SOCKET,
+                          SO_REUSEADDR,
+                          (char *)&opt_enable,
+                          sizeof(opt_enable) );
     if ( rc < 0 ) throw_SystemExceptionObject( "setsockopt SO_REUSEADDR failed", rc, this );
   }
 
   void BaseSocket::setReUsePort() {
     int opt_enable = 1;
-    int rc = setsockopt( socket_,
-                         SOL_SOCKET,
-                         SO_REUSEPORT,
-                         (char *)&opt_enable,
-                         sizeof(opt_enable) );
+    auto rc = setsockopt( socket_,
+                          SOL_SOCKET,
+                          SO_REUSEPORT,
+                          (char *)&opt_enable,
+                          sizeof(opt_enable) );
     if ( rc < 0 ) throw_SystemExceptionObject( "setsockopt SO_REUSEPORT failed", rc, this );
   }
 
   socklen_t BaseSocket::getSendBufSize() const {
     socklen_t optvar  = 0;
     socklen_t optlen = sizeof(optvar);
-    int rc = getsockopt( socket_, SOL_SOCKET, SO_SNDBUF, &optvar, &optlen );
+    auto rc = getsockopt( socket_, SOL_SOCKET, SO_SNDBUF, &optvar, &optlen );
     if ( rc == -1 ) throw_SystemExceptionObject( "getSendBufSize failed", errno, this );
     return optvar;
   }
@@ -149,7 +149,7 @@ namespace dodo::network {
   socklen_t BaseSocket::getReceiveBufSize() const {
     socklen_t optvar  = 0;
     socklen_t optlen = sizeof(optvar);
-    int rc = getsockopt( socket_, SOL_SOCKET, SO_RCVBUF, &optvar, &optlen );
+    auto rc = getsockopt( socket_, SOL_SOCKET, SO_RCVBUF, &optvar, &optlen );
     if ( rc == -1 ) throw_SystemExceptionObject( "getReceiveBufSize failed", errno, this );
     return optvar;
   }
@@ -169,7 +169,7 @@ namespace dodo::network {
   }
 
   void BaseSocket::setSendBufSize( socklen_t size ) {
-    int rc = setsockopt( socket_, SOL_SOCKET, SO_SNDBUF, &size, sizeof(size) );
+    auto rc = setsockopt( socket_, SOL_SOCKET, SO_SNDBUF, &size, sizeof(size) );
     if ( rc == -1 ) throw_SystemExceptionObject( "setSendBufSize failed", errno, this );
   }
 
@@ -201,7 +201,7 @@ namespace dodo::network {
   void BaseSocket::setTTL( int ttl ) {
     int rc = -1;
     rc = setsockopt( socket_, SOL_IP, IP_TTL, &ttl, sizeof(ttl) );
-    if ( errno == 92 ) rc = setsockopt( socket_, SOL_IPV6, IP_TTL, &ttl, sizeof(ttl) );
+    if ( errno == 92 ) rc = setsockopt( socket_, SOL_IPV6, IPV6_UNICAST_HOPS, &ttl, sizeof(ttl) );
     if ( rc == -1 ) throw_SystemExceptionObject( "setTTL failed", errno, this );
   }
 

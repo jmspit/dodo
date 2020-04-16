@@ -26,20 +26,22 @@ set( LIB_DODO_STATIC  "dodo-static" )
 
 set( ${LIB_DODO}_objects
   src/lib/common/exception.cpp
+  src/lib/common/unittest.cpp
   src/lib/common/util.cpp
   src/lib/network/address.cpp
   src/lib/network/basesocket.cpp
   src/lib/network/socket.cpp
-  src/lib/network/sslcontext.cpp
-  src/lib/network/sslsocket.cpp
+  src/lib/network/x509cert.cpp
+  src/lib/network/tlscontext.cpp
+  src/lib/network/tlssocket.cpp
   src/lib/threads/mutex.cpp
   src/lib/threads/thread.cpp
 )
 
 add_library( ${LIB_DODO} SHARED ${${LIB_DODO}_objects} )
 add_library( ${LIB_DODO_STATIC} ${${LIB_DODO}_objects} )
-target_link_libraries( ${LIB_DODO} ssl pthread )
-target_link_libraries( ${LIB_DODO_STATIC} ssl pthread )
+target_link_libraries( ${LIB_DODO} crypto ssl pthread )
+target_link_libraries( ${LIB_DODO_STATIC} crypto ssl pthread )
 
 include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/src/include )
 include_directories( ${CMAKE_CURRENT_BINARY_DIR} )

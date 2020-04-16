@@ -1,5 +1,5 @@
 /*
- * This file is part of the arca library (https://github.com/jmspit/arca).
+ * This file is part of the dodo library (https://github.com/jmspit/dodo).
  * Copyright (c) 2019 Jan-Marten Spit.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
 
 /**
  * @file socket.hpp
- * Defines the arca::network::Socket class.
+ * Defines the dodo::network::Socket class.
  */
 
 #ifndef network_socket_hpp
@@ -40,14 +40,14 @@ namespace dodo::network {
 
   /**
    * A Linux socket.
-   * Socket objects refer to, but do not own a particular socket descriptor. The programmer controls closing the socket by
-   * calling close(), the Socket destructor does not do this implicitly, as two Socket objects may refer to the
+   * Socket objects refer to, but do not own a particular socket descriptor. The programmer controls closing the socket
+   * by calling close(), the Socket destructor does not do this implicitly, as two Socket objects may refer to the
    * same socket descriptor.
    *
    * The Socket operates either in blocking or non-blocking mode. In blocking mode, calls to listen() or receive()
-   * will block until data is received. Moreover, in blocking mode, there is not limit to the amount of data that can be
+   * will block until data is received. Moreover, in blocking mode, there is no limit to the amount of data that can be
    * sent or received in one go. In non-blocking mode, the send and receive sizes per call must fit in
-   * getSendBufSize() or getReceiveBufSize().
+   * Socket::getSendBufSize() or Socket::getReceiveBufSize().
    */
   class Socket : public BaseSocket {
     public:

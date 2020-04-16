@@ -35,16 +35,14 @@ namespace dodo::common {
     std::stringstream ss;
     ss << file_ << ":" << line_ << " " << what;
     msg_ = ss.str();
-    //std::cout << "created" << std::endl;
   }
 
   Exception::Exception( const std::string &file, unsigned int line, const std::string &what, const DebugObject* thing ) :
     std::runtime_error(what), file_(file), line_(line) {
     std::stringstream ss;
     ss << file_ << ":" << line_ << " " << what;
-    ss << std::endl << "!" << thing->debugString();
+    ss << std::endl << " " << thing->debugString();
     msg_ = ss.str();
-    //std::cout << "created" << std::endl;
   }
 
   Exception::~Exception() {
@@ -58,9 +56,8 @@ namespace dodo::common {
                                     unsigned int line,
                                     const std::string &what,
                                     const SystemError &error )
-    : Exception( file, line, what + " : " + error.asString() )
-  {
-
+    : Exception( file, line, what + " : " + error.asString() ) {
+    error_ = error;
   }
 
   SystemException::SystemException( const std::string &file,
@@ -70,8 +67,8 @@ namespace dodo::common {
                                     const DebugObject* thing )
     : Exception( file,
                  line,
-                 common::Puts() << what << " : " << error.asString() << common::Puts::endl() << thing->debugString() )
-  {
+                 common::Puts() << what << " : " << error.asString() << common::Puts::endl() << thing->debugString() ) {
+    error_ = error;
   }
 
 }

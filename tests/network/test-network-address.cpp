@@ -1,11 +1,34 @@
 #include <iostream>
 #include <dodo.hpp>
 
+#include <iostream>
+#include <common/unittest.hpp>
+
 using namespace dodo;
 
-#include <iostream>
+class AddressTest : public common::UnitTest {
+  public:
+    AddressTest( const string &name, const string &description, ostream *out ) :
+      UnitTest( name, description, out ) {};
+  protected:
+    virtual void doRun();
 
-bool test1() {
+    bool test1();
+    bool test2();
+    bool test3();
+    bool test4();
+    bool test5();
+};
+
+void AddressTest::doRun() {
+  test1();
+  test2();
+  test3();
+  test4();
+  test5();
+}
+
+bool AddressTest::test1() {
   network::Address address;
   network::SocketParams sock_params = network::SocketParams( network::SocketParams::afUNSPEC,
                                                              network::SocketParams::stSTREAM,
@@ -14,10 +37,10 @@ bool test1() {
   std::string host = "www.gnu.org";
   common::SystemError error = network::Address::getHostAddrInfo( host, sock_params, address, canonicalname );
   std::cout << host << " " << "cname=" << canonicalname << " ip=" << address.asString() << std::endl;
-  return error == common::SystemError::ecOK;
+  return writeSubTestResult( "test getHostAddrInfo", "test resolving of www.gnu.org", error == common::SystemError::ecOK );
 }
 
-bool test2() {
+bool AddressTest::test2() {
   network::Address address;
   network::SocketParams sock_params = network::SocketParams( network::SocketParams::afINET,
                                                              network::SocketParams::stSTREAM,
@@ -26,10 +49,14 @@ bool test2() {
   std::string host = "localhost";
   common::SystemError error = network::Address::getHostAddrInfo( host, sock_params, address, canonicalname );
   std::cout << host << " " << "cname=" << canonicalname << " ip=" << address.asString() << std::endl;
-  return error == common::SystemError::ecOK && address.asString() == "127.0.0.1";
+  return writeSubTestResult( "test getHostAddrInfo",
+                             "test resolving of localhost to ipv4 address",
+                             address.isValid() &&
+                             error == common::SystemError::ecOK &&
+                             address.asString() == "127.0.0.1" );
 }
 
-bool test3() {
+bool AddressTest::test3() {
   network::Address address;
   network::SocketParams sock_params = network::SocketParams( network::SocketParams::afINET6,
                                                              network::SocketParams::stSTREAM,
@@ -42,23 +69,35 @@ bool test3() {
     error = network::Address::getHostAddrInfo( host, sock_params, address, canonicalname );
   }
   std::cout << host << " " << "cname=" << canonicalname << " ip=" << address.asString() << std::endl;
-  return error == common::SystemError::ecOK && address.asString() == "::1";
+  return writeSubTestResult( "test getHostAddrInfo",
+                             "test resolving of localhost to ipv6 address",
+                             error == common::SystemError::ecOK && address.asString() == "::1" );
+}
+
+bool AddressTest::test4() {
+  network::Address address;
+  string sadres = "127.0.0.1";
+  address = sadres;
+  return writeSubTestResult( "test assign string to Address",
+                             common::Puts() << "test assign " << address.asString() << " to Address",
+                             address.isValid() &&
+                             address.getAddressFamily() == network::SocketParams::afINET &&
+                             address.asString() == sadres );
+}
+
+bool AddressTest::test5() {
+  network::Address address;
+  string sadres = "::1";
+  address = sadres;
+  return writeSubTestResult( "test assign string to Address",
+                             common::Puts() << "test assign " << sadres << " to Address",
+                             address.isValid() &&
+                             address.getAddressFamily() == network::SocketParams::afINET6 &&
+                             address.asString() == sadres );
 }
 
 
-
 int main() {
-  std::cout << BuildEnv::getDescription();
-  bool ok = true;
-
-  ok = ok && test1();
-  if ( !ok ) return 1;
-
-  ok = ok && test2();
-  if ( !ok ) return 1;
-
-  ok = ok && test3();
-  if ( !ok ) return 1;
-
-  return 0;
+  AddressTest test( "network::Address tests", "Testing Adress class", &cout );
+  return test.run() == false;
 }

@@ -83,7 +83,7 @@ namespace dodo::threads {
 
    * In the below code, it would be safe to call addInt from multiple threads. The Mutexer object calls
    * thelist_mutex.lock() when constructed, and thelist_mutex.unLock() when it goes out of
-   * scope( the function returns or and exception is thrown).
+   * scope( the function returns or an exception is thrown).
    * @code
    * // Mutex to protect thelist
    * threads::Mutex thelist_mutex;

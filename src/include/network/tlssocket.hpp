@@ -1,5 +1,5 @@
 /*
- * This file is part of the arca library (https://github.com/jmspit/arca).
+ * This file is part of the adodorca library (https://github.com/jmspit/dodo).
  * Copyright (c) 2019 Jan-Marten Spit.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,15 +16,15 @@
  */
 
 /**
- * @file sslsocket.hpp
- * Defines the arca::network::SSLSocket class.
+ * @file tlssocket.hpp
+ * Defines the dodo::network::TLSSocket class.
  */
 
-#ifndef network_sslsocket_hpp
-#define network_sslsocket_hpp
+#ifndef network_tlssocket_hpp
+#define network_tlssocket_hpp
 
 #include "network/socketparams.hpp"
-#include "network/sslcontext.hpp"
+#include "network/tlscontext.hpp"
 #include "network/socket.hpp"
 
 
@@ -34,26 +34,28 @@ namespace dodo::network {
 
   /**
    * Socket for SSL encrypted traffic between trusted endpoints.
+   *
+   * @ref src/include/network/doc/DEVELOPER.md
    */
-  class SSLSocket : public BaseSocket {
+  class TLSSocket : public BaseSocket {
     public:
 
       /**
        * Construct from existing socket file descriptor.
        */
-      SSLSocket( int socket, SSLContext& sslcontext );
+      TLSSocket( int socket, TLSContext& sslcontext );
 
       /**
        * Construct from scratch.
        */
-      SSLSocket( bool blocking,
+      TLSSocket( bool blocking,
                  SocketParams params,
-                 SSLContext& sslcontext );
+                 TLSContext& sslcontext );
 
       /**
        * Destructor.
        */
-      virtual ~SSLSocket();
+      virtual ~TLSSocket();
 
       /**
        * Connect to the Address.
@@ -86,20 +88,20 @@ namespace dodo::network {
        * @param socket The socket to compare to.
        * @return True if both sockets are equal and have the sxame value of socket_.
        */
-      bool operator==(const SSLSocket& socket ) const { return this->socket_ == socket.socket_; };
+      bool operator==(const TLSSocket& socket ) const { return this->socket_ == socket.socket_; };
 
       /**
        * Ordering
        * @param socket The socket to compare to.
        * @return True if this Socket has a smaller socket descriptor than socket.
        */
-      bool operator<(const SSLSocket& socket ) const { return this->socket_ < socket.socket_; };
+      bool operator<(const TLSSocket& socket ) const { return this->socket_ < socket.socket_; };
 
       /**
        * Assign from Socket.
        * @param socket The Socket to assign/copy to this Socket.
        */
-      SSLSocket& operator=( const SSLSocket& socket );
+      TLSSocket& operator=( const TLSSocket& socket );
 
     private:
       /**
@@ -108,9 +110,9 @@ namespace dodo::network {
       SSL* ssl_;
 
       /**
-       * The SSLContext
+       * The TLSContext
        */
-      SSLContext& sslcontext_;
+      TLSContext& tlscontext_;
 
   };
 

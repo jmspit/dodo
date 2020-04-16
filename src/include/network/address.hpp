@@ -1,5 +1,5 @@
 /*
- * This file is part of the arca library (https://github.com/jmspit/arca).
+ * This file is part of the dodo library (https://github.com/jmspit/dodo).
  * Copyright (c) 2019 Jan-Marten Spit.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
 
 /**
  * @file address.hpp
- * Defines the arca::network::Address class.
+ * Defines the dodo::network::Address class.
  */
 
 #ifndef network_address_hpp
@@ -125,9 +125,10 @@ namespace dodo::network {
 
       /**
        * Return a string representation of this Address.
+       * @param withport If true, append ':' + port number.
        * @return string representation of this Address.
        */
-      string asString() const;
+      string asString( bool withport = false ) const;
 
       /**
        * Return the port number.
@@ -209,7 +210,7 @@ namespace dodo::network {
       static SystemError getHostAddrInfo( const std::string &hostname,
                                           SocketParams &params,
                                           Address &address,
-                                          string &canonicalname );
+                                          std::string &canonicalname );
 
       /**
        * Do a reverse DNS lookup on this Address and return in hostname.
@@ -228,6 +229,24 @@ namespace dodo::network {
        * @return The error or SystemError::ecOK on success.
        */
       SystemError getNameInfo( std::string &hostname ) const;
+
+      /**
+       * Do a reverse DNS lookup on this Address and its port, and return in hostname and service.
+       * @param hostname The string variable to receive the hostname.
+       * @param service The string variable to receive the service name.
+       * @return The error or SystemError::ecOK on success.
+       * @see getNameInfo() for a full list of possible errors returned.
+       */
+      SystemError getNameInfo( std::string &hostname, std::string &service ) const;
+
+      /**
+       * Do a reverse DNS lookup on this Address and its port, and return in hostname and port.
+       * @param hostname The string variable to receive the hostname.
+       * @param port The uint16_t variable to receive the port number.
+       * @return The error or SystemError::ecOK on success.
+       * @see getNameInfo() for a full list of possible errors returned.
+       */
+      SystemError getNameInfo( std::string &hostname, uint16_t &port ) const;
 
     private:
 
@@ -287,8 +306,7 @@ namespace dodo::network {
   /**
    * Address info, comprising the canoncial name of a host, and list of address info items for the host.
    * @see AddrInfoItem
-   * @see Address::getHostAddrInfogetHostAddrInfo( const std::string &hostname, AddrInfo& info )
-   * @see Address::getHostAddrInfo( const std::string &hostname, const SocketParams &params, Address &address, string &canonicalname )
+   * @see Address::getHostAddrInfo()
    */
   struct AddrInfo {
 

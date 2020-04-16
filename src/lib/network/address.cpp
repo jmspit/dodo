@@ -1,5 +1,5 @@
 /*
- * This file is part of the arca library (https://github.com/jmspit/arca).
+ * This file is part of the dodo library (https://github.com/jmspit/dodo).
  * Copyright (c) 2019 Jan-Marten Spit.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
 
 /**
  * @file address.cpp
- * Implements the arca::network::Address class.
+ * Implements the dodo::network::Address class.
  */
 
 #include "network/address.hpp"
@@ -67,8 +67,7 @@ namespace dodo::network {
   }
 
   Address& Address::operator=( const string& address ) {
-    int rc = 0;
-    rc = inet_pton( AF_INET, address.c_str(), &asIPv4Address()->sin_addr );
+    auto rc = inet_pton( AF_INET, address.c_str(), &asIPv4Address()->sin_addr );
     if ( rc != 1 ) {
       rc = inet_pton( AF_INET6, address.c_str(), &asIPv6Address()->sin6_addr );
       if ( rc != 1 ) {
@@ -94,7 +93,7 @@ namespace dodo::network {
   }
 
 
-  string Address::asString() const {
+  string Address::asString( bool withport )  const {
     char ip_[INET6_ADDRSTRLEN];
     stringstream ss;
     if ( addr_.ss_family == AF_INET ) {
@@ -109,7 +108,8 @@ namespace dodo::network {
       return "unhandled address family";
     }
     ss << ip_;
-    if ( getPort() ) ss << ":" << getPort();
+    if ( withport )
+      if ( getPort() ) ss << ":" << getPort();
     return ss.str();
   }
 
@@ -137,12 +137,12 @@ namespace dodo::network {
     ahints.ai_family = AF_UNSPEC;
     ahints.ai_flags = AI_CANONNAME | AI_CANONIDN | AI_ADDRCONFIG;
     SystemError rc = getaddrinfo( hostname.c_str(),
-                          0,
-                          &ahints,
-                          &ainfo );
+                                  0,
+                                  &ahints,
+                                  &ainfo );
     if ( rc == SystemError::ecOK ) {
       struct addrinfo *rp = 0;
-      for (rp = ainfo; rp != NULL; rp = rp->ai_next) {
+      for ( rp = ainfo; rp != NULL; rp = rp->ai_next ) {
         AddrInfoItem item;
         item.address = Address( rp->ai_addr, rp->ai_addrlen );
         item.params.setAddressFamily( SocketParams::AddressFamily( rp->ai_family ) );
@@ -155,11 +155,10 @@ namespace dodo::network {
     } else if ( rc == SystemError::ecEAI_ADDRFAMILY ||
                 rc == SystemError::ecEAI_NODATA ||
                 rc == SystemError::ecEAI_NONAME ) {
-      cout << "rc=" << rc << endl;
       if ( ainfo ) freeaddrinfo( ainfo );
     } else {
       freeaddrinfo( ainfo );
-      throw_SystemException( "getaddrinfo failed", rc );
+      throw_SystemException( "Address::getHostAddrInfo failed", rc );
     }
     return rc;
   }
@@ -189,16 +188,54 @@ namespace dodo::network {
 
   SystemError Address::getNameInfo( std::string &hostname ) const {
     char hbuf[NI_MAXHOST];
-    int error = 0;
-    error = getnameinfo( (const sockaddr*) &addr_,
-                         sizeof(addr_),
-                         hbuf,
-                         sizeof(hbuf),
-                         NULL,
-                         0,
-                         NI_NAMEREQD );
+    auto error = getnameinfo( (const sockaddr*) &addr_,
+                              sizeof(addr_),
+                              hbuf,
+                              sizeof(hbuf),
+                              NULL,
+                              0,
+                              NI_NAMEREQD );
     if ( error == SystemError::ecEAI_SYSTEM ) error = errno;
     if ( !error ) hostname = hbuf; else hostname = "";
+    return error;
+  }
+
+  SystemError Address::getNameInfo( std::string &hostname, std::string &service ) const {
+    char hbuf[NI_MAXHOST];
+    char sbuf[NI_MAXSERV];
+    auto error = getnameinfo( (const sockaddr*) &addr_,
+                              sizeof(addr_),
+                              hbuf,
+                              sizeof(hbuf),
+                              sbuf,
+                              sizeof(sbuf),
+                              NI_NAMEREQD );
+    if ( error == SystemError::ecEAI_SYSTEM ) error = errno;
+    if ( !error ) hostname = hbuf; else hostname = "";
+    return error;
+  }
+
+  SystemError Address::getNameInfo( std::string &hostname, uint16_t &port ) const {
+    char hbuf[NI_MAXHOST];
+    char sbuf[NI_MAXSERV];
+    auto error = getnameinfo( (const sockaddr*) &addr_,
+                              sizeof(addr_),
+                              hbuf,
+                              sizeof(hbuf),
+                              sbuf,
+                              sizeof(sbuf),
+                              NI_NAMEREQD | NI_NUMERICSERV );
+    if ( error == SystemError::ecEAI_SYSTEM ) error = errno;
+    if ( !error ) {
+      hostname = hbuf;
+      errno = 0;
+      int p = atoi( sbuf );
+      if ( errno ) throw_SystemException( "atoi faiure reading numeric port", errno );
+      port = static_cast<uint16_t>( p );
+    } else {
+      hostname = "";
+      port = 0;
+    }
     return error;
   }
 

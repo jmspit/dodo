@@ -1,29 +1,54 @@
 #include <iostream>
 #include <dodo.hpp>
 
-bool test1() {
+#include <iostream>
+#include <common/unittest.hpp>
+
+using namespace dodo;
+
+class ExceptionTest : public common::UnitTest {
+  public:
+    ExceptionTest( const string &name, const string &description, ostream *out ) :
+      UnitTest( name, description, out ) {};
+  protected:
+    virtual void doRun();
+
+    bool test1();
+    bool test2();
+    bool test3();
+};
+
+void ExceptionTest::doRun() {
+  test1();
+  test2();
+  test3();
+}
+
+bool ExceptionTest::test1() {
+  bool ok = false;
   try {
     throw dodo::common::Exception( __FILE__, __LINE__, "exception1" );
   }
   catch ( std::exception &e ) {
     std::cerr << "caught std::exception: " << e.what() << std::endl;
-    return true;
+    ok = true;
   }
-  return false;
+  return writeSubTestResult( "test Exception", "test catch of std::exception", ok );
 }
 
-bool test2() {
+bool ExceptionTest::test2() {
+  bool ok = false;
   try {
     throw dodo::common::Exception( __FILE__, __LINE__, "exception2" );
   }
   catch ( dodo::common::Exception &e ) {
     std::cerr << "caught dodo::common::Exception: " << e.what() << std::endl;
-    return true;
+    ok = true;
   }
-  return false;
+  return writeSubTestResult( "test Exception", "test catch of dodo::common::Exception", ok );
 }
 
-bool test3() {
+bool ExceptionTest::test3() {
   class Car : public dodo::common::DebugObject {
     public:
       Car() : color("red") {};
@@ -34,28 +59,19 @@ bool test3() {
       };
       std::string color;
   };
+  bool ok = false;
   try {
     Car car;
     throw dodo::common::Exception( __FILE__, __LINE__, "exception3", &car );
   }
   catch ( dodo::common::Exception &e ) {
-    std::cerr << "caught dodo::common::Exception: " << e.what() << std::endl;
-    return true;
+    std::cerr << "caught dodo::common::Exception: " << e.what();
+    ok = true;
   }
-  return false;
+  return writeSubTestResult( "test Exception", "test catch of dodo::common::DebugObject", ok );
 }
 
 int main() {
-  std::cout << dodo::BuildEnv::getDescription();
-  bool ok = true;
-  ok = ok && test1();
-  if ( !ok ) return 1;
-
-  ok = ok && test2();
-  if ( !ok ) return 1;
-
-  ok = ok && test3();
-  if ( !ok ) return 1;
-
-  return 0;
+  ExceptionTest test( "common::Exception tests", "Testing Exception class", &cout );
+  return test.run() == false;
 }

@@ -32,9 +32,6 @@
 
 namespace dodo::threads {
 
-  using namespace std;
-
-
   /**
    * Abstract Thread class. Inherit and implement pure virtual run() to run threaded code.
    */
@@ -64,7 +61,7 @@ namespace dodo::threads {
       /**
        * Get the thread id.
        */
-      thread::id getId() const;
+      std::thread::id getId() const;
 
       /**
        * Take a snapshot of the thread's resource usage.
@@ -169,14 +166,14 @@ namespace dodo::threads {
     protected:
 
       /**
-       * Decsendents must override the run function.
+       * Decsendants must override the run function.
        */
       virtual void run() = 0;
 
       /**
        * The std::tread object.
        */
-      thread*  thread_;
+      std::thread*  thread_;
 
       /**
        * Time Thread started.
@@ -206,7 +203,7 @@ namespace dodo::threads {
     private:
 
       /**
-       * Posix thread method - calls Thread:::run().
+       * Posix thread method - calls dodo::threads::Thread:::run().
        */
       static void* thread_method( void* context );
   };

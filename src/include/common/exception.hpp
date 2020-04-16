@@ -49,20 +49,46 @@ namespace dodo::common {
   };
 
   /**
-   * Exception with source code origin / a (file, line) tuple.
+   * An Exception is thrown in exceptional circumstances, and its occurence should generally imply that the program
+   * should stop, as it has entered a state it was never designed to handle.
+   *
+   * When used in conjunction with the throw_Exception() and throw_SystemException() macros, the source file
+   * and line number where the Exception is thrown are picked up automatically.
    */
   class Exception : public std::runtime_error {
     public:
+      /**
+       * Construct an Exception. Use the throw_Exception() macro to construct and throw Exceptions.
+       */
       Exception( const std::string &file,
                  unsigned int line,
                  const std::string &what );
+      /**
+       * Construct an Exception. Use the throw_ExceptionObject() macro to construct and throw Exceptions.
+       */
       Exception( const std::string &file,
                  unsigned int line,
                  const std::string &what,
                  const DebugObject* thing );
+
       virtual ~Exception();
+
+      /**
+       * Return the exception message.
+       * @return the exception message.
+       */
       virtual const char* what() const noexcept;
+
+      /**
+       * Return the source file where the exception was thrown.
+       * @return The source file where the exception was thrown.
+       */
       const std::string& getFile() const { return file_; };
+
+      /**
+       * Return the line number in the source file where the exception was thrown.
+       * @return The line numbver in the source file where the exception was thrown.
+       */
       unsigned int getLine() const { return line_; };
     protected:
       std::string  file_;
@@ -85,8 +111,14 @@ namespace dodo::common {
                        const std::string &what,
                        const dodo::common::SystemError &error,
                        const DebugObject* thing );
+    protected:
+      dodo::common::SystemError error_;
   };
 
+  /**
+   * throws an Exception, passes __FILE__ and __LINE__ to constructor.
+   * @param what The exception message as std::string.
+   */
   #define throw_Exception( what ) throw dodo::common::Exception( __FILE__, __LINE__, what )
   #define throw_ExceptionObject( what, thing ) throw dodo::common::Exception( __FILE__, __LINE__, what, thing )
   #define throw_SystemException( what, errno ) throw dodo::common::SystemException( __FILE__, __LINE__, what, errno )

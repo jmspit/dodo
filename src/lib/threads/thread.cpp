@@ -51,7 +51,7 @@ namespace dodo::threads {
 
   void Thread::start() {
     if ( !thread_ ) {
-      thread_ = new thread( this->thread_method, this );
+      thread_ = new std::thread( this->thread_method, this );
       gettimeofday( &start_time_, NULL );
       snapRUsage();
     }
@@ -70,9 +70,9 @@ namespace dodo::threads {
     gettimeofday( &snap_time_, NULL );
   }
 
-  thread::id Thread::getId() const {
+  std::thread::id Thread::getId() const {
     if ( thread_ ) return thread_->get_id();
-    return thread::id();
+    return std::thread::id();
   }
 
   double Thread::getAvgUserCPU() {

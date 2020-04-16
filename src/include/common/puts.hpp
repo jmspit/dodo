@@ -1,5 +1,5 @@
 /*
- * This file is part of the arca library (https://github.com/jmspit/arca).
+ * This file is part of the dodo library (https://github.com/jmspit/dodo).
  * Copyright (c) 2019 Jan-Marten Spit.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
 
 /**
  * @file puts.hpp
- * Defines the arca::common::Puts class.
+ * Defines the dodo::common::Puts class.
  */
 
 #ifndef common_puts_hpp

@@ -6,9 +6,7 @@
 #include <common/puts.hpp>
 #include <common/systemerror.hpp>
 #include <common/util.hpp>
-#include <network/address.hpp>
-#include <network/basesocket.hpp>
-#include <network/socket.hpp>
+#include <network/network.hpp>
 #include <threads/mutex.hpp>
 #include <threads/thread.hpp>
 
@@ -17,6 +15,15 @@
  * any type of Linux service.
  */
 namespace dodo {
+
+  void initLibrary() {
+    network::initLibrary();
+  }
+
+  void closeLibrary() {
+    network::closeLibrary();
+  }
+
 }
 
 #endif

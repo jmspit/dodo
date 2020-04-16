@@ -1,5 +1,5 @@
 /*
- * This file is part of the dodo library (https://github.com/jmspit/arca).
+ * This file is part of the dodo library (https://github.com/jmspit/dodo).
  * Copyright (c) 2019 Jan-Marten Spit.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
 
 /**
  * @file socket.cpp
- * Implements the arca::network::Socket class.
+ * Implements the dodo::network::Socket class.
  */
 
 #include "network/socket.hpp"

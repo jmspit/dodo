@@ -1,5 +1,5 @@
 /*
- * This file is part of the arca library (https://github.com/jmspit/arca).
+ * This file is part of the dodo library (https://github.com/jmspit/dodo).
  * Copyright (c) 2019 Jan-Marten Spit.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
 
 /**
  * @file systemerror.hpp
- * Defines the arca::common::SystemError class.
+ * Defines the dodo::common::SystemError class.
  */
 
 #ifndef common_systemerror_hpp
@@ -38,7 +38,9 @@ namespace dodo::common {
 
     /**
      * Linux system error primitive to provide a consistent interface to
-     * Linux error codes.
+     * Linux error codes. The [[nodiscard]] attribute causes the compiler to issue a warning in case
+     * a SystemError is produced as rvalue but not assigned to an lvalue - encouraging more robust
+     * code by pinpointing omitted error checking.
      * @code
      * SystemError error1; // set to ecOK
      * SystemError error2( SystemError::ecECONNREFUSED ); // set to ECONNREFUSED
@@ -51,7 +53,7 @@ namespace dodo::common {
      * error1 = SystemError::ecEBADF // error1 set to SystemError::ecEBADF
      * @endcode
      */
-    class SystemError {
+    class [[nodiscard]] SystemError {
       public:
 
         /**

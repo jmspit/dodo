@@ -11,38 +11,38 @@ In asymmetric cryptography, each endpoint (either a sender or a recipient) has a
 
 ![Public key infrastructure](/home/spjm/projects/dodo/src/include/network/doc/asymmetric_key_encryption.svg)
 
-If Bob receives a public key, say during a connection handshake, how does Bob prove the public key
-belongs to Alice?
-
 ## Transport Layer Security
 
-TLS provides communication security
+TLS is a secure communication protocol that use an assymetric handshake using the key paisr of both endpoints to
+negotiate a symmetric (one key encrypts and decrypts) session key. TLS connections provide
 
-  - The connection is private.
-  - The identity of the peer can be verified.
-  - The connection is reliable as a transmit includes an integretiy check.
+  - A private connection.
+  - Verification of the peer identity.
+  - Reliability as a transmit includes an integretiy.
 
-During TLS handshake, both peers apply their key pairs asymetrically to negotiate a symmetric session key, used
-to both encrypt and decrypt data.
-
-In TLS the following artefact types are used
+In TLS the following document types are used
 
   - The private key.
-  - A certificate signing request (CSR) which is a X.509 document typically stored as a PEM file, and comprises
+  - A *certificate signing request* (CSR) which is a X.509 document represented by
+    dodo::network::X509CertificateSigningRequest, typically stored as a PEM file, and comprises
     - the public key
     - data describing the owner
-  - A public key certificate (PKC), which is a X.509 document typically stored as a PEM file, and comrpises
+  - A public key certificate (PKC), which is a X.509 document represented by
+    dodo::network::X509Certificate typically stored as a PEM file, and comprises
     - the public key as in the CSR.
     - data describing the owner as in the CSR.
-    - The digital signature of a CA.
+    - The digital signature of a CA that has verified and signed the CSR into a PKC.
 
 The Certificate Authority (CA) signs a CSR into a PKC by writing a digital signature into it - after verifying the onwer
 of the public key (and thus the owner of the private key) is acurately described by the data in the CSR
 (the FQDN belongs to the owner of the public key). The dodo::network::X509Certificate class encapsulates CSR
 and PKC documents.
 
-The context of a TLS connection is encapsulated by the dodo::network::TLSContext class. The same TLSContext can
-be used by multiple dodo::network::TLSSocket classes.
+The trust store, either system-wide or application-specific, defines which CA's *you* trust.
+
+The context of a TLS connection is encapsulated by the dodo::network::TLSContext class. It is configured with a private
+key, a certificate and a truststore. The same TLSContext can be used by multiple dodo::network::TLSSocket classes for
+actual connections.
 
 TLS evolved protocol versions, and version 1.0 is deprecated (as are its predecessors, SSLv2 and SSLv3).
 
@@ -61,7 +61,63 @@ In order to verify a peer, there are options
   - dodo::network::TLSContext::PeerVerification::pvCustom - The developer provides his own verification of the peer
     certificate - based on its signed contents.
 
-### Public key infrastructure
+### Public Key Infrastructure
+
+Operating systems are typically configured with a TLS PKI, based on a truststore, on this Linux box a directory
+with certificates:
+
+```
+$ ls -1 /etc/ssl/certs/*Nederland*
+/etc/ssl/certs/Staat_der_Nederlanden_EV_Root_CA.pem
+/etc/ssl/certs/Staat_der_Nederlanden_Root_CA_-_G2.pem
+/etc/ssl/certs/Staat_der_Nederlanden_Root_CA_-_G3.pem
+```
+
+Certificates can be inspected with
+
+```
+$ openssl x509 -in /etc/ssl/certs/Staat_der_Nederlanden_EV_Root_CA.pem -text -noout
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 10000013 (0x98968d)
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C = NL, O = Staat der Nederlanden, CN = Staat der Nederlanden EV Root CA
+        Validity
+            Not Before: Dec  8 11:19:29 2010 GMT
+            Not After : Dec  8 11:10:28 2022 GMT
+        Subject: C = NL, O = Staat der Nederlanden, CN = Staat der Nederlanden EV Root CA
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (4096 bit)
+                Modulus:
+                  ...
+```
+
+The modulus is shared between the private and public key (which is included in the certificate) and allows to match
+public keys and private keys as pairs (equality is infered from matching sha256 hashes in this example)
+
+```
+
+# for a private key
+$ openssl rsa -noout -modulus -in server_private.pem | openssl sha256
+(stdin)= 6158bf2941f9f2bd10d35f254cfa035f2c33bd36412beaf8427e51c99290b451
+
+# for a public key
+$ openssl rsa -noout -modulus -pubin -in server_public.pem  | openssl sha256
+(stdin)= 6158bf2941f9f2bd10d35f254cfa035f2c33bd36412beaf8427e51c99290b451
+
+# for a CSR
+$ openssl req -noout -modulus -in server_csr.pem | openssl sha256
+(stdin)= 6158bf2941f9f2bd10d35f254cfa035f2c33bd36412beaf8427e51c99290b451
+
+# for a public key certificate
+$ openssl x509 -noout -modulus -in certificate.pem | openssl sha256
+(stdin)= 6158bf2941f9f2bd10d35f254cfa035f2c33bd36412beaf8427e51c99290b451
+```
+
+which proves that these artefacts all originate in the same private key.
+
 
 The internet has a PKI for websites, or in general things with a fqdn properly registered in DNS. In order to get
 a certificate signed into that domain one has to send a *Certificate Signing Request* (CSR) to a
@@ -71,59 +127,72 @@ or a custom truststore. A CA has peer-verification authority.
 
 #### Setup Certification Authority
 
-As an example, we setup a private trust network by using a
+As an example, we setup a private trust network by creating a new trust anchor or root CA.
 
 #### Server
 
 Generate a 4096 bit RSA private key with des3 passphrase encryption
 
 ```bash
-$ openssl genpkey -algorithm RSA -out server.key -pkeyopt rsa_keygen_bits:4096 -des3
-$ chmod 600 server.key
-$ openssl rsa -in server.key -check
+$ openssl genpkey -algorithm RSA -out server_private.pem -pkeyopt rsa_keygen_bits:4096 -des3
+$ chmod 600 server_private.pem
+$ openssl rsa -in server_private.pem -check
 ```
 
 the public bits are part of the private key, so the public key can be generated from the private key
 
 ```bash
-$ openssl rsa -in server.key -outform PEM -pubout -out server.pub
-$ head -2 server.pub
+$ openssl rsa -in server_private.pem -outform PEM -pubout -out server_public.pem
+$ head -2 server_public.pem
 -----BEGIN PUBLIC KEY-----
 MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAuFvk6gTCnykpLrAhFLPM
 ```
 
-the public key must have a header as above - verify you are not accidentally storing pivate in a file named public
-(which would happen if the `-pubout` was omitted).
-
-Generate a Certificate Signing Request (CSR) from the private key. The CSR is not a secret, and can be signed by a CA
-if it has verified the CN owns the private key that generated the CSR.
+The server_public.pem is not usable for TLS, as TLS requires the public key to be in a CSR. So we generate a
+Certificate Signing Request (CSR) from the private key.
 
 Note that the challenge password is visible to those with access to a copy of the CSR - the challange password is just
-a weak shared secret so that the receiver of a CSR can challenge it.
+a weak shared secret so that the receiver of a CSR can challenge identities that claim to have lost their original,
+but remember the challagende password - the challangde password plays no role in TLS verification and encryption.
 
 ```bash
-$ openssl req -new -key server.key -out server_csr.pem
+$ openssl req -new -key server_private.pem -out server_csr.pem
 $ openssl req -text -noout -verify -in server_csr.pem
 ```
 
 #### Client
 
 ```bash
-$ openssl genpkey -algorithm RSA -out client.key -pkeyopt rsa_keygen_bits:4096 -des3
-$ chmod 600 client.key
-$ openssl rsa -in client.key -check
+$ openssl genpkey -algorithm RSA -out client_private.pem -pkeyopt rsa_keygen_bits:4096 -des3
+$ chmod 600 client_private.pem
+$ openssl rsa -in client_private.pem -check
 ```
 
 ```bash
-$ openssl rsa -in client.key -outform PEM -pubout -out client.pub
-$ head -2 client.pub
+$ openssl rsa -in client_private.pem -outform PEM -pubout -out client_public.pem
+$ head -2 client_public.pem
 -----BEGIN PUBLIC KEY-----
 MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAuFvk6gTCnykpLrAhFLPM
 ```
 
 ```bash
-$ openssl req -new -key client.key -out client_csr.pem
+$ openssl req -new -key client_private.pem -out client_csr.pem
 $ openssl req -text -noout -verify -in client_csr.pem
 ```
+
+#### CA
+
+We need to create a root CA (the trust anchor) and an intermediate CA used to do the actual signing. If we don't use
+an intermediate CA, when can not revoke trust without invalidating the root CA itself.
+
+Generate the CA private key
+
+```bash
+$ openssl genpkey -algorithm RSA -out ca_private.pem -pkeyopt rsa_keygen_bits:4096 -des3
+$ chmod 600 ca_private.pem
+$ openssl rsa -in ca_private.pem -check
+```
+
+Generate the root certificate
 
 

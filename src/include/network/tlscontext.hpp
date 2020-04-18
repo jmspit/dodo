@@ -97,14 +97,14 @@ namespace dodo::network {
        * Write ssl errors occured in this thread to ostream, and clear their error state.
        * @return The number of SSL errors written.
        */
-      size_t writeSSLErrors( std::ostream& out, char terminator = 0 );
+      static size_t writeSSLErrors( std::ostream& out, char terminator = 0 );
 
       /**
        * Get all SSL errors as a single string, and clear their error state.
        * @param terminator The terminator character for a single error line. If 0, no character will be appended.
        * @see writeSSLErrors( ostream& out)
        */
-      std::string getSSLErrors( char terminator = 0 );
+      static std::string getSSLErrors( char terminator = 0 );
 
     private:
       /**

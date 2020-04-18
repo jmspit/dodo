@@ -33,6 +33,7 @@ namespace dodo::network {
     SSL_load_error_strings();
     SSL_library_init();
     OpenSSL_add_all_algorithms();
+    OpenSSL_add_all_digests();
   }
 
   void closeLibrary() {

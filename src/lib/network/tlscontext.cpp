@@ -16,7 +16,7 @@
  */
 
 /**
- * @file sslcontext.cpp
+ * @file tlscontext.cpp
  * Implements the dodo::network::TLSContext class.
  */
 

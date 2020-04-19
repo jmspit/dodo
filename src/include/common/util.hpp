@@ -75,6 +75,7 @@ namespace dodo::common {
        * - start() and stop() calls
        * - start() and time of this call
        * - StopWatch cosntructor and time of this call.
+       * @return The number of seconds.
        */
       double getElapsedSeconds() const {
         std::chrono::duration<double> diff;
@@ -97,11 +98,16 @@ namespace dodo::common {
 
   /**
    * Read from a file, expecting it to contain a (signed) int.
+   * @param file The file name.
+   * @param i The int read.
+   * @return False if the read or conversion failed.
    */
   bool fileReadInt( const std::string &file, int &i );
 
   /**
    * Return difference in seconds as a double. t2 must be > t1 for the return value to be positive.
+   * @param t1 The earlier time.
+   * @param t2 The later time.
    * @return the difference in seconds from t1 to t2.
    */
   inline double getSecondDiff( struct timeval& t1, struct timeval &t2 ) {

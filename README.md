@@ -1,9 +1,11 @@
 # DODO - a C++ convenience library {#mainpage}
 
+[TOC]
+
 ## Design goals
 
 A library to facilitate development of C++ software  for the Linux platform, with a strong focus on development
-of services.
+of services and containerized deployment.
 
   - Cryptography
     - Encrypt and decrypt binary and string data.
@@ -36,81 +38,3 @@ of services.
   - **Use C++17 features** - Use modern C++17.
   - **Throw Exceptions only in exceptional conditions** - A connection failure is not an Execption but the type of
   error software should expect and handle. Exceptions should not be used for flow control.
-
-## Coding style
-
-### Identifiers
-
-#### Namespaces
-
-Namespace identifiers are lower case.
-
-```C
-namespace dodo::network {
-}
-```
-
-#### Type names
-
-Type names start with a capital.
-
-```C
-class Person {
-};
-```
-
-Each noun within the type name starts with a capital, composite nouns each start with a capital.
-
-```C
-class Logfile {
-};
-
-class LogfileAppender {
-}
-```
-
-Acronyms and such preserve case
-
-```C
-class SMTPServer {
-}
-```
-
-### Variables
-
-Variables are lowercase.
-
-```C
-void add( int quantity ) {
-}
-```
-Protected and private class attributes are suffixed with an underscore (`_`)
-
-```C
-class Person {
-  protected:
-    Date birthdate_;
-};
-```
-
-#### Methods
-
-```C
-int getAttrribute() const {
-}
-```
-
-### Indentation and curly brackets
-
-No tabs. Indent is two spaces.
-
-```C
-void foo( const Collection &collection ) {
-  if ( i.size() ) {
-    for ( auto i : collection ) {
-    }
-  else {
-    cout << "the collection is empty" << endl;
-  }
-}
-```

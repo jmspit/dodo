@@ -35,22 +35,27 @@ namespace dodo::network {
   /**
    * Socket for SSL encrypted traffic between trusted endpoints.
    *
-   * @ref src/include/network/doc/DEVELOPER.md
+   * @ref developer_networking
    */
   class TLSSocket : public BaseSocket {
     public:
 
       /**
        * Construct from existing socket file descriptor.
+       * @param socket The socket file descriptor.
+       * @param tlscontext The TLSContext to apply.
        */
-      TLSSocket( int socket, TLSContext& sslcontext );
+      TLSSocket( int socket, TLSContext& tlscontext );
 
       /**
        * Construct from scratch.
+       * @param blocking If true, operate in blocking mode.
+       * @param params The SocketParams to apply.
+       * @param tlscontext The TLSContext to apply.
        */
       TLSSocket( bool blocking,
                  SocketParams params,
-                 TLSContext& sslcontext );
+                 TLSContext& tlscontext );
 
       /**
        * Destructor.
@@ -59,6 +64,8 @@ namespace dodo::network {
 
       /**
        * Connect to the Address.
+       * @param address  The address to connect to.
+       * @return The SystemErorr.
        */
       virtual SystemError connect( const Address &address );
 
@@ -67,6 +74,7 @@ namespace dodo::network {
        * @param buf Data to send
        * @param len Sizeof data in buf
        * @param more If true, do not force a send buffer flush, more data will follow
+       * @return The SystemError code.
        */
       virtual SystemError send( const void* buf, ssize_t len, bool more = false );
 
@@ -75,11 +83,13 @@ namespace dodo::network {
        * @param buf Buffer to receive in
        * @param request Max bytes to receive in buf
        * @param received Actual received bytes
+       * @return The SystemError code.
        */
       virtual SystemError receive( void* buf, ssize_t request, ssize_t &received );
 
       /**
        * Accept a connection.
+       * @return The SystemError.
        */
       SystemError accept();
 
@@ -100,6 +110,7 @@ namespace dodo::network {
       /**
        * Assign from Socket.
        * @param socket The Socket to assign/copy to this Socket.
+       * @return this TLSSocket.
        */
       TLSSocket& operator=( const TLSSocket& socket );
 

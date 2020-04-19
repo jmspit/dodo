@@ -75,6 +75,9 @@ namespace dodo::threads {
       void unLock() { mutex_.unlock(); };
 
     private:
+      /**
+       * the internal std::mutex
+       */
       std::mutex mutex_;
   };
 
@@ -98,9 +101,23 @@ namespace dodo::threads {
    */
   class Mutexer {
     public:
+      /**
+       * Constructor.
+       * @param mutex The mutex to guard.
+       */
       Mutexer( Mutex& mutex ) : mutex_(mutex) { mutex_.lock(); };
+
+      /**
+       * Destructor.
+       * Unlocks the guarded mutex.
+       */
       ~Mutexer() { mutex_.unLock(); };
+
     private:
+
+      /**
+       * Reference to the guarded mutex.
+       */
       Mutex &mutex_;
   };
 

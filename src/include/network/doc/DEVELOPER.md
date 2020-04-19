@@ -1,5 +1,7 @@
 # Networking {#developer_networking}
 
+[TOC]
+
 ## Asymmetric cryptography
 
 In asymmetric cryptography, each endpoint (either a sender or a recipient) has a private-public keypair.
@@ -20,7 +22,7 @@ negotiate a symmetric (one key encrypts and decrypts) session key. TLS connectio
   - Verification of the peer identity.
   - Reliability as a transmit includes an integretiy.
 
-In TLS the following document types are used
+In TLS the following document types are used (see dodo::network::X509Common::X509Type)
 
   - The private key.
   - A *certificate signing request* (CSR) which is a X.509 document represented by
@@ -35,8 +37,7 @@ In TLS the following document types are used
 
 The Certificate Authority (CA) signs a CSR into a PKC by writing a digital signature into it - after verifying the onwer
 of the public key (and thus the owner of the private key) is acurately described by the data in the CSR
-(the FQDN belongs to the owner of the public key). The dodo::network::X509Certificate class encapsulates CSR
-and PKC documents.
+(the FQDN belongs to the owner of the public key).
 
 The trust store, either system-wide or application-specific, defines which CA's *you* trust.
 
@@ -129,7 +130,7 @@ or a custom truststore. A CA has peer-verification authority.
 
 As an example, we setup a private trust network by creating a new trust anchor or root CA.
 
-#### Server
+##### Server
 
 Generate a 4096 bit RSA private key with des3 passphrase encryption
 
@@ -160,7 +161,7 @@ $ openssl req -new -key server_private.pem -out server_csr.pem
 $ openssl req -text -noout -verify -in server_csr.pem
 ```
 
-#### Client
+##### Client
 
 ```bash
 $ openssl genpkey -algorithm RSA -out client_private.pem -pkeyopt rsa_keygen_bits:4096 -des3
@@ -180,7 +181,7 @@ $ openssl req -new -key client_private.pem -out client_csr.pem
 $ openssl req -text -noout -verify -in client_csr.pem
 ```
 
-#### CA
+##### CA
 
 We need to create a root CA (the trust anchor) and an intermediate CA used to do the actual signing. If we don't use
 an intermediate CA, when can not revoke trust without invalidating the root CA itself.

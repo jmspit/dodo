@@ -60,6 +60,7 @@ namespace dodo::network {
 
       /**
        * Construct from a socket descriptor.
+       * @param socket The socket file descriptor.
        */
       Socket( int socket ) : BaseSocket() {};
 
@@ -78,6 +79,7 @@ namespace dodo::network {
 
       /**
        * Construct a copy of another Socket.
+       * @param socket The other socket.
        */
       Socket( const Socket& socket );
 
@@ -101,6 +103,10 @@ namespace dodo::network {
 
       /**
        * Send raw packets to the given Address.
+       * @param address The destination Address
+       * @param buf The bytes to send
+       * @param len The number of bytes to send.
+       * @return The SystemError.
        */
       virtual SystemError sendTo( const Address& address, const void* buf, ssize_t len );
 

@@ -35,6 +35,11 @@ namespace dodo::common {
     return f.good();
   }
 
+  /**
+   * Return ASCII representation of char.
+   * @param c The char.
+   * @return the ASCII representation.
+   */
   std::string strASCII( char c ) {
     if ( c < 32 || c == 127 ) {
       switch ( c ) {
@@ -84,6 +89,12 @@ namespace dodo::common {
     }
   }
 
+  /**
+   * Dump binary data to a std::ostream.
+   * @param out The std::stream to dump to.
+   * @param s The char stream.
+   * @param width The max character width of the output.
+   */
   void dumpBinaryData( std::ostream &out, const std::string &s, size_t width ) {
     std::ios_base::fmtflags orgflags = out.flags();
     size_t idx = 0;

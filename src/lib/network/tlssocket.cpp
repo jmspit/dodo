@@ -27,15 +27,15 @@
 
 namespace dodo::network {
 
-  TLSSocket::TLSSocket( int socket, TLSContext& sslcontext ) : BaseSocket( socket ), tlscontext_(sslcontext) {
+  TLSSocket::TLSSocket( int socket, TLSContext& tlscontext ) : BaseSocket( socket ), tlscontext_(tlscontext) {
   }
 
   TLSSocket::TLSSocket( bool blocking,
                         SocketParams params,
-                        TLSContext& sslcontext ) :
-                        BaseSocket( blocking, params ), tlscontext_(sslcontext) {
-    ssl_ = SSL_new( sslcontext .getContext() );
-    if ( !ssl_ ) throw_Exception( sslcontext.getSSLErrors( '\n' )  );
+                        TLSContext& tlscontext ) :
+                        BaseSocket( blocking, params ), tlscontext_(tlscontext) {
+    ssl_ = SSL_new( tlscontext .getContext() );
+    if ( !ssl_ ) throw_Exception( tlscontext.getSSLErrors( '\n' )  );
     SSL_set_fd( ssl_, socket_ );
   }
 

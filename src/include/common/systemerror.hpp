@@ -244,66 +244,81 @@ namespace dodo::common {
 
         /**
          * Construct from ErrorCode enum.
+         * @param e The ErrorCode to assign.
          */
         SystemError( ErrorCode e ) : errorcode_(e) {};
 
         /**
          * Construct from system error code.
+         * @param e The int error to assign.
          */
         SystemError( int e ) : errorcode_(ErrorCode(e)) {};
 
         /**
          * Compare this SystemError to the system error e.
+         * @param e The int to compare to.
          * @return true when unequal.
          */
         bool operator!=( int e ) { return this->errorcode_ != ErrorCode(e); };
 
         /**
          * Compare this SystemError to the ErrorCode e.
+         * @param e The ErrorCode to compare to.
          * @return true when unequal.
          */
         bool operator!=( ErrorCode e ) { return this->errorcode_ != e; };
 
         /**
          * Compare this SystemError to the SystemError e.
+         * @param e The SystemError to compare to.
          * @return true when unequal.
          */
         bool operator!=( SystemError e ) { return this->errorcode_ != e.errorcode_; };
 
         /**
          * Compare this SystemError to the ErrorCode e.
+         * @param e The error to compare to.
          * @return true when equal.
          */
         bool operator==( ErrorCode e ) { return this->errorcode_ == e; };
 
         /**
          * Compare this SystemError to the SystemError e.
+         * @param e The SystemError to compare to.
          * @return true when equal.
          */
         bool operator==( const SystemError& e ) { return this->errorcode_ == e.errorcode_; };
 
         /**
          * Assign system error e.
+         * @param e The int error to assign
+         * @return This SystemError
          */
         SystemError& operator=( int e ) { this->errorcode_ = ErrorCode(e); return *this; };
 
         /**
          * Assign ErrorCode e.
+         * @param e The ErrorCode to assign
+         * @return This SystemError
          */
         SystemError& operator=( ErrorCode e ) { this->errorcode_ = e; return *this; };
 
         /**
          * Assign SystemError e.
+         * @param e The SystemError to assign
+         * @return This SystemError
          */
         SystemError& operator=( SystemError e ) { this->errorcode_ = e.errorcode_; return *this; };
 
         /**
          * Cast this SystemError to an int by taking errorcode_.
+         * @return The int cast to.
          */
         operator int() const { return errorcode_; };
 
         /**
          * Get the system error string.
+         * @return The system error string.
          */
         string asString() const {
           stringstream ss;
@@ -317,6 +332,11 @@ namespace dodo::common {
           return ss.str();
         };
 
+        /**
+         * Translate SystemErrors in library range.
+         * @param error The SystemError to translate.
+         * @return The error string.
+         */
         static string libstrerror( SystemError error ) {
           switch ( error ) {
             case SystemError::ecLIBRARY_INVALID_JSON:

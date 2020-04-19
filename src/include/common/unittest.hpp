@@ -30,21 +30,68 @@ using namespace std;
 
 namespace dodo::common {
 
+  /**
+   * Unit test assitence class.
+   */
   class UnitTest {
     public:
+
+      /**
+       * Create a test
+       * @param name The name of the test.
+       * @param description The description of the test.
+       * @param out The ostream to write to.
+       */
       UnitTest( const string &name, const string &description, ostream *out );
+
+      /**
+       * Destructor.
+       */
       virtual ~UnitTest() {};
+
+      /**
+       * Run the test.
+       * @return True if the test passed.
+       */
       bool run();
+
     protected:
+
+      /**
+       * Virtual to implement the test.
+       */
       virtual void doRun() = 0;
+
+      /**
+       * Write the subtest result.
+       * @param name The name of the test.
+       * @param description The description of the test.
+       * @param passed True if the test passed.
+       * @return The value of parameter passed.
+       */
       bool writeSubTestResult( const string &name, const string& description, bool passed );
+
     private:
+
+      /** Write the header. */
       void writeUnitTestHeader();
+
+      /** Write the summary. */
       void writeUnitTestSummary();
+
+      /** The test name. */
       string name_;
+
+      /** The test description. */
       string description_;
+
+      /** The output destination. */
       ostream *out_;
+
+      /** The total number of tests. */
       size_t total_;
+
+      /** The total number of failed tests. */
       size_t failed_;
   };
 

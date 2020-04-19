@@ -2,24 +2,26 @@
 #define dodo_hpp
 
 #include <buildenv.hpp>
-#include <common/exception.hpp>
-#include <common/puts.hpp>
-#include <common/systemerror.hpp>
-#include <common/util.hpp>
+#include <common/common.hpp>
 #include <network/network.hpp>
 #include <threads/mutex.hpp>
 #include <threads/thread.hpp>
 
 /**
- * A C++ platform library to eliminate red tape and provide a platform to build
- * any type of Linux service.
+ * A C++ platform interface to linux (network) services tailored for containarized deployment.
  */
 namespace dodo {
 
+  /**
+   * Initialize the dodo library.
+   */
   void initLibrary() {
     network::initLibrary();
   }
 
+  /**
+   * Close the dod library.
+   */
   void closeLibrary() {
     network::closeLibrary();
   }

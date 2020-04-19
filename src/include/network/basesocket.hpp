@@ -42,6 +42,7 @@ namespace dodo::network {
 
       /**
        * Construct from a socket descriptor.
+       * @param socket The socket file descriptor.
        */
       BaseSocket( int socket );
 
@@ -53,23 +54,13 @@ namespace dodo::network {
       explicit BaseSocket( bool blocking, SocketParams params );
 
       /**
-       * Construct with default SocketParams.
-       * @param blocking If true, create the socket in blocking mode.
-       */
-      //explicit BaseSocket( bool blocking ) : BaseSocket( blocking, SocketParams() ) {};
-
-      /**
-       * Construct a copy of another Socket.
-       */
-      //BaseSocket( const BaseSocket& socket );
-
-      /**
        * Destructs this Socket, but does not call close().
        */
       virtual ~BaseSocket() {};
 
       /**
-       * Return debug object state
+       * Return debug object state as a string.
+       * @return The string.
        */
       virtual std::string debugDetail() const;
 
@@ -89,6 +80,7 @@ namespace dodo::network {
        *
        * In case the system returns other system errors on connect, a common::Exception is thrown.
        * @param address The address to connect to.
+       * @return The SystemError
        */
       virtual SystemError connect( const Address &address );
 
@@ -97,10 +89,28 @@ namespace dodo::network {
        */
       virtual void close();
 
+      /**
+       * Send bytes on the socket.
+       * @param buf Take bytes from here
+       * @param len The number of bytes.
+       * @param more Set to true if more is to come (increases packet filling efficiency when accurate).
+       * @return The SystemError.
+       */
       virtual SystemError send( const void* buf, ssize_t len, bool more = false ) = 0;
 
+      /**
+       * Receive bytes from the socket.
+       * @param buf Put bytes received here
+       * @param request The maximum number of bytes to receive
+       * @param received The number of bytes received
+       * @return The SystemError.
+       */
       virtual SystemError receive( void* buf, ssize_t request, ssize_t &received ) = 0;
 
+      /**
+       * Rerurn true if the socket is operating in blocking mode.
+       * @return The mode.
+       */
       virtual bool getBlocking() const;
 
       /**
@@ -215,6 +225,7 @@ namespace dodo::network {
 
       /**
        * Get the SocketParams::AddressFamily of the socket.
+       * @return The address family.
        */
       SocketParams::AddressFamily getAddressFamily() const;
 
@@ -241,12 +252,14 @@ namespace dodo::network {
       /**
        * Assign from existing socket descriptor (int).
        * @param socket The socket value to assign to this Socket.
+       * @return This Socket.
        */
       BaseSocket& operator=( int socket );
 
       /**
        * Assign from Socket.
        * @param socket The Socket to assign/copy to this Socket.
+       * @return This Socket.
        */
       BaseSocket& operator=( const BaseSocket& socket );
 

@@ -16,43 +16,36 @@
  */
 
 /**
- * @file network.hpp
+ * @file common.hpp
  * Includes network headers and implements network::initLibrary() and network::closeLibrary().
  */
 
-#ifndef network_network_hpp
-#define network_network_hpp
+#ifndef dodo_common_common_hpp
+#define dodo_common_common_hpp
 
-#include <network/address.hpp>
-#include <network/basesocket.hpp>
-#include <network/socket.hpp>
-#include <network/x509cert.hpp>
-#include <network/tlscontext.hpp>
-#include <network/tlssocket.hpp>
+#include <common/exception.hpp>
+#include <common/puts.hpp>
+#include <common/systemerror.hpp>
+#include <common/util.hpp>
+
 
 namespace dodo {
 
   /**
-   * Interface for network communication. See @ref developer_networking for details.
+   * Common and utility interfaces.
    */
-  namespace network {
+  namespace common {
 
     /**
-     * Initialize the dodo::network library.
+     * Initialize the common library.
      */
     void initLibrary() {
-      SSL_load_error_strings();
-      SSL_library_init();
-      OpenSSL_add_all_algorithms();
-      OpenSSL_add_all_digests();
     }
 
     /**
-     * Close the dodo::network library.
+     * Close the common library.
      */
     void closeLibrary() {
-      ERR_free_strings();
-      EVP_cleanup();
     }
 
   }

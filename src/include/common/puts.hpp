@@ -92,7 +92,13 @@ namespace dodo::common {
        * @see operator<<( setw w )
        */
       struct setw {
+        /**
+         * Construct with width.
+         * @param w The width.
+         */
         setw( int w ) : w_(w) {};
+
+        /** The width. */
         int w_;
       };
 
@@ -101,7 +107,12 @@ namespace dodo::common {
        * @see opeartor<<( setprecision )
        */
       struct setprecision {
+        /**
+         * Construct with precision.
+         * @param p The precision.
+         */
         setprecision( int p ) : p_(p) {};
+        /** The precision. */
         int p_;
       };
 
@@ -112,6 +123,8 @@ namespace dodo::common {
 
       /**
        * Append a STL string.
+       * @param s The string.
+       * @return This Puts.
        */
       Puts& operator<<( const string& s ) {
         ss_ << s;
@@ -120,6 +133,8 @@ namespace dodo::common {
 
       /**
        * Append a C string.
+       * @param s The const char*
+       * @return This Puts.
        */
       Puts& operator<<( const char* s ) {
         ss_ << s;
@@ -128,6 +143,8 @@ namespace dodo::common {
 
       /**
        * Append a char.
+       * @param c The char
+       * @return This Puts.
        */
       Puts& operator<<( char c ) {
         ss_ << c;
@@ -136,6 +153,8 @@ namespace dodo::common {
 
       /**
        * Append an integer.
+       * @param i The int
+       * @return This Puts.
        */
       Puts& operator<<( int i ) {
         ss_ << i;
@@ -144,6 +163,8 @@ namespace dodo::common {
 
       /**
        * Append a long.
+       * @param l The long
+       * @return This Puts.
        */
       Puts& operator<<( long l ) {
         ss_ << l;
@@ -151,7 +172,9 @@ namespace dodo::common {
       }
 
       /**
-       * Append a long.
+       * Append a long long.
+       * @param l The long long
+       * @return This Puts.
        */
       Puts& operator<<( long long l ) {
         ss_ << l;
@@ -160,6 +183,8 @@ namespace dodo::common {
 
       /**
        * Append an unsigned integer.
+       * @param i The unsigned integer to append.
+       * @return This Puts.
        */
       Puts& operator<<( unsigned int i ) {
         ss_ << i;
@@ -168,6 +193,8 @@ namespace dodo::common {
 
       /**
        * Append an unsigned long.
+       * @param l The unsigned long to append.
+       * @return This Puts.
        */
       Puts& operator<<( unsigned long l ) {
         ss_ << l;
@@ -176,6 +203,8 @@ namespace dodo::common {
 
       /**
        * Append an unsigned long long.
+       * @param l The unsigned long long to append.
+       * @return This Puts.
        */
       Puts& operator<<( unsigned long long l ) {
         ss_ << l;
@@ -184,6 +213,8 @@ namespace dodo::common {
 
       /**
        * Append a float.
+       * @param f The float to append.
+       * @return This Puts.
        */
       Puts& operator<<( float f ) {
         ss_ << f;
@@ -192,6 +223,8 @@ namespace dodo::common {
 
       /**
        * Append a double.
+       * @param d The double to append.
+       * @return This Puts.
        */
       Puts& operator<<( double d ) {
         ss_ << d;
@@ -200,6 +233,8 @@ namespace dodo::common {
 
       /**
        * Append a void*.
+       * @param p The void* to append.
+       * @return This Puts.
        */
       Puts& operator<<( void *p ) {
         ss_ << p;
@@ -208,6 +243,8 @@ namespace dodo::common {
 
       /**
        * Append a std::thread::id.
+       * @param id The std::thread::id to append.
+       * @return This Puts.
        */
       Puts& operator<<( std::thread::id id ) {
         ss_ << id;
@@ -216,6 +253,7 @@ namespace dodo::common {
 
       /**
        * Appends std::endl
+       * @return This Puts.
        */
       Puts& operator<<( Puts::endl ) {
         ss_ << std::endl;
@@ -224,6 +262,7 @@ namespace dodo::common {
 
       /**
        * Applies std::fixed
+       * @return This Puts.
        */
       Puts& operator<<( fixed ) {
         ss_ << std::fixed;
@@ -232,6 +271,7 @@ namespace dodo::common {
 
       /**
        * Applies std::scientific
+       * @return This Puts.
        */
       Puts& operator<<( scientific ) {
         ss_ << std::scientific;
@@ -240,6 +280,7 @@ namespace dodo::common {
 
       /**
        * Applies std::dec
+       * @return This Puts.
        */
       Puts& operator<<( dec ) {
         ss_ << std::dec;
@@ -248,6 +289,7 @@ namespace dodo::common {
 
       /**
        * Applies std::oct
+       * @return This Puts.
        */
       Puts& operator<<( oct ) {
         ss_ << std::oct;
@@ -256,6 +298,7 @@ namespace dodo::common {
 
       /**
        * Applies std::hex
+       * @return This Puts.
        */
       Puts& operator<<( hex ) {
         ss_ << std::hex;
@@ -264,6 +307,8 @@ namespace dodo::common {
 
       /**
        * Applies std::setw
+       * @param w The width.
+       * @return This Piuts.
        */
       Puts& operator<<( setw w ) {
         ss_ << std::setw( w.w_ );
@@ -272,6 +317,8 @@ namespace dodo::common {
 
       /**
        * Applies std::setprecision
+       * @param p The precision.
+       * @return This Piuts.
        */
       Puts& operator<<( setprecision p ) {
         ss_ << std::setprecision( p.p_ );

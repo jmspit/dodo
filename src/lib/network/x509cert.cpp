@@ -16,7 +16,7 @@
  */
 
 /**
- * @file sslcert.cpp
+ * @file x509cert.cpp
  * Implements the dodo::network::SSLSocket class.
  */
 
@@ -173,10 +173,10 @@ namespace dodo::network {
     unsigned int hash_size;
     unsigned char hash[EVP_MAX_MD_SIZE];
     const EVP_MD * digest = EVP_get_digestbyname( hashname.c_str() );
-    if ( digest == nullptr ) throw_Exception( "X509Certificate::fingerPrint EVP_get_digestbyname failed " +
+    if ( digest == nullptr ) throw_Exception( "X509Certificate::getFingerPrint EVP_get_digestbyname failed " +
                                               TLSContext::getSSLErrors(';') );
     int rc = X509_digest( cert, digest, hash, &hash_size);
-    if ( !rc ) throw_Exception( "X509Certificate::fingerPrint X509_digest failed " +
+    if ( !rc ) throw_Exception( "X509Certificate::getFingerPrint X509_digest failed " +
                                 TLSContext::getSSLErrors(';') );
     for( unsigned int pos = 0; pos < hash_size; pos++ ) {
       if ( pos ) ss << ":";

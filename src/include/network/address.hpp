@@ -157,24 +157,28 @@ namespace dodo::network {
       /**
        * Assign from "ip" string.
        * @param address The address to assign in string form.
+       * @return This Address.
        */
       Address& operator=( const string& address );
 
       /**
        * Assign (copy) from Address.
        * @param address The Address to assign.
+       * @return This Address.
        */
       Address& operator=( const Address& address );
 
       /**
        * Assign from sockaddr_storage.
        * @param address The address to assign in sockaddr_storage form.
+       * @return This Address.
        */
       Address& operator=( const sockaddr_storage& address );
 
       /**
        * Test for equality.
        * @param address The address to compare to.
+       * @return True if the addresses are equal.
        */
       bool operator==( const Address& address ) const;
 
@@ -189,7 +193,7 @@ namespace dodo::network {
        *
        * @param hostname The host name to lookup.
        * @param info The AddrInfo structure to fill.
-       * @return SystemError::ecOK if the lookup resulted in at least one adress.
+       * @return SystemError::ecOK if the lookup resulted in at least one address.
        */
       static SystemError getHostAddrInfo( const std::string &hostname, AddrInfo& info );
 
@@ -206,6 +210,7 @@ namespace dodo::network {
        * @param params The SocketParams the entry must match to.
        * @param address The result address (set to invalid when this call returns an error).
        * @param canonicalname The canonicalname of hostname (set to "" when this call returns an error).
+       * @return SystemError::ecOK if the lookup resulted in an address.
        */
       static SystemError getHostAddrInfo( const std::string &hostname,
                                           SocketParams &params,
@@ -257,11 +262,13 @@ namespace dodo::network {
 
       /**
        * Explicit cast of addr_ as sockaddr_in*.
+       * @return The pointer.
        */
       struct sockaddr_in* asIPv4Address() const { return (struct sockaddr_in *)&addr_; };
 
       /**
        * Explicit cast of addr_ as sockaddr_in6*.
+       * @return The pointer.
        */
       struct sockaddr_in6* asIPv6Address() const { return (struct sockaddr_in6 *)&addr_; };
 
@@ -270,6 +277,9 @@ namespace dodo::network {
        */
       struct sockaddr_storage addr_;
 
+    /**
+     * Socket may access this class directly.
+     */
     friend class Socket;
 
   };
@@ -295,6 +305,7 @@ namespace dodo::network {
 
     /**
      * String representation.
+     * @return The string.
      */
     string asString() {
       stringstream ss;

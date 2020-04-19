@@ -60,6 +60,7 @@ namespace dodo::threads {
 
       /**
        * Get the thread id.
+       * @return that id.
        */
       std::thread::id getId() const;
 
@@ -70,96 +71,115 @@ namespace dodo::threads {
 
       /**
        * Get the average user mode cpu (cpu seconds/second) since thread start()
+       * @return that utilization.
        */
       double getAvgUserCPU();
 
       /**
        * Get the average system mode cpu (cpu seconds/second) since thread start()
+       * @return that utilization.
        */
       double getAvgSysCPU();
 
       /**
        * Get the average minor fault rate since thread start()
+       * @return that rate.
        */
       double getAvgMinFltRate();
 
       /**
        * Get the average major fault rate since thread start()
+       * @return that rate.
        */
       double getAvgMajFltRate();
 
       /**
        * Get the average block in rate since thread start()
+       * @return that rate.
        */
       double getAvgBlkInRate();
 
       /**
        * Get the average block out rate since thread start()
+       * @return that rate.
        */
       double getAvgBlkOutRate();
 
       /**
        * Get the average voluntary context switch rate since thread start()
+       * @return that rate.
        */
       double getAvgVCtx();
 
       /**
        * Get the average involuntary context switch rate since thread start()
+       * @return that rate.
        */
       double getAvgICtx();
 
       /**
        * Get the maximum resident set size seen on the thread.
+       * @return that size.
        */
       long   getMaxRSS();
 
       /**
        * Get the user mode cpu (cpu seconds/second) since last sample.
+       * @return that utilization.
        */
       double getLastUserCPU();
 
       /**
        * Get the system mode cpu (cpu seconds/second) since last sample.
+       * @return that utilization.
        */
       double getLastSysCPU();
 
       /**
        * Get the minor fault rate since last sample.
+       * @return that rate.
        */
       double getLastMinFltRate();
 
       /**
        * Get the major fault rate since last sample.
+       * @return that rate.
        */
       double getLastMajFltRate();
 
       /**
        * Get last block in rate since last sample.
+       * @return that rate.
        */
       double getLastBlkInRate();
 
       /**
        * Get last block out rate since last sample.
+       * @return that rate.
        */
       double getLastBlkOutRate();
 
       /**
        * Get voluntary context switch rate since last sample.
+       * @return that rate.
        */
       double getLastVCtx();
 
       /**
        * Get involuntary context switch rate since last sample.
+       * @return that rate.
        */
       double getLastICtx();
 
       /**
-       * Time, in secoinds, since thread start.
+       * Time, in seconds, since thread start.
+       * @return that time.
        */
       double getRunTime();
 
       /**
-       * Time, in secoinds, since last statistic update.
+       * Time, in seconds, since last statistic update
+       * @return that time.
        */
       double getSnapDiffTime();
 
@@ -204,6 +224,7 @@ namespace dodo::threads {
 
       /**
        * Posix thread method - calls dodo::threads::Thread:::run().
+       * @param context Is used to pass a Thread* so that its run() method can be called.
        */
       static void* thread_method( void* context );
   };

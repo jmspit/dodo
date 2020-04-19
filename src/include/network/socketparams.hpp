@@ -37,6 +37,9 @@ namespace dodo::network {
   class SocketParams {
     public:
 
+      /**
+       * Addres familiy type.
+       */
       enum AddressFamily {
         afLOCAL     = AF_LOCAL,
         afINET      = AF_INET,
@@ -52,6 +55,9 @@ namespace dodo::network {
         afUNSPEC    = AF_UNSPEC
       };
 
+      /**
+       * Socket Type type.
+       */
       enum SocketType {
         stSTREAM    = SOCK_STREAM,
         stDGRAM     = SOCK_DGRAM,
@@ -110,28 +116,73 @@ namespace dodo::network {
       };
 
       /**
-       * Default SocketParams to AF_INET6, SOCK_STREAM, protocol 0
+       * Default constructor to AF_INET6, SOCK_STREAM, protocol 0
        */
       SocketParams() : family_(afINET6), sockettype_(stSTREAM), protocol_(pnHOPOPT) {};
 
+      /**
+       * Constructor only sets the AddressFamily.
+       * @param family The AddressFamily.
+       */
       SocketParams( AddressFamily family ) : family_(family), sockettype_(stSTREAM),protocol_(pnHOPOPT) {};
 
-      SocketParams( AddressFamily family, SocketType sockettype ) : family_(family), sockettype_(sockettype),protocol_(pnHOPOPT) {};
+      /**
+       * Constructor sets the AddressFamily and SocketType.
+       * @param family The AddressFamily.
+       * @param sockettype The SocketType.
+       */
+      SocketParams( AddressFamily family, SocketType sockettype ) :
+        family_(family), sockettype_(sockettype),protocol_(pnHOPOPT) {};
 
-      SocketParams( AddressFamily family, SocketType sockettype, ProtocolNumber protocol ) : family_(family), sockettype_(sockettype),protocol_(protocol) {};
+      /**
+       * Constructor sets the AddressFamily, SocketType and ProtocolNumber.
+       * @param family The AddressFamily.
+       * @param sockettype The SocketType.
+       * @param protocol The ProtocolNumber.
+       */
+      SocketParams( AddressFamily family, SocketType sockettype, ProtocolNumber protocol ) :
+        family_(family), sockettype_(sockettype),protocol_(protocol) {};
 
+      /**
+       * Get the AddressFamily.
+       * @return The AddressFamily.
+       */
       AddressFamily getAddressFamily() const { return family_; };
 
+      /**
+       * Get the SocketType.
+       * @return The SocketType.
+       */
       SocketType getSocketType() const { return sockettype_; };
 
+      /**
+       * Get the ProtocolNumber.
+       * @return The ProtocolNumber.
+       */
       ProtocolNumber getProtocol() const { return protocol_; };
 
+      /**
+       * Set the AddressFamily.
+       * @param family The AddressFamily.
+       */
       void setAddressFamily( AddressFamily family ) { family_ = family; };
 
+      /**
+       * Set the SocketType.
+       * @param sockettype The SocketType.
+       */
       void setSocketType( SocketType sockettype ) { sockettype_ = sockettype; };
 
+      /**
+       * Set the ProtocolNumber.
+       * @param protocol The ProtocolNumber.
+       */
       void setProtocol( ProtocolNumber protocol ) { protocol_ = protocol; };
 
+      /**
+       * Return the parameters as a string.
+       * @return The string.
+       */
       string asString() const {
         stringstream ss;
         ss << familyString( family_ ) << " ";
@@ -140,6 +191,12 @@ namespace dodo::network {
         return ss.str();
       };
 
+
+      /**
+       * Return the AddressFamily name as a string.
+       * @param family The AddressFamily to convert.
+       * @return The string.
+       */
       static string familyString( AddressFamily family ) {
         stringstream ss;
         switch ( family ) {
@@ -160,6 +217,11 @@ namespace dodo::network {
         return ss.str();
       };
 
+      /**
+       * Return the SocketType name as a string.
+       * @param sockettype The SocketType to convert.
+       * @return The string.
+       */
       static string socketTypeString( SocketType sockettype ) {
         stringstream ss;
         switch ( sockettype ) {
@@ -174,6 +236,12 @@ namespace dodo::network {
         return ss.str();
       };
 
+
+      /**
+       * Return the ProtocolNumber name as a string.
+       * @param protocol The ProtocolNumber to convert.
+       * @return The string.
+       */
       static string protocolString( ProtocolNumber protocol ) {
         stringstream ss;
         switch ( protocol ) {
@@ -204,8 +272,19 @@ namespace dodo::network {
       };
 
     private:
+      /**
+       * The address familiy.
+       */
       AddressFamily family_;
+
+      /**
+       * The socket type.
+       */
       SocketType sockettype_;
+
+      /**
+       * The protocol.
+       */
       ProtocolNumber protocol_;
   };
 

@@ -52,19 +52,30 @@ namespace dodo::network {
         tlsBest = tls1_3 /**< Use as default TLS version*/
       };
 
+      /**
+       * The TLS peer verification method.
+       */
       enum class PeerVerification {
         pvNone,           /**< No peer verification. */
         pvCA,             /**< Based on the DNS FQDN verified by a trusted 3rd party to be the owner of a private key. */
         pvCustom          /**< Custom peer verification. */
       };
 
+      /**
+       * Construct a TLS context.
+       * @param tlsversion The TLS verion to use. Use of default is less future code hassle.
+       */
       TLSContext( const TLSVersion& tlsversion = TLSVersion::tlsBest );
+
+
       virtual ~TLSContext();
 
       /**
        * Load certificate and private key.
        * @param certfile The public identity
        * @param keyfile The private key
+       * @param passphrase The passphrase for the private key. If the private key is not protected by a passphrase,
+       * this value is ignored.
        */
       void loadCertificates( const std::string& certfile, const std::string& keyfile, const std::string passphrase );
 
@@ -77,6 +88,7 @@ namespace dodo::network {
        *
        * Note that this call will not return a SystemError, but throw a dodo::common::Exception on failure, a mistake
        * here means a faulty deployment/configuration, and that should not continue under any circumstance.
+       * @param cipherlist The cipherlist.
        * @throw dodo::common::Exception
        * @see http://openssl.cs.utah.edu/docs/apps/ciphers.html
        */
@@ -84,6 +96,8 @@ namespace dodo::network {
 
       /**
        * Set SSL options
+       * @param option The option or OR-ed options to apply.
+       * @return The options applied.
        */
       long setOptions( long option );
 
@@ -95,6 +109,8 @@ namespace dodo::network {
 
       /**
        * Write ssl errors occured in this thread to ostream, and clear their error state.
+       * @param out The std::ostream to write to.
+       * @param terminator The char to use to separate lines.
        * @return The number of SSL errors written.
        */
       static size_t writeSSLErrors( std::ostream& out, char terminator = 0 );
@@ -102,6 +118,7 @@ namespace dodo::network {
       /**
        * Get all SSL errors as a single string, and clear their error state.
        * @param terminator The terminator character for a single error line. If 0, no character will be appended.
+       * @return The string.
        * @see writeSSLErrors( ostream& out)
        */
       static std::string getSSLErrors( char terminator = 0 );

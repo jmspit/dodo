@@ -4,8 +4,7 @@
 #include <buildenv.hpp>
 #include <common/common.hpp>
 #include <network/network.hpp>
-#include <threads/mutex.hpp>
-#include <threads/thread.hpp>
+#include <threads/threads.hpp>
 
 /**
  * A C++ platform interface to linux (network) services tailored for containarized deployment.
@@ -16,6 +15,8 @@ namespace dodo {
    * Initialize the dodo library.
    */
   void initLibrary() {
+    common::initLibrary();
+    threads::initLibrary();
     network::initLibrary();
   }
 
@@ -24,6 +25,8 @@ namespace dodo {
    */
   void closeLibrary() {
     network::closeLibrary();
+    threads::closeLibrary();
+    common::closeLibrary();
   }
 
 }

@@ -56,9 +56,10 @@ namespace dodo::network {
        * The TLS peer verification method.
        */
       enum class PeerVerification {
-        pvNone,           /**< No peer verification. */
-        pvCA,             /**< Based on the DNS FQDN verified by a trusted 3rd party to be the owner of a private key. */
-        pvCustom          /**< Custom peer verification. */
+        pvNone,           /**< No peer verification - transmission is encrypted, but unknown peer.*/
+        pvTrustedFQDN,    /**<  The peer must offer a trusted certificate and specify a CN or SubjectAltname that
+                                matches the peer DNS name. */
+        pvCustom,         /**< Custom peer verification. */
       };
 
       /**
@@ -71,13 +72,22 @@ namespace dodo::network {
       virtual ~TLSContext();
 
       /**
-       * Load certificate and private key.
+       * Load a certificate and the corresponding private key.
        * @param certfile The public identity
        * @param keyfile The private key
        * @param passphrase The passphrase for the private key. If the private key is not protected by a passphrase,
        * this value is ignored.
        */
-      void loadCertificates( const std::string& certfile, const std::string& keyfile, const std::string passphrase );
+      void loadCertificate( const std::string& certfile, const std::string& keyfile, const std::string passphrase );
+
+      /**
+       * Loads a private key, matching certificate and optional CA certificates (eg a truststore) from a
+       * PKCS12 file.
+       * @param p12file The filename to read from.
+       * @param p12passphrase The passphrase for the PKCS12 file.
+       * @param pkeypassphrase The passphrase for the private key in the PKCS12 file.
+       */
+      void loadPKCS12( const std::string &p12file, const std::string &p12passphrase, const std::string &pkeypassphrase );
 
       /**
        * Set a list of ciphers the TLSContext will accept. An example semicolon-separated cipher list might be
@@ -105,7 +115,7 @@ namespace dodo::network {
        * Return a pointer to the SSL_CTX
        * @return a pointer to the SSL_CTX
        */
-      SSL_CTX* getContext() const { return  sslctx_; };
+      SSL_CTX* getContext() const { return  tlsctx_; };
 
       /**
        * Write ssl errors occured in this thread to ostream, and clear their error state.
@@ -126,18 +136,31 @@ namespace dodo::network {
     private:
       /**
        * Initialize the SSL library
+       * @return nothing.
        */
       static void InitializeSSL();
 
       /**
        * Shutdown the SSL library
+       * @return nothing.
        */
       static void ShutdownSSL();
 
       /**
+       * Password callback, returns the passphrase set in the TLS context by the passphrase argument of
+       * loadCertificate or pkeypassphrase argument of the loadPKCS12 method.
+       * @param buf The passphrase should be copied to here.
+       * @param size No more than size bytes should be copied into buf.
+       * @param rwflag 0 = descryption 1 = encryption
+       * @param userdata Pass a pointer to the TLSContext object.
+       * @return the character length of the passphrase string.
+       */
+      static int pem_passwd_cb( char *buf, int size, int rwflag, void *userdata );
+
+      /**
        * The openssl SSL_CTX
        */
-      SSL_CTX* sslctx_;
+      SSL_CTX* tlsctx_;
 
       /**
        * The TLS version

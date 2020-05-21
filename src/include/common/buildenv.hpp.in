@@ -23,79 +23,91 @@ namespace dodo {
        * Get the C++ compiler id, see https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_COMPILER_ID.html.
        * @return CMAKE_CXX_COMPILER_ID.
        */
-      static std::string getCompilerId() { return "@CMAKE_CXX_COMPILER_ID@"; };
+      static std::string getCompilerId() { return "@CMAKE_CXX_COMPILER_ID@"; }
 
       /**
        * Get the compiler version.
        * @return CMAKE_CXX_COMPILER_VERSION.
        */
-      static std::string getCompilerVersion() { return "@CMAKE_CXX_COMPILER_VERSION@"; };
+      static std::string getCompilerVersion() { return "@CMAKE_CXX_COMPILER_VERSION@"; }
 
       /**
        * Get the compiler host.
        * @return CMAKE_SYSTEM.
        */
-      static std::string getBuildSystem() { return "@CMAKE_SYSTEM@"; };
+      static std::string getBuildSystem() { return "@CMAKE_SYSTEM@"; }
 
       /**
        * Get the build target / architecture.
        * @return CMAKE_SYSTEM_PROCESSOR.
        */
-      static std::string getBuildTarget() { return "@CMAKE_SYSTEM_PROCESSOR@"; };
+      static std::string getBuildTarget() { return "@CMAKE_SYSTEM_PROCESSOR@"; }
 
       /**
        * Get the project name.
        * @return PROJECT_NAME.
        */
-      static std::string getProjectName() { return "@PROJECT_NAME@"; };
+      static std::string getProjectName() { return "@PROJECT_NAME@"; }
 
       /**
        * Get the project version.
        * @return PROJECT_VERSION_STR.
        */
-      static std::string getProjectVersion() { return "@PROJECT_VERSION_STR@"; };
+      static std::string getProjectVersion() { return "@PROJECT_VERSION_STR@"; }
 
       /**
        * Get the project version major.
        * @return PROJECT_VERSION_MAJOR.
        */
-      static int         getProjectVersionMajor() { return @PROJECT_VERSION_MAJOR@; };
+      static int         getProjectVersionMajor() { return @PROJECT_VERSION_MAJOR@; }
 
       /**
        * Get the project version minor.
        * @return PROJECT_VERSION_MINOR.
        */
-      static int         getProjectVersionMinor() { return @PROJECT_VERSION_MINOR@; };
+      static int         getProjectVersionMinor() { return @PROJECT_VERSION_MINOR@; }
 
       /**
        * Get the project version patch.
        * @return PROJECT_VERSION_PATCH.
        */
-      static int         getProjectVersionPatch() { return @PROJECT_VERSION_PATCH@; };
+      static int         getProjectVersionPatch() { return @PROJECT_VERSION_PATCH@; }
 
       /**
        * Get the cmake version.
        * @return CMAKE_VERSION.
        */
-      static std::string getCMakeVersion() { return "@CMAKE_VERSION@"; };
+      static std::string getCMakeVersion() { return "@CMAKE_VERSION@"; }
 
       /**
        * Get the build type.
        * @return CMAKE_BUILD_TYPE.
        */
-      static std::string getCMakeBuildType() { return "@CMAKE_BUILD_TYPE@"; };
+      static std::string getCMakeBuildType() { return "@CMAKE_BUILD_TYPE@"; }
 
       /**
        * Get the build date.
        * @return __DATE__.
        */
-      static std::string getBuildDate() { return __DATE__; };
+      static std::string getBuildDate() { return __DATE__; }
 
       /**
        * Get the build time.
        * @return __TIME__.
        */
-      static std::string getBuildTime() { return __TIME__; };
+      static std::string getBuildTime() { return __TIME__; }
+
+      /**
+       * In rare cases (examples requiring artefacts build in source checkouts), this is usefull.
+       * @return The source directory.
+       */
+      static std::string getSourceDirectory() { return "@CMAKE_CURRENT_SOURCE_DIR@/src"; }
+
+      /**
+       * In very rare cases (examples requiring artefacts build in source checkouts), this is usefull.
+       * @return The source directory.
+       */
+      static std::string getBinaryDirectory() { return "@CMAKE_CURRENT_BINARY_DIR@"; }
 
       /**
        * C++ standard enum.
@@ -149,6 +161,8 @@ namespace dodo {
         ss << "build on         : " << getBuildSystem() << std::endl;
         ss << "build date       : " << getBuildDate() << " " << getBuildTime() << std::endl;
         ss << "target arch      : " << getBuildTarget() << std::endl;
+        ss << "source directory : " << getSourceDirectory() << std::endl;
+        ss << "binary directory : " << getBinaryDirectory() << std::endl;
         return ss.str();
       }
   };

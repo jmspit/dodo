@@ -1,0 +1,10 @@
+[template]
+src = "ca_config/library.sh.tpl"
+dest = "ca_config/bin/library.sh"
+mode = "0400"
+keys = [
+  "/ca/hashing",
+  "/ca/master-password/iterations",
+  "/ca/master-password/min-length",
+  "/ca/passphrase-length"
+]

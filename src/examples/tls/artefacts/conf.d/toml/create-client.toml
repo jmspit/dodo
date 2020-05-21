@@ -1,0 +1,10 @@
+[template]
+src = "ca_config/create-client.sh.tpl"
+dest = "ca_config/bin/create-client.sh"
+mode = "0700"
+keys = [
+  "/ca/root/directory",
+  "/ca/client/pkey-bits",
+  "/ca/pem-encryption",
+  "/ca/hashing"
+]

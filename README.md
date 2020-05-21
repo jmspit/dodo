@@ -5,23 +5,26 @@
 ## Design goals
 
 A library to facilitate development of C++ software  for the Linux platform, with a strong focus on development
-of services and containerized deployment.
+of fast and lean services for containerized deployment.
 
   - Cryptography
     - Encrypt and decrypt binary and string data.
     - Support algorithms backing authentication schemes.
-  - Databases
+  - Data stores
     - Relational
       - Postgresql
       - SQLite
     - Object
       - MongoDB
+    - Streams
+      - Apache AVRO
+      - Apache Kafka
   - Runtime configuration
     - SQLite files, hierarchical keys
     - modifcation time allows the runtime to pick up changes without restarting
     - Cryptography allows to encrypt sensitive (or all) configuration data.
-  - [Networking](@ref developer_networking)
-  - Logging (file, logstash)
+  - [(Secure) Socket programming](@ref developer_networking)
+  - Logging (stdout, file, logstash, any plugin implementation)
 
   - Layer 4 assistence (HTTP,HTTPS)
   - Network layer 3 service interface classes ready for protocol implementation (TCP sockets and secure sockets).

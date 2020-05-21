@@ -3,6 +3,7 @@
 
 #include <buildenv.hpp>
 #include <common/common.hpp>
+#include <math/function.hpp>
 #include <network/network.hpp>
 #include <threads/threads.hpp>
 
@@ -21,7 +22,7 @@ namespace dodo {
   }
 
   /**
-   * Close the dod library.
+   * Close the dodo library.
    */
   void closeLibrary() {
     network::closeLibrary();

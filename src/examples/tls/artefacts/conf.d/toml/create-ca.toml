@@ -1,0 +1,22 @@
+[template]
+src = "ca_config/create-ca.sh.tpl"
+dest = "ca_config/bin/create-ca.sh"
+mode = "0700"
+keys = [
+  "/ca/root/directory",
+  "/ca/intermediate_ca/directory",
+  "/ca/root/pkey-bits",
+  "/ca/root/expiry",
+  "/ca/hashing",
+  "/ca/pem-encryption",
+  "/ca/countryName",
+  "/ca/stateOrProvinceName",
+  "/ca/localityName",
+  "/ca/organizationName",
+  "/ca/organizationalUnitName",
+  "/ca/emailAddress",
+  "/ca/intermediate_ca/pkey-bits",
+  "/ca/root/commonName",
+  "/ca/intermediate_ca/commonName",
+  "/ca/intermediates",
+]

@@ -1,0 +1,9 @@
+[template]
+src = "ca_config/sign-server-csr.sh.tpl"
+dest = "ca_config/bin/sign-server-csr.sh"
+mode = "0700"
+keys = [
+  "/ca/root/directory",
+  "/ca/hashing",
+  "/ca/server/expiry"
+]

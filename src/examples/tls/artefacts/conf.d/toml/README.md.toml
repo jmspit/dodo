@@ -1,0 +1,6 @@
+[template]
+src = "ca_config/README.md.tpl"
+dest = "ca_config/conf/README.md"
+mode = "0400"
+keys = [
+]

@@ -1,0 +1,16 @@
+[template]
+src = "ca_config/create-intermediate.sh.tpl"
+dest = "ca_config/bin/create-intermediate.sh"
+mode = "0700"
+keys = [
+  "/ca/root/directory",
+  "/ca/pem-encryption",
+  "/ca/intermediate/pkey-bits",
+  "/ca/intermediate/expiry",
+  "/ca/countryName",
+  "/ca/stateOrProvinceName",
+  "/ca/localityName",
+  "/ca/organizationName",
+  "/ca/organizationalUnitName",
+  "/ca/emailAddress",
+]

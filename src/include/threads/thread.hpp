@@ -187,6 +187,7 @@ namespace dodo::threads {
 
       /**
        * Decsendants must override the run function.
+       * @return nothing
        */
       virtual void run() = 0;
 
@@ -225,6 +226,7 @@ namespace dodo::threads {
       /**
        * Posix thread method - calls dodo::threads::Thread:::run().
        * @param context Is used to pass a Thread* so that its run() method can be called.
+       * @return nullptr (always)
        */
       static void* thread_method( void* context );
   };

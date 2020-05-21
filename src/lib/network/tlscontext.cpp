@@ -27,6 +27,8 @@
 
 #include <openssl/ssl.h>
 
+#include <iostream>
+
 namespace dodo::network {
 
   void TLSContext::InitializeSSL() {
@@ -43,53 +45,76 @@ namespace dodo::network {
   TLSContext::TLSContext( const TLSVersion& tlsversion ) {
     tlsversion_ = tlsversion;
     passphrase_ = "";
-    sslctx_ = nullptr;
+    tlsctx_ = nullptr;
     long ssl_options = SSL_OP_NO_SSLv2 | SSL_OP_NO_SSLv3;
 
     switch( tlsversion_ ) {
       case TLSVersion::tls1_1 :
-        sslctx_ = SSL_CTX_new( TLS_method() );
-        SSL_CTX_set_min_proto_version( sslctx_, TLS1_1_VERSION );
+        tlsctx_ = SSL_CTX_new( TLS_method() );
+        SSL_CTX_set_min_proto_version( tlsctx_, TLS1_1_VERSION );
         break;
       case TLSVersion::tls1_2 :
-        sslctx_ = SSL_CTX_new( TLS_method() );
+        tlsctx_ = SSL_CTX_new( TLS_method() );
         ssl_options = ssl_options | SSL_OP_NO_TLSv1_1;
-        SSL_CTX_set_min_proto_version( sslctx_, TLS1_2_VERSION );
+        SSL_CTX_set_min_proto_version( tlsctx_, TLS1_2_VERSION );
         break;
       case TLSVersion::tls1_3 :
-        sslctx_ = SSL_CTX_new( TLS_method() );
+        tlsctx_ = SSL_CTX_new( TLS_method() );
         ssl_options = ssl_options | SSL_OP_NO_TLSv1_1 | SSL_OP_NO_TLSv1_2;
-        SSL_CTX_set_min_proto_version( sslctx_, TLS1_3_VERSION );
+        SSL_CTX_set_min_proto_version( tlsctx_, TLS1_3_VERSION );
         break;
     }
-    SSL_CTX_set_options( sslctx_, ssl_options );
+    SSL_CTX_set_options( tlsctx_, ssl_options );
+
+    SSL_CTX_set_default_passwd_cb( tlsctx_, pem_passwd_cb );
+    SSL_CTX_set_default_passwd_cb_userdata( tlsctx_, this );
   }
 
   TLSContext::~TLSContext() {
-    SSL_CTX_free( sslctx_ );
+    SSL_CTX_free( tlsctx_ );
   }
 
-  void TLSContext::loadCertificates( const std::string& certfile, const std::string& keyfile, const std::string passphrase ) {
-    if ( SSL_CTX_use_certificate_file( sslctx_, certfile.c_str(), SSL_FILETYPE_PEM ) <= 0 ) {
-      throw_ExceptionObject( getSSLErrors( '\n' ), this  );
-    }
-    if ( SSL_CTX_use_PrivateKey_file( sslctx_, keyfile.c_str(), SSL_FILETYPE_PEM ) <= 0 ) {
-      throw_ExceptionObject( getSSLErrors( '\n' ), this  );
-    }
-    if ( !SSL_CTX_check_private_key( sslctx_ ) ) {
-      throw_ExceptionObject( getSSLErrors( '\n' ), this  );
-    }
+  int TLSContext::pem_passwd_cb( char *buf, int size, int rwflag, void *userdata ) {
+    TLSContext* tlsctx = static_cast<TLSContext*>(userdata);
+    if ( size > static_cast<int>( strlen( tlsctx->passphrase_.c_str() ) ) ) {
+      strncpy( buf, tlsctx->passphrase_.c_str(), size );
+    } else buf[0] = 0;
+    buf[size-1] = 0;
+    return static_cast<int>( strlen( tlsctx->passphrase_.c_str() ) );
+  }
+
+  void TLSContext::loadCertificate( const std::string& certfile, const std::string& keyfile, const std::string passphrase ) {
     passphrase_ = passphrase;
+    if ( SSL_CTX_use_certificate_file( tlsctx_, certfile.c_str(), SSL_FILETYPE_PEM ) <= 0 ) {
+      throw_ExceptionObject( getSSLErrors( '\n' ), this  );
+    }
+    if ( SSL_CTX_use_PrivateKey_file( tlsctx_, keyfile.c_str(), SSL_FILETYPE_PEM ) <= 0 ) {
+      throw_ExceptionObject( getSSLErrors( '\n' ), this  );
+    }
+    if ( !SSL_CTX_check_private_key( tlsctx_ ) ) {
+      throw_ExceptionObject( getSSLErrors( '\n' ), this  );
+    }
+  }
+
+  void TLSContext::loadPKCS12( const std::string &p12file, const std::string &p12passphrase, const std::string &pkeypassphrase ) {
+    /**
+     * @todo implement
+     */
   }
 
   void TLSContext::setCipherList( const std::string& cipherlist ) {
-    int rc = SSL_CTX_set_cipher_list( sslctx_, cipherlist.c_str() );
+    int rc = 0;
+    if ( tlsversion_ == TLSVersion::tls1_3 ) {
+      rc = SSL_CTX_set_ciphersuites( tlsctx_, cipherlist.c_str() );
+    } else {
+      rc = SSL_CTX_set_cipher_list( tlsctx_, cipherlist.c_str() );
+    }
     if ( rc != 1 ) throw_ExceptionObject( common::Puts() << "no valid ciphers in cipherlist '" <<
                                           cipherlist << "'", this  );
   }
 
   long TLSContext::setOptions( long options ) {
-    return SSL_CTX_set_options( sslctx_, options );
+    return SSL_CTX_set_options( tlsctx_, options );
   }
 
   size_t TLSContext::writeSSLErrors( std::ostream& out, char terminator ) {

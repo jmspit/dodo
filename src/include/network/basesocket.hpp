@@ -86,6 +86,7 @@ namespace dodo::network {
 
       /**
        * Closes the socket, causing the connection, if it exists, to be terminated.
+       * @return nothing
        */
       virtual void close();
 
@@ -192,7 +193,7 @@ namespace dodo::network {
 
       /**
        * Set the Socket TTL (Time to Live).
-       * @param ttl The ttl value top set.
+       * @param ttl The ttl value to set.
        * @see getTTL()
        */
       void setTTL( int ttl );

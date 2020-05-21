@@ -1,0 +1,63 @@
+#root CA
+ca:
+  # root CA identity
+  countryName: NL
+  stateOrProvinceName: Noord-Holland
+  localityName: Huizen
+  organizationName: Dodo example Certficate Authority
+  organizationalUnitName: Dodo example trust authority
+  emailAddress: dodo@extinct.net
+
+  # signature hashing algorithm
+  hashing: sha512
+
+  # encryption algorithm
+  pem-encryption: aes256
+
+  # length of generated passphrases
+  passphrase-length: 24
+
+  # details of the master password
+  master-password:
+    # algorithm used to encrypt and decrypt stored passphrases
+    algorithm: aes-256-cbc
+    # use a high value to frustrate brute force attacks
+    iterations: 241968
+    # minimum length of the master password
+    min-length: 4
+
+  # definition of root ca certificate
+  root:
+    commonName: Dodo root CA
+    emailAddress: dodo@extinct.net
+    # installation directory
+    directory: ./ca/root
+    # root CA should have a strong key (as it is valid longer)
+    pkey-bits: 4096
+    # root CA should be valid for quite some time
+    expiry: 7200
+    # CRL grace days
+    crl-days: 30
+
+  # default values for intermediates
+  intermediate:
+    # intermediate CA should have a strong key (as it is valid longer)
+    pkey-bits: 4096
+    # root CA should be valid for quite some time (but perhaps shorter than the root CA)
+    expiry: 3650
+    # CRL grace days
+    crl-days: 30
+
+  # default values for server certificates
+  server:
+    # server certificates live shorter, use less (bit still safe) bits for performance
+    pkey-bits: 2048
+    # server certificates should not be valid for too long
+    expiry: 375
+
+  # default values for client certificates
+  client:
+    # client certificates live shorter, use less (bit still safe) bits for performance
+    pkey-bits: 2048
+    # client certificates should not be valid for too long
+    expiry: 375

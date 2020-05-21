@@ -29,7 +29,7 @@
 namespace dodo::network {
 
   /**
-   * Functionality common to X509 documents.
+   * Interface common to X509 documents.
    *
    * See @ref developer_networking for details on the role of this class.
    */
@@ -74,8 +74,8 @@ namespace dodo::network {
   };
 
   /**
-   * An X509 Certificate signing request interface. Note that this is an interface class, it does not
-   * manage owenership of X509_REQ structures.
+   * X509 Certificate signing request (CSR) interface. Note that this is an interface class, it does not
+   * manage ownership of X509_REQ structures.
    *
    * See @ref developer_networking for details on the role of this class.
    */
@@ -97,6 +97,7 @@ namespace dodo::network {
       /**
        * Free / clean an X509 object.
        * @param cert The X509_REQ object to free.
+       * @return nothing
        */
       static void free( X509_REQ* cert ) { X509_REQ_free( cert ); }
 
@@ -126,8 +127,8 @@ namespace dodo::network {
   };
 
   /**
-   * An X509 Certificate aka public key certificate. Note that this is an interface class, it does not
-   * manage owenership of X509 structures.
+   * X509 public key certificate (PKC) interface. Note that this is an interface class, it does not
+   * manage ownership of X509 structures.
    *
    * See @ref developer_networking for details on the role of this class.
    */
@@ -148,6 +149,7 @@ namespace dodo::network {
       /**
        * Free / clean an X509 object.
        * @param cert A pointer to the X509 certificate.
+       * @return nothing
        */
       static void free( X509* cert ) { X509_free( cert ); }
 

@@ -1,0 +1,18 @@
+[template]
+src = "ca_config/root_ca_openssl.cnf.tpl"
+dest = "ca_config/conf/root_ca_openssl.cnf"
+mode = "0600"
+keys = [
+  "/ca/root/directory",
+  "/ca/hashing",
+  "/ca/root/pkey-bits",
+  "/ca/countryName",
+  "/ca/stateOrProvinceName",
+  "/ca/localityName",
+  "/ca/organizationName",
+  "/ca/organizationalUnitName",
+  "/ca/emailAddress",
+  "/ca/root/commonName",
+  "/ca/root/crl-days",
+  "/ca/root/expiry"
+]

@@ -1,0 +1,7 @@
+[template]
+src = "ca_config/reveal.sh.tpl"
+dest = "ca_config/bin/reveal.sh"
+mode = "0700"
+keys = [
+  "/ca/root/directory"
+]

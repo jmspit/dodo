@@ -28,6 +28,7 @@ set( ${LIB_DODO}_objects
   src/lib/common/exception.cpp
   src/lib/common/unittest.cpp
   src/lib/common/util.cpp
+  src/lib/math/function.cpp
   src/lib/network/address.cpp
   src/lib/network/basesocket.cpp
   src/lib/network/socket.cpp

@@ -1,0 +1,19 @@
+[template]
+src = "ca_config/intermediate_ca_openssl.cnf.tpl"
+dest = "ca_config/conf/intermediate_ca_openssl.cnf"
+mode = "0600"
+keys = [
+  "/ca/root/directory",
+  "/ca/intermediate/directory",
+  "/ca/hashing",
+  "/ca/intermediate/pkey-bits",
+  "/ca/countryName",
+  "/ca/stateOrProvinceName",
+  "/ca/localityName",
+  "/ca/organizationName",
+  "/ca/organizationalUnitName",
+  "/ca/emailAddress",
+  "/ca/intermediate/commonName",
+  "/ca/intermediate/crl-days",
+  "/ca/intermediate/expiry"
+]

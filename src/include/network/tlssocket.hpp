@@ -94,6 +94,12 @@ namespace dodo::network {
       SystemError accept();
 
       /**
+       * Get the peer's certificate.
+       * @return A pointer to the peer certificate (must not be freed).
+       */
+      X509* getPeerCertificate() const;
+
+      /**
        * Identity
        * @param socket The socket to compare to.
        * @return True if both sockets are equal and have the sxame value of socket_.

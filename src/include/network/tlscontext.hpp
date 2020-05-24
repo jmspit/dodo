@@ -63,13 +63,24 @@ namespace dodo::network {
 
       /**
        * The TLS peer verification method.
+       *
+       * | PeerVerification | SSL_CTX_set_verify |
+       * | ---------| ----------|
+       * | pvNone | SSL_VERIFY_NONE |
+       * | pvVerifyPeer | SSL_VERIFY_PEER \| SSL_VERIFY_FAIL_IF_NO_PEER_CERT  |
+       * | pvVerifyFQDN | SSL_VERIFY_PEER \| SSL_VERIFY_FAIL_IF_NO_PEER_CERT  |
+       * | pvCustom | SSL_VERIFY_PEER \| SSL_VERIFY_FAIL_IF_NO_PEER_CERT  |
+       *
+       * @see https://www.openssl.org/docs/man1.1.1/man3/SSL_CTX_set_verify.html
        */
       enum class PeerVerification {
-        pvNone,           /**< No peer verification - transmission is encrypted, but unknown peer.*/
-        pvTrustedFQDN,    /**< The peer must offer a trusted certificate and specify a CN or SubjectAltname that
-                               matches the peer DNS name (the name returned by a reverse lookup of
-                               the remote ip address). */
-        pvCustom,         /**< Custom peer verification. */
+        pvNone,           /**< No peer verification - transmission is encrypted, peer cis accepted even if
+                               peer certificate is invalid and can read all data sent.*/
+        pvVerifyPeer,     /**< The peer must have a trusted certificate (unless a anonymous cipher is used). */
+        pvVerifyFQDN,     /**< As pvVerifyPeer, but the remote DNS name must match either the peer cert commonname
+                               or match one of the peer cert subjectAltNames */
+        pvCustom,         /**< As pvVerifyPeer, but with additional opportunity to write the peer
+                               certificate validation logic.*/
       };
 
       /**
@@ -77,7 +88,7 @@ namespace dodo::network {
        * @param peerverficiation The PeerVerification method to use.
        * @param tlsversion The TLS verion to use. Use of default is less future code hassle.
        */
-      TLSContext( const PeerVerification& peerverficiation = PeerVerification::pvTrustedFQDN,
+      TLSContext( const PeerVerification& peerverficiation = PeerVerification::pvVerifyFQDN,
                   const TLSVersion& tlsversion = TLSVersion::tlsBest );
 
 

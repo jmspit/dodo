@@ -39,6 +39,15 @@ int main( int argc, char* argv[] ) {
       error = tlssocket.connect( address );
       if ( error == common::SystemError::ecOK ) {
         std::cout << "connected to " << address.asString(true) << std::endl;
+        X509* peer_cert = tlssocket.getPeerCertificate();
+        if ( peer_cert ) {
+          std::cout << "Peer issuer: " << network::X509Certificate::getIssuer( peer_cert ) << std::endl;
+          std::cout << "Peer subject: " << network::X509Certificate::getSubject( peer_cert ) << std::endl;
+          std::cout << "Peer md5 fingerprint: " << network::X509Certificate::getFingerPrint( peer_cert, "md5" ) << std::endl;
+          for ( auto n : network::X509Certificate::getSubjectAltNames( peer_cert ) ) {
+            std::cout << n.san_name << std::endl;
+          }
+        }
         return 0;
       } else throw_SystemException( common::Puts() << "failed to connect to '" << host << "'", error );
     } else throw_SystemException( common::Puts() << "failed to resolve '" << host << "'", error );

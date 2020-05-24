@@ -159,7 +159,9 @@ namespace dodo::network {
        * PEM format.
        *
        * @param file The filename to load from.
-       * @throw throws a common::Execption when the call fails to produce.
+       * @throw common::Exception when the openSSL BIO fails to create.
+       * @throw common::Exception when the file cannot be read.
+       * @throw common::Exception when the file is not a valid PEM file.
        * @return Pointer to your X509_REQ.
        */
       static X509_REQ* loadPEM( const std::string file );
@@ -179,14 +181,20 @@ namespace dodo::network {
       static X509Common::Identity getSubject( const X509_REQ *cert );
 
       /**
-       * Get the certificate fingerprint in string format,
+       * Get the certificate fingerprint (a hash on the public key modulus) in string format,
        * multiple hexadecimal bytes values sperated by a colon.
-       * @param cert The source CSR / X509_REQ.
-       * @param hashname The name of the hash algorithm to use (eg 'md5','sha1','sha256','sha384',..). Defaults
-       * to 'sha256'.
+       * `openssl list -digest-algorithms` shows a full list of hash (digest) names. Stick to newer hash algorithms
+       * from the SHA-3 family.
+       *
+       * @throws common::Exception if the digest name is invalid.
+       *
+       * @see https://en.wikipedia.org/wiki/Secure_Hash_Algorithms
+       *
+       * @param cert A pointer to the X509 certificate.
+       * @param hashname The name of the hash algorithm to use. Defaults to 'shake256'. Names are case-insentitive.
        * @return A string representation of the fingerprint.
        */
-      static std::string getFingerPrint( const X509_REQ *cert, const std::string hashname = "sha256" );
+      static std::string getFingerPrint( const X509_REQ *cert, const std::string hashname = "shake256" );
 
 
     private:
@@ -226,7 +234,9 @@ namespace dodo::network {
        * not a public key certificate, even though it is a valid PEM  file. Also note that the call will return ony the
        * first certificate if the PEM file contains multiple certificates.
        * @param file The PEM file to load from.
-       * @throw throws a common::Execption when the call fails to produce.
+       * @throw common::Exception when the openSSL BIO fails to create.
+       * @throw common::Exception when the file cannot be read.
+       * @throw common::Exception when the file is not a valid PEM file.
        * @return Pointer to the X509 document.
        */
       static X509* loadPEM( const std::string file );
@@ -268,14 +278,20 @@ namespace dodo::network {
       static std::vector<SAN> getSubjectAltNames( const X509* cert );
 
       /**
-       * Get the certificate fingerprint in string format,
+       * Get the certificate fingerprint (a hash on the public key modulus) in string format,
        * multiple hexadecimal bytes values sperated by a colon.
+       * `openssl list -digest-algorithms` shows a full list of hash (digest) names. Stick to newer hash algorithms
+       * from the SHA-3 family.
+       *
+       * @throws common::Exception if the digest name is invalid.
+       *
+       * @see https://en.wikipedia.org/wiki/Secure_Hash_Algorithms
+       *
        * @param cert A pointer to the X509 certificate.
-       * @param hashname The name of the hash algorithm to use (eg 'md5','sha1','sha256','sha384',..). Defaults
-       * to 'sha256'.
-       * @return A string representation of the finherprint.
+       * @param hashname The name of the hash algorithm to use. Defaults to 'shake256'. Names are case-insentitive.
+       * @return A string representation of the fingerprint.
        */
-      static std::string getFingerPrint( const X509 *cert, const std::string hashname = "sha256" );
+      static std::string getFingerPrint( const X509 *cert, const std::string hashname = "shake256" );
 
     private:
       /** Never construct, interface class. */

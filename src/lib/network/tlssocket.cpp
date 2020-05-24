@@ -82,6 +82,10 @@ namespace dodo::network {
     return SystemError::ecOK;
   }
 
+  X509* TLSSocket::getPeerCertificate() const {
+    return SSL_get_peer_certificate(ssl_);
+  }
+
   SystemError TLSSocket::send( const void* buf, ssize_t len, bool more ) {
     auto rc = SSL_write( ssl_, buf, (int)len );
     if ( rc <= 0 ) {

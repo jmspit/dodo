@@ -74,6 +74,12 @@ namespace dodo::network {
     SSL_CTX_set_default_passwd_cb( tlsctx_, pem_passwd_cb );
     SSL_CTX_set_default_passwd_cb_userdata( tlsctx_, this );
 
+    if ( peerverficiation == PeerVerification::pvNone ) {
+      SSL_CTX_set_verify( tlsctx_, SSL_VERIFY_NONE, nullptr );
+    } else {
+      SSL_CTX_set_verify( tlsctx_, SSL_VERIFY_PEER | SSL_VERIFY_FAIL_IF_NO_PEER_CERT, nullptr );
+    }
+
     rc = SSL_CTX_set_default_verify_paths(tlsctx_);
     if ( rc == 0 ) throw_ExceptionObject( common::Puts() << "SSL_CTX_set_default_verify_paths failed"
                                           << common::Puts::endl() << getSSLErrors( '\n' ), this  );

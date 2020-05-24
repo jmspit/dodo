@@ -27,6 +27,7 @@
 #include <string>
 #include <ostream>
 #include <sstream>
+#include <vector>
 #include "buildenv.hpp"
 #include <sys/time.h>
 
@@ -112,6 +113,22 @@ namespace dodo::common {
    */
   inline double getSecondDiff( struct timeval& t1, struct timeval &t2 ) {
     return (double)t2.tv_sec - (double)t1.tv_sec + ( (double)t2.tv_usec - (double)t1.tv_usec ) / 1.0E6;
+  }
+
+  /**
+   * Split a string into substrings.
+   * @param src The string to split from.
+   * @param delimiter The delimiter to use.
+   * @return A vector of strings.
+   */
+  inline std::vector<std::string> split( const std::string &src, char delimiter = ' ' ) {
+    std::vector<std::string> result;
+    std::istringstream is(src);
+    std::string s;
+    while ( getline( is, s, delimiter ) ) {
+      result.push_back( s );
+    }
+    return result;
   }
 
 }

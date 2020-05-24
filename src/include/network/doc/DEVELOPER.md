@@ -132,9 +132,16 @@ $ openssl x509 -noout -modulus -in certificate.pem | openssl sha256
 
 the output of the above commands proves that these public key artefacts all originate in the same private key.
 
-Instead of the system trust store, a custom truststore can be used to finetune (limit) the trust, and allows to
-be a Certification Authority for deployment scope (say all users of an application), and have its own certifate
-installed in the system truststore of nodes that need to verify identity and authenticate.
+Instead of the system trust store, a custom truststore can be used to finetune the trust. This allows to either limit
+the trust or trust one's own CA - bypassing the need to buy the certfificate produced from a CSR.
+
+Custom truststores are loaded from PCKS12 files through dodo::network::TLSContext::loadPKCS12TrustStore.
+
+### Keystore
+
+A keystore comrpises the private key and the (signed) certyficate of the identiy. It can be loaded with either
+dodo::network::TLSContext::loadPEMIdentity or dodo::network::TLSContext::loadPKCS12KeyStore.
+
 
 ## Setup Certification Authority
 

@@ -35,9 +35,18 @@
 namespace dodo::network {
 
   /**
-   * TLS security context.
+   * TLS security context. A single TLSContext can be shared among multiple TLSSocket classes.
    *
-   * See @ref developer_networking for details on the role of this class.
+   * A security context comprises
+   *   - One private key
+   *   - One certificate
+   *   - Optional intermediate certificates
+   *   - The TLS version to be used
+   *   - The peer verification method
+   *
+   * The context can be sety
+   *
+   * See @ref developer_networking for more information on the role of this class.
    */
   class TLSContext : public dodo::common::DebugObject {
     public:
@@ -57,47 +66,57 @@ namespace dodo::network {
        */
       enum class PeerVerification {
         pvNone,           /**< No peer verification - transmission is encrypted, but unknown peer.*/
-        pvTrustedFQDN,    /**<  The peer must offer a trusted certificate and specify a CN or SubjectAltname that
-                                matches the peer DNS name. */
+        pvTrustedFQDN,    /**< The peer must offer a trusted certificate and specify a CN or SubjectAltname that
+                               matches the peer DNS name (the name returned by a reverse lookup of
+                               the remote ip address). */
         pvCustom,         /**< Custom peer verification. */
       };
 
       /**
        * Construct a TLS context.
+       * @param peerverficiation The PeerVerification method to use.
        * @param tlsversion The TLS verion to use. Use of default is less future code hassle.
        */
-      TLSContext( const TLSVersion& tlsversion = TLSVersion::tlsBest );
+      TLSContext( const PeerVerification& peerverficiation = PeerVerification::pvTrustedFQDN,
+                  const TLSVersion& tlsversion = TLSVersion::tlsBest );
 
 
       virtual ~TLSContext();
 
       /**
-       * Load a certificate and the corresponding private key.
-       * @param certfile The public identity
-       * @param keyfile The private key
-       * @param passphrase The passphrase for the private key. If the private key is not protected by a passphrase,
-       * this value is ignored.
+       * Load a certificate and the corresponding private key for an indentity.
+       * @param certfile The certificate PEM file.
+       * @param keyfile The private key PEM file.
+       * @param passphrase The passphrase for the private key PEM file. If the private key is not protected by a
+       * passphrase its value is stored in this object nonetheless but unused.
        */
-      void loadCertificate( const std::string& certfile, const std::string& keyfile, const std::string passphrase );
+      void loadPEMIdentity( const std::string& certfile,
+                            const std::string& keyfile,
+                            const std::string& passphrase );
 
       /**
        * Loads a private key, matching certificate and optional CA certificates (eg a truststore) from a
        * PKCS12 file.
-       * @param p12file The filename to read from.
+       * @param p12file The PKCS12 file to read from.
        * @param p12passphrase The passphrase for the PKCS12 file.
-       * @param pkeypassphrase The passphrase for the private key in the PKCS12 file.
        */
-      void loadPKCS12( const std::string &p12file, const std::string &p12passphrase, const std::string &pkeypassphrase );
+      void loadPKCS12( const std::string &p12file,
+                       const std::string &p12passphrase );
 
       /**
-       * Set a list of ciphers the TLSContext will accept. An example semicolon-separated cipher list might be
-       * "DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256", both TLS cyphers TLS_DHE_RSA_WITH_AES_256_GCM_SHA384
-       * and TLS_DHE_RSA_WITH_AES_128_GCM_SHA256. Another example is "HIGH:!aNULL:!MD5" which disables
-       * no-authentication ciphers, disables MD5 ciphers and requires algorithms with at least 128bit keys (at time of
-       * this writing, see url below).
+       * Set a list of ciphers the TLSContext will accept. There are differences between TLSVersion tough,
        *
-       * Note that this call will not return a SystemError, but throw a dodo::common::Exception on failure, a mistake
-       * here means a faulty deployment/configuration, and that should not continue under any circumstance.
+       * A few examples (note the hypens and underscores)
+       *
+       *   - TLS 1.3 TLS_AES_256_GCM_SHA384
+       *   - TLS 1.2 DHE-RSA-AES256-GCM-SHA384
+       *   - TLS 1.1 DHE-RSA-AES256-GCM-SHA384
+       *
+       * @see https://www.openssl.org/docs/manmaster/man3/SSL_CTX_set_cipher_list.html
+       *
+       * Note that this call will not return a SystemError, but throws a dodo::common::Exception when the cipherlist
+       * is invalid.
+       *
        * @param cipherlist The cipherlist.
        * @throw dodo::common::Exception
        * @see http://openssl.cs.utah.edu/docs/apps/ciphers.html
@@ -108,8 +127,17 @@ namespace dodo::network {
        * Set SSL options
        * @param option The option or OR-ed options to apply.
        * @return The options applied.
+       * @see https://www.openssl.org/docs/man1.1.1/man3/SSL_CTX_set_options.html
        */
       long setOptions( long option );
+
+      /**
+       * Trust all certificates in the specified directory.
+       * @param cafile A PEM file containing one or more certificates. If an empty string, unused.
+       * @param capath A directory containing certificate files. If an emptuy string, unused.
+       */
+      void setTrustPaths(  const std::string& cafile,
+                           const std::string& capath );
 
       /**
        * Return a pointer to the SSL_CTX
@@ -166,6 +194,11 @@ namespace dodo::network {
        * The TLS version
        */
       TLSVersion tlsversion_;
+
+      /**
+       * The peer verification method used.
+       */
+      PeerVerification peerverficiation_;
 
       /**
        * The passphrase to decrypt encrypted private keys (may be empty when the key is not encrypted).

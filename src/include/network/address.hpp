@@ -60,21 +60,22 @@ namespace dodo::network {
    * @endcode
    *
    * As we specify afUNSPEC, the returned address might be afINET or afINET6, and getHostAddrInfo sets the address
-   * family of the returned address in sock_params, so that we can connect transparently to either afINET or afINET6:
+   * family of the returned address in sock_params, so that the adjusted sock_params
+   * can be used to connect transparently to either afINET or afINET6:
    *
    * @code
    *     if ( error == SystemError::ecOK ) {
    *       address.setPort( 80 );
    *       network::Socket socket( true, sock_params );
    *       error = socket.connect( address );
-   *       // if peOK, connected.
+   *       // if ecOK, connected.
    * @endcode
    *
    * There are two prototypes for getHostAddrInfo, one returns the preferred Address, the other a list of addresses
    * (an AddrInfo structure), the preferred address the first in the list. Subsequent calls do not necisarily (DNS
    * round robin for example) return the same address as prefered address.
    *
-   * As the getHostAddrInfo calls are quite expensive, best leave the obtained address around for reuse.
+   * As the getHostAddrInfo calls are quite expensive, prefer reuse of obtained Address objects where possible.
    *
    */
   class Address : public common::DebugObject {

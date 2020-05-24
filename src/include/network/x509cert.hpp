@@ -25,6 +25,7 @@
 
 #include <openssl/ssl.h>
 #include <string>
+#include <vector>
 
 namespace dodo::network {
 
@@ -35,6 +36,50 @@ namespace dodo::network {
    */
   class X509Common {
     public:
+
+      /**
+       * Attributes that together constitute a X509 identiy.
+       */
+      struct Identity {
+
+        Identity() : countryCode(""), state(""), locality(""), organization(""), organizationUnit(""),
+          commonName(""),email("") {}
+
+        /**
+         * A two-character country code, for example NL for The Netherlands.
+         */
+        std::string countryCode;
+
+        /**
+         * The State or Province name.
+         */
+        std::string state;
+
+        /**
+         * The locality name (city, town).
+         */
+        std::string locality;
+
+        /**
+         * The orgnization name.
+         */
+        std::string organization;
+
+        /**
+         * The orgnizational unit name.
+         */
+        std::string organizationUnit;
+
+        /**
+         * The common name.
+         */
+        std::string commonName;
+
+        /**
+         * The email address.
+         */
+        std::string email;
+      };
 
       /**
        * Enumaration of X509 document types.
@@ -66,12 +111,37 @@ namespace dodo::network {
        */
       static std::string bio2String( BIO* bio );
 
+      /**
+       * Parse a subject or issuer string into an Identity.*
+       * @param src The identity string
+       * @return the Identity.
+       */
+      static Identity parseIdentity( const std::string src );
+
     private:
       /** Never construct, interface class. */
       X509Common() = delete;
       /** Never destruct, interface class. */
       ~X509Common() = delete;
   };
+
+
+  /**
+   * Serialize an Identity.
+   * @param out The stream to write to.
+   * @param identity The identity to write.
+   * @return A reference to the stream written to.
+   */
+  inline std::ostream & operator<<( std::ostream &out, const X509Common::Identity& identity ) {
+    out << std::string("C=") << identity.countryCode;
+    out << std::string(",ST=") << identity.state;
+    out << std::string(",L=") << identity.locality;
+    out << std::string(",O=") << identity.organization;
+    out << std::string(",OU=") << identity.organizationUnit;
+    out << std::string(",CN=") << identity.commonName;
+    out << std::string(",emailAddress=") << identity.email;
+    return out;
+  }
 
   /**
    * X509 Certificate signing request (CSR) interface. Note that this is an interface class, it does not
@@ -102,11 +172,11 @@ namespace dodo::network {
       static void free( X509_REQ* cert ) { X509_REQ_free( cert ); }
 
       /**
-       * Get the CSR subject.
+       * Get the CSR subject identity.
        * @param cert The source CSR / X509_REQ.
-       * @return the CSR subject.
+       * @return the CSR subject identity.
        */
-      static std::string getSubject( const X509_REQ *cert );
+      static X509Common::Identity getSubject( const X509_REQ *cert );
 
       /**
        * Get the certificate fingerprint in string format,
@@ -136,10 +206,25 @@ namespace dodo::network {
     public:
 
       /**
+       * Subject Altname record.
+       */
+      struct SAN {
+        /**
+         * The SAN type.
+         */
+        int san_type;
+
+        /**
+         * The SAN.
+         */
+        std::string san_name;
+      };
+
+      /**
        * Load a public key certificate (aka 'certificate') from a PEM file. The X509 object pointed to gets owned by
        * the caller and must be freed when done with free( X509* cert ). Note that the call will fail if the file is
-       * not a public key certificate, even though it is a valid PEM  file - such as a CSR or a private key in
-       * PEM format.
+       * not a public key certificate, even though it is a valid PEM  file. Also note that the call will return ony the
+       * first certificate if the PEM file contains multiple certificates.
        * @param file The PEM file to load from.
        * @throw throws a common::Execption when the call fails to produce.
        * @return Pointer to the X509 document.
@@ -158,7 +243,7 @@ namespace dodo::network {
        * @param cert A pointer to the X509 certificate.
        * @return the issuer string.
        */
-      static std::string getIssuer( const X509 *cert );
+      static X509Common::Identity getIssuer( const X509 *cert );
 
       /**
        * Get the certificate serial number as concatenated hex bytes. Note that the serial number is only supposed to be unique
@@ -169,11 +254,18 @@ namespace dodo::network {
       static std::string getSerial( const X509 *cert );
 
       /**
-       * Get the certificate subject.
+       * Get the certificate subject identity.
        * @param cert A pointer to the X509 certificate.
-       * @return the subject string.
+       * @return the subject identity.
        */
-      static std::string getSubject( const X509 *cert );
+      static X509Common::Identity getSubject( const X509 *cert );
+
+      /**
+       * Get the SAN (subject alternate name) list for the certificate, which may be empty.
+       * @param cert A pointer to the X509 certificate.
+       * @return A list of SAN.
+       */
+      static std::vector<SAN> getSubjectAltNames( const X509* cert );
 
       /**
        * Get the certificate fingerprint in string format,

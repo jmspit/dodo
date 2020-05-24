@@ -70,8 +70,5 @@ int main() {
   ok = ok && test2();
   if ( !ok ) return 1;
 
-  //ok = ok && test3();
-  //if ( !ok ) return 1;
-
   return 0;
 }

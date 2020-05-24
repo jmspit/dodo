@@ -4,8 +4,8 @@
 
 ## Design goals
 
-A library to facilitate development of C++ software  for the Linux platform, with a strong focus on development
-of fast and lean services for containerized deployment.
+A library to facilitate development of C++ software for the Linux platform, with a strong focus on creation
+of fast and lean services for containerized deployment - aka picoservices.
 
   - Cryptography
     - Encrypt and decrypt binary and string data.
@@ -41,3 +41,11 @@ of fast and lean services for containerized deployment.
   - **Use C++17 features** - Use modern C++17.
   - **Throw Exceptions only in exceptional conditions** - A connection failure is not an Execption but the type of
   error software should expect and handle. Exceptions should not be used for flow control.
+
+## Dependencies
+
+  - [OpenSSL for TLS](https://www.openssl.org/)
+
+### Optional dependencies
+
+  - DODO_PROVIDE_SQLITE3 depends on [SQLite](https://www.sqlite.org/index.html)

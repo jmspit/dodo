@@ -6,23 +6,45 @@ using namespace dodo;
 #include <src/include/common/puts.hpp>
 
 int main( int argc, char* argv[] ) {
-  network::SocketParams sock_params = network::SocketParams( network::SocketParams::afINET6,
-                                                             network::SocketParams::stSTREAM,
-                                                             network::SocketParams::pnTCP );
+  try {
+    network::SocketParams sock_params = network::SocketParams( network::SocketParams::afUNSPEC,
+                                                               network::SocketParams::stSTREAM,
+                                                               network::SocketParams::pnTCP );
+    std::string canonicalname;
+    std::string host = "localhost";
+    network::Address address;
+    common::SystemError error = network::Address::getHostAddrInfo( host, sock_params, address, canonicalname );
 
-  network::TLSContext tlsctx( network::TLSContext::TLSVersion::tls1_1 );
+    network::TLSContext tlsctx( network::TLSContext::PeerVerification::pvNone,
+                                network::TLSContext::TLSVersion::tls1_3 );
+    tlsctx.setTrustPaths( BuildEnv::getSourceDirectory() + "/examples/tls/artefacts/ca/root/certs/ca.cert.pem", "" );
 
-  tlsctx.loadCertificate( BuildEnv::getSourceDirectory() +
-                            "/examples/tls/artefacts" +
-                            "/ca/root/ext/servers/localhost.cert.pem",
-                          BuildEnv::getSourceDirectory() +
-                            "/examples/tls/artefacts" +
-                            "/ca/root/ext/servers/localhost.key.pem",
-                            "6vmmoskJgT8ItUGDcCWkq7bvN9ydyW0y" );
-  //tlsctx.setCipherList( common::Puts() << "TLS_AES_256_GCM_SHA384" );
-  tlsctx.setCipherList( common::Puts() << "DHE-RSA-AES256-GCM-SHA384" );
-  //tlsctx.setCipherList( "DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-SHA256:DHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!DSS:!RC4:!SEED:!ECDSA:!ADH:!IDEA:!3DES" );
-  tlsctx.setOptions( SSL_OP_CIPHER_SERVER_PREFERENCE );
-  network::TLSSocket tlssocket( true, sock_params, tlsctx );
-  return 0;
+    //tlsctx.loadPEMIdentity( BuildEnv::getSourceDirectory() +
+                              //"/examples/tls/artefacts" +
+                              //"/ca/root/ext/servers/localhost.cert.pem",
+                            //BuildEnv::getSourceDirectory() +
+                              //"/examples/tls/artefacts" +
+                              //"/ca/root/ext/servers/localhost.key.pem",
+                              //"6vmmoskJgT8ItUGDcCWkq7bvN9ydyW0y" );
+    //tlsctx.loadPKCS12( BuildEnv::getSourceDirectory() +
+                       //"/examples/tls/artefacts" +
+                       //"/ca/root/ext/servers/localhost.pkcs12",
+                       //"6vmmoskJgT8ItUGDcCWkq7bvN9ydyW0y" );
+    //tlsctx.setCipherList( common::Puts() << "TLS_AES_256_GCM_SHA384" );
+    tlsctx.setOptions( SSL_OP_CIPHER_SERVER_PREFERENCE );
+    network::TLSSocket tlssocket( true, sock_params, tlsctx );
+
+    if ( error == common::SystemError::ecOK ) {
+      address.setPort( 443 );
+      error = tlssocket.connect( address );
+      if ( error == common::SystemError::ecOK ) {
+        std::cout << "connected to " << address.asString(true) << std::endl;
+        return 0;
+      } else throw_SystemException( common::Puts() << "failed to connect to '" << host << "'", error );
+    } else throw_SystemException( common::Puts() << "failed to resolve '" << host << "'", error );
+  }
+  catch ( const std::runtime_error &e ) {
+    std::cerr << e.what() << std::endl;
+    return 1;
+  }
 }

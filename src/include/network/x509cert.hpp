@@ -24,8 +24,9 @@
 #define network_x509cert_hpp
 
 #include <openssl/ssl.h>
+#include <openssl/x509v3.h>
 #include <string>
-#include <vector>
+#include <list>
 
 namespace dodo::network {
 
@@ -38,7 +39,33 @@ namespace dodo::network {
     public:
 
       /**
-       * Attributes that together constitute a X509 identiy.
+       * The SubjectAltName type.
+       */
+      enum class SANType {
+        stDNS   = GEN_DNS,    /**< A valid DNS name such as myhost.mydomain.org */
+        stURI   = GEN_URI,    /**< A valid URI */
+        stEMAIL = GEN_EMAIL,  /**< A valid email address */
+        tsIP    = GEN_IPADD   /**< A valid IPv4 or IPv6 address */
+      };
+
+      /**
+       * Subject AltName record.
+       */
+      struct SAN {
+        /**
+         * The type.
+         */
+        X509Common::SANType san_type;
+
+        /**
+         * The name.
+         */
+        std::string san_name;
+      };
+
+
+      /**
+       * Attributes that together constitute a X509 identity.
        */
       struct Identity {
 
@@ -61,12 +88,12 @@ namespace dodo::network {
         std::string locality;
 
         /**
-         * The orgnization name.
+         * The organization name.
          */
         std::string organization;
 
         /**
-         * The orgnizational unit name.
+         * The organizational unit name.
          */
         std::string organizationUnit;
 
@@ -82,7 +109,7 @@ namespace dodo::network {
       };
 
       /**
-       * Enumaration of X509 document types.
+       * Enumeration of X509 document types.
        */
       enum class X509Type {
         Unknown,                    /**< Unknown PEM document */
@@ -155,7 +182,7 @@ namespace dodo::network {
       /**
        * Load a certificate signing request (CSR) from a PEM file. The X509_REQ object pointed to gets owned by
        * the caller and must be freed with free( X509_REQ* cert ). Note that the call will fail if the file is
-       * not a CSR, even if it is a valid PEM  file - such as a certifcate or a private key in
+       * not a CSR, even if it is a valid PEM  file - such as a certificate or a private key in
        * PEM format.
        *
        * @param file The filename to load from.
@@ -182,7 +209,7 @@ namespace dodo::network {
 
       /**
        * Get the certificate fingerprint (a hash on the public key modulus) in string format,
-       * multiple hexadecimal bytes values sperated by a colon.
+       * multiple hexadecimal bytes values separated by a colon.
        * `openssl list -digest-algorithms` shows a full list of hash (digest) names. Stick to newer hash algorithms
        * from the SHA-3 family.
        *
@@ -191,7 +218,7 @@ namespace dodo::network {
        * @see https://en.wikipedia.org/wiki/Secure_Hash_Algorithms
        *
        * @param cert A pointer to the X509 certificate.
-       * @param hashname The name of the hash algorithm to use. Defaults to 'shake256'. Names are case-insentitive.
+       * @param hashname The name of the hash algorithm to use. Defaults to 'shake256'. Names are case-insensitive.
        * @return A string representation of the fingerprint.
        */
       static std::string getFingerPrint( const X509_REQ *cert, const std::string hashname = "shake256" );
@@ -212,21 +239,6 @@ namespace dodo::network {
    */
   class X509Certificate : public X509Common {
     public:
-
-      /**
-       * Subject Altname record.
-       */
-      struct SAN {
-        /**
-         * The SAN type.
-         */
-        int san_type;
-
-        /**
-         * The SAN.
-         */
-        std::string san_name;
-      };
 
       /**
        * Load a public key certificate (aka 'certificate') from a PEM file. The X509 object pointed to gets owned by
@@ -275,11 +287,11 @@ namespace dodo::network {
        * @param cert A pointer to the X509 certificate.
        * @return A list of SAN.
        */
-      static std::vector<SAN> getSubjectAltNames( const X509* cert );
+      static std::list<X509Common::SAN> getSubjectAltNames( const X509* cert );
 
       /**
        * Get the certificate fingerprint (a hash on the public key modulus) in string format,
-       * multiple hexadecimal bytes values sperated by a colon.
+       * multiple hexadecimal bytes values separated by a colon.
        * `openssl list -digest-algorithms` shows a full list of hash (digest) names. Stick to newer hash algorithms
        * from the SHA-3 family.
        *
@@ -288,12 +300,43 @@ namespace dodo::network {
        * @see https://en.wikipedia.org/wiki/Secure_Hash_Algorithms
        *
        * @param cert A pointer to the X509 certificate.
-       * @param hashname The name of the hash algorithm to use. Defaults to 'shake256'. Names are case-insentitive.
+       * @param hashname The name of the hash algorithm to use. Defaults to 'shake256'. Names are case-insensitive.
        * @return A string representation of the fingerprint.
        */
       static std::string getFingerPrint( const X509 *cert, const std::string hashname = "shake256" );
 
+      /**
+       * Verify a peer name against this certificate's CN and SubjectAltnames.
+       *
+       * The name is always matched against the CN, regardless of the X509Common::SANType.
+       * The name is matched against SubjectAltNames that match the X509Common::SANType.
+       *
+       * @param cert A pointer to the X509 certificate.
+       * @param san The SAN structure to compare against.
+       * @return true if the name matches.
+       */
+      static bool verifySAN( const X509 *cert, const SAN &san );
+
     private:
+
+      /**
+       * Verify a peer name matches a SAN.
+       * @param peer The name of the peer.
+       * @param san The SubjectAltname of the peer.
+       * @param allowwildcard If true, allow wildcards.
+       * @return true when the name matches.
+       */
+      static bool verifyName( const std::string peer, const std::string san, bool allowwildcard = false );
+
+      /**
+       * Verify a peer IP matches a SAN of type stIP. The strings are converted to IP addresses, both must be valid IP
+       * addresses and they must be equal ( Address::operator==( const Address &) ).
+       * @param peer The ipv4 or ipv6 of the peer (as a string).
+       * @param san The ipv4 or ipv6 SubjectAltname of the peer (as a string).
+       * @return true when the IP matches.
+       */
+      static bool verifyIP( const std::string peer, const std::string san );
+
       /** Never construct, interface class. */
       X509Certificate() = delete;
       /** Never destruct, interface class. */

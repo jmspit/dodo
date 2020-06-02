@@ -37,16 +37,12 @@ namespace dodo::network {
   /**
    * TLS security context. A single TLSContext can be shared among multiple TLSSocket classes.
    *
-   * A security context comprises
-   *   - One private key
-   *   - One certificate
-   *   - Optional intermediate certificates
-   *   - The TLS version to be used
-   *   - The peer verification method
-   *
-   * The context can be sety
    *
    * See @ref developer_networking for more information on the role of this class.
+   *
+   * @todo Implement the OCSP protocol for revoked cert check
+   * @see http://www.zedwood.com/article/cpp-x509-certificate-revocation-check-by-ocsp
+   * @see https://stackoverflow.com/questions/56253312/how-to-create-ocsp-request-using-openssl-in-c
    */
   class TLSContext : public dodo::common::DebugObject {
     public:
@@ -64,12 +60,19 @@ namespace dodo::network {
       /**
        * The TLS peer verification method.
        *
-       * | PeerVerification | SSL_CTX_set_verify |
-       * | ---------| ----------|
-       * | pvNone | SSL_VERIFY_NONE |
-       * | pvVerifyPeer | SSL_VERIFY_PEER \| SSL_VERIFY_FAIL_IF_NO_PEER_CERT  |
-       * | pvVerifyFQDN | SSL_VERIFY_PEER \| SSL_VERIFY_FAIL_IF_NO_PEER_CERT  |
-       * | pvCustom | SSL_VERIFY_PEER \| SSL_VERIFY_FAIL_IF_NO_PEER_CERT  |
+       * | PeerVerification | SSL_CTX_set_verify                                  |
+       * | -----------------| ----------------------------------------------------|
+       * | pvNone           | SSL_VERIFY_NONE                                     |
+       * | pvVerifyPeer     | SSL_VERIFY_PEER \| SSL_VERIFY_FAIL_IF_NO_PEER_CERT  |
+       * | pvVerifyFQDN     | SSL_VERIFY_PEER \| SSL_VERIFY_FAIL_IF_NO_PEER_CERT  |
+       * | pvCustom         | SSL_VERIFY_PEER \| SSL_VERIFY_FAIL_IF_NO_PEER_CERT  |
+       *
+       * | PeerVerification | Server / accept | Client / connect |
+       * |------------------|-----------------|------------------|
+       * | pvNone           | encryption of traffic |  encryption of traffic |
+       * | pvVerifyPeer     | pvNone + client must present trusted cert |  pvNone + server must present trusted cert |
+       * | pvVerifyFQDN     | pvVerifyPeer |  pvVerifyPeer + X509Certificate::verifyName() |
+       * | pvCustom         | pvVerifyPeer + custom |  pvVerifyPeer + custom |
        *
        * @see https://www.openssl.org/docs/man1.1.1/man3/SSL_CTX_set_verify.html
        */
@@ -79,23 +82,28 @@ namespace dodo::network {
         pvVerifyPeer,     /**< The peer must have a trusted certificate (unless a anonymous cipher is used). */
         pvVerifyFQDN,     /**< As pvVerifyPeer, but the remote DNS name must match either the peer cert commonname
                                or match one of the peer cert subjectAltNames */
-        pvCustom,         /**< As pvVerifyPeer, but with additional opportunity to write the peer
-                               certificate validation logic.*/
+        pvCustom,         /**< As pvVerifyPeer, but with custom certificate validation logic.*/
       };
 
       /**
        * Construct a TLS context.
        * @param peerverficiation The PeerVerification method to use.
-       * @param tlsversion The TLS verion to use. Use of default is less future code hassle.
+       * @param tlsversion The TLS version to use. Use of default is less future code hassle.
+       * @param enableSNI Enable the Server Name Indication extension. Note that this exposes the target hostname
+       * of TLSSocket connections as the hostname is sent unencrypted, facilitated all kinds of evil such as
+       * censorship. Use only when you must connect to a server that requires it.
+       *
+       * @see https://en.wikipedia.org/wiki/Server_Name_Indication
        */
       TLSContext( const PeerVerification& peerverficiation = PeerVerification::pvVerifyFQDN,
-                  const TLSVersion& tlsversion = TLSVersion::tlsBest );
+                  const TLSVersion& tlsversion = TLSVersion::tlsBest,
+                  bool  enableSNI = false );
 
 
       virtual ~TLSContext();
 
       /**
-       * Load a certificate and the corresponding private key for an indentity.
+       * Load a certificate and the corresponding private key for an identity.
        * @param certfile The certificate PEM file.
        * @param keyfile The private key PEM file.
        * @param passphrase The passphrase for the private key PEM file. If the private key is not protected by a
@@ -117,7 +125,7 @@ namespace dodo::network {
       /**
        * Set a list of ciphers the TLSContext will accept. There are differences between TLSVersion tough,
        *
-       * A few examples (note the hypens and underscores)
+       * A few examples (note the hyphens and underscores)
        *
        *   - TLS 1.3 TLS_AES_256_GCM_SHA384
        *   - TLS 1.2 DHE-RSA-AES256-GCM-SHA384
@@ -125,7 +133,7 @@ namespace dodo::network {
        *
        * @see https://www.openssl.org/docs/manmaster/man3/SSL_CTX_set_cipher_list.html
        *
-       * Note that this call will not return a SystemError, but throws a dodo::common::Exception when the cipherlist
+       * Note that this call will not return a SystemError, but throws a dodo::common::Exception when the cipher list
        * is invalid.
        *
        * @param cipherlist The cipherlist.
@@ -145,7 +153,7 @@ namespace dodo::network {
       /**
        * Trust all certificates in the specified directory.
        * @param cafile A PEM file containing one or more certificates. If an empty string, unused.
-       * @param capath A directory containing certificate files. If an emptuy string, unused.
+       * @param capath A directory containing certificate files. If an empty string, unused.
        */
       void setTrustPaths(  const std::string& cafile,
                            const std::string& capath );
@@ -157,7 +165,7 @@ namespace dodo::network {
       SSL_CTX* getContext() const { return  tlsctx_; };
 
       /**
-       * Write ssl errors occured in this thread to ostream, and clear their error state.
+       * Write ssl errors occurred in this thread to ostream, and clear their error state.
        * @param out The std::ostream to write to.
        * @param terminator The char to use to separate lines.
        * @return The number of SSL errors written.
@@ -171,6 +179,18 @@ namespace dodo::network {
        * @see writeSSLErrors( ostream& out)
        */
       static std::string getSSLErrors( char terminator = 0 );
+
+      /**
+       * Return the getPeerVerification mode.
+       * @return the getPeerVerification.
+       */
+      PeerVerification getPeerVerification() const { return peerverficiation_; }
+
+      /**
+       * Return true when SNI (server Name Information) is to be enabled by TLSSocket objects using this TLSContext.
+       * @return true when SNI is enabled.
+       */
+      bool isSNIEnabled() const { return enable_sni_; }
 
     private:
       /**
@@ -190,7 +210,7 @@ namespace dodo::network {
        * loadCertificate or pkeypassphrase argument of the loadPKCS12 method.
        * @param buf The passphrase should be copied to here.
        * @param size No more than size bytes should be copied into buf.
-       * @param rwflag 0 = descryption 1 = encryption
+       * @param rwflag 0 = decryption 1 = encryption
        * @param userdata Pass a pointer to the TLSContext object.
        * @return the character length of the passphrase string.
        */
@@ -215,6 +235,16 @@ namespace dodo::network {
        * The passphrase to decrypt encrypted private keys (may be empty when the key is not encrypted).
        */
       std::string passphrase_;
+
+      /**
+       * Enable / disable SNI on TLSSocket objects using this TLSContext.
+       */
+      bool enable_sni_;
+
+      /**
+       * Enable / disable CRL (Certificate Revocation List) checking.
+       */
+      bool enable_clr_;
 
 
   };

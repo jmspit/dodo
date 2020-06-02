@@ -27,7 +27,6 @@
 #include "common/util.hpp"
 
 #include <openssl/ssl.h>
-#include <openssl/x509v3.h>
 
 #include <iostream>
 #include <fstream>
@@ -188,8 +187,8 @@ namespace dodo::network {
     return parseIdentity( tmp );
   }
 
-  std::vector<X509Certificate::SAN> X509Certificate::getSubjectAltNames( const X509* cert ) {
-    std::vector<X509Certificate::SAN> result;
+  std::list<X509Certificate::SAN> X509Certificate::getSubjectAltNames( const X509* cert ) {
+    std::list<X509Certificate::SAN> result;
     GENERAL_NAMES* subjectaltnames = (GENERAL_NAMES*)X509_get_ext_d2i( cert, NID_subject_alt_name, NULL, NULL);
     if ( !subjectaltnames ) return result;
     int altnamecount = sk_GENERAL_NAME_num(subjectaltnames);
@@ -200,13 +199,13 @@ namespace dodo::network {
              generalname->type == GEN_DNS ||
              generalname->type == GEN_EMAIL ) {
           std::string san = std::string(reinterpret_cast<char*>(generalname->d.ia5->data));
-          result.push_back( {generalname->type, san } );
+          result.push_back( { static_cast<X509Common::SANType>(generalname->type), san } );
         } else if ( generalname->type == GEN_IPADD)  {
           unsigned char *data = generalname->d.ip->data;
           if ( generalname->d.ip->length == 4 ) {
             std::stringstream ip;
             ip << (int)data[0] << '.' << (int)data[1] << '.' << (int)data[2] << '.' << (int)data[3];
-            result.push_back( { generalname->type, ip.str() } );
+            result.push_back( { static_cast<X509Common::SANType>(generalname->type), ip.str() } );
           } else {
             const unsigned char *data = ASN1_STRING_get0_data( generalname->d.iPAddress );
             int datalen = ASN1_STRING_length( generalname->d.ia5 );
@@ -217,7 +216,7 @@ namespace dodo::network {
               ip << std::hex << (int)(p[0] << 8 | p[1]);
               p+=2;
             }
-            result.push_back( { generalname->type, ip.str() } );
+            result.push_back( { static_cast<X509Common::SANType>(generalname->type), ip.str() } );
           }
         }
       }
@@ -242,6 +241,64 @@ namespace dodo::network {
       ss << std::setw(2) << (unsigned int)hash[pos];
     }
     return ss.str();
+  }
+
+  bool X509Certificate::verifyName( const std::string peer, const std::string san, bool allowwildcard ) {
+    if ( peer.length() < san.length() ) return false;
+    auto itr_peer = peer.rbegin();
+    auto itr_san = san.rbegin();
+    while ( itr_peer != peer.rend() && itr_san != san.rend() ) {
+      if ( *itr_peer != *itr_san ) {
+        if ( allowwildcard && *itr_san == '*' ) {
+          // verify there are no dots to the left
+          while ( itr_peer != peer.rend() ) {
+            if ( *itr_peer == '.' ) return false;
+            itr_peer++;
+          }
+          return true;
+        } else return false;
+      }
+      itr_peer++;
+      itr_san++;
+    }
+    return peer.length() == san.length();
+  }
+
+  bool X509Certificate::verifyIP( const std::string peer, const std::string san ) {
+    network::Address addr_peer = peer;
+    network::Address addr_san = san;
+    if ( addr_peer.isValid() && addr_san.isValid() && addr_peer == addr_san )
+      return true;
+    else
+      return false;
+  }
+
+  bool X509Certificate::verifySAN( const X509 *cert, const SAN &san ) {
+    bool verified = false;
+    auto cert_sans = getSubjectAltNames( cert );
+    X509Common::Identity subject = getSubject( cert );
+    cert_sans.push_front( { san.san_type, subject.commonName } );
+    switch ( san.san_type ) {
+      case SANType::stDNS:
+      case SANType::stURI:
+      case SANType::stEMAIL:
+        for ( auto s : cert_sans ) {
+          if ( s.san_type == san.san_type && verifyName( san.san_name, s.san_name, true ) ) {
+            verified = true;
+            break;
+          }
+        }
+        break;
+      case SANType::tsIP:
+        for ( auto s : cert_sans ) {
+          if ( s.san_type == san.san_type && verifyIP( san.san_name, s.san_name ) ) {
+            verified = true;
+            break;
+          }
+        }
+        break;
+    }
+    return verified;
   }
 
 }

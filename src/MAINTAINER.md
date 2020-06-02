@@ -1,10 +1,12 @@
-# Coding style {#coding_style}
+# Maintainer manual
+
+## Coding style {#coding_style}
 
 [TOC]
 
-## Identifiers
+### Identifiers
 
-### Namespaces
+#### Namespaces
 
 Namespace identifiers are lower case.
 
@@ -13,7 +15,7 @@ namespace dodo::network {
 }
 ```
 
-### Type names
+#### Type names
 
 Type names start with a capital.
 
@@ -39,7 +41,7 @@ class SMTPServer {
 }
 ```
 
-## Variables
+### Variables
 
 Variables are lowercase.
 
@@ -56,14 +58,14 @@ class Person {
 };
 ```
 
-### Methods
+#### Methods
 
 ```C
 int getAttrribute() const {
 }
 ```
 
-## Indentation and curly brackets
+### Indentation and curly brackets
 
 No tabs. Indent is two spaces.
 

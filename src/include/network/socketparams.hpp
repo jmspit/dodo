@@ -38,7 +38,7 @@ namespace dodo::network {
     public:
 
       /**
-       * Addres familiy type.
+       * Addres family type.
        */
       enum AddressFamily {
         afLOCAL     = AF_LOCAL,
@@ -116,7 +116,7 @@ namespace dodo::network {
       };
 
       /**
-       * Default constructor to AF_INET6, SOCK_STREAM, protocol 0
+       * Default constructor to AF_INET6, SOCK_STREAM, protocol pnHOPOPT
        */
       SocketParams() : family_(afINET6), sockettype_(stSTREAM), protocol_(pnHOPOPT) {};
 
@@ -273,7 +273,7 @@ namespace dodo::network {
 
     private:
       /**
-       * The address familiy.
+       * The address family.
        */
       AddressFamily family_;
 

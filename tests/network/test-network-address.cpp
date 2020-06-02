@@ -18,6 +18,8 @@ class AddressTest : public common::UnitTest {
     bool test3();
     bool test4();
     bool test5();
+    bool test6();
+    bool test7();
 };
 
 void AddressTest::doRun() {
@@ -26,6 +28,8 @@ void AddressTest::doRun() {
   test3();
   test4();
   test5();
+  test6();
+  test7();
 }
 
 bool AddressTest::test1() {
@@ -94,6 +98,26 @@ bool AddressTest::test5() {
                              address.isValid() &&
                              address.getAddressFamily() == network::SocketParams::afINET6 &&
                              address.asString() == sadres );
+}
+
+bool AddressTest::test6() {
+  network::Address one = std::string("127.0.0.1");
+  network::Address two = std::string("127.0.0.1");
+  return writeSubTestResult( "test Address equality ipv4",
+                             common::Puts() << "test compare Address",
+                             one.isValid() &&
+                             two.isValid() &&
+                             one == two );
+}
+
+bool AddressTest::test7() {
+  network::Address one = std::string("::1");
+  network::Address two = std::string("0:0:0:0:0:0:0:1");
+  return writeSubTestResult( "test Address equality ipv6",
+                             common::Puts() << "test compare Address",
+                             one.isValid() &&
+                             two.isValid() &&
+                             one == two );
 }
 
 

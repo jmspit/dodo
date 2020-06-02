@@ -10,7 +10,7 @@ bool test1() {
     std::cout << "Issuer:  " << network::X509Certificate::getIssuer( cert ) << std::endl;
     std::cout << "Subject: " << network::X509Certificate::getSubject( cert ) << std::endl;
     for ( auto san : network::X509Certificate::getSubjectAltNames( cert ) ) {
-      std::cout << san.san_type << " " << san.san_name << std::endl;
+      std::cout << (int)san.san_type << " " << san.san_name << std::endl;
     }
     network::X509Certificate::free( cert );
   }

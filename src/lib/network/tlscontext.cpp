@@ -26,6 +26,8 @@
 #include <string.h>
 
 #include <openssl/ssl.h>
+#include <openssl/x509v3.h>
+#include <openssl/x509_vfy.h>
 #include <openssl/pkcs12.h>
 
 #include <iostream>
@@ -44,13 +46,14 @@ namespace dodo::network {
   }
 
   TLSContext::TLSContext( const TLSContext::PeerVerification& peerverficiation,
-                          const TLSVersion& tlsversion ) {
+                          const TLSVersion& tlsversion,
+                          bool  enableSNI ) {
     tlsversion_ = tlsversion;
     peerverficiation_ = peerverficiation;
+    enable_sni_ = enableSNI;
     passphrase_ = "";
     tlsctx_ = nullptr;
     long rc = 0;
-    long ssl_options = SSL_OP_NO_SSLv2 | SSL_OP_NO_SSLv3;
     tlsctx_ = SSL_CTX_new( TLS_method() );
     if ( !tlsctx_ ) throw_ExceptionObject( common::Puts() << "SSL_CTX_new failed"
                                            << common::Puts::endl() << getSSLErrors( '\n' ), this  );
@@ -59,17 +62,17 @@ namespace dodo::network {
         rc = SSL_CTX_set_min_proto_version( tlsctx_, TLS1_1_VERSION );
         break;
       case TLSVersion::tls1_2 :
-        ssl_options = ssl_options | SSL_OP_NO_TLSv1_1;
         rc = SSL_CTX_set_min_proto_version( tlsctx_, TLS1_2_VERSION );
         break;
       case TLSVersion::tls1_3 :
-        ssl_options = ssl_options | SSL_OP_NO_TLSv1_1 | SSL_OP_NO_TLSv1_2;
         rc = SSL_CTX_set_min_proto_version( tlsctx_, TLS1_3_VERSION );
+        break;
+      default:
+        rc = SSL_CTX_set_min_proto_version( tlsctx_, TLS1_1_VERSION );
         break;
     }
     if ( rc == 0 ) throw_ExceptionObject( common::Puts() << "SSL_CTX_set_min_proto_version failed"
                                           << common::Puts::endl() << getSSLErrors( '\n' ), this  );
-    SSL_CTX_set_options( tlsctx_, ssl_options );
 
     SSL_CTX_set_default_passwd_cb( tlsctx_, pem_passwd_cb );
     SSL_CTX_set_default_passwd_cb_userdata( tlsctx_, this );

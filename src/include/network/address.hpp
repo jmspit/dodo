@@ -43,39 +43,50 @@ namespace dodo::network {
   /**
    * Generic network Address, supporting ipv4 and ipv6 transparently.
    *
-   * Special addresses
-   *   - INADDR_ANY ipv4 "0.0.0.0" ipv6 "::0"
-   *   - localhost ipv4 "127.0.0.1" ipv6 "::1"
+   * Typical client use is to first resolve a host name. We specify SocketParams::afUNSPEC
+   * for the address family, allowing for both ipv4 and ipv6 and specify the TCP protocol (stSTRAM + pnTCP ).
    *
-   * Typical client use is to first resolve a host name
    * @code
-   *     network::Address address;
-   *     network::SocketParams sock_params = network::SocketParams( network::SocketParams::afUNSPEC,
-   *                                                                network::SocketParams::stSTREAM,
-   *                                                                network::SocketParams::pnTCP );
+   *     using namespace dodo::common;
+   *     using namespace dodo::network;
+   *
+   *     Address address;
+   *     SocketParams sock_params = SocketParams( SocketParams::afUNSPEC,
+   *                                              SocketParams::stSTREAM,
+   *                                              SocketParams::pnTCP );
    *     std::string canonicalname;
-   *     std::string host = "httpbin.org";
-   *     common::SystemError error = network::Address::getHostAddrInfo( host, sock_params, address, canonicalname );
+   *     SystemError error = Address::getHostAddrInfo( "httpbin.org", sock_params, address, canonicalname );
    *
    * @endcode
    *
-   * As we specify afUNSPEC, the returned address might be afINET or afINET6, and getHostAddrInfo sets the address
-   * family of the returned address in sock_params, so that the adjusted sock_params
-   * can be used to connect transparently to either afINET or afINET6:
+   * The canonical name is set and may differ from the host name passed to getHostAddrInfo.
+   *
+   * After the getHostAddrInfo (if error == SystemError::ecOK ) the sock_params will have its address family set to
+   * either network::SocketParams::afINET or network::SocketParams::afINET6, depending on what the server
+   * (httpbin.org) supports. But we can continue to connect without any reference to the actual address family being
+   * used:
    *
    * @code
    *     if ( error == SystemError::ecOK ) {
-   *       address.setPort( 80 );
-   *       network::Socket socket( true, sock_params );
+   *       address.setPort( 443 );
+   *       Socket socket( true, sock_params );
    *       error = socket.connect( address );
-   *       // if ecOK, connected.
+   *       if ( error == SystemError::ecOK ) {
+   *         // connected
+   *       }
+   *     }
    * @endcode
    *
-   * There are two prototypes for getHostAddrInfo, one returns the preferred Address, the other a list of addresses
-   * (an AddrInfo structure), the preferred address the first in the list. Subsequent calls do not necisarily (DNS
-   * round robin for example) return the same address as prefered address.
+   * There are two prototypes for getHostAddrInfo, one returns the preferred Address (as above), the other a list of
+   * addresses (an AddrInfo structure), the preferred address the first in the list. Subsequent calls do not necessarily
+   * (under DNS round robin for example) return the same address as preferred address.
    *
    * As the getHostAddrInfo calls are quite expensive, prefer reuse of obtained Address objects where possible.
+   *
+   * | Special addresses | ipv4 | ipv6 |
+   * |---------|------|------|
+   * | INADDR_ANY | 0.0.0.0 | ::0 |
+   * | localhost | 127.0.0.1 | ::1 |
    *
    */
   class Address : public common::DebugObject {
@@ -177,7 +188,8 @@ namespace dodo::network {
       Address& operator=( const sockaddr_storage& address );
 
       /**
-       * Test for equality.
+       * Test for equality. The comparison is a byte compare on the internal sockaddr_in / sockaddr_in6
+       * structures, which guarantees that Address objects assigned "::1" and "0:0:0:0:0:0:0:1" are considered equal.
        * @param address The address to compare to.
        * @return True if the addresses are equal.
        */
@@ -316,7 +328,7 @@ namespace dodo::network {
   };
 
   /**
-   * Address info, comprising the canoncial name of a host, and list of address info items for the host.
+   * Address info, comprising the canonical name of a host, and list of address info items for the host.
    * @see AddrInfoItem
    * @see Address::getHostAddrInfo()
    */

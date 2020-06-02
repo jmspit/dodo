@@ -220,7 +220,7 @@ namespace dodo::common {
           /**
            * JSON related
            */
-          ecLIBRARY_INVALID_JSON = 10001,             /**< 10001 Parse failed, invalid JSON. */
+          //ecLIBRARY_INVALID_JSON = 10001,             /**< 10001 Parse failed, invalid JSON. */
 
           ecSSL = 10002,                              /**< 10002 SSL exception */
           ecSSL_ERROR_NONE = 10003,                   /**< 10003 SSL_ERROR_NONE */
@@ -233,7 +233,8 @@ namespace dodo::common {
           ecSSL_ERROR_WANT_ASYNC = 10009,             /**< 10009 SSL_ERROR_WANT_ASYNC */
           ecSSL_ERROR_WANT_ASYNC_JOB = 10010,         /**< 10010 SSL_ERROR_WANT_ASYNC_JOB */
           ecSSL_ERROR_WANT_CLIENT_HELLO_CB = 10011,   /**< 10011 SSL_ERROR_WANT_CLIENT_HELLO_CB */
-          ecSSL_ERROR_SYSCALL = 10012                 /**< 10012 SSL_ERROR_SYSCALL */
+          ecSSL_ERROR_SYSCALL = 10012,                /**< 10012 SSL_ERROR_SYSCALL */
+          ecSSL_ERROR_PEERVERIFICATION = 10013,       /**< 10013 When peer verification failed */
 
         };
 
@@ -339,8 +340,8 @@ namespace dodo::common {
          */
         static string libstrerror( SystemError error ) {
           switch ( error ) {
-            case SystemError::ecLIBRARY_INVALID_JSON:
-              return "Parse failed, invalid JSON";
+            case SystemError::ecSSL_ERROR_PEERVERIFICATION:
+              return "The peer certificate CN or SubjectAltNames do not match";
             case SystemError::ecSSL:
               return "SSL exception thrown";
             default : return common::Puts() << "unknown error" << error;

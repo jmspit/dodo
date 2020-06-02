@@ -92,6 +92,20 @@ namespace dodo::network {
     return *this;
   }
 
+  bool Address::operator==( const Address& address ) const {
+    if ( addr_.ss_family == address.addr_.ss_family ) {
+      if ( addr_.ss_family == AF_INET ) {
+        sockaddr_in* local = asIPv4Address();
+        sockaddr_in* other = address.asIPv4Address();
+        return memcmp( local, other, sizeof(sockaddr_in) ) == 0;
+      } else if ( addr_.ss_family == AF_INET6 ) {
+        sockaddr_in6* local = asIPv6Address();
+        sockaddr_in6* other = address.asIPv6Address();
+        return memcmp( local, other, sizeof(sockaddr_in6) ) == 0;
+      } else return false;
+    } else return false;
+  }
+
 
   string Address::asString( bool withport )  const {
     char ip_[INET6_ADDRSTRLEN];

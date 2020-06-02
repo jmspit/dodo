@@ -221,6 +221,27 @@ namespace dodo::network {
     return (SocketParams::AddressFamily)optvar;
   }
 
+  SocketParams::SocketType BaseSocket::getSocketType() const {
+    socklen_t optvar  = 0;
+    socklen_t optlen = sizeof(optvar);
+    int rc = getsockopt( socket_, SOL_SOCKET, SO_TYPE, &optvar, &optlen );
+    if ( rc == -1 ) throw_SystemExceptionObject( "getSocketType failed", errno, this );
+    return (SocketParams::SocketType)optvar;
+  }
+
+  SocketParams::ProtocolNumber BaseSocket::getProtocolNumber() const {
+    socklen_t optvar  = 0;
+    socklen_t optlen = sizeof(optvar);
+    int rc = getsockopt( socket_, SOL_SOCKET, SO_PROTOCOL, &optvar, &optlen );
+    if ( rc == -1 ) throw_SystemExceptionObject( "getProtocolNumber failed", errno, this );
+    return (SocketParams::ProtocolNumber)optvar;
+  }
+
+  SocketParams BaseSocket::getSocketParams() const {
+    SocketParams p( getAddressFamily(), getSocketType(), getProtocolNumber() );
+    return p;
+  }
+
   Address BaseSocket::getPeerAddress() const {
     sockaddr_storage addr;
     socklen_t sz = sizeof(addr);
@@ -243,7 +264,7 @@ namespace dodo::network {
     do {
       error = receive( &t, request, received );
       total += received;
-    } while ( SystemError::ecOK && total < request );
+    } while ( error == SystemError::ecOK && total < request );
     if ( error == SystemError::ecOK ) {
       value = t;
     } else value = 0;
@@ -264,7 +285,7 @@ namespace dodo::network {
     do {
       error = receive( &t, request, received );
       total += received;
-    } while ( SystemError::ecOK && total < request );
+    } while ( error ==  SystemError::ecOK && total < request );
     if ( error == SystemError::ecOK ) {
       value = ntohs(t);
     } else value = 0;
@@ -285,7 +306,7 @@ namespace dodo::network {
     do {
       error = receive( &t, request, received );
       total += received;
-    } while ( SystemError::ecOK && total < request );
+    } while ( error == SystemError::ecOK && total < request );
     if ( error == SystemError::ecOK ) {
       value = t;
     } else value = 0;
@@ -306,7 +327,7 @@ namespace dodo::network {
     do {
       error = receive( &t, request, received );
       total += received;
-    } while ( SystemError::ecOK && total < request );
+    } while ( error == SystemError::ecOK && total < request );
     if ( error == SystemError::ecOK ) {
       value = ntohs(t);
     } else value = 0;
@@ -327,7 +348,7 @@ namespace dodo::network {
     do {
       error = receive( &t, request, received );
       total += received;
-    } while ( SystemError::ecOK && total < request );
+    } while ( error == SystemError::ecOK && total < request );
     if ( error == SystemError::ecOK ) {
       value = ntohl(t);
     } else value = 0;
@@ -348,7 +369,7 @@ namespace dodo::network {
     do {
       error = receive( &t, request, received );
       total += received;
-    } while ( SystemError::ecOK && total < request );
+    } while ( error == SystemError::ecOK && total < request );
     if ( error == SystemError::ecOK ) {
       value = ntohl(t);
     } else value = 0;
@@ -369,7 +390,7 @@ namespace dodo::network {
     do {
       error = receive( &t, request, received );
       total += received;
-    } while ( SystemError::ecOK && total < request );
+    } while ( error == SystemError::ecOK && total < request );
     if ( error == SystemError::ecOK ) {
       value = be64toh( t );
     } else value = 0;
@@ -390,7 +411,7 @@ namespace dodo::network {
     do {
       error = receive( &t, request, received );
       total += received;
-    } while ( SystemError::ecOK && total < request );
+    } while ( error == SystemError::ecOK && total < request );
     if ( error == SystemError::ecOK ) {
       value = be64toh( t );
     } else value = 0;

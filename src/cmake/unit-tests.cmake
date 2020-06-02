@@ -35,3 +35,7 @@ set( ${TEST_NETWORK_X509}_objects  tests/network/${TEST_NETWORK_X509}.cpp )
 add_executable(${TEST_NETWORK_X509} ${${TEST_NETWORK_X509}_objects} )
 target_link_libraries( ${TEST_NETWORK_X509} ${LIB_DODO} )
 add_test (NAME "network::X509Certificate=${TEST_NETWORK_X509}" COMMAND ${TEST_NETWORK_X509} )
+
+set( TEST_NETWORK_TLS  "test-network-tls" )
+add_test (NAME "network::TLSContext+TLSSocket=${TEST_NETWORK_TLS}"
+          COMMAND "${CMAKE_CURRENT_SOURCE_DIR}/tests/network/${TEST_NETWORK_TLS}.sh" "${CMAKE_CURRENT_BINARY_DIR}/bin" )

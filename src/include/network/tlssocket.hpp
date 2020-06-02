@@ -1,5 +1,5 @@
 /*
- * This file is part of the adodorca library (https://github.com/jmspit/dodo).
+ * This file is part of the dodo library (https://github.com/jmspit/dodo).
  * Copyright (c) 2019 Jan-Marten Spit.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -25,6 +25,7 @@
 
 #include "network/socketparams.hpp"
 #include "network/tlscontext.hpp"
+#include "network/x509cert.hpp"
 #include "network/socket.hpp"
 
 
@@ -33,7 +34,7 @@ namespace dodo::network {
   //using namespace std;
 
   /**
-   * Socket for SSL encrypted traffic between trusted endpoints.
+   * Socket for TLS encrypted traffic between trusted endpoints.
    *
    * @ref developer_networking
    */
@@ -44,18 +45,23 @@ namespace dodo::network {
        * Construct from existing socket file descriptor.
        * @param socket The socket file descriptor.
        * @param tlscontext The TLSContext to apply.
+       * @param peer_name The peer name to validate against the peer certificate CN and SubjectAltNames. Only used
+       *                  when the tlscontext has pvVerifyFQDN set (and possibly when pvCustom is set).
        */
-      TLSSocket( int socket, TLSContext& tlscontext );
+      TLSSocket( int socket, TLSContext& tlscontext, const X509Common::SAN &peer_name );
 
       /**
        * Construct from scratch.
        * @param blocking If true, operate in blocking mode.
        * @param params The SocketParams to apply.
        * @param tlscontext The TLSContext to apply.
+       * @param peer_name The peer name to validate against the peer certificate CN and SubjectAltNames. Only used
+       *                  when the tlscontext has pvVerifyFQDN set (and possibly when pvCustom is set).
        */
       TLSSocket( bool blocking,
                  SocketParams params,
-                 TLSContext& tlscontext );
+                 TLSContext& tlscontext,
+                 const X509Common::SAN& peer_name );
 
       /**
        * Destructor.
@@ -63,16 +69,9 @@ namespace dodo::network {
       virtual ~TLSSocket();
 
       /**
-       * Connect to the Address.
-       * @param address  The address to connect to.
-       * @return The SystemErorr.
-       */
-      virtual SystemError connect( const Address &address );
-
-      /**
        * Send data
        * @param buf Data to send
-       * @param len Sizeof data in buf
+       * @param len Size of data in buf
        * @param more If true, do not force a send buffer flush, more data will follow
        * @return The SystemError code.
        */
@@ -93,6 +92,14 @@ namespace dodo::network {
        */
       SystemError accept();
 
+
+      /**
+       * Connect to the Address.
+       * @param address The address to connect to.
+       * @return The SystemError code.
+       */
+      virtual SystemError connect( const Address &address );
+
       /**
        * Get the peer's certificate.
        * @return A pointer to the peer certificate (must not be freed).
@@ -102,7 +109,7 @@ namespace dodo::network {
       /**
        * Identity
        * @param socket The socket to compare to.
-       * @return True if both sockets are equal and have the sxame value of socket_.
+       * @return True if both sockets are equal and have the same value in socket_.
        */
       bool operator==(const TLSSocket& socket ) const { return this->socket_ == socket.socket_; };
 
@@ -120,7 +127,8 @@ namespace dodo::network {
        */
       TLSSocket& operator=( const TLSSocket& socket );
 
-    private:
+    protected:
+
       /**
        * The SSL object.
        */
@@ -130,6 +138,11 @@ namespace dodo::network {
        * The TLSContext
        */
       TLSContext& tlscontext_;
+
+      /**
+       * The peer name connected to, for TLS CN and SubjectAltName matching.
+       */
+      X509Common::SAN peer_name_;
 
   };
 

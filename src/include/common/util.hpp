@@ -75,7 +75,7 @@ namespace dodo::common {
        * Return the number of seconds between
        * - start() and stop() calls
        * - start() and time of this call
-       * - StopWatch cosntructor and time of this call.
+       * - StopWatch constructor and time of this call.
        * @return The number of seconds.
        */
       double getElapsedSeconds() const {

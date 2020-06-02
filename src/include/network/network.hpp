@@ -41,18 +41,23 @@ namespace dodo {
      * Initialize the dodo::network library.
      */
     void initLibrary() {
-      SSL_load_error_strings();
-      SSL_library_init();
-      OpenSSL_add_all_algorithms();
-      OpenSSL_add_all_digests();
+      OPENSSL_init_crypto( 0, nullptr );
+      OPENSSL_init_ssl( 0, nullptr );
+
+      //SSL_load_error_strings();
+      //SSL_library_init();
+      //OpenSSL_add_all_algorithms();
+      //OPENSSL_cpuid_setup();
+      //OpenSSL_add_all_ciphers();
+      //OpenSSL_add_all_digests();
     }
 
     /**
      * Close the dodo::network library.
      */
     void closeLibrary() {
-      ERR_free_strings();
-      EVP_cleanup();
+      //ERR_free_strings();
+      OPENSSL_cleanup();
     }
 
   }

@@ -21,8 +21,6 @@ void showCertificate( const std::string &filename, const std::string &pem_tag ) 
   std::cout << "Fingerprint (md5)    : " << network::X509Certificate::getFingerPrint( cert, "md5" ) << std::endl;
   std::cout << "Fingerprint (sha1)   : " << network::X509Certificate::getFingerPrint( cert, "sha1" ) << std::endl;
   std::cout << "Fingerprint (sha256) : " << network::X509Certificate::getFingerPrint( cert, "sha256" ) << std::endl;
-  //std::cout << "Fingerprint (sha384) : " << network::X509Certificate::getFingerPrint( cert, "sha384" ) << std::endl;
-  //std::cout << "Fingerprint (sha512) : " << network::X509Certificate::getFingerPrint( cert, "sha512" ) << std::endl;
   network::X509Certificate::free( cert );
 }
 
@@ -33,8 +31,6 @@ void showCertificateSigningRequest( const std::string &filename, const std::stri
   std::cout << "Fingerprint (md5)    : " << network::X509CertificateSigningRequest::getFingerPrint( cert, "md5" ) << std::endl;
   std::cout << "Fingerprint (sha1)   : " << network::X509CertificateSigningRequest::getFingerPrint( cert, "sha1" ) << std::endl;
   std::cout << "Fingerprint (sha256) : " << network::X509CertificateSigningRequest::getFingerPrint( cert, "sha256" ) << std::endl;
-  //std::cout << "Fingerprint (sha384) : " << network::X509CertificateSigningRequest::getFingerPrint( cert, "sha384" ) << std::endl;
-  //std::cout << "Fingerprint (sha512) : " << network::X509CertificateSigningRequest::getFingerPrint( cert, "sha512" ) << std::endl;
   network::X509CertificateSigningRequest::free( cert );
 }
 
@@ -60,8 +56,6 @@ int main( int argc, char* argv[] ) {
         showCertificateSigningRequest( argv[1], pem_tag );
         break;
     }
-
-
   }
   catch ( std::exception &e  ) {
     std::cerr << e.what() << std::endl;

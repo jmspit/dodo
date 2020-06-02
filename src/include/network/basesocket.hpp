@@ -231,6 +231,25 @@ namespace dodo::network {
       SocketParams::AddressFamily getAddressFamily() const;
 
       /**
+       * Get the SocketParams::SocketType of the socket.
+       * @return The SocketType.
+       */
+      SocketParams::SocketType getSocketType() const;
+
+      /**
+       * Get the SocketParams::ProtocolNumber of the socket.
+       * @return The ProtocolNumber.
+       */
+      SocketParams::ProtocolNumber getProtocolNumber() const;
+
+      /**
+       * Return the SocketParams.
+       * @see getAddressFamily(), getSocketType(), getProtocolNumber()
+       * @return the SocketParams.
+       */
+      SocketParams getSocketParams() const;
+
+      /**
        * Get the peer (remote) address for this socket.
        * @return The peer Address.
        */

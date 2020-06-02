@@ -23,7 +23,7 @@ of fast and lean services for containerized deployment - aka picoservices.
     - SQLite files, hierarchical keys
     - modifcation time allows the runtime to pick up changes without restarting
     - Cryptography allows to encrypt sensitive (or all) configuration data.
-  - [(Secure) Socket programming](@ref developer_networking)
+  - [(Secure) Socket programming](@ref developer_networking) - automatically handles ipv4 and ipv6.
   - Logging (stdout, file, logstash, any plugin implementation)
 
   - Layer 4 assistence (HTTP,HTTPS)

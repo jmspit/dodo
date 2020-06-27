@@ -26,11 +26,14 @@
 #include <chrono>
 #include <string>
 #include <ostream>
+#include <set>
 #include <sstream>
 #include <vector>
 #include "buildenv.hpp"
 #include <sys/time.h>
 
+#include <openssl/ssl.h>
+#include <openssl/err.h>
 
 namespace dodo::common {
 
@@ -50,7 +53,7 @@ namespace dodo::common {
     public:
 
       /**
-       * Construct a StopWatch.
+       * Construct a StopWatch. The start time is taken here, or can be reset by calling start().
        */
       StopWatch() {
         stop_ = std::chrono::high_resolution_clock::now() - std::chrono::hours(24);
@@ -59,7 +62,7 @@ namespace dodo::common {
 
       /**
        * Start the stopwatch. If calling start() is omitted,
-       * start_ is set to thie time StopWatch::StopWatch() was called.
+       * start_ is set to the time StopWatch::StopWatch() was called.
        */
       void start() {
         stop_ = std::chrono::high_resolution_clock::now() - std::chrono::hours(24);
@@ -130,6 +133,65 @@ namespace dodo::common {
     }
     return result;
   }
+
+  /**
+   * Split a string into substrings by delimiter - unless the delimiter is escaped.
+   * Passing ( 'one:two$:three', '$', ':' ) splits into ['one','two:three'].
+   * Passing ( 'one:t$$wo:three', '$', ':' ) splits into ['one','t$$wo','three'].
+   * So the escape character only has effect when followed by a delimiter, otherwise
+   * taken as input.
+   * @param src The string to split from.
+   * @param escape The escape characters to use
+   * @param delimiter The delimiter to use.
+   * @return A vector of strings.
+   */
+  inline std::vector<std::string> escapedSplit( const std::string &src, std::set<char> escape, char delimiter = ' ' ) {
+    enum State { stInit, stEscape, stInput };
+    std::vector<std::string> result;
+    std::stringstream tmp;
+    State state = stInit;
+    for ( auto c : src ) {
+      if ( escape.find(c) != escape.end() ) {
+        state = stEscape;
+      } else if ( c == delimiter ) {
+        if ( state != stEscape ) {
+          result.push_back( tmp.str() );
+          tmp.str("");
+          state = stInput;
+        } else {
+          tmp << c;
+          state = stInput;
+        }
+      } else {
+        tmp << c;
+      }
+    }
+    if ( tmp.str().length() > 0 ) result.push_back( tmp.str() );
+    return result;
+  }
+
+  /**
+   * Convert the data contents of an OpenSSL BIO to a std::string.
+   * @param bio The source BIO.
+   * @return The string representation of the BIO contents.
+   */
+  std::string bio2String( BIO* bio );
+
+  /**
+   * Write OpenSSL errors occurred in this thread to ostream, and clear their error state.
+   * @param out The std::ostream to write to.
+   * @param terminator The char to use to separate lines.
+   * @return The number of SSL errors written.
+   */
+  size_t writeSSLErrors( std::ostream& out, char terminator );
+
+  /**
+   * Get all OpenSSL errors as a single string, and clear their error state.
+   * @param terminator The terminator character for a single error line. If 0, no character will be appended.
+   * @return The string.
+   * @see writeSSLErrors( ostream& out)
+   */
+  std::string getSSLErrors( char terminator );
 
 }
 

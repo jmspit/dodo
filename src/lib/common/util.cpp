@@ -122,4 +122,33 @@ namespace dodo::common {
     out.flags( orgflags );
   }
 
+  std::string bio2String( BIO* bio ) {
+    char *data = NULL;
+    long length = BIO_get_mem_data( bio, &data );
+    BIO_get_mem_data( bio, &data );
+    return std::string( data, length );
+  }
+
+
+  size_t writeSSLErrors( std::ostream& out, char terminator ) {
+    size_t count = 0;
+    unsigned long error = 0;
+    // https://www.openssl.org/docs/man1.0.2/man3/ERR_error_string.html buf must be at least 120 bytes
+    char errbuf[200];
+    while ( ( error = ERR_get_error() ) ) {
+      ERR_error_string_n( error, errbuf, sizeof(errbuf) );
+      out << errbuf;
+      if ( terminator ) out << terminator;
+      count++;
+    }
+    return count;
+  }
+
+  std::string getSSLErrors( char terminator ) {
+    std::stringstream ss;
+    if ( writeSSLErrors( ss, terminator ) ) {
+      return ss.str();
+    } else return "";
+  }
+
 }

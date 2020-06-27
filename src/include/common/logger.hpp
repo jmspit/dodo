@@ -16,42 +16,13 @@
  */
 
 /**
- * @file dodo.hpp
- * @brief Includes all dodo headers.
+ * @file logger.hpp
+ * Defines the dodo::network::Logger class.
  */
 
-#ifndef dodo_hpp
-#define dodo_hpp
+namespace dodo::common {
 
-#include <buildenv.hpp>
-#include <common/common.hpp>
-#include <math/function.hpp>
-#include <network/network.hpp>
-#include <threads/threads.hpp>
-
-/**
- * A C++ platform interface to lean linux services tailored for containerized deployment.
- */
-namespace dodo {
-
-  /**
-   * Initialize the dodo library.
-   */
-  void initLibrary() {
-    common::initLibrary();
-    threads::initLibrary();
-    network::initLibrary();
-  }
-
-  /**
-   * Close the dodo library.
-   */
-  void closeLibrary() {
-    network::closeLibrary();
-    threads::closeLibrary();
-    common::closeLibrary();
-  }
+  class Logger {
+  };
 
 }
-
-#endif

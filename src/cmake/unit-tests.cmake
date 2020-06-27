@@ -18,6 +18,18 @@ add_executable(${TEST_COMMON_PUTS} ${${TEST_COMMON_PUTS}_objects} )
 target_link_libraries( ${TEST_COMMON_PUTS} ${LIB_DODO} )
 add_test (NAME "common::Puts=${TEST_COMMON_PUTS}" COMMAND ${TEST_COMMON_PUTS} )
 
+set( TEST_COMMON_OCTETARRAY  "test-common-octetarray" )
+set( ${TEST_COMMON_OCTETARRAY}_objects  tests/common/${TEST_COMMON_OCTETARRAY}.cpp )
+add_executable(${TEST_COMMON_OCTETARRAY} ${${TEST_COMMON_OCTETARRAY}_objects} )
+target_link_libraries( ${TEST_COMMON_OCTETARRAY} ${LIB_DODO} )
+add_test (NAME "common::OctetArray=${TEST_COMMON_OCTETARRAY}" COMMAND ${TEST_COMMON_OCTETARRAY} )
+
+set( TEST_COMMON_DATACRYPT  "test-common-datacrypt" )
+set( ${TEST_COMMON_DATACRYPT}_objects  tests/common/${TEST_COMMON_DATACRYPT}.cpp )
+add_executable(${TEST_COMMON_DATACRYPT} ${${TEST_COMMON_DATACRYPT}_objects} )
+target_link_libraries( ${TEST_COMMON_DATACRYPT} ${LIB_DODO} )
+add_test (NAME "common::DataCrypt=${TEST_COMMON_DATACRYPT}" COMMAND ${TEST_COMMON_DATACRYPT} )
+
 set( TEST_NETWORK_ADDRESS  "test-network-address" )
 set( ${TEST_NETWORK_ADDRESS}_objects  tests/network/${TEST_NETWORK_ADDRESS}.cpp )
 add_executable(${TEST_NETWORK_ADDRESS} ${${TEST_NETWORK_ADDRESS}_objects} )

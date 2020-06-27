@@ -16,41 +16,36 @@
  */
 
 /**
- * @file dodo.hpp
- * @brief Includes all dodo headers.
+ * @file config.hpp
+ * Defines the dodo::common::Config class.
  */
 
-#ifndef dodo_hpp
-#define dodo_hpp
+#ifndef common_config_hpp
+#define common_config_hpp
 
-#include <buildenv.hpp>
-#include <common/common.hpp>
-#include <math/function.hpp>
-#include <network/network.hpp>
-#include <threads/threads.hpp>
-
-/**
- * A C++ platform interface to lean linux services tailored for containerized deployment.
- */
-namespace dodo {
+namespace dodo::common {
 
   /**
-   * Initialize the dodo library.
+   * Singleton class representing the deployment configuration, combining user defined constant, environment
+   * variables and some operating system defined values of use to developers, like the CPU count and
+   * available RAM.
    */
-  void initLibrary() {
-    common::initLibrary();
-    threads::initLibrary();
-    network::initLibrary();
-  }
+  class Config {
+    public:
 
-  /**
-   * Close the dodo library.
-   */
-  void closeLibrary() {
-    network::closeLibrary();
-    threads::closeLibrary();
-    common::closeLibrary();
-  }
+      /**
+       * return the singleton.
+       * @return a pointer to the Config instance.
+       */
+      static Config* getConfig();
+
+    protected:
+
+      /**
+       * The singleton pointer.
+       */
+      static Config* config_;
+  };
 
 }
 

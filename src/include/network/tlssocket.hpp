@@ -28,6 +28,8 @@
 #include "network/x509cert.hpp"
 #include "network/socket.hpp"
 
+#include <openssl/ssl.h>
+
 
 namespace dodo::network {
 
@@ -126,6 +128,33 @@ namespace dodo::network {
        * @return this TLSSocket.
        */
       TLSSocket& operator=( const TLSSocket& socket );
+
+      /**
+       * return the negotiated TLS (SSL) protocol version. This is only meaningfull after a connect returned
+       * SystemError::ecOK.
+       * @return the TLS (SSL) protocol version.
+       */
+      int getTLSProtocolVersion() const {
+        if ( ssl_ ) return SSL_version( ssl_ ); else return 0;
+      }
+
+      /**
+       * Return the negotiated TLS (SSL) protocol version. This is only meaningful after a connect returned
+       * SystemError::ecOK.
+       * @return the TLS (SSL) protocol version.
+       */
+      string getTLSProtocolVersionString() const {
+        if ( ssl_ ) return SSL_get_version( ssl_ ); else return "?";
+      }
+
+      /**
+       * Return the negotiated cipher name. This is only meaningful after a connect returned
+       * SystemError::ecOK.
+       * @return the TLS (SSL) protocol version.
+       */
+      string getTLSCurrentCipherName() const {
+        if ( ssl_ ) return SSL_get_cipher_name( ssl_ ); else return "?";
+      }
 
     protected:
 

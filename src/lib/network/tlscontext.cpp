@@ -21,7 +21,9 @@
  */
 
 #include "common/exception.hpp"
+#include "common/util.hpp"
 #include <network/tlscontext.hpp>
+#include <network/x509cert.hpp>
 
 #include <string.h>
 
@@ -56,7 +58,7 @@ namespace dodo::network {
     long rc = 0;
     tlsctx_ = SSL_CTX_new( TLS_method() );
     if ( !tlsctx_ ) throw_ExceptionObject( common::Puts() << "SSL_CTX_new failed"
-                                           << common::Puts::endl() << getSSLErrors( '\n' ), this  );
+                                           << common::Puts::endl() << common::getSSLErrors( '\n' ), this  );
     switch( tlsversion_ ) {
       case TLSVersion::tls1_1 :
         rc = SSL_CTX_set_min_proto_version( tlsctx_, TLS1_1_VERSION );
@@ -72,12 +74,12 @@ namespace dodo::network {
         break;
     }
     if ( rc == 0 ) throw_ExceptionObject( common::Puts() << "SSL_CTX_set_min_proto_version failed"
-                                          << common::Puts::endl() << getSSLErrors( '\n' ), this  );
+                                          << common::Puts::endl() << common::getSSLErrors( '\n' ), this  );
 
     SSL_CTX_set_default_passwd_cb( tlsctx_, pem_passwd_cb );
     SSL_CTX_set_default_passwd_cb_userdata( tlsctx_, this );
 
-    if ( peerverficiation == PeerVerification::pvNone ) {
+    if ( peerverficiation == PeerVerification::pvVerifyNone ) {
       SSL_CTX_set_verify( tlsctx_, SSL_VERIFY_NONE, nullptr );
     } else {
       SSL_CTX_set_verify( tlsctx_, SSL_VERIFY_PEER | SSL_VERIFY_FAIL_IF_NO_PEER_CERT, nullptr );
@@ -85,7 +87,7 @@ namespace dodo::network {
 
     rc = SSL_CTX_set_default_verify_paths(tlsctx_);
     if ( rc == 0 ) throw_ExceptionObject( common::Puts() << "SSL_CTX_set_default_verify_paths failed"
-                                          << common::Puts::endl() << getSSLErrors( '\n' ), this  );
+                                          << common::Puts::endl() << common::getSSLErrors( '\n' ), this  );
   }
 
   TLSContext::~TLSContext() {
@@ -107,13 +109,13 @@ namespace dodo::network {
                                     const std::string& passphrase ) {
     passphrase_ = passphrase;
     if ( SSL_CTX_use_certificate_file( tlsctx_, certfile.c_str(), SSL_FILETYPE_PEM ) != 1 ) {
-      throw_ExceptionObject( getSSLErrors( '\n' ), this  );
+      throw_ExceptionObject( common::getSSLErrors( '\n' ), this  );
     }
     if ( SSL_CTX_use_PrivateKey_file( tlsctx_, keyfile.c_str(), SSL_FILETYPE_PEM ) != 1 ) {
-      throw_ExceptionObject( getSSLErrors( '\n' ), this  );
+      throw_ExceptionObject( common::getSSLErrors( '\n' ), this  );
     }
     if ( !SSL_CTX_check_private_key( tlsctx_ ) ) {
-      throw_ExceptionObject( getSSLErrors( '\n' ), this  );
+      throw_ExceptionObject( common::getSSLErrors( '\n' ), this  );
     }
     passphrase_ = "";
   }
@@ -136,20 +138,20 @@ namespace dodo::network {
 
             if ( SSL_CTX_use_certificate( tlsctx_, cert )  != 1  )
               throw_ExceptionObject( common::Puts() << "cannot use certificate from '" << p12file << "'"
-                                                    << common::Puts::endl() << getSSLErrors( '\n' ), this  );
+                                                    << common::Puts::endl() << common::getSSLErrors( '\n' ), this  );
 
             if ( SSL_CTX_use_PrivateKey( tlsctx_, pkey )  != 1  || !pkey )
               throw_ExceptionObject( common::Puts() << "cannot use private key from '" << p12file << "'"
-                                                    <<  common::Puts::endl() << getSSLErrors( '\n' ), this  );
+                                                    <<  common::Puts::endl() << common::getSSLErrors( '\n' ), this  );
 
             if ( !SSL_CTX_check_private_key( tlsctx_ ) )
               throw_ExceptionObject( common::Puts() << "invalid private key in '" << p12file << "'"
-                                                    << common::Puts::endl() << getSSLErrors( '\n' ), this  );
+                                                    << common::Puts::endl() << common::getSSLErrors( '\n' ), this  );
 
             if ( !SSL_CTX_set0_chain( tlsctx_, ca ) ) {
 
               throw_ExceptionObject( common::Puts() << "cannot use certificate chain from '" << p12file << "'"
-                                                    << common::Puts::endl() << getSSLErrors( '\n' ), this  );
+                                                    << common::Puts::endl() << common::getSSLErrors( '\n' ), this  );
             }
             if ( cert ) X509_free( cert );
             if ( pkey ) EVP_PKEY_free( pkey );
@@ -164,11 +166,11 @@ namespace dodo::network {
             throw;
           }
         } else throw_ExceptionObject( common::Puts() << "cannot parse PKCS12 file '" << p12file << "'"
-                                                     << common::Puts::endl() << getSSLErrors( '\n' ), this  );
+                                                     << common::Puts::endl() << common::getSSLErrors( '\n' ), this  );
       } else throw_ExceptionObject( common::Puts() << "cannot read PKCS12 file '" << p12file << "'"
-                                                   << common::Puts::endl() << getSSLErrors( '\n' ), this  );
+                                                   << common::Puts::endl() << common::getSSLErrors( '\n' ), this  );
     } else throw_ExceptionObject( common::Puts() << "cannot open'" << p12file << "'"
-                                                 << common::Puts::endl() << getSSLErrors( '\n' ), this  );
+                                                 << common::Puts::endl() << common::getSSLErrors( '\n' ), this  );
   }
 
   void TLSContext::setCipherList( const std::string& cipherlist ) {
@@ -194,29 +196,7 @@ namespace dodo::network {
     if ( capath.length() > 0 ) capath_ptr = capath.c_str();
     if ( !SSL_CTX_load_verify_locations( tlsctx_, cafile_ptr, capath_ptr ) )
       throw_ExceptionObject( common::Puts() << "SSL_CTX_load_verify_locations failed"
-                                            << common::Puts::endl() << getSSLErrors( '\n' ), this  );
+                                            << common::Puts::endl() << common::getSSLErrors( '\n' ), this  );
   }
-
-  size_t TLSContext::writeSSLErrors( std::ostream& out, char terminator ) {
-    size_t count = 0;
-    unsigned long error = 0;
-    // https://www.openssl.org/docs/man1.0.2/man3/ERR_error_string.html buf must be at least 120 bytes
-    char errbuf[200];
-    while ( ( error = ERR_get_error() ) ) {
-      ERR_error_string_n( error, errbuf, sizeof(errbuf) );
-      out << errbuf;
-      if ( terminator ) out << terminator;
-      count++;
-    }
-    return count;
-  }
-
-  std::string TLSContext::getSSLErrors( char terminator ) {
-    std::stringstream ss;
-    if ( writeSSLErrors( ss, terminator ) ) {
-      return ss.str();
-    } else return "";
-  }
-
 
 }

@@ -59,18 +59,13 @@ namespace dodo::network {
     return result;
   }
 
-  std::string X509Common::bio2String( BIO* bio ) {
-    char *data = NULL;
-    long length = BIO_get_mem_data( bio, &data );
-    BIO_get_mem_data( bio, &data );
-    return std::string( data, length );
-  }
-
   X509Common::Identity X509Common::parseIdentity( const std::string src ) {
     Identity identity;
-    std::vector<std::string> items = common::split( src, ',' );
+    //std::cout << "! " << src << endl;
+    std::vector<std::string> items = common::escapedSplit( src, {'\\'}, ',' );
     for ( auto item : items ) {
       std::vector<std::string> kvpair = common::split( item, '=' );
+      //std::cout << "!! " << kvpair[0] << endl;
       if ( kvpair.size() == 2 ) {
         if ( kvpair[0] == "C" ) identity.countryCode = kvpair[1];
         else if ( kvpair[0] == "ST" ) identity.state = kvpair[1];
@@ -79,6 +74,13 @@ namespace dodo::network {
         else if ( kvpair[0] == "OU" ) identity.organizationUnit = kvpair[1];
         else if ( kvpair[0] == "CN" ) identity.commonName = kvpair[1];
         else if ( kvpair[0] == "emailAddress" ) identity.email = kvpair[1];
+        else if ( kvpair[0] == "businessCategory" ) identity.businessCategory = kvpair[1];
+        else if ( kvpair[0] == "jurisdictionC" ) identity.jurisdictionC = kvpair[1];
+        else if ( kvpair[0] == "jurisdictionST" ) identity.jurisdictionST = kvpair[1];
+        else if ( kvpair[0] == "serialNumber" ) identity.serialNumber = kvpair[1];
+        else if ( kvpair[0] == "street" ) identity.street = kvpair[1];
+        else if ( kvpair[0] == "postalCode" ) identity.postalCode = kvpair[1];
+        else identity.other[ kvpair[0] ] = kvpair[1];
       }
     }
     return identity;
@@ -92,13 +94,13 @@ namespace dodo::network {
     BIO* pembio = BIO_new( BIO_s_file() );
     try {
       if ( pembio == nullptr ) throw_Exception( "BIO_new( BIO_s_file() ) failed " +
-                                                TLSContext::getSSLErrors(';') );
+                                                common::getSSLErrors(';') );
       int rc = BIO_read_filename( pembio, file.c_str() );
       if ( !rc ) throw_Exception( "BIO_read_filename failed " +
-                                  TLSContext::getSSLErrors(';') );
+                                  common::getSSLErrors(';') );
       X509_REQ* temp = PEM_read_bio_X509_REQ( pembio, nullptr, nullptr, nullptr );
       if ( temp == nullptr ) throw_Exception( "PEM_read_bio_X509_AUX failed " +
-                                              TLSContext::getSSLErrors(';') );
+                                              common::getSSLErrors(';') );
       BIO_free( pembio );
       return temp;
     }
@@ -112,7 +114,7 @@ namespace dodo::network {
     X509_NAME* name = X509_REQ_get_subject_name( cert );
     BIO* output_bio = BIO_new( BIO_s_mem() );
     X509_NAME_print_ex( output_bio, name, 0, XN_FLAG_RFC2253 );
-    std::string tmp = bio2String( output_bio );
+    std::string tmp = dodo::common::bio2String( output_bio );
     BIO_free( output_bio );
     return parseIdentity( tmp );
   }
@@ -124,10 +126,10 @@ namespace dodo::network {
     unsigned char hash[EVP_MAX_MD_SIZE];
     const EVP_MD * digest = EVP_get_digestbyname( hashname.c_str() );
     if ( digest == nullptr ) throw_Exception( "EVP_get_digestbyname failed " +
-                                              TLSContext::getSSLErrors(';') );
+                                              common::getSSLErrors(';') );
     int rc = X509_REQ_digest( cert, digest, hash, &hash_size);
     if ( !rc ) throw_Exception( "X509_digest failed " +
-                                TLSContext::getSSLErrors(';') );
+                                common::getSSLErrors(';') );
     for( unsigned int pos = 0; pos < hash_size; pos++ ) {
       if ( pos ) ss << ":";
       ss << std::setw(2) << (unsigned int)hash[pos];
@@ -143,13 +145,13 @@ namespace dodo::network {
     BIO* pembio = BIO_new( BIO_s_file() );
     try {
       if ( pembio == nullptr ) throw_Exception( "BIO_new( BIO_s_file() ) failed " +
-                                                TLSContext::getSSLErrors(';') );
+                                                common::getSSLErrors(';') );
       int rc = BIO_read_filename( pembio, file.c_str() );
       if ( !rc ) throw_Exception( "BIO_read_filename failed " +
-                                  TLSContext::getSSLErrors(';') );
+                                  common::getSSLErrors(';') );
       X509* temp = PEM_read_bio_X509_AUX( pembio, nullptr, nullptr, nullptr );
       if ( temp == nullptr ) throw_Exception( "PEM_read_bio_X509_AUX failed " +
-                                              TLSContext::getSSLErrors(';') );
+                                              common::getSSLErrors(';') );
       BIO_free( pembio );
       return temp;
     }
@@ -163,7 +165,7 @@ namespace dodo::network {
     X509_NAME* name = X509_get_issuer_name( cert );
     BIO* output_bio = BIO_new( BIO_s_mem() );
     X509_NAME_print_ex( output_bio, name, 0, XN_FLAG_RFC2253 );
-    std::string tmp = bio2String( output_bio );
+    std::string tmp = dodo::common::bio2String( output_bio );
     BIO_free( output_bio );
     return parseIdentity(tmp);
   }
@@ -182,8 +184,9 @@ namespace dodo::network {
     X509_NAME* name = X509_get_subject_name( cert );
     BIO* output_bio = BIO_new( BIO_s_mem() );
     X509_NAME_print_ex( output_bio, name, 0, XN_FLAG_RFC2253 );
-    std::string tmp = bio2String( output_bio );
+    std::string tmp = dodo::common::bio2String( output_bio );
     BIO_free( output_bio );
+    //std::cout << tmp << std::endl;
     return parseIdentity( tmp );
   }
 
@@ -232,10 +235,10 @@ namespace dodo::network {
     unsigned char hash[EVP_MAX_MD_SIZE];
     const EVP_MD * digest = EVP_get_digestbyname( hashname.c_str() );
     if ( digest == nullptr ) throw_Exception( "EVP_get_digestbyname failed " +
-                                              TLSContext::getSSLErrors(';') );
+                                              common::getSSLErrors(';') );
     int rc = X509_digest( cert, digest, hash, &hash_size);
     if ( !rc ) throw_Exception( "X509_digest failed " +
-                                TLSContext::getSSLErrors(';') );
+                                common::getSSLErrors(';') );
     for( unsigned int pos = 0; pos < hash_size; pos++ ) {
       if ( pos ) ss << ":";
       ss << std::setw(2) << (unsigned int)hash[pos];

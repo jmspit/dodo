@@ -16,42 +16,19 @@
  */
 
 /**
- * @file dodo.hpp
- * @brief Includes all dodo headers.
+ * @file config.cpp
+ * Implements the dodo::common::Config class..
  */
 
-#ifndef dodo_hpp
-#define dodo_hpp
+#include "common/config.hpp"
 
-#include <buildenv.hpp>
-#include <common/common.hpp>
-#include <math/function.hpp>
-#include <network/network.hpp>
-#include <threads/threads.hpp>
+namespace dodo::common {
 
-/**
- * A C++ platform interface to lean linux services tailored for containerized deployment.
- */
-namespace dodo {
+  Config* Config::config_ = nullptr;
 
-  /**
-   * Initialize the dodo library.
-   */
-  void initLibrary() {
-    common::initLibrary();
-    threads::initLibrary();
-    network::initLibrary();
-  }
-
-  /**
-   * Close the dodo library.
-   */
-  void closeLibrary() {
-    network::closeLibrary();
-    threads::closeLibrary();
-    common::closeLibrary();
+  Config* Config::getConfig() {
+    if ( config_ == nullptr ) config_ = new Config();
+    return config_;
   }
 
 }
-
-#endif

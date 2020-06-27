@@ -12,9 +12,10 @@ Documentation for developers using the library.
   JSON, XML, Kafka, AVRO
 - Relies on the GNU C++ STL
 
-# Including the headers
+# Using dodo
 
-Include all headers by including dodo.hpp:
+Include all headers by including dodo.hpp. Before using any of the dodo content, call dodo::initLibrary(). Call
+dodo::closeLibrary() to clean up at the end.
 
 ```C
 #include <dodo.hpp>
@@ -22,11 +23,52 @@ Include all headers by including dodo.hpp:
 using namespace dodo;
 
 int main( int argc, char* argv[] ) {
-  network::Address address;
-  ...
+  int return_code = 0;
+  initLibrary();
+  try {
+    network::Address localhost = "127.0.0.1";
+    ...
+  }
+  catch ( std::runtime_error ) {
+    cerr << e.what() << endl;
+    return_code = 1;
+  }
+  closeLibrary();
+  return return_code;
 }
 ```
 
+# Exception and error handling
+
+Dodo might throws dodo::common::Exception or its descendant dodo::common::SystemException in exceptional circumstances.
+Otherwise methods may return a SystemError, an abstraction of various types of system and dodo errors that may occur
+and must be acted upon in program flows. For example, loading an invalid certificate will thrown an Exception, whilst
+a failure to resolve a hostname will return a SystemError.
+
+As dodo::common::Exception itself descends from std::runtime_error, try / catch code can be a simple as
+
+```C
+try {
+  ...
+}
+catch ( const std::runtime_error &e ) {
+  cerr << e.what() << endl;
+}
+```
+
+# Logging
+
+A logging framework is available to write log entries to one or more destinations of types
+
+  - standard output aka console
+  - a file local to the process
+  - the syslog call (man 3 syslog)
+
+
+# Deployment configuration
+
+A configuration framework can combine configuration data from a variety of sources, such as environment variables,
+configuration files and OS-level constants of interest to developers.
 
 # Threads
 
@@ -54,19 +96,20 @@ common::SystemError error = network::Address::getHostAddrInfo( host, sock_params
 
 ## Secure sockets {#developer_networking}
 
-Dodo supports TLS through dodo::network::TLSSocket.
+Dodo supports TLS through dodo::network::TLSContext and dodo::network::TLSSocket.
 
 
 ### Asymmetric cryptography
 
-The core principle to asymmetric cryptography is applying a one-way mathematical function that is very easy to
-calculate in one direction, and computationally infeasible in the other. In an asymmetric communication handshake,
+The core principle to asymmetric cryptography is a mathematical mapping is very easy to
+compute in one direction, and computationally infeasible in the other. Typically, the ease of muliplying primes
+and the difficulty in finding primes roots of integers is used. In an asymmetric communication handshake,
 each endpoint has a private key, a *secret* filled with as much randomness or entropy as possible, typically stored as
-a file which is in turn encrypted and protected by a passphrase. The private key is and must not be shared with anyone.
+a file which is (can be) in turn encrypted and protected by a passphrase. The private key is and must not be shared with anyone.
 
 The private key includes public bits that map uniquely to a public key, which can thus be extracted from the
 private key. The private and its public key share the same *modulus*, so a public key can be matched to a private key
-and other forms of the public key, such as a certificate or certificate signing request.
+and other artifacts containing that public key, such as a certificate or certificate signing request.
 
 In secure communication, the public key encrypts and the private key decrypts. So data encrypted with a public key,
 can only be decrypted by the owner of the matching private key.
@@ -80,7 +123,8 @@ the public key of the signer.
 
 ### Transport Layer Security (TLS)
 
-TLS is a secure communication protocol that use an asymmetric handshake.
+TLS is a secure communication protocol that use an asymmetric cryptographic handshake to negotiate and share a session
+key, which will be used for both encryption and decryption.
 
 In TLS configuration and deployment the following document types are used (see dodo::network::X509Common::X509Type)
 
@@ -111,19 +155,28 @@ multiple connections.
 TLS evolved through protocol versions, version 1.0 is deprecated (as are its predecessors, SSLv2 and SSLv3).
 
   - TLS 1.0 : Deprecated and not supported
-  - TLS 1.1 : Deprecated but still supported (dodo::network::TLSContext::TLSVersion::tls1_1)
-  - TLS 1.2 : Widely used (dodo::network::TLSContext::TLSVersion::tls1_2)
-  - TLS 1.3 : Best (dodo::network::TLSContext::TLSVersion::tls1_3 == dodo::network::TLSContext::TLSVersion::tlsBest)
+  - TLS 1.1 : Deprecated but still supported
+  - TLS 1.2 : Widely used
+  - TLS 1.3 : Best
 
-In order to verify a peer, there are options
+Dodo allows to specify the lowest acceptable TLS version:
 
-  - dodo::network::TLSContext::PeerVerification::pvNone - Use no peer verification. The connection is private, but
-    information is shared with an unknown peer identity (like a man in the middle or a woman at the end).
-  - dodo::network::TLSContext::PeerVerification::pvCA - Use the default mechanism where the CA truststore is used to
-    verify the peer owns the peer Common Name (CN) aka peer FQDN. The connection is private, and the remote
-    identity assured.
-  - dodo::network::TLSContext::PeerVerification::pvCustom - The developer provides his own verification of the peer
-    certificate - based on its signed contents.
+  - dodo::network::TLSContext::TLSVersion::tls1_1 Accept TLS 1.1 or better
+  - dodo::network::TLSContext::TLSVersion::tls1_2 Accept TLS 1.2 or better
+  - dodo::network::TLSContext::TLSVersion::tls1_3 Accept TLS 1.3 or better
+
+In order to verify a peer certificate, there is dodo::network::TLSContext::PeerVerification
+
+  - dodo::network::TLSContext::PeerVerification::pvVerifyNone - Use no peer verification. The connection is private
+    (encrypted), but information is shared with an unknown peer identity (like a man in the middle).
+  - dodo::network::TLSContext::PeerVerification::pvVerifyPeer - The client verifies that peer offers a certificate that
+    is signed by an entity trusted by the client. Note that this merely proves the server has a copy of a trusted
+    certificate - not the the server is the identity specified by the certificate.
+  - dodo::network::TLSContext::PeerVerification::pvVerifyFQDN - In addition to pvVerifyPeer, the client verifies that
+    the target FQDN of the server either matches its CN (common name) or one of its
+    [SAN](https://en.wikipedia.org/wiki/Subject_Alternative_Name) entries.
+  - dodo::network::TLSContext::PeerVerification::pvVerifyCustom - In addition to pvVerifyPeer, the developer provides
+    custom verification of the peer certificate.
 
 #### Trust stores
 
@@ -137,8 +190,8 @@ $ ls -1 /etc/ssl/certs/*Nederland*
 /etc/ssl/certs/Staat_der_Nederlanden_Root_CA_-_G3.pem
 ```
 
-EV is short for extra verification, which is expected to have included a physical meeting between CA and
-private key owner.
+EV is short for [Extended Validation Certificate](https://en.wikipedia.org/wiki/Extended_Validation_Certificate),
+which certifies that the legal identity of the certificate's owner has been verified.
 
 Certificates can be inspected with
 
@@ -194,6 +247,17 @@ Custom truststores are loaded from PCKS12 files through dodo::network::TLSContex
 
 A keystore comrpises the private key and the (signed) certificate of the identity. It can be loaded with either
 dodo::network::TLSContext::loadPEMIdentity or dodo::network::TLSContext::loadPKCS12KeyStore.
+
+#### Server Name Indication
+
+[Server Name Indication](https://en.wikipedia.org/wiki/Server_Name_Indication) is a TLS extension that
+sends the client-intended target FQDN to allow the server to present the correct certificate - a certificate to
+which that target FQDN matches either the CN or one of the SANs.
+
+Currently, SNI sends the target FQDN unencrypted, which means intermediates know the destination (and can act
+upon it, such as censoring). SNI seems to be required only by a minority of HTTPS servers, and due to its downsides,
+
+SNI is enabled only if explicitly specified in the dodo::network::TLSContext::TLSContext constructor.
 
 
 ### Setup Certification Authority

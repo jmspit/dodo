@@ -26,11 +26,13 @@
 #include <openssl/bio.h>
 #include <openssl/ssl.h>
 #include <openssl/err.h>
+#include <openssl/ossl_typ.h>
 
 #include <common/exception.hpp>
 #include <common/systemerror.hpp>
 
 #include <string>
+#include <iostream>
 
 namespace dodo::network {
 
@@ -62,27 +64,27 @@ namespace dodo::network {
        *
        * | PeerVerification | SSL_CTX_set_verify                                  |
        * | -----------------| ----------------------------------------------------|
-       * | pvNone           | SSL_VERIFY_NONE                                     |
+       * | pvVerifyNone     | SSL_VERIFY_NONE                                     |
        * | pvVerifyPeer     | SSL_VERIFY_PEER \| SSL_VERIFY_FAIL_IF_NO_PEER_CERT  |
        * | pvVerifyFQDN     | SSL_VERIFY_PEER \| SSL_VERIFY_FAIL_IF_NO_PEER_CERT  |
-       * | pvCustom         | SSL_VERIFY_PEER \| SSL_VERIFY_FAIL_IF_NO_PEER_CERT  |
+       * | pvVerifyCustom   | SSL_VERIFY_PEER \| SSL_VERIFY_FAIL_IF_NO_PEER_CERT  |
        *
        * | PeerVerification | Server / accept | Client / connect |
        * |------------------|-----------------|------------------|
-       * | pvNone           | encryption of traffic |  encryption of traffic |
-       * | pvVerifyPeer     | pvNone + client must present trusted cert |  pvNone + server must present trusted cert |
+       * | pvVerifyNone     | encryption of traffic |  encryption of traffic |
+       * | pvVerifyPeer     | pvVerifyNone + client must present trusted cert |  pvVerifyNone + server must present trusted cert |
        * | pvVerifyFQDN     | pvVerifyPeer |  pvVerifyPeer + X509Certificate::verifyName() |
-       * | pvCustom         | pvVerifyPeer + custom |  pvVerifyPeer + custom |
+       * | pvVerifyCustom   | pvVerifyPeer + custom |  pvVerifyPeer + custom |
        *
        * @see https://www.openssl.org/docs/man1.1.1/man3/SSL_CTX_set_verify.html
        */
       enum class PeerVerification {
-        pvNone,           /**< No peer verification - transmission is encrypted, peer cis accepted even if
+        pvVerifyNone,           /**< No peer verification - transmission is encrypted, peer cis accepted even if
                                peer certificate is invalid and can read all data sent.*/
         pvVerifyPeer,     /**< The peer must have a trusted certificate (unless a anonymous cipher is used). */
         pvVerifyFQDN,     /**< As pvVerifyPeer, but the remote DNS name must match either the peer cert commonname
                                or match one of the peer cert subjectAltNames */
-        pvCustom,         /**< As pvVerifyPeer, but with custom certificate validation logic.*/
+        pvVerifyCustom,         /**< As pvVerifyPeer, but with custom certificate validation logic.*/
       };
 
       /**
@@ -163,22 +165,6 @@ namespace dodo::network {
        * @return a pointer to the SSL_CTX
        */
       SSL_CTX* getContext() const { return  tlsctx_; };
-
-      /**
-       * Write ssl errors occurred in this thread to ostream, and clear their error state.
-       * @param out The std::ostream to write to.
-       * @param terminator The char to use to separate lines.
-       * @return The number of SSL errors written.
-       */
-      static size_t writeSSLErrors( std::ostream& out, char terminator = 0 );
-
-      /**
-       * Get all SSL errors as a single string, and clear their error state.
-       * @param terminator The terminator character for a single error line. If 0, no character will be appended.
-       * @return The string.
-       * @see writeSSLErrors( ostream& out)
-       */
-      static std::string getSSLErrors( char terminator = 0 );
 
       /**
        * Return the getPeerVerification mode.

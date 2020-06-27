@@ -20,6 +20,7 @@
  * Implements the dodo::network::TLSSocket class.
  */
 
+#include "common/util.hpp"
 #include "network/tlssocket.hpp"
 
 #include <string.h>
@@ -40,7 +41,7 @@ namespace dodo::network {
                         const X509Common::SAN& peer_name ) :
                         BaseSocket( blocking, params ), tlscontext_(tlscontext), peer_name_(peer_name) {
     ssl_ = SSL_new( tlscontext .getContext() );
-    if ( !ssl_ ) throw_Exception( tlscontext.getSSLErrors( '\n' )  );
+    if ( !ssl_ ) throw_Exception( common::getSSLErrors( '\n' )  );
     SSL_set_fd( ssl_, socket_ );
     if ( tlscontext.isSNIEnabled() ) {
       SSL_ctrl( ssl_, SSL_CTRL_SET_TLSEXT_HOSTNAME, TLSEXT_NAMETYPE_host_name, (void*)peer_name_.san_name.c_str());
@@ -66,7 +67,7 @@ namespace dodo::network {
           case SSL_ERROR_WANT_ACCEPT :      return SystemError::ecSSL_ERROR_WANT_ACCEPT;
           case SSL_ERROR_WANT_X509_LOOKUP : return SystemError::ecSSL_ERROR_WANT_X509_LOOKUP;
           case SSL_ERROR_SSL :
-          default: throw_Exception( common::Puts() << ssl_error_code << " " << tlscontext_.getSSLErrors( '\n' )  );
+          default: throw_Exception( common::Puts() << ssl_error_code << " " << common::getSSLErrors( '\n' )  );
         }
       }
       if ( tlscontext_.getPeerVerification() == TLSContext::PeerVerification::pvVerifyFQDN )  {
@@ -90,7 +91,7 @@ namespace dodo::network {
         case SSL_ERROR_WANT_ACCEPT :      return SystemError::ecSSL_ERROR_WANT_ACCEPT;
         case SSL_ERROR_WANT_X509_LOOKUP : return SystemError::ecSSL_ERROR_WANT_X509_LOOKUP;
         case SSL_ERROR_SSL :
-        default: throw_Exception( common::Puts() << ssl_error_code << " " << tlscontext_.getSSLErrors( '\n' )  );
+        default: throw_Exception( common::Puts() << ssl_error_code << " " << common::getSSLErrors( '\n' )  );
       }
     }
     return SystemError::ecOK;
@@ -112,7 +113,7 @@ namespace dodo::network {
         case SSL_ERROR_WANT_ACCEPT :      return SystemError::ecSSL_ERROR_WANT_ACCEPT;
         case SSL_ERROR_WANT_X509_LOOKUP : return SystemError::ecSSL_ERROR_WANT_X509_LOOKUP;
         case SSL_ERROR_SSL :
-        default: throw_Exception( tlscontext_.getSSLErrors( '\n' )  );
+        default: throw_Exception( common::getSSLErrors( '\n' )  );
       }
     }
     return SystemError::ecOK;
@@ -131,7 +132,7 @@ namespace dodo::network {
         case SSL_ERROR_WANT_ACCEPT :      return SystemError::ecSSL_ERROR_WANT_ACCEPT;
         case SSL_ERROR_WANT_X509_LOOKUP : return SystemError::ecSSL_ERROR_WANT_X509_LOOKUP;
         case SSL_ERROR_SSL :
-        default: throw_Exception( tlscontext_.getSSLErrors( '\n' )  );
+        default: throw_Exception( common::getSSLErrors( '\n' )  );
       }
     } else received = rc;
     return SystemError::ecOK;

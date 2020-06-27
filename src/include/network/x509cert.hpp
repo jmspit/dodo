@@ -27,6 +27,7 @@
 #include <openssl/x509v3.h>
 #include <string>
 #include <list>
+#include <map>
 
 namespace dodo::network {
 
@@ -106,6 +107,41 @@ namespace dodo::network {
          * The email address.
          */
         std::string email;
+
+        /**
+         * The businessCategory
+         */
+        std::string businessCategory;
+
+        /**
+         * The jurisdiction country code.
+         */
+        std::string jurisdictionC;
+
+        /**
+         * The jurisdiction state.
+         */
+        std::string jurisdictionST;
+
+        /**
+         * A cert serial number.
+         */
+        std::string serialNumber;
+
+        /**
+         * The street address.
+         */
+        std::string street;
+
+        /**
+         * The postal code.
+         */
+        std::string postalCode;
+
+        /**
+         * Other key-value pairs in the identity.
+         */
+        std::map<std::string,std::string> other;
       };
 
       /**
@@ -132,13 +168,6 @@ namespace dodo::network {
 
     protected:
       /**
-       * Convert the data contents of a BIO to a std::string.
-       * @param bio The source BIO.
-       * @return The string representation of the BIO contents.
-       */
-      static std::string bio2String( BIO* bio );
-
-      /**
        * Parse a subject or issuer string into an Identity.*
        * @param src The identity string
        * @return the Identity.
@@ -159,19 +188,22 @@ namespace dodo::network {
    * @param identity The identity to write.
    * @return A reference to the stream written to.
    */
-  inline std::ostream & operator<<( std::ostream &out, const X509Common::Identity& identity ) {
-    out << std::string("C=") << identity.countryCode;
-    out << std::string(",ST=") << identity.state;
-    out << std::string(",L=") << identity.locality;
-    out << std::string(",O=") << identity.organization;
-    out << std::string(",OU=") << identity.organizationUnit;
-    out << std::string(",CN=") << identity.commonName;
-    out << std::string(",emailAddress=") << identity.email;
-    return out;
-  }
+  //inline std::ostream & operator<<( std::ostream &out, const X509Common::Identity& identity ) {
+    //out << std::string("C=") << identity.countryCode;
+    //out << std::string(",ST=") << identity.state;
+    //out << std::string(",L=") << identity.locality;
+    //out << std::string(",O=") << identity.organization;
+    //out << std::string(",OU=") << identity.organizationUnit;
+    //out << std::string(",CN=") << identity.commonName;
+    //out << std::string(",emailAddress=") << identity.email;
+    //for ( auto o : identity.other ) {
+      //out << "," << o.first << "=" << o.second;
+    //}
+    //return out;
+  //}
 
   /**
-   * X509 Certificate signing request (CSR) interface. Note that this is an interface class, it does not
+   * X509 Certificate signing request (CSR) interface. Note that this is an sinterface class, it does not
    * manage ownership of X509_REQ structures.
    *
    * See @ref developer_networking for details on the role of this class.

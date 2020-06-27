@@ -23,11 +23,16 @@
 #ifndef dodo_common_common_hpp
 #define dodo_common_common_hpp
 
+#include <common/application.hpp>
+#include <common/config.hpp>
+#include <common/datacrypt.hpp>
 #include <common/exception.hpp>
+#include <common/octetarray.hpp>
 #include <common/puts.hpp>
 #include <common/systemerror.hpp>
 #include <common/util.hpp>
 
+#include <openssl/rand.h>
 
 namespace dodo {
 
@@ -40,6 +45,10 @@ namespace dodo {
      * Initialize the common library.
      */
     void initLibrary() {
+      // Tell OpenSSL where to get entropy
+      if ( RAND_load_file( "/dev/urandom", 32 ) != 32 ) {
+        throw_Exception( "unable to seed from /dev/urandom" );
+      }
     }
 
     /**

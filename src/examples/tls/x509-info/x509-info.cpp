@@ -16,8 +16,8 @@ void showCertificate( const std::string &filename, const std::string &pem_tag ) 
   std::cout << "PEM type             : " << pem_tag << std::endl;
   X509* cert = network::X509Certificate::loadPEM( filename );
   std::cout << "Serial               : " << network::X509Certificate::getSerial( cert ) << std::endl;
-  std::cout << "Issuer               : " << network::X509Certificate::getIssuer( cert ) << std::endl;
-  std::cout << "Subject              : " << network::X509Certificate::getSubject( cert ) << std::endl;
+  std::cout << "Issuer               : " << network::X509Certificate::getIssuer( cert ).commonName << std::endl;
+  std::cout << "Subject              : " << network::X509Certificate::getSubject( cert ).commonName << std::endl;
   std::cout << "Fingerprint (md5)    : " << network::X509Certificate::getFingerPrint( cert, "md5" ) << std::endl;
   std::cout << "Fingerprint (sha1)   : " << network::X509Certificate::getFingerPrint( cert, "sha1" ) << std::endl;
   std::cout << "Fingerprint (sha256) : " << network::X509Certificate::getFingerPrint( cert, "sha256" ) << std::endl;
@@ -27,7 +27,7 @@ void showCertificate( const std::string &filename, const std::string &pem_tag ) 
 void showCertificateSigningRequest( const std::string &filename, const std::string &pem_tag ) {
   std::cout << "PEM type             : " << pem_tag << std::endl;
   X509_REQ* cert = network::X509CertificateSigningRequest::loadPEM( filename );
-  std::cout << "Subject              : " << network::X509CertificateSigningRequest::getSubject( cert ) << std::endl;
+  std::cout << "Subject              : " << network::X509CertificateSigningRequest::getSubject( cert ).commonName<< std::endl;
   std::cout << "Fingerprint (md5)    : " << network::X509CertificateSigningRequest::getFingerPrint( cert, "md5" ) << std::endl;
   std::cout << "Fingerprint (sha1)   : " << network::X509CertificateSigningRequest::getFingerPrint( cert, "sha1" ) << std::endl;
   std::cout << "Fingerprint (sha256) : " << network::X509CertificateSigningRequest::getFingerPrint( cert, "sha256" ) << std::endl;

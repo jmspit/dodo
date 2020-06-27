@@ -3,6 +3,11 @@ set( ${EXAMPLE_PING}_objects  src/examples/${EXAMPLE_PING}/${EXAMPLE_PING}.cpp )
 add_executable(${EXAMPLE_PING} ${${EXAMPLE_PING}_objects} )
 target_link_libraries( ${EXAMPLE_PING} ${LIB_DODO} )
 
+set( EXAMPLE_CRYPTSTR  "cryptstr" )
+set( ${EXAMPLE_CRYPTSTR}_objects  src/examples/${EXAMPLE_CRYPTSTR}/${EXAMPLE_CRYPTSTR}.cpp )
+add_executable(${EXAMPLE_CRYPTSTR} ${${EXAMPLE_CRYPTSTR}_objects} )
+target_link_libraries( ${EXAMPLE_CRYPTSTR} ${LIB_DODO} )
+
 set( EXAMPLE_X509_INFO  "x509-info" )
 set( ${EXAMPLE_X509_INFO}_objects  src/examples/tls/${EXAMPLE_X509_INFO}/${EXAMPLE_X509_INFO}.cpp )
 add_executable(${EXAMPLE_X509_INFO} ${${EXAMPLE_X509_INFO}_objects} )

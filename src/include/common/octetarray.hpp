@@ -116,8 +116,8 @@ namespace dodo::common {
     void append( const OctetArray& src, size_t n );
 
     /**
-     * Generate a random initialization vector.
-     * @param octets The size of the IV in octets.
+     * Generate a random set of Octets.
+     * @param octets The number of random Octets.
      */
     void random( size_t octets );
 

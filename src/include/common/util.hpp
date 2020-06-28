@@ -26,6 +26,7 @@
 #include <chrono>
 #include <string>
 #include <ostream>
+#include <regex>
 #include <set>
 #include <sstream>
 #include <vector>
@@ -192,6 +193,38 @@ namespace dodo::common {
    * @see writeSSLErrors( ostream& out)
    */
   std::string getSSLErrors( char terminator );
+
+    /**
+     * Read the file as a single string.
+     * @throw Oops when the file cannot be read.
+     * @param filename the file to read from.
+     * @return the file contents as a string.
+     */
+  std::string fileReadString( const std::string &filename );
+
+    /**
+     * Read the file as vector of strings.
+     * @throw Oops when the file cannot be read.
+     * @param filename the file to read from.
+     * @return the file as a vector of strings
+     */
+  std::vector<std::string> fileReadStrings( const std::string &filename );
+
+    /**
+     * Read the file as vector of strings, return only regexp matches
+     * @throw Oops when the file cannot be read.
+     * @param filename the file to read from.
+     * @param exp the regex that must match.
+     * @return the file as a vector of strings.
+     */
+  std::vector<std::string> fileReadStrings( const std::string &filename, const std::regex& exp );
+
+  /**
+   * Return true when the file exists and the calling user has read access
+   * @param path The path to the file.
+   * @return True when the file exists and can be read.
+   */
+  bool fileReadAccess( const std::string& path );
 
 }
 

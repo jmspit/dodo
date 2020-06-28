@@ -8,6 +8,11 @@ set( ${EXAMPLE_CRYPTSTR}_objects  src/examples/${EXAMPLE_CRYPTSTR}/${EXAMPLE_CRY
 add_executable(${EXAMPLE_CRYPTSTR} ${${EXAMPLE_CRYPTSTR}_objects} )
 target_link_libraries( ${EXAMPLE_CRYPTSTR} ${LIB_DODO} )
 
+set( EXAMPLE_SYSINFO  "sysinfo" )
+set( ${EXAMPLE_SYSINFO}_objects  src/examples/${EXAMPLE_SYSINFO}/${EXAMPLE_SYSINFO}.cpp )
+add_executable(${EXAMPLE_SYSINFO} ${${EXAMPLE_SYSINFO}_objects} )
+target_link_libraries( ${EXAMPLE_SYSINFO} ${LIB_DODO} )
+
 set( EXAMPLE_X509_INFO  "x509-info" )
 set( ${EXAMPLE_X509_INFO}_objects  src/examples/tls/${EXAMPLE_X509_INFO}/${EXAMPLE_X509_INFO}.cpp )
 add_executable(${EXAMPLE_X509_INFO} ${${EXAMPLE_X509_INFO}_objects} )

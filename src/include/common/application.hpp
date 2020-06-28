@@ -23,61 +23,129 @@
 #ifndef common_application_hpp
 #define common_application_hpp
 
+#include <string>
+
 namespace dodo::common {
 
 
   /**
    * @brief To use as program entry point.
    *
+   * The Application class takes care of
+   *
+   *   - initializing and closing the dodo library.
+   *   - installing signal handlers, flag when the Application is kindly requested to stop.
+   *   - determining the HostType.
+   *
+   *
    * @code
    * using namespace dodo::common;
    *
-   * class MyApp : public Application {
+   * class MyApp : public common::Application {
    *   public:
+   *     MyApp( const StartParameters &param ) : common::Application( param ) {}
    *     virtual int run() { cout << "Hello world!" << endl; return 0; }
-   * }
-   *
+   * };
+
    * int main( int argc, char* argv[], char** envp ) {
    *   try {
-   *     MyApp app( "myapp", "myapp.cnf", argc, argv, envp );
+   *     MyApp app( { "myapp", "myapp.cnf", argc, argv, envp } );
    *     return app.run();
    *   }
    *   catch ( const std::exception &e ) {
    *     cerr << e.what() << endl;
-   *     return 2;
+   *     return 1;
    *   }
    * }
    * @endcode
    */
   class Application {
     public:
+
+      /**
+       * The type of host the Application is running on.
+       */
+      enum class HostType {
+        BareMetal,   /**< Bare metal deployment. */
+        Docker,      /**< Docker container. */
+        VirtualBox,  /**< VirtualBox. */
+        VMWare,      /**< VMWare. */
+        KVM,         /**< RedHat KVM. */
+        GenericVM,   /**< A indeterminate virtual machine. */
+      };
+
+      /**
+       * Start parameters for the Application.
+       */
+      struct StartParameters {
+        std::string name;     /**< Application name. */
+        std::string config;   /**< Configuration file. */
+        int argc;             /**< Argument count. */
+        char** argv;          /**< Argument array. */
+        char** envp;          /**< Environment variables. */
+      };
+
       /**
        * Construct an Application instance.
-       * @param name The name of the application (used, for example, in logging).
-       * @param config The location of the configuration file. Ignored if an empty string. If not empty, the config
-       *                file must exist and have a valid format.
-       * @param argc The argument count as given to main.
-       * @param argv The argument values as given to main.
-       * @param envp The environment pointer as given to main.
+       * @param param The Application start parameters.
        * @throw dodo::common::Exception when the name is empty, the config file is not empty and invalid.
        */
-      Application( const std::string name,
-                   const std::string config,
-                   int argc,
-                   char* argv,
-                   char** envp ) {}
+      Application( const StartParameters &param );
 
       /**
        * Destructor
        */
-      ~Application();
+      virtual ~Application();
+
+
+      /**
+       * Return the HostType the Application is running on.
+       * @return The HostType.
+       */
+      HostType getHostType() const { return hosttype_; }
+
+      /**
+       * Return true when the main thread got a SIGTERM or SIGQUIT.
+       * @return true when the main thread got a SIGTERM or SIGQUIT.
+       */
+      bool hasStopRequest() const { return has_stop_request_; }
 
       /**
        * Override.
        * @return the return code as returned to the OS (exit code of the process).
        */
       virtual int run() { return 0; }
-    protected:
+    private:
+
+      /**
+       * Detect the HostType of the host the Application is running on.
+       * @return The HostType;
+       */
+      HostType detectHostType();
+
+      /**
+       * Signal handler called by the OS.
+       * Depends on application_ to be valid.
+       * @param signal the signal received.
+       */
+      static void signal_handler( int signal );
+
+      /**
+       * Install the signal handlers.
+       */
+      void installSignalHandlers();
+
+      /**
+       * Called by signal_handler. Note that this call can be made at any time interrupting the current thread,
+       * but no need for synchronization setting has_stop_request_ to true, other threads only read it.
+       * @param signal The received signal.
+       */
+      void onSignal( int signal );
+
+      /**
+       * Singleton Application object.
+       */
+      static Application* application_;
 
       /**
        * The application name
@@ -88,6 +156,16 @@ namespace dodo::common {
        * The configuration file name
        */
       std::string config_file_;
+
+      /**
+       * The HostType, detected once in the Application constructor.
+       */
+      HostType hosttype_;
+
+      /**
+       * True when the Application main pid got a signal to stop (SIGTERM).
+       */
+      bool has_stop_request_;
   };
 
 }

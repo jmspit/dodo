@@ -20,12 +20,18 @@
  * Implement utility things.
  */
 
+#include "common/exception.hpp"
 #include "common/util.hpp"
 
 #include <fstream>
 #include <iomanip>
 #include <iostream>
 #include <ios>
+
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
 
 namespace dodo::common {
 
@@ -149,6 +155,52 @@ namespace dodo::common {
     if ( writeSSLErrors( ss, terminator ) ) {
       return ss.str();
     } else return "";
+  }
+
+  std::string fileReadString( const std::string &filename ) {
+    std::ifstream ifs( filename.c_str() );
+    std::string line = "";
+    if ( ifs.good() ) {
+      getline( ifs, line );
+    } else throw_Exception( Puts() << "failed to open '" << filename << "'" );
+    return line;
+  }
+
+  std::vector<std::string> fileReadStrings( const std::string &filename ) {
+    std::ifstream ifs( filename.c_str() );
+    std::vector<std::string> tmp;
+    std::string line = "";
+    getline( ifs, line );
+    if ( ifs.good() ) throw_Exception( Puts() << "failed to open '" << filename << "'" );
+    while ( ifs.good() ) {
+      tmp.push_back( line );
+      getline( ifs, line );
+    }
+    return tmp;
+  }
+
+  std::vector<std::string> fileReadStrings( const std::string &filename, const std::regex& exp ) {
+    std::ifstream ifs( filename.c_str() );
+    std::vector<std::string> tmp;
+    std::string line = "";
+    getline( ifs, line );
+    if ( !ifs.good() ) throw_Exception( Puts() << "failed to open '" << filename << "'" );
+    while ( ifs.good() ) {
+      std::smatch m;
+      if ( std::regex_match(line, m, exp ) ) tmp.push_back( line );
+      getline( ifs, line );
+    }
+    return tmp;
+  }
+
+  bool fileReadAccess( const std::string& path ) {
+    bool result = true;
+    struct stat buf;
+    int r = stat( path.c_str(), &buf );
+    if ( r != 0 ) return false;
+    result = S_ISREG(buf.st_mode);
+    result = result && ( !access( path.c_str(), F_OK | R_OK ) );
+    return result;
   }
 
 }

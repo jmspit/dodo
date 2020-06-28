@@ -25,6 +25,7 @@ set( LIB_DODO  "dodo" )
 set( LIB_DODO_STATIC  "dodo-static" )
 
 set( ${LIB_DODO}_objects
+  src/lib/common/application.cpp
   src/lib/common/config.cpp
   src/lib/common/datacrypt.cpp
   src/lib/common/exception.cpp

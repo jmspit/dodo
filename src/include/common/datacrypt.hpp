@@ -54,7 +54,7 @@ namespace dodo::common {
    * The IV  and tag are not secrets. The iv needs to be random to prevent entropy loss with access to multiple
    * encrypted strings generated with the same key. The encrypt function will take care of generating unique IV's for
    * each call to encrypt. The tag is used to verify the decryption success, and is generated internally upon
-   * encrypt as a random octet array.
+   * encrypt.
    *
    * The available DataCrypt::Cipher choices are
    * | cipher | key size in bytes (octets) |

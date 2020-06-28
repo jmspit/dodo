@@ -152,12 +152,22 @@ void decrypt( std::istream& in, std::ostream& out ) {
 
 
 int main( int argc, char* argv[] ) {
-  if ( parseArgs( argc, argv ) ) {
-    if ( options.encrypt ) {
-      encrypt( cin, cout );
-    } else {
-      decrypt( cin, cout );
+  int rc = 0;
+  try {
+    initLibrary();
+    if ( parseArgs( argc, argv ) ) {
+      if ( options.encrypt ) {
+        encrypt( cin, cout );
+      } else {
+        decrypt( cin, cout );
+      }
     }
+    rc = 0;
   }
-  return 0;
+  catch ( const std::exception &e ) {
+    cerr << e.what() << endl;
+    rc = 1;
+  }
+  closeLibrary();
+  return rc;
 }

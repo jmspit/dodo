@@ -11,7 +11,7 @@ of fast and lean services for containerized deployment.
 
 ## Developers
 
-[See the developer manual](src/DEVELOPER.md)
+![See the developer manual](src/DEVELOPER.md)
 
 The source code is documented for Doxygen. To generate full library documentation, see `make doc` in
 the build section below.
@@ -20,7 +20,7 @@ in the build directory.
 
 ## Maintainers
 
-[See the maintainer manual](src/MAINTAINER.md)
+![See the maintainer manual](src/MAINTAINER.md)
 
 ## Build
 

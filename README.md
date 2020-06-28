@@ -11,8 +11,12 @@ of fast and lean services for containerized deployment.
 
 ## Developers
 
-
 [See the developer manual](src/DEVELOPER.md)
+
+The source code is documented for Doxygen. To generate full library documentation, see `make doc` in
+the build section below.
+
+in the build directory.
 
 ## Maintainers
 
@@ -29,6 +33,8 @@ cd dodo && \
    make && \
    make install
 ```
+
+To generate Docygen API documentation, `make doc` will generate
 
 ## Docker
 

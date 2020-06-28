@@ -7,7 +7,7 @@ RUN apt-get update && \
 
 RUN mkdir -p /opt/dodo/build && mkdir -p /opt/dodo/bin && mkdir -p /opt/dodo/lib
 WORKDIR /opt/dodo/build
-RUN git clone https://github.com/jmspit/dodo.git:latest
+RUN git clone --branch latest https://github.com/jmspit/dodo.git
 RUN cd dodo && \
     mkdir build && \
     cd build && \
@@ -23,4 +23,3 @@ RUN apt-get update && \
 COPY --from=builder /opt/dodo/lib /opt/dodo/lib
 COPY --from=builder /opt/dodo/bin /opt/dodo/bin
 WORKDIR /opt/dodo
-

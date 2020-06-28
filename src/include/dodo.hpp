@@ -25,7 +25,6 @@
 
 #include <buildenv.hpp>
 #include <common/common.hpp>
-#include <math/function.hpp>
 #include <network/network.hpp>
 #include <threads/threads.hpp>
 

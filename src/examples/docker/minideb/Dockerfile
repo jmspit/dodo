@@ -1,7 +1,7 @@
 FROM bitnami/minideb:latest
 
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
-RUN apt-get install -y apt-utils && apt-get update
+RUN apt-get update && apt-get install -y apt-utils
 RUN apt-get install -y libssl-dev git g++ cmake
 
 RUN mkdir -p /opt/build

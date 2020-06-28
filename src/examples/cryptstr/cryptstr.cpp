@@ -56,8 +56,7 @@ void getKey() {
       cerr << "unable to read environment variable '" << options.key_value.c_str() << "'" << endl;
       exit(EXIT_FAILURE);
     }
-  }
-  else if (  options.key_type == "file" ) {
+  } else if (  options.key_type == "file" ) {
     ifstream ifs;
     string file = options.key_value;
     ifs.open( file, ios::in );
@@ -68,7 +67,6 @@ void getKey() {
       exit(EXIT_FAILURE);
     }
   }
-  //cout << "key value '" << options.key_value << "'" << endl;
 }
 
 bool parseArgs( int argc, char* argv[] ) {

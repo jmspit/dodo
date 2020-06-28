@@ -9,6 +9,15 @@ of fast and lean services for containerized deployment.
 
   - [OpenSSL](https://www.openssl.org/)
 
+## Developers
+
+
+[See the developer manual](src/DEVELOPER.md)
+
+## Maintainers
+
+[See the maintainer manual](src/MAINTAINER.md)
+
 ## Build
 
 ```

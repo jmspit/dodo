@@ -114,12 +114,12 @@ and other artifacts containing that public key, such as a certificate or certifi
 In secure communication, the public key encrypts and the private key decrypts. So data encrypted with a public key,
 can only be decrypted by the owner of the matching private key.
 
-![Public key infrastructure](src/include/network/doc/asymmetric_key_encryption.svg)
+![Public key infrastructure](include/network/doc/asymmetric_key_encryption.svg)
 
 In digital signing, the signature is encrypted with the private key of the signer, and decrypted with
 the public key of the signer.
 
-![Digital signing](src/include/network/doc/digital-signing.svg)
+![Digital signing](include/network/doc/digital-signing.svg)
 
 ### Transport Layer Security (TLS)
 

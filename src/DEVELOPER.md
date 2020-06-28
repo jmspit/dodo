@@ -38,6 +38,36 @@ int main( int argc, char* argv[] ) {
 }
 ```
 
+It is simpler to just use the Application class though, as that will initialize the library, install signal handlers,
+parse command line arguments, read environment variables and so on. You only need to subclass Application and
+implement the run method:
+
+```C
+class MyApp : public common::Application {
+  public:
+    MyApp( const StartParameters &param ) : common::Application( param ) {}
+    virtual int run() {
+      while ( !hasStopRequest() ) {
+        cout << "Hello world!" << endl;
+        std::this_thread::sleep_for(2s);
+      }
+      return 0;
+    }
+};
+
+int main( int argc, char* argv[], char** envp ) {
+  try {
+    MyApp app( { "myapp", "myapp.cnf", argc, argv, envp } );
+    return app.run();
+  }
+  catch ( const std::exception &e ) {
+    cerr << e.what() << endl;
+    return 1;
+  }
+}
+```
+
+
 # Exception and error handling
 
 Dodo might throws dodo::common::Exception or its descendant dodo::common::SystemException in exceptional circumstances.

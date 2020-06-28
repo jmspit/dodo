@@ -7,7 +7,7 @@ RUN apt-get update && \
 
 RUN mkdir -p /opt/dodo/build && mkdir -p /opt/dodo/bin && mkdir -p /opt/dodo/lib
 WORKDIR /opt/dodo/build
-RUN git clone https://github.com/jmspit/dodo.git
+RUN git clone https://github.com/jmspit/dodo.git:latest
 RUN cd dodo && \
     mkdir build && \
     cd build && \

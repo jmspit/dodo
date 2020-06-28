@@ -10,7 +10,7 @@ class MyApp : public common::Application {
     MyApp( const StartParameters &param ) : common::Application( param ) {}
     virtual int run() {
       while ( !hasStopRequest() ) {
-        cout << "Hello world!" << endl;
+        cout << "Hallo wereld!" << endl;
         std::this_thread::sleep_for(2s);
       }
       return 0;

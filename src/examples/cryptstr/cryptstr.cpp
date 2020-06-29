@@ -124,7 +124,7 @@ void encrypt( std::istream& in, std::ostream& out ) {
   common::OctetArray oa = foo.str();
   string key = options.key_value;
   std::string encrypted;
-  dodo::common::DataCrypt::encrypt( dodo::common::DataCrypt::Cipher::Default,
+  dodo::common::DataCrypt::encrypt( options.cipher,
                                     key,
                                     oa,
                                     encrypted );

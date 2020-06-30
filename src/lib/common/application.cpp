@@ -48,9 +48,9 @@ namespace dodo::common {
   }
 
   void Application::installSignalHandlers() {
-    for ( int s = 1; s <= SIGRTMAX; s++ ) {
-      std::signal( s, signal_handler );
-    }
+    std::signal( SIGINT, signal_handler );
+    std::signal( SIGQUIT, signal_handler );
+    std::signal( SIGTERM, signal_handler );
   }
 
   void Application::onSignal( int signal ) {

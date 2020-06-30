@@ -25,3 +25,4 @@ COPY --from=builder /opt/dodo/bin /opt/dodo/bin
 RUN mkdir -p /opt/dodo/conf && mkdir -p /opt/dodo/log
 ADD config.yaml /opt/dodo/conf/config.yaml
 WORKDIR /opt/dodo
+ENTRYPOINT ["/opt/dodo/bin/service"]

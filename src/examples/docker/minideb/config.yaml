@@ -1,0 +1,9 @@
+application:
+  name: 'service'
+
+logger:
+  destinations:
+    file:
+      directory: /opt/log
+      max-size-mib: 10
+      max-file-trail: 4

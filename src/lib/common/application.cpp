@@ -55,7 +55,7 @@ namespace dodo::common {
 
   void Application::onSignal( int signal ) {
     //Logger::getLogger().log( Logger::lvWarning, common::Puts() << "caught signal " << signal );
-    cout << "received " << signal << endl;
+    cout << "received signal " << signal << endl;
     switch ( signal ) {
       case SIGINT:
       case SIGQUIT:

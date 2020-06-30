@@ -19,7 +19,7 @@ class MyApp : public common::Application {
 
 int main( int argc, char* argv[], char** envp ) {
   try {
-    MyApp app( { "service", "/opt/dodo/conf/config.yaml", argc, argv, envp } );
+    MyApp app( { "service", "conf/config.yaml", argc, argv, envp } );
     return app.run();
   }
   catch ( const std::exception &e ) {

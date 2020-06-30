@@ -8,19 +8,18 @@ of fast and lean services for containerized deployment.
 ## Dependencies
 
   - [OpenSSL](https://www.openssl.org/)
+  - [yaml-cpp](https://github.com/jbeder/yaml-cpp)
 
 ## Developers
 
-![See the developer manual](src/DEVELOPER.md)
+![See the developer manual](DEVELOPER.md)
 
 The source code is documented for Doxygen. To generate full library documentation, see `make doc` in
 the build section below.
 
-in the build directory.
-
 ## Maintainers
 
-![See the maintainer manual](src/MAINTAINER.md)
+![See the maintainer manual](MAINTAINER.md)
 
 ## Build
 
@@ -34,7 +33,8 @@ cd dodo && \
    make install
 ```
 
-To generate Docygen API documentation, `make doc` will generate
+To generate Docygen API documentation, `make doc` will generate doxygen documentation
+in the build/doxygen/html directory, which contains index.html.
 
 ## Docker
 

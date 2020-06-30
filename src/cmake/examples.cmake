@@ -16,6 +16,12 @@ add_executable(${EXAMPLE_SYSINFO} ${${EXAMPLE_SYSINFO}_objects} )
 target_link_libraries( ${EXAMPLE_SYSINFO} ${LIB_DODO} )
 install( TARGETS ${EXAMPLE_SYSINFO} RUNTIME DESTINATION bin )
 
+set( EXAMPLE_SERVICE  "service" )
+set( ${EXAMPLE_SERVICE}_objects  src/examples/${EXAMPLE_SERVICE}/${EXAMPLE_SERVICE}.cpp )
+add_executable(${EXAMPLE_SERVICE} ${${EXAMPLE_SERVICE}_objects} )
+target_link_libraries( ${EXAMPLE_SERVICE} ${LIB_DODO} )
+install( TARGETS ${EXAMPLE_SERVICE} RUNTIME DESTINATION bin )
+
 set( EXAMPLE_X509_INFO  "x509-info" )
 set( ${EXAMPLE_X509_INFO}_objects  src/examples/tls/${EXAMPLE_X509_INFO}/${EXAMPLE_X509_INFO}.cpp )
 add_executable(${EXAMPLE_X509_INFO} ${${EXAMPLE_X509_INFO}_objects} )

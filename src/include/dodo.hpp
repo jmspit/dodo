@@ -35,6 +35,7 @@ namespace dodo {
 
   /**
    * Initialize the dodo library.
+   * @see dodo::common::Application
    */
   void initLibrary() {
     common::initLibrary();
@@ -44,6 +45,7 @@ namespace dodo {
 
   /**
    * Close the dodo library.
+   * @see dodo::common::Application
    */
   void closeLibrary() {
     network::closeLibrary();

@@ -38,11 +38,15 @@ int main( int argc, char* argv[] ) {
 }
 ```
 
-It is simpler to just use the Application class though, as that will initialize the library, install signal handlers,
+It is simpler to just use the dodo::common::Application class though, as that will initialize the library, install signal handlers,
 parse command line arguments, read environment variables and so on. You only need to subclass Application and
 implement the run method:
 
 ```C
+#include <dodo.hpp>
+
+using namespace dodo;
+
 class MyApp : public common::Application {
   public:
     MyApp( const StartParameters &param ) : common::Application( param ) {}
@@ -88,7 +92,14 @@ catch ( const std::runtime_error &e ) {
 
 # Logging
 
-A logging framework is available to write log entries to one or more destinations of types
+A logging framework is available to write log entries to one or more destinations. Writing log entries is asynchronous,
+and thread-safe, the entries are written to a queue which is emptied towards the destination by a worker thread.
+The aysynchroneous nature allows to handle bursts of log entries without being blocked on log destination latency,
+although a sustained logging rate that cannot be met by the log destinations will fill up the queue
+and cause a log warning stating that as long as the queue is full, writing log entries is effectively synchronous and
+its rate limited by the slowest destination.
+
+The available destinations are
 
   - standard output aka console
   - a file local to the process
@@ -131,11 +142,13 @@ Dodo supports TLS through dodo::network::TLSContext and dodo::network::TLSSocket
 
 ### Asymmetric cryptography
 
-The core principle to asymmetric cryptography is a mathematical mapping is very easy to
+The core principle to asymmetric cryptography is a mathematical mapping that is cheap to
 compute in one direction, and computationally infeasible in the other. Typically, the ease of muliplying primes
-and the difficulty in finding primes roots of integers is used. In an asymmetric communication handshake,
-each endpoint has a private key, a *secret* filled with as much randomness or entropy as possible, typically stored as
-a file which is (can be) in turn encrypted and protected by a passphrase. The private key is and must not be shared with anyone.
+and the difficulty in finding prime roots of integers is used.
+
+In an asymmetric communication handshake, each endpoint has a private key, a *secret* filled with as much entropy
+(randomness) as possible, typically stored as a file which is (can be) in turn encrypted and protected by a passphrase.
+The private key is and must not be shared with anyone.
 
 The private key includes public bits that map uniquely to a public key, which can thus be extracted from the
 private key. The private and its public key share the same *modulus*, so a public key can be matched to a private key

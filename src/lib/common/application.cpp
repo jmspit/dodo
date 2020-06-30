@@ -36,6 +36,7 @@ namespace dodo::common {
     dodo::initLibrary();
     installSignalHandlers();
     hosttype_ = detectHostType();
+    Config::initialize( param.config );
   }
 
   Application::~Application() {

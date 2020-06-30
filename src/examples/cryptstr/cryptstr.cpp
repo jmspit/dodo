@@ -18,17 +18,19 @@ Options options;
 
 void printHelp() {
   cout << "usage: " << endl;
-  cout << "cryptstr -e|-d -k keysource [-c cipher]" << endl;
-  cout << "  -e" << endl;
-  cout << "    encrypt" << endl;
+  cout << "cryptstr -e [-c cipher] -k keysource" << endl;
+  cout << "cryptstr -d -k keysource" << endl;
+  cout << "  -c" << endl;
+  cout << "    specify the cipher to use (only for -e)" << endl;
   cout << "  -d" << endl;
   cout << "    decrypt (all newlines in the input will be ignored)" << endl;
+  cout << "  -e" << endl;
+  cout << "    encrypt" << endl;
   cout << "  -k" << endl;
   cout << "    key source, either file:PATH, env:ENV_VAR or val:VALUE" << endl;
   cout <<  endl;
   cout << "    Reading from file is the more secure option. Encryption requires the file to be" << endl;
-  cout << "    readable only to the user. env risks subprocesses that inadevrtently expose all environment variables." << endl;
-  cout << "    val reveals the key to all that can see /proc/<pid>/cmdline." << endl;
+  cout << "    readable only to the user." << endl;
   cout <<  endl;
   cout << "    The key may, but does not have to be a string. If -k file: is used, the data is read as octets up" << endl;
   cout << "    until the key size or EOF." << endl;

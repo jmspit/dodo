@@ -22,7 +22,51 @@
 
 namespace dodo::common {
 
+  /**
+   * A asynchronous Logger interface.
+   */
   class Logger {
+    public:
+
+      /**
+       * The level of a log entry.
+       */
+      enum class LogLevel {
+        Fatal,            /**< The program could not continue. */
+        Error,            /**< The program raised an error. Errors are unrecoverable failures. */
+        Warning,          /**< The program raised a warning. Warnings are notable events but things are not broken yet. */
+        Info,             /**< The program raised an informational message. */
+        Debug,            /**< The program produces debug info. */
+        Trace,            /**< The program produces trace info. */
+        Default = Info,
+      };
+
+
+      /**
+       * A LogEntry.
+       */
+      struct LogEntry {
+        /** The time the LogEntry was created. */
+        std::time_t created;
+
+        /** The origin of the LogEntry (can but does not have to be a hostname or container name) */
+        std::string origin;
+
+        /** The name of the progam that issued the LogEntry. */
+        std::string programName;
+
+        /** The TID of the thread that created the LogEntry. */
+        long tid;
+
+        /** The log message. */
+        std::string logMessage;
+      };
+
+    protected:
+      /**
+       * LogEntry instances > loglevel_ will be ignored.
+       */
+      LogLevel loglevel_;
   };
 
 }

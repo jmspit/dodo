@@ -42,11 +42,13 @@ set( ${LIB_DODO}_objects
   src/lib/threads/thread.cpp
 )
 
+set( DODO_USE_LIBS crypto ssl pthread yaml-cpp )
+
 add_library( ${LIB_DODO} SHARED ${${LIB_DODO}_objects} )
 add_library( ${LIB_DODO_STATIC} ${${LIB_DODO}_objects} )
-target_link_libraries( ${LIB_DODO} crypto ssl pthread )
+target_link_libraries( ${LIB_DODO} ${DODO_USE_LIBS} )
 install( TARGETS ${LIB_DODO} LIBRARY DESTINATION lib )
-target_link_libraries( ${LIB_DODO_STATIC} crypto ssl pthread )
+target_link_libraries( ${LIB_DODO_STATIC} ${DODO_USE_LIBS} )
 install( TARGETS ${LIB_DODO_STATIC} ARCHIVE DESTINATION lib )
 
 

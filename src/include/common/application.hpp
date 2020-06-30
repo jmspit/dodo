@@ -29,14 +29,13 @@ namespace dodo::common {
 
 
   /**
-   * @brief To use as program entry point.
+   * @brief Red tape wrapper class for applications, from command line to services. The Application class
    *
-   * The Application class takes care of
-   *
-   *   - initializing and closing the dodo library.
-   *   - installing signal handlers, flag when the Application is kindly requested to stop.
+   *   - initializes and closes the dodo library.
+   *   - installs signal handlers, flag when the Application is requested to stop.
    *   - determining the HostType.
-   *
+   *   - exposing and managing the configuration file
+   *   - providing a logging mechanism
    *
    * @code
    * using namespace dodo::common;
@@ -71,7 +70,7 @@ namespace dodo::common {
         VirtualBox,  /**< VirtualBox. */
         VMWare,      /**< VMWare. */
         KVM,         /**< RedHat KVM. */
-        GenericVM,   /**< A indeterminate virtual machine. */
+        GenericVM,   /**< An indeterminate virtual machine. */
       };
 
       /**
@@ -127,6 +126,7 @@ namespace dodo::common {
        * Signal handler called by the OS.
        * Depends on application_ to be valid.
        * @param signal the signal received.
+       * @return void
        */
       static void signal_handler( int signal );
 

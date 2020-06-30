@@ -22,5 +22,6 @@ RUN apt-get update && \
     apt-get install -y openssl libyaml-cpp0.6
 COPY --from=builder /opt/dodo/lib /opt/dodo/lib
 COPY --from=builder /opt/dodo/bin /opt/dodo/bin
-ADD config.yaml /config.yaml
+RUN mkdir -p /opt/dodo/conf && mkdir -p /opt/dodo/log
+ADD config.yaml /opt/dodo/conf/config.yaml
 WORKDIR /opt/dodo

@@ -29,7 +29,7 @@ int main( int argc, char* argv[] ) {
     network::Address localhost = "127.0.0.1";
     ...
   }
-  catch ( std::runtime_error ) {
+  catch ( std::exception ) {
     cerr << e.what() << endl;
     return_code = 1;
   }
@@ -38,9 +38,9 @@ int main( int argc, char* argv[] ) {
 }
 ```
 
-It is simpler to just use the dodo::common::Application class though, as that will initialize the library, install signal handlers,
-parse command line arguments, read environment variables and so on. You only need to subclass Application and
-implement the run method:
+Or use the dodo::common::Application class, as that will initialize the library, install signal handlers,
+parse command line arguments, read environment variables and so on. Subclass Application and
+implement the run method
 
 ```C
 #include <dodo.hpp>
@@ -49,7 +49,9 @@ using namespace dodo;
 
 class MyApp : public common::Application {
   public:
+
     MyApp( const StartParameters &param ) : common::Application( param ) {}
+
     virtual int run() {
       while ( !hasStopRequest() ) {
         cout << "Hello world!" << endl;
@@ -57,11 +59,12 @@ class MyApp : public common::Application {
       }
       return 0;
     }
+
 };
 
 int main( int argc, char* argv[], char** envp ) {
   try {
-    MyApp app( { "myapp", "myapp.cnf", argc, argv, envp } );
+    MyApp app( { "conf/myapp.yaml", argc, argv, envp } );
     return app.run();
   }
   catch ( const std::exception &e ) {
@@ -74,42 +77,132 @@ int main( int argc, char* argv[], char** envp ) {
 
 # Exception and error handling
 
-Dodo might throws dodo::common::Exception or its descendant dodo::common::SystemException in exceptional circumstances.
-Otherwise methods may return a SystemError, an abstraction of various types of system and dodo errors that may occur
-and must be acted upon in program flows. For example, loading an invalid certificate will thrown an Exception, whilst
-a failure to resolve a hostname will return a SystemError.
+Dodo throws dodo::common::Exception (or its descendant dodo::common::SystemException) only in exceptional circumstances.
+Methods that might be expected to fail return a SystemError, a (mostly 1-1) mapping of various types of system and
+internal dodo errors that can be used in program flows. Among error conditions that will throw are
 
-As dodo::common::Exception itself descends from std::runtime_error, try / catch code can be a simple as
+  - specifying an non-existing configuration file
+  - loading an invalid private keys
+  - unable to allocate memory
+
+whilst SystemError is returned when
+
+  - a fqdn fails to resolves
+  - send / receive errors
+
+As dodo::common::Exception itself descends from std::runtime_error, which in turn descends from std::exception,
+try / catch code such as
 
 ```C
 try {
   ...
 }
-catch ( const std::runtime_error &e ) {
+catch ( const std::exception &e ) {
   cerr << e.what() << endl;
 }
 ```
 
+will catch anything that can go wrong in system plus dodo - unless it is a bug.
+
+dodo::common::Exception instances will include the file and line number where the Exception was thrown. Developers
+may use or mimic the throw_Exception() macro's.
+
+# Deployment configuration
+
+The dodo::common::Config interface enforces the use of a YAML configuration file with mandatory sections that
+configures aspects of dodo, and likely develoer specified data specif to the dodo::common::Application.
+
+The mandatory sections are
+```YAML
+dodo:
+  common:
+    application:
+      name: myapp
+    logger:
+      console:
+        level: info
+```
+
+A dodo Application requires at least a name and a loglevel for logging to console or standard out.
+
+The dodo mandatory section can appear anywhere in the YAML as long as it is a root node. Configuration formats
+of other dodo components are described by topic and class below.
+
 # Logging
 
-A logging framework is available to write log entries to one or more destinations. Writing log entries is asynchronous,
-and thread-safe, the entries are written to a queue which is emptied towards the destination by a worker thread.
-The aysynchroneous nature allows to handle bursts of log entries without being blocked on log destination latency,
-although a sustained logging rate that cannot be met by the log destinations will fill up the queue
-and cause a log warning stating that as long as the queue is full, writing log entries is effectively synchronous and
-its rate limited by the slowest destination.
-
-The available destinations are
+A logging framework is available to write log entries to one or more destinations. The available destinations are
 
   - standard output aka console
   - a file local to the process
   - the syslog call (man 3 syslog)
 
+The logging interface is thread-safe.
 
-# Deployment configuration
+The dodo::common::Logger is configured through the dodo::common::Config configuration file. Minimally, the Logger
+requires
 
-A configuration framework can combine configuration data from a variety of sources, such as environment variables,
-configuration files and OS-level constants of interest to developers.
+```YAML
+dodo:
+  common:
+    logger:
+      console:
+        level: info
+```
+
+which specifies that log entries should be sent to the console (standard out) if they are level
+dodo::common::Logger::LogLevel::Info or worse.
+
+The other destinations are file and syslog. The logger writes entries to all destinations specified (so console
+logging cannot be disabled). The file destination requires directory and trailing limits specifications as the log
+files are rotated automatically. `max-size-mib` (the maximum size of a file before rotate) and `max-file-trail`
+(the maximum number of already rotated log files to keep, oldest removed if exceeded) may be omitted, in which case
+they have the values as specified below. The directory must be specified and may be relative to the current working
+directory (Dockerfile.WORKDIR in case of a docker container).
+
+```YAML
+dodo:
+  common:
+    logger:                       # mandatory
+      console:                    # mandatory
+        level: info               # mandatory
+      file:                       # optional
+        level: info               # mandatory
+        directory: log            # mandatory
+        max-size-mib: 10          # optional default 10
+        max-file-trail: 4         # optional default 4
+```
+
+So the space needed for a logging config is `max-size-mib` * ( `max-file-trail` + 1 ) MiB.
+
+The dodo::common::Logger::LogLevel levels can be specified in the configuration in either a short or longer
+format, but the shorter format will be used in log entries written to console or file. So `level: fatal` and
+`level: FAT` are equivalent.
+
+|short|long|syslog mapping|
+|-----|----|--------------|
+| `FAT` | `fatal` | 2 CRITICAL |
+| `ERR` | `error` | 3 ERROR |
+| `WRN` | `warning` | 4 WARNING |
+| `INF` | `info` | 6 INFORMATIONAL |
+| `DBG` | `debug` | ignored |
+| `TRC` | `trace` | ignored |
+
+So it is not possible to debug or trace to the syslog.
+
+```YAML
+dodo:
+  common:
+    logger:                       # mandatory
+      console:                    # mandatory
+        level: info               # mandatory
+      syslog:                     # mandatory
+        level: warning            # mandatory
+        facility: 1               # optional default 1
+```
+
+The syslog facility should be either 1 for `user-level messages` or in the range `local0` to `local7` or 16 through 23 as the
+remaining values are reserved for other use.
+
 
 # Threads
 
@@ -121,7 +214,7 @@ The networking API is grouped in the dodo::network namespace.
 
 Sockets connect to or listen on Address objects. The Address class allow to program for both ipv4 and ipv6
 transparently. For example, the following sequence resolves the name "httpbin.org" to either an ipv4 or ipv6 address,
-whatever the server supports.
+whatever the server and client support.
 
 ```C
 using namespace dodo;

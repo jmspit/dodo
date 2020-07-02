@@ -17,7 +17,7 @@
 
 /**
  * @file config.cpp
- * Implements the dodo::common::Config class..
+ * Implements the dodo::common::Config class.
  */
 
 #include <fstream>
@@ -28,6 +28,8 @@
 namespace dodo::common {
 
   Config* Config::config_ = nullptr;
+
+  threads::Mutex Config::mutex_;
 
   std::string Config::path_ = "";
 
@@ -47,11 +49,44 @@ namespace dodo::common {
     return config_;
   }
 
+  void Config::checkConfig() {
+    if ( yaml_["dodo"] ) {
+      if ( yaml_["dodo"]["common"] ) {
+        if ( yaml_["dodo"]["common"]["application"] ) {
+
+        } else throw_Exception( Puts() << path_ << " : dodo.common.application node missing" );
+        if ( yaml_["dodo"]["common"]["logger"] ) {
+
+          if ( yaml_["dodo"]["common"]["logger"]["console"] ) {
+            if ( yaml_["dodo"]["common"]["logger"]["console"]["level"] ) {
+            } else throw_Exception( Puts() << path_ << " : dodo.common.logger.console.level node missing" );
+          } else throw_Exception( Puts() << path_ << " : dodo.common.logger.console node missing" );
+
+          if ( yaml_["dodo"]["common"]["logger"]["file"] ) {
+            if ( yaml_["dodo"]["common"]["logger"]["file"]["level"] ) {
+            } else throw_Exception( Puts() << path_ << " : dodo.common.logger.file.level node missing" );
+            if ( yaml_["dodo"]["common"]["logger"]["file"]["directory"] ) {
+            } else throw_Exception( Puts() << path_ << " : dodo.common.logger.file.directory node missing" );
+          }
+
+          if ( yaml_["dodo"]["common"]["logger"]["syslog"] ) {
+            if ( yaml_["dodo"]["common"]["logger"]["syslog"]["level"] ) {
+            } else throw_Exception( Puts() << path_ << " : dodo.common.logger.syslog.level node missing" );
+          }
+
+        } else throw_Exception( Puts() << path_ << " : dodo.common.logger node missing" );
+      } else throw_Exception( Puts() << path_ << " : dodo.common node missing" );
+    } else throw_Exception( Puts() << path_ << " : dodo node missing" );
+  }
+
   void Config::readConfig() {
+    threads::Mutexer lock( mutex_ );
     yaml_ = YAML::LoadFile(path_);
+    checkConfig();
   }
 
   void Config::writeConfig() {
+    threads::Mutexer lock( mutex_ );
     std::ofstream fout(path_);
     fout << yaml_;
   }

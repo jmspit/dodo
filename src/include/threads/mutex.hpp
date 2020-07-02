@@ -93,7 +93,7 @@ namespace dodo::threads {
    * std::list<int> thelist;
    *
    * function addInt( int i ) {
-   *   Mutexer( thelist_mutex );
+   *   Mutexer lock( thelist_mutex );
    *   thelist.push_back( i );
    * }
    * @endcode

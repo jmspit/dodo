@@ -226,6 +226,43 @@ namespace dodo::common {
    */
   bool fileReadAccess( const std::string& path );
 
+  /**
+   * Return true when the directory exists
+   * @param path The path to the directory.
+   * @return True when the directory exists.
+   */
+  bool directoryExists( const std::string &path );
+
+  /**
+   * Return true when the directory exists and is writable to the caller.
+   * @param path The path to the directory.
+   * @return True when the directory exists and is writable to the caller.
+   */
+  bool directoryWritable( const std::string &path );
+
+  /**
+   * Return true when the free space could be determined, and set in avail.
+   * @param path The path on which to check.
+   * @param avail The available free space.
+   * @return False if the free space could not be determined (for example, when the file does not exist).
+   */
+  bool availableFileSpace( const std::string &path, size_t &avail );
+
+  /**
+   * Return the size of the file.
+   * If the file does not exist or is otherwise inaccessible, returns 0.
+   * @param path The path of the file.
+   * @return The file size
+   */
+  size_t getFileSize( const std::string &path );
+
+  /**
+   * Return a datetime string in UTC (2020-07-01T20:14:36.442929Z)
+   * @param tv The tv time struct.
+   * @return The formatted datetime.
+   */
+  std::string formatDateTimeUTC( const struct timeval &tv );
+
 }
 
 #endif

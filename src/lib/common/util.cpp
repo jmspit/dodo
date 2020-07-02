@@ -30,6 +30,7 @@
 
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/statvfs.h>
 #include <unistd.h>
 
 
@@ -201,6 +202,52 @@ namespace dodo::common {
     result = S_ISREG(buf.st_mode);
     result = result && ( !access( path.c_str(), F_OK | R_OK ) );
     return result;
+  }
+
+  bool directoryExists( const std::string &path ) {
+    bool result = true;
+    struct stat buf;
+    int r = stat( path.c_str(), &buf );
+    if ( r != 0 ) return false;
+    result = S_ISDIR(buf.st_mode);
+    return result;
+  }
+
+  bool directoryWritable( const std::string &path ) {
+    bool result = true;
+    struct stat buf;
+    int r = stat( path.c_str(), &buf );
+    if ( r != 0 ) return false;
+    result = result && S_ISDIR(buf.st_mode);
+    result = result && (S_IWUSR & buf.st_mode);
+    return result;
+  }
+
+  bool availableFileSpace( const std::string &path, size_t &avail ) {
+    struct statvfs stat;
+    if ( statvfs( path.c_str(), &stat) != 0 ) return false;
+    avail = stat.f_bsize * stat.f_bavail;
+    return true;
+  }
+
+  size_t getFileSize( const std::string &filename ) {
+    struct stat stat_buf;
+    int rc = stat( filename.c_str(), &stat_buf );
+    return rc == 0 ? stat_buf.st_size : 0;
+  }
+
+  std::string formatDateTimeUTC( const struct timeval &tv ) {
+    struct tm utc;
+    gmtime_r( &tv.tv_sec, &utc );
+    std::stringstream ss;
+    ss << setfill('0') << setw(4) << utc.tm_year + 1900 << "-";
+    ss << setfill('0') << setw(2) << utc.tm_mon+1 << "-";
+    ss << setfill('0') << setw(2) << utc.tm_mday << "T";
+    ss << setfill('0') << setw(2) << utc.tm_hour << ":";
+    ss << setfill('0') << setw(2) << utc.tm_min << ":";
+    ss << setfill('0') << setw(2) << utc.tm_sec << ".";
+    ss << setfill('0') << setw(6) << tv.tv_usec << "Z";
+    return ss.str();
   }
 
 }

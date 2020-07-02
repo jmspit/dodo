@@ -20,10 +20,21 @@
  * Defines the dodo::network::Logger class.
  */
 
+#include "threads/mutex.hpp"
+
+#include <fstream>
+#include <map>
+
+#ifndef common_logger_hpp
+#define common_logger_hpp
+
 namespace dodo::common {
 
+  class Config;
+
   /**
-   * A asynchronous Logger interface.
+   * A Logger interface. Calls to log( LogLevel level, const std::string message ) are serialized internally
+   * and thus thread-safe.
    */
   class Logger {
     public:
@@ -33,40 +44,176 @@ namespace dodo::common {
        */
       enum class LogLevel {
         Fatal,            /**< The program could not continue. */
-        Error,            /**< The program raised an error. Errors are unrecoverable failures. */
-        Warning,          /**< The program raised a warning. Warnings are notable events but things are not broken yet. */
-        Info,             /**< The program raised an informational message. */
-        Debug,            /**< The program produces debug info. */
-        Trace,            /**< The program produces trace info. */
-        Default = Info,
+        Error,            /**< The program signaled an error. */
+        Warning,          /**< The program signaled a warning. */
+        Info,             /**< The program signaled an informational message. */
+        Debug,            /**< The program produced debug info. */
+        Trace,            /**< The program produced trace info. */
       };
+
+      /**
+       * Destination flags.
+       */
+      enum Destination {
+        Console = 1,
+        File = 2,
+        Syslog = 4,
+      };
+
+      /**
+       * File Logging parameters.
+       */
+      struct FileParams {
+        /** The directory to write the log files in. */
+        std::string directory;
+        /** The maximum size of a logfile. */
+        size_t max_size_mib = 10;
+        /** The maximum number of files to keep besides the active log file. */
+        size_t max_file_trail = 4;
+        /** the filename of the active log */
+        std::string active_log;
+        /** the ofstream of the active log. */
+        std::ofstream file;
+        /** current file size */
+        size_t filesize = 0;
+      };
+
+      /**
+       * syslog logging parameters.
+       */
+      struct SyslogParams {
+        /** The syslog facility to use. */
+        int facility;
+      };
+
+      /**
+       * Log an log entry. The entry is only written when level <= the loglevel specified in the Config,
+       * and silently ignored otherwise. Calling is thread-safe, but the lock is not acquired at all if
+       * the entry is ignored by level.
+       * @param level The logLevel of the messsage.
+       * @param message The log message.
+       */
+      void log( LogLevel level, const std::string message );
 
 
       /**
-       * A LogEntry.
+       * Initialize the Logger singleton.
+       * @param config The Config to use.
+       * @return A pointer to the singleton.
        */
-      struct LogEntry {
-        /** The time the LogEntry was created. */
-        std::time_t created;
+      static Logger* initialize( const Config& config );
 
-        /** The origin of the LogEntry (can but does not have to be a hostname or container name) */
-        std::string origin;
 
-        /** The name of the progam that issued the LogEntry. */
-        std::string programName;
+      /**
+       * Get the Logger singleton - initialize() must have been called first.
+       * @param config The Config to use.
+       * @return A pointer to the singleton.
+       */
+      static Logger* getLogger();
 
-        /** The TID of the thread that created the LogEntry. */
-        long tid;
+      /**
+       * Return the LogLevel as a string (as used in console and file).
+       * @param level The LogLevel.
+       * @param acronym If true, return a uppercase character triplet for use in log files.
+       * @return A string representation of the LogLevel.
+       */
+      static std::string LogLevelAsString( LogLevel level, bool acronym );
 
-        /** The log message. */
-        std::string logMessage;
-      };
+      /**
+       * Return the string as a LogLevel. Note this will default to Info if string is not recognized.
+       * @param slevel The LogLevel as a string.
+       * @return The LogLevel.
+       */
+      static LogLevel StringAsLogLevel( const std::string slevel );
 
     protected:
+
       /**
-       * LogEntry instances > loglevel_ will be ignored.
+       * Construct against a config.
+       * @param config The configuration to read from.
        */
-      LogLevel loglevel_;
+      Logger( const Config& config );
+
+      /**
+       * Destructor.
+       */
+      virtual ~Logger();
+
+      /**
+       * Format a LogLine.
+       * @param level The logLevel of the messsage.
+       * @param message The log message.
+       * @return A formatted log line.
+       */
+      std::string formatMessage( LogLevel level, const std::string message );
+
+
+      /**
+       * Get FileParams from the Config into file_params_.
+       * @param config The Config to get the FileParams from.
+       */
+      void getFileParams( const Config& config );
+
+      /**
+       * Check and rotate the log file if it exceeds the size limit,
+       * delete older logs if needed.
+       */
+      void checkRotate();
+
+      /**
+       * Map a LogLevel to a syslog level.
+       * @param level The LogLevel to map.
+       * @return The mapped syslog level.
+       */
+      int mapLeveltoSyslog( LogLevel level );
+
+      /**
+       * threads::Mutex to serialize log writing.
+       */
+      static threads::Mutex mutex_;
+
+      /**
+       * The singleton.
+       */
+      static Logger* logger_;
+
+      /**
+       * Destinations as bit flags
+       */
+      uint8_t destinations_;
+
+      /**
+       * Map Destination to LogLevel.
+       */
+      std::map<uint8_t,LogLevel> levels_;
+
+      /**
+       * The hostname cached in the constructor.
+       */
+      std::string hostname_;
+
+      /**
+       * Parameters for the file Destination.
+       */
+      FileParams file_params_;
+
+      /**
+       * Parameters for the syslog Destination.
+       */
+      SyslogParams syslog_params_;
+
+      /**
+       * Track when rotation was last checked.
+       */
+      size_t rotate_throttle_counter_;
+
+    /**
+     * Application::~Application() will destruct this singleton
+     */
+    friend class Application;
+
   };
 
 }
+
+#endif

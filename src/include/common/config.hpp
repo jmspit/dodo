@@ -24,6 +24,7 @@
 #include <string>
 
 #include <yaml-cpp/yaml.h>
+#include "threads/mutex.hpp"
 
 #ifndef common_config_hpp
 #define common_config_hpp
@@ -50,7 +51,20 @@ namespace dodo::common {
    * Config instance is created, developers need to call initialize() first. All subsequent calls to getConfig() will
    * return the same pointer without the need to specify the configuration file path each time.
    *
-   * The Config class is thread-safe as it serializes modifying operations internally.
+   *
+   * The Config class exposes the configuration data as const YAML::Node reference. So to modify or
+   *
+   * As multiple threads may be reading and modifying the configuration data, access must be serialized. However, as the
+   * data is exposed as a reference to a YAML::Node, this class cannot control serialization transparently. Developers
+   * know when they are done reading or writing the configuration data. For example
+   *
+   * @code
+   * {
+   *   threads::Mutexer( getConfig()->getMutex() );
+   *   const std::string username = config["username"].as<std::string>();
+   * }
+   * // Mutexer is out of scope, destructed and the getConfig()->getMutex() lock is released.
+   * @endcode
    */
   class Config {
     public:
@@ -81,20 +95,39 @@ namespace dodo::common {
       static Config* getConfig();
 
       /**
-       * Re-read the configuration file.
+       * Re-read the configuration file. This call locks the internal getMutex().
        */
       void readConfig();
 
       /**
-       * Write out the configuration file.
+       * Write out the configuration file. This call locks the internal getMutex().
        */
       void writeConfig();
 
       /**
-       * Return a reference to the configuration YAML contents.
+       * Return a reference to the configuration YAML contents. Callers must serialize access by locking
+       * the getMutex() Mutex (or use a threads::Mutexer on it).
        * @return The YAML::Node reference to the YAML root.
        */
       YAML::Node& getYAML() { return yaml_; }
+
+      /**
+       * Return a reference to the serializing threads::Mutex.
+       * @return A reference to the internal threads::Mutex.
+       */
+      threads::Mutex& getMutex() { return mutex_; }
+
+      /**
+       * Return the path of the configuration file.
+       * @return The path of the configuration file.
+       */
+      std::string getPath() const { return path_; }
+
+      /**
+       * Return the application name.
+       * @return the application name.
+       */
+      std::string getAppName() const { return yaml_["dodo"]["common"]["application"]["name"].as<std::string>(); }
 
     protected:
 
@@ -110,6 +143,11 @@ namespace dodo::common {
       virtual ~Config() {}
 
       /**
+       * Check for required elements in the config file.
+       */
+      void checkConfig();
+
+      /**
        * The singleton pointer.
        */
       static Config* config_;
@@ -123,6 +161,16 @@ namespace dodo::common {
        * The root YAML node.
        */
       YAML::Node yaml_;
+
+      /**
+       * The Mutex to serialize configuration data access.
+       */
+      static threads::Mutex mutex_;
+
+    /**
+     * Application::~Application() will destruct this singleton
+     */
+    friend class Application;
   };
 
 }

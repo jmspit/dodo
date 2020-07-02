@@ -1,9 +1,15 @@
-application:
-  name: 'service'
-
-logger:
-  destinations:
-    file:
-      directory: /opt/log
-      max-size-mib: 10
-      max-file-trail: 4
+dodo:
+  common:
+    application:
+      name: dodo-service
+    logger:
+      console:
+        level: debug
+      file:
+        level: info
+        directory: log
+        max-size-mib: 1
+        max-file-trail: 4
+      syslog:
+        level: warning
+        facility: 16

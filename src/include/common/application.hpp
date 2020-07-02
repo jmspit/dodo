@@ -24,9 +24,9 @@
 #define common_application_hpp
 
 #include <string>
+#include "common/logger.hpp"
 
 namespace dodo::common {
-
 
   /**
    * @brief Red tape wrapper class for applications, from command line to services. The Application class
@@ -77,7 +77,6 @@ namespace dodo::common {
        * Start parameters for the Application.
        */
       struct StartParameters {
-        std::string name;     /**< Application name. */
         std::string config;   /**< Configuration file. */
         int argc;             /**< Argument count. */
         char** argv;          /**< Argument array. */
@@ -108,6 +107,15 @@ namespace dodo::common {
        * @return true when the main thread got a SIGTERM or SIGQUIT.
        */
       bool hasStopRequest() const { return has_stop_request_; }
+
+      /**
+       * Short for Logger::getLogger()->log
+       * @param level The logLevel of the messsage.
+       * @param message The log message.
+       */
+      void log( Logger::LogLevel level, const std::string message ) {
+        if ( logger_ ) logger_->log( level, message );
+      }
 
       /**
        * Override.
@@ -148,11 +156,6 @@ namespace dodo::common {
       static Application* application_;
 
       /**
-       * The application name
-       */
-      std::string app_name_;
-
-      /**
        * The configuration file name
        */
       std::string config_file_;
@@ -166,6 +169,12 @@ namespace dodo::common {
        * True when the Application main pid got a signal to stop (SIGTERM).
        */
       bool has_stop_request_;
+
+      /**
+       * The Logger.
+       */
+      Logger* logger_;
+
   };
 
 }

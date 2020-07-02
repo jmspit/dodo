@@ -21,6 +21,7 @@
  */
 
 #include "common/application.hpp"
+#include "common/logger.hpp"
 #include "dodo.hpp"
 
 #include <csignal>
@@ -31,15 +32,18 @@ namespace dodo::common {
 
   Application::Application( const StartParameters &param ) {
     application_ = this;
-    app_name_ = param.name;
     has_stop_request_ = false;
     dodo::initLibrary();
     installSignalHandlers();
     hosttype_ = detectHostType();
-    Config::initialize( param.config );
+    Config* config = Config::initialize( param.config );
+    logger_ = Logger::initialize( *config );
+    logger_->log( Logger::LogLevel::Info, "started " );
   }
 
   Application::~Application() {
+    if ( Logger::getLogger() ) delete Logger::getLogger();
+    if ( Config::getConfig() ) delete Config::getConfig();
     dodo::closeLibrary();
   }
 
@@ -54,8 +58,7 @@ namespace dodo::common {
   }
 
   void Application::onSignal( int signal ) {
-    //Logger::getLogger().log( Logger::lvWarning, common::Puts() << "caught signal " << signal );
-    cout << "received signal " << signal << endl;
+    log( Logger::LogLevel::Warning, common::Puts() << "caught signal " << signal );
     switch ( signal ) {
       case SIGINT:
       case SIGQUIT:

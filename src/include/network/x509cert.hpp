@@ -43,10 +43,10 @@ namespace dodo::network {
        * The SubjectAltName type.
        */
       enum class SANType {
-        stDNS   = GEN_DNS,    /**< A valid DNS name such as myhost.mydomain.org */
-        stURI   = GEN_URI,    /**< A valid URI */
-        stEMAIL = GEN_EMAIL,  /**< A valid email address */
-        tsIP    = GEN_IPADD   /**< A valid IPv4 or IPv6 address */
+        stDNS   = GEN_DNS,    /**< A DNS name such as myhost.mydomain.org */
+        stURI   = GEN_URI,    /**< An URI */
+        stEMAIL = GEN_EMAIL,  /**< An email address */
+        tsIP    = GEN_IPADD   /**< An IPv4 or IPv6 address */
       };
 
       /**
@@ -181,29 +181,8 @@ namespace dodo::network {
       ~X509Common() = delete;
   };
 
-
   /**
-   * Serialize an Identity.
-   * @param out The stream to write to.
-   * @param identity The identity to write.
-   * @return A reference to the stream written to.
-   */
-  //inline std::ostream & operator<<( std::ostream &out, const X509Common::Identity& identity ) {
-    //out << std::string("C=") << identity.countryCode;
-    //out << std::string(",ST=") << identity.state;
-    //out << std::string(",L=") << identity.locality;
-    //out << std::string(",O=") << identity.organization;
-    //out << std::string(",OU=") << identity.organizationUnit;
-    //out << std::string(",CN=") << identity.commonName;
-    //out << std::string(",emailAddress=") << identity.email;
-    //for ( auto o : identity.other ) {
-      //out << "," << o.first << "=" << o.second;
-    //}
-    //return out;
-  //}
-
-  /**
-   * X509 Certificate signing request (CSR) interface. Note that this is an sinterface class, it does not
+   * X509 Certificate signing request (CSR) interface. Note that this is an interface class, it does not
    * manage ownership of X509_REQ structures.
    *
    * See @ref developer_networking for details on the role of this class.

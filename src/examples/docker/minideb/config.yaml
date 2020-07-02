@@ -11,5 +11,5 @@ dodo:
         max-size-mib: 1
         max-file-trail: 4
       syslog:
-        level: warning
-        facility: 16
+        level: info
+        facility: 1

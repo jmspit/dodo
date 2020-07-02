@@ -65,7 +65,7 @@ namespace dodo::common {
       } else syslog_params_.facility = 1;
 
       levels_[Syslog] = StringAsLogLevel( yaml["dodo"]["common"]["logger"]["syslog"]["level"].as<std::string>() );
-      //openlog( config.getAppName().c_str(), LOG_CONS | LOG_PID | LOG_NDELAY, syslog_params_.facility );
+      if ( levels_[Syslog] > LogLevel::Info ) throw_ConfigException( "syslog LogLevel cannot be higher than info" );
     }
 
   }
@@ -74,7 +74,6 @@ namespace dodo::common {
     // wait until other trades have released. they may be writing.
     threads::Mutexer lock( mutex_ );
     file_params_.file.close();
-    //closelog();
   }
 
   Logger* Logger::initialize( const Config& config ) {
@@ -167,14 +166,14 @@ namespace dodo::common {
       file_params_.max_file_trail = 4;
 
     if ( !directoryExists( file_params_.directory ) )
-      throw_Exception( Puts() << "directory '" << file_params_.directory << "' does not exist" );
+      throw_ConfigException( "directory '" << file_params_.directory << "' does not exist" );
     if ( !directoryWritable( file_params_.directory ) )
-      throw_Exception( Puts() << "directory '" << file_params_.directory << "' does not allow write access" );
+      throw_ConfigException( "directory '" << file_params_.directory << "' does not allow write access" );
     file_params_.active_log = file_params_.directory + "/" + config.getAppName() + ".log";
     file_params_.file.open( file_params_.active_log, std::ofstream::out | std::ofstream::app );
     file_params_.filesize = getFileSize( file_params_.active_log );
     if ( !file_params_.file.good() )
-      throw_Exception( Puts() << "failed to open '" << file_params_.active_log << "' for writing" );
+      throw_ConfigException( "failed to open '" << file_params_.active_log << "' for writing" );
   }
 
   std::string Logger::formatMessage( LogLevel level, const std::string message ) {

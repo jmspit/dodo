@@ -59,24 +59,24 @@ namespace dodo::common {
 
           if ( yaml_["dodo"]["common"]["logger"]["console"] ) {
             if ( yaml_["dodo"]["common"]["logger"]["console"]["level"] ) {
-            } else throw_Exception( Puts() << path_ << " : dodo.common.logger.console.level node missing" );
-          } else throw_Exception( Puts() << path_ << " : dodo.common.logger.console node missing" );
+            } else throw_ConfigException( "dodo.common.logger.console.level node missing" );
+          } else throw_ConfigException( "dodo.common.logger.console node missing" );
 
           if ( yaml_["dodo"]["common"]["logger"]["file"] ) {
             if ( yaml_["dodo"]["common"]["logger"]["file"]["level"] ) {
-            } else throw_Exception( Puts() << path_ << " : dodo.common.logger.file.level node missing" );
+            } else throw_ConfigException( " : dodo.common.logger.file.level node missing" );
             if ( yaml_["dodo"]["common"]["logger"]["file"]["directory"] ) {
-            } else throw_Exception( Puts() << path_ << " : dodo.common.logger.file.directory node missing" );
+            } else throw_ConfigException( "dodo.common.logger.file.directory node missing" );
           }
 
           if ( yaml_["dodo"]["common"]["logger"]["syslog"] ) {
             if ( yaml_["dodo"]["common"]["logger"]["syslog"]["level"] ) {
-            } else throw_Exception( Puts() << path_ << " : dodo.common.logger.syslog.level node missing" );
+            } else throw_ConfigException( "dodo.common.logger.syslog.level node missing" );
           }
 
-        } else throw_Exception( Puts() << path_ << " : dodo.common.logger node missing" );
-      } else throw_Exception( Puts() << path_ << " : dodo.common node missing" );
-    } else throw_Exception( Puts() << path_ << " : dodo node missing" );
+        } else throw_ConfigException( "dodo.common.logger node missing" );
+      } else throw_ConfigException( "dodo.common node missing" );
+    } else throw_ConfigException( " dodo node missing" );
   }
 
   void Config::readConfig() {

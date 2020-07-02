@@ -2,8 +2,7 @@
 
 ## Design goals
 
-A library to facilitate development of C++ software for the Linux platform, with a strong focus on creation
-of fast and lean services for containerized deployment.
+A library to facilitate of C++ software for the Linux platform with a focus on automated and containerized deployments.
 
 ## Dependencies
 
@@ -12,14 +11,16 @@ of fast and lean services for containerized deployment.
 
 ## Developers
 
-
+See the [developer manual](@ref developer) for an overview.
 
 The source code is documented for Doxygen. To generate full library documentation, see `make doc` in
 the build section below.
 
+A shorter tour is available in
+
 ## Maintainers
 
-
+See the [maintainer manual](@ref maintainer) for an overview.
 
 ## Build
 

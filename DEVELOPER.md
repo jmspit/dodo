@@ -1,8 +1,6 @@
-# Developer Manual
+# Developer Manual {#developer}
 
 [TOC]
-
-Documentation for developers using the library.
 
 # Introduction
 

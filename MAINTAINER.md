@@ -1,4 +1,4 @@
-# Maintainer manual
+# Maintainer manual {#maintainer}
 
 ## Coding style {#coding_style}
 

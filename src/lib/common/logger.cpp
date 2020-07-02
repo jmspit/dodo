@@ -35,6 +35,7 @@
 #include <filesystem>
 #include <regex>
 #include <syslog.h>
+#include <sys/syscall.h>
 
 namespace dodo::common {
 
@@ -105,7 +106,7 @@ namespace dodo::common {
 
     if ( destinations_ | Syslog && level <= levels_[Syslog] && level <= LogLevel::Info ) {
       std::stringstream ss;
-      ss << Config::getConfig()->getAppName() << "[" << gettid() << "]: ";
+      ss << Config::getConfig()->getAppName() << "[" << syscall(SYS_gettid) << "]: ";
       ss << LogLevelAsString(level, true) << ": " << message;
       syslog( syslog_params_.facility | mapLeveltoSyslog(level), "%s", ss.str().c_str() );
     }
@@ -182,7 +183,7 @@ namespace dodo::common {
     gettimeofday( &tv, nullptr );
     ss << formatDateTimeUTC( tv ) << " ";
     ss << hostname_ << " ";
-    ss << Config::getConfig()->getAppName() << "[" << gettid() << "] ";
+    ss << Config::getConfig()->getAppName() << "[" << syscall(SYS_gettid) << "] ";
     ss << LogLevelAsString( level, true ) << " ";
     ss << message;
     return ss.str();

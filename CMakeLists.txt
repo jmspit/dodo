@@ -43,7 +43,7 @@ set( ${LIB_DODO}_objects
   src/lib/threads/thread.cpp
 )
 
-set( DODO_USE_LIBS crypto ssl pthread yaml-cpp )
+set( DODO_USE_LIBS crypto ssl pthread yaml-cpp stdc++fs )
 
 add_library( ${LIB_DODO} SHARED ${${LIB_DODO}_objects} )
 add_library( ${LIB_DODO_STATIC} ${${LIB_DODO}_objects} )

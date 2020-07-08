@@ -17,9 +17,10 @@ class Server : public TCPServer {
 
     virtual bool requestResponse( BaseSocket *socket ) {
       std::string request;
-      SystemError error = socket->receiveString( request );
+      SystemError error = socket->receiveLine( request );
       if ( error == SystemError::ecOK ) {
-        error = socket->sendString( request, false );
+        Logger::getLogger()->trace( Puts() << "socket " << socket->geFD() << " received : '" << request << "'!" );
+        error = socket->sendLine( request, false );
         return error == SystemError::ecOK;
       }
       return false;

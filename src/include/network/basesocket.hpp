@@ -118,7 +118,7 @@ namespace dodo::network {
        * Return the socket file descriptor.
        * @return The socket descriptor.
        */
-      int getSocket() const { return socket_; };
+      int geFD() const { return socket_; };
 
       /**
        * Return true when the socket descriptor is a valid, hence 'possible' descriptor.
@@ -438,7 +438,16 @@ namespace dodo::network {
       SystemError receiveString( string &s );
 
       /**
-       * receive a stream of characters until a '\n' is read (which is not added to s).
+       * Sends the std::string terminated by a '\n'.
+       * @param s The string to send.
+       * @param more If true, the caller indicates that more data will follow.
+       * @return Same as send( const void* buf, ssize_t len )
+       */
+      SystemError sendLine( const std::string &s, bool more );
+
+      /**
+       * receive a stream of characters until a '\n' is read (consumed from the socket read buffer but not
+       * added to s).
        * @param s receives the read string.
        * @return The SystemError.
        */

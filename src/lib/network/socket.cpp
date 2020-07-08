@@ -98,7 +98,7 @@ namespace dodo::network {
   }
 
   Socket::Socket( const Socket& socket ) {
-    socket_ = socket.getSocket();
+    socket_ = socket.geFD();
   }
 
   SystemError Socket::bind( const Address &address ) {

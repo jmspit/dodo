@@ -422,9 +422,8 @@ namespace dodo::network {
     if ( getBlocking() ) {
       SystemError error;
       error = sendUInt64( s.size(), true );
-      if ( error != SystemError::ecOK ) throw_SystemExceptionObject( "sendUInt64 failed", error, this );
+      if ( error != SystemError::ecOK ) return error;
       error = send( s.c_str(), s.size(), more );
-      if ( error != SystemError::ecOK ) throw_SystemExceptionObject( "send failed", error, this );
       return error;
     } else throw_Exception( "sendString used on a non-blocking socket" );
   }
@@ -450,8 +449,27 @@ namespace dodo::network {
     } else throw_ExceptionObject( "receiveString used on a non-blocking socket", this );
   }
 
+  SystemError BaseSocket::sendLine( const std::string &s, bool more ) {
+    if ( getBlocking() ) {
+      SystemError error;
+      std::stringstream ss;
+      ss << s << '\n';
+      error = send( ss.str().c_str(), ss.str().length(), more );
+      return error;
+    } else throw_Exception( "sendLine used on a non-blocking socket" );
+  }
+
   SystemError BaseSocket::receiveLine( string &s ) {
     SystemError error = SystemError::ecOK;
+    char c = 0;
+    ssize_t received = 0;
+    std::stringstream ss;
+    error = receive( &c, 1, received );
+    while ( error == SystemError::ecOK && received == 1 && c != '\n' ) {
+      if ( c != '\r' ) ss << c;
+      error = receive( &c, 1, received );
+    }
+    s = ss.str();
     return error;
   }
 

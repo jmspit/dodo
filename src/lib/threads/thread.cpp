@@ -34,6 +34,8 @@ namespace dodo::threads {
   void* Thread::thread_method( void* context ) {
     Thread* t = ((Thread*)context);
     t->tid_ = static_cast<pid_t>(syscall(SYS_gettid));
+    gettimeofday( &t->start_time_, NULL );
+    t->snapRUsage();
     if ( t ) t->run();
     t->tid_  = 0;
     return 0;
@@ -42,7 +44,7 @@ namespace dodo::threads {
   Thread::Thread() : thread_(0), tid_(0) {
     gettimeofday( &start_time_, NULL );
     gettimeofday( &prev_snap_time_, NULL );
-    prev_snap_time_.tv_sec -= 1;
+    //prev_snap_time_.tv_sec -= 1;
     gettimeofday( &snap_time_, NULL );
     memset( &prev_rusage_, 0, sizeof( prev_rusage_ ) );
     memset( &rusage_, 0, sizeof( rusage_ ) );
@@ -56,8 +58,6 @@ namespace dodo::threads {
   void Thread::start() {
     if ( !thread_ ) {
       thread_ = new std::thread( this->thread_method, this );
-      gettimeofday( &start_time_, NULL );
-      snapRUsage();
     }
   }
 

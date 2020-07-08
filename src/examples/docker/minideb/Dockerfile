@@ -30,5 +30,6 @@ ADD config.yaml /opt/dodo/conf/config.yaml
 RUN chown -R dodo:dodo /opt/dodo && chmod 600 /opt/dodo/conf/config.yaml
 USER dodo
 WORKDIR /opt/dodo
+EXPOSE 1968/tcp
 HEALTHCHECK --interval=30s --timeout=3s CMD pidof service
 ENTRYPOINT ["/opt/dodo/bin/service"]

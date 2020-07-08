@@ -24,6 +24,7 @@
 
 #include <fstream>
 #include <map>
+#include <functional>
 
 #ifndef common_logger_hpp
 #define common_logger_hpp
@@ -47,6 +48,7 @@ namespace dodo::common {
         Error,            /**< The program signaled an error. */
         Warning,          /**< The program signaled a warning. */
         Info,             /**< The program signaled an informational message. */
+        Statistics,       /**< The program signaled runtime statistics. */
         Debug,            /**< The program produced debug info. */
         Trace,            /**< The program produced trace info. */
       };
@@ -87,14 +89,53 @@ namespace dodo::common {
       };
 
       /**
-       * Log an log entry. The entry is only written when level <= the loglevel specified in the Config,
-       * and silently ignored otherwise. Calling is thread-safe, but the lock is not acquired at all if
-       * the entry is ignored by level.
-       * @param level The logLevel of the messsage.
-       * @param message The log message.
+       * Log a Fatal log entry. These are always logged as Fatal is the lowest LogLevel.
+       * Calling is thread-safe.
+       * @param message The fatal log message.
        */
-      void log( LogLevel level, const std::string message );
+      void fatal( const std::string message );
 
+      /**
+       * Log a Error log entry. These are only logged when LogLevel >= Error.
+       * Calling is thread-safe.
+       * @param message The Error log message.
+       */
+      void error( const std::string message );
+
+      /**
+       * Log a Warning log entry. These are only logged when LogLevel >= Warning.
+       * Calling is thread-safe.
+       * @param message The Warning log message.
+       */
+      void warning( const std::string message );
+
+      /**
+       * Log a Info log entry. These are only logged when LogLevel >= Info.
+       * Calling is thread-safe.
+       * @param message The Info log message.
+       */
+      void info( const std::string message );
+
+      /**
+       * Log a Statistics log entry. These are only logged when LogLevel >= Statistics.
+       * Calling is thread-safe.
+       * @param message The Statistics log message.
+       */
+      void statistics( const std::string message );
+
+      /**
+       * Log a Debug log entry. These are only logged when LogLevel >= Debug.
+       * Calling is thread-safe.
+       * @param message The Debug log message.
+       */
+      void debug( const std::string message );
+
+      /**
+       * Log a Trace log entry. These are only logged when LogLevel >= Trace.
+       * Calling is thread-safe.
+       * @param message The Trace log message.
+       */
+      void trace( const std::string message );
 
       /**
        * Initialize the Logger singleton.
@@ -138,6 +179,15 @@ namespace dodo::common {
        * Destructor.
        */
       virtual ~Logger();
+
+      /**
+       * Log a log entry. The entry is only written when level <= the loglevel specified in the Config,
+       * and silently ignored otherwise. Calling is thread-safe, but the lock is not acquired at all if
+       * the entry is ignored by level.
+       * @param level The logLevel of the messsage.
+       * @param message The log message.
+       */
+      void log( LogLevel level, const std::string message );
 
       /**
        * Format a LogLine.

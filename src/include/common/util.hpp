@@ -33,6 +33,7 @@
 #include "buildenv.hpp"
 #include <sys/time.h>
 
+#include <yaml-cpp/yaml.h>
 #include <openssl/ssl.h>
 #include <openssl/err.h>
 
@@ -262,6 +263,27 @@ namespace dodo::common {
    * @return The formatted datetime.
    */
   std::string formatDateTimeUTC( const struct timeval &tv );
+
+  /**
+   * Template function to check existence and assign YAML values of arbitrary type. The key-value
+   * pair must must exist under node.
+   * @param node The YAML::Node containing the key-value pair
+   * @param key The YAML::Node name.
+   * @return the value of type T
+   */
+  template <typename T> T YAML_assign_by_key( const YAML::Node &node, const std::string& key );
+
+  /**
+   * Template function to check existence and assign YAML values of arbitrary type. The key-value
+   * pair must must exist under node.
+   * @param node The YAML::Node containing the key-value pair
+   * @param key The YAML::Node name.
+   * @param default_value The default value to assign when the key is missing
+   * @return the value of type T
+   */
+  template <typename T> T YAML_assign_by_key_with_default( const YAML::Node &node,
+                                                           const std::string& key,
+                                                           const T& default_value );
 
 }
 

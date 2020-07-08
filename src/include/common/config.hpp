@@ -33,13 +33,6 @@
 namespace dodo::common {
 
   /**
-   * Throws an Exception, passes __FILE__ and __LINE__ to constructor, and includes the config file path.
-   * @param what The exception message as std::string.
-   */
-  #define throw_ConfigException( what ) throw dodo::common::Exception( __FILE__, __LINE__, \
-          dodo::common::Puts() << dodo::common::Config::getConfig()->getPath() << " : " what )
-
-  /**
    * Singleton class representing the deployment configuration, combining deployment constants from the configuration
    * file, environment variables (whose names start with the appname) and some operating system quantities useful to
    * developers, like the CPU count or an imposed memory limit.

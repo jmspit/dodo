@@ -183,6 +183,12 @@ namespace dodo::threads {
        */
       double getSnapDiffTime();
 
+      /**
+       * Return the tid.
+       * @return the TID.
+       */
+      pid_t getTID() const { return tid_; };
+
     protected:
 
       /**
@@ -229,6 +235,11 @@ namespace dodo::threads {
        * @return nullptr (always)
        */
       static void* thread_method( void* context );
+
+      /**
+       * The linux tid.
+       */
+      pid_t tid_;
   };
 
 }

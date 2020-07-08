@@ -21,6 +21,7 @@
  */
 
 #include <fstream>
+#include <iostream>
 
 #include "common/config.hpp"
 #include "common/exception.hpp"
@@ -59,24 +60,24 @@ namespace dodo::common {
 
           if ( yaml_["dodo"]["common"]["logger"]["console"] ) {
             if ( yaml_["dodo"]["common"]["logger"]["console"]["level"] ) {
-            } else throw_ConfigException( "dodo.common.logger.console.level node missing" );
-          } else throw_ConfigException( "dodo.common.logger.console node missing" );
+            } else throw_Exception( "dodo.common.logger.console.level node missing" );
+          } else throw_Exception( "dodo.common.logger.console node missing" );
 
           if ( yaml_["dodo"]["common"]["logger"]["file"] ) {
             if ( yaml_["dodo"]["common"]["logger"]["file"]["level"] ) {
-            } else throw_ConfigException( " : dodo.common.logger.file.level node missing" );
+            } else throw_Exception( " : dodo.common.logger.file.level node missing" );
             if ( yaml_["dodo"]["common"]["logger"]["file"]["directory"] ) {
-            } else throw_ConfigException( "dodo.common.logger.file.directory node missing" );
+            } else throw_Exception( "dodo.common.logger.file.directory node missing" );
           }
 
           if ( yaml_["dodo"]["common"]["logger"]["syslog"] ) {
             if ( yaml_["dodo"]["common"]["logger"]["syslog"]["level"] ) {
-            } else throw_ConfigException( "dodo.common.logger.syslog.level node missing" );
+            } else throw_Exception( "dodo.common.logger.syslog.level node missing" );
           }
 
-        } else throw_ConfigException( "dodo.common.logger node missing" );
-      } else throw_ConfigException( "dodo.common node missing" );
-    } else throw_ConfigException( " dodo node missing" );
+        } else throw_Exception( "dodo.common.logger node missing" );
+      } else throw_Exception( "dodo.common node missing" );
+    } else throw_Exception( " dodo node missing" );
   }
 
   void Config::readConfig() {

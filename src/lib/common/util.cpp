@@ -250,4 +250,97 @@ namespace dodo::common {
     return ss.str();
   }
 
+  template <class T> T YAML_assign_by_key( const YAML::Node &node, const std::string& key ) {
+    if ( node[key] ) {
+      return node[key].as<T>();
+    } else throw_Exception( dodo::common::Puts() << key << " parameter missing in YAML::Node" );
+  }
+
+
+  /**
+   * Instantiate template YAML_assign_by_key for int
+   * @return the value as an int
+   */
+  template int YAML_assign_by_key<int>( const YAML::Node &, const std::string&  );
+
+  /**
+   * Instantiate template YAML_assign_by_key for size_t
+   * @return the value as a size_t
+   */
+  template size_t YAML_assign_by_key<size_t>( const YAML::Node &, const std::string&  );
+
+  /**
+   * Instantiate template YAML_assign_by_key for uint16_t
+   * @return the value as a uint16_t
+   */
+  template uint16_t YAML_assign_by_key<uint16_t>( const YAML::Node &, const std::string&  );
+
+  /**
+   * Instantiate template YAML_assign_by_key for unsigned int
+   * @return the value as an unsigned int
+   */
+  template unsigned int YAML_assign_by_key<unsigned int>( const YAML::Node &, const std::string&  );
+
+  /**
+   * Instantiate template YAML_assign_by_key for long
+   * @return the value as a long
+   */
+  template long YAML_assign_by_key<long>( const YAML::Node &, const std::string&  );
+
+  /**
+   * Instantiate template YAML_assign_by_key for double
+   * @return the value as a double
+   */
+  template double YAML_assign_by_key<double>( const YAML::Node &, const std::string&  );
+
+  /**
+   * Instantiate template YAML_assign_by_key for std::string
+   * @return the value as a std::string
+   */
+  template std::string YAML_assign_by_key<std::string>( const YAML::Node &, const std::string&  );
+
+  template <typename T> T YAML_assign_by_key_with_default( const YAML::Node &node,
+                                                           const std::string& key,
+                                                           const T& default_value ) {
+    if ( node[key] ) {
+      return node[key].as<T>();
+    } else return default_value;
+  }
+
+  /**
+   * Instantiate template YAML_assign_by_key for int
+   * @return the value as an int
+   */
+  template int YAML_assign_by_key_with_default<int>( const YAML::Node &, const std::string&, const int&  );
+
+  /**
+   * Instantiate template YAML_assign_by_key for unsigned int
+   * @return the value as an unsigned int
+   */
+  template unsigned int YAML_assign_by_key_with_default<unsigned int>( const YAML::Node &, const std::string&, const unsigned int&  );
+
+  /**
+   * Instantiate template YAML_assign_by_key for size_t
+   * @return the value as a size_t
+   */
+  template size_t YAML_assign_by_key_with_default<size_t>( const YAML::Node &, const std::string&, const size_t&  );
+
+  /**
+   * Instantiate template YAML_assign_by_key for long
+   * @return the value as a long
+   */
+  template long YAML_assign_by_key_with_default<long>( const YAML::Node &, const std::string&, const long&  );
+
+  /**
+   * Instantiate template YAML_assign_by_key for double
+   * @return the value as a double
+   */
+  template double YAML_assign_by_key_with_default<double>( const YAML::Node &, const std::string&, const double&  );
+
+  /**
+   * Instantiate template YAML_assign_by_key for std::string
+   * @return the value as a std::string
+   */
+  template std::string YAML_assign_by_key_with_default<std::string>( const YAML::Node &, const std::string&, const std::string&  );
+
 }

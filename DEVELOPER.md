@@ -226,6 +226,10 @@ network::Address address;
 common::SystemError error = network::Address::getHostAddrInfo( host, sock_params, address, canonicalname );
 ```
 
+# Sockets
+
+All sockets descend from network::BaseSocket.
+
 ## Secure sockets {#developer_networking}
 
 Dodo supports TLS through dodo::network::TLSContext and dodo::network::TLSSocket.
@@ -467,3 +471,105 @@ the trust chain, both the intermediate and root certificates used to sign ().
 $ openssl s_server -accept 12345 -cert ca/root/ext/servers/localhost.cert.pem -CAfile ca/root/certs/ca.cert.pem -chainCAfile ca/root/intermediates/signer1/certs/ca-chain.cert.pem -key ca/root/ext/servers/localhost.key.pem
 $ openssl s_client -showcerts -connect localhost:12345 -CAfile /etc/ssl/certs/dodo.pem
 ```
+
+# TCPListener / TCPServer
+
+Developers create their own network protocols by sub-classing dodo::network::TCPServer and implement a request (reading)
+and response (handling + sending) mechanism of arbitrary complexity. The dodo::network::TCPListener is a
+dodo::threads::Thread, and when started will
+
+  - listen for TCP handshakes
+  - accept TCP handshakes
+  - listen for socket events (data to be read,hangup,error to handle) and produces events as work signals to the pool
+    of TCPServer instances.
+  - manage a pool of TCPServer worker threads.
+  - scale the number of TCPServer instances between a minimum and maximum depending on the amount of work queued
+    for processing
+  - throttle the production of work by delaying the TCPListener reading socket events, if the queue depth
+    exceed its maximum and the maximum number of TCPServer have already been started.
+
+As the dodo::network::TCPServer and dodo::network::TCPListener interfaces use dodo::network::BaseSocket,
+they do not care if the actual socket is a regular or a TLS-secured socket.
+
+The dodo::network::TCPListener uses the epoll_wait interface to wait for and read socket events in its run()
+method, which is executed a dedicated thread. Only if there is socket activity (new connections, data to be read,
+errors, shutdowns) will the dodo::network::TCPListener wake up, and read `pollbatch` socket events in one go (instead
+of waking up on each individual socket event). The dodo::network::TCPListener does not read data, it merely signals
+the pool of dodo::network::TCPServer there is data to be read through a std::condition_variable on which the TCPServer
+pool is sleeping.
+
+The request-response paradigm comprises these steps
+
+  - A protocol handshake (not the TCP handshake, that will already have taken place), for example to verify clients
+    speak the correct protocol or setup state-full data for the remainder of the connection. The handshake is implemented
+    by overriding the virtual bool dodo::network::TCPServer::handShake(), which should be returning false if the handshake fails,
+    in which case the dodo::network::TCPListener will clean up.
+  - Zero or more request-response cyles by overriding dodo::network::TCPServer::requestResponse(). Note that the
+    request data sent must be fully read within a single requestResponse cycle, but if required a protocol can be
+    created that reads across several requests (which would only serve a point if local RAM needs to be protected against
+    very large request by applying streaming).
+  - A shutdown when the peer hangs up or the socket is/must be terminated due to errors. Override
+    dodo::network::TCPServer::shutDown() when the dodo::network::TCPServer needs to clean things up.
+
+Additionally, the devloper will need to override dodo::network::TCPServer::addServer() to provide an instance
+of a dodo::network::TCPServer descendant so that dodo::network::TCPListner can spawn new servers.
+
+The dodo::network::TCPListener has some configuration parameters that orchestrate its runtime behavior, which
+are bundled in the dodo::network::TCPListener::Params struct. These parameters can either be specified by C++ code
+or handed to a TCPListner instance by specifying a Config YAML node, which may thus appear anywhere in the YAML file. In
+the below example, the myapp.tcplistener node would be passed.
+
+```YAML
+myapp:
+  tcplistener:
+    listen-address: 0.0.0.0
+    listen-port: 1968
+    scaling:
+      min-servers: 2
+      max-servers: 16
+    sizing:
+      max-connections: 5000
+      send-buffer: 16384
+      receive-buffer: 32768
+    timeouts:
+      send: 10
+      receive: 10
+```
+
+| name | dataype | default | purpose |
+|------|---------|---------|---------|
+| `listen-address` | string | `0.0.0.0` | The address to listen on, may be a local ipv4 or an ipv6 address. `0.0.0.0` (ipv4) and `::` (ipv6) imply IN_ADDRANY and will listen on all network interfaces. |
+| `listen-port` | unsigned int | `1968` | The port to listen on. |
+| `min-servers` | unsigned int | `2` | The minimum TCPServer threads in the pool. |
+| `max-servers` | unsigned int | `16` | The maximum TCPServer threads in the pool. |
+| `max-connections` | unsigned int | `1000` | The maximum number of connections (10-60000). |
+| `max-queue-depth` | unsigned int | `128` | The maximum number of queued work items before throttling. |
+| `send-buffer` | unsigned int | `16384` | The size of the send buffer for each socket. |
+| `receive-buffer` | unsigned int | `32768` | The size of the receive buffer for each socket. |
+| `server-idle-ttl-s` | unsigned int | `300` | The number of second a TCPServer is allowed to be idle before scaling down (if # TCPServers > min-severs). |
+| `poll-batch` | unsigned int | `128` | The number of socket events transformed into TCPServer work in a single cycle. |
+| `listener-sleep-ms` | unsigned int | `1000` | The number of milliseconds to wait for socket events per TCPListener iteration before re-looping, allowing to check if the TCPListener is requested to stop. |
+| `throttle-sleep-us` | unsigned int | `4000` | The number of microseconds to stall the TCPListener in case max-queue-depth is reached. |
+| `cycle-max-throttles` | unsigned int | `40` | The maximum number of throttles per listener-sleep-ms cycle. |
+| `stat-trc-interval-s` | unsigned int | `300` | The number of seconds between writing status/performance messages to the log. |
+
+
+To understand the purpose and effect of the paramaters, this is rougly the TCPListner loop
+
+```
+while ( ! stopped ) {
+  throttle if needed, at max cycle-max-throttles times throttle-sleep-us microseconds
+  check if servers need to be added (when the queue size is not shrinking)
+  wait-sleep listener-sleep-ms for 1 to poll-batch socket events
+  if ( !timeout ) {
+    for new-connection events, setup the sockets, queue the handshake
+    for existing connections with events, queue the requestResponse cycle
+  }
+```
+
+
+The implicit throttling mechanism of the TCPListener protects the TCPServer pool against overloading, and will
+queue client data in the hosts receive buffers initially, and if they are full, clients will start to experience
+send latency up until their send timeout values. So the TCPListener will seek to maximize the sustained
+arrival rate of work against the configured capacity of the TCPServer pool, although, as the receive buffers
+and request queue size permit, it can handle intermediate burst that exceed it without additional wait latency.

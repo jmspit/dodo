@@ -27,6 +27,8 @@
 #include <network/basesocket.hpp>
 #include <network/socket.hpp>
 #include <network/x509cert.hpp>
+#include <network/tcplistener.hpp>
+#include <network/tcpserver.hpp>
 #include <network/tlscontext.hpp>
 #include <network/tlssocket.hpp>
 

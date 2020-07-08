@@ -30,7 +30,7 @@
 namespace dodo::network {
 
   /**
-   * Interface to and common implementation of concrete sockets (Socket, SSLSocket).
+   * Interface to and common implementation of concrete sockets (Socket, TLSSocket).
    */
   class BaseSocket : public common::DebugObject {
     public:
@@ -208,12 +208,14 @@ namespace dodo::network {
 
       /**
        * Set the receive timeout - a receive will fail if there is no data received before the timeout expires.
+       * Note that the default is 0 seconds, meaning no timeout / wait forever.
        * @param sec Timeout value, in seconds, fractions allowed.
        */
       void setReceiveTimeout( double sec );
 
       /**
        * Set the send timeout - a send will fail if there is no data send before the timeout expires.
+       * Note that the default is 0 seconds, meaning no timeout / wait forever.
        * @param sec Timeout value, in seconds, fractions allowed.
        */
       void setSendTimeout( double sec );
@@ -429,11 +431,18 @@ namespace dodo::network {
       SystemError sendString( const std::string &s, bool more = false );
 
       /**
-       * Receive a std::string as sent by sendString( const std::string& );
+       * Receive a std::string as sent by sendString( const std::string& ).
        * @param s The string to receive into.
        * @return Same as receive( void* buf, ssize_t request, ssize_t &received )
        */
       SystemError receiveString( string &s );
+
+      /**
+       * receive a stream of characters until a '\n' is read (which is not added to s).
+       * @param s receives the read string.
+       * @return The SystemError.
+       */
+      SystemError receiveLine( string &s );
 
     protected:
 

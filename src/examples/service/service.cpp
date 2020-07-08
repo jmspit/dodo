@@ -1,54 +1,38 @@
 #include <iostream>
 #include <dodo.hpp>
+#include "service_tcpserver.hpp"
 
 using namespace dodo;
 using namespace dodo::common;
-using namespace dodo::threads;
 using namespace std;
-
-class MyThread : public Thread {
-  public:
-    void stop() { stop_request_ = true; }
-  protected:
-    virtual void run() {
-      size_t c = 0;
-      while ( !stop_request_ ) {
-        if ( c > 19 ) {
-          Logger::getLogger()->log( Logger::LogLevel::Info, "ping!" );
-          c = 0;
-        } else c++;
-        std::this_thread::sleep_for(200ms);
-      }
-    }
-
-    bool stop_request_ = false;
-};
 
 class MyApp : public Application {
   public:
-    MyApp( const StartParameters &param ) : Application( param ) {}
+    MyApp( const StartParameters &param ) : Application( param ) {
+    }
+
+    virtual ~MyApp() {
+      delete listener_;
+    }
+
     virtual int run() {
-
-      MyThread thread1;
-      thread1.start();
-      MyThread thread2;
-      thread2.start();
-      MyThread thread3;
-      thread3.start();
-
-      while ( !hasStopRequest() ) {
-        std::this_thread::sleep_for(200ms);
+      try {
+        listener_ = new TCPListener( Config::getConfig()->getYAML()["server"] );
+        listener_->start( new Server(*listener_) );
+        while ( !hasStopRequest() ) {
+          std::this_thread::sleep_for( std::chrono::milliseconds(50) );
+        }
+        listener_->stop();
+        listener_->wait();
+        Logger::getLogger()->info( Puts() << Config::getConfig()->getAppName() << " finished" );
       }
-      log( Logger::LogLevel::Info, "stopping threads ..." );
-      thread1.stop();
-      thread2.stop();
-      thread3.stop();
-      thread1.wait();
-      thread2.wait();
-      thread3.wait();
-      log( Logger::LogLevel::Info, "stopped, bye" );
+      catch ( const std::exception &e ) {
+        Logger::getLogger()->fatal( e.what() );
+      }
       return 0;
     }
+  protected:
+    TCPListener* listener_;
 };
 
 
@@ -58,7 +42,7 @@ int main( int argc, char* argv[], char** envp ) {
     return app.run();
   }
   catch ( const std::exception &e ) {
-    cerr << "catch std::exception : " << e.what() << endl;
+    cerr << "main::catch std::exception : " << e.what() << endl;
     return 1;
   }
 }

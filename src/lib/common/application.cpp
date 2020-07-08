@@ -38,13 +38,13 @@ namespace dodo::common {
     hosttype_ = detectHostType();
     Config* config = Config::initialize( param.config );
     logger_ = Logger::initialize( *config );
-    logger_->log( Logger::LogLevel::Info, "started " );
+    logger_->log( Logger::LogLevel::Info, Puts() << config->getAppName() << " started" );
   }
 
   Application::~Application() {
-    if ( Logger::getLogger() ) delete Logger::getLogger();
-    if ( Config::getConfig() ) delete Config::getConfig();
-    dodo::closeLibrary();
+    if ( Logger::logger_ ) delete Logger::logger_;
+    if ( Config::config_ ) delete Config::config_;
+    //dodo::closeLibrary();
   }
 
   void Application::signal_handler( int signal ) {

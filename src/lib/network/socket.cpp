@@ -130,7 +130,7 @@ namespace dodo::network {
   Socket* Socket::accept() {
     Socket* ret = new Socket();
     *ret = Socket::SocketInvalid;
-    int rc = ::accept( socket_, NULL, NULL );
+    int rc = ::accept( socket_, nullptr, nullptr );
     if ( rc == -1 ) {
       if ( errno != EAGAIN && errno != EWOULDBLOCK )
         throw_SystemExceptionObject( common::Puts() << "Socket::accept failed", errno, this );

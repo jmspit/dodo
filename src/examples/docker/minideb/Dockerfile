@@ -20,9 +20,15 @@ ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}/opt/dodo/lib
 ENV PATH=${PATH}:/opt/dodo/bin
 RUN apt-get update && \
     apt-get install -y openssl libyaml-cpp0.6
+RUN groupadd -r dodo && \
+    useradd -r -g dodo dodo && \
+    mkdir -p /opt/dodo/conf && mkdir -p /opt/dodo/log && \
+    chmod -R 700 /opt/dodo
 COPY --from=builder /opt/dodo/lib /opt/dodo/lib
 COPY --from=builder /opt/dodo/bin /opt/dodo/bin
-RUN mkdir -p /opt/dodo/conf && mkdir -p /opt/dodo/log
 ADD config.yaml /opt/dodo/conf/config.yaml
+RUN chown -R dodo:dodo /opt/dodo && chmod 600 /opt/dodo/conf/config.yaml
+USER dodo
 WORKDIR /opt/dodo
+HEALTHCHECK --interval=30s --timeout=3s CMD pidof service
 ENTRYPOINT ["/opt/dodo/bin/service"]

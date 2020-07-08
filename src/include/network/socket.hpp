@@ -62,7 +62,7 @@ namespace dodo::network {
        * Construct from a socket descriptor.
        * @param socket The socket file descriptor.
        */
-      Socket( int socket ) : BaseSocket() {};
+      Socket( int socket ) : BaseSocket(socket) {};
 
       /**
        * Construct from SocketParams.
@@ -128,7 +128,13 @@ namespace dodo::network {
        * Sets up a listening socket on Address.
        * @param address The Address (including a port) to listen on.
        * @param backlog The size of the queue used to cache pending connections.
-       * @return As bind( const Address &address )
+       * @return A common::SystemError, if not ecOK
+       *   - common::SystemError::ecEADDRINUSE
+       *   - common::SystemError::ecEBADF
+       *   - common::SystemError::ecENOTSOCK
+       *   - common::SystemError::ecEOPNOTSUPP
+       *
+       * or one of the common::SystemError returned by bind( const Address &address ).
        */
       SystemError listen( const Address &address, int backlog );
 
@@ -150,8 +156,11 @@ namespace dodo::network {
        * Bind the socket to the Address.
        * @param address The address to bind to.
        * @return SystemError::ecOK or
-       *   - SystemError::ecEACCES: Perhaps a privileged port without superuser.
-       *   - SystemError::ecEADDRINUSE : Address is already bound.
+       *   - SystemError::ecEACCES
+       *   - SystemError::ecEADDRINUSE
+       *   - SystemError::ecEBADF
+       *   - SystemError::ecEINVAL
+       *   - SystemError::ecENOTSOCK
        */
       SystemError bind( const Address &address );
 

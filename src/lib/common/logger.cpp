@@ -65,7 +65,7 @@ namespace dodo::common {
       } else syslog_params_.facility = 1;
 
       levels_[Syslog] = StringAsLogLevel( yaml["dodo"]["common"]["logger"]["syslog"]["level"].as<std::string>() );
-      if ( levels_[Syslog] > LogLevel::Info ) throw_ConfigException( "syslog LogLevel cannot be higher than info" );
+      if ( levels_[Syslog] > LogLevel::Info ) throw_Exception( "syslog LogLevel cannot be higher than info" );
     }
 
   }
@@ -111,12 +111,49 @@ namespace dodo::common {
     }
   }
 
+  void Logger::fatal( const std::string message ) {
+    log( LogLevel::Fatal, message );
+  }
+
+  void Logger::error( const std::string message ) {
+    log( LogLevel::Error, message );
+  }
+
+  void Logger::warning( const std::string message ) {
+    log( LogLevel::Warning, message );
+  }
+
+  void Logger::info( const std::string message ) {
+    log( LogLevel::Info, message );
+  }
+
+  void Logger::statistics( const std::string message ) {
+    log( LogLevel::Statistics, message );
+  }
+
+  #ifndef NDEBUG
+  void Logger::debug( const std::string message ) {
+    log( LogLevel::Debug, message );
+  }
+
+  void Logger::trace( const std::string message ) {
+    log( LogLevel::Trace, message );
+  }
+  #else
+  void Logger::debug( const std::string message ) {
+  }
+
+  void Logger::trace( const std::string message ) {
+  }
+  #endif
+
   int Logger::mapLeveltoSyslog( LogLevel level ) {
     switch ( level ) {
       case LogLevel::Fatal : return 2;
       case LogLevel::Error : return 3;
       case LogLevel::Warning : return 4;
       case LogLevel::Info :
+      case LogLevel::Statistics :
       case LogLevel::Debug :
       case LogLevel::Trace : return 6;
     }
@@ -166,14 +203,14 @@ namespace dodo::common {
       file_params_.max_file_trail = 4;
 
     if ( !directoryExists( file_params_.directory ) )
-      throw_ConfigException( "directory '" << file_params_.directory << "' does not exist" );
+      throw_Exception( Puts() << "directory '" << file_params_.directory << "' does not exist" );
     if ( !directoryWritable( file_params_.directory ) )
-      throw_ConfigException( "directory '" << file_params_.directory << "' does not allow write access" );
+      throw_Exception( Puts() << "directory '" << file_params_.directory << "' does not allow write access" );
     file_params_.active_log = file_params_.directory + "/" + config.getAppName() + ".log";
     file_params_.file.open( file_params_.active_log, std::ofstream::out | std::ofstream::app );
     file_params_.filesize = getFileSize( file_params_.active_log );
     if ( !file_params_.file.good() )
-      throw_ConfigException( "failed to open '" << file_params_.active_log << "' for writing" );
+      throw_Exception( Puts() << "failed to open '" << file_params_.active_log << "' for writing" );
   }
 
   std::string Logger::formatMessage( LogLevel level, const std::string message ) {
@@ -193,6 +230,7 @@ namespace dodo::common {
     else if ( slevel == "error" ) return LogLevel::Error;
     else if ( slevel == "warning" ) return LogLevel::Warning;
     else if ( slevel == "info" ) return LogLevel::Info;
+    else if ( slevel == "statistics" ) return LogLevel::Statistics;
     else if ( slevel == "debug" ) return LogLevel::Debug;
     else if ( slevel == "trace" ) return LogLevel::Trace;
     else return LogLevel::Info;
@@ -205,6 +243,7 @@ namespace dodo::common {
         case LogLevel::Error : return "ERR";
         case LogLevel::Warning : return "WRN";
         case LogLevel::Info : return "INF";
+        case LogLevel::Statistics : return "STA";
         case LogLevel::Debug : return "DBG";
         case LogLevel::Trace : return "TRC";
       }
@@ -214,6 +253,7 @@ namespace dodo::common {
         case LogLevel::Error : return "error";
         case LogLevel::Warning : return "warning";
         case LogLevel::Info : return "info";
+        case LogLevel::Statistics : return "statistics";
         case LogLevel::Debug : return "debug";
         case LogLevel::Trace : return "trace";
       }

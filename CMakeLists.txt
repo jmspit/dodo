@@ -37,6 +37,8 @@ set( ${LIB_DODO}_objects
   src/lib/network/basesocket.cpp
   src/lib/network/socket.cpp
   src/lib/network/x509cert.cpp
+  src/lib/network/tcplistener.cpp
+  src/lib/network/tcpserver.cpp
   src/lib/network/tlscontext.cpp
   src/lib/network/tlssocket.cpp
   src/lib/threads/mutex.cpp

@@ -450,4 +450,9 @@ namespace dodo::network {
     } else throw_ExceptionObject( "receiveString used on a non-blocking socket", this );
   }
 
+  SystemError BaseSocket::receiveLine( string &s ) {
+    SystemError error = SystemError::ecOK;
+    return error;
+  }
+
 }

@@ -2,9 +2,13 @@ dodo:
   common:
     application:
       name: dodo-service
+      key:
+        source: file
+        path: /run/secrets/dodo-service-key
+
     logger:
       console:
-        level: debug
+        level: trace
       file:
         level: info
         directory: log
@@ -13,3 +17,15 @@ dodo:
       syslog:
         level: info
         facility: 1
+
+server:
+  listen-address: 0.0.0.0
+  listen-port: 1968
+  min-servers: 2
+  max-servers: 16
+  max-connections: 500
+  send-buffer: 16384
+  receive-buffer: 32768
+  send-timeout-seconds: 10
+  receive-timeout-seconds: 10
+  stat-trc-interval-s: 60

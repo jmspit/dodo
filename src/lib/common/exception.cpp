@@ -48,7 +48,7 @@ namespace dodo::common {
     ss << typeid(*this).name() << " ";
     #endif
 
-    ss << "address " << std::hex << (void*)this << std::endl;
+    ss << "address " << std::hex << (void*)this << " ";
     return ss.str();
   }
 

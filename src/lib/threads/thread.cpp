@@ -25,17 +25,21 @@
 
 #include <iostream>
 #include <string.h>
+#include <unistd.h>
+#include <sys/syscall.h>
 
 
 namespace dodo::threads {
 
   void* Thread::thread_method( void* context ) {
     Thread* t = ((Thread*)context);
+    t->tid_ = static_cast<pid_t>(syscall(SYS_gettid));
     if ( t ) t->run();
+    t->tid_  = 0;
     return 0;
   }
 
-  Thread::Thread() : thread_(0) {
+  Thread::Thread() : thread_(0), tid_(0) {
     gettimeofday( &start_time_, NULL );
     gettimeofday( &prev_snap_time_, NULL );
     prev_snap_time_.tv_sec -= 1;
@@ -58,9 +62,7 @@ namespace dodo::threads {
   }
 
   void Thread::wait() {
-    if ( thread_ ) {
-      thread_->join();
-    }
+    if ( thread_ && thread_->joinable() ) thread_->join();
   }
 
   void Thread::snapRUsage() {

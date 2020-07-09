@@ -94,10 +94,10 @@ namespace dodo::common {
     operator std::string() const;
 
     /**
-     * Allocate memory in the OctetArray.
+     * Reserve memory in the OctetArray.
      * @param sz The size in bytes to alloc .
      */
-    void malloc( size_t sz );
+    void reserve( size_t sz );
 
     /**
      * Free and clear data.

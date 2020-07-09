@@ -28,9 +28,10 @@
 
 namespace dodo::common {
 
-  void OctetArray::malloc( size_t sz ) {
+  void OctetArray::reserve( size_t sz ) {
     if ( sz == size ) return;
     if ( array ) {
+      if ( sz < size ) memset( array + sz, 0, size-sz );
       array = static_cast< Octet*>( std::realloc( array, sz ) );
       if ( array || sz == 0 ) {
         size = sz;
@@ -55,25 +56,25 @@ namespace dodo::common {
 
   void OctetArray::append( const OctetArray& src ) {
     size_t osize = size;
-    this->malloc( size + src.size );
+    this->reserve( size + src.size );
     memcpy( array + osize, src.array, src.size );
   }
 
   void OctetArray::append( const OctetArray& src, size_t n ) {
     if ( n > src.size ) throw_Exception( "cannot append more than available in src" );
     size_t osize = size;
-    this->malloc( size + n );
+    this->reserve( size + n );
     memcpy( array + osize, src.array, n );
   }
 
   void OctetArray::append( const Octet* src, size_t n ) {
     size_t osize = size;
-    this->malloc( size + n );
+    this->reserve( size + n );
     memcpy( array + osize, src, n );
   }
 
   OctetArray& OctetArray::operator=( const std::string &s ) {
-    this->malloc( s.length() );
+    this->reserve( s.length() );
     for ( size_t i = 0; i < s.length(); i++ ) {
       array[i] = static_cast<Octet>( s[i] );
     }
@@ -90,7 +91,7 @@ namespace dodo::common {
 
   void OctetArray::random( size_t octets ) {
     if ( octets != size ) {
-      this->malloc( octets );
+      this->reserve( octets );
     }
     RAND_bytes( array, (int)size );
   }
@@ -112,7 +113,7 @@ namespace dodo::common {
     actsize += len;
     EVP_ENCODE_CTX_free( ctx );
 
-    this->malloc( actsize );
+    this->reserve( actsize );
     memcpy( array, temp, actsize );
     std::free( temp );
     return *this;

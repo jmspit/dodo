@@ -44,7 +44,7 @@ namespace dodo::common {
     OctetArray iv;
     OctetArray encrypted;
     iv.random( ivOctets( cipher ) );
-    encrypted.malloc( cipherOctets( cipher, src.size ) );
+    encrypted.reserve( cipherOctets( cipher, src.size ) );
 
     int rc = 0;
     switch ( cipher ) {
@@ -83,7 +83,7 @@ namespace dodo::common {
     encrypted.size = enc_size;
 
     OctetArray tag;
-    tag.malloc( tagLength( cipher ) );
+    tag.reserve( tagLength( cipher ) );
     if ( EVP_CIPHER_CTX_ctrl( ctx, EVP_CTRL_GCM_GET_TAG, (int)tag.size, tag.array ) != 1 )
       throw_Exception( common::Puts() << "EVP_CIPHER_CTX_ctrl : " << common::getSSLErrors( '\n' ) );
 
@@ -173,8 +173,8 @@ namespace dodo::common {
     EVP_CIPHER_CTX_ctrl( ctx, EVP_CTRL_AEAD_SET_TAG, (int)tag.size, tag.array );
 
     OctetArray tmp;
-    tmp.malloc( data.size );
-    dest.malloc(0);
+    tmp.reserve( data.size );
+    dest.reserve(0);
 
     int len = (int)data.size;
 

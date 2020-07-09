@@ -19,7 +19,7 @@ dodo:
         facility: 1
 
 server:
-  listen-address: ::1
+  listen-address: 0.0.0.0
   listen-port: 1968
   min-servers: 2
   max-servers: 16
@@ -28,5 +28,5 @@ server:
   receive-buffer: 32768
   send-timeout-seconds: 10
   receive-timeout-seconds: 10
-  stat-trc-interval-s: 10
-  listener-sleep-ms: 200
+  stat-trc-interval-s: 30
+  listener-sleep-ms: 500

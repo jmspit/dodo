@@ -69,9 +69,9 @@ namespace dodo {
               Logger::getLogger()->debug( common::Puts() << "TCPServer::run notify wakeup " <<
                                           sockmap->pointer->debugString() << " state " << (int)sockmap->state );
 
-              int completion_state = TCPListener::ssNone;
+              TCPListener::SockState completion_state = TCPListener::SockState::None;
 
-              if ( sockmap->state & TCPListener::ssNew ) {
+              if ( sockmap->state & TCPListener::SockState::New ) {
                 Logger::getLogger()->debug( common::Puts() << "TCPServer::run ssNew " <<
                                             sockmap->pointer->debugString() << " state " << (int)sockmap->state );
                 bool ok = false;
@@ -79,9 +79,9 @@ namespace dodo {
                 try {
                   ok = handShake( sockmap->pointer );
                   state_ = ssHandshakeDone;
-                  completion_state |= TCPListener::ssNew;
+                  completion_state |= TCPListener::SockState::New;
                   if ( !ok ) {
-                    completion_state |= TCPListener::ssShut;
+                    completion_state |= TCPListener::SockState::Shut;
                     Logger::getLogger()->error( common::Puts() <<
                                                 "TCPServer::run handshake failure socket " <<
                                                 sockmap->pointer->debugString() );
@@ -99,7 +99,7 @@ namespace dodo {
                 }
               }
 
-              if ( sockmap->state & network::TCPListener::ssRead ) {
+              if ( sockmap->state & TCPListener::SockState::Read ) {
                 Logger::getLogger()->debug( common::Puts() << "TCPServer::run ssRead " <<
                                             sockmap->pointer->debugString() << " state " << (int)sockmap->state );
                 bool ok = false;
@@ -107,9 +107,9 @@ namespace dodo {
                 try {
                   ok = requestResponse( sockmap->pointer );
                   state_ = ssRequestResponseDone;
-                  completion_state |= TCPListener::ssRead;
+                  completion_state |= TCPListener::SockState::Read;
                   if ( !ok ) {
-                    completion_state |= TCPListener::ssShut;
+                    completion_state |= TCPListener::SockState::Shut;
                     Logger::getLogger()->error( common::Puts() <<
                                                 "TCPServer::run request-response failure socket " <<
                                                 sockmap->pointer->debugString() );
@@ -128,14 +128,14 @@ namespace dodo {
                 state_ = ssRequestResponseDone;
               }
 
-              if ( sockmap->state & TCPListener::ssShut ) {
+              if ( sockmap->state & TCPListener::SockState::Shut ) {
                 Logger::getLogger()->debug( common::Puts() << "TCPServer::run ssShut " <<
                                             sockmap->pointer->debugString() << " state " << (int)sockmap->state );
                 state_ = ssShutdown;
                 try {
                   shutDown( sockmap->pointer );
                   state_ = ssShutdownDone;
-                  completion_state |= TCPListener::ssShut;
+                  completion_state |= TCPListener::SockState::Shut;
                 }
                 catch ( std::exception &e ) {
                    Logger::getLogger()->error( common::Puts() <<

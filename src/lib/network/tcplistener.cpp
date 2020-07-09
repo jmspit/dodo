@@ -274,14 +274,14 @@ namespace dodo {
                     } else {
                       {
                         clients_[client_sock->geFD()].pointer = client_sock;
-                        clients_[client_sock->geFD()].state = ssNew;
+                        clients_[client_sock->geFD()].state = SockState::New;
                       }
-                      pushRequest( client_sock, ssNew );
+                      pushRequest( client_sock, SockState::New );
                       Logger::getLogger()->debug( Puts() << "TCPListener::run new client socket " <<
                                                   client_sock->debugString() << " from " <<
                                                   client_sock->getPeerAddress().asString() );
                       last_stats_.connections++;
-                      client_sock->setBlocking( true );
+                      client_sock->setBlocking( false );
                       client_sock->setTCPNoDelay( true );
                       client_sock->setSendTimeout( params_.send_timeout_seconds );
                       client_sock->setReceiveTimeout( params_.receive_timeout_seconds );
@@ -289,24 +289,24 @@ namespace dodo {
                     }
                   } while ( client_sock->isValid() );
                 } else if ( poll_sockets[i].data.fd >= 0 ) {
-                  int combined_state = ssNone;
+                  SockState combined_state = SockState::None;
                   if ( (poll_sockets[i].events & EPOLLIN) || (poll_sockets[i].events &  EPOLLPRI) ) {
                     Logger::getLogger()->debug( Puts() << "TCPListener::run EPOLLIN || EPOLLPRI on socket " <<
                                                 poll_sockets[i].data.fd <<
                                                 " (" << poll_sockets[i].events << ")" );
-                    combined_state |= ssRead;
+                    combined_state |= SockState::Read;
                     last_stats_.requests++;
                   }
                   if ( (poll_sockets[i].events & EPOLLRDHUP ) ||
                        (poll_sockets[i].events & EPOLLERR ) ||
                        (poll_sockets[i].events & EPOLLHUP ) ) {
-                    combined_state |= ssShut;
+                    combined_state |= SockState::Shut;
                     Logger::getLogger()->debug( common::Puts() <<
                                                 "TCPListener::run hangup or error on socket " <<
                                                 poll_sockets[i].data.fd <<
                                                 " events=(" << poll_sockets[i].events << ")" );
                   }
-                  if ( combined_state != ssNone ) {
+                  if ( combined_state != SockState::None ) {
                     pushRequest( poll_sockets[i].data.fd, combined_state );
                     cv_signal_.notify_one();
                   }
@@ -351,14 +351,13 @@ namespace dodo {
         for( auto c: clients_copy ) {
           Logger::getLogger()->trace( common::Puts() << "TCPListener::run close socket " << c.second.pointer );
           closeSocket( c.second.pointer );
-          Logger::getLogger()->trace( common::Puts() << "TCPListener::run closed socket " << c.second.pointer );
         }
       }
       catch ( ... ) {
       }
     }
 
-    void TCPListener::pushRequest( int fd, int state ) {
+    void TCPListener::pushRequest( int fd, SockState state ) {
       threads::Mutexer lock( clientmutex_ );
       Logger::getLogger()->debug( common::Puts() <<
                                   "TCPListener::pushRequest BaseSocket* socket " <<
@@ -366,13 +365,13 @@ namespace dodo {
       clients_[fd].state |= state;
       requests_.push_back( &(clients_[fd]) );
       requests_q_sz_++;
-      if ( state == ssNew )
+      if ( state == SockState::New )
         pollAdd( clients_[fd].pointer, read_event_mask_ );
       else
         pollMod( clients_[fd].pointer, hangup_event_mask_ );
     }
 
-    void TCPListener::pushRequest( BaseSocket* socket, int state ) {
+    void TCPListener::pushRequest( BaseSocket* socket, SockState state ) {
       threads::Mutexer lock( clientmutex_ );
       Logger::getLogger()->debug( common::Puts() <<
                                   "TCPListener::pushRequest BaseSocket* socket " << socket->debugString() <<
@@ -380,7 +379,7 @@ namespace dodo {
       clients_[socket->geFD()].state |= state;
       requests_.push_back( &(clients_[socket->geFD()]) );
       requests_q_sz_++;
-      if ( state == ssNew )
+      if ( state == SockState::New )
         pollAdd( socket, read_event_mask_ );
       else
         pollMod( socket, hangup_event_mask_ );
@@ -396,12 +395,12 @@ namespace dodo {
       return result;
     }
 
-    void TCPListener::releaseRequest( BaseSocket* socket, int state ) {
+    void TCPListener::releaseRequest( BaseSocket* socket, SockState state ) {
       Logger::getLogger()->debug( common::Puts() <<
                                   "TCPListener::releaseRequest socket " << socket->debugString() <<
                                   " state " << state  << " sockmapstate=" << clients_[socket->geFD()].state );
       requests_q_sz_--;
-      if ( state & TCPListener::ssShut ) {
+      if ( state & TCPListener::SockState::Shut ) {
         pollDel( socket );
         closeSocket( socket );
       } else {

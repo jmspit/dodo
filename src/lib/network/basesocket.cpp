@@ -20,6 +20,7 @@
  * Implements the dodo::network::BaseSocket class.
  */
 
+#include "common/logger.hpp"
 #include "network/basesocket.hpp"
 #include <netinet/tcp.h>
 #include <unistd.h>
@@ -450,13 +451,11 @@ namespace dodo::network {
   }
 
   SystemError BaseSocket::sendLine( const std::string &s, bool more ) {
-    if ( getBlocking() ) {
-      SystemError error;
-      std::stringstream ss;
-      ss << s << '\n';
-      error = send( ss.str().c_str(), ss.str().length(), more );
-      return error;
-    } else throw_Exception( "sendLine used on a non-blocking socket" );
+    SystemError error;
+    std::stringstream ss;
+    ss << s << '\n';
+    error = send( ss.str().c_str(), ss.str().length(), more );
+    return error;
   }
 
   SystemError BaseSocket::receiveLine( string &s ) {
@@ -466,10 +465,11 @@ namespace dodo::network {
     std::stringstream ss;
     error = receive( &c, 1, received );
     while ( error == SystemError::ecOK && received == 1 && c != '\n' ) {
+      Logger::getLogger()->trace( Puts() << "socket " << geFD() << " read char : " << uint8_t(c)  );
       if ( c != '\r' ) ss << c;
       error = receive( &c, 1, received );
     }
-    s = ss.str();
+    if ( error == SystemError::ecOK ) s = ss.str(); else s = "";
     return error;
   }
 

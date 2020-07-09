@@ -296,11 +296,11 @@ namespace dodo {
         /**
          * BaseSocket lifecycle states.
          */
-        enum SockState {
-          ssNone   = 0,     /**< Undefined / initial */
-          ssNew    = 1,     /**< New connection, TCPServer::handShake() will be called */
-          ssRead   = 2,     /**< Data is ready to be read, TCPServer::requestResponse() will be called */
-          ssShut   = 4      /**< BaseSocket is hung up or in error, TCPServer::shutDown() will be called */
+        enum class SockState {
+          None   = 0,     /**< Undefined / initial */
+          New    = 1,     /**< New connection, TCPServer::handShake() will be called */
+          Read   = 2,     /**< Data is ready to be read, TCPServer::requestResponse() will be called */
+          Shut   = 4      /**< BaseSocket is hung up or in error, TCPServer::shutDown() will be called */
         };
 
         /**
@@ -311,7 +311,7 @@ namespace dodo {
           /** Pointer to the socket */
           BaseSocket* pointer;
           /** State of the socket */
-          int state;
+          SockState state;
         };
 
         /**
@@ -320,7 +320,7 @@ namespace dodo {
          * @param state The state the BaseSocket is in.
          * @see SockState.
          */
-        void pushRequest( BaseSocket* socket, int state );
+        void pushRequest( BaseSocket* socket, SockState state );
 
         /**
          * Push a request to handle the BaseSocket owning the filedescriptor in the given state.
@@ -328,7 +328,7 @@ namespace dodo {
          * @param state The state the BaseSocket is in.
          * @see SockState.
          */
-        void pushRequest( int fd, int state );
+        void pushRequest( int fd, SockState state );
 
         /**
          * Pop a request to handle.
@@ -341,7 +341,7 @@ namespace dodo {
          * @param socket The socket.
          * @param state The state of the socket.
          */
-        void releaseRequest( BaseSocket* socket, int state );
+        void releaseRequest( BaseSocket* socket, SockState state );
 
         /**
          * Entrypoint, override of Thread::run()
@@ -490,7 +490,68 @@ namespace dodo {
          */
         friend class TCPServer;
 
+        friend TCPListener::SockState& operator|=( TCPListener::SockState&, TCPListener::SockState );
+        friend TCPListener::SockState& operator^=( TCPListener::SockState&, TCPListener::SockState );
+        friend bool operator&( const TCPListener::SockState&, const TCPListener::SockState& );
+
+        friend dodo::common::Puts& operator<<( dodo::common::Puts&, TCPListener::SockState );
+
     };
+
+    /**
+     * Bitwise |= on SocketState
+     * @param self the lvalue
+     * @param other the rvalue
+     * @return the lvalue
+     */
+    inline TCPListener::SockState& operator|=( TCPListener::SockState &self, TCPListener::SockState other ) {
+      return self = static_cast<TCPListener::SockState>( static_cast<int>(self) | static_cast<int>(other) );
+    }
+
+    /**
+     * Bitwise ^= on SocketState
+     * @param self the lvalue
+     * @param other the rvalue
+     * @return the lvalue
+     */
+    inline TCPListener::SockState& operator^=( TCPListener::SockState &self, TCPListener::SockState other ) {
+      return self = static_cast<TCPListener::SockState>( static_cast<int>(self) ^ static_cast<int>(other) );
+    }
+
+    /**
+     * Bitwise & on SocketState
+     * @param self the lvalue
+     * @param other the rvalue
+     * @return the lvalue
+     */
+    inline bool operator&( const TCPListener::SockState &self, const TCPListener::SockState &other ) {
+      return static_cast<int>(self) & static_cast<int>(other);
+    }
+
+
+    /**
+     * Nice-write to a Puts.
+     * @param os The output Puts
+     * @param state The TCPListener::SockState to write.
+     * @return The output Puts
+     */
+    inline dodo::common::Puts& operator<<( dodo::common::Puts& os, TCPListener::SockState state ) {
+      switch ( state ) {
+        case TCPListener::SockState::None :
+          os << "none";
+          break;
+        case TCPListener::SockState::New :
+          os << "new";
+          break;
+        case TCPListener::SockState::Read :
+          os << "read";
+          break;
+        case TCPListener::SockState::Shut :
+          os << "shut";
+          break;
+      }
+      return os;
+    }
 
   }
 

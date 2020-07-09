@@ -293,7 +293,7 @@ namespace dodo {
                   if ( (poll_sockets[i].events & EPOLLIN) || (poll_sockets[i].events &  EPOLLPRI) ) {
                     Logger::getLogger()->debug( Puts() << "TCPListener::run EPOLLIN || EPOLLPRI on socket " <<
                                                 poll_sockets[i].data.fd <<
-                                                " (" << poll_sockets[i].events << ")" );
+                                                " events=(" << poll_sockets[i].events << ")" );
                     combined_state |= SockState::Read;
                     last_stats_.requests++;
                   }
@@ -361,7 +361,7 @@ namespace dodo {
       threads::Mutexer lock( clientmutex_ );
       Logger::getLogger()->debug( common::Puts() <<
                                   "TCPListener::pushRequest BaseSocket* socket " <<
-                                  clients_[fd].pointer->debugString() << " state " << (int)state );
+                                  clients_[fd].pointer->debugString() << " state " << state );
       clients_[fd].state |= state;
       requests_.push_back( &(clients_[fd]) );
       requests_q_sz_++;
@@ -375,7 +375,7 @@ namespace dodo {
       threads::Mutexer lock( clientmutex_ );
       Logger::getLogger()->debug( common::Puts() <<
                                   "TCPListener::pushRequest BaseSocket* socket " << socket->debugString() <<
-                                  " state " << (int)state );
+                                  " state " << state );
       clients_[socket->geFD()].state |= state;
       requests_.push_back( &(clients_[socket->geFD()]) );
       requests_q_sz_++;

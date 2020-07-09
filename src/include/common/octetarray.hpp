@@ -86,7 +86,9 @@ namespace dodo::common {
     std::string encodeBase64() const;
 
     /**
-     * Cast to a std::string.
+     * Cast to a std::string. Be aware that the string is read to
+     * either the first zero (NULL) or up to size. So if the decoded data
+     * contains intermediate zeros the string will not cover all octets.
      * @return A string representation of OctetArray.
      */
     operator std::string() const;
@@ -114,6 +116,13 @@ namespace dodo::common {
      * @param n The number of octets to append.
      */
     void append( const OctetArray& src, size_t n );
+
+    /**
+     * Append from arbitrary memory areas.
+     * @param src The memory to append from.
+     * @param n The number of octets to append.
+     */
+    void append( const Octet* src, size_t n );
 
     /**
      * Generate a random set of Octets.

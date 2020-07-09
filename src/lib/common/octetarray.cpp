@@ -29,11 +29,19 @@
 namespace dodo::common {
 
   void OctetArray::malloc( size_t sz ) {
-    free();
-    array = static_cast< Octet*>( std::malloc( sz ) );
+    if ( sz == size ) return;
     if ( array ) {
-      size = sz;
-    } else throw_SystemException( "malloc failed", errno );
+      array = static_cast< Octet*>( std::realloc( array, sz ) );
+      if ( array || sz == 0 ) {
+        size = sz;
+        if ( !sz ) array = nullptr;
+      } else throw_SystemException( Puts() << "realloc of " << sz << " bytes failed", errno );
+    } else {
+      array = static_cast< Octet*>( std::malloc( sz ) );
+      if ( array ) {
+        size = sz;
+      } else throw_SystemException( Puts() << "malloc of " << sz << " bytes failed", errno );
+    }
   }
 
   void OctetArray::free() {
@@ -46,22 +54,26 @@ namespace dodo::common {
   }
 
   void OctetArray::append( const OctetArray& src ) {
-    array = (Octet*)realloc( array, size + src.size );
-    if ( !array ) throw_Exception( "realloc failed" );
-    memcpy( array + size, src.array, src.size );
+    size_t osize = size;
+    this->malloc( size + src.size );
+    memcpy( array + osize, src.array, src.size );
   }
 
   void OctetArray::append( const OctetArray& src, size_t n ) {
     if ( n > src.size ) throw_Exception( "cannot append more than available in src" );
-    array = (Octet*)realloc( array, size + n );
-    if ( !array ) throw_Exception( "realloc failed" );
-    memcpy( array + size, src.array, n );
-    size = size + n;
+    size_t osize = size;
+    this->malloc( size + n );
+    memcpy( array + osize, src.array, n );
+  }
+
+  void OctetArray::append( const Octet* src, size_t n ) {
+    size_t osize = size;
+    this->malloc( size + n );
+    memcpy( array + osize, src, n );
   }
 
   OctetArray& OctetArray::operator=( const std::string &s ) {
-    this->free();
-    this->malloc( static_cast<int>( s.length() ) );
+    this->malloc( s.length() );
     for ( size_t i = 0; i < s.length(); i++ ) {
       array[i] = static_cast<Octet>( s[i] );
     }
@@ -78,7 +90,6 @@ namespace dodo::common {
 
   void OctetArray::random( size_t octets ) {
     if ( octets != size ) {
-      this->free();
       this->malloc( octets );
     }
     RAND_bytes( array, (int)size );

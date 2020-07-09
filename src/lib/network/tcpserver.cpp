@@ -67,13 +67,13 @@ namespace dodo {
             if ( sockmap ) {
 
               Logger::getLogger()->debug( common::Puts() << "TCPServer::run notify wakeup " <<
-                                          sockmap->pointer->debugString() << " state " << (int)sockmap->state );
+                                          sockmap->pointer->debugString() << " state " << sockmap->state );
 
               TCPListener::SockState completion_state = TCPListener::SockState::None;
 
               if ( sockmap->state & TCPListener::SockState::New ) {
                 Logger::getLogger()->debug( common::Puts() << "TCPServer::run ssNew " <<
-                                            sockmap->pointer->debugString() << " state " << (int)sockmap->state );
+                                            sockmap->pointer->debugString() << " state " << sockmap->state );
                 bool ok = false;
                 state_ = ssHandshake;
                 try {
@@ -101,7 +101,7 @@ namespace dodo {
 
               if ( sockmap->state & TCPListener::SockState::Read ) {
                 Logger::getLogger()->debug( common::Puts() << "TCPServer::run ssRead " <<
-                                            sockmap->pointer->debugString() << " state " << (int)sockmap->state );
+                                            sockmap->pointer->debugString() << " state " << sockmap->state );
                 bool ok = false;
                 state_ = ssRequestResponse;
                 try {
@@ -130,7 +130,7 @@ namespace dodo {
 
               if ( sockmap->state & TCPListener::SockState::Shut ) {
                 Logger::getLogger()->debug( common::Puts() << "TCPServer::run ssShut " <<
-                                            sockmap->pointer->debugString() << " state " << (int)sockmap->state );
+                                            sockmap->pointer->debugString() << " state " << sockmap->state );
                 state_ = ssShutdown;
                 try {
                   shutDown( sockmap->pointer );

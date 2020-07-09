@@ -132,7 +132,7 @@ namespace dodo::common {
   };
 
   /**
-   * Decsending from Exception, speciically for execptions based on a system error code.
+   * Descending from Exception, exceptions based on a dodo::common::SystemError code.
    * @see SystemError
    */
   class SystemException : public Exception {

@@ -55,7 +55,7 @@ namespace dodo::common {
       if ( yaml_["dodo"]["common"] ) {
         if ( yaml_["dodo"]["common"]["application"] ) {
 
-        } else throw_Exception( Puts() << path_ << " : dodo.common.application node missing" );
+        } else throw_Exception( path_ << " : dodo.common.application node missing" );
         if ( yaml_["dodo"]["common"]["logger"] ) {
 
           if ( yaml_["dodo"]["common"]["logger"]["console"] ) {

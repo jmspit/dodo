@@ -12,7 +12,7 @@ int main( int argc, char* argv[] ) {
 
   network::Address listen_address( "::1", 6666 );
   try {
-    if ( !listen_address.isValid() ) throw_Exception( common::Puts() << "invalid listen address : " << listen_address.asString() );
+    if ( !listen_address.isValid() ) throw_Exception( "invalid listen address : " << listen_address.asString() );
 
     network::TLSContext tlsctx;
     tlsctx.loadPEMIdentity( "../examples/network/sslkeys/server.pem",

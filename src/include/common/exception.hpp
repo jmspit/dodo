@@ -169,23 +169,23 @@ namespace dodo::common {
 
   /**
    * Throws an Exception, passes __FILE__ and __LINE__ to constructor.
-   * @param what The exception message as std::string.
+   * @param what The exception message passed as << stream to dodo::common::Puts()
    */
-  #define throw_Exception( what ) throw dodo::common::Exception( __FILE__, __LINE__, what )
+  #define throw_Exception( what ) throw dodo::common::Exception( __FILE__, __LINE__, dodo::common::Puts() << what )
 
   /**
    * Throws an Exception with DebugContext, passes __FILE__ and __LINE__ to constructor.
    * @param what The exception message as std::string.
    * @param thing The DebugObject as context.
    */
-  #define throw_ExceptionObject( what, thing ) throw dodo::common::Exception( __FILE__, __LINE__, what, thing )
+  #define throw_ExceptionObject( what, thing ) throw dodo::common::Exception( __FILE__, __LINE__, dodo::common::Puts() << what, thing )
 
   /**
    * Throws an Exception with errno, passes __FILE__ and __LINE__ to constructor.
    * @param what The exception message as std::string.
    * @param errno The error number.
    */
-  #define throw_SystemException( what, errno ) throw dodo::common::SystemException( __FILE__, __LINE__, what, errno )
+  #define throw_SystemException( what, errno ) throw dodo::common::SystemException( __FILE__, __LINE__, dodo::common::Puts() << what, errno )
 
   /**
    * Throws an Exception with errno, passes __FILE__ and __LINE__ to constructor.
@@ -193,7 +193,7 @@ namespace dodo::common {
    * @param errno The error number.
    * @param thing The DebugObject as context.
    */
-  #define throw_SystemExceptionObject( what, errno, thing ) throw dodo::common::SystemException( __FILE__, __LINE__, what, errno, thing )
+  #define throw_SystemExceptionObject( what, errno, thing ) throw dodo::common::SystemException( __FILE__, __LINE__, dodo::common::Puts() << what, errno, thing )
 
 };
 

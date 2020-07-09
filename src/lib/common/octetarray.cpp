@@ -25,13 +25,13 @@
 
 #include <openssl/evp.h>
 #include <openssl/rand.h>
+#include <string.h>
 
 namespace dodo::common {
 
   void OctetArray::reserve( size_t sz ) {
     if ( sz == size ) return;
     if ( array ) {
-      if ( sz < size ) memset( array + sz, 0, size-sz );
       array = static_cast< Octet*>( std::realloc( array, sz ) );
       if ( array || sz == 0 ) {
         size = sz;
@@ -47,7 +47,6 @@ namespace dodo::common {
 
   void OctetArray::free() {
     if ( array != nullptr ) {
-      memset( array, 0, size );
       std::free( array );
       array = nullptr;
     }

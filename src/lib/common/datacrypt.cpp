@@ -37,7 +37,7 @@ namespace dodo::common {
     EVP_CIPHER_CTX *ctx = nullptr;
 
     if ( !( ctx = EVP_CIPHER_CTX_new() ) )
-      throw_Exception( common::Puts() << "EVP_CIPHER_CTX_new : " << common::getSSLErrors( '\n' ) );
+      throw_Exception( "EVP_CIPHER_CTX_new : " << common::getSSLErrors( '\n' ) );
 
 
     OctetArray k = paddedKey( cipher, key );
@@ -61,7 +61,7 @@ namespace dodo::common {
         throw_Exception( "cannot use Cipher 'Invalid'" );
         break;
     }
-    if ( rc != 1 ) throw_Exception( common::Puts() << "EVP_EncryptInit_ex : " << common::getSSLErrors( '\n' ) );
+    if ( rc != 1 ) throw_Exception( "EVP_EncryptInit_ex : " << common::getSSLErrors( '\n' ) );
 
     EVP_CIPHER_CTX_ctrl( ctx, EVP_CTRL_AEAD_SET_IVLEN, ivOctets( cipher ) * 8, nullptr );
 
@@ -72,20 +72,20 @@ namespace dodo::common {
                             (int*)&len,
                             src.array,
                             (int)src.size );
-    if ( rc != 1 ) throw_Exception( common::Puts() << "EVP_EncryptUpdate : " << common::getSSLErrors( '\n' ) );
+    if ( rc != 1 ) throw_Exception( "EVP_EncryptUpdate : " << common::getSSLErrors( '\n' ) );
     enc_size += len;
 
     rc = EVP_EncryptFinal_ex( ctx,
                               encrypted.array + len,
                               &len);
-    if ( rc != 1 ) throw_Exception( common::Puts() << "EVP_EncryptFinal_ex : " << common::getSSLErrors( '\n' ) );
+    if ( rc != 1 ) throw_Exception( "EVP_EncryptFinal_ex : " << common::getSSLErrors( '\n' ) );
     enc_size += len;
     encrypted.size = enc_size;
 
     OctetArray tag;
     tag.reserve( tagLength( cipher ) );
     if ( EVP_CIPHER_CTX_ctrl( ctx, EVP_CTRL_GCM_GET_TAG, (int)tag.size, tag.array ) != 1 )
-      throw_Exception( common::Puts() << "EVP_CIPHER_CTX_ctrl : " << common::getSSLErrors( '\n' ) );
+      throw_Exception( "EVP_CIPHER_CTX_ctrl : " << common::getSSLErrors( '\n' ) );
 
     stringstream ss;
     ss << "ENC[cipher:" << cipher2String( cipher ) << ",";
@@ -149,7 +149,7 @@ namespace dodo::common {
     EVP_CIPHER_CTX *ctx = nullptr;
 
     if ( !( ctx = EVP_CIPHER_CTX_new() ) )
-      throw_Exception( common::Puts() << "EVP_CIPHER_CTX_new : " << common::getSSLErrors( '\n' ) );
+      throw_Exception( "EVP_CIPHER_CTX_new : " << common::getSSLErrors( '\n' ) );
 
     int rc = 0;
     switch ( cipher ) {
@@ -163,10 +163,10 @@ namespace dodo::common {
         rc = EVP_DecryptInit_ex( ctx, EVP_aes_256_gcm(), nullptr, k.array, iv.array );
         break;
       case Cipher::Invalid :
-        throw_Exception( common::Puts() << "invalid cipher " << scipher );
+        throw_Exception( "invalid cipher " << scipher );
         break;
     }
-    if ( rc != 1 ) throw_Exception( common::Puts() << "EVP_DecryptInit_ex : " << common::getSSLErrors( '\n' ) );
+    if ( rc != 1 ) throw_Exception( "EVP_DecryptInit_ex : " << common::getSSLErrors( '\n' ) );
 
     EVP_CIPHER_CTX_ctrl( ctx, EVP_CTRL_AEAD_SET_IVLEN, ivOctets( cipher ) * 8, nullptr );
 
@@ -183,14 +183,13 @@ namespace dodo::common {
                             (int*)&len,
                             data.array,
                             (int)data.size );
-    if ( rc != 1 ) throw_Exception( common::Puts() << "EVP_DecryptUpdate : " << common::getSSLErrors( '\n' ) );
+    if ( rc != 1 ) throw_Exception( "EVP_DecryptUpdate : " << common::getSSLErrors( '\n' ) );
     dest.append( tmp, len );
 
     len = (int)data.size;
     rc = EVP_DecryptFinal_ex( ctx,
                               tmp.array,
                               &len);
-    //if ( rc != 1 ) throw_Exception( common::Puts() << "EVP_DecryptFinal_ex : " << common::getSSLErrors( '\n' ) );
     if ( rc != 1 ) ok = 2;
     dest.append( tmp, len );
 

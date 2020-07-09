@@ -67,7 +67,7 @@ namespace dodo::network {
           case SSL_ERROR_WANT_ACCEPT :      return SystemError::ecSSL_ERROR_WANT_ACCEPT;
           case SSL_ERROR_WANT_X509_LOOKUP : return SystemError::ecSSL_ERROR_WANT_X509_LOOKUP;
           case SSL_ERROR_SSL :
-          default: throw_Exception( common::Puts() << ssl_error_code << " " << common::getSSLErrors( '\n' )  );
+          default: throw_Exception( ssl_error_code << " " << common::getSSLErrors( '\n' )  );
         }
       }
       if ( tlscontext_.getPeerVerification() == TLSContext::PeerVerification::pvVerifyFQDN )  {
@@ -91,7 +91,7 @@ namespace dodo::network {
         case SSL_ERROR_WANT_ACCEPT :      return SystemError::ecSSL_ERROR_WANT_ACCEPT;
         case SSL_ERROR_WANT_X509_LOOKUP : return SystemError::ecSSL_ERROR_WANT_X509_LOOKUP;
         case SSL_ERROR_SSL :
-        default: throw_Exception( common::Puts() << ssl_error_code << " " << common::getSSLErrors( '\n' )  );
+        default: throw_Exception( ssl_error_code << " " << common::getSSLErrors( '\n' )  );
       }
     }
     return SystemError::ecOK;

@@ -148,7 +148,7 @@ namespace dodo {
       listen_socket_.setReceiveTimeout( params_.receive_timeout_seconds );
       std::string proc_somaxconn = "/proc/sys/net/core/somaxconn";
       if ( !common::fileReadInt( proc_somaxconn, backlog_ ) )
-        throw_Exception( Puts() << "failed to read int from " << proc_somaxconn );
+        throw_Exception( "failed to read int from " << proc_somaxconn );
 
       Logger::getLogger()->statistics( common::Puts() <<
                                        yaml_minservers << " = " << params_.minservers );
@@ -189,7 +189,7 @@ namespace dodo {
       std::string saddr = YAML_assign_by_key<std::string>( yaml, "listen-address" );
       uint16_t port = YAML_assign_by_key<uint16_t>( yaml, "listen-port" );
       Address addr( saddr, port );
-      if ( !addr.isValid() ) throw_Exception( Puts() << "invalid listen address " << saddr << ":" << port );
+      if ( !addr.isValid() ) throw_Exception( "invalid listen address " << saddr << ":" << port );
       construct( addr, params );
     }
 

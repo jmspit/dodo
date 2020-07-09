@@ -163,7 +163,7 @@ namespace dodo::common {
     std::string line = "";
     if ( ifs.good() ) {
       getline( ifs, line );
-    } else throw_Exception( Puts() << "failed to open '" << filename << "'" );
+    } else throw_Exception( "failed to open '" << filename << "'" );
     return line;
   }
 
@@ -172,7 +172,7 @@ namespace dodo::common {
     std::vector<std::string> tmp;
     std::string line = "";
     getline( ifs, line );
-    if ( ifs.good() ) throw_Exception( Puts() << "failed to open '" << filename << "'" );
+    if ( ifs.good() ) throw_Exception( "failed to open '" << filename << "'" );
     while ( ifs.good() ) {
       tmp.push_back( line );
       getline( ifs, line );
@@ -185,7 +185,7 @@ namespace dodo::common {
     std::vector<std::string> tmp;
     std::string line = "";
     getline( ifs, line );
-    if ( !ifs.good() ) throw_Exception( Puts() << "failed to open '" << filename << "'" );
+    if ( !ifs.good() ) throw_Exception( "failed to open '" << filename << "'" );
     while ( ifs.good() ) {
       std::smatch m;
       if ( std::regex_match(line, m, exp ) ) tmp.push_back( line );
@@ -253,7 +253,7 @@ namespace dodo::common {
   template <class T> T YAML_assign_by_key( const YAML::Node &node, const std::string& key ) {
     if ( node[key] ) {
       return node[key].as<T>();
-    } else throw_Exception( dodo::common::Puts() << key << " parameter missing in YAML::Node" );
+    } else throw_Exception( key << " parameter missing in YAML::Node" );
   }
 
 

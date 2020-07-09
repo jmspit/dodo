@@ -203,14 +203,14 @@ namespace dodo::common {
       file_params_.max_file_trail = 4;
 
     if ( !directoryExists( file_params_.directory ) )
-      throw_Exception( Puts() << "directory '" << file_params_.directory << "' does not exist" );
+      throw_Exception( "directory '" << file_params_.directory << "' does not exist" );
     if ( !directoryWritable( file_params_.directory ) )
-      throw_Exception( Puts() << "directory '" << file_params_.directory << "' does not allow write access" );
+      throw_Exception( "directory '" << file_params_.directory << "' does not allow write access" );
     file_params_.active_log = file_params_.directory + "/" + config.getAppName() + ".log";
     file_params_.file.open( file_params_.active_log, std::ofstream::out | std::ofstream::app );
     file_params_.filesize = getFileSize( file_params_.active_log );
     if ( !file_params_.file.good() )
-      throw_Exception( Puts() << "failed to open '" << file_params_.active_log << "' for writing" );
+      throw_Exception( "failed to open '" << file_params_.active_log << "' for writing" );
   }
 
   std::string Logger::formatMessage( LogLevel level, const std::string message ) {

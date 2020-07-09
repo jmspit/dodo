@@ -33,7 +33,8 @@ namespace dodo::common {
   typedef uint8_t Octet;
 
   /**
-   * An array of Octets with size elements.
+   * An array of Octets with size elements. Provides base64 conversion, random data, and appending of data form
+   * other sources. Memory management is implicit.
    */
   struct OctetArray {
 

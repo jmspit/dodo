@@ -19,7 +19,7 @@ class Server : public TCPServer {
       std::string request;
       SystemError error = socket->receiveLine( request );
       if ( error == SystemError::ecOK ) {
-        Logger::getLogger()->trace( Puts() << "socket " << socket->geFD() << " received : '" << request << "'!" );
+        Logger::getLogger()->trace( Puts() << "socket " << socket->getFD() << " received : '" << request << "'!" );
         error = socket->sendLine( request, false );
         return error == SystemError::ecOK;
       }

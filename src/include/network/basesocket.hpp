@@ -118,7 +118,7 @@ namespace dodo::network {
        * Return the socket file descriptor.
        * @return The socket descriptor.
        */
-      int geFD() const { return socket_; };
+      int getFD() const { return socket_; };
 
       /**
        * Return true when the socket descriptor is a valid, hence 'possible' descriptor.

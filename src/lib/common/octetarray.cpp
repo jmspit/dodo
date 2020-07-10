@@ -36,12 +36,12 @@ namespace dodo::common {
       if ( array || sz == 0 ) {
         size = sz;
         if ( !sz ) array = nullptr;
-      } else throw_SystemException( Puts() << "realloc of " << sz << " bytes failed", errno );
+      } else throw_SystemException( "realloc of " << sz << " bytes failed", errno );
     } else {
       array = static_cast< Octet*>( std::malloc( sz ) );
       if ( array ) {
         size = sz;
-      } else throw_SystemException( Puts() << "malloc of " << sz << " bytes failed", errno );
+      } else throw_SystemException( "malloc of " << sz << " bytes failed", errno );
     }
   }
 

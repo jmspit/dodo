@@ -87,7 +87,7 @@ namespace dodo::common {
     return logger_;
   }
 
-  void Logger::log( LogLevel level, const std::string message ) {
+  void Logger::log( LogLevel level, const std::string &message ) {
     threads::Mutexer lock( mutex_ );
     std::string entry = "";
 
@@ -111,39 +111,33 @@ namespace dodo::common {
     }
   }
 
-  void Logger::fatal( const std::string message ) {
+  void Logger::fatal( const std::string &message ) {
     log( LogLevel::Fatal, message );
   }
 
-  void Logger::error( const std::string message ) {
+  void Logger::error( const std::string &message ) {
     log( LogLevel::Error, message );
   }
 
-  void Logger::warning( const std::string message ) {
+  void Logger::warning( const std::string &message ) {
     log( LogLevel::Warning, message );
   }
 
-  void Logger::info( const std::string message ) {
+  void Logger::info( const std::string &message ) {
     log( LogLevel::Info, message );
   }
 
-  void Logger::statistics( const std::string message ) {
+  void Logger::statistics( const std::string &message ) {
     log( LogLevel::Statistics, message );
   }
 
   #ifndef NDEBUG
-  void Logger::debug( const std::string message ) {
+  void Logger::debug( const std::string &message ) {
     log( LogLevel::Debug, message );
   }
 
-  void Logger::trace( const std::string message ) {
+  void Logger::trace( const std::string &message ) {
     log( LogLevel::Trace, message );
-  }
-  #else
-  void Logger::debug( const std::string message ) {
-  }
-
-  void Logger::trace( const std::string message ) {
   }
   #endif
 
@@ -213,7 +207,7 @@ namespace dodo::common {
       throw_Exception( "failed to open '" << file_params_.active_log << "' for writing" );
   }
 
-  std::string Logger::formatMessage( LogLevel level, const std::string message ) {
+  std::string Logger::formatMessage( LogLevel level, const std::string &message ) {
     std::stringstream ss;
     struct timeval tv;
     gettimeofday( &tv, nullptr );

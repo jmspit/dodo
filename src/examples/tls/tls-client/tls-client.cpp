@@ -57,7 +57,7 @@ int main( int argc, char* argv[], char** envp ) {
 
     network::Address address;
     common::SystemError error = network::Address::getHostAddrInfo( host, sock_params, address, canonicalname );
-    if ( error != common::SystemError::ecOK ) throw_SystemException( common::Puts() << "cannot resolve " << host, error );
+    if ( error != common::SystemError::ecOK ) throw_SystemException( "cannot resolve " << host, error );
 
     network::TLSContext tlsctx( pv,
                                 network::TLSContext::TLSVersion::tls1_2,
@@ -103,7 +103,7 @@ int main( int argc, char* argv[], char** envp ) {
       cout << "TLS protocol version  : " << tlssocket.getTLSProtocolVersionString() << endl;
       cout << "TLS negotiated cipher : " << tlssocket.getTLSCurrentCipherName() << endl;
       tlssocket.close();
-    } else throw_SystemException( common::Puts() << "failed to connect to '" << host << "'", error );
+    } else throw_SystemException( "failed to connect to '" << host << "'", error );
   }
   catch ( const runtime_error &e ) {
     cerr << e.what() << endl;

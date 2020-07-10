@@ -536,20 +536,25 @@ namespace dodo {
      * @return The output Puts
      */
     inline dodo::common::Puts& operator<<( dodo::common::Puts& os, TCPListener::SockState state ) {
-      switch ( state ) {
-        case TCPListener::SockState::None :
-          os << "none";
-          break;
-        case TCPListener::SockState::New :
-          os << "new";
-          break;
-        case TCPListener::SockState::Read :
-          os << "read";
-          break;
-        case TCPListener::SockState::Shut :
-          os << "shut";
-          break;
-      }
+      if ( state & TCPListener::SockState::None ) os << "None|";
+      if ( state & TCPListener::SockState::New ) os << "New|";
+      if ( state & TCPListener::SockState::Read ) os << "Read|";
+      if ( state & TCPListener::SockState::Shut ) os << "Shut|";
+      //switch ( state ) {
+        //case TCPListener::SockState::None :
+          //os << "none";
+          //break;
+        //case TCPListener::SockState::New :
+          //os << "new";
+          //break;
+        //case TCPListener::SockState::Read :
+          //os << "read";
+          //break;
+        //case TCPListener::SockState::Shut :
+          //os << "shut";
+          //break;
+      //}
+      os << " (" << static_cast<int>(state) << ")";
       return os;
     }
 

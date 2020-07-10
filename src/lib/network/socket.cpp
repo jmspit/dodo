@@ -52,9 +52,9 @@ namespace dodo::network {
         case SystemError::ecEAGAIN :
         case SystemError::ecECONNRESET :
           return errno;
-        default: throw_SystemExceptionObject( common::Puts() << "Socket::send failed", errno, this );
+        default: throw_SystemExceptionObject( "Socket::send failed", errno, this );
       };
-    } else if ( left ) throw_SystemExceptionObject( common::Puts() << "Socket::send not all bytes send", errno, this );
+    } else if ( left ) throw_SystemExceptionObject( "Socket::send not all bytes send", errno, this );
     else return SystemError::ecOK;
   }
 
@@ -74,9 +74,9 @@ namespace dodo::network {
         case SystemError::ecEAGAIN :
         case SystemError::ecECONNRESET :
           return errno;
-        default: throw_SystemExceptionObject( common::Puts() << "Socket::send failed", errno, this );
+        default: throw_SystemExceptionObject( "Socket::send failed", errno, this );
       };
-    } else if ( left ) throw_SystemExceptionObject( common::Puts() << "Socket::send not all bytes send", errno, this );
+    } else if ( left ) throw_SystemExceptionObject( "Socket::send not all bytes send", errno, this );
     else return SystemError::ecOK;
   }
 
@@ -89,7 +89,7 @@ namespace dodo::network {
         case SystemError::ecECONNREFUSED :
         case SystemError::ecENOTCONN :
           return errno;
-        default: throw_SystemExceptionObject( common::Puts() << "Socket::receive failed", errno, this );
+        default: throw_SystemExceptionObject( "Socket::receive failed", errno, this );
       };
     } else {
       received = rc;
@@ -98,7 +98,7 @@ namespace dodo::network {
   }
 
   Socket::Socket( const Socket& socket ) {
-    socket_ = socket.geFD();
+    socket_ = socket.getFD();
   }
 
   SystemError Socket::bind( const Address &address ) {
@@ -109,7 +109,7 @@ namespace dodo::network {
         case SystemError::ecEADDRINUSE:
           return errno;
       }
-      throw_SystemExceptionObject( common::Puts() << "Socket::bind failed on address " << address.asString(), errno, this );
+      throw_SystemExceptionObject( "Socket::bind failed on address " << address.asString(), errno, this );
     } else return SystemError::ecOK;
   }
 
@@ -122,7 +122,7 @@ namespace dodo::network {
           case SystemError::ecEADDRINUSE:
             return errno;
         }
-        throw_SystemExceptionObject( common::Puts() << "Socket::listen failed on " << address.asString(), errno, this );
+        throw_SystemExceptionObject( "Socket::listen failed on " << address.asString(), errno, this );
       } else return SystemError::ecOK;
     } else return error;
   }
@@ -133,7 +133,7 @@ namespace dodo::network {
     int rc = ::accept( socket_, nullptr, nullptr );
     if ( rc == -1 ) {
       if ( errno != EAGAIN && errno != EWOULDBLOCK )
-        throw_SystemExceptionObject( common::Puts() << "Socket::accept failed", errno, this );
+        throw_SystemExceptionObject( "Socket::accept failed", errno, this );
       else
         *ret = rc;
     } else *ret = rc;

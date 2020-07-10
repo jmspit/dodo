@@ -47,6 +47,11 @@ namespace dodo {
            */
           TCPListenerTimer( TCPListener &listener ) : listener_(listener), stopped_(false) {};
 
+          virtual ~TCPListenerTimer() {
+            stop();
+            wait();
+          }
+
           virtual void run() {
             while ( !stopped_ ) {
               {
@@ -215,10 +220,10 @@ namespace dodo {
         memset(  poll_sockets, 0, sizeof(poll_sockets) );
         epoll_fd_ = epoll_create1( 0 );
         if ( epoll_fd_ < 0 )
-          throw_SystemException( common::Puts() << "TCPListener::run: epoll_create1 failed", errno );
+          throw_SystemException( "TCPListener::run: epoll_create1 failed", errno );
         set_event.events = EPOLLIN | EPOLLPRI;
-        set_event.data.fd = listen_socket_.geFD();
-        rc = epoll_ctl( epoll_fd_, EPOLL_CTL_ADD, listen_socket_.geFD(), &set_event );
+        set_event.data.fd = listen_socket_.getFD();
+        rc = epoll_ctl( epoll_fd_, EPOLL_CTL_ADD, listen_socket_.getFD(), &set_event );
         if ( rc < 0 ) throw_SystemException( "TCPListener::run epoll_ctl failed", errno );
 
         Logger::getLogger()->debug( Puts() << "TCPListener::run starting " << params_.minservers << " servers" );
@@ -254,15 +259,14 @@ namespace dodo {
               gettimeofday( &warn_queue_time_, NULL );
             }
           }
-
           // wait for activity
           int rc = epoll_wait( epoll_fd_, poll_sockets, params_.pollbatch, params_.listener_sleep_ms );
           if ( rc < 0 && errno != EINTR )
-            throw_SystemException( common::Puts() << "TCPListener::run: epoll_wait failed", errno );
+            throw_SystemException( "TCPListener::run: epoll_wait failed", errno );
           else if ( rc > 0 ) {
             for ( int i = 0; i < rc; i++ ) {
               if ( poll_sockets[i].events != 0 ) {
-                if ( poll_sockets[i].data.fd == listen_socket_.geFD() ) {
+                if ( poll_sockets[i].data.fd == listen_socket_.getFD() ) {
                   network::BaseSocket* client_sock;
                   do {
                     client_sock = listen_socket_.accept();
@@ -273,8 +277,9 @@ namespace dodo {
                        event_maxconnections_reached_++;
                     } else {
                       {
-                        clients_[client_sock->geFD()].pointer = client_sock;
-                        clients_[client_sock->geFD()].state = SockState::New;
+                        threads::Mutexer lock( clientmutex_ );
+                        clients_[client_sock->getFD()].pointer = client_sock;
+                        clients_[client_sock->getFD()].state = SockState::New;
                       }
                       pushRequest( client_sock, SockState::New );
                       Logger::getLogger()->debug( Puts() << "TCPListener::run new client socket " <<
@@ -307,6 +312,7 @@ namespace dodo {
                                                 " events=(" << poll_sockets[i].events << ")" );
                   }
                   if ( combined_state != SockState::None ) {
+                    poll_sockets[i].events = 0;
                     pushRequest( poll_sockets[i].data.fd, combined_state );
                     cv_signal_.notify_one();
                   }
@@ -322,17 +328,18 @@ namespace dodo {
 
           cleanStoppedServers();
         } while ( !stop_server_ );
-        timer.stop();
-        timer.wait();
       }
-      catch( dodo::common::Exception &e ) {
-         Logger::getLogger()->error( common::Puts() << "TCPListener::run dodo::common::Exception " << e.what() );
+      catch( const dodo::common::Exception &e ) {
+        cout << "dodo::common::Exception" << endl;
+        Logger::getLogger()->error( common::Puts() << "TCPListener::run dodo::common::Exception " << e.what() );
       }
-      catch( std::exception &e ) {
-         Logger::getLogger()->error( common::Puts() << "TCPListener::run std::exception " << e.what() );
+      catch( const std::exception &e ) {
+        cout << "std::exception" << endl;
+        Logger::getLogger()->error( common::Puts() << "TCPListener::run std::exception " << e.what() );
       }
       catch( ... ) {
-         Logger::getLogger()->error( common::Puts() << "TCPListener::run unhandled exception" );
+        cout << "..." << endl;
+        Logger::getLogger()->error( common::Puts() << "TCPListener::run unhandled exception" );
       }
       try {
         Logger::getLogger()->debug( common::Puts() << "TCPListener::run stop listener finish pending work" );
@@ -358,55 +365,58 @@ namespace dodo {
     }
 
     void TCPListener::pushRequest( int fd, SockState state ) {
-      threads::Mutexer lock( clientmutex_ );
+      {
+        threads::Mutexer lock( clientmutex_ );
+        clients_[fd].state |= state;
+        requests_.push_back( &(clients_[fd]) );
+        requests_q_sz_++;
+        if ( ! (state & SockState::New) ) pollDel( clients_[fd].pointer );
+      }
       Logger::getLogger()->debug( common::Puts() <<
                                   "TCPListener::pushRequest BaseSocket* socket " <<
                                   clients_[fd].pointer->debugString() << " state " << state );
-      clients_[fd].state |= state;
-      requests_.push_back( &(clients_[fd]) );
-      requests_q_sz_++;
-      if ( state == SockState::New )
-        pollAdd( clients_[fd].pointer, read_event_mask_ );
-      else
-        pollMod( clients_[fd].pointer, hangup_event_mask_ );
     }
 
     void TCPListener::pushRequest( BaseSocket* socket, SockState state ) {
-      threads::Mutexer lock( clientmutex_ );
+      {
+        threads::Mutexer lock( clientmutex_ );
+        clients_[socket->getFD()].state |= state;
+        requests_.push_back( &(clients_[socket->getFD()]) );
+        requests_q_sz_++;
+        if ( ! (state & SockState::New) ) pollDel( clients_[socket->getFD()].pointer );
+      }
       Logger::getLogger()->debug( common::Puts() <<
                                   "TCPListener::pushRequest BaseSocket* socket " << socket->debugString() <<
                                   " state " << state );
-      clients_[socket->geFD()].state |= state;
-      requests_.push_back( &(clients_[socket->geFD()]) );
-      requests_q_sz_++;
-      if ( state == SockState::New )
-        pollAdd( socket, read_event_mask_ );
-      else
-        pollMod( socket, hangup_event_mask_ );
     }
 
     TCPListener::SockMap* TCPListener::popRequest() {
       SockMap* result = NULL;
-      threads::Mutexer lock( clientmutex_ );
-      if ( requests_.size() > 0 ) {
-        result = requests_.front();
-        requests_.pop_front();
+      {
+        threads::Mutexer lock( clientmutex_ );
+        if ( requests_.size() > 0 ) {
+          result = requests_.front();
+          requests_.pop_front();
+        }
       }
+      if ( result )
+        Logger::getLogger()->debug( common::Puts() <<
+                                    "TCPListener::popRequest socket " << result->pointer->debugString() <<
+                                    " state " << result->state  << " sockmapstate=" << clients_[result->pointer->getFD()].state );
       return result;
     }
 
     void TCPListener::releaseRequest( BaseSocket* socket, SockState state ) {
       Logger::getLogger()->debug( common::Puts() <<
                                   "TCPListener::releaseRequest socket " << socket->debugString() <<
-                                  " state " << state  << " sockmapstate=" << clients_[socket->geFD()].state );
+                                  " state " << state  << " sockmapstate=" << clients_[socket->getFD()].state );
       requests_q_sz_--;
       if ( state & TCPListener::SockState::Shut ) {
-        pollDel( socket );
         closeSocket( socket );
       } else {
         threads::Mutexer lock( clientmutex_ );
-        pollMod( socket, read_event_mask_ );
-        clients_[socket->geFD()].state ^= state;
+        pollAdd( socket, read_event_mask_ | hangup_event_mask_ );
+        clients_[socket->getFD()].state ^= state;
       }
     }
 
@@ -414,7 +424,7 @@ namespace dodo {
       int fd = -1;
       {
         threads::Mutexer lock( clientmutex_ );
-        fd = s->geFD();
+        fd = s->getFD();
         clients_.erase( fd );
         s->close();
         delete s;
@@ -425,25 +435,28 @@ namespace dodo {
     void TCPListener::pollAdd( const BaseSocket* s, uint32_t events ) {
       struct epoll_event set_event;
       set_event.events = events;
-      set_event.data.fd = s->geFD();
-      int rc = epoll_ctl( epoll_fd_, EPOLL_CTL_ADD, s->geFD(), &set_event );
-      if ( rc < 0 ) throw_SystemException( common::Puts() << "TCPListener::pollAdd epoll_ctl failed socket " << s->debugString(), errno );
+      set_event.data.fd = s->getFD();
+      int rc = epoll_ctl( epoll_fd_, EPOLL_CTL_ADD, s->getFD(), &set_event );
+      if ( rc < 0 ) throw_SystemException( "TCPListener::pollAdd epoll_ctl failed socket " << s->debugString(), errno );
+      Logger::getLogger()->debug( common::Puts() << "TCPListener::pollAdd socket " << set_event.data.fd << " events=" << events );
     }
 
     void TCPListener::pollMod( const BaseSocket* s, uint32_t events ) {
       struct epoll_event set_event;
       set_event.events = events;
-      set_event.data.fd = s->geFD();
-      int rc = epoll_ctl( epoll_fd_, EPOLL_CTL_MOD, s->geFD(), &set_event );
-      if ( rc < 0 ) throw_SystemException( common::Puts() << "TCPListener::pollMod epoll_ctl failed socket " << s->debugString(), errno );
+      set_event.data.fd = s->getFD();
+      int rc = epoll_ctl( epoll_fd_, EPOLL_CTL_MOD, s->getFD(), &set_event );
+      if ( rc < 0 ) throw_SystemException( "TCPListener::pollMod epoll_ctl failed socket " << s->debugString(), errno );
+      Logger::getLogger()->debug( common::Puts() << "TCPListener::pollMod socket " << set_event.data.fd << " events=" << events );
     }
 
     void TCPListener::pollDel( const BaseSocket* s ) {
       struct epoll_event set_event;
       set_event.events = 0;
-      set_event.data.fd = s->geFD();
-      int rc = epoll_ctl( epoll_fd_, EPOLL_CTL_DEL, s->geFD(), &set_event );
-      if ( rc < 0 ) throw_SystemException( common::Puts() << "TCPListener::pollDel epoll_ctl failed socket " << s->debugString(), errno );
+      set_event.data.fd = s->getFD();
+      int rc = epoll_ctl( epoll_fd_, EPOLL_CTL_DEL, s->getFD(), &set_event );
+      if ( rc < 0 ) throw_SystemException( "TCPListener::pollDel epoll_ctl failed socket " << s->debugString(), errno );
+      Logger::getLogger()->debug( common::Puts() << "TCPListener::pollDel socket " << set_event.data.fd );
     }
 
     void TCPListener::addServers() {
@@ -451,6 +464,8 @@ namespace dodo {
         TCPServer* add_server = init_server_->addServer();
         servers_.push_back(add_server);
         add_server->start();
+        Logger::getLogger()->debug( common::Puts() <<
+                                    "TCPListener::addServers +1" );
       }
     }
 
@@ -554,7 +569,21 @@ namespace dodo {
               }
               i_server++;
             }
-          } else i_server++;
+          } else {
+            if ( init_server_->hasStopped() ) {
+              init_server_->wait();
+              i_server = servers_.erase(i_server);
+              TCPServer* new_server = init_server_->addServer();
+              new_server->start();
+              delete init_server_;
+              init_server_ = new_server;
+              servers_.push_back( init_server_ );
+              Logger::getLogger()->debug( common::Puts() <<
+                                          "TCPListener::run replaced stopped init TCPServer " << common::Puts::hex() <<
+                                          init_server_->getTID() << common::Puts::dec() );
+            }
+            i_server++;
+          }
         }
       }
     }

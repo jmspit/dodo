@@ -93,49 +93,57 @@ namespace dodo::common {
        * Calling is thread-safe.
        * @param message The fatal log message.
        */
-      void fatal( const std::string message );
+      void fatal( const std::string &message );
 
       /**
        * Log a Error log entry. These are only logged when LogLevel >= Error.
        * Calling is thread-safe.
        * @param message The Error log message.
        */
-      void error( const std::string message );
+      void error( const std::string &message );
 
       /**
        * Log a Warning log entry. These are only logged when LogLevel >= Warning.
        * Calling is thread-safe.
        * @param message The Warning log message.
        */
-      void warning( const std::string message );
+      void warning( const std::string &message );
 
       /**
        * Log a Info log entry. These are only logged when LogLevel >= Info.
        * Calling is thread-safe.
        * @param message The Info log message.
        */
-      void info( const std::string message );
+      void info( const std::string &message );
 
       /**
        * Log a Statistics log entry. These are only logged when LogLevel >= Statistics.
        * Calling is thread-safe.
        * @param message The Statistics log message.
        */
-      void statistics( const std::string message );
+      void statistics( const std::string &message );
 
       /**
        * Log a Debug log entry. These are only logged when LogLevel >= Debug.
        * Calling is thread-safe.
        * @param message The Debug log message.
        */
-      void debug( const std::string message );
+      #ifndef NDEBUG
+      void debug( const std::string &message );
+      #else
+      inline void debug( const std::string & ) const {}
+      #endif
 
       /**
        * Log a Trace log entry. These are only logged when LogLevel >= Trace.
        * Calling is thread-safe.
        * @param message The Trace log message.
        */
-      void trace( const std::string message );
+      #ifndef NDEBUG
+      void trace( const std::string &message );
+      #else
+      inline void trace( const std::string & ) const {}
+      #endif
 
       /**
        * Initialize the Logger singleton.
@@ -187,7 +195,7 @@ namespace dodo::common {
        * @param level The logLevel of the messsage.
        * @param message The log message.
        */
-      void log( LogLevel level, const std::string message );
+      void log( LogLevel level, const std::string &message );
 
       /**
        * Format a LogLine.
@@ -195,7 +203,7 @@ namespace dodo::common {
        * @param message The log message.
        * @return A formatted log line.
        */
-      std::string formatMessage( LogLevel level, const std::string message );
+      std::string formatMessage( LogLevel level, const std::string &message );
 
 
       /**

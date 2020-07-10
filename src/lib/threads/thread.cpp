@@ -37,7 +37,7 @@ namespace dodo::threads {
     gettimeofday( &t->start_time_, NULL );
     t->snapRUsage();
     if ( t ) t->run();
-    t->tid_  = 0;
+    //t->tid_  = 0;
     return 0;
   }
 

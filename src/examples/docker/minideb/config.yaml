@@ -22,11 +22,11 @@ server:
   listen-address: 0.0.0.0
   listen-port: 1968
   min-servers: 2
-  max-servers: 16
+  max-servers: 8
   max-connections: 500
   send-buffer: 16384
   receive-buffer: 32768
   send-timeout-seconds: 10
   receive-timeout-seconds: 10
-  stat-trc-interval-s: 30
+  stat-trc-interval-s: 60
   listener-sleep-ms: 500

@@ -155,38 +155,24 @@ namespace dodo {
       if ( !common::fileReadInt( proc_somaxconn, backlog_ ) )
         throw_Exception( "failed to read int from " << proc_somaxconn );
 
-      Logger::getLogger()->statistics( common::Puts() <<
-                                       yaml_minservers << " = " << params_.minservers );
-      Logger::getLogger()->statistics( common::Puts() <<
-                                       yaml_maxservers << " = " << params_.maxservers );
-      Logger::getLogger()->statistics( common::Puts() <<
-                                       yaml_maxconnections << " = " << params_.maxconnections );
-      Logger::getLogger()->statistics( common::Puts() <<
-                                       yaml_maxqdepth << " = " << params_.maxqdepth );
-      Logger::getLogger()->statistics( common::Puts() <<
-                                       yaml_sendbufsz << " = " << params_.sendbufsz );
-      Logger::getLogger()->statistics( common::Puts() <<
-                                       yaml_recvbufsz << " = " << params_.recvbufsz );
-      Logger::getLogger()->statistics( common::Puts() <<
-                                       yaml_server_idle_ttl_s << " = " << params_.server_idle_ttl_s );
-      Logger::getLogger()->statistics( common::Puts() <<
-                                       yaml_pollbatch << " = " << params_.pollbatch );
-      Logger::getLogger()->statistics( common::Puts() <<
-                                       yaml_listener_sleep_ms << " = " << params_.listener_sleep_ms );
-      Logger::getLogger()->statistics( common::Puts() <<
-                                       yaml_throttle_sleep_us << " = " << params_.throttle_sleep_us );
-      Logger::getLogger()->statistics( common::Puts() <<
-                                       yaml_cycle_max_throttles << " = " << params_.cycle_max_throttles );
-      Logger::getLogger()->statistics( common::Puts() <<
-                                       yaml_send_timeout_seconds << " = " << params_.send_timeout_seconds );
-      Logger::getLogger()->statistics( common::Puts() <<
-                                       yaml_receive_timeout_seconds << " = " << params_.receive_timeout_seconds );
+      log_Statistics( yaml_minservers << " = " << params_.minservers );
+      log_Statistics( yaml_maxservers << " = " << params_.maxservers );
+      log_Statistics( yaml_maxconnections << " = " << params_.maxconnections );
+      log_Statistics( yaml_maxqdepth << " = " << params_.maxqdepth );
+      log_Statistics( yaml_sendbufsz << " = " << params_.sendbufsz );
+      log_Statistics( yaml_recvbufsz << " = " << params_.recvbufsz );
+      log_Statistics( yaml_server_idle_ttl_s << " = " << params_.server_idle_ttl_s );
+      log_Statistics( yaml_pollbatch << " = " << params_.pollbatch );
+      log_Statistics( yaml_listener_sleep_ms << " = " << params_.listener_sleep_ms );
+      log_Statistics( yaml_throttle_sleep_us << " = " << params_.throttle_sleep_us );
+      log_Statistics( yaml_cycle_max_throttles << " = " << params_.cycle_max_throttles );
+      log_Statistics( yaml_send_timeout_seconds << " = " << params_.send_timeout_seconds );
+      log_Statistics( yaml_receive_timeout_seconds << " = " << params_.receive_timeout_seconds );
 
       common::SystemError error = listen_socket_.listen( listen_address_, backlog_ );
       if ( error != common::SystemError::ecOK ) throw_SystemException( "listen failed", error );
 
-      Logger::getLogger()->statistics( common::Puts() <<
-                                       "address = " << listen_address_.asString(true) );
+      log_Statistics( "address = " << listen_address_.asString(true) );
     }
 
     TCPListener::TCPListener( const YAML::Node &yaml ) {
@@ -226,7 +212,7 @@ namespace dodo {
         rc = epoll_ctl( epoll_fd_, EPOLL_CTL_ADD, listen_socket_.getFD(), &set_event );
         if ( rc < 0 ) throw_SystemException( "TCPListener::run epoll_ctl failed", errno );
 
-        Logger::getLogger()->debug( Puts() << "TCPListener::run starting " << params_.minservers << " servers" );
+        log_Debug( "TCPListener::run starting " << params_.minservers << " servers" );
         init_server_->start();
         while ( servers_.size() < params_.minservers ) {
           TCPServer* add_server = init_server_->addServer();
@@ -254,7 +240,7 @@ namespace dodo {
             if ( servers_.size() == params_.maxservers &&
                  requests_q_sz_ > 2 * servers_.size() &&
                  now_.tv_sec > 30 + warn_queue_time_.tv_sec ) {
-              Logger::getLogger()->warning( Puts() << "TCPListener::run queuing on maxservers #clients=" <<
+              log_Warning( "TCPListener::run queuing on maxservers #clients=" <<
                 clients_.size() << " #servers=" << servers_.size() << " queue=" << requests_q_sz_ );
               gettimeofday( &warn_queue_time_, NULL );
             }
@@ -282,10 +268,13 @@ namespace dodo {
                         clients_[client_sock->getFD()].state = SockState::New;
                       }
                       pushRequest( client_sock, SockState::New );
-                      Logger::getLogger()->debug( Puts() << "TCPListener::run new client socket " <<
-                                                  client_sock->debugString() << " from " <<
-                                                  client_sock->getPeerAddress().asString() );
-                      last_stats_.connections++;
+                      log_Debug( "TCPListener::run new client socket " <<
+                                 client_sock->debugString() << " from " <<
+                                 client_sock->getPeerAddress().asString() );
+                      {
+                        threads::Mutexer lock( stats_mutex_ );
+                        last_stats_.connections++;
+                      }
                       client_sock->setBlocking( false );
                       client_sock->setTCPNoDelay( true );
                       client_sock->setSendTimeout( params_.send_timeout_seconds );
@@ -296,20 +285,22 @@ namespace dodo {
                 } else if ( poll_sockets[i].data.fd >= 0 ) {
                   SockState combined_state = SockState::None;
                   if ( (poll_sockets[i].events & EPOLLIN) || (poll_sockets[i].events &  EPOLLPRI) ) {
-                    Logger::getLogger()->debug( Puts() << "TCPListener::run EPOLLIN || EPOLLPRI on socket " <<
-                                                poll_sockets[i].data.fd <<
-                                                " events=(" << poll_sockets[i].events << ")" );
+                    log_Debug( "TCPListener::run EPOLLIN || EPOLLPRI on socket " <<
+                               poll_sockets[i].data.fd <<
+                               " events=(" << poll_sockets[i].events << ")" );
                     combined_state |= SockState::Read;
-                    last_stats_.requests++;
+                    {
+                      threads::Mutexer lock( stats_mutex_ );
+                      last_stats_.requests++;
+                    }
                   }
                   if ( (poll_sockets[i].events & EPOLLRDHUP ) ||
                        (poll_sockets[i].events & EPOLLERR ) ||
                        (poll_sockets[i].events & EPOLLHUP ) ) {
                     combined_state |= SockState::Shut;
-                    Logger::getLogger()->debug( common::Puts() <<
-                                                "TCPListener::run hangup or error on socket " <<
-                                                poll_sockets[i].data.fd <<
-                                                " events=(" << poll_sockets[i].events << ")" );
+                    log_Debug( "TCPListener::run hangup or error on socket " <<
+                               poll_sockets[i].data.fd <<
+                               " events=(" << poll_sockets[i].events << ")" );
                   }
                   if ( combined_state != SockState::None ) {
                     poll_sockets[i].events = 0;
@@ -317,10 +308,9 @@ namespace dodo {
                     cv_signal_.notify_one();
                   }
                 } else {
-                    Logger::getLogger()->warning( common::Puts() <<
-                                                  "TCPListener::run epoll event on invalid descriptor " <<
-                                                  poll_sockets[i].data.fd <<
-                                                  " events=(" << poll_sockets[i].events << ")" );
+                    log_Warning( "TCPListener::run epoll event on invalid descriptor " <<
+                                 poll_sockets[i].data.fd <<
+                                 " events=(" << poll_sockets[i].events << ")" );
                 }
               }
             }
@@ -331,20 +321,20 @@ namespace dodo {
       }
       catch( const dodo::common::Exception &e ) {
         cout << "dodo::common::Exception" << endl;
-        Logger::getLogger()->error( common::Puts() << "TCPListener::run dodo::common::Exception " << e.what() );
+        log_Error( "TCPListener::run dodo::common::Exception " << e.what() );
       }
       catch( const std::exception &e ) {
         cout << "std::exception" << endl;
-        Logger::getLogger()->error( common::Puts() << "TCPListener::run std::exception " << e.what() );
+        log_Error( "TCPListener::run std::exception " << e.what() );
       }
       catch( ... ) {
         cout << "..." << endl;
-        Logger::getLogger()->error( common::Puts() << "TCPListener::run unhandled exception" );
+        log_Error( "TCPListener::run unhandled exception" );
       }
       try {
-        Logger::getLogger()->debug( common::Puts() << "TCPListener::run stop listener finish pending work" );
+        log_Debug( "TCPListener::run stop listener finish pending work" );
         while( requests_q_sz_  > 0 ) std::this_thread::sleep_for(20ms);
-        Logger::getLogger()->debug( common::Puts() << "TCPListener::run stop TCPServers " );
+        log_Debug( "TCPListener::run stop TCPServers " );
         for ( auto srv : servers_ ) {
           srv->requestStop();
         }
@@ -352,11 +342,11 @@ namespace dodo {
           srv->wait();
           delete srv;
         }
-        Logger::getLogger()->debug( common::Puts() << "TCPListener::run stopped TCPServers " );
+        log_Debug( "TCPListener::run stopped TCPServers " );
         servers_.clear();
         auto clients_copy = clients_;  // closeSocket modifies clients_
         for( auto c: clients_copy ) {
-          Logger::getLogger()->trace( common::Puts() << "TCPListener::run close socket " << c.second.pointer );
+          log_Debug( "TCPListener::run close socket " << c.second.pointer );
           closeSocket( c.second.pointer );
         }
       }
@@ -372,9 +362,8 @@ namespace dodo {
         requests_q_sz_++;
         if ( ! (state & SockState::New) ) pollDel( clients_[fd].pointer );
       }
-      Logger::getLogger()->debug( common::Puts() <<
-                                  "TCPListener::pushRequest BaseSocket* socket " <<
-                                  clients_[fd].pointer->debugString() << " state " << state );
+      log_Debug( "TCPListener::pushRequest BaseSocket* socket " <<
+                 clients_[fd].pointer->debugString() << " state " << state );
     }
 
     void TCPListener::pushRequest( BaseSocket* socket, SockState state ) {
@@ -385,9 +374,8 @@ namespace dodo {
         requests_q_sz_++;
         if ( ! (state & SockState::New) ) pollDel( clients_[socket->getFD()].pointer );
       }
-      Logger::getLogger()->debug( common::Puts() <<
-                                  "TCPListener::pushRequest BaseSocket* socket " << socket->debugString() <<
-                                  " state " << state );
+      log_Debug( "TCPListener::pushRequest BaseSocket* socket " << socket->debugString() <<
+                 " state " << state );
     }
 
     TCPListener::SockMap* TCPListener::popRequest() {
@@ -400,16 +388,14 @@ namespace dodo {
         }
       }
       if ( result )
-        Logger::getLogger()->debug( common::Puts() <<
-                                    "TCPListener::popRequest socket " << result->pointer->debugString() <<
-                                    " state " << result->state  << " sockmapstate=" << clients_[result->pointer->getFD()].state );
+        log_Debug( "TCPListener::popRequest socket " << result->pointer->debugString() <<
+                   " state " << result->state  << " sockmapstate=" << clients_[result->pointer->getFD()].state );
       return result;
     }
 
     void TCPListener::releaseRequest( BaseSocket* socket, SockState state ) {
-      Logger::getLogger()->debug( common::Puts() <<
-                                  "TCPListener::releaseRequest socket " << socket->debugString() <<
-                                  " state " << state  << " sockmapstate=" << clients_[socket->getFD()].state );
+      log_Debug( "TCPListener::releaseRequest socket " << socket->debugString() <<
+                 " state " << state  << " sockmapstate=" << clients_[socket->getFD()].state );
       requests_q_sz_--;
       if ( state & TCPListener::SockState::Shut ) {
         closeSocket( socket );
@@ -429,7 +415,7 @@ namespace dodo {
         s->close();
         delete s;
       }
-      Logger::getLogger()->debug( common::Puts() << "TCPListener::closeSocket socket " << s << " fd=" << fd );
+      log_Debug( "TCPListener::closeSocket socket " << s << " fd=" << fd );
     }
 
     void TCPListener::pollAdd( const BaseSocket* s, uint32_t events ) {
@@ -438,7 +424,7 @@ namespace dodo {
       set_event.data.fd = s->getFD();
       int rc = epoll_ctl( epoll_fd_, EPOLL_CTL_ADD, s->getFD(), &set_event );
       if ( rc < 0 ) throw_SystemException( "TCPListener::pollAdd epoll_ctl failed socket " << s->debugString(), errno );
-      Logger::getLogger()->debug( common::Puts() << "TCPListener::pollAdd socket " << set_event.data.fd << " events=" << events );
+      log_Debug( "TCPListener::pollAdd socket " << set_event.data.fd << " events=" << events );
     }
 
     void TCPListener::pollMod( const BaseSocket* s, uint32_t events ) {
@@ -447,7 +433,7 @@ namespace dodo {
       set_event.data.fd = s->getFD();
       int rc = epoll_ctl( epoll_fd_, EPOLL_CTL_MOD, s->getFD(), &set_event );
       if ( rc < 0 ) throw_SystemException( "TCPListener::pollMod epoll_ctl failed socket " << s->debugString(), errno );
-      Logger::getLogger()->debug( common::Puts() << "TCPListener::pollMod socket " << set_event.data.fd << " events=" << events );
+      log_Debug( "TCPListener::pollMod socket " << set_event.data.fd << " events=" << events );
     }
 
     void TCPListener::pollDel( const BaseSocket* s ) {
@@ -456,7 +442,7 @@ namespace dodo {
       set_event.data.fd = s->getFD();
       int rc = epoll_ctl( epoll_fd_, EPOLL_CTL_DEL, s->getFD(), &set_event );
       if ( rc < 0 ) throw_SystemException( "TCPListener::pollDel epoll_ctl failed socket " << s->debugString(), errno );
-      Logger::getLogger()->debug( common::Puts() << "TCPListener::pollDel socket " << set_event.data.fd );
+      log_Debug( "TCPListener::pollDel socket " << set_event.data.fd );
     }
 
     void TCPListener::addServers() {
@@ -464,8 +450,7 @@ namespace dodo {
         TCPServer* add_server = init_server_->addServer();
         servers_.push_back(add_server);
         add_server->start();
-        Logger::getLogger()->debug( common::Puts() <<
-                                    "TCPListener::addServers +1" );
+        log_Debug( "TCPListener::addServers +1" );
       }
     }
 
@@ -475,7 +460,10 @@ namespace dodo {
         unsigned int c = 0;
         while ( requests_q_sz_ >= last_pending && c++ < params_.cycle_max_throttles ) {
           std::this_thread::sleep_for( std::chrono::microseconds( params_.throttle_sleep_us ) );
-          last_stats_.throttles++;
+          {
+            threads::Mutexer lock( stats_mutex_ );
+            last_stats_.throttles++;
+          }
         }
       }
     }
@@ -489,47 +477,47 @@ namespace dodo {
       if ( l_now.tv_sec > params_.stat_trc_interval_s + stat_time_.tv_sec ) {
         snapRUsage();
         if ( event_maxconnections_reached_ ) {
-          Logger::getLogger()->warning( common::Puts() <<
-                                        "TCPListener maxconnections=" << params_.maxconnections <<
-                                        " limited " << event_maxconnections_reached_ << " times since last stats" );
+          log_Warning( "TCPListener maxconnections=" << params_.maxconnections <<
+                       " limited " << event_maxconnections_reached_ << " times since last stats" );
           event_maxconnections_reached_ = 0;
         }
-        Logger::getLogger()->statistics( common::Puts() <<
-                                         "TCPListener #clients=" <<
-                                         clients_.size() << " #servers=" << servers_.size() << " #queued=" << requests_q_sz_ <<
-                                         " conn=" << (double)( last_stats_.connections - prev_stats_.connections ) /
-                                         getSecondDiff(prev_stat_time_,stat_time_ ) <<
-                                         "/s req=" << (double)( last_stats_.requests - prev_stats_.requests ) /
-                                         getSecondDiff(prev_stat_time_,stat_time_) <<
-                                         "/s throttle=" << (double)( last_stats_.throttles - prev_stats_.throttles ) /
-                                         getSecondDiff(prev_stat_time_,stat_time_) << "/s" );
-        Logger::getLogger()->statistics( common::Puts() <<
-                                         common::Puts::setprecision(2) <<
-                                         "TCPListener ucpu=" << getLastUserCPU() <<
-                                         " scpu=" << getLastSysCPU() <<
-                                         " minflt=" << getLastMinFltRate() << "/s" <<
-                                         " majflt=" << getLastMajFltRate() << "/s" <<
-                                         " bi=" << getLastBlkInRate() << "/s" <<
-                                         " bo=" << getLastBlkOutRate() << "/s" <<
-                                         " yield=" << getLastVCtx() << "/s" <<
-                                         " ctxsw=" << getLastICtx() << "/s" <<
-                                         " maxrss=" << getMaxRSS() );
+        log_Statistics( "TCPListener #clients=" <<
+                        clients_.size() << " #servers=" << servers_.size() << " #queued=" << requests_q_sz_ <<
+                        " recv=" << last_stats_.received << " sent=" << last_stats_.sent <<
+                        " conn=" << (double)( last_stats_.connections - prev_stats_.connections ) /
+                        getSecondDiff(prev_stat_time_,stat_time_ ) <<
+                        "/s req=" << (double)( last_stats_.requests - prev_stats_.requests ) /
+                        getSecondDiff(prev_stat_time_,stat_time_) <<
+                        "/s throttle=" << (double)( last_stats_.throttles - prev_stats_.throttles ) /
+                        getSecondDiff(prev_stat_time_,stat_time_) << "/s" );
+        log_Statistics( common::Puts::setprecision(2) <<
+                        "TCPListener ucpu=" << getLastUserCPU() <<
+                        " scpu=" << getLastSysCPU() <<
+                        " minflt=" << getLastMinFltRate() << "/s" <<
+                        " majflt=" << getLastMajFltRate() << "/s" <<
+                        " bi=" << getLastBlkInRate() << "/s" <<
+                        " bo=" << getLastBlkOutRate() << "/s" <<
+                        " yield=" << getLastVCtx() << "/s" <<
+                        " ctxsw=" << getLastICtx() << "/s" <<
+                        " maxrss=" << getMaxRSS() );
         for ( auto srv : servers_ ) {
-         Logger::getLogger()->statistics( common::Puts() <<
-                                          common::Puts::setprecision(2) <<
-                                          "TCPServer id " << srv->getTID() <<
-                                          (srv->isBusy()?" busy-":" idle-") << srv->getState() <<
-                                          " ucpu=" << srv->getLastUserCPU() <<
-                                          " scpu=" << srv->getLastSysCPU() <<
-                                          " minflt=" << srv->getLastMinFltRate() << "/s" <<
-                                          " majflt=" << srv->getLastMajFltRate() << "/s" <<
-                                          " bi=" << srv->getLastBlkInRate() << "/s" <<
-                                          " bo=" << srv->getLastBlkOutRate() << "/s" <<
-                                          " yield=" << srv->getLastVCtx() << "/s" <<
-                                          " ctxsw=" << srv->getLastICtx() << "/s" );
+         log_Statistics( common::Puts::setprecision(2) <<
+                         "TCPServer id " << srv->getTID() <<
+                         (srv->isBusy()?" busy-":" idle-") << srv->getState() <<
+                         " ucpu=" << srv->getLastUserCPU() <<
+                         " scpu=" << srv->getLastSysCPU() <<
+                         " minflt=" << srv->getLastMinFltRate() << "/s" <<
+                         " majflt=" << srv->getLastMajFltRate() << "/s" <<
+                         " bi=" << srv->getLastBlkInRate() << "/s" <<
+                         " bo=" << srv->getLastBlkOutRate() << "/s" <<
+                         " yield=" << srv->getLastVCtx() << "/s" <<
+                         " ctxsw=" << srv->getLastICtx() << "/s" );
         }
         prev_stat_time_ = stat_time_;
-        prev_stats_ = last_stats_;
+        {
+          threads::Mutexer lock( stats_mutex_ );
+          prev_stats_ = last_stats_;
+        }
         gettimeofday( &stat_time_, NULL );
       }
     }
@@ -547,14 +535,12 @@ namespace dodo {
         while ( i_server != servers_.end() ) {
           if ( *i_server != init_server_ ) {
             if ( (*i_server)->hasStopped() ) {
-              std::thread::id tid = (*i_server)->getId();
               (*i_server)->wait();
               TCPServer* thisserver = (*i_server);
               i_server = servers_.erase(i_server);
               delete thisserver;
-              Logger::getLogger()->debug( common::Puts() <<
-                                          "TCPListener::run deleted stopped TCPServer " << common::Puts::hex() <<
-                                          tid << common::Puts::dec() );
+              log_Debug( "TCPListener::run deleted stopped TCPServer " << common::Puts::hex() <<
+                         (*i_server)->getId() << common::Puts::dec() );
             } else {
               if ( num_stopped == 0 &&
                    servers_.size() > params_.minservers &&
@@ -563,9 +549,8 @@ namespace dodo {
                   (*i_server)->requestStop();
                   cv_signal_.notify_all();
                   num_stopped--;
-                  Logger::getLogger()->debug( common::Puts() <<
-                                              "TCPListener::run stop idle TCPServer " << common::Puts::hex() <<
-                                              (*i_server)->getId() << common::Puts::dec() );
+                  log_Debug( "TCPListener::run stop idle TCPServer " << common::Puts::hex() <<
+                             (*i_server)->getId() << common::Puts::dec() );
               }
               i_server++;
             }
@@ -578,9 +563,8 @@ namespace dodo {
               delete init_server_;
               init_server_ = new_server;
               servers_.push_back( init_server_ );
-              Logger::getLogger()->debug( common::Puts() <<
-                                          "TCPListener::run replaced stopped init TCPServer " << common::Puts::hex() <<
-                                          init_server_->getTID() << common::Puts::dec() );
+              log_Debug( "TCPListener::run replaced stopped init TCPServer " << common::Puts::hex() <<
+                         init_server_->getTID() << common::Puts::dec() );
             }
             i_server++;
           }

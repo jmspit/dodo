@@ -5,21 +5,24 @@
 
 using namespace dodo::network;
 
+
 class Server : public TCPServer {
   public:
     Server(TCPListener &listener) : TCPServer(listener) {}
 
     virtual TCPServer* addServer() { return new Server( listener_ ); }
 
-    virtual bool handShake( BaseSocket *socket ) {
+    virtual bool handShake( BaseSocket *socket, ssize_t &received, ssize_t &sent ) {
       return true;
     }
 
-    virtual bool requestResponse( BaseSocket *socket ) {
+    virtual bool requestResponse( BaseSocket *socket, ssize_t &received, ssize_t &sent ) {
       std::string request;
       SystemError error = socket->receiveLine( request );
+      received = request.length() + 1;
+      sent = request.length() + 1;
       if ( error == SystemError::ecOK ) {
-        Logger::getLogger()->trace( Puts() << "socket " << socket->getFD() << " received : '" << request << "'!" );
+        log_Trace( "socket " << socket->getFD() << " received : '" << request << "'!" );
         error = socket->sendLine( request, false );
         return error == SystemError::ecOK;
       }

@@ -88,16 +88,20 @@ namespace dodo {
          * Override to perform a protocol handshake.
          * @param socket A pointer to the socket to handshake. If this returns false,. the socket
          * will be closed.
+         * @param received The number of bytes received by the call.
+         * @param sent The number of bytes sent by the call.
          * @return true if the handshake succeeded.
          */
-        virtual bool handShake( network::BaseSocket *socket ) = 0;
+        virtual bool handShake( network::BaseSocket *socket, ssize_t &received, ssize_t &sent ) = 0;
 
         /**
          * Override to perform a request-response cycle.
          * @param socket The socket to work on.
+         * @param received The number of bytes received by the call.
+         * @param sent The number of bytes sent by the call.
          * @return true if the cycle completed successfully
          */
-        virtual bool requestResponse( network::BaseSocket *socket ) = 0;
+        virtual bool requestResponse( network::BaseSocket *socket, ssize_t &received, ssize_t &sent ) = 0;
 
         /**
          * Override to perform a shutdown.

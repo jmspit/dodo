@@ -37,10 +37,13 @@ namespace dodo::common {
    * \code
    * string s = common::Puts() << "integer: " << 3 << " double: " << common::Puts:setprecision(2) << 3.145;
    * \endcode
-   * which is very convenient in, for example, throwing exceptions;
+   * which is very convenient in, for example, throwing exceptions, where the throw_Exception macro already inserts
+   *  the "Puts() <<" in the expression, so one can write
    * \code
-   * throw Exception( common::Puts() << "open failed with errorcode: " << errorcode );
+   * throw Exception( "open failed with errorcode: " << errorcode );
    * \endcode
+   *
+   *
    */
   class Puts {
     public:
@@ -126,7 +129,7 @@ namespace dodo::common {
        * @param s The string.
        * @return This Puts.
        */
-      Puts& operator<<( const string& s ) {
+      const Puts& operator<<( const string& s ) const {
         ss_ << s;
         return *this;
       }
@@ -136,7 +139,7 @@ namespace dodo::common {
        * @param s The const char*
        * @return This Puts.
        */
-      Puts& operator<<( const char* s ) {
+      const Puts& operator<<( const char* s ) const {
         ss_ << s;
         return *this;
       }
@@ -146,7 +149,7 @@ namespace dodo::common {
        * @param c The char
        * @return This Puts.
        */
-      Puts& operator<<( char c ) {
+      const Puts& operator<<( char c ) const {
         ss_ << c;
         return *this;
       }
@@ -156,7 +159,7 @@ namespace dodo::common {
        * @param i The int
        * @return This Puts.
        */
-      Puts& operator<<( int i ) {
+      const Puts& operator<<( int i ) const {
         ss_ << i;
         return *this;
       }
@@ -166,7 +169,7 @@ namespace dodo::common {
        * @param l The long
        * @return This Puts.
        */
-      Puts& operator<<( long l ) {
+      const Puts& operator<<( long l ) const {
         ss_ << l;
         return *this;
       }
@@ -176,7 +179,7 @@ namespace dodo::common {
        * @param l The long long
        * @return This Puts.
        */
-      Puts& operator<<( long long l ) {
+      const Puts& operator<<( long long l ) const {
         ss_ << l;
         return *this;
       }
@@ -186,7 +189,7 @@ namespace dodo::common {
        * @param i The unsigned integer to append.
        * @return This Puts.
        */
-      Puts& operator<<( unsigned int i ) {
+      const Puts& operator<<( unsigned int i ) const {
         ss_ << i;
         return *this;
       }
@@ -196,7 +199,7 @@ namespace dodo::common {
        * @param l The unsigned long to append.
        * @return This Puts.
        */
-      Puts& operator<<( unsigned long l ) {
+      const Puts& operator<<( unsigned long l ) const {
         ss_ << l;
         return *this;
       }
@@ -206,7 +209,7 @@ namespace dodo::common {
        * @param l The unsigned long long to append.
        * @return This Puts.
        */
-      Puts& operator<<( unsigned long long l ) {
+      const Puts& operator<<( unsigned long long l ) const {
         ss_ << l;
         return *this;
       }
@@ -216,7 +219,7 @@ namespace dodo::common {
        * @param f The float to append.
        * @return This Puts.
        */
-      Puts& operator<<( float f ) {
+      const Puts& operator<<( float f ) const {
         ss_ << f;
         return *this;
       }
@@ -226,7 +229,7 @@ namespace dodo::common {
        * @param d The double to append.
        * @return This Puts.
        */
-      Puts& operator<<( double d ) {
+      const Puts& operator<<( double d ) const {
         ss_ << d;
         return *this;
       }
@@ -236,7 +239,7 @@ namespace dodo::common {
        * @param p The void* to append.
        * @return This Puts.
        */
-      Puts& operator<<( void *p ) {
+      const Puts& operator<<( void *p ) const {
         ss_ << p;
         return *this;
       }
@@ -246,7 +249,7 @@ namespace dodo::common {
        * @param id The std::thread::id to append.
        * @return This Puts.
        */
-      Puts& operator<<( std::thread::id id ) {
+      const Puts& operator<<( std::thread::id id ) const {
         ss_ << id;
         return *this;
       }
@@ -255,7 +258,7 @@ namespace dodo::common {
        * Appends std::endl
        * @return This Puts.
        */
-      Puts& operator<<( Puts::endl ) {
+      const Puts& operator<<( Puts::endl ) const {
         ss_ << std::endl;
         return *this;
       }
@@ -264,7 +267,7 @@ namespace dodo::common {
        * Applies std::fixed
        * @return This Puts.
        */
-      Puts& operator<<( fixed ) {
+      const Puts& operator<<( fixed ) const {
         ss_ << std::fixed;
         return *this;
       }
@@ -273,7 +276,7 @@ namespace dodo::common {
        * Applies std::scientific
        * @return This Puts.
        */
-      Puts& operator<<( scientific ) {
+      const Puts& operator<<( scientific ) const {
         ss_ << std::scientific;
         return *this;
       }
@@ -282,7 +285,7 @@ namespace dodo::common {
        * Applies std::dec
        * @return This Puts.
        */
-      Puts& operator<<( dec ) {
+      const Puts& operator<<( dec ) const {
         ss_ << std::dec;
         return *this;
       }
@@ -291,7 +294,7 @@ namespace dodo::common {
        * Applies std::oct
        * @return This Puts.
        */
-      Puts& operator<<( oct ) {
+      const Puts& operator<<( oct ) const {
         ss_ << std::oct;
         return *this;
       }
@@ -300,7 +303,7 @@ namespace dodo::common {
        * Applies std::hex
        * @return This Puts.
        */
-      Puts& operator<<( hex ) {
+      const Puts& operator<<( hex ) const {
         ss_ << std::hex;
         return *this;
       }
@@ -310,7 +313,7 @@ namespace dodo::common {
        * @param w The width.
        * @return This Piuts.
        */
-      Puts& operator<<( setw w ) {
+      const Puts& operator<<( setw w ) const {
         ss_ << std::setw( w.w_ );
         return *this;
       }
@@ -320,7 +323,7 @@ namespace dodo::common {
        * @param p The precision.
        * @return This Piuts.
        */
-      Puts& operator<<( setprecision p ) {
+      const Puts& operator<<( setprecision p ) const {
         ss_ << std::setprecision( p.p_ );
         return *this;
       }
@@ -335,7 +338,7 @@ namespace dodo::common {
       /**
        * Use a stringstream internally.
        */
-      stringstream ss_;
+      mutable stringstream ss_;
 
   };
 

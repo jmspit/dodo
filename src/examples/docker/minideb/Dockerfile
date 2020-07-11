@@ -11,7 +11,7 @@ RUN git config --global advice.detachedHead false && git clone --branch latest h
 RUN cd dodo && \
     mkdir build && \
     cd build && \
-    cmake ..  -DCMAKE_INSTALL_PREFIX=/opt/dodo && \
+    cmake ..  -DCMAKE_INSTALL_PREFIX=/opt/dodo -DCMAKE_BUILD_TYPE=RELEASE && \
     make && \
     make install
 

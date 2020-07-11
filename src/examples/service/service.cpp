@@ -24,10 +24,10 @@ class MyApp : public Application {
         }
         listener_->stop();
         listener_->wait();
-        Logger::getLogger()->info( Puts() << Config::getConfig()->getAppName() << " finished" );
+        log_Info( Config::getConfig()->getAppName() << " finished" );
       }
       catch ( const std::exception &e ) {
-        Logger::getLogger()->fatal( e.what() );
+        log_Fatal( e.what() );
       }
       return 0;
     }
@@ -35,6 +35,10 @@ class MyApp : public Application {
     TCPListener* listener_;
 };
 
+
+void opimized_out( const std::string &s ) {
+  //cout << s << endl;
+}
 
 int main( int argc, char* argv[], char** envp ) {
   try {

@@ -108,14 +108,7 @@ namespace dodo::common {
        */
       bool hasStopRequest() const { return has_stop_request_; }
 
-      /**
-       * Short for Logger::getLogger()->log
-       * @param level The logLevel of the messsage.
-       * @param message The log message.
-       */
-      void log( Logger::LogLevel level, const std::string message ) {
-        if ( logger_ ) logger_->log( level, message );
-      }
+
 
       /**
        * Override.

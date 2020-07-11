@@ -465,7 +465,6 @@ namespace dodo::network {
     std::stringstream ss;
     error = receive( &c, 1, received );
     while ( error == SystemError::ecOK && received == 1 && c != '\n' ) {
-      Logger::getLogger()->trace( Puts() << "socket " << getFD() << " read char : " << uint8_t(c)  );
       if ( c != '\r' ) ss << c;
       error = receive( &c, 1, received );
     }

@@ -58,7 +58,7 @@ namespace dodo::common {
   }
 
   void Application::onSignal( int signal ) {
-    log( Logger::LogLevel::Warning, common::Puts() << "caught signal " << signal );
+    log_Warning( "caught signal " << signal );
     switch ( signal ) {
       case SIGINT:
       case SIGQUIT:

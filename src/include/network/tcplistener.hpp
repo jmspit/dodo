@@ -28,6 +28,7 @@
 #include <sys/epoll.h>
 #include <sys/resource.h>
 
+#include <atomic>
 #include <functional>
 #include <map>
 #include <queue>
@@ -196,13 +197,17 @@ namespace dodo {
          * Load statisics.
          */
         struct Stats {
-          Stats() : connections(0), requests(0), throttles(0) {};
+          Stats() : connections(0), requests(0), throttles(0),received(0),sent(0) {};
           /** The number of connections. */
-          unsigned long long connections;
+          ssize_t connections;
           /** The number of requests. */
-          unsigned long long requests;
+          ssize_t requests;
           /** The number of throttles. */
-          unsigned long long throttles;
+          ssize_t throttles;
+          /** The number of bytes received */
+          ssize_t received;
+          /** The number of bytes sent */
+          ssize_t sent;
         };
 
         /**
@@ -350,6 +355,17 @@ namespace dodo {
         virtual void run();
 
         /**
+         * Add received bytes.
+         * @param r The received bytes to add.
+         * @param s The sent bytes to add
+         */
+        void addReceivedSentBytes( ssize_t r, ssize_t s ) {
+          threads::Mutexer lock( stats_mutex_ );
+          last_stats_.received += r;
+          last_stats_.sent += s;
+        }
+
+        /**
          * The listening address.
          */
         Address listen_address_;
@@ -446,6 +462,11 @@ namespace dodo {
         Stats last_stats_;
 
         /**
+         * Protects prev_stats_, last_stats_.
+         */
+        threads::Mutex stats_mutex_;
+
+        /**
          * Time of last queueing warning
          */
         struct timeval warn_queue_time_;
@@ -494,7 +515,7 @@ namespace dodo {
         friend TCPListener::SockState& operator^=( TCPListener::SockState&, TCPListener::SockState );
         friend bool operator&( const TCPListener::SockState&, const TCPListener::SockState& );
 
-        friend dodo::common::Puts& operator<<( dodo::common::Puts&, TCPListener::SockState );
+        friend const dodo::common::Puts& operator<<( const dodo::common::Puts&, TCPListener::SockState );
 
     };
 
@@ -535,7 +556,7 @@ namespace dodo {
      * @param state The TCPListener::SockState to write.
      * @return The output Puts
      */
-    inline dodo::common::Puts& operator<<( dodo::common::Puts& os, TCPListener::SockState state ) {
+    inline const dodo::common::Puts& operator<<( const dodo::common::Puts& os, TCPListener::SockState state ) {
       if ( state & TCPListener::SockState::None ) os << "None|";
       if ( state & TCPListener::SockState::New ) os << "New|";
       if ( state & TCPListener::SockState::Read ) os << "Read|";

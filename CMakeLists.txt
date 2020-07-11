@@ -12,7 +12,8 @@ set( PROJECT_VERSION_PATCH "1" )
 set( PROJECT_VERSION_STR "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}")
 
 # compiler settings
-SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall -Wconversion -pthread")
+SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall -Wconversion -ffunction-sections -fdata-sections -pthread")
+SET(CMAKE_LINKER_FLAGS  "${CMAKE_LINKER_FLAGS} --gc-sections")
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "lib" )
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "lib" )
@@ -48,11 +49,11 @@ set( ${LIB_DODO}_objects
 set( DODO_USE_LIBS crypto ssl pthread yaml-cpp stdc++fs )
 
 add_library( ${LIB_DODO} SHARED ${${LIB_DODO}_objects} )
-add_library( ${LIB_DODO_STATIC} ${${LIB_DODO}_objects} )
+#add_library( ${LIB_DODO_STATIC} ${${LIB_DODO}_objects} )
 target_link_libraries( ${LIB_DODO} ${DODO_USE_LIBS} )
 install( TARGETS ${LIB_DODO} LIBRARY DESTINATION lib )
-target_link_libraries( ${LIB_DODO_STATIC} ${DODO_USE_LIBS} )
-install( TARGETS ${LIB_DODO_STATIC} ARCHIVE DESTINATION lib )
+#target_link_libraries( ${LIB_DODO_STATIC} ${DODO_USE_LIBS} )
+#install( TARGETS ${LIB_DODO_STATIC} ARCHIVE DESTINATION lib )
 
 
 include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/src/include )

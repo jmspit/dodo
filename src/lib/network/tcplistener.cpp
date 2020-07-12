@@ -483,13 +483,16 @@ namespace dodo {
         }
         log_Statistics( "TCPListener #clients=" <<
                         clients_.size() << " #servers=" << servers_.size() << " #queued=" << requests_q_sz_ <<
-                        " recv=" << last_stats_.received << " sent=" << last_stats_.sent <<
-                        " conn=" << (double)( last_stats_.connections - prev_stats_.connections ) /
-                        getSecondDiff(prev_stat_time_,stat_time_ ) <<
+                        " recv=" << (double)( last_stats_.received - prev_stats_.received ) /
+                          getSecondDiff(prev_stat_time_,stat_time_ ) / 1024.0 <<
+                        "KiB/s sent=" << (double)( last_stats_.sent - prev_stats_.sent ) /
+                          getSecondDiff(prev_stat_time_,stat_time_ ) / 1024.0 <<
+                        "KIB/s conn=" << (double)( last_stats_.connections - prev_stats_.connections ) /
+                          getSecondDiff(prev_stat_time_,stat_time_ ) <<
                         "/s req=" << (double)( last_stats_.requests - prev_stats_.requests ) /
-                        getSecondDiff(prev_stat_time_,stat_time_) <<
+                          getSecondDiff(prev_stat_time_,stat_time_) <<
                         "/s throttle=" << (double)( last_stats_.throttles - prev_stats_.throttles ) /
-                        getSecondDiff(prev_stat_time_,stat_time_) << "/s" );
+                          getSecondDiff(prev_stat_time_,stat_time_) << "/s" );
         log_Statistics( common::Puts::setprecision(2) <<
                         "TCPListener ucpu=" << getLastUserCPU() <<
                         " scpu=" << getLastSysCPU() <<

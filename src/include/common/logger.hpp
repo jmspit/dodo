@@ -128,22 +128,14 @@ namespace dodo::common {
        * Calling is thread-safe.
        * @param message The Debug log message.
        */
-      #ifndef NDEBUG
       void debug( const std::string &message );
-      #else
-      inline void debug( const std::string & ) const {}
-      #endif
 
       /**
        * Log a Trace log entry. These are only logged when LogLevel >= Trace.
        * Calling is thread-safe.
        * @param message The Trace log message.
        */
-      #ifndef NDEBUG
       void trace( const std::string &message );
-      #else
-      inline void trace( const std::string & ) const {}
-      #endif
 
       /**
        * Initialize the Logger singleton.

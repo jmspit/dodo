@@ -131,7 +131,6 @@ namespace dodo::common {
     log( LogLevel::Statistics, message );
   }
 
-  #ifndef NDEBUG
   void Logger::debug( const std::string &message ) {
     log( LogLevel::Debug, message );
   }
@@ -139,7 +138,6 @@ namespace dodo::common {
   void Logger::trace( const std::string &message ) {
     log( LogLevel::Trace, message );
   }
-  #endif
 
   int Logger::mapLeveltoSyslog( LogLevel level ) {
     switch ( level ) {

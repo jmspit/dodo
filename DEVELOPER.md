@@ -237,7 +237,7 @@ Dodo supports TLS through dodo::network::TLSContext and dodo::network::TLSSocket
 
 ### Asymmetric cryptography
 
-![Test Image 4](https://github.com/jmspit/dodo/tree/master/src/doc/img/asymmetric_key_encryption.svg)
+![Test Image 4](https://raw.githubusercontent.com/jmspit/dodo/master/src/doc/img/asymmetric_key_encryption.svg)
 
 The core principle to asymmetric cryptography is a mathematical mapping that is cheap to
 compute in one direction, and computationally infeasible in the other. Typically, the ease of muliplying primes

@@ -4,6 +4,7 @@
 #include <dodo.hpp>
 
 using namespace dodo::network;
+using namespace dodo::common;
 
 
 class Server : public TCPServer {
@@ -16,17 +17,16 @@ class Server : public TCPServer {
       return true;
     }
 
-    virtual bool readSocket( BaseSocket *socket, ssize_t &received, ssize_t &sent ) {
-      std::string request;
-      SystemError error = socket->receiveLine( request );
-      received = request.length() + 1;
-      sent = request.length() + 1;
-      if ( error == SystemError::ecOK ) {
-        log_Trace( "socket " << socket->getFD() << " received : '" << request << "'!" );
-        error = socket->sendLine( request, false );
-        return error == SystemError::ecOK;
-      }
-      return false;
+    virtual SystemError readSocket( TCPListener::SocketWork &work, ssize_t &sent ) {
+      SystemError error;
+      const OctetArray &buf = work.data->getReadBuffer();
+      if ( buf.size > 0 ) {
+        if ( buf.array[buf.size-1] == '\n' ) {
+          error = work.socket->send( buf.array, buf.size );
+          work.data->clearBuffer();
+          return error;
+        } else return SystemError::ecEAGAIN;
+      } else return SystemError::ecEAGAIN;
     }
 
     virtual void shutDown( BaseSocket *socket ) {

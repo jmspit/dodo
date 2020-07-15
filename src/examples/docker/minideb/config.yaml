@@ -31,16 +31,10 @@ server:
   stat-trc-interval-s: 300
   listener-sleep-ms: 200
   tcp-keep-alive: true
-  whitelist-ip:
-    - 127.0.0.1
   tls-context:
     private-key: id.rsa
+    private-key-passphrase: ENC[]
     certificate: server.cert
     tls-min-version: 1.2
     ciphersuite: TLS_AES_256_GCM_SHA384
-    # clients must offer trusted certs whose fingerprint appears in the list
-    whitelist-fingerprint:
-      # the hashing algorithm to apply
-      sha256:
-        - 44:B5:45:AA:8A:25:E6:5A:73:CA:15:DC:27:FC:36:D2:4C:1C:B9:95:3A:06:65:39:B1:15:82:DC:48:7B:48:33
 

@@ -103,6 +103,8 @@ namespace dodo {
     const std::string yaml_send_timeout_seconds = "send-timeout-seconds";
     /** yaml_receive_timeout_seconds YAML config name */
     const std::string yaml_receive_timeout_seconds = "receive-timeout-seconds";
+    /** yaml_tcp_keep_alive YAML config name */
+    const std::string yaml_tcp_keep_alive = "tcp-keep-alive";
 
 
 
@@ -121,6 +123,7 @@ namespace dodo {
       stat_trc_interval_s     = YAML_assign_by_key_with_default<time_t>( node, yaml_stat_trc_interval_s, 300 );
       send_timeout_seconds    = YAML_assign_by_key_with_default<int>( node, yaml_send_timeout_seconds, 0 );
       receive_timeout_seconds = YAML_assign_by_key_with_default<int>( node, yaml_receive_timeout_seconds, 0 );
+      tcp_keep_alive          = YAML_assign_by_key_with_default<bool>( node, yaml_tcp_keep_alive, true );
     }
 
     TCPListener::TCPListener( const Address& address, const Params &params ) :
@@ -133,7 +136,7 @@ namespace dodo {
       params_ = params;
       init_server_ = nullptr;
       stop_server_ = false;
-      requests_q_sz_ = 0;
+      work_q_sz_ = 0;
 
       read_event_mask_ = EPOLLIN | EPOLLPRI | EPOLLONESHOT | EPOLLRDHUP | EPOLLERR | EPOLLHUP | EPOLLWAKEUP;
       //hangup_event_mask_ = EPOLLRDHUP | EPOLLERR | EPOLLHUP | EPOLLWAKEUP;
@@ -188,7 +191,7 @@ namespace dodo {
       std::unique_lock<std::mutex> lk( mt_signal_ );
       return cv_signal_.wait_for( lk,
                                   std::chrono::milliseconds(params_.listener_sleep_ms),
-                                  [this,server]{ return requests_q_sz_ || server->getRequestStop(); } );
+                                  [this,server]{ return work_q_sz_ || server->getRequestStop(); } );
     }
 
     void TCPListener::start( TCPServer *server ) {
@@ -238,10 +241,10 @@ namespace dodo {
           {
             threads::Mutexer lock( now_mutex_ );
             if ( servers_.size() == params_.maxservers &&
-                 requests_q_sz_ > 2 * servers_.size() &&
+                 work_q_sz_ > 2 * servers_.size() &&
                  now_.tv_sec > 30 + warn_queue_time_.tv_sec ) {
               log_Warning( "TCPListener::run queuing on maxservers #clients=" <<
-                clients_.size() << " #servers=" << servers_.size() << " queue=" << requests_q_sz_ );
+                clients_.size() << " #servers=" << servers_.size() << " queue=" << work_q_sz_ );
               gettimeofday( &warn_queue_time_, NULL );
             }
           }
@@ -264,10 +267,10 @@ namespace dodo {
                     } else {
                       {
                         threads::Mutexer lock( clientmutex_ );
-                        clients_[client_sock->getFD()].pointer = client_sock;
+                        clients_[client_sock->getFD()].socket = client_sock;
                         clients_[client_sock->getFD()].state = SockState::New;
                       }
-                      pushRequest( client_sock, SockState::New );
+                      pushWork( { client_sock, SockState::New } );
                       log_Debug( "TCPListener::run new client socket " <<
                                  client_sock->debugString() << " from " <<
                                  client_sock->getPeerAddress().asString() );
@@ -279,6 +282,7 @@ namespace dodo {
                       client_sock->setTCPNoDelay( true );
                       client_sock->setSendTimeout( params_.send_timeout_seconds );
                       client_sock->setReceiveTimeout( params_.receive_timeout_seconds );
+                      client_sock->setTCPKeepAlive( params_.tcp_keep_alive );
                       cv_signal_.notify_one();
                     }
                   } while ( client_sock->isValid() );
@@ -304,7 +308,7 @@ namespace dodo {
                   }
                   if ( combined_state != SockState::None ) {
                     poll_sockets[i].events = 0;
-                    pushRequest( poll_sockets[i].data.fd, combined_state );
+                    pushWork( poll_sockets[i].data.fd, combined_state );
                     cv_signal_.notify_one();
                   }
                 } else {
@@ -333,7 +337,7 @@ namespace dodo {
       }
       try {
         log_Debug( "TCPListener::run stop listener finish pending work" );
-        while( requests_q_sz_  > 0 ) std::this_thread::sleep_for(20ms);
+        while( work_q_sz_  > 0 ) std::this_thread::sleep_for(20ms);
         log_Debug( "TCPListener::run stop TCPServers " );
         for ( auto srv : servers_ ) {
           srv->requestStop();
@@ -346,63 +350,63 @@ namespace dodo {
         servers_.clear();
         auto clients_copy = clients_;  // closeSocket modifies clients_
         for( auto c: clients_copy ) {
-          log_Debug( "TCPListener::run close socket " << c.second.pointer );
-          closeSocket( c.second.pointer );
+          log_Debug( "TCPListener::run close socket " << c.second.socket );
+          closeSocket( c.second.socket );
         }
       }
       catch ( ... ) {
       }
     }
 
-    void TCPListener::pushRequest( int fd, SockState state ) {
+    void TCPListener::pushWork( int fd, SockState state ) {
       {
         threads::Mutexer lock( clientmutex_ );
         clients_[fd].state |= state;
-        requests_.push_back( &(clients_[fd]) );
-        requests_q_sz_++;
-        if ( ! (state & SockState::New) ) pollDel( clients_[fd].pointer );
+        workload_.push_back( &(clients_[fd]) );
+        work_q_sz_++;
+        if ( ! (state & SockState::New) ) pollDel( clients_[fd].socket );
       }
-      log_Debug( "TCPListener::pushRequest BaseSocket* socket " <<
-                 clients_[fd].pointer->debugString() << " state " << state );
+      log_Debug( "TCPListener::pushWork BaseSocket* socket " <<
+                 clients_[fd].socket->debugString() << " state " << state );
     }
 
-    void TCPListener::pushRequest( BaseSocket* socket, SockState state ) {
+    void TCPListener::pushWork( const SocketWork &work ) {
       {
         threads::Mutexer lock( clientmutex_ );
-        clients_[socket->getFD()].state |= state;
-        requests_.push_back( &(clients_[socket->getFD()]) );
-        requests_q_sz_++;
-        if ( ! (state & SockState::New) ) pollDel( clients_[socket->getFD()].pointer );
+        clients_[work.socket->getFD()].state |= work.state;
+        workload_.push_back( &(clients_[work.socket->getFD()]) );
+        work_q_sz_++;
+        if ( ! (work.state & SockState::New) ) pollDel( clients_[work.socket->getFD()].socket );
       }
-      log_Debug( "TCPListener::pushRequest BaseSocket* socket " << socket->debugString() <<
+      log_Debug( "TCPListener::pushWork BaseSocket* socket " << socket->debugString() <<
                  " state " << state );
     }
 
-    TCPListener::SockMap* TCPListener::popRequest() {
-      SockMap* result = NULL;
+    TCPListener::SocketWork* TCPListener::popWork() {
+      SocketWork* result = NULL;
       {
         threads::Mutexer lock( clientmutex_ );
-        if ( requests_.size() > 0 ) {
-          result = requests_.front();
-          requests_.pop_front();
+        if ( workload_.size() > 0 ) {
+          result = workload_.front();
+          workload_.pop_front();
         }
       }
       if ( result )
-        log_Debug( "TCPListener::popRequest socket " << result->pointer->debugString() <<
-                   " state " << result->state  << " sockmapstate=" << clients_[result->pointer->getFD()].state );
+        log_Debug( "TCPListener::popWork socket " << result->socket->debugString() <<
+                   " state " << result->state  << " sockmapstate=" << clients_[result->socket->getFD()].state );
       return result;
     }
 
-    void TCPListener::releaseRequest( BaseSocket* socket, SockState state ) {
-      log_Debug( "TCPListener::releaseRequest socket " << socket->debugString() <<
-                 " state " << state  << " sockmapstate=" << clients_[socket->getFD()].state );
-      requests_q_sz_--;
-      if ( state & TCPListener::SockState::Shut ) {
-        closeSocket( socket );
+    void TCPListener::releaseWork( const SocketWork &work ) {
+      log_Debug( "TCPListener::releaseWork socket " << work.socket->debugString() <<
+                 " state " << state  << " sockmapstate=" << clients_[work.socket->getFD()].state );
+      work_q_sz_--;
+      if ( work.state & TCPListener::SockState::Shut ) {
+        closeSocket( work.socket );
       } else {
         threads::Mutexer lock( clientmutex_ );
-        pollAdd( socket, read_event_mask_ | hangup_event_mask_ );
-        clients_[socket->getFD()].state ^= state;
+        pollAdd( work.socket, read_event_mask_ | hangup_event_mask_ );
+        clients_[work.socket->getFD()].state ^= work.state;
       }
     }
 
@@ -446,7 +450,7 @@ namespace dodo {
     }
 
     void TCPListener::addServers() {
-      while ( requests_q_sz_ > servers_.size() && servers_.size() < params_.maxservers  ) {
+      while ( work_q_sz_ > servers_.size() && servers_.size() < params_.maxservers  ) {
         TCPServer* add_server = init_server_->addServer();
         servers_.push_back(add_server);
         add_server->start();
@@ -455,10 +459,10 @@ namespace dodo {
     }
 
     void TCPListener::throttle() {
-      if ( requests_q_sz_ > params_.maxqdepth ) {
-        unsigned long last_pending =  requests_q_sz_;
+      if ( work_q_sz_ > params_.maxqdepth ) {
+        unsigned long last_pending =  work_q_sz_;
         unsigned int c = 0;
-        while ( requests_q_sz_ >= last_pending && c++ < params_.cycle_max_throttles ) {
+        while ( work_q_sz_ >= last_pending && c++ < params_.cycle_max_throttles ) {
           std::this_thread::sleep_for( std::chrono::microseconds( params_.throttle_sleep_us ) );
           {
             threads::Mutexer lock( stats_mutex_ );
@@ -482,7 +486,7 @@ namespace dodo {
           event_maxconnections_reached_ = 0;
         }
         log_Statistics( "TCPListener #clients=" <<
-                        clients_.size() << " #servers=" << servers_.size() << " #queued=" << requests_q_sz_ <<
+                        clients_.size() << " #servers=" << servers_.size() << " #queued=" << work_q_sz_ <<
                         " recv=" << (double)( last_stats_.received - prev_stats_.received ) /
                           getSecondDiff(prev_stat_time_,stat_time_ ) / 1024.0 <<
                         "KiB/s sent=" << (double)( last_stats_.sent - prev_stats_.sent ) /

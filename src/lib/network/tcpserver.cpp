@@ -45,7 +45,7 @@ namespace dodo {
 
     void TCPServer::run() {
       has_stopped_ = false;
-      network::TCPListener::SockMap* sockmap = 0;
+      network::TCPListener::SocketWork* sockmap = 0;
       struct timeval now, last_snap;
       gettimeofday( &last_active_, NULL );
       gettimeofday( &now, NULL );
@@ -63,94 +63,94 @@ namespace dodo {
 
             do {
 
-              sockmap = listener_.popRequest();
+              sockmap = listener_.popWork();
 
               if ( sockmap ) {
 
                 log_Debug( "TCPServer::run notify wakeup " <<
-                           sockmap->pointer->debugString() << " state " << sockmap->state );
+                           sockmap->socket->debugString() << " state " << sockmap->state );
 
                 TCPListener::SockState completion_state = TCPListener::SockState::None;
 
                 if ( sockmap->state & TCPListener::SockState::New ) {
                   log_Debug( "TCPServer::run ssNew " <<
-                             sockmap->pointer->debugString() << " state " << sockmap->state );
+                             sockmap->socket->debugString() << " state " << sockmap->state );
                   bool ok = false;
                   state_ = ssHandshake;
                   try {
                     ssize_t received = 0;
                     ssize_t sent = 0;
-                    ok = handShake( sockmap->pointer, received, sent );
+                    ok = handShake( sockmap->socket, received, sent );
                     listener_.addReceivedSentBytes( received, sent );
                     state_ = ssHandshakeDone;
                     completion_state |= TCPListener::SockState::New;
                     if ( !ok ) {
                       completion_state |= TCPListener::SockState::Shut;
                       log_Error( "TCPServer::run handshake failure socket " <<
-                                sockmap->pointer->debugString() );
+                                sockmap->socket->debugString() );
                     }
                   }
                   catch ( std::exception &e ) {
                     log_Error( "TCPServer::run exception in handshake " << e.what()
-                              << " socket " << sockmap->pointer->debugString() );
+                              << " socket " << sockmap->socket->debugString() );
                   }
                   catch ( ... ) {
                     log_Error( "TCPServer::run unhandled exception in handshake " <<
-                              sockmap->pointer->debugString() );
+                              sockmap->socket->debugString() );
                   }
                 }
 
                 if ( sockmap->state & TCPListener::SockState::Read ) {
                   log_Debug( "TCPServer::run ssRead " <<
-                             sockmap->pointer->debugString() << " state " << sockmap->state );
+                             sockmap->socket->debugString() << " state " << sockmap->state );
                   bool ok = false;
-                  state_ = ssRequestResponse;
+                  state_ = ssReadSocket;
                   try {
                     ssize_t received = 0;
                     ssize_t sent = 0;
-                    ok = requestResponse( sockmap->pointer, received, sent );
+                    ok = readSocket( sockmap->socket, received, sent );
                     listener_.addReceivedSentBytes( received, sent );
-                    state_ = ssRequestResponseDone;
+                    state_ = ssReadSocketDone;
                     completion_state |= TCPListener::SockState::Read;
                     if ( !ok ) {
                       completion_state |= TCPListener::SockState::Shut;
-                      log_Error( "TCPServer::run request-response failure socket " <<
-                                 sockmap->pointer->getFD() << " client " <<
-                                 sockmap->pointer->getPeerAddress().asString(true) );
+                      log_Error( "TCPServer::run readSocket failure socket " <<
+                                 sockmap->socket->getFD() << " client " <<
+                                 sockmap->socket->getPeerAddress().asString(true) );
                     }
                   }
                   catch ( std::exception &e ) {
                      log_Error( "TCPServer::run exception in handshake " << e.what()
-                                << " socket " << sockmap->pointer->getFD() );
+                                << " socket " << sockmap->socket->getFD() );
                   }
                   catch ( ... ) {
                      log_Error( "TCPServer::run unhandled exception in handshake socket " <<
-                                sockmap->pointer->getFD() );
+                                sockmap->socket->getFD() );
                   }
-                  state_ = ssRequestResponseDone;
+                  state_ = ssReadSocketDone;
                 }
 
                 if ( sockmap->state & TCPListener::SockState::Shut ) {
                   log_Debug( "TCPServer::run ssShut " <<
-                             sockmap->pointer->debugString() << " state " << sockmap->state );
+                             sockmap->socket->debugString() << " state " << sockmap->state );
                   state_ = ssShutdown;
                   try {
-                    shutDown( sockmap->pointer );
+                    shutDown( sockmap->socket );
                     state_ = ssShutdownDone;
                     completion_state |= TCPListener::SockState::Shut;
                   }
                   catch ( std::exception &e ) {
                      log_Error( "TCPServer::run exception in handshake " << e.what()
-                                << " socket " << sockmap->pointer->debugString() );
+                                << " socket " << sockmap->socket->debugString() );
                   }
                   catch ( ... ) {
                      log_Error( "TCPServer::run unhandled exception in handshake " <<
-                                sockmap->pointer->debugString() );
+                                sockmap->socket->debugString() );
                   }
                 }
-                state_ = ssReleaseRequest;
-                listener_.releaseRequest( sockmap->pointer, completion_state );
-                state_ = ssReleaseRequestDone;
+                state_ = ssReleaseWork;
+                listener_.releaseWork( { sockmap->socket, completion_state } );
+                state_ = ssReleaseWorkDone;
               }
 
             } while ( sockmap );

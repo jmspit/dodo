@@ -16,7 +16,7 @@ class Server : public TCPServer {
       return true;
     }
 
-    virtual bool requestResponse( BaseSocket *socket, ssize_t &received, ssize_t &sent ) {
+    virtual bool readSocket( BaseSocket *socket, ssize_t &received, ssize_t &sent ) {
       std::string request;
       SystemError error = socket->receiveLine( request );
       received = request.length() + 1;

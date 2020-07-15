@@ -32,16 +32,18 @@ namespace dodo {
     /**
      * Used in conjunction with TCPListener to implement high speed, multithreaded TCP services.
      * Subclass TCPServer and implement virtual
-     * - bool handShake(BaseSocket*)
-     * - bool requestResponse(BaseSocket*)
-     * - void shutDown(BaseSocket*)
-     * - TCPServer* addServer()
      *
-     * Each TCPServer is a thread that consumes work from the TCPListener in a request-response scheme. There
-     * can be many TCPServer threads consuming work together. If derived TCPServer objects write to shared data,
-     * that must be synchronized with a threads::Mutex.
+     *  - bool handShake(network::BaseSocket*, ssize_t&, ssize_t& )
+     *  - bool readSocket(network::BaseSocket*, ssize_t&, ssize_t& )
+     *  - void shutDown( BaseSocket* )
+     *  - TCPServer* addServer()
+     *
+     * Each TCPServer is a thread that consumes work from the TCPListener. There
+     * can be multiple TCPServer threads consuming work together, and the TCPListener auto-scales TCPServers
+     * depending on the load.
      *
      * A TCPServer is tied to a TCPListener, The TCPListener produces work to the pool of TCPServer, either
+     *
      * - new sockets.
      * - readable sockets (incoming data present).
      * - shutdown sockets (The TCPListener is informing the pool of TCPServer objects the BaseSocket will disappear).
@@ -63,12 +65,12 @@ namespace dodo {
           ssAwoken                             = 1,  /**< The TCPServer has woken up from a wait either due to an event or the wait timing out. */
           ssHandshake                          = 2,  /**< The TCPServer is about to invoke handShake(BaseSocket*). */
           ssHandshakeDone                      = 3,  /**< ssHandshake completed. */
-          ssRequestResponse                    = 4, /**< The TCPServer is about to invoke requestResponse(BaseSocket*). */
-          ssRequestResponseDone                = 5, /**< ssRequestResponse completed. */
+          ssReadSocket                         = 4, /**< The TCPServer is about to invoke readSocket(BaseSocket*). */
+          ssReadSocketDone                     = 5, /**< ssReadSocket completed. */
           ssShutdown                           = 6, /**< The TCPServer is about to invoke shutdown(BaseSocket*). */
           ssShutdownDone                       = 7,  /**< ssShutdown completed. */
-          ssReleaseRequest                     = 8,  /**< The TCPServer is releasing the request */
-          ssReleaseRequestDone                 = 9,  /**< ssReleaseRequest completed. */
+          ssReleaseWork                        = 8,  /**< The TCPServer is releasing the request */
+          ssReleaseWorkDone                    = 9,  /**< ssReleaseWork completed. */
         };
 
         /**
@@ -85,7 +87,9 @@ namespace dodo {
         virtual void run();
 
         /**
-         * Override to perform a protocol handshake.
+         * Override to perform a protocol handshake. Note that the TCP handshake has already taken place,
+         * and handShake() will only be called for new sockets. Moreover, there is no guarantee
+         * there will be any data to read.
          * @param socket A pointer to the socket to handshake. If this returns false,. the socket
          * will be closed.
          * @param received The number of bytes received by the call.
@@ -101,7 +105,7 @@ namespace dodo {
          * @param sent The number of bytes sent by the call.
          * @return true if the cycle completed successfully
          */
-        virtual bool requestResponse( network::BaseSocket *socket, ssize_t &received, ssize_t &sent ) = 0;
+        virtual bool readSocket( network::BaseSocket *socket, ssize_t &received, ssize_t &sent ) = 0;
 
         /**
          * Override to perform a shutdown.

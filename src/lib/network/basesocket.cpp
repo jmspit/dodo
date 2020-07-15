@@ -95,6 +95,11 @@ namespace dodo::network {
     setsockopt( socket_, SOL_TCP, TCP_NODELAY, &value, sizeof(value) );
   }
 
+  void BaseSocket::setTCPKeepAlive( bool enable ) {
+    int value = enable?1:0;
+    setsockopt( socket_, SOL_SOCKET, SO_KEEPALIVE, &value, sizeof(value) );
+  }
+
   bool BaseSocket::getBlocking() const {
     int flags = fcntl( socket_, F_GETFL, 0 );
     if ( flags == -1 ) throw_SystemExceptionObject( "fcntl failed", errno, this );

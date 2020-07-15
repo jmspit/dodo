@@ -221,6 +221,15 @@ namespace dodo::network {
       void setSendTimeout( double sec );
 
       /**
+       * Enable or disable TCP keep-alive on the socket. This might be useful to keep connections ope that run
+       * through a firewall that disconnects connections that are idle. Note that keep-alive itself is configured
+       * through the Linux kernel. Note that enabling keep-alive will not change the behavior of the socket
+       * from a developers perspective but ti does incur a bit of network overhead.
+       * @param enable If true enable, otherwise disable.
+       */
+      void setTCPKeepAlive( bool enable );
+
+      /**
        * Get the local address for this socket.
        * @return The local Address.
        */

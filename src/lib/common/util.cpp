@@ -299,6 +299,12 @@ namespace dodo::common {
    */
   template std::string YAML_assign_by_key<std::string>( const YAML::Node &, const std::string&  );
 
+  /**
+   * Instantiate template YAML_assign_by_key for bool
+   * @return the value as a bool
+   */
+  template bool YAML_assign_by_key<bool>( const YAML::Node &, const std::string&  );
+
   template <typename T> T YAML_assign_by_key_with_default( const YAML::Node &node,
                                                            const std::string& key,
                                                            const T& default_value ) {
@@ -342,5 +348,11 @@ namespace dodo::common {
    * @return the value as a std::string
    */
   template std::string YAML_assign_by_key_with_default<std::string>( const YAML::Node &, const std::string&, const std::string&  );
+
+  /**
+   * Instantiate template YAML_assign_by_key for bool
+   * @return the value as a bool
+   */
+  template bool YAML_assign_by_key_with_default<bool>( const YAML::Node &, const std::string&, const bool&  );
 
 }

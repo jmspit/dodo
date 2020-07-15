@@ -1,8 +1,8 @@
-# DODO - a C++ convenience library {#mainpage}
+# DODO - C++ container service library {#mainpage}
 
 ## Design goals
 
-A library to facilitate of C++ software for the Linux platform with a focus on automated and containerized deployments.
+A library to facilitate C++ software development for the Linux platform with a focus on containerized deployments.
 
 ## Dependencies
 

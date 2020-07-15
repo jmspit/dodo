@@ -36,9 +36,14 @@ int main( int argc, char* argv[] ) {
 }
 ```
 
-Or use the dodo::common::Application class, as that will initialize the library, install signal handlers,
-parse command line arguments, read environment variables and so on. Subclass Application and
-implement the run method
+Or use the dodo::common::Application class, as that will
+
+  - initialize the dodo library
+  - install signal handlers
+  - parse command line arguments, read environment variables
+  - read configuration data from the specified configuration file.
+
+Subclass Application and implement the run method
 
 ```C
 #include <dodo.hpp>
@@ -80,13 +85,13 @@ Methods that might be expected to fail return a SystemError, a (mostly 1-1) mapp
 internal dodo errors that can be used in program flows. Among error conditions that will throw are
 
   - specifying an non-existing configuration file
-  - loading an invalid private keys
+  - loading an invalid private key
   - unable to allocate memory
 
 whilst SystemError is returned when
 
-  - a fqdn fails to resolves
-  - send / receive errors
+  - a fqdn fails to resolve
+  - send / receive timeouts
 
 As dodo::common::Exception itself descends from std::runtime_error, which in turn descends from std::exception,
 try / catch code such as
@@ -108,9 +113,8 @@ may use or mimic the throw_Exception() macro's.
 # Deployment configuration
 
 The dodo::common::Config interface enforces the use of a YAML configuration file with mandatory sections that
-configures aspects of dodo, and likely develoer specified data specif to the dodo::common::Application.
+configures mandatory configuration items
 
-The mandatory sections are
 ```YAML
 dodo:
   common:
@@ -121,7 +125,8 @@ dodo:
         level: info
 ```
 
-A dodo Application requires at least a name and a loglevel for logging to console or standard out.
+A dodo Application configuration requires at least a name and a dodo::common::Logger::LogLevel for logging to console or
+standard out.
 
 The dodo mandatory section can appear anywhere in the YAML as long as it is a root node. Configuration formats
 of other dodo components are described by topic and class below.
@@ -132,7 +137,7 @@ A logging framework is available to write log entries to one or more destination
 
   - standard output aka console
   - a file local to the process
-  - the syslog call (man 3 syslog)
+  - the syslog
 
 The logging interface is thread-safe.
 
@@ -176,16 +181,35 @@ The dodo::common::Logger::LogLevel levels can be specified in the configuration 
 format, but the shorter format will be used in log entries written to console or file. So `level: fatal` and
 `level: FAT` are equivalent.
 
-|short|long|syslog mapping|
-|-----|----|--------------|
-| `FAT` | `fatal` | 2 CRITICAL |
-| `ERR` | `error` | 3 ERROR |
-| `WRN` | `warning` | 4 WARNING |
-| `INF` | `info` | 6 INFORMATIONAL |
-| `DBG` | `debug` | ignored |
-| `TRC` | `trace` | ignored |
+|short|long|syslog mapping| Release build |
+|-----|----|--------------|---------------|
+| `FAT` | `fatal` | 2 CRITICAL | Included in code |
+| `ERR` | `error` | 3 ERROR | Included in code |
+| `WRN` | `warning` | 4 WARNING | Included in code |
+| `INF` | `info` | 6 INFORMATIONAL | Included in code |
+| `STA` | `statistics` | 6 INFORMATIONAL | Included in code |
+| `DBG` | `debug` | ignored | Excluded from code |
+| `TRC` | `trace` | ignored | Excluded from code |
 
-So it is not possible to debug or trace to the syslog.
+So it is not possible to debug or trace to the syslog, and debug and trace loglevels have no effect in release builds.
+
+To log messages in the code, use the log_Fatal through log_Trace macros (all include an implicit Puts() so streaming
+syntax can be used to easily log different data-types). For example
+
+```C
+  log_Debug( "connection from " << address.AsString() );
+  log_Error( "receive timeout on socket " << socket.getFD() );
+```
+
+In release builds (`-DNDEBUG`) the log_Debug and log_Trace macros reduce to void and are thus eliminated from the code, and the
+above fragment would reduce to
+
+```C
+  log_Error( "receive timeout on socket " << socket.getFD() );
+```
+
+
+The configure the syslog destination
 
 ```YAML
 dodo:
@@ -198,8 +222,8 @@ dodo:
         facility: 1               # optional default 1
 ```
 
-The syslog facility should be either 1 for `user-level messages` or in the range `local0` to `local7` or 16 through 23 as the
-remaining values are reserved for other use.
+The syslog facility should be either 1 for `user-level messages` or in the range `local0` to `local7` or 16 through 23
+as the remaining values are reserved for other use.
 
 
 # Threads
@@ -476,22 +500,20 @@ $ openssl s_client -showcerts -connect localhost:12345 -CAfile /etc/ssl/certs/do
 
 # TCPListener / TCPServer
 
-Developers create their own network protocols by sub-classing dodo::network::TCPServer and implement a request (reading)
-and response (handling + sending) mechanism of arbitrary complexity. The dodo::network::TCPListener is a
-dodo::threads::Thread, and when started will
+Developers create their own network protocols on top of TCP by sub-classing dodo::network::TCPServer and implement a
+request (reading) and response (handling + sending) mechanism of arbitrary complexity. The dodo::network::TCPListener
+is a dodo::threads::Thread, and once started will
 
-  - listen for TCP handshakes
-  - accept TCP handshakes
-  - listen for socket events (data to be read,hangup,error to handle) and produces events as work signals to the pool
+  - listen and accept TCP handshakes
+  - listen for socket events (data to be read,hangup,error to handle) and produces it as work to the pool
     of TCPServer instances.
-  - manage a pool of TCPServer worker threads.
-  - scale the number of TCPServer instances between a minimum and maximum depending on the amount of work queued
-    for processing
-  - throttle the production of work by delaying the TCPListener reading socket events, if the queue depth
+  - manage the pool of TCPServer worker threads, scale the number of TCPServer instances between a minimum and maximum
+    depending on the amount of work queued for processing
+  - throttle the production of work by delaying (throttling) the TCPListener reading socket events, if the queue depth
     exceed its maximum and the maximum number of TCPServer have already been started.
 
 As the dodo::network::TCPServer and dodo::network::TCPListener interfaces use dodo::network::BaseSocket,
-they do not care if the actual socket is a regular or a TLS-secured socket.
+both do not depend on the socket being a regular or a TLS-secured socket.
 
 The dodo::network::TCPListener uses the epoll_wait interface to wait for and read socket events in its run()
 method, which is executed a dedicated thread. Only if there is socket activity (new connections, data to be read,
@@ -506,20 +528,20 @@ The request-response paradigm comprises these steps
     speak the correct protocol or setup state-full data for the remainder of the connection. The handshake is implemented
     by overriding the virtual bool dodo::network::TCPServer::handShake(), which should be returning false if the handshake fails,
     in which case the dodo::network::TCPListener will clean up.
-  - Zero or more request-response cyles by overriding dodo::network::TCPServer::requestResponse(). Note that the
-    request data sent must be fully read within a single requestResponse cycle, but if required a protocol can be
+  - Zero or more request-response cyles by overriding dodo::network::TCPServer::readSocket(). Note that the
+    request data sent must be fully read within a single readSocket cycle, but if required a protocol can be
     created that reads across several requests (which would only serve a point if local RAM needs to be protected against
     very large request by applying streaming).
   - A shutdown when the peer hangs up or the socket is/must be terminated due to errors. Override
     dodo::network::TCPServer::shutDown() when the dodo::network::TCPServer needs to clean things up.
 
-Additionally, the devloper will need to override dodo::network::TCPServer::addServer() to provide an instance
+Additionally, the devloper will need to override dodo::network::TCPServer::addServer() to provide a new instance
 of a dodo::network::TCPServer descendant so that dodo::network::TCPListner can spawn new servers.
 
-The dodo::network::TCPListener has some configuration parameters that orchestrate its runtime behavior, which
+The dodo::network::TCPListener has some configuration parameters that define its runtime behavior, which
 are bundled in the dodo::network::TCPListener::Params struct. These parameters can either be specified by C++ code
-or handed to a TCPListner instance by specifying a Config YAML node, which may thus appear anywhere in the YAML file. In
-the below example, the myapp.tcplistener node would be passed.
+or handed to a TCPListner instance by specifying a Config YAML node (which may thus appear anywhere in the YAML file).
+In the below example, the myapp.tcplistener node would be passed.
 
 ```YAML
 myapp:
@@ -554,9 +576,10 @@ myapp:
 | `throttle-sleep-us` | unsigned int | `4000` | The number of microseconds to stall the TCPListener in case max-queue-depth is reached. |
 | `cycle-max-throttles` | unsigned int | `40` | The maximum number of throttles per listener-sleep-ms cycle. |
 | `stat-trc-interval-s` | unsigned int | `300` | The number of seconds between writing status/performance messages to the log. |
+| `tcp-keep-alive` | bool | `false` | If true, enable TCP keep alive on client sockets. |
 
 
-To understand the purpose and effect of the paramaters, this is rougly the TCPListner loop
+To highlight the purpose and effect of the parameters, the TCPListener loop roughly iterates as
 
 ```
 while ( ! stopped ) {
@@ -565,7 +588,7 @@ while ( ! stopped ) {
   wait-sleep listener-sleep-ms for 1 to poll-batch socket events
   if ( !timeout ) {
     for new-connection events, setup the sockets, queue the handshake
-    for existing connections with events, queue the requestResponse cycle
+    for existing connections with events, queue the readSocket cycle
   }
 ```
 

@@ -56,30 +56,32 @@ namespace dodo {
     /**
      *
      * The TCPListener listens, accepts connections and generates socket events to produce TCP work to a pool of
-     * TCPServer worker objects. Each TCPServer can pick up 'work' by reading the request from the socket, and write
-     * a response, after which the TCPServer is ready to accept other work, not necessarily on the same socket, os
-     * a single TCPServer may service multiple connections through its lifetime.
+     * TCPServer worker objects. Developers must implement a protocol by subclassing TCPServer. The produced
+     * by a TCPListener is either
      *
-     * The TCPListener handles the details of connection management, the developer sub-classes TCPServer to implement
-     * a desired request-response protocol.
+     *   - handling new connections (and optionally  perform a protocol handShake).
+     *   - reading data from sockets and sending responses
+     *   - closing down connections on hangups or errors.
      *
-     * TCPListener uses the Linux epoll_wait interface to pick up socket events.
+     * The developer sub-classes TCPServer to implement a request-response protocol.
      *
-     * The TCPListener is started start( TCPServer *server ) with an initial TCPServer child object. The
+     * TCPListener uses the Linux epoll_wait interface to pick up socket events and distribute the work to TCPServers.
+     *
+     * The TCPListener is started start( TCPServer *server ) with an initial TCPServer object. The
      * TCPServer::addServer() method is used to spawn additional TCPServer objects up to Params.minservers when
      * TCPListener::run() is invoked. The TCPListener will spawn TCPServer worker threads if the amount of pending
      * work exceeds the number of existing TCPServer objects, up to Params.maxservers.
      *
-     * The TCPServer descendant class implements the details of handShake, requestResponse and shutDown, and are each
-     * passed a SockMap that needs to be serviced -a SockMap specifies the socket and the event state it is in.S
+     * The TCPServer descendant class implements the details of handShake, readSocket and shutDown, and are each
+     * passed a SocketWork that needs to be serviced -a SocketWork specifies the socket and the event state it is in.
      *
-     * Sockets are set in blocking mode, but in TCPServer::requestRepsonse() data will be available if the handler is
-     * invoked.
+     * Sockets are set to non-blocking mode, and TCPServer::readSocket is not guaranteed to see a full request, data
+     * might arrive in multiple chunks.
      *
      * For a given connection, a TCPServer descendant will cycle through
      *
      *   - a handShake call
-     *   - zero or more requestResponse calls
+     *   - zero or more readSocket calls
      *   - a shutDown call
      *
      * On connection errors and hangups call to shutDown will follow - the BaseSocket object passed to shutDown() is
@@ -110,7 +112,8 @@ namespace dodo {
             cycle_max_throttles(40),
             stat_trc_interval_s(300),
             send_timeout_seconds(10),
-            receive_timeout_seconds(10)
+            receive_timeout_seconds(10),
+            tcp_keep_alive(false)
             {};
 
           /**
@@ -190,6 +193,11 @@ namespace dodo {
            * Receive timeout in seconds.
            */
           int receive_timeout_seconds;
+
+          /**
+           * Toggle TCP keep-alive.
+           */
+          bool tcp_keep_alive;
         };
 
 
@@ -263,12 +271,12 @@ namespace dodo {
         void logStats();
 
         /**
-         * Throttle the listener when requests_q_sz_ exceeds params_.maxqdepth
+         * Throttle the listener when work_q_sz_ exceeds params_.maxqdepth
          */
         void throttle();
 
         /**
-         * Add a server if requests_q_sz_ exceeds servers.size() and servers_.size() < params_.maxservers
+         * Add a server if work_q_sz_ exceeds servers.size() and servers_.size() < params_.maxservers
          */
         void addServers();
 
@@ -304,28 +312,28 @@ namespace dodo {
         enum class SockState {
           None   = 0,     /**< Undefined / initial */
           New    = 1,     /**< New connection, TCPServer::handShake() will be called */
-          Read   = 2,     /**< Data is ready to be read, TCPServer::requestResponse() will be called */
+          Read   = 2,     /**< Data is ready to be read, TCPServer::readSocket() will be called */
           Shut   = 4      /**< BaseSocket is hung up or in error, TCPServer::shutDown() will be called */
         };
 
         /**
-         * BaseSocket pointer and state pair.
+         * BaseSocket socket and state pair.
          * @see clients_
          */
-        struct SockMap {
+        struct SocketWork {
           /** Pointer to the socket */
-          BaseSocket* pointer;
+          BaseSocket* socket;
           /** State of the socket */
           SockState state;
         };
 
         /**
          * Push a request to handle the BaseSocket in the given state.
-         * @param socket The BaseSocket to handle.
-         * @param state The state the BaseSocket is in.
-         * @see SockState.
+         * @param work The SocketWork to handle.
+         * @see SocketWork.
          */
-        void pushRequest( BaseSocket* socket, SockState state );
+        //void pushWork( BaseSocket* socket, SockState state );
+        void pushWork( const SocketWork &work );
 
         /**
          * Push a request to handle the BaseSocket owning the filedescriptor in the given state.
@@ -333,20 +341,19 @@ namespace dodo {
          * @param state The state the BaseSocket is in.
          * @see SockState.
          */
-        void pushRequest( int fd, SockState state );
+        void pushWork( int fd, SockState state );
 
         /**
          * Pop a request to handle.
-         * @return A SockMap* to handle, or NULL if there is no request to handle.
+         * @return A SocketWork* to handle, or NULL if there is no work to handle.
          */
-        SockMap* popRequest();
+        SocketWork* popWork();
 
         /**
          * Called by a TCPServer to signal that the request has been handled and event detection on it can resume.
-         * @param socket The socket.
-         * @param state The state of the socket.
+         * @param work The SocketWork.
          */
-        void releaseRequest( BaseSocket* socket, SockState state );
+        void releaseWork( const SocketWork &work );
 
         /**
          * Entrypoint, override of Thread::run()
@@ -398,7 +405,7 @@ namespace dodo {
         bool stop_server_;
 
         /**
-         * Protects both client_ and requests_
+         * Protects both client_ and workload_
          */
         threads::Mutex clientmutex_;
 
@@ -415,9 +422,9 @@ namespace dodo {
         std::condition_variable cv_signal_;
 
         /**
-         * Map of file descriptors to a SockMap for connected clients.
+         * Map of file descriptors to a SocketWork for connected clients.
          */
-        map<int,SockMap> clients_;
+        map<int,SocketWork> clients_;
 
         /**
          * List of TCPServers.
@@ -427,12 +434,12 @@ namespace dodo {
         /**
          * Queue of sockets with events.
          */
-        deque<SockMap*> requests_;
+        deque<SocketWork*> workload_;
 
         /**
-         * The number of pending requests (matches requests_.size() but this has implicit locking)
+         * The number of queued work items.
          */
-        std::atomic<unsigned long long> requests_q_sz_;
+        std::atomic<unsigned long long> work_q_sz_;
 
         /**
          * The epoll interface file descriptor.
@@ -520,7 +527,7 @@ namespace dodo {
     };
 
     /**
-     * Bitwise |= on SocketState
+     * Bitwise |= on SocketWork
      * @param self the lvalue
      * @param other the rvalue
      * @return the lvalue
@@ -530,7 +537,7 @@ namespace dodo {
     }
 
     /**
-     * Bitwise ^= on SocketState
+     * Bitwise ^= on SocketWork
      * @param self the lvalue
      * @param other the rvalue
      * @return the lvalue
@@ -540,7 +547,7 @@ namespace dodo {
     }
 
     /**
-     * Bitwise & on SocketState
+     * Bitwise & on SocketWork
      * @param self the lvalue
      * @param other the rvalue
      * @return the lvalue

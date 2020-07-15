@@ -38,6 +38,7 @@
 #include <yaml-cpp/yaml.h>
 
 #include "common/exception.hpp"
+#include "common/octetarray.hpp"
 #include "network/socket.hpp"
 #include "threads/mutex.hpp"
 #include "threads/thread.hpp"
@@ -52,6 +53,46 @@ namespace dodo {
 
     class TCPServer;
     class TCPListenerTimer;
+
+    /**
+     * Class to track a connection.
+     */
+    class TCPConnectionData {
+      public:
+
+        /**
+         * Construct
+         */
+        TCPConnectionData() {};
+
+        /**
+         * Destruct.
+         */
+        virtual ~TCPConnectionData() {};
+
+        /**
+         * Reads and appends data to read_buffer
+         * @param socket The socket to read from.
+         * @param received The number of bytes received.
+         * @return The number of bytes read.
+         */
+        SystemError readBuffer( BaseSocket* socket, ssize_t &received );
+
+        /**
+         * Clears the read_buffer.
+         */
+        void clearBuffer();
+
+        /**
+         * Get a reference to the read buffer.
+         * @return a reference to the read buffer.
+         */
+        const common::OctetArray& getReadBuffer() const { return read_buffer; }
+
+      protected:
+        /** Buffer for (incomplete) request data. */
+        common::OctetArray read_buffer;
+    };
 
     /**
      *
@@ -219,6 +260,29 @@ namespace dodo {
         };
 
         /**
+         * BaseSocket lifecycle states.
+         */
+        enum class SockState {
+          None   = 0,     /**< Undefined / initial */
+          New    = 1,     /**< New connection, TCPServer::handShake() will be called */
+          Read   = 2,     /**< Data is ready to be read, TCPServer::readSocket() will be called */
+          Shut   = 4      /**< BaseSocket is hung up or in error, TCPServer::shutDown() will be called */
+        };
+
+        /**
+         * BaseSocket socket and state pair.
+         * @see clients_
+         */
+        struct SocketWork {
+          /** Pointer to the socket */
+          BaseSocket* socket = nullptr;
+          /** State of the socket */
+          SockState state = SockState::New;
+          /** Data context */
+          TCPConnectionData* data = nullptr;
+        };
+
+        /**
          * Constructor
          * @param address The address to listen on.
          * @param params The Params to use.
@@ -307,28 +371,7 @@ namespace dodo {
         void construct( const Address& address, const Params &params );
 
         /**
-         * BaseSocket lifecycle states.
-         */
-        enum class SockState {
-          None   = 0,     /**< Undefined / initial */
-          New    = 1,     /**< New connection, TCPServer::handShake() will be called */
-          Read   = 2,     /**< Data is ready to be read, TCPServer::readSocket() will be called */
-          Shut   = 4      /**< BaseSocket is hung up or in error, TCPServer::shutDown() will be called */
-        };
-
-        /**
-         * BaseSocket socket and state pair.
-         * @see clients_
-         */
-        struct SocketWork {
-          /** Pointer to the socket */
-          BaseSocket* socket;
-          /** State of the socket */
-          SockState state;
-        };
-
-        /**
-         * Push a request to handle the BaseSocket in the given state.
+         * Push work.
          * @param work The SocketWork to handle.
          * @see SocketWork.
          */
@@ -336,7 +379,7 @@ namespace dodo {
         void pushWork( const SocketWork &work );
 
         /**
-         * Push a request to handle the BaseSocket owning the filedescriptor in the given state.
+         * Push work.
          * @param fd The BaseSocket fieldescriptor.
          * @param state The state the BaseSocket is in.
          * @see SockState.
@@ -344,13 +387,13 @@ namespace dodo {
         void pushWork( int fd, SockState state );
 
         /**
-         * Pop a request to handle.
+         * Pop work.
          * @return A SocketWork* to handle, or NULL if there is no work to handle.
          */
         SocketWork* popWork();
 
         /**
-         * Called by a TCPServer to signal that the request has been handled and event detection on it can resume.
+         * Called by a TCPServer to signal that the work has been handled and event detection on it can resume.
          * @param work The SocketWork.
          */
         void releaseWork( const SocketWork &work );
@@ -422,7 +465,8 @@ namespace dodo {
         std::condition_variable cv_signal_;
 
         /**
-         * Map of file descriptors to a SocketWork for connected clients.
+         * Map of file descriptors to SocketWork for all connected clients. The work is either in progress or last
+         * completed state.
          */
         map<int,SocketWork> clients_;
 
@@ -432,7 +476,7 @@ namespace dodo {
         std::list<TCPServer*> servers_;
 
         /**
-         * Queue of sockets with events.
+         * Queue of sockets with work for TCPServer instances.
          */
         deque<SocketWork*> workload_;
 

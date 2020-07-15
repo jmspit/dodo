@@ -35,6 +35,32 @@ namespace dodo {
 
     using namespace std;
 
+      SystemError TCPConnectionData::readBuffer( BaseSocket* socket, ssize_t &received ) {
+        common::OctetArray tmp;
+        tmp.reserve( 4096 );
+        ssize_t recv = 0;
+        received = 0;
+        SystemError error = SystemError::ecOK;
+        do {
+          error = socket->receive( tmp.array, tmp.size, recv );
+          if ( ( error == SystemError::ecOK || error == SystemError::ecEAGAIN ) && recv > 0 ) {
+            log_Trace( "TCPConnectionData::readBuffer socket " << socket->getFD() <<
+                       " received " << recv << " bytes" );
+            read_buffer.append( tmp, recv );
+            received += recv;
+          } else if ( ! ( error == SystemError::ecOK || error == SystemError::ecEAGAIN ) ) {
+            log_Trace( "TCPConnectionData::readBuffer receive error socket " <<
+                       socket->getFD() << " error : '" << error.asString() << " bytes'" );
+            return false;
+          }
+        } while ( recv == 4096 );
+        return error;
+      }
+
+      void TCPConnectionData::clearBuffer() {
+        read_buffer.free();
+      }
+
       /**
        * Updates the attribute now_ in the TCPListener at a regular interval to avoid excessive number of calls
        * to gettimeofday in the TCPListener event loop where time high time precision is of lesser importance.
@@ -269,6 +295,7 @@ namespace dodo {
                         threads::Mutexer lock( clientmutex_ );
                         clients_[client_sock->getFD()].socket = client_sock;
                         clients_[client_sock->getFD()].state = SockState::New;
+                        clients_[client_sock->getFD()].data = init_server_->newConnectionData();
                       }
                       pushWork( { client_sock, SockState::New } );
                       log_Debug( "TCPListener::run new client socket " <<
@@ -378,8 +405,8 @@ namespace dodo {
         work_q_sz_++;
         if ( ! (work.state & SockState::New) ) pollDel( clients_[work.socket->getFD()].socket );
       }
-      log_Debug( "TCPListener::pushWork BaseSocket* socket " << socket->debugString() <<
-                 " state " << state );
+      log_Debug( "TCPListener::pushWork BaseSocket* socket " << work.socket->debugString() <<
+                 " state " << work.state );
     }
 
     TCPListener::SocketWork* TCPListener::popWork() {
@@ -399,7 +426,7 @@ namespace dodo {
 
     void TCPListener::releaseWork( const SocketWork &work ) {
       log_Debug( "TCPListener::releaseWork socket " << work.socket->debugString() <<
-                 " state " << state  << " sockmapstate=" << clients_[work.socket->getFD()].state );
+                 " state " << work.state  << " sockmapstate=" << clients_[work.socket->getFD()].state );
       work_q_sz_--;
       if ( work.state & TCPListener::SockState::Shut ) {
         closeSocket( work.socket );
@@ -415,6 +442,7 @@ namespace dodo {
       {
         threads::Mutexer lock( clientmutex_ );
         fd = s->getFD();
+        if ( clients_[s->getFD()].data ) delete clients_[s->getFD()].data;
         clients_.erase( fd );
         s->close();
         delete s;

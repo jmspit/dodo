@@ -34,7 +34,7 @@ namespace dodo {
      * Subclass TCPServer and implement virtual
      *
      *  - bool handShake(network::BaseSocket*, ssize_t&, ssize_t& )
-     *  - bool readSocket(network::BaseSocket*, ssize_t&, ssize_t& )
+     *  - bool readSocket( TCPListener::SocketWork &work, ssize_t &sent )
      *  - void shutDown( BaseSocket* )
      *  - TCPServer* addServer()
      *
@@ -61,16 +61,16 @@ namespace dodo {
          * @see getState()
          */
         enum ServerState {
-          ssWait                               = 0,  /**< The TCPServer has entered waiting for activity or wait timeout. */
-          ssAwoken                             = 1,  /**< The TCPServer has woken up from a wait either due to an event or the wait timing out. */
-          ssHandshake                          = 2,  /**< The TCPServer is about to invoke handShake(BaseSocket*). */
-          ssHandshakeDone                      = 3,  /**< ssHandshake completed. */
-          ssReadSocket                         = 4, /**< The TCPServer is about to invoke readSocket(BaseSocket*). */
-          ssReadSocketDone                     = 5, /**< ssReadSocket completed. */
-          ssShutdown                           = 6, /**< The TCPServer is about to invoke shutdown(BaseSocket*). */
-          ssShutdownDone                       = 7,  /**< ssShutdown completed. */
-          ssReleaseWork                        = 8,  /**< The TCPServer is releasing the request */
-          ssReleaseWorkDone                    = 9,  /**< ssReleaseWork completed. */
+          ssWait             = 0,  /**< The TCPServer has entered waiting for activity or wait timeout. */
+          ssAwoken           = 1,  /**< The TCPServer has woken up from a wait either due to an event or the wait timing out. */
+          ssHandshake        = 2,  /**< The TCPServer is about to invoke handShake(BaseSocket*). */
+          ssHandshakeDone    = 3,  /**< ssHandshake completed. */
+          ssReadSocket       = 4, /**< The TCPServer is about to invoke readSocket(BaseSocket*). */
+          ssReadSocketDone   = 5, /**< ssReadSocket completed. */
+          ssShutdown         = 6, /**< The TCPServer is about to invoke shutdown(BaseSocket*). */
+          ssShutdownDone     = 7,  /**< ssShutdown completed. */
+          ssReleaseWork      = 8,  /**< The TCPServer is releasing the request */
+          ssReleaseWorkDone  = 9,  /**< ssReleaseWork completed. */
         };
 
         /**
@@ -88,8 +88,7 @@ namespace dodo {
 
         /**
          * Override to perform a protocol handshake. Note that the TCP handshake has already taken place,
-         * and handShake() will only be called for new sockets. Moreover, there is no guarantee
-         * there will be any data to read.
+         * and handShake() will only be called for new sockets.
          * @param socket A pointer to the socket to handshake. If this returns false,. the socket
          * will be closed.
          * @param received The number of bytes received by the call.
@@ -100,12 +99,14 @@ namespace dodo {
 
         /**
          * Override to perform a request-response cycle.
-         * @param socket The socket to work on.
-         * @param received The number of bytes received by the call.
+         * @param work The work to perform.
          * @param sent The number of bytes sent by the call.
-         * @return true if the cycle completed successfully
+         * @return
+         *
+         *   - common::SystemError::ecOK if all is well, the request is received completely, it is handled and a response is sent.
+         *   - common::SystemError::ecEAGAIN if all is well but the data in work.data is not a complete request yet.
          */
-        virtual bool readSocket( network::BaseSocket *socket, ssize_t &received, ssize_t &sent ) = 0;
+        virtual common::SystemError readSocket( TCPListener::SocketWork &work, ssize_t &sent ) = 0;
 
         /**
          * Override to perform a shutdown.
@@ -119,6 +120,12 @@ namespace dodo {
          * @return a pointer to a new TCPServer
          */
         virtual TCPServer* addServer() = 0;
+
+        /**
+         * Return a new TCPConnectionData pointer or override to return a descendant of TCPConnectionData.
+         * @return the new TCPConnectionData*.
+         */
+        virtual TCPConnectionData* newConnectionData() const { return new TCPConnectionData(); }
 
         /**
          * Return true if the TCPServer has stopped working.

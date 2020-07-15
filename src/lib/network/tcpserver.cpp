@@ -108,7 +108,11 @@ namespace dodo {
                   try {
                     ssize_t received = 0;
                     ssize_t sent = 0;
-                    ok = readSocket( sockmap->socket, received, sent );
+
+                    SystemError error = sockmap->data->readBuffer( sockmap->socket, received );
+                    ok = (error == SystemError::ecOK);
+                    error = readSocket( *sockmap, sent );
+                    ok = ok && ( error == SystemError::ecOK || error == SystemError::ecEAGAIN );
                     listener_.addReceivedSentBytes( received, sent );
                     state_ = ssReadSocketDone;
                     completion_state |= TCPListener::SockState::Read;
@@ -120,11 +124,11 @@ namespace dodo {
                     }
                   }
                   catch ( std::exception &e ) {
-                     log_Error( "TCPServer::run exception in handshake " << e.what()
+                     log_Error( "TCPServer::run exception in ssReadSocket " << e.what()
                                 << " socket " << sockmap->socket->getFD() );
                   }
                   catch ( ... ) {
-                     log_Error( "TCPServer::run unhandled exception in handshake socket " <<
+                     log_Error( "TCPServer::run unhandled exception in ssReadSocket socket " <<
                                 sockmap->socket->getFD() );
                   }
                   state_ = ssReadSocketDone;
@@ -140,11 +144,11 @@ namespace dodo {
                     completion_state |= TCPListener::SockState::Shut;
                   }
                   catch ( std::exception &e ) {
-                     log_Error( "TCPServer::run exception in handshake " << e.what()
+                     log_Error( "TCPServer::run exception in ssShutdown " << e.what()
                                 << " socket " << sockmap->socket->debugString() );
                   }
                   catch ( ... ) {
-                     log_Error( "TCPServer::run unhandled exception in handshake " <<
+                     log_Error( "TCPServer::run unhandled exception in ssShutdown " <<
                                 sockmap->socket->debugString() );
                   }
                 }

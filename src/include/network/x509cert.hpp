@@ -50,6 +50,21 @@ namespace dodo::network {
       };
 
       /**
+       * Convert the SANType name to a string.
+       * @param san_type The SANType to convert.
+       * @return the string representation.
+       */
+      static std::string SANTypeAsString( const SANType& san_type ) {
+        switch( san_type ) {
+          case SANType::stDNS : return "DNS";
+          case SANType::stURI : return "URI";
+          case SANType::stEMAIL : return "EMAIL";
+          case SANType::tsIP : return "IP";
+        }
+        return "?";
+      }
+
+      /**
        * Subject AltName record.
        */
       struct SAN {

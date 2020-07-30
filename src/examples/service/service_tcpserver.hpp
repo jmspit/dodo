@@ -25,6 +25,8 @@ class Server : public TCPServer {
           error = work.socket->send( buf.array, buf.size );
           work.data->clearBuffer();
           return error;
+        } else if ( buf.array[0] == 0xff || buf.array[0] == 0x04 ) {
+          return SystemError::ecECONNABORTED;
         } else return SystemError::ecEAGAIN;
       } else return SystemError::ecEAGAIN;
     }

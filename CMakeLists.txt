@@ -42,6 +42,8 @@ set( ${LIB_DODO}_objects
   src/lib/network/tcpserver.cpp
   src/lib/network/tlscontext.cpp
   src/lib/network/tlssocket.cpp
+  src/lib/network/protocol/stomp.cpp
+  src/lib/store/kvstore.cpp
   src/lib/threads/mutex.cpp
   src/lib/threads/thread.cpp
 )

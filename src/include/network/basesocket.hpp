@@ -295,6 +295,39 @@ namespace dodo::network {
       BaseSocket& operator=( const BaseSocket& socket );
 
       /**
+       * Sets up a listening socket on Address.
+       * @param address The Address (including a port) to listen on.
+       * @param backlog The size of the queue used to cache pending connections.
+       * @return A common::SystemError, if not ecOK
+       *   - common::SystemError::ecEADDRINUSE
+       *   - common::SystemError::ecEBADF
+       *   - common::SystemError::ecENOTSOCK
+       *   - common::SystemError::ecEOPNOTSUPP
+       *
+       * or one of the common::SystemError returned by bind( const Address &address ).
+       */
+      SystemError listen( const Address &address, int backlog );
+
+      /**
+       * Bind the socket to the Address.
+       * @param address The address to bind to.
+       * @return SystemError::ecOK or
+       *   - SystemError::ecEACCES
+       *   - SystemError::ecEADDRINUSE
+       *   - SystemError::ecEBADF
+       *   - SystemError::ecEINVAL
+       *   - SystemError::ecENOTSOCK
+       */
+      SystemError bind( const Address &address );
+
+      /**
+       * Accepts a connection request and return a pointer to a new Socket for the new connection, the caller will
+       * own the new Socket object.
+       * @return The accepted socket.
+       */
+      virtual BaseSocket* accept() = 0;
+
+      /**
        * Send an uint8_t.
        * @param value The value to send.
        * @param more If true, the caller indicates that more data will follow.

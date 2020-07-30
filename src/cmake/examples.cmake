@@ -39,3 +39,9 @@ set( ${EXAMPLE_TLS_CLIENT}_objects  src/examples/tls/${EXAMPLE_TLS_CLIENT}/${EXA
 add_executable(${EXAMPLE_TLS_CLIENT} ${${EXAMPLE_TLS_CLIENT}_objects} )
 target_link_libraries( ${EXAMPLE_TLS_CLIENT} ${LIB_DODO} )
 install( TARGETS ${EXAMPLE_TLS_CLIENT} RUNTIME DESTINATION bin )
+
+set( EXAMPLE_KVSTORE  "kv-store" )
+set( ${EXAMPLE_KVSTORE}_objects  src/examples/${EXAMPLE_KVSTORE}/${EXAMPLE_KVSTORE}.cpp )
+add_executable(${EXAMPLE_KVSTORE} ${${EXAMPLE_KVSTORE}_objects} )
+target_link_libraries( ${EXAMPLE_KVSTORE} ${LIB_DODO} )
+install( TARGETS ${EXAMPLE_KVSTORE} RUNTIME DESTINATION bin )

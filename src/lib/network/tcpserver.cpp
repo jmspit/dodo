@@ -118,9 +118,11 @@ namespace dodo {
                     completion_state |= TCPListener::SockState::Read;
                     if ( !ok ) {
                       completion_state |= TCPListener::SockState::Shut;
-                      log_Error( "TCPServer::run readSocket failure socket " <<
-                                 sockmap->socket->getFD() << " client " <<
-                                 sockmap->socket->getPeerAddress().asString(true) );
+                      if ( error != SystemError::ecECONNABORTED ) {
+                        log_Error( "TCPServer::run readSocket failure socket " <<
+                                   sockmap->socket->getFD() << " client " <<
+                                   sockmap->socket->getPeerAddress().asString(true) );
+                        }
                     }
                   }
                   catch ( std::exception &e ) {

@@ -92,7 +92,7 @@ namespace dodo::network {
        * Accept a connection.
        * @return The SystemError.
        */
-      SystemError accept();
+      virtual TLSSocket* accept();
 
 
       /**

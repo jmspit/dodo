@@ -20,8 +20,10 @@
  * Implements the dodo::network::TLSSocket class.
  */
 
+#include "common/logger.hpp"
 #include "common/util.hpp"
 #include "network/tlssocket.hpp"
+#include "network/x509cert.hpp"
 
 #include <string.h>
 
@@ -78,23 +80,17 @@ namespace dodo::network {
     } else return error;
   }
 
-  SystemError TLSSocket::accept() {
+  TLSSocket* TLSSocket::accept() {
     auto rc = SSL_accept( ssl_ );
     if ( rc <= 0 ) {
       auto ssl_error_code = SSL_get_error( ssl_, rc );
-      switch ( ssl_error_code ) {
-        case SSL_ERROR_NONE :             return SystemError::ecSSL_ERROR_NONE;
-        case SSL_ERROR_ZERO_RETURN :      return SystemError::ecSSL_ERROR_ZERO_RETURN;
-        case SSL_ERROR_WANT_READ :        return SystemError::ecSSL_ERROR_WANT_READ;
-        case SSL_ERROR_WANT_WRITE :       return SystemError::ecSSL_ERROR_WANT_WRITE;
-        case SSL_ERROR_WANT_CONNECT :     return SystemError::ecSSL_ERROR_WANT_CONNECT;
-        case SSL_ERROR_WANT_ACCEPT :      return SystemError::ecSSL_ERROR_WANT_ACCEPT;
-        case SSL_ERROR_WANT_X509_LOOKUP : return SystemError::ecSSL_ERROR_WANT_X509_LOOKUP;
-        case SSL_ERROR_SSL :
-        default: throw_Exception( ssl_error_code << " " << common::getSSLErrors( '\n' )  );
-      }
+      log_Error( ssl_error_code << " " << common::getSSLErrors( '\n' )  );
+      return nullptr;
+    } else {
+      TLSSocket* ret = new TLSSocket( rc, tlscontext_, { X509Common::SANType::stDNS, "" } );
+      return ret;
     }
-    return SystemError::ecOK;
+    return nullptr;
   }
 
   X509* TLSSocket::getPeerCertificate() const {

@@ -19,7 +19,7 @@ bool verifyEncryption( dodo::common::DataCrypt::Cipher cipher, const std::string
   dodo::common::OctetArray dest;
   dodo::common::DataCrypt::decrypt( key, encrypted, dest );
 
-  return std::string(dest) == test;
+  return dest.asString() == test;
 }
 
 bool test1() {

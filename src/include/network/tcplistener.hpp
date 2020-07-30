@@ -296,6 +296,8 @@ namespace dodo {
          */
         TCPListener( const YAML::Node &yaml );
 
+        ~TCPListener();
+
         /**
          * Start the TCPListener and initialize with a TCPServer implementation object.
          * @param server A TCPServer descendant as initial server.
@@ -434,7 +436,7 @@ namespace dodo {
         /**
          * The listening BaseSocket.
          */
-        Socket listen_socket_;
+        BaseSocket* listen_socket_;
 
         /**
          * The backlog (incoming connection queue before accept calls clearing it) used by listen.

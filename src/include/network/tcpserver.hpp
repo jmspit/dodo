@@ -105,6 +105,7 @@ namespace dodo {
          *
          *   - common::SystemError::ecOK if all is well, the request is received completely, it is handled and a response is sent.
          *   - common::SystemError::ecEAGAIN if all is well but the data in work.data is not a complete request yet.
+         *   - common::SystemError::ecECONNABORTED if the socket needs to be closed (for example by client request).
          */
         virtual common::SystemError readSocket( TCPListener::SocketWork &work, ssize_t &sent ) = 0;
 

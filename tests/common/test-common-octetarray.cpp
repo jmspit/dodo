@@ -6,11 +6,11 @@ using namespace std;
 
 
 bool verifyBase64( const std::string &test, const std::string &base64 ) {
-  dodo::common::OctetArray oa = test;
+  common::OctetArray oa = test;
   std::cout << "test string     : " << test << std::endl;
   std::cout << "base64 string   : " << base64 << std::endl;
   std::cout << "encodeBase64    : " << oa.encodeBase64() << std::endl;
-  std::cout << "encode(decode)  : " << std::string( oa.decodeBase64( oa.encodeBase64() ) ) << std::endl;
+  std::cout << "encode(decode)  : " << oa.decodeBase64( oa.encodeBase64() ).asString() << std::endl;
   bool ok = ( oa.encodeBase64() == base64 );
   return ok;
 }
@@ -27,19 +27,77 @@ bool test1() {
   return ok;
 }
 
+bool test2() {
+  common::OctetArray o1 = { "CONNECTED\r\n" };
+  common::OctetArray o2 = { "CONNECTED" };
+  size_t octets;
+  common::OctetArray::MatchType mt = o1.match( o2, 0, octets );
+  return ( mt == common::OctetArray::MatchType::Full && octets == o2.size );
+}
+
+bool test3() {
+  common::OctetArray o1 = { "CONN" };
+  common::OctetArray o2 = { "CONNECTED" };
+  size_t octets;
+  common::OctetArray::MatchType mt = o1.match( o2, 0, octets );
+  return ( mt == common::OctetArray::MatchType::Partial && octets == o1.size );
+}
+
+bool test4() {
+  common::OctetArray o1 = { "CONNECTED" };
+  common::OctetArray o2 = { "CONNECTED" };
+  size_t octets;
+  common::OctetArray::MatchType mt = o1.match( o2, 0, octets );
+  return ( mt == common::OctetArray::MatchType::Full && octets == o2.size );
+}
+
+bool test5() {
+  common::OctetArray o1 = { "CONNECTED" };
+  common::OctetArray o2 = { "CONNECTER" };
+  size_t octets;
+  common::OctetArray::MatchType mt = o1.match( o2, 0, octets );
+  return ( mt == common::OctetArray::MatchType::Mismatch && octets == 0 );
+}
+
+bool test6() {
+  common::OctetArray o1 = { "This" };
+  common::OctetArray o2 = { "This function will return the length of the data decoded or -1 on error" };
+  o1.append( { " function" } );
+  o1.append( { " will" } );
+  o1.append( { " return" } );
+  o1.append( { " the" } );
+  o1.append( { " length" } );
+  o1.append( { " of" } );
+  o1.append( { " the" } );
+  o1.append( { " data" } );
+  o1.append( { " decoded" } );
+  o1.append( { " or" } );
+  o1.append( { " -1" } );
+  o1.append( { " on" } );
+  o1.append( { " error." } );
+  size_t octets;
+  common::OctetArray::MatchType mt = o1.match( o2, 0, octets );
+  return ( mt == common::OctetArray::MatchType::Full && octets == o2.size );
+}
+
 
 int main() {
   int error = 0;
   bool ok = true;
   try {
-    dodo::initLibrary();
+    initLibrary();
     ok = ok && test1();
+    ok = ok && test2();
+    ok = ok && test3();
+    ok = ok && test4();
+    ok = ok && test5();
+    ok = ok && test6();
   }
   catch ( const std::exception& e ) {
     cerr << e.what() << endl;
     error = 2;
   }
-  dodo::closeLibrary();
+  closeLibrary();
   if ( !error && !ok ) error = 1;
   return error;
 }

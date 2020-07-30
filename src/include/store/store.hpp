@@ -16,42 +16,25 @@
  */
 
 /**
- * @file dodo.hpp
- * @brief Includes all dodo headers.
+ * @file store.hpp
+ * Includes store headers.
  */
 
-#ifndef dodo_hpp
-#define dodo_hpp
+#ifndef store_store_hpp
+#define store_store_hpp
 
-#include <buildenv.hpp>
-#include <common/common.hpp>
-#include <network/network.hpp>
-#include <store/store.hpp>
-#include <threads/threads.hpp>
+#include <store/kvstore.hpp>
 
-/**
- * A C++ platform interface to lean linux services tailored for containerized deployment.
- */
 namespace dodo {
 
   /**
-   * Initialize the dodo library.
-   * @see dodo::common::Application
+   * Interface to persistent storage.
    */
-  void initLibrary() {
-    common::initLibrary();
-    threads::initLibrary();
-    network::initLibrary();
-  }
+  namespace store {
 
-  /**
-   * Close the dodo library.
-   * @see dodo::common::Application
-   */
-  void closeLibrary() {
-    network::closeLibrary();
-    threads::closeLibrary();
-    common::closeLibrary();
+    using namespace std;
+    using namespace common;
+
   }
 
 }

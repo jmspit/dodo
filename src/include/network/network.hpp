@@ -31,6 +31,7 @@
 #include <network/tcpserver.hpp>
 #include <network/tlscontext.hpp>
 #include <network/tlssocket.hpp>
+#include <network/protocol/stomp.hpp>
 
 namespace dodo {
 
@@ -60,6 +61,18 @@ namespace dodo {
     void closeLibrary() {
       //ERR_free_strings();
       OPENSSL_cleanup();
+    }
+
+    /**
+     * Application layer protocols.
+     */
+    namespace protocol {
+
+      /**
+       * The STOMP 1.2 protocol (earlier versions not supported).
+       */
+      namespace stomp {
+      }
     }
 
   }

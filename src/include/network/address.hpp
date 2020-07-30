@@ -294,6 +294,10 @@ namespace dodo::network {
      * Socket may access this class directly.
      */
     friend class Socket;
+    /**
+     * BaseSocket may access this class directly.
+     */
+    friend class BaseSocket;
 
   };
 

@@ -145,7 +145,7 @@ void decrypt( std::istream& in, std::ostream& out ) {
   common::OctetArray oa;
   string key = options.key_value;
   int rc = dodo::common::DataCrypt::decrypt( key, foo.str(), oa );
-  if ( rc == 0 ) cout << string(oa);
+  if ( rc == 0 ) cout << oa.asString();
   else if ( rc == 1 )  cerr << "not a valid encrypt string" << endl;
   else cerr << "decryption failure" << endl;
 }

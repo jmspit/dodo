@@ -125,25 +125,11 @@ namespace dodo::network {
       virtual SystemError receive( void* buf, ssize_t request, ssize_t &received );
 
       /**
-       * Sets up a listening socket on Address.
-       * @param address The Address (including a port) to listen on.
-       * @param backlog The size of the queue used to cache pending connections.
-       * @return A common::SystemError, if not ecOK
-       *   - common::SystemError::ecEADDRINUSE
-       *   - common::SystemError::ecEBADF
-       *   - common::SystemError::ecENOTSOCK
-       *   - common::SystemError::ecEOPNOTSUPP
-       *
-       * or one of the common::SystemError returned by bind( const Address &address ).
-       */
-      SystemError listen( const Address &address, int backlog );
-
-      /**
        * Accepts a connection request and return a pointer to a new Socket for the new connection, the caller will
        * own the new Socket object.
        * @return The accepted socket.
        */
-      Socket* accept();
+      virtual Socket* accept();
 
       /**
        * An invalid SocketInvalid for comparison convenience - initialized to a Socket with socket fd=-1.
@@ -151,18 +137,6 @@ namespace dodo::network {
       static Socket SocketInvalid;
 
     protected:
-
-      /**
-       * Bind the socket to the Address.
-       * @param address The address to bind to.
-       * @return SystemError::ecOK or
-       *   - SystemError::ecEACCES
-       *   - SystemError::ecEADDRINUSE
-       *   - SystemError::ecEBADF
-       *   - SystemError::ecEINVAL
-       *   - SystemError::ecENOTSOCK
-       */
-      SystemError bind( const Address &address );
 
 
   };

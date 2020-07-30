@@ -44,12 +44,14 @@ namespace dodo {
         do {
           error = socket->receive( tmp.array, tmp.size, recv );
           if ( ( error == SystemError::ecOK || error == SystemError::ecEAGAIN ) && recv > 0 ) {
-            log_Trace( "TCPConnectionData::readBuffer socket " << socket->getFD() <<
+            log_Debug( "TCPConnectionData::readBuffer socket " << socket->getFD() <<
                        " received " << recv << " bytes" );
+            log_Trace( "TCPConnectionData::readBuffer socket " << socket->getFD() <<
+                       " received '" << tmp.hexDump( recv ) << "'" );
             read_buffer.append( tmp, recv );
             received += recv;
           } else if ( ! ( error == SystemError::ecOK || error == SystemError::ecEAGAIN ) ) {
-            log_Trace( "TCPConnectionData::readBuffer receive error socket " <<
+            log_Error( "TCPConnectionData::readBuffer receive error socket " <<
                        socket->getFD() << " error : '" << error.asString() << " bytes'" );
             return false;
           }
@@ -157,6 +159,10 @@ namespace dodo {
       construct( address, params );
     }
 
+    TCPListener::~TCPListener() {
+      if ( listen_socket_ ) delete listen_socket_;
+    }
+
     void TCPListener::construct( const Address& address, const Params &params ) {
       listen_address_ = address;
       params_ = params;
@@ -168,18 +174,20 @@ namespace dodo {
       //hangup_event_mask_ = EPOLLRDHUP | EPOLLERR | EPOLLHUP | EPOLLWAKEUP;
       hangup_event_mask_ = 0;
       if ( !listen_address_.isValid() ) throw_Exception( "invalid address" );
-      listen_socket_ = Socket( false, SocketParams(
-        listen_address_.getAddressFamily(),
-        SocketParams::stSTREAM,
-        SocketParams::pnHOPOPT )
+      /** @todo This could also be a TLSSocket */
+      listen_socket_ = new Socket( false,
+                                   SocketParams(
+                                   listen_address_.getAddressFamily(),
+                                   SocketParams::stSTREAM,
+                                   SocketParams::pnHOPOPT )
       );
-      listen_socket_.setReUseAddress();
-      listen_socket_.setReUsePort();
-      listen_socket_.setBlocking( false );
-      listen_socket_.setSendBufSize( params_.sendbufsz );
-      listen_socket_.setReceiveBufSize( params_.recvbufsz );
-      listen_socket_.setSendTimeout( params_.send_timeout_seconds );
-      listen_socket_.setReceiveTimeout( params_.receive_timeout_seconds );
+      listen_socket_->setReUseAddress();
+      listen_socket_->setReUsePort();
+      listen_socket_->setBlocking( false );
+      listen_socket_->setSendBufSize( params_.sendbufsz );
+      listen_socket_->setReceiveBufSize( params_.recvbufsz );
+      listen_socket_->setSendTimeout( params_.send_timeout_seconds );
+      listen_socket_->setReceiveTimeout( params_.receive_timeout_seconds );
       std::string proc_somaxconn = "/proc/sys/net/core/somaxconn";
       if ( !common::fileReadInt( proc_somaxconn, backlog_ ) )
         throw_Exception( "failed to read int from " << proc_somaxconn );
@@ -198,7 +206,7 @@ namespace dodo {
       log_Statistics( yaml_send_timeout_seconds << " = " << params_.send_timeout_seconds );
       log_Statistics( yaml_receive_timeout_seconds << " = " << params_.receive_timeout_seconds );
 
-      common::SystemError error = listen_socket_.listen( listen_address_, backlog_ );
+      common::SystemError error = listen_socket_->listen( listen_address_, backlog_ );
       if ( error != common::SystemError::ecOK ) throw_SystemException( "listen failed", error );
 
       log_Statistics( "address = " << listen_address_.asString(true) );
@@ -237,8 +245,8 @@ namespace dodo {
         if ( epoll_fd_ < 0 )
           throw_SystemException( "TCPListener::run: epoll_create1 failed", errno );
         set_event.events = EPOLLIN | EPOLLPRI;
-        set_event.data.fd = listen_socket_.getFD();
-        rc = epoll_ctl( epoll_fd_, EPOLL_CTL_ADD, listen_socket_.getFD(), &set_event );
+        set_event.data.fd = listen_socket_->getFD();
+        rc = epoll_ctl( epoll_fd_, EPOLL_CTL_ADD, listen_socket_->getFD(), &set_event );
         if ( rc < 0 ) throw_SystemException( "TCPListener::run epoll_ctl failed", errno );
 
         log_Debug( "TCPListener::run starting " << params_.minservers << " servers" );
@@ -281,10 +289,10 @@ namespace dodo {
           else if ( rc > 0 ) {
             for ( int i = 0; i < rc; i++ ) {
               if ( poll_sockets[i].events != 0 ) {
-                if ( poll_sockets[i].data.fd == listen_socket_.getFD() ) {
+                if ( poll_sockets[i].data.fd == listen_socket_->getFD() ) {
                   network::BaseSocket* client_sock;
                   do {
-                    client_sock = listen_socket_.accept();
+                    client_sock = listen_socket_->accept();
                     if ( !client_sock->isValid() ) break;
                     if ( clients_.size() >= params_.maxconnections ) {
                        client_sock->close();

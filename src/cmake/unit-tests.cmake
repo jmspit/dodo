@@ -30,6 +30,7 @@ add_executable(${TEST_COMMON_DATACRYPT} ${${TEST_COMMON_DATACRYPT}_objects} )
 target_link_libraries( ${TEST_COMMON_DATACRYPT} ${LIB_DODO} )
 add_test (NAME "common::DataCrypt=${TEST_COMMON_DATACRYPT}" COMMAND ${TEST_COMMON_DATACRYPT} )
 
+
 set( TEST_NETWORK_ADDRESS  "test-network-address" )
 set( ${TEST_NETWORK_ADDRESS}_objects  tests/network/${TEST_NETWORK_ADDRESS}.cpp )
 add_executable(${TEST_NETWORK_ADDRESS} ${${TEST_NETWORK_ADDRESS}_objects} )
@@ -47,6 +48,12 @@ set( ${TEST_NETWORK_X509}_objects  tests/network/${TEST_NETWORK_X509}.cpp )
 add_executable(${TEST_NETWORK_X509} ${${TEST_NETWORK_X509}_objects} )
 target_link_libraries( ${TEST_NETWORK_X509} ${LIB_DODO} )
 add_test (NAME "network::X509Certificate=${TEST_NETWORK_X509}" COMMAND ${TEST_NETWORK_X509} )
+
+set( TEST_NETWORK_PROTOCOL_STOMP  "test-network-protocol-stomp" )
+set( ${TEST_NETWORK_PROTOCOL_STOMP}_objects  tests/network/${TEST_NETWORK_PROTOCOL_STOMP}.cpp )
+add_executable(${TEST_NETWORK_PROTOCOL_STOMP} ${${TEST_NETWORK_PROTOCOL_STOMP}_objects} )
+target_link_libraries( ${TEST_NETWORK_PROTOCOL_STOMP} ${LIB_DODO} )
+add_test (NAME "network::protocol:stomp=${TEST_NETWORK_PROTOCOL_STOMP}" COMMAND ${TEST_NETWORK_PROTOCOL_STOMP} )
 
 set( TEST_NETWORK_TLS  "test-network-tls" )
 add_test (NAME "network::TLSContext+TLSSocket=${TEST_NETWORK_TLS}"

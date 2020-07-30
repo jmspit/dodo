@@ -90,6 +90,32 @@ namespace dodo::network {
     return *this;
   }
 
+  SystemError BaseSocket::listen( const Address &address, int backlog ) {
+    SystemError error = bind( address );
+    if ( error == SystemError::ecOK ) {
+      int rc = ::listen( socket_, backlog );
+      if ( rc < 0 ) {
+        switch ( errno ) {
+          case SystemError::ecEADDRINUSE:
+            return errno;
+        }
+        throw_SystemExceptionObject( "Socket::listen failed on " << address.asString(), errno, this );
+      } else return SystemError::ecOK;
+    } else return error;
+  }
+
+  SystemError BaseSocket::bind( const Address &address ) {
+    int rc = ::bind( socket_, (const sockaddr*)&(address.addr_), sizeof(address.addr_) );
+    if ( rc < 0 ) {
+      switch ( errno ) {
+        case SystemError::ecEACCES:
+        case SystemError::ecEADDRINUSE:
+          return errno;
+      }
+      throw_SystemExceptionObject( "Socket::bind failed on address " << address.asString(), errno, this );
+    } else return SystemError::ecOK;
+  }
+
   void BaseSocket::setTCPNoDelay( bool set ) {
     int value = set?1:0;
     setsockopt( socket_, SOL_TCP, TCP_NODELAY, &value, sizeof(value) );

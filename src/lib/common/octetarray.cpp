@@ -17,7 +17,7 @@
 
 /**
  * @file octetarray.cpp
- * Implements the dodo::common::OctetArray class..
+ * Implements the dodo::common::OctetArray class.
  */
 
 #include "common/exception.hpp"
@@ -26,21 +26,29 @@
 #include <openssl/evp.h>
 #include <openssl/rand.h>
 #include <string.h>
+#include <iostream>
 
 namespace dodo::common {
 
   void OctetArray::reserve( size_t sz ) {
+    size_t chunkedsz = ( sz / alloc_block + 1 ) * alloc_block;
     if ( sz == size ) return;
     if ( array ) {
-      array = static_cast< Octet*>( std::realloc( array, sz ) );
-      if ( array || sz == 0 ) {
+      if ( sz > allocated_size ) {
+        array = static_cast< Octet*>( std::realloc( array, chunkedsz ) );
+        if ( array || sz == 0 ) {
+          size = sz;
+          allocated_size = chunkedsz;
+          if ( !sz ) array = nullptr;
+        } else throw_SystemException( "realloc of " << sz << " bytes failed", errno );
+      } else {
         size = sz;
-        if ( !sz ) array = nullptr;
-      } else throw_SystemException( "realloc of " << sz << " bytes failed", errno );
+      }
     } else {
-      array = static_cast< Octet*>( std::malloc( sz ) );
+      array = static_cast< Octet*>( std::malloc( chunkedsz ) );
       if ( array ) {
         size = sz;
+        allocated_size = chunkedsz;
       } else throw_SystemException( "malloc of " << sz << " bytes failed", errno );
     }
   }
@@ -51,6 +59,7 @@ namespace dodo::common {
       array = nullptr;
     }
     size = 0;
+    allocated_size = 0;
   }
 
   void OctetArray::append( const OctetArray& src ) {
@@ -72,6 +81,11 @@ namespace dodo::common {
     memcpy( array + osize, src, n );
   }
 
+  void OctetArray::append( Octet src ) {
+    this->reserve( size + 1 );
+    array[size-1] = src;
+  }
+
   OctetArray& OctetArray::operator=( const std::string &s ) {
     this->reserve( s.length() );
     for ( size_t i = 0; i < s.length(); i++ ) {
@@ -80,7 +94,8 @@ namespace dodo::common {
     return *this;
   }
 
-  OctetArray::operator std::string() const {
+  //OctetArray::operator std::string() const {
+  std::string OctetArray::asString() const {
     std::stringstream ss;
     for ( size_t i = 0; i < size; i++ ) {
       if ( array[i] != 0 ) ss << array[i];
@@ -141,6 +156,33 @@ namespace dodo::common {
     }
 
     std::free( target );
+    return ss.str();
+  }
+
+  OctetArray::MatchType OctetArray::match( const OctetArray& other, size_t index, size_t &octets  ) {
+    size_t local_size = size - index;
+    size_t match_size = std::min( local_size, other.size );
+    int cmp = memcmp( array, other.array, match_size );
+    if ( cmp == 0 ) {
+      if ( local_size < other.size ) {
+        octets = local_size;
+        return MatchType::Partial;
+      } else {
+        octets = other.size;
+        return MatchType::Full;
+      }
+    } else {
+      octets = 0;
+      return MatchType::Mismatch;
+    }
+  }
+
+  std::string OctetArray::hexDump( size_t n ) const {
+    std::stringstream ss;
+    for ( size_t i = 0; i < size && i < n; i++ ) {
+      if ( i != 0 ) ss << ":";
+      ss << std::setw(2) << std::hex << std::setfill('0') << (unsigned int)array[i];
+    }
     return ss.str();
   }
 

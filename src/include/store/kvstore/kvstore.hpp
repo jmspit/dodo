@@ -20,20 +20,25 @@
  * Defines the dodo::store::KVStore class.
  */
 
-#ifndef store_kvstore_hpp
-#define store_kvstore_hpp
+#ifndef store_kvstore_kvstore_hpp
+#define store_kvstore_kvstore_hpp
 
 #include <filesystem>
+#include <functional>
 #include <unistd.h>
 #include <common/systemerror.hpp>
 
-namespace dodo::store {
+#include <store/kvstore/blockdefs/common.hpp>
+#include <store/kvstore/blockdefs/toc.hpp>
+
+namespace dodo::store::kvstore {
 
   using namespace std;
   using namespace common;
 
   /**
-   * Key-value store backed by memory mapped file.
+   * Key-value store.
+   *
    */
   class KVStore {
 
@@ -48,8 +53,9 @@ namespace dodo::store {
        * The share mode of the KVStore.
        */
       enum class ShareMode {
-        Private,        /**< Do not share outside process (sharing between threads allowed). */
+        Private,        /**< Do not share outside process (but sharing between threads possible). */
         Shared,         /**< Share with other processes. */
+        Clustered,      /**< Share with other processes on other nodes (which requires a cluster filesystem). */
       };
 
       KVStore();
@@ -59,70 +65,29 @@ namespace dodo::store {
       /**
        * Open the KVStore. The file must exist and be valid (correct header and structure).
        * @param path The KVStore file path.
+       * @param mode The ShareMode to apply.
        * @return The SystemError matching errno returned by open (man 2 open) or SystemError::ecOK.
        */
-      SystemError open( const std::filesystem::path &path );
+      SystemError open( const std::filesystem::path &path, ShareMode mode );
 
       /**
        * Init the KVStore. The file must not exist.
        * @param path The KVStore file path.
-       * @param size The KVStore size (rounded up to 4KiB blocks).
+       * @param blocksize The KVStore block size, ceiled to multiples of 4KiB.
+       * @param blocks The number of blocks.
+       * @param mode The ShareMode to apply.
        * @return The SystemError matching errno returned by open (man 2 open) or SystemError::ecOK.
        */
-      SystemError init( const std::filesystem::path &path, ssize_t size );
+      SystemError init( const std::filesystem::path &path, size_t blocksize, size_t blocks, ShareMode mode );
 
-      void analyze( std::ostream &os );
+      /**
+       * Analyze the store and produce fiudings to os.
+       * @param os The stream to write the analysis to.
+       * @return true if the KVStore (file) is valid.
+       */
+      bool analyze( std::ostream &os );
 
     protected:
-
-      /**
-       * Data type for block ids
-       */
-      typedef uint64_t BlockId;
-
-      /**
-       * Block type enumerator.
-       */
-      enum BlockType: uint32_t {
-        Free = 0,         /**< Free block. */
-        FileHeader = 1,   /**< File header block */
-        TOC = 2,          /**< TOC block. */
-        Index = 3,        /**< Index block */
-        Data = 4          /**< Data block */
-      };
-
-      /**
-       * KVStore block header.
-       */
-      struct BlockHeader {
-        /** The BlockId of the block */
-        BlockId blockid;
-        /** The type of block **/
-        BlockType blocktype;
-        /** The CRC32 checksum on the remainder of the block. */
-        uint32_t crc32;
-      };
-
-      /**
-       * KVStore file header.
-       */
-      struct Header {
-        /** The block header. */
-        BlockHeader block_header;
-        /** The header magic. */
-        uint64_t magic;
-        /** The file size in blocks */
-        ssize_t blocks;
-        /** The file version. */
-        uint16_t version;
-        /** The size of the name field */
-        uint16_t name_sz;
-        /** The size of the description field */
-        uint16_t description_sz;
-        /** The size of the contact field */
-        uint16_t contact_sz;
-        // name, description and contact follow
-      };
 
       /**
        * KVStore TOC block header. The TOC, which may comprise multiple blocks, tracks free and index block locations.
@@ -152,8 +117,97 @@ namespace dodo::store {
        * @return a pointer to the block's BlockHeader.
        */
       BlockHeader* getBlockAddress( BlockId blockid ) const {
-        return reinterpret_cast<BlockHeader*>( (reinterpret_cast<char*>(address_) + pagesize_ * blockid) );
+        return reinterpret_cast<BlockHeader*>( (reinterpret_cast<char*>(address_) + blocksize_ * blockid) );
       }
+
+      /**
+       * typedef the lock functions so the lock functions can be initialized depending on the ShareMode
+       * and avoid ShareMode detection within the lock functions.
+       */
+      typedef void (KVStore::*waitLockFN)( BlockId blockid );
+
+
+      /**
+       * The read lock function in use.
+       */
+      waitLockFN waitReadLock_;
+
+      /**
+       * The read unlock function in use.
+       */
+      waitLockFN waitReadUnlock_;
+
+      /**
+       * The Write lock function in use.
+       */
+      waitLockFN waitWriteLock_;
+
+      /**
+       * The Write unlock function in use.
+       */
+      waitLockFN waitWriteUnlock_;
+
+      /**
+       * Wait for and lock the blockid for reading in Private mode.
+       * As in private mode there is no need to sync access between clusters or processes, this
+       * only uses a Mutex to sync.
+       * @param blockid The blockid to lock.
+       */
+      void waitReadLockPrivate( BlockId blockid ) {};
+
+      /**
+       * Wait for and lock the blockid for writing in Private mode.
+       * As in private mode there is no need to sync access between clusters or processes, this
+       * only uses a Mutex to sync.
+       * @param blockid The blockid to lock.
+       */
+      void waitWriteLockPrivate( BlockId blockid ) {};
+
+      /**
+       * Wait for and unlock the blockid for reading in Private mode.
+       * As in private mode there is no need to sync access between clusters or processes, this
+       * only uses a Mutex to sync.
+       * @param blockid The blockid to unlock.
+       */
+      void waitReadUnlockPrivate( BlockId blockid ) {};
+
+      /**
+       * Wait for and unlock the blockid for writing in Private mode.
+       * As in private mode there is no need to sync access between clusters or processes, this
+       * only uses a Mutex to sync.
+       * @param blockid The blockid to unlock.
+       */
+      void waitWriteUnlockPrivate( BlockId blockid ) {};
+
+      /**
+       * Wait for and lock the blockid for reading in Shared mode.
+       * The file and memory may be shared between processes.
+       * @param blockid The blockid to lock.
+       */
+      void waitReadLockShared( BlockId blockid ) {};
+
+      /**
+       * Wait for and lock the blockid for writing in Shared mode.
+       * As in private mode there is no need to sync access between clusters or processes, this
+       * only uses a Mutex to sync.
+       * @param blockid The blockid to lock.
+       */
+      void waitWriteLockShared( BlockId blockid ) {};
+
+      /**
+       * Wait for and unlock the blockid for reading in Shared mode.
+       * The file and memory may be shared between processes.
+       * @param blockid The blockid to unlock.
+       */
+      void waitReadUnlockShared( BlockId blockid ) {};
+
+      /**
+       * Wait for and unlock the blockid for writing in Shared mode.
+       * As in private mode there is no need to sync access between clusters or processes, this
+       * only uses a Mutex to sync.
+       * @param blockid The blockid to unlock.
+       */
+      void waitWriteUnlockShared( BlockId blockid ) {};
 
       /**
        * The version of this KVStore code, facilitating auto upgrades. Format is [major][minor][patch]L where each
@@ -163,20 +217,14 @@ namespace dodo::store {
       /** The file header magic. */
       const uint64_t magic = 2004196816041969;
 
-      /** The page size. */
-      size_t pagesize_ = 4096;
+      /** The block size. */
+      size_t blocksize_;
 
       /** The minimum amount of blocks to allocate - kvstore file cannot be smaller. */
       const BlockId min_blocks_ = 4;
 
       /** The file descriptor. */
       int fd_;
-
-      /** The file size. */
-      ssize_t size_;
-
-      /** The file block count (redundant field as it can be derived from size_ and pagesize_, to avoid repeated arithmetic) */
-      BlockId blocks_;
 
       /** The mapped memory address. */
       void *address_;

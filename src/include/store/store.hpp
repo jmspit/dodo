@@ -23,7 +23,7 @@
 #ifndef store_store_hpp
 #define store_store_hpp
 
-#include <store/kvstore.hpp>
+#include <store/kvstore/kvstore.hpp>
 
 namespace dodo {
 
@@ -32,8 +32,11 @@ namespace dodo {
    */
   namespace store {
 
-    using namespace std;
-    using namespace common;
+    /**
+     * Interface to the key-value store
+     */
+    namespace kvstore {
+    }
 
   }
 

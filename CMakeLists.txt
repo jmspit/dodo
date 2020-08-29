@@ -43,14 +43,21 @@ set( ${LIB_DODO}_objects
   src/lib/network/tlscontext.cpp
   src/lib/network/tlssocket.cpp
   src/lib/network/protocol/stomp.cpp
-  src/lib/store/kvstore.cpp
+  src/lib/store/kvstore/blockdefs/common.cpp
+  src/lib/store/kvstore/blockdefs/header.cpp
+  src/lib/store/kvstore/kvstore.cpp
   src/lib/threads/mutex.cpp
   src/lib/threads/thread.cpp
+  src/ext/crc32/Crc32.cpp
 )
+
+
+include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/src/ext/crc32 )
 
 set( DODO_USE_LIBS crypto ssl pthread yaml-cpp stdc++fs )
 
 add_library( ${LIB_DODO} SHARED ${${LIB_DODO}_objects} )
+
 #add_library( ${LIB_DODO_STATIC} ${${LIB_DODO}_objects} )
 target_link_libraries( ${LIB_DODO} ${DODO_USE_LIBS} )
 install( TARGETS ${LIB_DODO} LIBRARY DESTINATION lib )
@@ -64,6 +71,8 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # openssl
 include(src/cmake/findopenssl.cmake)
+
+
 
 # test
 include(src/cmake/unit-tests.cmake)

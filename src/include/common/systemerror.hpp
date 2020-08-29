@@ -217,11 +217,6 @@ namespace dodo::common {
 
           ecLIBRARY_FIRST = 10000,                    /**< 10000 Marker, library error codes from here. */
 
-          /**
-           * JSON related
-           */
-          //ecLIBRARY_INVALID_JSON = 10001,             /**< 10001 Parse failed, invalid JSON. */
-
           ecSSL = 10002,                              /**< 10002 SSL exception */
           ecSSL_ERROR_NONE = 10003,                   /**< 10003 SSL_ERROR_NONE */
           ecSSL_ERROR_ZERO_RETURN = 10003,            /**< 10003 SSL_ERROR_ZERO_RETURN */

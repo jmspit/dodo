@@ -8,6 +8,7 @@ A library to facilitate C++ software development for the Linux platform with a f
 
   - [OpenSSL](https://www.openssl.org/)
   - [yaml-cpp](https://github.com/jbeder/yaml-cpp)
+  - [crc32](https://github.com/stbrumme/crc32)
 
 ## Developers
 

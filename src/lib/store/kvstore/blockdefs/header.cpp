@@ -17,7 +17,7 @@
 
 /**
  * @file common.cpp
- * Implements dodo::store::KVStore common things
+ * Implements the dodo::store::kvstore::FileHeader class.
  */
 
 #include <store/kvstore/blockdefs/header.hpp>
@@ -56,6 +56,18 @@ namespace dodo::store::kvstore {
     description = std::string( d, block_->description_sz );
     d += block_->description_sz;
     contact = std::string( d, block_->contact_sz );
+  }
+
+  void FileHeader::init( uint64_t blocks ) {
+    block_->block_header.init( blocksize_, 0, btFileHeader );
+    block_->blocksize = blocksize_;
+    block_->blocks = blocks;
+    block_->magic = magic;
+    block_->version = version;
+    block_->created = time(nullptr);
+    block_->name_sz = 0;
+    block_->description_sz = 0;
+    block_->contact_sz = 0;    
   }
 
 

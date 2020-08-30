@@ -37,6 +37,18 @@ namespace dodo::store::kvstore {
     return crc;
   }
 
+  void BlockHeader::syncCRC32( size_t blocksize ) {
+    uint8_t* address = (uint8_t*)this;
+    uint32_t crc = crc32_fast( address,
+                               sizeof(blockid)+sizeof(blocktype),
+                               0 );
+    crc = crc32_fast( address +  sizeof(blockid)+sizeof(blocktype)+sizeof(crc32),
+                      blocksize-sizeof(blockid)-sizeof(blocktype)-sizeof(crc32),
+                      crc );
+    BlockHeader *hdr = reinterpret_cast<BlockHeader*>( address );
+    hdr->crc32 = crc;  
+  }
+
   void BlockHeader::zero( size_t blocksize ) {
     uint8_t* address = (uint8_t*)this;
     memset( address, 0, blocksize );

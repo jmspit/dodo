@@ -22,6 +22,7 @@
 
 #include <store/kvstore/kvstore.hpp>
 #include <store/kvstore/blockdefs/header.hpp>
+#include <store/kvstore/blockdefs/toc.hpp>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -42,7 +43,7 @@ namespace dodo::store::kvstore {
 
   KVStore::~KVStore() {
     if ( address_ ) {
-      FileHeader fileheader( address_ );
+      FileHeader fileheader( blocksize_, address_ );
       munmap( address_, fileheader.getBlock().blocksize * fileheader.getBlock().blocks );
     }
     if ( fd_ ) close( fd_ );
@@ -95,28 +96,18 @@ namespace dodo::store::kvstore {
     if ( address_ == MAP_FAILED ) throw_SystemException( "mmap failed", errno );
 
     // initialize header
-    FileHeader fileheader( address_ );
-    fileheader.getBlock().block_header.zero(blocksize_);
-    fileheader.getBlock().block_header.blockid = 0;
-    fileheader.getBlock().block_header.blocktype = BlockType::btFileHeader;
-    fileheader.getBlock().blocksize = blocksize_;
-    fileheader.getBlock().blocks = l_blocks;
-    fileheader.getBlock().magic = magic;
-    fileheader.getBlock().version = version;
-    fileheader.getBlock().created = time(nullptr);
-    fileheader.getBlock().name_sz = 0;
-    fileheader.getBlock().description_sz = 0;
-    fileheader.getBlock().contact_sz = 0;
-
+    FileHeader fileheader( blocksize_, address_ );
+    fileheader.init( l_blocks );
     fileheader.setInfo( "Dodo test name", "Dodo test description", "Dodo test contact" );
-
-    fileheader.getBlock().block_header.crc32 = fileheader.getBlock().block_header.calcCRC32( blocksize_ );
+    fileheader.getBlock().block_header.syncCRC32( blocksize_ );
 
     // initialize TOC
-    TOCHeader* toc_header = reinterpret_cast<TOCHeader*>( getBlockAddress( 1 ) );
-    toc_header->block_header.blockid = 1L;
-    toc_header->block_header.blocktype = btTOC;
-    toc_header->next_toc = 0L;
+    TOC toc( blocksize_, getBlockAddress( 1 ) );
+    toc.init( 1 );
+    toc.setEntry( 0, btFileHeader );
+    toc.setEntry( 1, btTOC );
+    toc.setEntry( 2, btIndex );
+    toc.getBlock().block_header.syncCRC32( blocksize_ );
 
     // initialize blocks
     for ( BlockId b = 2; b < fileheader.getBlock().blocks; b++ ) {
@@ -170,20 +161,20 @@ namespace dodo::store::kvstore {
   bool KVStore::analyze( std::ostream &os ) {
     bool ok = true;
     os << "FileHeader" << endl;
-    FileHeader fileheader( address_ );
+    FileHeader fileheader( blocksize_, address_ );
 
     Tester tester( os );
     ok = tester.test( common::Puts() << "blocktype " << fileheader.getBlock().block_header.blocktype,
       [&fileheader](){ return fileheader.getBlock().block_header.blocktype == BlockType::btFileHeader; } );
 
     ok = tester.test( common::Puts() << "magic " << fileheader.getBlock().magic,
-      [&fileheader,this](){ return fileheader.getBlock().magic == magic; } );
+      [&fileheader,this](){ return fileheader.getBlock().magic == FileHeader::magic; } );
 
     ok = tester.test( common::Puts() << "blocksize " << fileheader.getBlock().blocksize,
       [&fileheader](){ return fileheader.getBlock().blocksize % sysconf(_SC_PAGESIZE) == 0; } );
 
     ok = tester.test( common::Puts() << "file version " << fileheader.getBlock().version,
-      [&fileheader,this](){ return fileheader.getBlock().version = version; } );
+      [&fileheader,this](){ return fileheader.getBlock().version = FileHeader::version; } );
 
     ok = tester.test( common::Puts() << "crc32 0x" << common::Puts::hex() << fileheader.getBlock().block_header.calcCRC32( blocksize_ ) << common::Puts::dec(),
       [&fileheader,this](){ return fileheader.getBlock().block_header.calcCRC32( blocksize_ ) == fileheader.getBlock().block_header.crc32 ; } );

@@ -44,7 +44,10 @@ set( ${LIB_DODO}_objects
   src/lib/network/tlssocket.cpp
   src/lib/network/protocol/stomp.cpp
   src/lib/store/kvstore/blockdefs/common.cpp
+  src/lib/store/kvstore/blockdefs/data.cpp
   src/lib/store/kvstore/blockdefs/header.cpp
+  src/lib/store/kvstore/blockdefs/index.cpp
+  src/lib/store/kvstore/blockdefs/toc.cpp
   src/lib/store/kvstore/kvstore.cpp
   src/lib/threads/mutex.cpp
   src/lib/threads/thread.cpp

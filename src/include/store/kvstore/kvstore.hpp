@@ -209,14 +209,6 @@ namespace dodo::store::kvstore {
        */
       void waitWriteUnlockShared( BlockId blockid ) {};
 
-      /**
-       * The version of this KVStore code, facilitating auto upgrades. Format is [major][minor][patch]L where each
-       * field is a decimal ranging from 0-99, so 1.2.13 would be 010213L.*/
-      const uint16_t version = 000001;
-
-      /** The file header magic. */
-      const uint64_t magic = 2004196816041969;
-
       /** The block size. */
       size_t blocksize_;
 

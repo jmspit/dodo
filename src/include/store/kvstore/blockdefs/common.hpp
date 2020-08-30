@@ -17,7 +17,7 @@
 
 /**
  * @file common.hpp
- * Defines the dodo::store::KVStore class.
+ * Defines dodo::store::kvstore commpon things.
  */
 
 #ifndef store_kvstore_blockdefs_common_hpp
@@ -62,10 +62,28 @@ namespace dodo::store::kvstore {
     uint32_t calcCRC32( size_t blocksize );
 
     /**
+     * Calculate the crc32 of the block and set it in the crc32 field.
+     * @param blocksize The size of the block in bytes.
+     */
+    void syncCRC32( size_t blocksize );
+
+    /**
      * zero he block, which is assumed to be blocksize bytes.
      * @param blocksize The size of the block in bytes.
      */
     void zero( size_t blocksize );
+
+    /**
+     * Initialize the block header.
+     * @param blocksize The blocksize of the block.
+     * @param id The BlockId of the block.
+     * @param type The BlockType of the block.
+     */
+    void init( uint64_t blocksize, BlockId id, BlockType type ) {
+      this->zero( blocksize );
+      this->blockid = id;
+      this->blocktype = type; 
+    }    
 
   };
 

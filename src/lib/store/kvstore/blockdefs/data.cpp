@@ -16,34 +16,18 @@
  */
 
 /**
- * @file store.hpp
- * Includes store headers.
+ * @file data.cpp
+ * Implements the dodo::store::kvstore::Data class.
  */
 
-#ifndef store_store_hpp
-#define store_store_hpp
-
-#include <store/kvstore/kvstore.hpp>
-#include <store/kvstore/blockdefs/common.hpp>
 #include <store/kvstore/blockdefs/data.hpp>
-#include <store/kvstore/blockdefs/index.hpp>
-#include <store/kvstore/blockdefs/toc.hpp>
 
-namespace dodo {
+#include <cstring>
 
-  /**
-   * Interface to persistent storage.
-   */
-  namespace store {
+namespace dodo::store::kvstore {
 
-    /**
-     * Interface to the key-value store
-     */
-    namespace kvstore {
-    }
-
+  void Data::init( BlockId id ) {
+    
   }
 
 }
-
-#endif

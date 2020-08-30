@@ -17,7 +17,7 @@
 
 /**
  * @file kvstore.hpp
- * Defines the dodo::store::KVStore class.
+ * Defines the dodo::store::kvstore::FileHeader class.
  */
 
 #ifndef store_kvstore_blockdefs_header_hpp
@@ -62,9 +62,10 @@ namespace dodo::store::kvstore {
 
       /**
        * Construct against an existing address.
+       * @param blocksize The blocksize of the block.
        * @param address The address to interpret as a FileHeader.
        */
-      FileHeader( void* address ) { block_ = reinterpret_cast<BlockDef*>( address ); }
+      FileHeader( uint64_t blocksize, void* address ) { blocksize_ = blocksize; block_ = reinterpret_cast<BlockDef*>( address ); }
 
       /**
        * Provide access to the block.
@@ -92,9 +93,25 @@ namespace dodo::store::kvstore {
                     std::string &description,
                     std::string &contact );
 
+      /**
+       * Initialize the FileHeader block.
+       * @param blocks The number of blocks in the file.
+       */
+      void init( uint64_t blocks );
 
+      /**
+       * The version of this KVStore code, facilitating auto upgrades. Format is [major][minor][patch]L where each
+       * field is a decimal ranging from 0-99, so 1.2.13 would be 010213L.*/
+      static const uint16_t version = 000001;
+
+      /** The file header magic. */
+      static const uint64_t magic = 2004196816041969;      
 
     protected:
+
+      /** The block size. */
+      uint64_t blocksize_;
+
       /**
        * The interpreted block.
        */

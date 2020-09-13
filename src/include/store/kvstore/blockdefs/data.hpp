@@ -141,6 +141,12 @@ namespace dodo::store::kvstore {
        */
       RowId allocateRow( const common::OctetArray& src );
 
+      /**
+       * Return a copy of the row's data as an OctetArray.
+       * @param rowid The rowid to return the data for.
+       * @param data The OctetArray  to return the data in.
+       * @return True if found, false otherwise.
+       */
       bool getRowData( RowId rowid, common::OctetArray& data ) const;
 
       /**

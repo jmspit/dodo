@@ -16,13 +16,19 @@
  */
 
 /**
- * @file common.cpp
+ * @file header.cpp
  * Implements the dodo::store::kvstore::FileHeader class.
  */
 
+#include <store/kvstore/kvstore.hpp>
 #include <store/kvstore/blockdefs/header.hpp>
+#include <common/puts.hpp>
 
 #include <cstring>
+
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
 namespace dodo::store::kvstore {
 
@@ -58,16 +64,71 @@ namespace dodo::store::kvstore {
     contact = std::string( d, block_->contact_sz );
   }
 
-  void FileHeader::init( uint64_t blocks ) {
-    block_->block_header.init( blocksize_, 0, btFileHeader );
-    block_->blocksize = blocksize_;
+  void FileHeader::init( BlockCount blocks ) {
+    block_->block_header.init( store_->getBlockSize(), 0, btFileHeader );
+    block_->blocksize = store_->getBlockSize();
     block_->blocks = blocks;
     block_->magic = magic;
     block_->version = version;
     block_->created = time(nullptr);
     block_->name_sz = 0;
     block_->description_sz = 0;
-    block_->contact_sz = 0;    
+    block_->contact_sz = 0;
+  }
+
+  bool FileHeader::analyze( std::ostream &os ) {
+    bool ok = true;
+    outputHeader( os, "Type sizes (bytes)" );
+    os << "BlockId " << sizeof(BlockId) << std::endl;
+    os << "RowId " << sizeof(RowId) << std::endl;
+    os << "BlockSize " << sizeof(BlockSize) << std::endl;
+    os << "BlockCount " << sizeof(BlockCount) << std::endl;
+    os << "BlockType " << sizeof(BlockType) << std::endl;
+    os << "FileSize " << sizeof(FileSize) << std::endl;
+    os << "BlockHeader " << sizeof(BlockHeader) << std::endl;
+    os << "TOC::BlockDef " << sizeof(TOC::BlockDef) << std::endl;
+    os << "Data::BlockDef " << sizeof(Data::BlockDef) << std::endl;
+    os << "Data::RowEntry " << sizeof(Data::RowEntry) << std::endl;
+
+    outputHeader( os, "Limits" );
+    os << "maximum key size " << (block_->blocksize-sizeof(IndexLeaf::BlockDef)-sizeof(IndexLeaf::IndexEntry))/2 << std::endl;
+    os << "maximum 1 byte rows per block " << block_->blocksize-sizeof(Data::BlockDef) << std::endl;
+
+    outputHeader( os, "File header block" );
+    Tester tester( os );
+    ok = tester.test( common::Puts() << "blockid " << block_->block_header.blockid,
+      [this](){ return block_->block_header.blockid == 0; } );
+
+    ok = tester.test( common::Puts() << "blocktype " << block_->block_header.blocktype,
+      [this](){ return block_->block_header.blocktype == BlockType::btFileHeader; } );
+
+    ok = tester.test( common::Puts() << "magic " << block_->magic,
+      [this](){ return block_->magic == FileHeader::magic; } );
+
+    ok = tester.test( common::Puts() << "blocksize " << block_->blocksize << " is integer multiple of system page size ("
+                                     << block_->blocksize / sysconf(_SC_PAGESIZE) << "x" << sysconf(_SC_PAGESIZE)  << ") ",
+                      [this](){ return block_->blocksize % sysconf(_SC_PAGESIZE) == 0; } );
+
+    ok = tester.test( common::Puts() << "file version " << block_->version,
+      [this](){ return block_->version = FileHeader::version; } );
+
+    ok = tester.test( common::Puts() << "crc32 0x" << common::Puts::hex() << block_->block_header.calcCRC32( store_->getBlockSize() ) << common::Puts::dec(),
+      [this](){ return block_->block_header.verifyCRC32( store_->getBlockSize() ) ; } );
+
+    struct stat st;
+    fstat( store_->getFD(), &st );
+    ok = tester.test( common::Puts() << "file size " << st.st_size,
+      [st,this](){ return block_->blocksize * block_->blocks == static_cast<uint64_t>( st.st_size ); } );
+
+    os << "created " << block_->created << std::endl;
+    os << "blocks " << block_->blocks << std::endl;
+    std::string name, description, contact;
+    getInfo( name, description, contact );
+    os << "name " << name << std::endl;
+    os << "description " << description << std::endl;
+    os << "contact " << contact << std::endl;
+
+    return ok;
   }
 
 

@@ -24,8 +24,8 @@
 #define network_socketparams_hpp
 
 #include <netdb.h>
-#include <string>
 #include <sstream>
+#include <string>
 
 namespace dodo::network {
 

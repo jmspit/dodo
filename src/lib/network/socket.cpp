@@ -20,16 +20,14 @@
  * Implements the dodo::network::Socket class.
  */
 
-#include "network/socket.hpp"
-
-#include <string.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-
-
+#include <cstring>
 #include <iostream>
-#include <common/exception.hpp>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+#include "network/socket.hpp"
+#include "common/exception.hpp"
 
 namespace dodo::network {
 
@@ -115,5 +113,3 @@ namespace dodo::network {
   }
 
 }
-
-

@@ -20,9 +20,9 @@
  * Implements the dodo::network::TCPServer class.
  */
 
-#include "network/tcpserver.hpp"
-#include "common/logger.hpp"
-#include "common/util.hpp"
+#include <network/tcpserver.hpp>
+#include <common/logger.hpp>
+#include <common/util.hpp>
 
 #include <chrono>
 #include <thread>

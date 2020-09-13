@@ -23,15 +23,15 @@
 #ifndef network_network_hpp
 #define network_network_hpp
 
-#include <network/address.hpp>
-#include <network/basesocket.hpp>
-#include <network/socket.hpp>
-#include <network/x509cert.hpp>
-#include <network/tcplistener.hpp>
-#include <network/tcpserver.hpp>
-#include <network/tlscontext.hpp>
-#include <network/tlssocket.hpp>
-#include <network/protocol/stomp.hpp>
+#include "network/address.hpp"
+#include "network/basesocket.hpp"
+#include "network/protocol/stomp.hpp"
+#include "network/socket.hpp"
+#include "network/tcplistener.hpp"
+#include "network/tcpserver.hpp"
+#include "network/tlscontext.hpp"
+#include "network/tlssocket.hpp"
+#include "network/x509cert.hpp"
 
 namespace dodo {
 

@@ -17,7 +17,7 @@
 
 /**
  * @file stomp.cpp
- * Implements the dodo::network::TLSSocket class.
+ * Implements the dodo::network::stomp classes.
  */
 
 #include "network/protocol/stomp.hpp"
@@ -30,6 +30,7 @@
 namespace dodo::network::protocol::stomp {
 
   Frame::FrameMatch Frame::readCommand( const common::OctetArray& frame, size_t &index, const common::OctetArray& command ) const {
+
     enum State {
       command_read,
       endofline,

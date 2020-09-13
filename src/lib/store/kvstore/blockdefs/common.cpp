@@ -20,13 +20,13 @@
  * Implements dodo::store::KVStore common things
  */
 
-#include <store/kvstore/blockdefs/common.hpp>
+#include <cstring>
 
-#include <string.h>
+#include "store/kvstore/blockdefs/common.hpp"
 
 namespace dodo::store::kvstore {
 
-  uint32_t BlockHeader::calcCRC32( size_t blocksize ) {
+  uint32_t BlockHeader::calcCRC32( BlockSize blocksize ) const {
     uint8_t* address = (uint8_t*)this;
     uint32_t crc = crc32_fast( address,
                                sizeof(blockid)+sizeof(blocktype),
@@ -37,7 +37,7 @@ namespace dodo::store::kvstore {
     return crc;
   }
 
-  void BlockHeader::syncCRC32( size_t blocksize ) {
+  void BlockHeader::syncCRC32( BlockSize blocksize ) {
     uint8_t* address = (uint8_t*)this;
     uint32_t crc = crc32_fast( address,
                                sizeof(blockid)+sizeof(blocktype),
@@ -46,12 +46,25 @@ namespace dodo::store::kvstore {
                       blocksize-sizeof(blockid)-sizeof(blocktype)-sizeof(crc32),
                       crc );
     BlockHeader *hdr = reinterpret_cast<BlockHeader*>( address );
-    hdr->crc32 = crc;  
+    hdr->crc32 = crc;
   }
 
-  void BlockHeader::zero( size_t blocksize ) {
+  bool BlockHeader::verifyCRC32( BlockSize blocksize ) const {
+    uint8_t* address = (uint8_t*)this;
+    BlockHeader *hdr = reinterpret_cast<BlockHeader*>( address );
+    return calcCRC32( blocksize ) == hdr->crc32;
+  }
+
+  void BlockHeader::zero( BlockSize blocksize ) {
     uint8_t* address = (uint8_t*)this;
     memset( address, 0, blocksize );
+  }
+
+  void GenericBlock::outputHeader( std::ostream& os, const std::string &caption ) {
+    os << std::endl;
+    os << std::string( 80, '-' ) << std::endl;
+    os << caption << std::endl;
+    os << std::string( 80, '-' ) << std::endl;
   }
 
 }

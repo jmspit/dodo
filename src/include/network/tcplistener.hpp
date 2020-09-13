@@ -23,18 +23,16 @@
 #ifndef network_tcplistener_hpp
 #define network_tcplistener_hpp
 
-#include <stdint.h>
-#include <sys/socket.h>
-#include <sys/epoll.h>
-#include <sys/resource.h>
-
 #include <atomic>
+#include <condition_variable>
 #include <functional>
 #include <map>
 #include <queue>
 #include <set>
-#include <atomic>
-#include <condition_variable>
+#include <stdint.h>
+#include <sys/epoll.h>
+#include <sys/resource.h>
+#include <sys/socket.h>
 #include <yaml-cpp/yaml.h>
 
 #include "common/exception.hpp"

@@ -20,7 +20,7 @@
  * Implements the dodo::network::BaseSocket class.
  */
 
-#include "common/logger.hpp"
+#include <common/logger.hpp>
 #include "network/basesocket.hpp"
 #include <netinet/tcp.h>
 #include <unistd.h>

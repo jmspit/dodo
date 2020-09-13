@@ -24,8 +24,8 @@
 #define common_datacrypt_hpp
 
 #include <string>
-#include "common/exception.hpp"
-#include "common/octetarray.hpp"
+#include <common/exception.hpp>
+#include <common/octetarray.hpp>
 #include <openssl/err.h>
 
 namespace dodo::common {

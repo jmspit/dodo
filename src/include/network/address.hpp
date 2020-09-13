@@ -24,14 +24,15 @@
 #define network_address_hpp
 
 #include <arpa/inet.h>
-#include <common/exception.hpp>
 #include <iostream>
 #include <list>
 #include <map>
-#include <network/socketparams.hpp>
 #include <stdint.h>
 #include <string>
 #include <sys/socket.h>
+
+#include "common/exception.hpp"
+#include "network/socketparams.hpp"
 
 namespace dodo::network {
 

@@ -29,33 +29,41 @@
 #include <unistd.h>
 #include <iostream>
 #include <sys/mman.h>
+#include <filesystem>
 
 #include <common/util.hpp>
 #include <common/exception.hpp>
 
+#include <cassert>
 
 namespace dodo::store::kvstore {
 
 
   KVStore::KVStore() : fd_(0) {
-    blocksize_ = sysconf(_SC_PAGESIZE);
+    blocksize_ = static_cast<BlockSize>( sysconf(_SC_PAGESIZE) );
+    assert( sizeof(BlockHeader) == 16 );
+    assert( sizeof(FileHeader::BlockDef) == 52 );
+    assert( sizeof(TOC::BlockDef) == 44 );
+    assert( sizeof(Data::BlockDef) == 48 );
+    assert( sizeof(Data::RowEntry) == 24 );
   }
 
   KVStore::~KVStore() {
     if ( address_ ) {
-      FileHeader fileheader( blocksize_, address_ );
+      FileHeader fileheader( this, address_ );
       munmap( address_, fileheader.getBlock().blocksize * fileheader.getBlock().blocks );
+      address_ = nullptr;
     }
-    if ( fd_ ) close( fd_ );
+    if ( fd_ ) { close( fd_ ); fd_ = 0; }
   }
 
   SystemError KVStore::open( const std::filesystem::path &path, ShareMode mode ) {
     fd_ = ::open( path.c_str(), O_RDWR | O_DSYNC, 0600 );
     if ( fd_ == -1 ) throw_SystemException( "open of file '" << path << "' failed", errno );
-    ssize_t size = getFileSize( path );
+    FileSize size = getFileSize( path );
     switch ( mode ) {
       case ShareMode::Private:
-        address_ = mmap( nullptr, size, PROT_READ | PROT_WRITE, MAP_PRIVATE, fd_, 0 );
+        address_ = mmap( nullptr, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd_, 0 );
         waitReadLock_ = &KVStore::waitReadLockPrivate;
         waitWriteLock_ = &KVStore::waitWriteLockPrivate;
         break;
@@ -74,14 +82,18 @@ namespace dodo::store::kvstore {
     return SystemError::ecOK;
   }
 
-  SystemError KVStore::init( const std::filesystem::path &path, size_t blocksize, size_t blocks, ShareMode mode ) {
+  SystemError KVStore::init( const std::filesystem::path &path, BlockSize blocksize, size_t blocks, ShareMode mode ) {
+    std::filesystem::space_info dev = std::filesystem::space(path);
+    BlockSize spsz = static_cast<BlockSize>( sysconf(_SC_PAGESIZE) );
+    blocksize_ = ( blocksize / spsz ) * spsz;
+    size_t blocks_ = blocks;
+    if ( blocks_ < min_blocks_ ) blocks_ = min_blocks_;
+    FileSize size = blocksize_ * blocks_;
+    if ( size > dev.available-1024*1024*10 ) throw_Exception( "insufficent filesysten free space, " << size << " bytes required" );
+
     fd_ = ::open( path.c_str(), O_RDWR | O_DSYNC | O_CREAT | O_TRUNC, 0600 );
     if ( fd_ == -1 ) throw_SystemException( "creation of file '" << path << "' failed", errno );
     // size the file
-    blocksize_ = ( blocksize / sysconf(_SC_PAGESIZE) ) * sysconf(_SC_PAGESIZE);
-    size_t l_blocks = blocks;
-    if ( l_blocks < min_blocks_ ) l_blocks = min_blocks_;
-    size_t size = blocksize_ * l_blocks;
     lseek( fd_, size - 1, SEEK_SET );
     write( fd_, "A", 1 );
     switch ( mode ) {
@@ -96,26 +108,72 @@ namespace dodo::store::kvstore {
     if ( address_ == MAP_FAILED ) throw_SystemException( "mmap failed", errno );
 
     // initialize header
-    FileHeader fileheader( blocksize_, address_ );
-    fileheader.init( l_blocks );
+    FileHeader fileheader( this, address_ );
+    fileheader.init( blocks_ );
     fileheader.setInfo( "Dodo test name", "Dodo test description", "Dodo test contact" );
     fileheader.getBlock().block_header.syncCRC32( blocksize_ );
 
     // initialize TOC
-    TOC toc( blocksize_, getBlockAddress( 1 ) );
-    toc.init( 1 );
+    TOC toc( this, getBlockAddress( 1 ) );
+    toc.init( 1, 0 );
     toc.setEntry( 0, btFileHeader );
     toc.setEntry( 1, btTOC );
-    toc.setEntry( 2, btIndex );
-    toc.getBlock().block_header.syncCRC32( blocksize_ );
+    toc.setEntry( 2, btIndexTree );
+    toc.setEntry( 3, btData );
 
-    // initialize blocks
-    for ( BlockId b = 2; b < fileheader.getBlock().blocks; b++ ) {
+    // initialize index root block
+    IndexTree idxt( blocksize_, getBlockAddress( 2 ) );
+    idxt.init( 2 );
+    idxt.getBlock().block_header.syncCRC32( blocksize_ );
+
+    // initialize one data block
+    Data dat( this, getBlockAddress( 3 ) );
+    dat.init( 3 );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0000") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0001") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0002") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0003") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0004") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0005") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0006") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0007") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0008") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0009") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0010") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0011") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0012") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0013") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0014") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0015") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0016") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0017") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0018") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0019") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0020") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0021") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0022") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0023") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0024") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0025") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0026") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0027") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0028") );
+    dat.allocateRow( common::OctetArray("texttexttexttextexttexttexttext0029") );
+
+    dat.getBlock().block_header.syncCRC32( blocksize_ );
+
+
+    // initialize remaining blocks
+    for ( BlockId b = 4; b < fileheader.getBlock().blocks; b++ ) {
       BlockHeader* bh = getBlockAddress( b );
       bh->zero(blocksize_);
       bh->blockid = b;
       bh->blocktype = btFree;
+      bh->syncCRC32( blocksize_ );
+      toc.setEntry( b, btFree );
     }
+
+    toc.getBlock().block_header.syncCRC32( blocksize_ );
 
     SystemError rc = msync( address_, size, MS_SYNC );
 
@@ -123,75 +181,44 @@ namespace dodo::store::kvstore {
     return SystemError::ecOK;
   }
 
-  /**
-   * Tester code convenience class.
-   */
-  class Tester {
-    public:
-      /**
-       * Construct
-       * @param os Stream to write test results to
-       */
-      Tester( std::ostream &os ) :os_(os), ok_(true) {}
+  void KVStore::extend( BlockId blocks ) {
+    // resize the file
+    FileHeader fileheader1( this, address_ );
+    FileSize oldsize = blocksize_ * fileheader1.getBlock().blocks;
+    FileSize size = blocksize_ * (fileheader1.getBlock().blocks + blocks);
+    ftruncate( fd_, size );
+    void* relocated = mremap( address_, oldsize, size, MREMAP_MAYMOVE );
+    if ( relocated != MAP_FAILED ) address_ = relocated; else throw_SystemException( "mremap failed", errno );
 
-      /** Destruct */
-      virtual ~Tester() {}
+    TOC toc( this, getBlockAddress( 1 ) );
+    FileHeader fileheader2( this, address_ );
+    for ( BlockId b = fileheader2.getBlock().blocks; b < fileheader2.getBlock().blocks + blocks; b++ ) {
+      toc.setEntry( b, btFree );
+    }
 
-      /**
-       * Test
-       * @param msg A descriptive message
-       * @param test A callable (function, lambda) delivering the test result.
-       * @return The test result AND the result of the previous test.
-       */
-      bool test( const std::string &msg,
-                 std::function<bool(void)> test ) {
-        if ( !ok_ ) return ok_;
-        ok_ = ok_ && std::invoke( test );
-        if ( ok_ ) os_ << "OK   "; else os_ << "FAIL ";
-        os_ << msg << endl;
-        return ok_;
-      }
-    private:
-      /** Output stream */
-      std::ostream &os_;
-      /** Test result. */
-      bool ok_;
-  };
+    // //TOC toc( blocksize_, getBlockAddress( 1 ) ); // @todo  - could be the wrong TOC
+
+    fileheader2.getBlock().blocks += blocks;
+    fileheader2.getBlock().block_header.syncCRC32(blocksize_);
+    toc.getBlock().block_header.syncCRC32(blocksize_);
+  }
 
   bool KVStore::analyze( std::ostream &os ) {
-    bool ok = true;
-    os << "FileHeader" << endl;
-    FileHeader fileheader( blocksize_, address_ );
 
-    Tester tester( os );
-    ok = tester.test( common::Puts() << "blocktype " << fileheader.getBlock().block_header.blocktype,
-      [&fileheader](){ return fileheader.getBlock().block_header.blocktype == BlockType::btFileHeader; } );
+    FileHeader fileheader( this, address_ );
+    bool ok = fileheader.analyze( os );
 
-    ok = tester.test( common::Puts() << "magic " << fileheader.getBlock().magic,
-      [&fileheader,this](){ return fileheader.getBlock().magic == FileHeader::magic; } );
+    TOC toc( this, getBlockAddress( 1 ) );
+    ok = toc.analyze( os );
 
-    ok = tester.test( common::Puts() << "blocksize " << fileheader.getBlock().blocksize,
-      [&fileheader](){ return fileheader.getBlock().blocksize % sysconf(_SC_PAGESIZE) == 0; } );
-
-    ok = tester.test( common::Puts() << "file version " << fileheader.getBlock().version,
-      [&fileheader,this](){ return fileheader.getBlock().version = FileHeader::version; } );
-
-    ok = tester.test( common::Puts() << "crc32 0x" << common::Puts::hex() << fileheader.getBlock().block_header.calcCRC32( blocksize_ ) << common::Puts::dec(),
-      [&fileheader,this](){ return fileheader.getBlock().block_header.calcCRC32( blocksize_ ) == fileheader.getBlock().block_header.crc32 ; } );
-
-    struct stat st;
-    fstat( fd_, &st );
-    ok = tester.test( common::Puts() << "file size " << st.st_size,
-      [&fileheader,st,this](){ return fileheader.getBlock().blocksize * fileheader.getBlock().blocks == static_cast<uint64_t>( st.st_size ); } );
-
-    os << "created " << fileheader.getBlock().created << std::endl;
-    os << "blocks " << fileheader.getBlock().blocks << std::endl;
-    std::string name, description, contact;
-    fileheader.getInfo( name, description, contact );
-    os << "name " << name << std::endl;
-    os << "description " << description << std::endl;
-    os << "contact " << contact << std::endl;
-
+    Data data( this, getBlockAddress( 3 ) );
+    ok = ok && data.analyze( os );
+    data.releaseRow( 6 );
+    data.getBlock().block_header.syncCRC32( blocksize_ );
+    ok = ok && data.analyze( os );
+    data.allocateRow( common::OctetArray( "replace6" ) );
+    data.getBlock().block_header.syncCRC32( blocksize_ );
+    ok = ok && data.analyze( os );
     return ok;
   }
 

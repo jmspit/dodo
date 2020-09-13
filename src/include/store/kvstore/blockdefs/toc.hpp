@@ -16,8 +16,8 @@
  */
 
 /**
- * @file kvstore.hpp
- * Defines the dodo::store::KVStore class.
+ * @file toc.hpp
+ * Defines the dodo::store::kvstore::TOC class.
  */
 
 #ifndef store_kvstore_blockdefs_toc_hpp
@@ -33,36 +33,43 @@ namespace dodo::store::kvstore {
   /**
    * Table of Contents block, tracks BlockId to BlockType
    */
-  class TOC {
+  class TOC : GenericBlock {
     public:
 
       /**
        * The block definition.
        */
+      #pragma pack(1)
       struct BlockDef {
         /** The block header. */
         BlockHeader block_header;
         /** The lowest BlockId tracked in this block, only valid when entries > 0. */
         BlockId lowest;
         /** The highest BlockId tracked in this block, only valid when entries > 0. */
-        BlockId highest;        
+        BlockId highest;
         /** The next TOC blockid or 0 if this is the last TOC. */
         BlockId next_toc;
-        /** The number of entries in this TOC. */
-        uint64_t entries;
         /**
          * The BlockType of the first of a list of entries.
          */
         BlockType entry;
 
       };
+      #pragma pack()
 
       /**
        * Construct against an existing address.
-       * @param blocksize The size of the block
+       * @param store The KVStore that owns this block.
        * @param address The address to interpret as a FileHeader.
        */
-      TOC( uint64_t blocksize, void* address ) { blocksize_ = blocksize; block_ = reinterpret_cast<BlockDef*>( address ); }
+      TOC( KVStore* store, void* address ) : GenericBlock( store ) { block_ = reinterpret_cast<BlockDef*>( address ); }
+
+      /**
+       * Deep analysis, return true when all is well.
+       * @param os The ostream to write analysis to.
+       * @return True if the block is ok.
+       */
+      virtual bool analyze( std::ostream &os );
 
       /**
        * Provide access to the block.
@@ -77,17 +84,18 @@ namespace dodo::store::kvstore {
       void setNextTOC( BlockId id ) { block_->next_toc = id; }
 
       /**
-       * Return true when id is >= lowest and <= highest
+       * Return true when id is in this TOC.
        * @param id The BlockId to match.
-       * @return True when id >= lowest && <= highest
+       * @return True when id is in this TOC.
        */
-      bool hasBlock( BlockId id ) const { return id >= block_->lowest && id <= block_->highest; };
+      bool hasBlock( BlockId id ) const { return id >= block_->lowest && id <= block_->lowest + getMaxEntries(); };
 
       /**
        * Initialize the block
-       * @param id The BockId to initialize with.
+       * @param id The BlockId to initialize with.
+       * @param lowest The lowest BlockId tracked in this TOC block.
        */
-      void init( BlockId id );
+      void init( BlockId id, BlockId lowest );
 
       /**
        * Set the entry of BlockId id to BlockType type.
@@ -97,14 +105,11 @@ namespace dodo::store::kvstore {
       void setEntry( BlockId id, BlockType type );
 
     protected:
-      /** The block size. */
-      uint64_t blocksize_;
-
       /**
        * Return the maximum number of entries in a TOC block.
        * @return The max number of entries in a TOC block.
        */
-      uint64_t getMaxEntries() const { return (blocksize_ - sizeof( BlockDef ) + sizeof( BlockType ))/sizeof( BlockType );  }
+      uint64_t getMaxEntries() const;
 
       /** The interpreted block. */
       BlockDef* block_;

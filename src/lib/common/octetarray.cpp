@@ -20,13 +20,13 @@
  * Implements the dodo::common::OctetArray class.
  */
 
-#include "common/exception.hpp"
-#include "common/octetarray.hpp"
-
+#include <cstring>
+#include <iostream>
 #include <openssl/evp.h>
 #include <openssl/rand.h>
-#include <string.h>
-#include <iostream>
+
+#include "common/exception.hpp"
+#include "common/octetarray.hpp"
 
 namespace dodo::common {
 

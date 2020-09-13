@@ -20,14 +20,13 @@
  * Implements the dodo::threads::Thread class.
  */
 
-#include <threads/thread.hpp>
-#include <common/util.hpp>
-
 #include <iostream>
-#include <string.h>
+#include <cstring>
 #include <unistd.h>
 #include <sys/syscall.h>
 
+#include "threads/thread.hpp"
+#include "common/util.hpp"
 
 namespace dodo::threads {
 

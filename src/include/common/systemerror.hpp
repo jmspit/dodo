@@ -24,13 +24,12 @@
 #define common_systemerror_hpp
 
 
+#include <cstring>
 #include <netdb.h>
 #include <sstream>
-#include <string.h>
 #include <string>
 
-
-#include <common/puts.hpp>
+#include "common/puts.hpp"
 
 namespace dodo::common {
 

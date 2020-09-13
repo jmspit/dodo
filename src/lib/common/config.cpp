@@ -23,8 +23,8 @@
 #include <fstream>
 #include <iostream>
 
-#include "common/config.hpp"
-#include "common/exception.hpp"
+#include <common/config.hpp>
+#include <common/exception.hpp>
 
 namespace dodo::common {
 

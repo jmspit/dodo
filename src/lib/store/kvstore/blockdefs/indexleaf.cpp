@@ -16,14 +16,18 @@
  */
 
 /**
- * @file index.cpp
- * Implements the dodo::store::kvstore::Index class.
+ * @file indexleaf.cpp
+ * Implements the dodo::store::kvstore::IndexLeaf class.
  */
 
-#include <store/kvstore/blockdefs/index.hpp>
+#include <store/kvstore/blockdefs/indexleaf.hpp>
 
 #include <cstring>
 
 namespace dodo::store::kvstore {
+
+  void IndexLeaf::init( BlockId id ) {
+    block_->block_header.init( blocksize_, id, btIndexLeaf );
+  }
 
 }

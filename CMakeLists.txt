@@ -46,7 +46,8 @@ set( ${LIB_DODO}_objects
   src/lib/store/kvstore/blockdefs/common.cpp
   src/lib/store/kvstore/blockdefs/data.cpp
   src/lib/store/kvstore/blockdefs/header.cpp
-  src/lib/store/kvstore/blockdefs/index.cpp
+  src/lib/store/kvstore/blockdefs/indexleaf.cpp
+  src/lib/store/kvstore/blockdefs/indextree.cpp
   src/lib/store/kvstore/blockdefs/toc.cpp
   src/lib/store/kvstore/kvstore.cpp
   src/lib/threads/mutex.cpp

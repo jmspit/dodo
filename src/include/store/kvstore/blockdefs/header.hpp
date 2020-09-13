@@ -16,7 +16,7 @@
  */
 
 /**
- * @file kvstore.hpp
+ * @file header.hpp
  * Defines the dodo::store::kvstore::FileHeader class.
  */
 
@@ -32,21 +32,22 @@ namespace dodo::store::kvstore {
   /**
    * The first block in the file.
    */
-  class FileHeader {
+  class FileHeader : public GenericBlock {
     public:
 
       /**
        * The block definition.
        */
+      #pragma pack(1)
       struct BlockDef {
         /** The block header. */
         BlockHeader block_header;
         /** The header magic. */
         uint64_t magic;
         /** The file blocksize in bytes - must be a multiple of sysconf(_SC_PAGESIZE) */
-        uint64_t blocksize;
-        /** The file size in blocks */
-        uint64_t blocks;
+        BlockSize blocksize;
+        /** The number of blocks in the file. */
+        BlockCount blocks;
         /** The file version. */
         uint16_t version;
         /** when the file was first created. */
@@ -59,13 +60,14 @@ namespace dodo::store::kvstore {
         uint16_t contact_sz;
         // name, description and contact follow
       };
+      #pragma pack()
 
       /**
        * Construct against an existing address.
-       * @param blocksize The blocksize of the block.
+       * @param store The KVStore the block belongs to.
        * @param address The address to interpret as a FileHeader.
        */
-      FileHeader( uint64_t blocksize, void* address ) { blocksize_ = blocksize; block_ = reinterpret_cast<BlockDef*>( address ); }
+      FileHeader( KVStore* store, void* address ) : GenericBlock( store ) { block_ = reinterpret_cast<BlockDef*>( address ); }
 
       /**
        * Provide access to the block.
@@ -97,7 +99,14 @@ namespace dodo::store::kvstore {
        * Initialize the FileHeader block.
        * @param blocks The number of blocks in the file.
        */
-      void init( uint64_t blocks );
+      void init( BlockCount blocks );
+
+      /**
+       * Deep analysis, return true when all is well.
+       * @param os The ostream to write analysis to.
+       * @return True if the block is ok.
+       */
+      virtual bool analyze( std::ostream &os );
 
       /**
        * The version of this KVStore code, facilitating auto upgrades. Format is [major][minor][patch]L where each
@@ -105,12 +114,9 @@ namespace dodo::store::kvstore {
       static const uint16_t version = 000001;
 
       /** The file header magic. */
-      static const uint64_t magic = 2004196816041969;      
+      static const uint64_t magic = 2004196816041969;
 
     protected:
-
-      /** The block size. */
-      uint64_t blocksize_;
 
       /**
        * The interpreted block.

@@ -4,7 +4,7 @@
 
 # Introduction
 
-- Target is Linux.
+- Target is GNU/Linux.
 - API to write low level services with C++ traits as a low memory footprint and efficient binaries.
 - Implicit APIs for deployment configuration, logging, threading, networking, SQLite, PostgreSQL, MongoDB, Oracle
   JSON, XML, Kafka, AVRO
@@ -581,7 +581,7 @@ myapp:
 
 To highlight the purpose and effect of the parameters, the TCPListener loop roughly iterates as
 
-```
+```BASH
 while ( ! stopped ) {
   throttle if needed, at max cycle-max-throttles times throttle-sleep-us microseconds
   check if servers need to be added (when the queue size is not shrinking)
@@ -597,4 +597,20 @@ The implicit throttling mechanism of the TCPListener protects the TCPServer pool
 queue client data in the hosts receive buffers initially, and if they are full, clients will start to experience
 send latency up until their send timeout values. So the TCPListener will seek to maximize the sustained
 arrival rate of work against the configured capacity of the TCPServer pool, although, as the receive buffers
-and request queue size permit, it can handle intermediate burst that exceed it without additional wait latency.
+and request queue size permit, it can handle intermediate burst that exceed it without additional latency.
+
+
+# KVStore
+
+The key-value store
+
+  - Is block-oriented with a configurable blocksize of 4096 byte multiples.
+  - Has string-based keys with a maximum key length slightly less than half a block.
+  - Values can span blocks and can be as large as uint64_t
+  - Can store arbitrary value data.
+  - Utilizes a b-tree index to store keys and pointers to values.
+  - Uses a memory mapped file with block-level locking allowing multithreaded, multiprocess or multi-node (clustered) use.
+  - Provides auto-upgrades on the data file.
+  - Block integrity checks with crc32.
+  - Ability to encrypt values.
+  - Ability to compress values.

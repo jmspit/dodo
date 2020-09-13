@@ -20,18 +20,15 @@
  * Implements the dodo::network::Address class.
  */
 
-#include "network/address.hpp"
-
+#include <cstring>
 #include <fcntl.h>
-#include <string.h>
-#include <unistd.h>
+#include <iostream>
+#include <iostream>
 #include <netdb.h>
-
-
-#include <iostream>
 #include <sstream>
+#include <unistd.h>
 
-#include <iostream>
+#include "network/address.hpp"
 
 namespace dodo::network {
 

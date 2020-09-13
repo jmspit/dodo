@@ -16,12 +16,12 @@
  */
 
 /**
- * @file index.hpp
- * Defines the dodo::store::kvstore::Index class.
+ * @file indexleaf.hpp
+ * Defines the dodo::store::kvstore::IndexLeaf class.
  */
 
-#ifndef store_kvstore_blockdefs_index_hpp
-#define store_kvstore_blockdefs_index_hpp
+#ifndef store_kvstore_blockdefs_index_leaf_hpp
+#define store_kvstore_blockdefs_index_leaf_hpp
 
 #include <store/kvstore/blockdefs/common.hpp>
 
@@ -30,8 +30,24 @@ namespace dodo::store::kvstore {
   /**
    * An index block.
    */
-  class Index {
+  class IndexLeaf {
     public:
+
+      /**
+       * An index entry.
+       */
+      #pragma pack(1)
+      struct IndexEntry {
+        /** the offset from block start where the key is stored. */
+        BlockSize offset;
+        /** the size of the key. */
+        BlockSize size;
+        /** The BlockId the entry points to. */
+        BlockId block;
+        /** The row the entry points to. */
+        RowId row;
+      };
+      #pragma pack()
 
       /**
        * The block definition.
@@ -46,23 +62,29 @@ namespace dodo::store::kvstore {
        * @param blocksize The blocksize of the block.
        * @param address The address to interpret as a FileHeader.
        */
-      Index( uint64_t blocksize, void* address ) { blocksize_ = blocksize; block_ = reinterpret_cast<BlockDef*>( address ); }
+      IndexLeaf( BlockSize blocksize, void* address ) { blocksize_ = blocksize; block_ = reinterpret_cast<BlockDef*>( address ); }
 
       /**
        * Initialize the block
        * @param id The BockId to initialize with.
        */
       void init( BlockId id );
-   
+
+      /**
+       * Provide access to the block.
+       * @return A reference to the FileHeader::BlockDef
+       */
+      BlockDef& getBlock() { return *block_; }
+
     protected:
 
       /** The block size. */
-      uint64_t blocksize_;
+      BlockSize blocksize_;
 
       /**
        * The interpreted block.
        */
-      BlockDef* block_;   
+      BlockDef* block_;
 
   };
 

@@ -20,17 +20,16 @@
  * Implements the dodo::network::SSLSocket class.
  */
 
-#include "network/address.hpp"
-#include "network/x509cert.hpp"
-#include "common/exception.hpp"
-#include "network/tlscontext.hpp"
-#include "common/util.hpp"
-
-#include <openssl/ssl.h>
-
-#include <iostream>
 #include <fstream>
+#include <iostream>
+#include <openssl/ssl.h>
 #include <regex>
+
+#include "common/exception.hpp"
+#include "common/util.hpp"
+#include "network/address.hpp"
+#include "network/tlscontext.hpp"
+#include "network/x509cert.hpp"
 
 
 namespace dodo::network {
@@ -292,7 +291,7 @@ namespace dodo::network {
           }
         }
         break;
-      case SANType::tsIP:
+      case SANType::stIP:
         for ( auto s : cert_sans ) {
           if ( s.san_type == san.san_type && verifyIP( san.san_name, s.san_name ) ) {
             verified = true;

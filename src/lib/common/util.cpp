@@ -20,8 +20,8 @@
  * Implement utility things.
  */
 
-#include "common/exception.hpp"
-#include "common/util.hpp"
+#include <common/exception.hpp>
+#include <common/util.hpp>
 
 #include <fstream>
 #include <iomanip>

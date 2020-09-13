@@ -29,6 +29,9 @@
 #include <common/systemerror.hpp>
 
 #include <store/kvstore/blockdefs/common.hpp>
+#include <store/kvstore/blockdefs/data.hpp>
+#include <store/kvstore/blockdefs/indexleaf.hpp>
+#include <store/kvstore/blockdefs/indextree.hpp>
 #include <store/kvstore/blockdefs/toc.hpp>
 
 namespace dodo::store::kvstore {
@@ -37,7 +40,47 @@ namespace dodo::store::kvstore {
   using namespace common;
 
   /**
-   * Key-value store.
+   * A Key-value store.
+   *
+   *   - Keys are strings.
+   *   - Values are OctetArray instances.
+   *   - A Key has a mime type, so the OctetArray could contain mime type "application/json"
+   *   - A key can have attributes 'compressed' and 'encrypted', and values would be transparently
+   *     compressed/decompressed or encrypted/decrypted on the fly.
+   *
+   * The store is block-oriented with a blocksize that must be an integer multiple of the system page size
+   * (typically 4KiB). The block size has implications for the maximum key length, which is slightly less than
+   * half the blocksize.
+   *
+   * The store is thread-safe, share a single KVStore object, which maps to a single file, among multiple threads.
+   * Synchronization (locking) is done a block level:
+   *
+   *   - Readers are not blocked by readers even on the same block.
+   *   - Readers are blocked by writers on the same block.
+   *   - Writers are blocked by readers on the same block.
+   *   - Writers are blocked by writers on the same block.
+   *
+   * Operations aqcuire and release read and write locks as quickly as possible. Operations that need to lock more
+   * than one block always lock in order, from low blockid to high. For example, to get a key value pair, the KVStore
+   * cannot first find the key, release the read lock on the index block, only to discover the row has disapperead from the
+   * data block in the meantime, it mst hold aread lock on both the index and data bpock until the value pair is copied into
+   * a caller-side result.
+   *
+   * Some blocks are used more heavily than others, such as TOC and IndexTree blocks.
+   *
+   * The store provides basic operations:
+   *
+   *   - create a ney key-value pair.
+   *   - overwrite the value of a key.
+   *   - delete a key.
+   *   - get a value by key.
+   *   - check for key existence.
+   *
+   * And additionally,
+   *
+   *   - get a list of values by key pattern.
+   *   - export to json.
+   *   - import from json.
    *
    */
   class KVStore {
@@ -78,7 +121,13 @@ namespace dodo::store::kvstore {
        * @param mode The ShareMode to apply.
        * @return The SystemError matching errno returned by open (man 2 open) or SystemError::ecOK.
        */
-      SystemError init( const std::filesystem::path &path, size_t blocksize, size_t blocks, ShareMode mode );
+      SystemError init( const std::filesystem::path &path, BlockSize blocksize, BlockId blocks, ShareMode mode );
+
+      /**
+       * Add blocks to the file.
+       * @param blocks The number of blocks to add.
+       */
+      void extend( BlockId blocks );
 
       /**
        * Analyze the store and produce fiudings to os.
@@ -87,29 +136,19 @@ namespace dodo::store::kvstore {
        */
       bool analyze( std::ostream &os );
 
+      /**
+       * Return the BlockSize of the KVStore.
+       * @return The BlockSize.
+       */
+      BlockSize getBlockSize() const { return blocksize_; }
+
+      /**
+       * Return the filedescriptor fd_.
+       * @return The file descriptor.
+       */
+      int getFD() const { return fd_; }
+
     protected:
-
-      /**
-       * KVStore TOC block header. The TOC, which may comprise multiple blocks, tracks free and index block locations.
-       */
-      struct TOCHeader {
-        /** The block header. */
-        BlockHeader block_header;
-        /** The next TOC or 0 if this is the last TOC block. */
-        BlockId next_toc;
-        /** The index list starts after the blockheader upwards. */
-        uint16_t index_entries;
-        /** The free list starts at the end of the page downwards. */
-        uint16_t freelist_entries;
-      };
-
-      /**
-       * KVStore Index block header.
-       */
-      struct IndexHeader {
-        /** The block header. */
-        BlockHeader block_header;
-      };
 
       /**
        * Return a pointer to the block's BlockHeader.
@@ -210,7 +249,7 @@ namespace dodo::store::kvstore {
       void waitWriteUnlockShared( BlockId blockid ) {};
 
       /** The block size. */
-      size_t blocksize_;
+      BlockSize blocksize_;
 
       /** The minimum amount of blocks to allocate - kvstore file cannot be smaller. */
       const BlockId min_blocks_ = 4;

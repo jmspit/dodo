@@ -23,10 +23,10 @@
 #include <fstream>
 #include <iostream>
 
-#include "common/config.hpp"
+#include <common/config.hpp>
 #include "common/logger.hpp"
-#include "common/exception.hpp"
-#include "common/util.hpp"
+#include <common/exception.hpp>
+#include <common/util.hpp>
 
 #include <yaml-cpp/yaml.h>
 #include <unistd.h>

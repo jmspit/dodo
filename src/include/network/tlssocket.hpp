@@ -23,13 +23,12 @@
 #ifndef network_tlssocket_hpp
 #define network_tlssocket_hpp
 
+#include <openssl/ssl.h>
+
+#include "network/socket.hpp"
 #include "network/socketparams.hpp"
 #include "network/tlscontext.hpp"
 #include "network/x509cert.hpp"
-#include "network/socket.hpp"
-
-#include <openssl/ssl.h>
-
 
 namespace dodo::network {
 

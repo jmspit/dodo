@@ -20,13 +20,12 @@
  * Implements the dodo::network::TLSSocket class.
  */
 
+#include <cstring>
+
 #include "common/logger.hpp"
 #include "common/util.hpp"
 #include "network/tlssocket.hpp"
 #include "network/x509cert.hpp"
-
-#include <string.h>
-
 
 namespace dodo::network {
 

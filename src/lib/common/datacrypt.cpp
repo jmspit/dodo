@@ -20,8 +20,8 @@
  * Implements the dodo::common::DataCrypt class..
  */
 
-#include "common/datacrypt.hpp"
-#include "common/util.hpp"
+#include <common/datacrypt.hpp>
+#include <common/util.hpp>
 
 #include <openssl/conf.h>
 #include <openssl/err.h>

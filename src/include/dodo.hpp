@@ -30,7 +30,7 @@
 #include <threads/threads.hpp>
 
 /**
- * A C++ platform interface to lean linux services tailored for containerized deployment.
+ * A C++ platform interface to lean Linux services tailored for containerized deployment.
  */
 namespace dodo {
 

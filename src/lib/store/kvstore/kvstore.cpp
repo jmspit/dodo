@@ -30,16 +30,49 @@
 #include <iostream>
 #include <sys/mman.h>
 #include <filesystem>
+#include <mutex>
+#include <shared_mutex>
 
 #include <common/util.hpp>
 #include <common/exception.hpp>
 
 #include <cassert>
 
+
 namespace dodo::store::kvstore {
 
+  ReadBlockLock::ReadBlockLock( BlockId blockid ) {
+    KVStore* kvstore = KVStore::getKVStore();
+    fd_ = kvstore->getFD();
+    lock_.l_type = F_RDLCK;
+    lock_.l_whence = SEEK_SET;
+    lock_.l_start = 0;
+    lock_.l_len = 1024;
+    fcntl( fd_, F_OFD_SETLKW, &lock_ );
+  }
 
-  KVStore::KVStore() : fd_(0) {
+  ReadBlockLock::~ReadBlockLock() {
+    lock_.l_type = F_UNLCK;
+    fcntl( fd_, F_OFD_SETLKW, &lock_ );
+  }
+
+  WriteBlockLock::WriteBlockLock( BlockId blockid ) {
+    KVStore* kvstore = KVStore::getKVStore();
+    fd_ = kvstore->getFD();
+    lock_.l_type = F_WRLCK;
+    lock_.l_whence = SEEK_SET;
+    lock_.l_start = 0;
+    lock_.l_len = 1024;
+    fcntl( fd_, F_OFD_SETLKW, &lock_ );
+  }
+
+  WriteBlockLock::~WriteBlockLock() {
+    lock_.l_type = F_UNLCK;
+    fcntl( fd_, F_OFD_SETLKW, &lock_ );
+  }
+
+
+  KVStore::KVStore() {
     blocksize_ = static_cast<BlockSize>( sysconf(_SC_PAGESIZE) );
     assert( sizeof(BlockHeader) == 16 );
     assert( sizeof(FileHeader::BlockDef) == 52 );
@@ -49,62 +82,70 @@ namespace dodo::store::kvstore {
   }
 
   KVStore::~KVStore() {
+    std::unique_lock lock( big_mutex_ );
     if ( address_ ) {
       FileHeader fileheader( this, address_ );
       munmap( address_, fileheader.getBlock().blocksize * fileheader.getBlock().blocks );
       address_ = nullptr;
     }
-    if ( fd_ ) { close( fd_ ); fd_ = 0; }
+    for ( const auto &fd : fd_map_ ) {
+      close( fd.second );
+    }
   }
 
-  SystemError KVStore::open( const std::filesystem::path &path, ShareMode mode ) {
-    fd_ = ::open( path.c_str(), O_RDWR | O_DSYNC, 0600 );
-    if ( fd_ == -1 ) throw_SystemException( "open of file '" << path << "' failed", errno );
+  KVStore* KVStore::singleton_ = nullptr;
+
+  KVStore* KVStore::getKVStore() {
+    if ( !singleton_ ) singleton_ = new KVStore();
+    return singleton_;
+  }
+
+  SystemError KVStore::open( const std::filesystem::path &path ) {
+    path_ = path;
+    int fd = attachThread();
+    if ( fd == -1 ) throw_SystemException( "open of file '" << path_ << "' failed", errno );
+    std::unique_lock big_lock( big_mutex_ );
+    fd_map_[ std::this_thread::get_id() ] = fd;
     FileSize size = getFileSize( path );
-    switch ( mode ) {
-      case ShareMode::Private:
-        address_ = mmap( nullptr, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd_, 0 );
-        waitReadLock_ = &KVStore::waitReadLockPrivate;
-        waitWriteLock_ = &KVStore::waitWriteLockPrivate;
-        break;
-      case ShareMode::Shared:
-        address_ = mmap( nullptr, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd_, 0 );
-        waitReadLock_ = &KVStore::waitReadLockShared;
-        waitWriteLock_ = &KVStore::waitWriteLockShared;
-        break;
-      case ShareMode::Clustered:
-        address_ = mmap( nullptr, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd_, 0 );
-        waitReadLock_ = &KVStore::waitReadLockShared;
-        waitWriteLock_ = &KVStore::waitWriteLockShared;
-        break;
-    }
+    address_ = mmap( nullptr, size, PROT_READ | PROT_WRITE, MAP_PRIVATE, fd, 0 );
     if ( address_ == MAP_FAILED ) throw_SystemException( "mmap failed", errno );
     return SystemError::ecOK;
   }
 
-  SystemError KVStore::init( const std::filesystem::path &path, BlockSize blocksize, size_t blocks, ShareMode mode ) {
+  int KVStore::getFD() {
+    shared_lock<shared_timed_mutex> r(fd_map_mutex_);
+
+    auto i = fd_map_.find( std::this_thread::get_id() );
+    if ( i == fd_map_.end() ) return -1; else return i->second;
+  }
+
+  int KVStore::getThisThreadFD() {
+    auto i = fd_map_.end();
+    {
+      std::shared_lock lock(fd_map_mutex_);
+      i = fd_map_.find( std::this_thread::get_id() );
+    }
+    if ( i == fd_map_.end() ) return attachThread(); else return i->second;
+  }
+
+  SystemError KVStore::init( const std::filesystem::path &path, BlockSize blocksize, size_t blocks ) {
+    std::unique_lock big_lock( big_mutex_ );
+    path_ = path;
     std::filesystem::space_info dev = std::filesystem::space(path);
     BlockSize spsz = static_cast<BlockSize>( sysconf(_SC_PAGESIZE) );
     blocksize_ = ( blocksize / spsz ) * spsz;
     size_t blocks_ = blocks;
     if ( blocks_ < min_blocks_ ) blocks_ = min_blocks_;
     FileSize size = blocksize_ * blocks_;
-    if ( size > dev.available-1024*1024*10 ) throw_Exception( "insufficent filesysten free space, " << size << " bytes required" );
+    if ( size > dev.available-1024*1024*10 ) throw_Exception( "insufficient filesystem free space, " << size << " bytes required" );
 
-    fd_ = ::open( path.c_str(), O_RDWR | O_DSYNC | O_CREAT | O_TRUNC, 0600 );
-    if ( fd_ == -1 ) throw_SystemException( "creation of file '" << path << "' failed", errno );
+    int fd = ::open( path_.c_str(), O_RDWR | O_DSYNC | O_CREAT | O_TRUNC, 0600 );
+    fd_map_[ std::this_thread::get_id() ] = fd;
+    if ( fd == -1 ) throw_SystemException( "creation of file '" << path_ << "' failed", errno );
     // size the file
-    lseek( fd_, size - 1, SEEK_SET );
-    write( fd_, "A", 1 );
-    switch ( mode ) {
-      case ShareMode::Private:
-        address_ = mmap( nullptr, size, PROT_READ | PROT_WRITE, MAP_PRIVATE, fd_, 0 );
-        break;
-      case ShareMode::Shared:
-      case ShareMode::Clustered:
-        address_ = mmap( nullptr, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd_, 0 );
-        break;
-    }
+    lseek( fd, size - 1, SEEK_SET );
+    write( fd, "A", 1 );
+    address_ = mmap( nullptr, size, PROT_READ | PROT_WRITE, MAP_PRIVATE, fd, 0 );
     if ( address_ == MAP_FAILED ) throw_SystemException( "mmap failed", errno );
 
     // initialize header
@@ -181,12 +222,36 @@ namespace dodo::store::kvstore {
     return SystemError::ecOK;
   }
 
+  int KVStore::attachThread() {
+    {
+      std::shared_lock lock( fd_map_mutex_ );
+      auto i = fd_map_.find( std::this_thread::get_id() );
+      if ( i != fd_map_.end() ) return i->second;
+    }
+    int fd = ::open( path_.c_str(), O_RDWR | O_DSYNC, 0600 );
+    if ( fd == -1 ) throw_SystemException( "open of file '" << path_ << "' failed", errno );
+    {
+      std::unique_lock lock( fd_map_mutex_ );
+      fd_map_[ std::this_thread::get_id() ] = fd;
+    }
+    return fd;
+  }
+
+  void KVStore::releaseThread() {
+    {
+      std::unique_lock lock( fd_map_mutex_ );
+      fd_map_.erase( std::this_thread::get_id() );
+    }
+  }
+
   void KVStore::extend( BlockId blocks ) {
+    int fd = getThisThreadFD();
+    std::unique_lock big_lock( big_mutex_ );
     // resize the file
     FileHeader fileheader1( this, address_ );
     FileSize oldsize = blocksize_ * fileheader1.getBlock().blocks;
     FileSize size = blocksize_ * (fileheader1.getBlock().blocks + blocks);
-    ftruncate( fd_, size );
+    ftruncate( fd, size );
     void* relocated = mremap( address_, oldsize, size, MREMAP_MAYMOVE );
     if ( relocated != MAP_FAILED ) address_ = relocated; else throw_SystemException( "mremap failed", errno );
 
@@ -204,6 +269,11 @@ namespace dodo::store::kvstore {
   }
 
   bool KVStore::analyze( std::ostream &os ) {
+    std::unique_lock big_lock( big_mutex_ );
+
+    for ( const auto &fd : fd_map_ ) {
+      cout << "thread id " << fd.first << " file descriptor " << fd.second << endl;
+    }
 
     FileHeader fileheader( this, address_ );
     bool ok = fileheader.analyze( os );

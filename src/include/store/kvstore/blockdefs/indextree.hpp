@@ -35,25 +35,23 @@ namespace dodo::store::kvstore {
     public:
 
       /**
-       * An index entry. Each entry stores a key and the blockid to the left of that key.
+       * An index tree entry. Each entry stores a key and the blockid to the left of that key.
        */
       #pragma pack(1)
-      struct IndexEntry {
+      struct IndexTreeEntry {
         /** the offset from block start where the key is stored. */
         BlockSize offset;
         /** the size of the key. */
         BlockSize size;
         /** The BlockId the entry points to. */
         BlockId blockid;
-        /** The row id the entry oints to. */
-        RowId rowid;
       };
       #pragma pack()
 
       /**
        * The block definition.
        */
-      #pragma pack()
+      #pragma pack(1)
       struct BlockDef {
         /** The block header. */
         BlockHeader block_header;
@@ -62,9 +60,9 @@ namespace dodo::store::kvstore {
         /** The rightmost child - the right-child of the last key on the block, or 0 if there are no keys in this block. */
         BlockId rightmost;
         /** The first of a list of indexentries in the block. */
-        IndexEntry first;
+        IndexTreeEntry first;
       };
-      #pragma pack()
+      #pragma pack(1)
 
       /**
        * Construct against an existing address.

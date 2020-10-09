@@ -38,7 +38,7 @@ namespace dodo::common {
     /**
      * Linux system error primitive to provide a consistent interface to
      * Linux error codes. The [[nodiscard]] attribute causes the compiler to issue a warning in case
-     * a SystemError is produced as rvalue but not assigned to an lvalue - encouraging more robust
+     * a SystemError is produced as r-value but not assigned to an l-value - encouraging more robust
      * code by pinpointing omitted error checking.
      * @code
      * SystemError error1; // set to ecOK
@@ -56,7 +56,7 @@ namespace dodo::common {
       public:
 
         /**
-         * Enumarate mimicing Linux error codes, integrates the EAI (addrinfo) ranges of errors.
+         * Enumerate mimicking Linux error codes, integrates the EAI (addrinfo) ranges of errors.
          */
         enum ErrorCode {
           ecOK = 0,                                /**< 0   Not an error, success */
@@ -92,7 +92,7 @@ namespace dodo::common {
           ecEROFS = EROFS,                        /**< 30   Read-only file system  */
           ecEMLINK = EMLINK,                      /**< 31   Too many links  */
           ecEPIPE = EPIPE,                        /**< 32   Broken pipe  */
-          ecEDOM = EDOM,                          /**< 33   Math argument out of domain of func  */
+          ecEDOM = EDOM,                          /**< 33   Math argument out of domain of function  */
           ecERANGE = ERANGE,                      /**< 34   Math result not representable  */
           ecEDEADLK = EDEADLK,                    /**< 35   Resource deadlock would occur  */
           ecENAMETOOLONG = ENAMETOOLONG,          /**< 36   File name too long  */
@@ -238,7 +238,7 @@ namespace dodo::common {
         SystemError() : errorcode_(ecOK) {};
 
         /**
-         * Construct from ErrorCode enum.
+         * Construct from ErrorCode enumerate.
          * @param e The ErrorCode to assign.
          */
         SystemError( ErrorCode e ) : errorcode_(e) {};
@@ -306,7 +306,7 @@ namespace dodo::common {
         SystemError& operator=( SystemError e ) { this->errorcode_ = e.errorcode_; return *this; };
 
         /**
-         * Cast this SystemError to an int by taking errorcode_.
+         * Cast this SystemError to an int by taking error code_.
          * @return The int cast to.
          */
         operator int() const { return errorcode_; };
@@ -344,7 +344,7 @@ namespace dodo::common {
 
       private:
         /**
-         * Enumarate representation of the system error code.
+         * Enumerate representation of the system error code.
          */
         ErrorCode errorcode_;
   };

@@ -36,14 +36,12 @@ namespace dodo::threads {
     gettimeofday( &t->start_time_, NULL );
     t->snapRUsage();
     if ( t ) t->run();
-    //t->tid_  = 0;
     return 0;
   }
 
   Thread::Thread() : thread_(0), tid_(0) {
     gettimeofday( &start_time_, NULL );
     gettimeofday( &prev_snap_time_, NULL );
-    //prev_snap_time_.tv_sec -= 1;
     gettimeofday( &snap_time_, NULL );
     memset( &prev_rusage_, 0, sizeof( prev_rusage_ ) );
     memset( &rusage_, 0, sizeof( rusage_ ) );

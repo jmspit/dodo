@@ -8,7 +8,7 @@ using namespace std;
 
 int main() {
   KVStore kvstore;
-  SystemError error = kvstore.init( "test.kvstore", 4096, 30, KVStore::ShareMode::Shared );
+  SystemError error = kvstore.init( "test.kvstore", 4096, 30 );
   kvstore.extend( 10 );
   //SystemError error = kvstore.open( "test.kvstore", KVStore::ShareMode::Private );
   bool ok = kvstore.analyze( std::cout );

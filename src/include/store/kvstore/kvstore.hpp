@@ -26,6 +26,8 @@
 #include <filesystem>
 #include <functional>
 #include <unistd.h>
+#include <fcntl.h>
+#include <mutex>
 #include <common/systemerror.hpp>
 
 #include <store/kvstore/blockdefs/common.hpp>
@@ -33,11 +35,48 @@
 #include <store/kvstore/blockdefs/indexleaf.hpp>
 #include <store/kvstore/blockdefs/indextree.hpp>
 #include <store/kvstore/blockdefs/toc.hpp>
+#include <store/kvstore/blocklock.hpp>
 
 namespace dodo::store::kvstore {
 
   using namespace std;
   using namespace common;
+
+  class ReadBlockLock {
+  public:
+
+    /**
+     * Locks the BlockId in read / share mode.
+     */
+    ReadBlockLock( BlockId blockid );
+
+    /**
+     * Unlocks the BlockId from read / share mode.
+     */
+    ~ReadBlockLock();
+
+  protected:
+    struct flock lock_;
+    int fd_;
+};
+
+class WriteBlockLock {
+  public:
+
+    /**
+     * Locks the BlockId in write / unique mode.
+     */
+    WriteBlockLock( BlockId blockid );
+
+    /**
+     * Unlocks the BlockId from write / unique mode.
+     */
+    ~WriteBlockLock();
+
+  protected:
+    struct flock lock_;
+    int fd_;
+};
 
   /**
    * A Key-value store.
@@ -48,29 +87,31 @@ namespace dodo::store::kvstore {
    *   - A key can have attributes 'compressed' and 'encrypted', and values would be transparently
    *     compressed/decompressed or encrypted/decrypted on the fly.
    *
-   * The store is block-oriented with a blocksize that must be an integer multiple of the system page size
+   * The store is block-oriented with a block-size that must be an integer multiple of the system page size
    * (typically 4KiB). The block size has implications for the maximum key length, which is slightly less than
-   * half the blocksize.
+   * half the block-size.
    *
-   * The store is thread-safe, share a single KVStore object, which maps to a single file, among multiple threads.
-   * Synchronization (locking) is done a block level:
+   * The store is thread-safe, threads within a process share a single KVStore object, which maps to a single file,
+   * and synchronization is handled by the KVSTore instance. The locking mechanism is shared-exclusive, writers acquire
+   * exclusive locks, readers acquire shared locks. A shared lock blocks only exclusive locks, an exclusive lock blocks
+   * both shared and exclusive locks.
    *
    *   - Readers are not blocked by readers even on the same block.
    *   - Readers are blocked by writers on the same block.
    *   - Writers are blocked by readers on the same block.
    *   - Writers are blocked by writers on the same block.
    *
-   * Operations aqcuire and release read and write locks as quickly as possible. Operations that need to lock more
-   * than one block always lock in order, from low blockid to high. For example, to get a key value pair, the KVStore
-   * cannot first find the key, release the read lock on the index block, only to discover the row has disapperead from the
-   * data block in the meantime, it mst hold aread lock on both the index and data bpock until the value pair is copied into
+   * Operations acquire and release read and write locks as quickly as possible. Operations that need to lock more
+   * than one block always lock in order, from low block-id to high. For example, to get a key value pair, the KVStore
+   * cannot first find the key, release the read lock on the index block, only to discover the row has disappeared from the
+   * data block in the meantime, it must hold a read lock on both the index and data block until the value pair is copied into
    * a caller-side result.
    *
    * Some blocks are used more heavily than others, such as TOC and IndexTree blocks.
    *
    * The store provides basic operations:
    *
-   *   - create a ney key-value pair.
+   *   - create a new key-value pair.
    *   - overwrite the value of a key.
    *   - delete a key.
    *   - get a value by key.
@@ -88,17 +129,40 @@ namespace dodo::store::kvstore {
     public:
 
       /**
-       * Data type for the key of  akey-value pair.
+       * Data type for the key of a key-value pair.
        */
       typedef std::string Key;
 
       /**
-       * The share mode of the KVStore.
+       * The allocation policy (assign data to blocks) for new rows.
        */
-      enum class ShareMode {
-        Private,        /**< Do not share outside process (but sharing between threads possible). */
-        Shared,         /**< Share with other processes. */
-        Clustered,      /**< Share with other processes on other nodes (which requires a cluster filesystem). */
+      enum class AllocationPolicy {
+        EmptiestBlock,
+        FullestBlock,
+      };
+
+      /**
+       * Group configuration parameters.
+       */
+      struct Configuration {
+        /**
+         * The minimum number of blocks that will be added to the file size when a file resize is required.
+         */
+        BlockCount extend_size = 16;
+
+        /**
+         * BlockIds are assigned a map by the modulo (block_mutex_modulo) of the block id.
+         * @see store::kvstore::BlockLock
+         */
+        BlockId block_mutex_modulo = 32;
+
+        /**
+         * If free space in a block would fall below max_free * free_ratio, new allocations are made in
+         * another block that meets this criterion (blocks are allocated if need be).  A higher value will
+         * prevent data to move between blocks when an update increases the size, which requires a write
+         * lock on multiple key index blocks.
+         */
+        double free_ratio;
       };
 
       KVStore();
@@ -108,29 +172,41 @@ namespace dodo::store::kvstore {
       /**
        * Open the KVStore. The file must exist and be valid (correct header and structure).
        * @param path The KVStore file path.
-       * @param mode The ShareMode to apply.
        * @return The SystemError matching errno returned by open (man 2 open) or SystemError::ecOK.
        */
-      SystemError open( const std::filesystem::path &path, ShareMode mode );
+      SystemError open( const std::filesystem::path &path );
 
       /**
-       * Init the KVStore. The file must not exist.
+       * Initialize the KVStore. The file must not exist.
        * @param path The KVStore file path.
-       * @param blocksize The KVStore block size, ceiled to multiples of 4KiB.
+       * @param blocksize The KVStore block size, rounded upwards to multiples of 4KiB.
        * @param blocks The number of blocks.
-       * @param mode The ShareMode to apply.
        * @return The SystemError matching errno returned by open (man 2 open) or SystemError::ecOK.
        */
-      SystemError init( const std::filesystem::path &path, BlockSize blocksize, BlockId blocks, ShareMode mode );
+      SystemError init( const std::filesystem::path &path, BlockSize blocksize, BlockId blocks );
 
       /**
-       * Add blocks to the file.
+       * Attach the calling thread to the KVStore so that access is synchronized.
+       * Threads that seek to use the KVStore should call attachThread before calling other KVStore members,
+       * and call releaseThread when the thread will no longer access the KVStore.
+       * @return the file descriptor
+       */
+      int attachThread();
+
+      /**
+       * Notify the KVStore that the calling thread will no longer need to be synchronized / will not
+       * call KVStore members anymore.
+       */
+      void releaseThread();
+
+      /**
+       * Add blocks to the file after acquiring a unique lock on the big_mutex_.
        * @param blocks The number of blocks to add.
        */
       void extend( BlockId blocks );
 
       /**
-       * Analyze the store and produce fiudings to os.
+       * Analyze the store and produce findings to the OS.
        * @param os The stream to write the analysis to.
        * @return true if the KVStore (file) is valid.
        */
@@ -143,10 +219,12 @@ namespace dodo::store::kvstore {
       BlockSize getBlockSize() const { return blocksize_; }
 
       /**
-       * Return the filedescriptor fd_.
-       * @return The file descriptor.
+       * Return the file descriptor for the calling thread.
+       * @return The file descriptor for the calling thread.
        */
-      int getFD() const { return fd_; }
+      int getFD();
+
+      static KVStore* getKVStore();
 
     protected:
 
@@ -160,93 +238,9 @@ namespace dodo::store::kvstore {
       }
 
       /**
-       * typedef the lock functions so the lock functions can be initialized depending on the ShareMode
-       * and avoid ShareMode detection within the lock functions.
+       * Return the file descriptor for the calling thread.
        */
-      typedef void (KVStore::*waitLockFN)( BlockId blockid );
-
-
-      /**
-       * The read lock function in use.
-       */
-      waitLockFN waitReadLock_;
-
-      /**
-       * The read unlock function in use.
-       */
-      waitLockFN waitReadUnlock_;
-
-      /**
-       * The Write lock function in use.
-       */
-      waitLockFN waitWriteLock_;
-
-      /**
-       * The Write unlock function in use.
-       */
-      waitLockFN waitWriteUnlock_;
-
-      /**
-       * Wait for and lock the blockid for reading in Private mode.
-       * As in private mode there is no need to sync access between clusters or processes, this
-       * only uses a Mutex to sync.
-       * @param blockid The blockid to lock.
-       */
-      void waitReadLockPrivate( BlockId blockid ) {};
-
-      /**
-       * Wait for and lock the blockid for writing in Private mode.
-       * As in private mode there is no need to sync access between clusters or processes, this
-       * only uses a Mutex to sync.
-       * @param blockid The blockid to lock.
-       */
-      void waitWriteLockPrivate( BlockId blockid ) {};
-
-      /**
-       * Wait for and unlock the blockid for reading in Private mode.
-       * As in private mode there is no need to sync access between clusters or processes, this
-       * only uses a Mutex to sync.
-       * @param blockid The blockid to unlock.
-       */
-      void waitReadUnlockPrivate( BlockId blockid ) {};
-
-      /**
-       * Wait for and unlock the blockid for writing in Private mode.
-       * As in private mode there is no need to sync access between clusters or processes, this
-       * only uses a Mutex to sync.
-       * @param blockid The blockid to unlock.
-       */
-      void waitWriteUnlockPrivate( BlockId blockid ) {};
-
-      /**
-       * Wait for and lock the blockid for reading in Shared mode.
-       * The file and memory may be shared between processes.
-       * @param blockid The blockid to lock.
-       */
-      void waitReadLockShared( BlockId blockid ) {};
-
-      /**
-       * Wait for and lock the blockid for writing in Shared mode.
-       * As in private mode there is no need to sync access between clusters or processes, this
-       * only uses a Mutex to sync.
-       * @param blockid The blockid to lock.
-       */
-      void waitWriteLockShared( BlockId blockid ) {};
-
-      /**
-       * Wait for and unlock the blockid for reading in Shared mode.
-       * The file and memory may be shared between processes.
-       * @param blockid The blockid to unlock.
-       */
-      void waitReadUnlockShared( BlockId blockid ) {};
-
-      /**
-       * Wait for and unlock the blockid for writing in Shared mode.
-       * As in private mode there is no need to sync access between clusters or processes, this
-       * only uses a Mutex to sync.
-       * @param blockid The blockid to unlock.
-       */
-      void waitWriteUnlockShared( BlockId blockid ) {};
+      int getThisThreadFD();
 
       /** The block size. */
       BlockSize blocksize_;
@@ -254,15 +248,39 @@ namespace dodo::store::kvstore {
       /** The minimum amount of blocks to allocate - kvstore file cannot be smaller. */
       const BlockId min_blocks_ = 4;
 
-      /** The file descriptor. */
-      int fd_;
-
-      /** The mapped memory address. */
+      /** The mapped memory address. Note that the memory region may be relocated by a call to extend. */
       void *address_;
+
+      /**
+       * As we are using OFD advisory locking (man fcntl), each thread will need its own
+       * file descriptor.
+       */
+      std::map<std::thread::id,int> fd_map_;
+
+      /**
+       * Mutex to protect (only) the fd_map_;.
+       */
+      std::shared_timed_mutex fd_map_mutex_;
+
+      /**
+       * Locks initialization and maintenance. Other methods lock this shared. The lock
+       * guards relocation of the mapped memory which (may) cause the address_ pointer
+       * to change. More or less halts all concurrent operation against the KVStore.
+       */
+      std::mutex big_mutex_;
+
+      /**
+       * The path to the memory mapped kvstore file.
+       */
+      std::filesystem::path path_;
+
+      static KVStore *singleton_;
 
 
   };
 
 }
+
+
 
 #endif

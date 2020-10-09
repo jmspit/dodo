@@ -35,24 +35,21 @@
 namespace dodo::store::kvstore {
 
   /**
-   * A data block. A data block can contains ero or more rows, each assigned a unique RowId
+   * A data block. A data block can contain one or more rows, each assigned a unique RowId
    * within the block. Each row is tracked in a RowEntry list, sorted by RowId, its first element stored in BlockDef::first_entry.
    *
-   * As the RowEntry list is sorted, a binary search locates entries by RowId. Moroover, the list of RowEntries is always smaller
-   * than the worst case, in which the block is filled with row pieces of size 1, so there will be at max
-   * blocksize-sizeof(Data::BlockDef) entries. For a 4KiB blccok that is.
+   * As the RowEntry list is sorted, a binary search locates entries by RowId. Moreover, the worst case size of the RowEntries list
+   * has only row pieces of size 1, so there will be at max blocksize-sizeof(Data::BlockDef) entries.
    *
-   * IndexLeaf key entries point to rowids in this block thorugh (BlockId,RowId) pairs.
+   * IndexLeaf key entries point to rowids in this block through (BlockId,RowId) pairs.
    * Decoupling the RowId from its index location in the RowEntry list allows to move data around within the block
-   * without consequence to other use (locking takes place where required) - and hence avoid fragmented free space.
+   * without consequence to other use (locking takes place where required) - and hence avoid fragmented free space within the block.
    *
    * Data is allocated from the end of the block downwards.
    *
    * If a row is too big for one block, it is continued in other blocks, in which case
    * RowEntry::next_block and RowEntry::next_rowid point to the next block, which itself may continue. If the row fits within
    * the block, RowEntry::next_block will be zero.
-   *
-   * It is possible to
    */
   class Data : GenericBlock {
     public:
@@ -71,7 +68,7 @@ namespace dodo::store::kvstore {
         BlockSize size;
         /** If not 0, the block where the row continues. */
         BlockId next_block;
-        /** If not 0, the row slot in next_block where the ro continues. */
+        /** If not 0, the row slot in next_block where the row continues. */
         RowId next_rowid;
       };
       #pragma pack()
@@ -127,8 +124,8 @@ namespace dodo::store::kvstore {
       BlockSize getFreeSpace() const;
 
       /**
-       * Allocate a row with the given size and return the RowId within this block. It is the caller's responsability
-       * to not overallocate (size <=  getFreeSpace()).
+       * Allocate a row with the given size and return the RowId within this block. It is the caller's responsibility
+       * to not over-allocate (size <=  getFreeSpace()).
        * @param size The size in bytes to allocate.
        * @return The RowId of the allocated row.
        */
@@ -150,7 +147,7 @@ namespace dodo::store::kvstore {
       bool getRowData( RowId rowid, common::OctetArray& data ) const;
 
       /**
-       * Release or de-allocate the rowid. This call moves remaining data if gaps in the free space would be created.
+       * Release the rowid. This call compresses free space in the block.
        * @param rowid The RowId to release.
        */
       void releaseRow( RowId rowid );
@@ -187,7 +184,7 @@ namespace dodo::store::kvstore {
       RowId insertSearch( RowId rowid, RowId low, RowId high ) const;
 
       /**
-       * Return the index in the RowEntry list for the rowid. Returns InvalidRowId when the rowid is not in the list..
+       * Return the index in the RowEntry list for the rowid. Returns InvalidRowId when the rowid is not in the list.
        * @param rowid The rowid to search for.
        * @param low The low index for the search.
        * @param high The high index for the search.
@@ -200,6 +197,7 @@ namespace dodo::store::kvstore {
        * Return the RowEntryIndexPair for the rowid.
        * @param rowid The rowid to search for.
        * @return The RowEntryIndexPair for the matched rowid.
+       * \note Time complexity O(log(block_>num_rows))
        */
       RowEntryIndexPair matchSearch( RowId rowid ) const {
         if ( block_->num_rows > 0 ) {
@@ -225,13 +223,13 @@ namespace dodo::store::kvstore {
       RowId getFreeRowId() const;
 
       /**
-       * Return a pointer to the first RoWentry.
+       * Return a pointer to the first RowEntry.
        * @return A pointer the the first RowEntry.
        */
       Data::RowEntry* getFirstRowEntry() const;
 
       /**
-       * Return a const pointer to the first RoWentry.
+       * Return a const pointer to the first RowEntry.
        * @return A const pointer the the first RowEntry.
        */
       const Data::RowEntry* getFirstConstRowEntry() const;
@@ -262,7 +260,7 @@ namespace dodo::store::kvstore {
       /**
        * Return a void pointer to the address + offset bytes.
        * @param offset The offset relative to block_.
-       * @return a voud pointer to the offset within the block.
+       * @return a void pointer to the offset within the block.
        */
       void* voidPtr( BlockSize offset ) const { return reinterpret_cast<void*>( bytePtr( offset ) ); }
 

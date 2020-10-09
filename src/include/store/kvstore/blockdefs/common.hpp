@@ -17,7 +17,7 @@
 
 /**
  * @file common.hpp
- * Defines dodo::store::kvstore commpon things.
+ * Defines dodo::store::kvstore common things.
  */
 
 #ifndef store_kvstore_blockdefs_common_hpp
@@ -59,7 +59,7 @@ namespace dodo::store::kvstore {
   typedef uint32_t BlockSize;
 
   /**
-   * Data type for block counts (the number of blocks in a file), which must accomodate at least BlockId
+   * Data type for block counts (the number of blocks in a file), which must accommodate at least BlockId
    * unique ids.
    */
   typedef BlockId BlockCount;

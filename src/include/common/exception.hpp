@@ -60,8 +60,8 @@ namespace dodo::common {
     protected:
 
       /**
-       * Descendent classes can override to dump details speciufic to the class. By default, returns nothing.
-       * @return The stirng.
+       * Descendant classes can override to dump details specific to the class. By default, returns nothing.
+       * @return The string.
        */
       virtual std::string debugDetail() const { return ""; };
 
@@ -74,7 +74,7 @@ namespace dodo::common {
   };
 
   /**
-   * An Exception is thrown in exceptional circumstances, and its occurence should generally imply that the program
+   * An Exception is thrown in exceptional circumstances, and its occurrence should generally imply that the program
    * should stop, as it has entered a state it was never designed to handle.
    *
    * When used in conjunction with the throw_Exception() and throw_SystemException() macros, the source file
@@ -86,7 +86,7 @@ namespace dodo::common {
        * Construct an Exception. Use the throw_Exception() macro to construct and throw Exceptions.
        * @param file The source file where the exception was raised.
        * @param line The line number where the exception was raised.
-       * @param what The execption message.
+       * @param what The exception message.
        */
       Exception( const std::string &file,
                  unsigned int line,
@@ -95,8 +95,8 @@ namespace dodo::common {
        * Construct an Exception. Use the throw_ExceptionObject() macro to construct and throw Exceptions.
        * @param file The source file where the exception was raised.
        * @param line The line number where the exception was raised.
-       * @param what The execption message.
-       * @param thing The execption context.
+       * @param what The exception message.
+       * @param thing The exception context.
        */
       Exception( const std::string &file,
                  unsigned int line,
@@ -119,7 +119,7 @@ namespace dodo::common {
 
       /**
        * Return the line number in the source file where the exception was thrown.
-       * @return The line numbver in the source file where the exception was thrown.
+       * @return The line number in the source file where the exception was thrown.
        */
       unsigned int getLine() const { return line_; };
     protected:
@@ -142,7 +142,7 @@ namespace dodo::common {
        * Constructor
        * @param file The source file where the exception was raised.
        * @param line The line number where the exception was raised.
-       * @param what The execption message.
+       * @param what The exception message.
        * @param error The underlying SystemError.
        */
       SystemException( const std::string &file,
@@ -153,9 +153,9 @@ namespace dodo::common {
        * Constructor
        * @param file The source file where the exception was raised.
        * @param line The line number where the exception was raised.
-       * @param what The execption message.
+       * @param what The exception message.
        * @param error The underlying SystemError.
-       * @param thing The DbugObject context to the error.
+       * @param thing The DebugObject context to the error.
        */
       SystemException( const std::string &file,
                        unsigned int line,

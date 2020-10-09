@@ -28,7 +28,7 @@
 namespace dodo::store::kvstore {
 
   /**
-   * An index block.
+   * An index leaf block.
    */
   class IndexLeaf {
     public:

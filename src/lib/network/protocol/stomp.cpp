@@ -38,20 +38,20 @@ namespace dodo::network::protocol::stomp {
 
     State state = command_read;
     size_t cmd_idx = 0;
-    while ( index < frame.size ) {
+    while ( index < frame.getSize() ) {
       switch ( state ) {
         case command_read:
-          if ( cmd_idx == command.size ) {
+          if ( cmd_idx == command.getSize() ) {
             state = endofline;
           } else {
-            if ( frame.array[index] != command.array[cmd_idx] ) return FrameMatch::NoMatch;
+            if ( frame.getOctet(index) != command.getOctet(cmd_idx) ) return FrameMatch::NoMatch;
             index++;
             cmd_idx++;
           }
         case endofline:
-          if ( frame.array[index] == '\r' ) {
+          if ( frame.getOctet(index) == '\r' ) {
             index++;
-          } else if ( frame.array[index] == '\n' ) {
+          } else if ( frame.getOctet(index) == '\n' ) {
             return FrameMatch::FullMatch;
           } else return FrameMatch::NoMatch;
       }

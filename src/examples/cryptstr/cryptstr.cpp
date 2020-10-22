@@ -10,8 +10,8 @@ using namespace std;
 struct Options {
   common::DataCrypt::Cipher cipher = common::DataCrypt::Cipher::Default;
   bool encrypt = true;
-  string key_type;
-  string key_value;
+  string key_type = "";
+  string key_value = "";
 };
 Options options;
 
@@ -35,7 +35,7 @@ void printHelp() {
   cout << "    The key may, but does not have to be a string. If -k file: is used, the data is read as octets up" << endl;
   cout << "    until the key size or EOF." << endl;
   cout <<  endl;
-  cout << "cryptstr reads from std input and writes to std output. The input may be any octet stream, but the output" << endl;
+  cout << "cryptstr reads from std input and writes to std coutput. The input may be any octet stream, but the coutput" << endl;
   cout << "will always be a zero-terminated string." << endl;
   cout <<  endl;
   cout << "Apart from the key, the encrypted string contains all information required to decrypt it, so that" << endl;
@@ -47,11 +47,15 @@ void printHelp() {
   cout << "  EVP_aes_256_gcm 32 octets (default)" << endl;
   cout <<  endl;
   cout << "If the size of the -k specified key is less than the above key size, the key is repeated"  << endl;
-  cout << "until all the octets are filled. That is still less entropy than a strong full-width key, yet"  << endl;
-  cout << "better than padding with a source-code constant."  << endl;
+  cout << "until all the octets are filled."  << endl;
 }
 
-void getKey() {
+void printErrorHelp( const std::string &msg ) {
+  cerr << "cannot run, please " << msg << endl;
+  printHelp();
+}
+
+bool getKey() {
   if (  options.key_type == "env" ) {
     char *env = getenv(  options.key_value.c_str() );
     if ( env ) options.key_value = env; else {
@@ -65,10 +69,11 @@ void getKey() {
     if ( ifs.good() ) {
       ifs >> options.key_value;
     } else {
-      cerr << "unable to read file '" << file << "'" << endl;
+      printErrorHelp( "make sure file '" + file + "' can be read" );
       exit(EXIT_FAILURE);
     }
   }
+  return options.key_value != "";
 }
 
 bool parseArgs( int argc, char* argv[] ) {
@@ -100,8 +105,9 @@ bool parseArgs( int argc, char* argv[] ) {
            kv[1].length() > 0 ) {
         options.key_type = kv[0];
         options.key_value = kv[1];
+        return getKey();
       } else {
-        printHelp();
+        printErrorHelp( "specify a valid keysource" );
         exit(EXIT_FAILURE);
       }
       break;
@@ -110,11 +116,14 @@ bool parseArgs( int argc, char* argv[] ) {
       exit(EXIT_FAILURE);
     }
   }
-  getKey();
-  return true;
+  if ( options.key_value.length() == 0 ) {
+    printErrorHelp( "specify a keysource" );
+    return false;
+  }
+  return getKey();
 }
 
-void encrypt( std::istream& in, std::ostream& out ) {
+bool encrypt( std::istream& in, std::ostream& out ) {
   stringstream foo;
   do {
     char c;
@@ -131,9 +140,10 @@ void encrypt( std::istream& in, std::ostream& out ) {
                                     oa,
                                     encrypted );
   cout << encrypted << endl;
+  return true;
 }
 
-void decrypt( std::istream& in, std::ostream& out ) {
+bool decrypt( std::istream& in, std::ostream& out ) {
   stringstream foo;
   do {
     char c;
@@ -146,8 +156,14 @@ void decrypt( std::istream& in, std::ostream& out ) {
   string key = options.key_value;
   int rc = dodo::common::DataCrypt::decrypt( key, foo.str(), oa );
   if ( rc == 0 ) cout << oa.asString();
-  else if ( rc == 1 )  cerr << "not a valid encrypt string" << endl;
-  else cerr << "decryption failure" << endl;
+  else if ( rc == 1 )  {
+    cerr << "not a valid crypt string" << endl;
+    return false;
+  } else {
+    cerr << "decryption failure" << endl;
+    return false;
+  }
+  return true;
 }
 
 
@@ -157,9 +173,9 @@ int main( int argc, char* argv[] ) {
     initLibrary();
     if ( parseArgs( argc, argv ) ) {
       if ( options.encrypt ) {
-        encrypt( cin, cout );
+        rc = ( encrypt( cin, cout ) == false );
       } else {
-        decrypt( cin, cout );
+        rc = ( decrypt( cin, cout ) == false );
       }
     }
     rc = 0;

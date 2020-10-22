@@ -1,11 +1,32 @@
 #include <iostream>
 #include <dodo.hpp>
+#include <common/unittest.hpp>
 
 using namespace dodo;
 using namespace std;
 
+class DataCryptTest : public common::UnitTest {
+  public:
+    DataCryptTest( const string &name, const string &description, ostream *out ) :
+      UnitTest( name, description, out ) {};
+  protected:
+    virtual void doRun();
 
-bool verifyEncryption( dodo::common::DataCrypt::Cipher cipher, const std::string &key, const std::string &test ) {
+    bool test1();
+    bool test2();
+    bool test3();
+
+    bool verifyEncryption( dodo::common::DataCrypt::Cipher cipher, const std::string &key, const std::string &test );
+
+};
+
+void DataCryptTest::doRun() {
+  test1();
+  test2();
+  test3();
+}
+
+bool DataCryptTest::verifyEncryption( dodo::common::DataCrypt::Cipher cipher, const std::string &key, const std::string &test ) {
   std::cout << "key             : " << key << std::endl;
   std::cout << "test string     : " << test << std::endl;
 
@@ -22,29 +43,32 @@ bool verifyEncryption( dodo::common::DataCrypt::Cipher cipher, const std::string
   return dest.asString() == test;
 }
 
-bool test1() {
+bool DataCryptTest::test1() {
   bool ok = true;
   ok = ok && verifyEncryption( dodo::common::DataCrypt::Cipher::EVP_aes_128_gcm, "secret", "This has been encrypted and decrypted." );
   ok = ok && verifyEncryption( dodo::common::DataCrypt::Cipher::EVP_aes_192_gcm, "secret", "This has been encrypted and decrypted." );
   ok = ok && verifyEncryption( dodo::common::DataCrypt::Cipher::EVP_aes_256_gcm, "secret", "This has been encrypted and decrypted." );
-  ok = ok && verifyEncryption( dodo::common::DataCrypt::Cipher::EVP_aes_128_gcm, "skjsja72^2ka", "The HAVEGE (HArdware Volatile Entropy Gathering and Expansion) algorithum harvests the indirect effects of hardware events on hidden processor state (caches, branch predictors, memory translation tables, etc) to generate a random sequence. " );
-  ok = ok && verifyEncryption( dodo::common::DataCrypt::Cipher::EVP_aes_192_gcm, "skjsja72^2ka", "The HAVEGE (HArdware Volatile Entropy Gathering and Expansion) algorithum harvests the indirect effects of hardware events on hidden processor state (caches, branch predictors, memory translation tables, etc) to generate a random sequence. " );
-  ok = ok && verifyEncryption( dodo::common::DataCrypt::Cipher::EVP_aes_256_gcm, "skjsja72^2ka", "The HAVEGE (HArdware Volatile Entropy Gathering and Expansion) algorithum harvests the indirect effects of hardware events on hidden processor state (caches, branch predictors, memory translation tables, etc) to generate a random sequence. " );
-  return ok;
+  return writeSubTestResult( "en/decryption", "test all supported ciphers", ok );
 }
 
-bool test2() {
+bool DataCryptTest::test2() {
+  int rc = 0;
   std::string key = "secret";
   // this has 1 char damaged and should not decrypt
-  std::string test = "ENC[cipher:EVP_aes_256_gcm,data:IPqtWp8sCdHdJi6le/3jZWUvcNJlcLGoT9gUPnfKYiUlP6AHSvc=,iv:FaIHZmrTdIF6qXx0WUOARw==,tag:k6z30ip5WGThqhonCyAI2w==]";
+  std::string test = "ENC[cipher:EVP_aes_128_gcm,data:y0aXKeVMglWTOJ8c817EkLTiGJ9HdvplZsI8VW2nBZLdB9yiMVo=,iv:rMp6eCmQpZdCRHbr0OLEDQ==,tag:HwkCKBF1MS5NTz6VLDg67w==";
   dodo::common::OctetArray dest;
-  bool ok = ! dodo::common::DataCrypt::decrypt( key, test, dest );
+  rc = dodo::common::DataCrypt::decrypt( key, test, dest );
+  return writeSubTestResult( "en/decryption", "test detection of invalid cryptstring", rc == 1 );
+}
 
-  // the test string is valid but we damage the key
-  test = "ENC[cipher:EVP_aes_128_gcm,data:y0aXKeVMglWTOJ8c817EkLTiGJ9HdvplZsI8VW2nBZLdB9yiMVo=,iv:rMp6eCmQpZdCRHbr0OLEDQ==,tag:HwkCKBF1MS5NTz6VLDg67w==]";
-  key = "sekreet";
-  ok = ok && ! dodo::common::DataCrypt::decrypt( key, test, dest );
-  return ok;
+bool DataCryptTest::test3() {
+  int rc = 0;
+  // the test string has valid format but we damage the key
+  std::string test = "ENC[cipher:EVP_aes_128_gcm,data:y0aXKeVMglWTOJ8c817EkLTiGJ9HdvplZsI8VW2nBZLdB9yiMVo=,iv:rMp6eCmQpZdCRHbr0OLEDQ==,tag:HwkCKBF1MS5NTz6VLDg67w==]";
+  std::string key = "sekreet";
+  dodo::common::OctetArray dest;
+  rc = dodo::common::DataCrypt::decrypt( key, test, dest );
+  return writeSubTestResult( "en/decryption", "test detection of decryption failure", rc == 2 );
 }
 
 int main() {
@@ -52,9 +76,8 @@ int main() {
   bool ok = true;
   try {
     dodo::initLibrary();
-    ok = ok && test1();
-    ok = ok && test2();
-    //ok = ok && test3();
+    DataCryptTest test( "common::DataCrypt tests", "Testing DataCrypt class", &cout );
+    return test.run() == false;
 
   }
   catch ( const std::exception& e ) {

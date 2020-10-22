@@ -44,18 +44,18 @@ namespace dodo::common {
     OctetArray iv;
     OctetArray encrypted;
     iv.random( ivOctets( cipher ) );
-    encrypted.reserve( cipherOctets( cipher, src.size ) );
+    encrypted.reserve( cipherOctets( cipher, src.getSize() ) );
 
     int rc = 0;
     switch ( cipher ) {
       case Cipher::EVP_aes_128_gcm :
-        rc = EVP_EncryptInit_ex( ctx, EVP_aes_128_gcm(), nullptr, k.array, iv.array );
+        rc = EVP_EncryptInit_ex( ctx, EVP_aes_128_gcm(), nullptr, k.getArray(), iv.getArray() );
         break;
       case Cipher::EVP_aes_192_gcm :
-        rc = EVP_EncryptInit_ex( ctx, EVP_aes_192_gcm(), nullptr, k.array, iv.array );
+        rc = EVP_EncryptInit_ex( ctx, EVP_aes_192_gcm(), nullptr, k.getArray(), iv.getArray() );
         break;
       case Cipher::EVP_aes_256_gcm :
-        rc = EVP_EncryptInit_ex( ctx, EVP_aes_256_gcm(), nullptr, k.array, iv.array );
+        rc = EVP_EncryptInit_ex( ctx, EVP_aes_256_gcm(), nullptr, k.getArray(), iv.getArray() );
         break;
       case Cipher::Invalid :
         throw_Exception( "cannot use Cipher 'Invalid'" );
@@ -68,23 +68,23 @@ namespace dodo::common {
     int enc_size = 0;
     int len = 0;
     rc = EVP_EncryptUpdate( ctx,
-                            encrypted.array,
+                            encrypted.getArray(),
                             (int*)&len,
-                            src.array,
-                            (int)src.size );
+                            src.getArray(),
+                            (int)src.getSize() );
     if ( rc != 1 ) throw_Exception( "EVP_EncryptUpdate : " << common::getSSLErrors( '\n' ) );
     enc_size += len;
 
     rc = EVP_EncryptFinal_ex( ctx,
-                              encrypted.array + len,
+                              encrypted.getArray() + len,
                               &len);
     if ( rc != 1 ) throw_Exception( "EVP_EncryptFinal_ex : " << common::getSSLErrors( '\n' ) );
     enc_size += len;
-    encrypted.size = enc_size;
+    encrypted.reserve( enc_size );
 
     OctetArray tag;
     tag.reserve( tagLength( cipher ) );
-    if ( EVP_CIPHER_CTX_ctrl( ctx, EVP_CTRL_GCM_GET_TAG, (int)tag.size, tag.array ) != 1 )
+    if ( EVP_CIPHER_CTX_ctrl( ctx, EVP_CTRL_GCM_GET_TAG, (int)tag.getSize(), tag.getArray() ) != 1 )
       throw_Exception( "EVP_CIPHER_CTX_ctrl : " << common::getSSLErrors( '\n' ) );
 
     stringstream ss;
@@ -134,8 +134,8 @@ namespace dodo::common {
     std::string sdata;
     std::string siv;
     std::string stag;
-    bool ok = decode( src, scipher, sdata, siv, stag );
-    if ( !ok ) return 1;
+    int result = 0;
+    if ( !decode( src, scipher, sdata, siv, stag ) ) return 1;
     Cipher cipher = string2Cipher( scipher );
     OctetArray data;
     OctetArray iv;
@@ -154,13 +154,13 @@ namespace dodo::common {
     int rc = 0;
     switch ( cipher ) {
       case Cipher::EVP_aes_128_gcm :
-        rc = EVP_DecryptInit_ex( ctx, EVP_aes_128_gcm(), nullptr, k.array, iv.array );
+        rc = EVP_DecryptInit_ex( ctx, EVP_aes_128_gcm(), nullptr, k.getArray(), iv.getArray() );
         break;
       case Cipher::EVP_aes_192_gcm :
-        rc = EVP_DecryptInit_ex( ctx, EVP_aes_192_gcm(), nullptr, k.array, iv.array );
+        rc = EVP_DecryptInit_ex( ctx, EVP_aes_192_gcm(), nullptr, k.getArray(), iv.getArray() );
         break;
       case Cipher::EVP_aes_256_gcm :
-        rc = EVP_DecryptInit_ex( ctx, EVP_aes_256_gcm(), nullptr, k.array, iv.array );
+        rc = EVP_DecryptInit_ex( ctx, EVP_aes_256_gcm(), nullptr, k.getArray(), iv.getArray() );
         break;
       case Cipher::Invalid :
         throw_Exception( "invalid cipher " << scipher );
@@ -170,32 +170,32 @@ namespace dodo::common {
 
     EVP_CIPHER_CTX_ctrl( ctx, EVP_CTRL_AEAD_SET_IVLEN, ivOctets( cipher ) * 8, nullptr );
 
-    EVP_CIPHER_CTX_ctrl( ctx, EVP_CTRL_AEAD_SET_TAG, (int)tag.size, tag.array );
+    EVP_CIPHER_CTX_ctrl( ctx, EVP_CTRL_AEAD_SET_TAG, (int)tag.getSize(), tag.getArray() );
 
     OctetArray tmp;
-    tmp.reserve( data.size );
+    tmp.reserve( data.getSize() );
     dest.reserve(0);
 
-    int len = (int)data.size;
+    int len = (int)data.getSize();
 
     rc = EVP_DecryptUpdate( ctx,
-                            tmp.array,
+                            tmp.getArray(),
                             (int*)&len,
-                            data.array,
-                            (int)data.size );
+                            data.getArray(),
+                            (int)data.getSize() );
     if ( rc != 1 ) throw_Exception( "EVP_DecryptUpdate : " << common::getSSLErrors( '\n' ) );
     dest.append( tmp, len );
 
-    len = (int)data.size;
+    len = (int)data.getSize();
     rc = EVP_DecryptFinal_ex( ctx,
-                              tmp.array,
+                              tmp.getArray(),
                               &len);
-    if ( rc != 1 ) ok = 2;
+    if ( rc != 1 ) result = 2;
     dest.append( tmp, len );
 
     EVP_CIPHER_CTX_cleanup(ctx);
 
-    return 0;
+    return result;
   }
 
   std::string DataCrypt::paddedKey( Cipher cipher, const std::string key ) {

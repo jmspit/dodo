@@ -226,8 +226,9 @@ void ping( const network::AddrInfoItem &item, ping_stats &stats ) {
   common::StopWatch sw;
   common::SystemError error;
 
-  string reverse;
-  if ( error = item.address.getNameInfo( reverse ) != common::SystemError::ecOK )
+  string reverse = item.address.asString();
+  error = item.address.getNameInfo( reverse );
+  if ( error != common::SystemError::ecOK && error != common::SystemError::ecEAI_NONAME )
     throw_SystemException( "address.getNameInfo", error );
 
   network::SocketParams sock_params = network::SocketParams( item.params.getAddressFamily(),
@@ -282,8 +283,9 @@ void ping6( const network::AddrInfoItem &item, ping_stats &stats ) {
   common::StopWatch sw;
   common::SystemError error;
 
-  string reverse;
-  if ( error = item.address.getNameInfo( reverse ) != common::SystemError::ecOK )
+  string reverse = item.address.asString();
+  error = item.address.getNameInfo( reverse );
+  if ( error != common::SystemError::ecOK && error != common::SystemError::ecEAI_NONAME )
     throw_SystemException( "address.getNameInfo", error );
 
   network::SocketParams sock_params = network::SocketParams( item.params.getAddressFamily(),

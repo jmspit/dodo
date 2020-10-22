@@ -265,6 +265,12 @@ namespace dodo::common {
   std::string formatDateTimeUTC( const struct timeval &tv );
 
   /**
+   * Escape a JSOn string.
+   * @return The escaped string.
+   */
+  std::string escapeJSON( const std::string &s );
+
+  /**
    * Template function to check existence and assign YAML values of arbitrary type. The key-value
    * pair must must exist under node.
    * @param node The YAML::Node containing the key-value pair

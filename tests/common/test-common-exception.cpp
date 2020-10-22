@@ -71,7 +71,20 @@ bool ExceptionTest::test3() {
   return writeSubTestResult( "test Exception", "test catch of dodo::common::DebugObject", ok );
 }
 
+
 int main() {
-  ExceptionTest test( "common::Exception tests", "Testing Exception class", &cout );
-  return test.run() == false;
+  int error = 0;
+  bool ok = true;
+  try {
+    dodo::initLibrary();
+    ExceptionTest test( "common::Exception tests", "Testing Exception class", &cout );
+    return test.run() == false;
+  }
+  catch ( const std::exception& e ) {
+    cerr << e.what() << endl;
+    error = 2;
+  }
+  dodo::closeLibrary();
+  if ( !error && !ok ) error = 1;
+  return error;
 }

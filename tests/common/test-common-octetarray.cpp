@@ -1,21 +1,48 @@
 #include <iostream>
 #include <dodo.hpp>
+#include <common/unittest.hpp>
 
 using namespace dodo;
 using namespace std;
 
+class OctetArrayTest : public common::UnitTest {
+  public:
+    OctetArrayTest( const string &name, const string &description, ostream *out ) :
+      UnitTest( name, description, out ) {};
+  protected:
+    virtual void doRun();
 
-bool verifyBase64( const std::string &test, const std::string &base64 ) {
+    bool test1();
+    bool test2();
+    bool test3();
+    bool test4();
+    bool test5();
+    bool test6();
+
+    bool verifyBase64( const std::string &test, const std::string &base64 );
+};
+
+void OctetArrayTest::doRun() {
+  test1();
+  test2();
+  test3();
+  test4();
+  test5();
+  test6();
+}
+
+
+bool OctetArrayTest::verifyBase64( const std::string &test, const std::string &base64 ) {
   common::OctetArray oa = test;
-  std::cout << "test string     : " << test << std::endl;
-  std::cout << "base64 string   : " << base64 << std::endl;
-  std::cout << "encodeBase64    : " << oa.encodeBase64() << std::endl;
-  std::cout << "encode(decode)  : " << oa.decodeBase64( oa.encodeBase64() ).asString() << std::endl;
+  //std::cout << "test string     : " << test << std::endl;
+  //std::cout << "base64 string   : " << base64 << std::endl;
+  //std::cout << "encodeBase64    : " << oa.encodeBase64() << std::endl;
+  //std::cout << "encode(decode)  : " << oa.decodeBase64( oa.encodeBase64() ).asString() << std::endl;
   bool ok = ( oa.encodeBase64() == base64 );
   return ok;
 }
 
-bool test1() {
+bool OctetArrayTest::test1() {
   bool ok = true;
   ok = ok && verifyBase64( "Hello world", "SGVsbG8gd29ybGQ=" );
   ok = ok && verifyBase64( "This function will return the length of the data decoded or -1 on error.",
@@ -24,42 +51,53 @@ bool test1() {
                            "VGhlIEVWUCBlbmNvZGUgcm91dGluZXMgcHJvdmlkZSBhIGhpZ2ggbGV2ZWwgaW50ZXJmYWNlIHRvIGJhc2UgNjQgZW5jb2RpbmcgYW5kIGRlY29kaW5nLiBCYXNlIDY0IGVuY29kaW5nIGNvbnZlcnRzIGJpbmFyeSBkYXRhIGludG8gYSBwcmludGFibGUgZm9ybSB0aGF0IHVzZXMgdGhlIGNoYXJhY3RlcnMgQS1aLCBhLXosIDAtOSwgIisiIGFuZCAiLyIgdG8gcmVwcmVzZW50IHRoZSBkYXRhLg==" );
   ok = ok && verifyBase64( "To maintain international peace and security, and to that end: to take effective collective measures for the prevention and removal of threats to the peace, and for the suppression of acts of aggression or other breaches of the peace, and to bring about by peaceful means, and in conformity with the principles of justice and international law, adjustment or settlement of international disputes or situations which might lead to a breach of the peace;",
                            "VG8gbWFpbnRhaW4gaW50ZXJuYXRpb25hbCBwZWFjZSBhbmQgc2VjdXJpdHksIGFuZCB0byB0aGF0IGVuZDogdG8gdGFrZSBlZmZlY3RpdmUgY29sbGVjdGl2ZSBtZWFzdXJlcyBmb3IgdGhlIHByZXZlbnRpb24gYW5kIHJlbW92YWwgb2YgdGhyZWF0cyB0byB0aGUgcGVhY2UsIGFuZCBmb3IgdGhlIHN1cHByZXNzaW9uIG9mIGFjdHMgb2YgYWdncmVzc2lvbiBvciBvdGhlciBicmVhY2hlcyBvZiB0aGUgcGVhY2UsIGFuZCB0byBicmluZyBhYm91dCBieSBwZWFjZWZ1bCBtZWFucywgYW5kIGluIGNvbmZvcm1pdHkgd2l0aCB0aGUgcHJpbmNpcGxlcyBvZiBqdXN0aWNlIGFuZCBpbnRlcm5hdGlvbmFsIGxhdywgYWRqdXN0bWVudCBvciBzZXR0bGVtZW50IG9mIGludGVybmF0aW9uYWwgZGlzcHV0ZXMgb3Igc2l0dWF0aW9ucyB3aGljaCBtaWdodCBsZWFkIHRvIGEgYnJlYWNoIG9mIHRoZSBwZWFjZTs=" );
-  return ok;
+  return writeSubTestResult( "test base64",
+                             "test OctetArrayTest encode/decode base64",
+                             ok );
 }
 
-bool test2() {
+bool OctetArrayTest::test2() {
   common::OctetArray o1 = { "CONNECTED\r\n" };
   common::OctetArray o2 = { "CONNECTED" };
   size_t octets;
   common::OctetArray::MatchType mt = o1.match( o2, 0, octets );
-  return ( mt == common::OctetArray::MatchType::Full && octets == o2.size );
+  return ( mt == common::OctetArray::MatchType::Contains && octets == o2.getSize() );
+  return writeSubTestResult( "test comparison/match ",
+                             "test common::OctetArray::MatchType::Contains",
+                             mt == common::OctetArray::MatchType::Contains && octets == o2.getSize() );
 }
 
-bool test3() {
+bool OctetArrayTest::test3() {
   common::OctetArray o1 = { "CONN" };
   common::OctetArray o2 = { "CONNECTED" };
   size_t octets;
   common::OctetArray::MatchType mt = o1.match( o2, 0, octets );
-  return ( mt == common::OctetArray::MatchType::Partial && octets == o1.size );
+  return writeSubTestResult( "test comparison/match ",
+                             "test common::OctetArray::MatchType::Contained",
+                             mt == common::OctetArray::MatchType::Contained && octets == o1.getSize() );
 }
 
-bool test4() {
+bool OctetArrayTest::test4() {
   common::OctetArray o1 = { "CONNECTED" };
   common::OctetArray o2 = { "CONNECTED" };
   size_t octets;
   common::OctetArray::MatchType mt = o1.match( o2, 0, octets );
-  return ( mt == common::OctetArray::MatchType::Full && octets == o2.size );
+  return writeSubTestResult( "test comparison/match ",
+                             "test common::OctetArray::MatchType::Contained",
+                             mt == common::OctetArray::MatchType::Full && octets == o2.getSize() );
 }
 
-bool test5() {
+bool OctetArrayTest::test5() {
   common::OctetArray o1 = { "CONNECTED" };
   common::OctetArray o2 = { "CONNECTER" };
   size_t octets;
   common::OctetArray::MatchType mt = o1.match( o2, 0, octets );
-  return ( mt == common::OctetArray::MatchType::Mismatch && octets == 0 );
+  return writeSubTestResult( "test comparison/match ",
+                             "test common::OctetArray::MatchType::Contained",
+                             mt == common::OctetArray::MatchType::Mismatch && octets == 0 );
 }
 
-bool test6() {
+bool OctetArrayTest::test6() {
   common::OctetArray o1 = { "This" };
   common::OctetArray o2 = { "This function will return the length of the data decoded or -1 on error" };
   o1.append( { " function" } );
@@ -77,27 +115,21 @@ bool test6() {
   o1.append( { " error." } );
   size_t octets;
   common::OctetArray::MatchType mt = o1.match( o2, 0, octets );
-  return ( mt == common::OctetArray::MatchType::Full && octets == o2.size );
+  return ( mt == common::OctetArray::MatchType::Full && octets == o2.getSize() );
 }
 
 
 int main() {
   int error = 0;
-  bool ok = true;
   try {
     initLibrary();
-    ok = ok && test1();
-    ok = ok && test2();
-    ok = ok && test3();
-    ok = ok && test4();
-    ok = ok && test5();
-    ok = ok && test6();
+    OctetArrayTest test( "common::OctetArrayTest tests", "Testing OctetArrayTest class", &cout );
+    error = ( test.run() == false );
   }
   catch ( const std::exception& e ) {
     cerr << e.what() << endl;
     error = 2;
   }
   closeLibrary();
-  if ( !error && !ok ) error = 1;
   return error;
 }

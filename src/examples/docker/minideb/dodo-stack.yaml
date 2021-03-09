@@ -1,0 +1,33 @@
+version: '3.7'
+
+configs:
+  dodo_v1:
+    file: ./config.yaml
+
+services:
+  dodo:
+    labels:
+      org.dodo.example: "A swarm of TCP servers loadbalanced through a VIP"
+    image: dodo:v1
+    configs:
+      - source: dodo_v1
+        target: /opt/dodo/conf/config.yaml
+    ports:
+      - "1968:1968"
+    deploy:
+      endpoint_mode: vip
+      replicas: 3
+      update_config:
+        parallelism: 1
+        delay: 5s
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+        window: '13s'
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 50M
+        reservations:
+          cpus: '0.10'
+          memory: 20M

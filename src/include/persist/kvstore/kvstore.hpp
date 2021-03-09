@@ -299,6 +299,16 @@ namespace dodo::persist {
        */
       void checkPoint();
 
+      /**
+       * Optimzime, preferably called after workload and implicitly called by the destructor.
+       */
+      void optimize();
+
+      /**
+       * Vaccum - clean and defragment, which may increase efficiency after heavy deletion and/or modification.
+       */
+      void vacuum();
+
     protected:
 
       /**

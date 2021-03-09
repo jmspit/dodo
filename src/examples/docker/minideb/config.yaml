@@ -19,7 +19,7 @@ dodo:
         facility: 1
 
 server:
-  listen-address: 192.168.1.2
+  listen-address: 0.0.0.0
   listen-port: 1968
   min-servers: 2
   max-servers: 8
@@ -28,7 +28,7 @@ server:
   receive-buffer: 32768
   send-timeout-seconds: 10
   receive-timeout-seconds: 10
-  stat-trc-interval-s: 300
+  stat-trc-interval-s: 30
   listener-sleep-ms: 200
   tcp-keep-alive: true
   tls-context:
@@ -37,4 +37,3 @@ server:
     certificate: server.cert
     tls-min-version: 1.2
     ciphersuite: TLS_AES_256_GCM_SHA384
-

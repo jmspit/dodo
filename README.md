@@ -33,8 +33,7 @@ A framework to facilitate C++ software development for the Linux platform with a
 
 See the [developer manual](DEVELOPER.md) for an overview.
 
-The source code is documented for Doxygen. To generate full library documentation, see `make doc` in
-the build section below.
+The source code is documented for Doxygen and automatically generated to github pages.
 
 ## Maintainers
 

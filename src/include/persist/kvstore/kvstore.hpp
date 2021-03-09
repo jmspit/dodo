@@ -64,7 +64,9 @@ namespace dodo::persist {
    * store.insertKey( "key", "value" );
    * cout <<  store.asInteger( "key" ) << endl;
    * @endcode
-   * will output 0 as the string "value" does not convert to an integer.
+   * will output 0 as the string "value" does not convert to an integer. Use getDataType to check if a key is of the expected DataType.
+   *
+   * The SQLIte database is initailized in WAL mode for performance and concurrency.
    */
   class KVStore {
     public:
@@ -85,6 +87,9 @@ namespace dodo::persist {
        */
       KVStore( const std::filesystem::path &path );
 
+      /**
+       * Destructor, cleanup sync and close the SQLLite database.
+       */
       ~KVStore();
 
       /**
@@ -206,6 +211,12 @@ namespace dodo::persist {
        */
       std::string getString( const std::string &key );
 
+      /**
+       * Presumes the key exists, and throws an common::Exception if it does not. Otherwise, return the value
+       * for the key as a double.
+       * @param key
+       * @return The double value for the key.
+       */
       double getDouble( const std::string &key );
 
       /**
@@ -260,6 +271,11 @@ namespace dodo::persist {
        */
       bool exists( const std::string &key ) const;
 
+      /**
+       * Get the DataType for the key.
+       * @param key The key name.
+       * @return the DataType of the key.
+       */
       DataType getDataType( const std::string &key ) const;
 
       /**

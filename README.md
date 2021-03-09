@@ -18,10 +18,8 @@ A framework to facilitate C++ software development for the Linux platform with a
   - REST(S)Listener is a specialization of HTTP(S)Server
   - Persistent data stores based on [SQLite](https://sqlite.org/index.html)
     - Key-value store.
-    - FIFO queuing.
-    - Priority queuing.
-
-As compute power is not free, and performance is still functionality #1 of any application, and writing 3GL code is just as easy (or hard) as any other language, the still widely used C/C++ platform is regaining attention and integrates seamlessly with existing CI and or CD solutions, including this GitHub.
+    - Persistent FIFO queue.
+    - Persistent Priority queue.
 
 ## Dependencies
 

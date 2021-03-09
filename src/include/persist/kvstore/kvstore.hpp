@@ -66,7 +66,8 @@ namespace dodo::persist {
    * @endcode
    * will output 0 as the string "value" does not convert to an integer. Use getDataType to check if a key is of the expected DataType.
    *
-   * The SQLIte database is initailized in WAL mode for performance and concurrency.
+   * The SQLIte database is initailized in WAL mode for performance and concurrency. It can be checkpointed to make sure the
+   * contents are fully written out to persistent storage.
    */
   class KVStore {
     public:
@@ -292,6 +293,11 @@ namespace dodo::persist {
        * @param filter The SQL-style case-sensitive filter as in '%match%', 'match%'
        */
       void filterKeys( std::list<std::string>& keys, const std::string &filter );
+
+      /**
+       * Sync all to disk.
+       */
+      void checkPoint();
 
     protected:
 

@@ -47,6 +47,7 @@ namespace dodo::persist {
   }
 
   KVStore::~KVStore() {
+    checkPoint();
     if ( stmt_key_value_filter_ ) sqlite3_finalize( stmt_key_value_filter_ );
     if ( stmt_key_filter_ ) sqlite3_finalize( stmt_key_filter_ );
     if ( stmt_update_ ) sqlite3_finalize( stmt_update_ );
@@ -63,6 +64,11 @@ namespace dodo::persist {
                       "key TEXT NOT NULL PRIMARY KEY, "
                       "value NOT NULL )";
     auto rc = sqlite3_exec( database_, sql.c_str(), nullptr, 0, nullptr );
+    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
+  }
+
+  void KVStore::checkPoint() {
+    auto rc =  sqlite3_wal_checkpoint_v2( database_, nullptr, SQLITE_CHECKPOINT_FULL, nullptr, nullptr );
     if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
   }
 

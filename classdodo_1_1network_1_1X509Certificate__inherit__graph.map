@@ -1,0 +1,4 @@
+<map id="dodo::network::X509Certificate" name="dodo::network::X509Certificate">
+<area shape="rect" id="node1" title="X509 public key certificate (PKC) interface." alt="" coords="5,80,228,107"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1X509Common.html" title="Interface common to X509 documents." alt="" coords="9,5,224,32"/>
+</map>

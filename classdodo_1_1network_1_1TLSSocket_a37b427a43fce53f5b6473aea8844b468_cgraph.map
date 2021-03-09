@@ -1,0 +1,5 @@
+<map id="dodo::network::TLSSocket::accept" name="dodo::network::TLSSocket::accept">
+<area shape="rect" id="node1" title="Accept a connection." alt="" coords="5,27,195,69"/>
+<area shape="rect" id="node2" href="$namespacedodo_1_1common.html#a92751bfc7a44e638a4d3efa4ab2c6300" title="Get all OpenSSL errors as a single string, and clear their error state." alt="" coords="243,5,452,32"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1TLSSocket.html#a8887dc8b4243948101f23fd633f5eb08" title="Construct from existing socket file descriptor." alt="" coords="253,57,442,98"/>
+</map>

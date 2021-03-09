@@ -1,0 +1,6 @@
+<map id="dodo::network::BaseSocket::isValid" name="dodo::network::BaseSocket::isValid">
+<area shape="rect" id="node1" title="Return true when the socket descriptor is a valid, hence &#39;possible&#39; descriptor." alt="" coords="528,27,727,69"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1TCPListener.html#af8117e3aaa32a0bdf421f13e05a5597c" title="Entrypoint, override of Thread::run()" alt="" coords="5,5,233,32"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1BaseSocket.html#af62964a8a5da647a11e190e75bcbcf68" title="Set the Socket blocking mode." alt="" coords="281,27,480,69"/>
+<area shape="rect" id="node4" href="$classdodo_1_1network_1_1BaseSocket.html#af8a089b16d52457a1c70b6e07fdd5d96" title="Enable the socket to re&#45;use an address when listen/bind is called." alt="" coords="281,93,480,134"/>
+</map>

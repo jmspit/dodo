@@ -1,0 +1,7 @@
+<map id="dodo::common::Logger::Logger" name="dodo::common::Logger::Logger">
+<area shape="rect" id="node1" title="Construct against a config." alt="" coords="5,88,176,129"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1Config.html#a955942da1c904f7a4b797eaf3883ac16" title="return the singleton." alt="" coords="444,5,612,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1common_1_1Logger.html#aa5b18f36fae4dd78350f61756a6e1d70" title="Get FileParams from the Config into file_params_." alt="" coords="224,59,395,100"/>
+<area shape="rect" id="node4" href="$classdodo_1_1common_1_1Config.html#aa452e6ffcaf296f309a871bb0d2ea059" title="Return a reference to the configuration YAML contents." alt="" coords="444,75,612,116"/>
+<area shape="rect" id="node5" href="$classdodo_1_1common_1_1Logger.html#adb742179864c2d409c23771f05b2d4c6" title="Return the string as a LogLevel." alt="" coords="443,149,613,191"/>
+</map>

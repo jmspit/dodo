@@ -1,0 +1,5 @@
+<map id="dodo::network::X509Certificate::getSubject" name="dodo::network::X509Certificate::getSubject">
+<area shape="rect" id="node1" title="Get the certificate subject identity." alt="" coords="5,27,228,69"/>
+<area shape="rect" id="node2" href="$namespacedodo_1_1common.html#aa8685d56ddde1fad16ba4cc6bded6ef4" title="Convert the data contents of an OpenSSL BIO to a std::string." alt="" coords="287,5,480,32"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1X509Common.html#ac42862f5f83c525fc9e8faecdd52f8ae" title="Parse a subject or issuer string into an Identity." alt="" coords="276,57,491,98"/>
+</map>

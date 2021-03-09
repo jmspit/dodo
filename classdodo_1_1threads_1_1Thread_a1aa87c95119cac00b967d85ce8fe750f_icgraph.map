@@ -1,0 +1,11 @@
+<map id="dodo::threads::Thread::getRunTime" name="dodo::threads::Thread::getRunTime">
+<area shape="rect" id="node1" title="Time, in seconds, since thread start." alt="" coords="217,235,381,276"/>
+<area shape="rect" id="node2" href="$classdodo_1_1threads_1_1Thread.html#abb82f6303b6ee83170b53027e4414f4d" title="Get the average block in rate since thread start()" alt="" coords="5,5,169,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1threads_1_1Thread.html#a7851ad3d3858830d9e8a31dfb3db37c0" title="Get the average block out rate since thread start()" alt="" coords="5,71,169,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1threads_1_1Thread.html#ab2a587f1cf2dee5e46593f5e5fac8dfc" title="Get the average involuntary context switch rate since thread start()" alt="" coords="5,136,169,177"/>
+<area shape="rect" id="node5" href="$classdodo_1_1threads_1_1Thread.html#a18d45cf3b407024e2cd9e0388e2d8c16" title="Get the average major fault rate since thread start()" alt="" coords="5,201,169,243"/>
+<area shape="rect" id="node6" href="$classdodo_1_1threads_1_1Thread.html#af1b18e328eac5ab7c33db724bf4a0380" title="Get the average minor fault rate since thread start()" alt="" coords="5,267,169,308"/>
+<area shape="rect" id="node7" href="$classdodo_1_1threads_1_1Thread.html#a57ef9920a66d13afe27fe7d29edb4c7c" title="Get the average system mode cpu (cpu seconds/second) since thread start()" alt="" coords="5,332,169,373"/>
+<area shape="rect" id="node8" href="$classdodo_1_1threads_1_1Thread.html#a999d79d2624e4423a9701be6e6b35d52" title="Get the average user mode cpu (cpu seconds/second) since thread start()" alt="" coords="5,397,169,439"/>
+<area shape="rect" id="node9" href="$classdodo_1_1threads_1_1Thread.html#aa564d5fa49eedda2d444f9f15dd4fbce" title="Get the average voluntary context switch rate since thread start()" alt="" coords="5,463,169,504"/>
+</map>

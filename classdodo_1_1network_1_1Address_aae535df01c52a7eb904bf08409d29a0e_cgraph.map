@@ -1,0 +1,5 @@
+<map id="dodo::network::Address::Address" name="dodo::network::Address::Address">
+<area shape="rect" id="node1" title="Construct from &quot;ip&quot;, port." alt="" coords="5,39,180,80"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1Address.html#a74494b36ef5e2172ed008791b38a78ef" title="Initialize the internals." alt="" coords="228,5,403,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1Address.html#afdab41c2c4f6d220d4a9f92502897839" title="Set the port number." alt="" coords="228,71,403,112"/>
+</map>

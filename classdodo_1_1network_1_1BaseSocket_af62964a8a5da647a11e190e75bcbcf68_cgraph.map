@@ -1,0 +1,4 @@
+<map id="dodo::network::BaseSocket::setBlocking" name="dodo::network::BaseSocket::setBlocking">
+<area shape="rect" id="node1" title="Set the Socket blocking mode." alt="" coords="5,5,204,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1BaseSocket.html#a19be8d7c4017219bc9b7d17f66825f27" title="Return true when the socket descriptor is a valid, hence &#39;possible&#39; descriptor." alt="" coords="252,5,451,47"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="dodo::BuildEnv::getBinaryDirectory" name="dodo::BuildEnv::getBinaryDirectory">
+<area shape="rect" id="node1" title="In very rare cases (examples requiring artefacts build in source checkouts), this is usefull." alt="" coords="275,5,464,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1BuildEnv.html#a2794ed3291bdbb31cdf7ea7d953824b7" title="Get a description of the build environment." alt="" coords="5,13,227,39"/>
+</map>

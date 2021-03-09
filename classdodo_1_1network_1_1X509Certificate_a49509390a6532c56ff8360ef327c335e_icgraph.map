@@ -1,0 +1,4 @@
+<map id="dodo::network::X509Certificate::verifySAN" name="dodo::network::X509Certificate::verifySAN">
+<area shape="rect" id="node1" title="Verify a peer name against this certificate&#39;s CN and SubjectAltnames." alt="" coords="243,5,465,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1TLSSocket.html#a8d461dcb17d488050c8576431670ea4d" title="Connect to the Address." alt="" coords="5,5,195,47"/>
+</map>

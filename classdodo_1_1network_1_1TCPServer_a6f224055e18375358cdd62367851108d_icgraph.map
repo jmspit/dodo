@@ -1,0 +1,4 @@
+<map id="dodo::network::TCPServer::hasStopped" name="dodo::network::TCPServer::hasStopped">
+<area shape="rect" id="node1" title="Return true if the TCPServer has stopped working." alt="" coords="252,5,441,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1TCPListener.html#a49e646be053303253da97d479cbe8feb" title="Cleanup stopped TCPServers." alt="" coords="5,5,204,47"/>
+</map>

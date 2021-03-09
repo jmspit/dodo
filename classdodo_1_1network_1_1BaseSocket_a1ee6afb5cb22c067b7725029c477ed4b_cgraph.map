@@ -1,0 +1,7 @@
+<map id="dodo::network::BaseSocket::receiveString" name="dodo::network::BaseSocket::receiveString">
+<area shape="rect" id="node1" title="Receive a std::string as sent by sendString( const std::string&amp; )." alt="" coords="5,100,204,141"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1BaseSocket.html#a3254f7ede2297ecbaad8234eb8048de4" title="Rerurn true if the socket is operating in blocking mode." alt="" coords="252,5,451,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1BaseSocket.html#a075c2ed960e446c8dd7e1d2e79398ba6" title="Get the maximum buffer length for receive." alt="" coords="252,71,451,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1network_1_1BaseSocket.html#aad3cf233ec9e63b83f9a96135166b725" title="Receive bytes from the socket." alt="" coords="499,159,697,200"/>
+<area shape="rect" id="node5" href="$classdodo_1_1network_1_1BaseSocket.html#acdbbba0a78559c47d26a5b29c5b9bb3c" title="receive an uint64_t" alt="" coords="252,188,451,229"/>
+</map>

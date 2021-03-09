@@ -1,0 +1,4 @@
+<map id="dodo::network::BaseSocket::sendLine" name="dodo::network::BaseSocket::sendLine">
+<area shape="rect" id="node1" title="Sends the std::string terminated by a &#39; &#39;." alt="" coords="5,5,204,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1BaseSocket.html#a2c6fb3c1d732bc5a861716eed68f1cd0" title="Send bytes on the socket." alt="" coords="252,5,451,47"/>
+</map>

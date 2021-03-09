@@ -1,0 +1,6 @@
+<map id="dodo::common::getFileSize" name="dodo::common::getFileSize">
+<area shape="rect" id="node1" title="Return the size of the file." alt="" coords="224,78,423,105"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1Logger.html#aa31f13a3aa7299b722bf7614f82d18d3" title="Check and rotate the log file if it exceeds the size limit, delete older logs if needed." alt="" coords="5,5,176,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1common_1_1Logger.html#aa5b18f36fae4dd78350f61756a6e1d70" title="Get FileParams from the Config into file_params_." alt="" coords="5,71,176,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1store_1_1kvstore_1_1KVStore.html#a8c4ab098b343a8962521a41deab03d8e" title="Open the KVStore." alt="" coords="15,136,167,177"/>
+</map>

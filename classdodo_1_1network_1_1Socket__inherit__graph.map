@@ -1,0 +1,4 @@
+<map id="dodo::network::Socket" name="dodo::network::Socket">
+<area shape="rect" id="node1" title="A Linux socket." alt="" coords="21,80,188,107"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1BaseSocket.html" title="Interface to and common implementation of concrete sockets (Socket, TLSSocket)." alt="" coords="5,5,204,32"/>
+</map>

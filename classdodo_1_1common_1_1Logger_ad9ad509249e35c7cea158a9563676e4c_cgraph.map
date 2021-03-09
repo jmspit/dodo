@@ -1,0 +1,7 @@
+<map id="dodo::common::Logger::formatMessage" name="dodo::common::Logger::formatMessage">
+<area shape="rect" id="node1" title="Format a LogLine." alt="" coords="5,104,176,145"/>
+<area shape="rect" id="node2" href="$namespacedodo_1_1common.html#aa646d3bf530142cd8731d2e10123fa52" title="Return a datetime string in UTC (2020&#45;07&#45;01T20:14:36.442929Z)" alt="" coords="224,5,427,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1common_1_1Config.html#a3035c95a79f163d1622ab87f79aebc95" title="Return the application name." alt="" coords="241,71,409,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1common_1_1Config.html#a955942da1c904f7a4b797eaf3883ac16" title="return the singleton." alt="" coords="241,136,409,177"/>
+<area shape="rect" id="node5" href="$classdodo_1_1common_1_1Logger.html#aaf08c7f2ecdca0541bbff460d121d07b" title="Return the LogLevel as a string (as used in console and file)." alt="" coords="240,201,411,243"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="dodo::network::BaseSocket::getAddressFamily" name="dodo::network::BaseSocket::getAddressFamily">
+<area shape="rect" id="node1" title="Get the SocketParams::AddressFamily of the socket." alt="" coords="252,39,451,80"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1BaseSocket.html#a7c3da36628c79de4d048c27796f95acb" title="Return the SocketParams." alt="" coords="5,5,204,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1BaseSocket.html#a6041a9310318204b2fdac10491b70c43" title="Get the Socket TTL (time to live) or the max number of packet hops." alt="" coords="5,71,204,112"/>
+</map>

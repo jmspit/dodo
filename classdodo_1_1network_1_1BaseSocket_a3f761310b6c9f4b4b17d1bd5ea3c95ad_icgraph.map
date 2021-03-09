@@ -1,0 +1,5 @@
+<map id="dodo::network::BaseSocket::setReceiveTimeout" name="dodo::network::BaseSocket::setReceiveTimeout">
+<area shape="rect" id="node1" title="Set the receive timeout &#45; a receive will fail if there is no data received before the timeout expires..." alt="" coords="281,35,480,76"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1TCPListener.html#aa1a1a736c9c086cb64a251052cff4b17" title="Common constructor code." alt="" coords="20,5,219,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1TCPListener.html#af8117e3aaa32a0bdf421f13e05a5597c" title="Entrypoint, override of Thread::run()" alt="" coords="5,71,233,98"/>
+</map>

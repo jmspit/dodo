@@ -1,0 +1,7 @@
+<map id="dodo::network::Address::getHostAddrInfo" name="dodo::network::Address::getHostAddrInfo">
+<area shape="rect" id="node1" title="Get Address information on a host in a AddrInfo struct." alt="" coords="5,104,180,145"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1Address.html#a526c6b1bfa2b58e365b5f5e84e2a62c0" title="Construct an invalid (unspecified) address." alt="" coords="248,5,423,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1SocketParams.html#a6cd61a005a59e38248c9da2e9eb4668c" title="Set the AddressFamily." alt="" coords="228,71,443,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1network_1_1SocketParams.html#a899281cb35a45732671303ac1fa936f9" title="Set the ProtocolNumber." alt="" coords="228,136,443,177"/>
+<area shape="rect" id="node5" href="$classdodo_1_1network_1_1SocketParams.html#a704b590299583dc81425b62bc1ba1aa8" title="Set the SocketType." alt="" coords="228,201,443,243"/>
+</map>

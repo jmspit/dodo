@@ -1,0 +1,4 @@
+<map id="dodo::threads::Thread::getSnapDiffTime" name="dodo::threads::Thread::getSnapDiffTime">
+<area shape="rect" id="node1" title="Time, in seconds, since last statistic update." alt="" coords="5,5,169,47"/>
+<area shape="rect" id="node2" href="$namespacedodo_1_1common.html#a0e1449cb4ea8c0bac643c99dea4ea6f8" title="Return difference in seconds as a double." alt="" coords="217,13,436,39"/>
+</map>

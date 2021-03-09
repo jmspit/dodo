@@ -1,0 +1,4 @@
+<map id="dodo::BuildEnv::getCppStandard" name="dodo::BuildEnv::getCppStandard">
+<area shape="rect" id="node1" title="Get the C++ standard in effect during compiling." alt="" coords="284,13,515,39"/>
+<area shape="rect" id="node2" href="$classdodo_1_1BuildEnv.html#af36f3daa71bbd50c0413b97442e84e99" title="Get the C++ standard in effect during compiling as a string." alt="" coords="5,5,236,47"/>
+</map>

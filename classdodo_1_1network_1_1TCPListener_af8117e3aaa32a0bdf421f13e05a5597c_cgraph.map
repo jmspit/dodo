@@ -1,0 +1,25 @@
+<map id="dodo::network::TCPListener::run" name="dodo::network::TCPListener::run">
+<area shape="rect" id="node1" title="Entrypoint, override of Thread::run()" alt="" coords="5,635,233,662"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1BaseSocket.html#acf3ee5321588185efb19723f84a4727c" title="Accepts a connection request and return a pointer to a new Socket for the new connection,..." alt="" coords="281,5,480,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1TCPServer.html#a8945550a989ffe1c581b280431285184" title="Spawn a new TCPServer." alt="" coords="539,123,728,164"/>
+<area shape="rect" id="node4" href="$classdodo_1_1network_1_1TCPListener.html#ace716a3baf186d87a2b65aacaf278c68" title="Add a server if work_q_sz_ exceeds servers.size() and servers_.size() &lt; params_.maxservers." alt="" coords="281,123,480,164"/>
+<area shape="rect" id="node5" href="$classdodo_1_1threads_1_1Thread.html#ac48d892899311b3abfc3eea96ff18fe1" title="Start the thread." alt="" coords="551,188,715,229"/>
+<area shape="rect" id="node6" href="$classdodo_1_1network_1_1Address.html#af5feee3d77db394c2ec08c7892d665fc" title="Return a string representation of this Address." alt="" coords="293,305,468,347"/>
+<area shape="rect" id="node7" href="$classdodo_1_1network_1_1TCPListener.html#a49e646be053303253da97d479cbe8feb" title="Cleanup stopped TCPServers." alt="" coords="281,188,480,229"/>
+<area shape="rect" id="node8" href="$classdodo_1_1network_1_1BaseSocket.html#a996a679e03babae5d0757a5839afb8e9" title="Closes the socket, causing the connection, if it exists, to be terminated." alt="" coords="534,389,733,431"/>
+<area shape="rect" id="node9" href="$classdodo_1_1network_1_1TCPListener.html#a05f3381bcee837822c70c156c081d288" title="Tell the listener to close the socket." alt="" coords="281,423,480,464"/>
+<area shape="rect" id="node10" href="$classdodo_1_1network_1_1BaseSocket.html#ab5864bc9317e07e2957ee5d2ebf13f24" title="Return the socket file descriptor." alt="" coords="534,481,733,523"/>
+<area shape="rect" id="node11" href="$classdodo_1_1common_1_1DebugObject.html#a2fef1c1898f8432e96782fc7c743f8e9" title="Return the object dump to string." alt="" coords="528,573,739,615"/>
+<area shape="rect" id="node12" href="$classdodo_1_1network_1_1BaseSocket.html#a9c2508f9fd34604542c7c53e9c64e58d" title="Get the peer (remote) address for this socket." alt="" coords="281,657,480,699"/>
+<area shape="rect" id="node13" href="$classdodo_1_1network_1_1BaseSocket.html#a19be8d7c4017219bc9b7d17f66825f27" title="Return true when the socket descriptor is a valid, hence &#39;possible&#39; descriptor." alt="" coords="534,745,733,787"/>
+<area shape="rect" id="node14" href="$classdodo_1_1network_1_1TCPListener.html#abd20c77dbbe5b54cb9274d674be5b4a7" title="Log TCPListener statistics to Logger::getLogger()." alt="" coords="281,840,480,881"/>
+<area shape="rect" id="node15" href="$classdodo_1_1network_1_1TCPServer.html#a1e8a7e48391ff843ac471acdac3c98dd" title="Return a new TCPConnectionData pointer or override to return a descendant of TCPConnectionData." alt="" coords="286,905,475,947"/>
+<area shape="rect" id="node16" href="$classdodo_1_1network_1_1TCPListener.html#a68b772e16a320bcc72c586d408054b3f" title="Push work." alt="" coords="281,540,480,581"/>
+<area shape="rect" id="node17" href="$classdodo_1_1network_1_1BaseSocket.html#af62964a8a5da647a11e190e75bcbcf68" title="Set the Socket blocking mode." alt="" coords="281,775,480,816"/>
+<area shape="rect" id="node18" href="$classdodo_1_1network_1_1BaseSocket.html#a3f761310b6c9f4b4b17d1bd5ea3c95ad" title="Set the receive timeout &#45; a receive will fail if there is no data received before the timeout expires..." alt="" coords="281,971,480,1012"/>
+<area shape="rect" id="node19" href="$classdodo_1_1network_1_1BaseSocket.html#a04fe41d24898826e28a3cd0cf1e2ffb2" title="Set the send timeout &#45; a send will fail if there is no data send before the timeout expires." alt="" coords="281,1036,480,1077"/>
+<area shape="rect" id="node20" href="$classdodo_1_1network_1_1BaseSocket.html#a4c515b24174b80501352a212c8e2a311" title="Enable or disable TCP keep&#45;alive on the socket." alt="" coords="281,1101,480,1143"/>
+<area shape="rect" id="node21" href="$classdodo_1_1network_1_1BaseSocket.html#a5a777035395a02648f3fc975a574691b" title="Set TCP_NODELAY." alt="" coords="281,1167,480,1208"/>
+<area shape="rect" id="node22" href="$classdodo_1_1network_1_1TCPListener.html#ad6c35e58e8dc878f34869ef85c4acd57" title="Throttle the listener when work_q_sz_ exceeds params_.maxqdepth." alt="" coords="281,1232,480,1273"/>
+<area shape="rect" id="node23" href="$classdodo_1_1common_1_1Exception.html#a208d26d25b9a36f48a6df2ec851bdff3" title="Return the exception message." alt="" coords="285,1297,476,1339"/>
+</map>

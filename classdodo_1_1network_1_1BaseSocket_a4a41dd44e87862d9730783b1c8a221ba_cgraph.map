@@ -1,0 +1,5 @@
+<map id="dodo::network::BaseSocket::listen" name="dodo::network::BaseSocket::listen">
+<area shape="rect" id="node1" title="Sets up a listening socket on Address." alt="" coords="5,5,204,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1Address.html#af5feee3d77db394c2ec08c7892d665fc" title="Return a string representation of this Address." alt="" coords="499,5,673,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1BaseSocket.html#af72f5b968278b7390dc5ee57c3afb2d0" title="Bind the socket to the Address." alt="" coords="252,35,451,76"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="dodo::common::DataCrypt::cipherOctets" name="dodo::common::DataCrypt::cipherOctets">
+<area shape="rect" id="node1" title="Calculate the size of the encrypted data from the input size." alt="" coords="247,5,440,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1DataCrypt.html#ac6dd5410c39cfe7f9aca1b955b70664c" title="Encrypt data with a key into a string (so the encrypted data will not contain a 0/zero)." alt="" coords="5,5,199,47"/>
+</map>

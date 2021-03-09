@@ -1,0 +1,4 @@
+<map id="dodo::threads::Thread::thread_method" name="dodo::threads::Thread::thread_method">
+<area shape="rect" id="node1" title="Posix thread method &#45; calls dodo::threads::Thread:::run()." alt="" coords="217,5,381,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1threads_1_1Thread.html#ac48d892899311b3abfc3eea96ff18fe1" title="Start the thread." alt="" coords="5,5,169,47"/>
+</map>

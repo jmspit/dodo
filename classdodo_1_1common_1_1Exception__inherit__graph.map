@@ -1,0 +1,5 @@
+<map id="dodo::common::Exception" name="dodo::common::Exception">
+<area shape="rect" id="node1" title="An Exception is thrown in exceptional circumstances, and its occurence should generally imply that th..." alt="" coords="30,80,221,107"/>
+<area shape="rect" id="node3" href="$classdodo_1_1common_1_1SystemException.html" title="Descending from Exception, exceptions based on a dodo::common::SystemError code." alt="" coords="5,155,245,181"/>
+<area shape="rect" id="node2" title="STL class." alt="" coords="56,5,195,32"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="dodo::common::Config::initialize" name="dodo::common::Config::initialize">
+<area shape="rect" id="node1" title="Initialize the singleton." alt="" coords="5,5,173,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1Config.html#a95fc7013c86d765a135f445d6d2379ac" title="Disallow the copy constructor as this is a singleton." alt="" coords="221,5,389,47"/>
+</map>

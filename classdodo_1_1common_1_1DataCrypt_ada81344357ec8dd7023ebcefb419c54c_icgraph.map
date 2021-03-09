@@ -1,0 +1,4 @@
+<map id="dodo::common::DataCrypt::blockOctets" name="dodo::common::DataCrypt::blockOctets">
+<area shape="rect" id="node1" title="Return the block size of the Cipher in octets." alt="" coords="247,5,440,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1DataCrypt.html#a9479f00dc09d237396352c9315ad740f" title="Calculate the size of the encrypted data from the input size." alt="" coords="5,5,199,47"/>
+</map>

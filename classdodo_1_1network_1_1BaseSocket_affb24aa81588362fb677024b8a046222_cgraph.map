@@ -1,0 +1,4 @@
+<map id="dodo::network::BaseSocket::connect" name="dodo::network::BaseSocket::connect">
+<area shape="rect" id="node1" title="Connect to the address." alt="" coords="5,5,204,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1Address.html#aa4f12a8b93a0b3708210aa8a2633a0a6" title="Get to the underlying sockaddr_storage." alt="" coords="252,5,427,47"/>
+</map>

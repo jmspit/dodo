@@ -1,0 +1,5 @@
+<map id="dodo::network::BaseSocket::close" name="dodo::network::BaseSocket::close">
+<area shape="rect" id="node1" title="Closes the socket, causing the connection, if it exists, to be terminated." alt="" coords="528,35,727,76"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1TCPListener.html#a05f3381bcee837822c70c156c081d288" title="Tell the listener to close the socket." alt="" coords="281,5,480,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1TCPListener.html#af8117e3aaa32a0bdf421f13e05a5597c" title="Entrypoint, override of Thread::run()" alt="" coords="5,42,233,69"/>
+</map>

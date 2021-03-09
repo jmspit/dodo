@@ -1,0 +1,10 @@
+<map id="dodo::common::Application::Application" name="dodo::common::Application::Application">
+<area shape="rect" id="node1" title="Construct an Application instance." alt="" coords="5,188,205,229"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1Application.html#ab5280c1affb0e48ff6eb6fcdcf9847e6" title="Detect the HostType of the host the Application is running on." alt="" coords="253,5,453,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1common_1_1Config.html#a3035c95a79f163d1622ab87f79aebc95" title="Return the application name." alt="" coords="501,215,669,256"/>
+<area shape="rect" id="node4" href="$classdodo_1_1common_1_1Config.html#aba80b83aa9199ec638449f387e8a733c" title="Initialize the singleton." alt="" coords="269,123,437,164"/>
+<area shape="rect" id="node5" href="$classdodo_1_1common_1_1Logger.html#a4a723e3a6f44cb0ec2996d5d91a13e5b" title="Initialize the Logger singleton." alt="" coords="268,188,439,229"/>
+<area shape="rect" id="node6" href="$namespacedodo.html#ae61f6a99a376fce96aaa28ef8fc99d24" title="Initialize the dodo library." alt="" coords="289,254,417,281"/>
+<area shape="rect" id="node7" href="$classdodo_1_1common_1_1Application.html#a892a9e6fbf188d831dbfc10916e7e3a6" title="Install the signal handlers." alt="" coords="253,305,453,347"/>
+<area shape="rect" id="node8" href="$classdodo_1_1common_1_1Logger.html#ac316d01b3f24be57e64217ec03092133" title="Log a log entry." alt="" coords="254,371,453,398"/>
+</map>

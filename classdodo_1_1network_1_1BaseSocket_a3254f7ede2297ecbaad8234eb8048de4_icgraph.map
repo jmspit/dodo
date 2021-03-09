@@ -1,0 +1,5 @@
+<map id="dodo::network::BaseSocket::getBlocking" name="dodo::network::BaseSocket::getBlocking">
+<area shape="rect" id="node1" title="Rerurn true if the socket is operating in blocking mode." alt="" coords="252,39,451,80"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1BaseSocket.html#a1ee6afb5cb22c067b7725029c477ed4b" title="Receive a std::string as sent by sendString( const std::string&amp; )." alt="" coords="5,5,204,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1BaseSocket.html#a42390d41ef7b234543c5c50bb4b9cf1b" title="Sends the std::string as understood by receiveString()." alt="" coords="5,71,204,112"/>
+</map>

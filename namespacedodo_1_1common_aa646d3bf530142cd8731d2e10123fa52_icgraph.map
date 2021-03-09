@@ -1,0 +1,5 @@
+<map id="dodo::common::formatDateTimeUTC" name="dodo::common::formatDateTimeUTC">
+<area shape="rect" id="node1" title="Return a datetime string in UTC (2020&#45;07&#45;01T20:14:36.442929Z)" alt="" coords="224,39,427,80"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1Logger.html#aa31f13a3aa7299b722bf7614f82d18d3" title="Check and rotate the log file if it exceeds the size limit, delete older logs if needed." alt="" coords="5,5,176,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1common_1_1Logger.html#ad9ad509249e35c7cea158a9563676e4c" title="Format a LogLine." alt="" coords="5,71,176,112"/>
+</map>

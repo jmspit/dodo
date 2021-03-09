@@ -1,0 +1,5 @@
+<map id="dodo::network::TLSSocket::TLSSocket" name="dodo::network::TLSSocket::TLSSocket">
+<area shape="rect" id="node1" title="Construct from scratch." alt="" coords="5,27,195,69"/>
+<area shape="rect" id="node2" href="$namespacedodo_1_1common.html#a92751bfc7a44e638a4d3efa4ab2c6300" title="Get all OpenSSL errors as a single string, and clear their error state." alt="" coords="243,5,452,32"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1TLSContext.html#acaf55a5fd4c97c6834f9cf50ed2f83a0" title="Return true when SNI (server Name Information) is to be enabled by TLSSocket objects using this TLSCo..." alt="" coords="249,57,446,98"/>
+</map>

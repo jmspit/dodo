@@ -1,0 +1,8 @@
+<map id="dodo::network::TLSSocket::connect" name="dodo::network::TLSSocket::connect">
+<area shape="rect" id="node1" title="Connect to the Address." alt="" coords="5,136,195,177"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1BaseSocket.html#affb24aa81588362fb677024b8a046222" title="Connect to the address." alt="" coords="255,5,453,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1TLSSocket.html#a00669ad61d2b2039a08a46ec397d8298" title="Get the peer&#39;s certificate." alt="" coords="259,71,449,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1network_1_1TLSContext.html#aa72150a10faa0adc4131c121f3932375" title="Return the getPeerVerification mode." alt="" coords="255,136,453,177"/>
+<area shape="rect" id="node5" href="$namespacedodo_1_1common.html#a92751bfc7a44e638a4d3efa4ab2c6300" title="Get all OpenSSL errors as a single string, and clear their error state." alt="" coords="249,202,459,229"/>
+<area shape="rect" id="node6" href="$classdodo_1_1network_1_1X509Certificate.html#a49509390a6532c56ff8360ef327c335e" title="Verify a peer name against this certificate&#39;s CN and SubjectAltnames." alt="" coords="243,253,465,295"/>
+</map>

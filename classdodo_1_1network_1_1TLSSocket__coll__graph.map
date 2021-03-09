@@ -1,0 +1,7 @@
+<map id="dodo::network::TLSSocket" name="dodo::network::TLSSocket">
+<area shape="rect" id="node1" title="Socket for TLS encrypted traffic between trusted endpoints." alt="" coords="389,81,579,108"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1BaseSocket.html" title="Interface to and common implementation of concrete sockets (Socket, TLSSocket)." alt="" coords="31,5,230,32"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1TLSContext.html" title="TLS security context." alt="" coords="32,56,229,83"/>
+<area shape="rect" id="node4" title=" " alt="" coords="103,107,159,133"/>
+<area shape="rect" id="node5" href="$structdodo_1_1network_1_1X509Common_1_1SAN.html" title="Subject AltName record." alt="" coords="5,157,256,184"/>
+</map>

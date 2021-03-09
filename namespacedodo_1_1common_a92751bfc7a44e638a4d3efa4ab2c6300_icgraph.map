@@ -1,0 +1,18 @@
+<map id="dodo::common::getSSLErrors" name="dodo::common::getSSLErrors">
+<area shape="rect" id="node1" title="Get all OpenSSL errors as a single string, and clear their error state." alt="" coords="276,470,485,497"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1TLSSocket.html#a37b427a43fce53f5b6473aea8844b468" title="Accept a connection." alt="" coords="22,5,211,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1TLSSocket.html#a8d461dcb17d488050c8576431670ea4d" title="Connect to the Address." alt="" coords="22,71,211,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1common_1_1DataCrypt.html#aa1b405ff388d738bc442bf14e084c6d9" title="Decrypt data with a key." alt="" coords="20,136,213,177"/>
+<area shape="rect" id="node5" href="$classdodo_1_1common_1_1DataCrypt.html#ac6dd5410c39cfe7f9aca1b955b70664c" title="Encrypt data with a key into a string (so the encrypted data will not contain a 0/zero)." alt="" coords="20,201,213,243"/>
+<area shape="rect" id="node6" href="$classdodo_1_1network_1_1X509CertificateSigningRequest.html#ab52332e3ec015e019327edf3678ad06b" title="Get the certificate fingerprint (a hash on the public key modulus) in string format,..." alt="" coords="5,267,228,308"/>
+<area shape="rect" id="node7" href="$classdodo_1_1network_1_1X509Certificate.html#a4ba6e740b4500f3706510dc318767db9" title="Get the certificate fingerprint (a hash on the public key modulus) in string format,..." alt="" coords="5,332,228,373"/>
+<area shape="rect" id="node8" href="$classdodo_1_1network_1_1X509CertificateSigningRequest.html#a701f2684b54acbba633f10de3b29e39a" title="Load a certificate signing request (CSR) from a PEM file." alt="" coords="5,397,228,439"/>
+<area shape="rect" id="node9" href="$classdodo_1_1network_1_1X509Certificate.html#ad448808837b94fa9b53a26783245b202" title="Load a public key certificate (aka &#39;certificate&#39;) from a PEM file." alt="" coords="5,463,228,504"/>
+<area shape="rect" id="node10" href="$classdodo_1_1network_1_1TLSContext.html#a8ba59bffeb41e4f79342ba5c2bdd05d0" title="Load a certificate and the corresponding private key for an identity." alt="" coords="18,528,215,569"/>
+<area shape="rect" id="node11" href="$classdodo_1_1network_1_1TLSContext.html#aa77451d1c3a087066dad53d8a38120a4" title="Loads a private key, matching certificate and optional CA certificates (eg a truststore) from a PKCS1..." alt="" coords="18,593,215,635"/>
+<area shape="rect" id="node12" href="$classdodo_1_1network_1_1TLSSocket.html#a5853a4c518bf6b4b758ba35a70b735ca" title="Receive data." alt="" coords="22,659,211,700"/>
+<area shape="rect" id="node13" href="$classdodo_1_1network_1_1TLSSocket.html#ac9f3d4a7b4bb653edaff562c1a7d6e8f" title="Send data." alt="" coords="22,724,211,765"/>
+<area shape="rect" id="node14" href="$classdodo_1_1network_1_1TLSContext.html#ad6c2745f177eaa16b629e64fe213b766" title="Trust all certificates in the specified directory." alt="" coords="18,789,215,831"/>
+<area shape="rect" id="node15" href="$classdodo_1_1network_1_1TLSContext.html#a08adf6aaeb179052ccbf59cfe167314a" title="Construct a TLS context." alt="" coords="18,855,215,896"/>
+<area shape="rect" id="node16" href="$classdodo_1_1network_1_1TLSSocket.html#aac4a213e093099709584ba4c8179c0da" title="Construct from scratch." alt="" coords="22,920,211,961"/>
+</map>

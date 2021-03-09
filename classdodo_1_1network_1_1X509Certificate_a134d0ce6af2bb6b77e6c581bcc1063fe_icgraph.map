@@ -1,0 +1,4 @@
+<map id="dodo::network::X509Certificate::getSubjectAltNames" name="dodo::network::X509Certificate::getSubjectAltNames">
+<area shape="rect" id="node1" title="Get the SAN (subject alternate name) list for the certificate, which may be empty." alt="" coords="276,5,499,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1X509Certificate.html#a49509390a6532c56ff8360ef327c335e" title="Verify a peer name against this certificate&#39;s CN and SubjectAltnames." alt="" coords="5,5,228,47"/>
+</map>

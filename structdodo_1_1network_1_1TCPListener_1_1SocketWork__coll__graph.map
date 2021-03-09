@@ -1,0 +1,6 @@
+<map id="dodo::network::TCPListener::SocketWork" name="dodo::network::TCPListener::SocketWork">
+<area shape="rect" id="node1" title="BaseSocket socket and state pair." alt="" coords="255,95,453,136"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1BaseSocket.html" title="Interface to and common implementation of concrete sockets (Socket, TLSSocket)." alt="" coords="5,5,204,32"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1TCPConnectionData.html" title="Class to track a connection." alt="" coords="229,5,479,32"/>
+<area shape="rect" id="node4" title=" " alt="" coords="504,5,591,32"/>
+</map>

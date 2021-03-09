@@ -1,0 +1,7 @@
+<map id="dodo::common::Config::getAppName" name="dodo::common::Config::getAppName">
+<area shape="rect" id="node1" title="Return the application name." alt="" coords="719,70,887,111"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1Application.html#a816f02777efe1660763c0bd514b9ee96" title="Construct an Application instance." alt="" coords="5,11,205,52"/>
+<area shape="rect" id="node3" href="$classdodo_1_1common_1_1Logger.html#ad9ad509249e35c7cea158a9563676e4c" title="Format a LogLine." alt="" coords="500,40,671,82"/>
+<area shape="rect" id="node4" href="$classdodo_1_1common_1_1Logger.html#ac316d01b3f24be57e64217ec03092133" title="Log a log entry." alt="" coords="253,48,452,74"/>
+<area shape="rect" id="node5" href="$classdodo_1_1common_1_1Logger.html#aa5b18f36fae4dd78350f61756a6e1d70" title="Get FileParams from the Config into file_params_." alt="" coords="500,158,671,199"/>
+</map>

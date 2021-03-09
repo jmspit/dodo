@@ -1,0 +1,4 @@
+<map id="dodo::common::Application::signal_handler" name="dodo::common::Application::signal_handler">
+<area shape="rect" id="node1" title="Signal handler called by the OS." alt="" coords="5,5,205,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1Application.html#a72f09296731e0c44be9fea0347712a3a" title="Called by signal_handler." alt="" coords="253,5,453,47"/>
+</map>

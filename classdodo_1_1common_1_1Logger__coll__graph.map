@@ -1,0 +1,10 @@
+<map id="dodo::common::Logger" name="dodo::common::Logger">
+<area shape="rect" id="node1" title="A Logger interface." alt="" coords="563,213,733,240"/>
+<area shape="rect" id="node2" href="$structdodo_1_1common_1_1Logger_1_1FileParams.html" title="File Logging parameters." alt="" coords="235,85,405,126"/>
+<area shape="rect" id="node3" title=" " alt="" coords="19,16,79,43"/>
+<area shape="rect" id="node4" title="STL class." alt="" coords="5,131,92,157"/>
+<area shape="rect" id="node5" href="$classdodo_1_1threads_1_1Mutex.html" title="A Mutex to synchronize access to resources between threads." alt="" coords="240,213,400,240"/>
+<area shape="rect" id="node6" title=" " alt="" coords="249,327,391,369"/>
+<area shape="rect" id="node7" title=" " alt="" coords="15,283,82,309"/>
+<area shape="rect" id="node8" href="$structdodo_1_1common_1_1Logger_1_1SyslogParams.html" title="syslog logging parameters." alt="" coords="235,393,405,434"/>
+</map>

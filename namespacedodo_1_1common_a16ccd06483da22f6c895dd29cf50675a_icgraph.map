@@ -1,0 +1,4 @@
+<map id="dodo::common::fileReadAccess" name="dodo::common::fileReadAccess">
+<area shape="rect" id="node1" title="Return true when the file exists and the calling user has read access." alt="" coords="253,13,479,39"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1Application.html#ab5280c1affb0e48ff6eb6fcdcf9847e6" title="Detect the HostType of the host the Application is running on." alt="" coords="5,5,205,47"/>
+</map>

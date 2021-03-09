@@ -1,0 +1,8 @@
+<map id="dodo::network::TCPListener::cleanStoppedServers" name="dodo::network::TCPListener::cleanStoppedServers">
+<area shape="rect" id="node1" title="Cleanup stopped TCPServers." alt="" coords="5,136,204,177"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1TCPServer.html#a8945550a989ffe1c581b280431285184" title="Spawn a new TCPServer." alt="" coords="252,5,441,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1threads_1_1Thread.html#acff39ebb8a274b4b4d9df56dd15f3cc5" title="Return the tid." alt="" coords="265,71,429,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1network_1_1TCPServer.html#a6f224055e18375358cdd62367851108d" title="Return true if the TCPServer has stopped working." alt="" coords="252,136,441,177"/>
+<area shape="rect" id="node5" href="$classdodo_1_1threads_1_1Thread.html#ac48d892899311b3abfc3eea96ff18fe1" title="Start the thread." alt="" coords="265,201,429,243"/>
+<area shape="rect" id="node6" href="$classdodo_1_1threads_1_1Thread.html#ad1b5fabdc0aae1620f2d4b61be98c59c" title="Wait for the thread to join the current thread / wait for the thread to finish." alt="" coords="265,267,429,308"/>
+</map>

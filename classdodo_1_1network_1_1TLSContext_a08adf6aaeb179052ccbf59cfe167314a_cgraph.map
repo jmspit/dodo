@@ -1,0 +1,5 @@
+<map id="dodo::network::TLSContext::TLSContext" name="dodo::network::TLSContext::TLSContext">
+<area shape="rect" id="node1" title="Construct a TLS context." alt="" coords="5,27,203,69"/>
+<area shape="rect" id="node2" href="$namespacedodo_1_1common.html#a92751bfc7a44e638a4d3efa4ab2c6300" title="Get all OpenSSL errors as a single string, and clear their error state." alt="" coords="251,5,460,32"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1TLSContext.html#ae85e94b5c0598bc57102648c85d65ac7" title="Password callback, returns the passphrase set in the TLS context by the passphrase argument of loadCe..." alt="" coords="257,57,454,98"/>
+</map>

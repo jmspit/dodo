@@ -1,0 +1,11 @@
+<map id="dodo::threads::Thread::getSnapDiffTime" name="dodo::threads::Thread::getSnapDiffTime">
+<area shape="rect" id="node1" title="Time, in seconds, since last statistic update." alt="" coords="217,235,381,276"/>
+<area shape="rect" id="node2" href="$classdodo_1_1threads_1_1Thread.html#a721ad85fab93689a72b289c60b12d856" title="Get last block in rate since last sample." alt="" coords="5,5,169,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1threads_1_1Thread.html#a212b78b72012c9a64d1c10e91515fe94" title="Get last block out rate since last sample." alt="" coords="5,71,169,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1threads_1_1Thread.html#a83186ca23689ce6334b8fb3240e854fb" title="Get involuntary context switch rate since last sample." alt="" coords="5,136,169,177"/>
+<area shape="rect" id="node5" href="$classdodo_1_1threads_1_1Thread.html#a0569e4586bb22eec3bbbec24163bcb70" title="Get the major fault rate since last sample." alt="" coords="5,201,169,243"/>
+<area shape="rect" id="node6" href="$classdodo_1_1threads_1_1Thread.html#a9eae96c9fc49b0e9ddbf053654ed723b" title="Get the minor fault rate since last sample." alt="" coords="5,267,169,308"/>
+<area shape="rect" id="node7" href="$classdodo_1_1threads_1_1Thread.html#a806b27eba80aa83f50dbd5df1fbd6fb2" title="Get the system mode cpu (cpu seconds/second) since last sample." alt="" coords="5,332,169,373"/>
+<area shape="rect" id="node8" href="$classdodo_1_1threads_1_1Thread.html#a1b58f8e0daba59745f17464427335520" title="Get the user mode cpu (cpu seconds/second) since last sample." alt="" coords="5,397,169,439"/>
+<area shape="rect" id="node9" href="$classdodo_1_1threads_1_1Thread.html#ab34fea9ef0f8d3d8ff88d8ac75fd3660" title="Get voluntary context switch rate since last sample." alt="" coords="5,463,169,504"/>
+</map>

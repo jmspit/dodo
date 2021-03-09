@@ -1,0 +1,8 @@
+<map id="dodo::network::BaseSocket::BaseSocket" name="dodo::network::BaseSocket::BaseSocket">
+<area shape="rect" id="node1" title="Construct from SocketParams." alt="" coords="5,136,204,177"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1SocketParams.html#a7acbf0de03ba9f6ab48d414a48be6cc8" title="Get the AddressFamily." alt="" coords="252,5,467,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1SocketParams.html#a9086112cb9386bc24f201c83c1f57492" title="Get the ProtocolNumber." alt="" coords="252,71,467,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1network_1_1SocketParams.html#adb891196ee991830a0f71f45921a47a5" title="Get the SocketType." alt="" coords="252,136,467,177"/>
+<area shape="rect" id="node5" href="$classdodo_1_1network_1_1BaseSocket.html#af62964a8a5da647a11e190e75bcbcf68" title="Set the Socket blocking mode." alt="" coords="260,201,459,243"/>
+<area shape="rect" id="node6" href="$classdodo_1_1network_1_1BaseSocket.html#a5a777035395a02648f3fc975a574691b" title="Set TCP_NODELAY." alt="" coords="260,267,459,308"/>
+</map>

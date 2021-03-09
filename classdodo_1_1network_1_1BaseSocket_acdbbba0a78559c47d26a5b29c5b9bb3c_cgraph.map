@@ -1,0 +1,4 @@
+<map id="dodo::network::BaseSocket::receiveUInt64" name="dodo::network::BaseSocket::receiveUInt64">
+<area shape="rect" id="node1" title="receive an uint64_t" alt="" coords="5,5,204,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1BaseSocket.html#aad3cf233ec9e63b83f9a96135166b725" title="Receive bytes from the socket." alt="" coords="252,5,451,47"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="dodo::network::TCPListener::releaseWork" name="dodo::network::TCPListener::releaseWork">
+<area shape="rect" id="node1" title="Called by a TCPServer to signal that the work has been handled and event detection on it can resume." alt="" coords="5,93,204,135"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1TCPListener.html#a05f3381bcee837822c70c156c081d288" title="Tell the listener to close the socket." alt="" coords="252,5,451,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1BaseSocket.html#ab5864bc9317e07e2957ee5d2ebf13f24" title="Return the socket file descriptor." alt="" coords="505,64,703,105"/>
+<area shape="rect" id="node4" href="$classdodo_1_1common_1_1DebugObject.html#a2fef1c1898f8432e96782fc7c743f8e9" title="Return the object dump to string." alt="" coords="499,155,709,196"/>
+<area shape="rect" id="node5" href="$classdodo_1_1network_1_1TCPListener.html#a1756ca6baecb0d31acc518b22a1357da" title="Add an epoll event for the BaseSocket." alt="" coords="252,123,451,164"/>
+</map>

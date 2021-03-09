@@ -1,0 +1,9 @@
+<map id="dodo::common::Logger::log" name="dodo::common::Logger::log">
+<area shape="rect" id="node1" title="Log a log entry." alt="" coords="5,159,204,186"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1Logger.html#aa31f13a3aa7299b722bf7614f82d18d3" title="Check and rotate the log file if it exceeds the size limit, delete older logs if needed." alt="" coords="252,5,423,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1common_1_1Logger.html#ad9ad509249e35c7cea158a9563676e4c" title="Format a LogLine." alt="" coords="252,123,423,164"/>
+<area shape="rect" id="node4" href="$classdodo_1_1common_1_1Config.html#a3035c95a79f163d1622ab87f79aebc95" title="Return the application name." alt="" coords="472,69,640,111"/>
+<area shape="rect" id="node5" href="$classdodo_1_1common_1_1Config.html#a955942da1c904f7a4b797eaf3883ac16" title="return the singleton." alt="" coords="472,139,640,180"/>
+<area shape="rect" id="node6" href="$classdodo_1_1common_1_1Logger.html#aaf08c7f2ecdca0541bbff460d121d07b" title="Return the LogLevel as a string (as used in console and file)." alt="" coords="471,213,641,255"/>
+<area shape="rect" id="node7" href="$classdodo_1_1common_1_1Logger.html#a45a65da62e5bbda7a602ab884d4f18c7" title="Map a LogLevel to a syslog level." alt="" coords="252,291,423,332"/>
+</map>

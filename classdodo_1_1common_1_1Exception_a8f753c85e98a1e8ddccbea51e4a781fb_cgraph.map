@@ -1,0 +1,5 @@
+<map id="dodo::common::Exception::Exception" name="dodo::common::Exception::Exception">
+<area shape="rect" id="node1" title="Construct an Exception." alt="" coords="5,39,196,80"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1DebugObject.html#a2fef1c1898f8432e96782fc7c743f8e9" title="Return the object dump to string." alt="" coords="244,5,455,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1common_1_1Exception.html#a208d26d25b9a36f48a6df2ec851bdff3" title="Return the exception message." alt="" coords="254,71,445,112"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="dodo::network::TCPServer::getIdleSeconds" name="dodo::network::TCPServer::getIdleSeconds">
+<area shape="rect" id="node1" title="Get the number of secodns the TCPServer has been idle." alt="" coords="5,5,195,47"/>
+<area shape="rect" id="node2" href="$namespacedodo_1_1common.html#a0e1449cb4ea8c0bac643c99dea4ea6f8" title="Return difference in seconds as a double." alt="" coords="243,13,461,39"/>
+</map>

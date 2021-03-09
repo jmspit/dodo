@@ -1,0 +1,4 @@
+<map id="dodo::network::BaseSocket::bind" name="dodo::network::BaseSocket::bind">
+<area shape="rect" id="node1" title="Bind the socket to the Address." alt="" coords="252,5,451,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1BaseSocket.html#a4a41dd44e87862d9730783b1c8a221ba" title="Sets up a listening socket on Address." alt="" coords="5,5,204,47"/>
+</map>

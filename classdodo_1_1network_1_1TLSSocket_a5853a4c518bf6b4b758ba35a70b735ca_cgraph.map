@@ -1,0 +1,4 @@
+<map id="dodo::network::TLSSocket::receive" name="dodo::network::TLSSocket::receive">
+<area shape="rect" id="node1" title="Receive data." alt="" coords="5,5,195,47"/>
+<area shape="rect" id="node2" href="$namespacedodo_1_1common.html#a92751bfc7a44e638a4d3efa4ab2c6300" title="Get all OpenSSL errors as a single string, and clear their error state." alt="" coords="243,13,452,39"/>
+</map>

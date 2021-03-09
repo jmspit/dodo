@@ -1,0 +1,14 @@
+<map id="dodo::network::TCPListener::logStats" name="dodo::network::TCPListener::logStats">
+<area shape="rect" id="node1" title="Log TCPListener statistics to Logger::getLogger()." alt="" coords="5,332,204,373"/>
+<area shape="rect" id="node2" href="$classdodo_1_1threads_1_1Thread.html#a721ad85fab93689a72b289c60b12d856" title="Get last block in rate since last sample." alt="" coords="279,5,443,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1threads_1_1Thread.html#a212b78b72012c9a64d1c10e91515fe94" title="Get last block out rate since last sample." alt="" coords="279,71,443,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1threads_1_1Thread.html#a83186ca23689ce6334b8fb3240e854fb" title="Get involuntary context switch rate since last sample." alt="" coords="279,136,443,177"/>
+<area shape="rect" id="node5" href="$classdodo_1_1threads_1_1Thread.html#a0569e4586bb22eec3bbbec24163bcb70" title="Get the major fault rate since last sample." alt="" coords="279,201,443,243"/>
+<area shape="rect" id="node6" href="$classdodo_1_1threads_1_1Thread.html#a9eae96c9fc49b0e9ddbf053654ed723b" title="Get the minor fault rate since last sample." alt="" coords="279,267,443,308"/>
+<area shape="rect" id="node7" href="$classdodo_1_1threads_1_1Thread.html#a806b27eba80aa83f50dbd5df1fbd6fb2" title="Get the system mode cpu (cpu seconds/second) since last sample." alt="" coords="279,332,443,373"/>
+<area shape="rect" id="node8" href="$classdodo_1_1threads_1_1Thread.html#a1b58f8e0daba59745f17464427335520" title="Get the user mode cpu (cpu seconds/second) since last sample." alt="" coords="279,397,443,439"/>
+<area shape="rect" id="node9" href="$classdodo_1_1threads_1_1Thread.html#ab34fea9ef0f8d3d8ff88d8ac75fd3660" title="Get voluntary context switch rate since last sample." alt="" coords="279,463,443,504"/>
+<area shape="rect" id="node10" href="$classdodo_1_1threads_1_1Thread.html#a320da8b94a10d35c116d5cf9575e6398" title="Get the maximum resident set size seen on the thread." alt="" coords="279,528,443,569"/>
+<area shape="rect" id="node11" href="$namespacedodo_1_1common.html#a0e1449cb4ea8c0bac643c99dea4ea6f8" title="Return difference in seconds as a double." alt="" coords="252,594,471,621"/>
+<area shape="rect" id="node12" href="$classdodo_1_1threads_1_1Thread.html#a5780cb19ecb40db092b63929fa80f0f5" title="Take a snapshot of the thread&#39;s resource usage." alt="" coords="279,645,443,687"/>
+</map>

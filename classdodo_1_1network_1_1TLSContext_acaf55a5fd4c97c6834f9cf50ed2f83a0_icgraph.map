@@ -1,0 +1,4 @@
+<map id="dodo::network::TLSContext::isSNIEnabled" name="dodo::network::TLSContext::isSNIEnabled">
+<area shape="rect" id="node1" title="Return true when SNI (server Name Information) is to be enabled by TLSSocket objects using this TLSCo..." alt="" coords="243,5,440,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1TLSSocket.html#aac4a213e093099709584ba4c8179c0da" title="Construct from scratch." alt="" coords="5,5,195,47"/>
+</map>

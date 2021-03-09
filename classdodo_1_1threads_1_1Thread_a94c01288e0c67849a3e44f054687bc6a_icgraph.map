@@ -1,0 +1,4 @@
+<map id="dodo::threads::Thread::run" name="dodo::threads::Thread::run">
+<area shape="rect" id="node1" title="Decsendants must override the run function." alt="" coords="217,13,411,39"/>
+<area shape="rect" id="node2" href="$classdodo_1_1threads_1_1Thread.html#ac5b77767e420422e86041a42fa19b5ab" title="Posix thread method &#45; calls dodo::threads::Thread:::run()." alt="" coords="5,5,169,47"/>
+</map>

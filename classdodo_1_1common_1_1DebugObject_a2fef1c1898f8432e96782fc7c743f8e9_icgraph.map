@@ -1,0 +1,12 @@
+<map id="dodo::common::DebugObject::debugString" name="dodo::common::DebugObject::debugString">
+<area shape="rect" id="node1" title="Return the object dump to string." alt="" coords="795,239,1005,280"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1Exception.html#a8f753c85e98a1e8ddccbea51e4a781fb" title="Construct an Exception." alt="" coords="552,5,743,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1TCPListener.html#a1756ca6baecb0d31acc518b22a1357da" title="Add an epoll event for the BaseSocket." alt="" coords="548,71,747,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1network_1_1TCPListener.html#a421ffc8f7d0bdaf8d0e29f4ae43626fa" title="Called by a TCPServer to signal that the work has been handled and event detection on it can resume." alt="" coords="287,121,485,163"/>
+<area shape="rect" id="node5" href="$classdodo_1_1network_1_1TCPServer.html#a435095f07080de705259472d968db369" title="Run the TCPServer thread." alt="" coords="5,187,224,214"/>
+<area shape="rect" id="node6" href="$classdodo_1_1network_1_1TCPListener.html#a63000888088e563354fbaeb1c38bb079" title="Delete the epoll event for the BaseSocket." alt="" coords="548,239,747,280"/>
+<area shape="rect" id="node7" href="$classdodo_1_1network_1_1TCPListener.html#aa88f50174379f35b2ab99e8b24f3d378" title="Modify an epoll event for the BaseSocket." alt="" coords="548,304,747,345"/>
+<area shape="rect" id="node8" href="$classdodo_1_1network_1_1TCPListener.html#a686bee85d68a5612861fc4afc3ad8c30" title="Pop work." alt="" coords="287,300,485,341"/>
+<area shape="rect" id="node9" href="$classdodo_1_1network_1_1TCPListener.html#a68b772e16a320bcc72c586d408054b3f" title="Push work." alt="" coords="548,421,747,463"/>
+<area shape="rect" id="node10" href="$classdodo_1_1network_1_1TCPListener.html#af8117e3aaa32a0bdf421f13e05a5597c" title="Entrypoint, override of Thread::run()" alt="" coords="272,458,500,485"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="dodo::network::TLSContext::loadPEMIdentity" name="dodo::network::TLSContext::loadPEMIdentity">
+<area shape="rect" id="node1" title="Load a certificate and the corresponding private key for an identity." alt="" coords="5,5,203,47"/>
+<area shape="rect" id="node2" href="$namespacedodo_1_1common.html#a92751bfc7a44e638a4d3efa4ab2c6300" title="Get all OpenSSL errors as a single string, and clear their error state." alt="" coords="251,13,460,39"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="dodo::network::Address::asIPv4Address" name="dodo::network::Address::asIPv4Address">
+<area shape="rect" id="node1" title="Explicit cast of addr_ as sockaddr_in*." alt="" coords="451,102,625,143"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1Address.html#af5feee3d77db394c2ec08c7892d665fc" title="Return a string representation of this Address." alt="" coords="5,7,180,48"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1Address.html#a5ac688312a15e3e43359ed4e8024ef2a" title="Return the port number." alt="" coords="228,36,403,78"/>
+<area shape="rect" id="node4" href="$classdodo_1_1network_1_1Address.html#a0a75314d88a380173950247e4d757598" title="Assign from &quot;ip&quot; string." alt="" coords="228,102,403,143"/>
+<area shape="rect" id="node5" href="$classdodo_1_1network_1_1Address.html#a199ba0c7d261a9ec4fddbe6107818aa5" title="Test for equality." alt="" coords="228,167,403,208"/>
+<area shape="rect" id="node6" href="$classdodo_1_1network_1_1Address.html#afdab41c2c4f6d220d4a9f92502897839" title="Set the port number." alt="" coords="228,232,403,274"/>
+</map>

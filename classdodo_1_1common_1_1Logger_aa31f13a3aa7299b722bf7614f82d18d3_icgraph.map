@@ -1,0 +1,4 @@
+<map id="dodo::common::Logger::checkRotate" name="dodo::common::Logger::checkRotate">
+<area shape="rect" id="node1" title="Check and rotate the log file if it exceeds the size limit, delete older logs if needed." alt="" coords="252,5,423,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1Logger.html#ac316d01b3f24be57e64217ec03092133" title="Log a log entry." alt="" coords="5,13,204,39"/>
+</map>

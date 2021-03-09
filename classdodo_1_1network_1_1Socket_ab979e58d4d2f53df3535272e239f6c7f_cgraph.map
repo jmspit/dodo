@@ -1,0 +1,4 @@
+<map id="dodo::network::Socket::accept" name="dodo::network::Socket::accept">
+<area shape="rect" id="node1" title="Accepts a connection request and return a pointer to a new Socket for the new connection,..." alt="" coords="5,5,172,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1Socket.html#a1b9a69c49093f7fc6b56a927cdc0be33" title="Default constructor creates an invalid socket." alt="" coords="220,5,387,47"/>
+</map>

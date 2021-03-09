@@ -1,0 +1,5 @@
+<map id="dodo::common::Logger::LogLevelAsString" name="dodo::common::Logger::LogLevelAsString">
+<area shape="rect" id="node1" title="Return the LogLevel as a string (as used in console and file)." alt="" coords="471,35,641,76"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1Logger.html#ad9ad509249e35c7cea158a9563676e4c" title="Format a LogLine." alt="" coords="252,5,423,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1common_1_1Logger.html#ac316d01b3f24be57e64217ec03092133" title="Log a log entry." alt="" coords="5,42,204,69"/>
+</map>

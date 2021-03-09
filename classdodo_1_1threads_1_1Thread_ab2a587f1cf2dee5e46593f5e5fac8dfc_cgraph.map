@@ -1,0 +1,4 @@
+<map id="dodo::threads::Thread::getAvgICtx" name="dodo::threads::Thread::getAvgICtx">
+<area shape="rect" id="node1" title="Get the average involuntary context switch rate since thread start()" alt="" coords="5,5,169,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1threads_1_1Thread.html#a1aa87c95119cac00b967d85ce8fe750f" title="Time, in seconds, since thread start." alt="" coords="217,5,381,47"/>
+</map>

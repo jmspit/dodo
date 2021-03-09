@@ -1,0 +1,4 @@
+<map id="dodo::common::getSSLErrors" name="dodo::common::getSSLErrors">
+<area shape="rect" id="node1" title="Get all OpenSSL errors as a single string, and clear their error state." alt="" coords="5,5,215,32"/>
+<area shape="rect" id="node2" href="$namespacedodo_1_1common.html#a9cc37cf2f454ae7e459bdfb9234c2b1e" title="Write OpenSSL errors occurred in this thread to ostream, and clear their error state." alt="" coords="263,5,484,32"/>
+</map>

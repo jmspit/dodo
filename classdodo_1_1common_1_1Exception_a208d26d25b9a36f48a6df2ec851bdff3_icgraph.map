@@ -1,0 +1,5 @@
+<map id="dodo::common::Exception::what" name="dodo::common::Exception::what">
+<area shape="rect" id="node1" title="Return the exception message." alt="" coords="281,35,472,76"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1Exception.html#aafaee50ba30c93a3ca0adc4a601b40c1" title="Construct an Exception." alt="" coords="24,5,215,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1TCPListener.html#af8117e3aaa32a0bdf421f13e05a5597c" title="Entrypoint, override of Thread::run()" alt="" coords="5,71,233,98"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="dodo::network::TCPListener::closeSocket" name="dodo::network::TCPListener::closeSocket">
+<area shape="rect" id="node1" title="Tell the listener to close the socket." alt="" coords="281,35,480,76"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1TCPListener.html#a421ffc8f7d0bdaf8d0e29f4ae43626fa" title="Called by a TCPServer to signal that the work has been handled and event detection on it can resume." alt="" coords="20,5,219,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1TCPListener.html#af8117e3aaa32a0bdf421f13e05a5597c" title="Entrypoint, override of Thread::run()" alt="" coords="5,71,233,98"/>
+</map>

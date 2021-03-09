@@ -1,0 +1,6 @@
+<map id="dodo::closeLibrary" name="dodo::closeLibrary">
+<area shape="rect" id="node1" title="Close the dodo library." alt="" coords="5,56,147,83"/>
+<area shape="rect" id="node2" href="$namespacedodo_1_1threads.html#af7a7aa0da69c37d20de91fcee36702c9" title="Close the dodo::threads library." alt="" coords="199,5,397,32"/>
+<area shape="rect" id="node3" href="$namespacedodo_1_1common.html#ac6e176ee8fbbed0948ea3358d7905513" title="Close the common library." alt="" coords="195,56,401,83"/>
+<area shape="rect" id="node4" href="$namespacedodo_1_1network.html#a70a267789382b482108ef092b5fefc3b" title="Close the dodo::network library." alt="" coords="197,107,399,133"/>
+</map>

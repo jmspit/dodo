@@ -1,0 +1,11 @@
+<map id="dodo::common::Logger::log" name="dodo::common::Logger::log">
+<area shape="rect" id="node1" title="Log a log entry." alt="" coords="253,242,452,269"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1Application.html#a816f02777efe1660763c0bd514b9ee96" title="Construct an Application instance." alt="" coords="5,5,205,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1common_1_1Logger.html#a0c6977fc40483f3191dd871b18bb607f" title="Log a Debug log entry." alt="" coords="20,71,191,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1common_1_1Logger.html#a132ef7f28a7dcbec6d8aab0726207090" title="Log a Error log entry." alt="" coords="20,136,191,177"/>
+<area shape="rect" id="node5" href="$classdodo_1_1common_1_1Logger.html#a6031f4b818c5ce5df7400fcd5b02e29f" title="Log a Fatal log entry." alt="" coords="20,201,191,243"/>
+<area shape="rect" id="node6" href="$classdodo_1_1common_1_1Logger.html#a2031591074572a8984bf8ac78a5af523" title="Log a Info log entry." alt="" coords="20,267,191,308"/>
+<area shape="rect" id="node7" href="$classdodo_1_1common_1_1Logger.html#a0d0f910c3d14def0c13665b01f185b8d" title="Log a Statistics log entry." alt="" coords="20,332,191,373"/>
+<area shape="rect" id="node8" href="$classdodo_1_1common_1_1Logger.html#a3a463bfeed6a6786bd73f6d020e3fd0f" title="Log a Trace log entry." alt="" coords="20,397,191,439"/>
+<area shape="rect" id="node9" href="$classdodo_1_1common_1_1Logger.html#a444d91d5d549189ddb65704ab6539aa1" title="Log a Warning log entry." alt="" coords="20,463,191,504"/>
+</map>

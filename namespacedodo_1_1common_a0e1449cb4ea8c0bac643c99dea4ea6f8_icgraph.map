@@ -1,0 +1,8 @@
+<map id="dodo::common::getSecondDiff" name="dodo::common::getSecondDiff">
+<area shape="rect" id="node1" title="Return difference in seconds as a double." alt="" coords="272,143,491,170"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1TCPServer.html#a9cd5b360636f138e851a79516b7d9a04" title="Get the number of secodns the TCPServer has been idle." alt="" coords="20,5,209,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1threads_1_1Thread.html#a1aa87c95119cac00b967d85ce8fe750f" title="Time, in seconds, since thread start." alt="" coords="33,71,197,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1threads_1_1Thread.html#a60020dc53eee03294a9d25a8d81eb2d2" title="Time, in seconds, since last statistic update." alt="" coords="33,136,197,177"/>
+<area shape="rect" id="node5" href="$classdodo_1_1network_1_1TCPListener.html#abd20c77dbbe5b54cb9274d674be5b4a7" title="Log TCPListener statistics to Logger::getLogger()." alt="" coords="15,201,214,243"/>
+<area shape="rect" id="node6" href="$classdodo_1_1network_1_1TCPServer.html#a435095f07080de705259472d968db369" title="Run the TCPServer thread." alt="" coords="5,267,224,294"/>
+</map>

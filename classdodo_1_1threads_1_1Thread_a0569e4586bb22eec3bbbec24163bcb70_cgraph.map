@@ -1,0 +1,4 @@
+<map id="dodo::threads::Thread::getLastMajFltRate" name="dodo::threads::Thread::getLastMajFltRate">
+<area shape="rect" id="node1" title="Get the major fault rate since last sample." alt="" coords="5,5,169,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1threads_1_1Thread.html#a60020dc53eee03294a9d25a8d81eb2d2" title="Time, in seconds, since last statistic update." alt="" coords="217,5,381,47"/>
+</map>

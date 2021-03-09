@@ -1,0 +1,5 @@
+<map id="dodo::network::BaseSocket::getPeerAddress" name="dodo::network::BaseSocket::getPeerAddress">
+<area shape="rect" id="node1" title="Get the peer (remote) address for this socket." alt="" coords="281,23,480,65"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1TCPServer.html#a435095f07080de705259472d968db369" title="Run the TCPServer thread." alt="" coords="10,5,229,32"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1TCPListener.html#af8117e3aaa32a0bdf421f13e05a5597c" title="Entrypoint, override of Thread::run()" alt="" coords="5,56,233,83"/>
+</map>

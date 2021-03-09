@@ -1,0 +1,5 @@
+<map id="dodo::network::TCPListener::pollMod" name="dodo::network::TCPListener::pollMod">
+<area shape="rect" id="node1" title="Modify an epoll event for the BaseSocket." alt="" coords="5,39,204,80"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1DebugObject.html#a2fef1c1898f8432e96782fc7c743f8e9" title="Return the object dump to string." alt="" coords="252,5,463,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1BaseSocket.html#ab5864bc9317e07e2957ee5d2ebf13f24" title="Return the socket file descriptor." alt="" coords="258,71,457,112"/>
+</map>

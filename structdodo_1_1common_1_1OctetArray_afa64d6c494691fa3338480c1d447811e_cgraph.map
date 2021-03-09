@@ -1,0 +1,4 @@
+<map id="dodo::common::OctetArray::decodeBase64" name="dodo::common::OctetArray::decodeBase64">
+<area shape="rect" id="node1" title="Decodes the base64 string into this OctetArray." alt="" coords="5,5,203,47"/>
+<area shape="rect" id="node2" href="$structdodo_1_1common_1_1OctetArray.html#a3083e4085a36bb82aac1ed23d7ac771e" title="Reserve memory in the OctetArray." alt="" coords="251,5,448,47"/>
+</map>

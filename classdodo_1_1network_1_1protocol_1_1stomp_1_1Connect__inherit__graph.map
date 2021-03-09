@@ -1,0 +1,4 @@
+<map id="dodo::network::protocol::stomp::Connect" name="dodo::network::protocol::stomp::Connect">
+<area shape="rect" id="node1" title="A STOMP CONNECT frame." alt="" coords="5,95,181,136"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html" title="A generic STOMP 1.2 frame." alt="" coords="5,5,181,47"/>
+</map>

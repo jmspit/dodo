@@ -1,0 +1,4 @@
+<map id="dodo::network::TLSSocket::TLSSocket" name="dodo::network::TLSSocket::TLSSocket">
+<area shape="rect" id="node1" title="Construct from existing socket file descriptor." alt="" coords="243,5,432,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1TLSSocket.html#a37b427a43fce53f5b6473aea8844b468" title="Accept a connection." alt="" coords="5,5,195,47"/>
+</map>

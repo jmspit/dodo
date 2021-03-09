@@ -1,0 +1,5 @@
+<map id="dodo::common::Logger::checkRotate" name="dodo::common::Logger::checkRotate">
+<area shape="rect" id="node1" title="Check and rotate the log file if it exceeds the size limit, delete older logs if needed." alt="" coords="5,35,176,76"/>
+<area shape="rect" id="node2" href="$namespacedodo_1_1common.html#aa646d3bf530142cd8731d2e10123fa52" title="Return a datetime string in UTC (2020&#45;07&#45;01T20:14:36.442929Z)" alt="" coords="224,5,427,47"/>
+<area shape="rect" id="node3" href="$namespacedodo_1_1common.html#ae1e4a7a218141abb2a29a277951612f6" title="Return the size of the file." alt="" coords="226,71,425,98"/>
+</map>

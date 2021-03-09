@@ -1,0 +1,5 @@
+<map id="dodo::network::TCPListener::closeSocket" name="dodo::network::TCPListener::closeSocket">
+<area shape="rect" id="node1" title="Tell the listener to close the socket." alt="" coords="5,39,204,80"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1BaseSocket.html#a996a679e03babae5d0757a5839afb8e9" title="Closes the socket, causing the connection, if it exists, to be terminated." alt="" coords="252,5,451,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1BaseSocket.html#ab5864bc9317e07e2957ee5d2ebf13f24" title="Return the socket file descriptor." alt="" coords="252,71,451,112"/>
+</map>

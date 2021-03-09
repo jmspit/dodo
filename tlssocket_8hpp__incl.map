@@ -1,0 +1,8 @@
+<map id="src/include/network/tlssocket.hpp" name="src/include/network/tlssocket.hpp">
+<area shape="rect" id="node1" title=" " alt="" coords="363,5,513,47"/>
+<area shape="rect" id="node2" href="$socketparams_8hpp.html" title=" " alt="" coords="5,95,204,121"/>
+<area shape="rect" id="node3" href="$tlscontext_8hpp.html" title=" " alt="" coords="228,95,400,121"/>
+<area shape="rect" id="node4" title=" " alt="" coords="385,169,491,196"/>
+<area shape="rect" id="node5" href="$x509cert_8hpp.html" title=" " alt="" coords="476,95,640,121"/>
+<area shape="rect" id="node6" href="$socket_8hpp.html" title=" " alt="" coords="665,95,814,121"/>
+</map>

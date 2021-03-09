@@ -1,0 +1,5 @@
+<map id="dodo::network::AddrInfoItem" name="dodo::network::AddrInfoItem">
+<area shape="rect" id="node1" title="Address info item as used in AddrInfo." alt="" coords="118,95,326,121"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1SocketParams.html" title="Socket parameters &#45; the family (domain), socket type and protocol triplet." alt="" coords="5,5,220,32"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1Address.html" title="Generic network Address, supporting ipv4 and ipv6 transparently." alt="" coords="244,5,419,32"/>
+</map>

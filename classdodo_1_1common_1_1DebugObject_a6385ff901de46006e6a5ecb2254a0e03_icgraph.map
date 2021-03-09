@@ -1,0 +1,4 @@
+<map id="dodo::common::DebugObject::debugDetail" name="dodo::common::DebugObject::debugDetail">
+<area shape="rect" id="node1" title="Descendent classes can override to dump details speciufic to the class." alt="" coords="264,5,475,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1DebugObject.html#a2fef1c1898f8432e96782fc7c743f8e9" title="Return the object dump to string." alt="" coords="5,5,216,47"/>
+</map>

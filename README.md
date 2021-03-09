@@ -33,7 +33,7 @@ As compute power is not free, and performance is still functionality #1 of any a
 
 ## Developers
 
-See the [developer manual][DEVELOPER.md] for an overview.
+See the [developer manual](DEVELOPER.md) for an overview.
 
 The source code is documented for Doxygen. To generate full library documentation, see `make doc` in
 the build section below.

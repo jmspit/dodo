@@ -1,0 +1,4 @@
+<map id="dodo::common::OctetArray::random" name="dodo::common::OctetArray::random">
+<area shape="rect" id="node1" title="Generate a random set of Octets." alt="" coords="5,5,203,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1OctetArray.html#a326c6a76cc0ca5fe6a336d92c77b4ff3" title="Reserve memory in the OctetArray." alt="" coords="251,5,448,47"/>
+</map>

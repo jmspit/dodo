@@ -1,5 +1,0 @@
-<map id="dodo::common::OctetArray::free" name="dodo::common::OctetArray::free">
-<area shape="rect" id="node1" title="Free and clear data." alt="" coords="252,39,449,80"/>
-<area shape="rect" id="node2" href="$classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect.html#aea83dc66ef1741f04dec517fa775637b" title="Generate a STOMP (CONNECT) frame." alt="" coords="5,5,204,47"/>
-<area shape="rect" id="node3" href="$structdodo_1_1common_1_1OctetArray.html#ab2a1b383d90704d3c391c4e325cf60e8" title="Destruct and clean." alt="" coords="6,71,203,112"/>
-</map>

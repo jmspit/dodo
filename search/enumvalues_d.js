@@ -1,4 +1,8 @@
 var searchData=
 [
-  ['unknown_1798',['Unknown',['../classdodo_1_1network_1_1X509Common.html#a072fef8b03e3c6ccd2fa35d95e0556dba88183b946cc5f0e8c96b2e66e1c74a7e',1,'dodo::network::X509Common']]]
+  ['tls1_5f1_1722',['tls1_1',['../classdodo_1_1network_1_1TLSContext.html#a7151ee4f6b6e404c92722a155fceb343a09d4e1ecd9d58b5dca1a32f061f1d458',1,'dodo::network::TLSContext']]],
+  ['tls1_5f2_1723',['tls1_2',['../classdodo_1_1network_1_1TLSContext.html#a7151ee4f6b6e404c92722a155fceb343a34ce5bbe8056e475564e2e2316a7b5be',1,'dodo::network::TLSContext']]],
+  ['tls1_5f3_1724',['tls1_3',['../classdodo_1_1network_1_1TLSContext.html#a7151ee4f6b6e404c92722a155fceb343ab21e6d55ef15b3a52a1a656cc4a6bfba',1,'dodo::network::TLSContext']]],
+  ['tlsbest_1725',['tlsBest',['../classdodo_1_1network_1_1TLSContext.html#a7151ee4f6b6e404c92722a155fceb343a326bb1352cb3209b1dcc0a0ba4013e4b',1,'dodo::network::TLSContext']]],
+  ['trace_1726',['Trace',['../classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cbadd4ec0ac4e58f7c32a01244ae91150b1',1,'dodo::common::Logger']]]
 ];

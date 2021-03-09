@@ -1,4 +1,0 @@
-<map id="dodo::store::kvstore::KVStore::waitReadLockPrivate" name="dodo::store::kvstore::KVStore::waitReadLockPrivate">
-<area shape="rect" id="node1" title="Wait for and lock the blockid for reading in Private mode." alt="" coords="205,5,432,47"/>
-<area shape="rect" id="node2" href="$classdodo_1_1store_1_1kvstore_1_1KVStore.html#a8c4ab098b343a8962521a41deab03d8e" title="Open the KVStore." alt="" coords="5,5,157,47"/>
-</map>

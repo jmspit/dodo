@@ -1,24 +1,4 @@
 var searchData=
 [
-  ['shared_1771',['Shared',['../classdodo_1_1store_1_1kvstore_1_1KVStore.html#aec9fcef92896394b3df07f2aae8207a7aa6156ea9d66fef24e87e841fbabf7cca',1,'dodo::store::kvstore::KVStore']]],
-  ['shut_1772',['Shut',['../classdodo_1_1network_1_1TCPListener.html#aafb35a279611936c5be395154d73c345a9caf4ce8ed6be558372dbc3073271903',1,'dodo::network::TCPListener']]],
-  ['ssawoken_1773',['ssAwoken',['../classdodo_1_1network_1_1TCPServer.html#ac62a28cc01537d35abfdca96496e7774a1b82c6a980757301d87d3532ce205620',1,'dodo::network::TCPServer']]],
-  ['sshandshake_1774',['ssHandshake',['../classdodo_1_1network_1_1TCPServer.html#ac62a28cc01537d35abfdca96496e7774a422f4f4892d5f0ee2572d301af5b4dbc',1,'dodo::network::TCPServer']]],
-  ['sshandshakedone_1775',['ssHandshakeDone',['../classdodo_1_1network_1_1TCPServer.html#ac62a28cc01537d35abfdca96496e7774ad78d7443eb1e60f36b0c6e377cd9cde4',1,'dodo::network::TCPServer']]],
-  ['ssreadsocket_1776',['ssReadSocket',['../classdodo_1_1network_1_1TCPServer.html#ac62a28cc01537d35abfdca96496e7774ae0ce321a976712be101c07884cb77dfe',1,'dodo::network::TCPServer']]],
-  ['ssreadsocketdone_1777',['ssReadSocketDone',['../classdodo_1_1network_1_1TCPServer.html#ac62a28cc01537d35abfdca96496e7774abc6871af67f8b671d3b9f418a1ec806b',1,'dodo::network::TCPServer']]],
-  ['ssreleasework_1778',['ssReleaseWork',['../classdodo_1_1network_1_1TCPServer.html#ac62a28cc01537d35abfdca96496e7774a8d8f695f8b7ec29007f06b1d4af1cf46',1,'dodo::network::TCPServer']]],
-  ['ssreleaseworkdone_1779',['ssReleaseWorkDone',['../classdodo_1_1network_1_1TCPServer.html#ac62a28cc01537d35abfdca96496e7774a91e4b4195baaee6bebfa39604ccde4c6',1,'dodo::network::TCPServer']]],
-  ['ssshutdown_1780',['ssShutdown',['../classdodo_1_1network_1_1TCPServer.html#ac62a28cc01537d35abfdca96496e7774aaf2589918dd20202ec9692a676a7c83d',1,'dodo::network::TCPServer']]],
-  ['ssshutdowndone_1781',['ssShutdownDone',['../classdodo_1_1network_1_1TCPServer.html#ac62a28cc01537d35abfdca96496e7774a8a81984bf4e2f056771ee1bc80ba6f07',1,'dodo::network::TCPServer']]],
-  ['sswait_1782',['ssWait',['../classdodo_1_1network_1_1TCPServer.html#ac62a28cc01537d35abfdca96496e7774a2c82952b1999e034dc9627e78c2589d7',1,'dodo::network::TCPServer']]],
-  ['statistics_1783',['Statistics',['../classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cbac33e404a441c6ba9648f88af3c68a1ca',1,'dodo::common::Logger']]],
-  ['stcpp11_1784',['stCpp11',['../classdodo_1_1BuildEnv.html#a6e94c2f882d3c578cf66ca4117d20c5ba60edb5c9cdee692f73102ad7cae9bafa',1,'dodo::BuildEnv']]],
-  ['stcpp14_1785',['stCpp14',['../classdodo_1_1BuildEnv.html#a6e94c2f882d3c578cf66ca4117d20c5ba68b5b6d5be2f0f1e314c1798291da1c4',1,'dodo::BuildEnv']]],
-  ['stcpp17_1786',['stCpp17',['../classdodo_1_1BuildEnv.html#a6e94c2f882d3c578cf66ca4117d20c5baa2a26de17a2fda2d0ae8e0c6e8594f92',1,'dodo::BuildEnv']]],
-  ['stdns_1787',['stDNS',['../classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba1af3c8cd9ea46d2a701ae919c0a8c5a0',1,'dodo::network::X509Common']]],
-  ['stemail_1788',['stEMAIL',['../classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba2c1a510163b7557581fd8d65c50fce75',1,'dodo::network::X509Common']]],
-  ['stprecpp11_1789',['stPreCpp11',['../classdodo_1_1BuildEnv.html#a6e94c2f882d3c578cf66ca4117d20c5ba077de3b42149bf06c313955d7b7cf429',1,'dodo::BuildEnv']]],
-  ['stunknown_1790',['stUnknown',['../classdodo_1_1BuildEnv.html#a6e94c2f882d3c578cf66ca4117d20c5bad07d40eaa970b9aaccaaf686a4e40496',1,'dodo::BuildEnv']]],
-  ['sturi_1791',['stURI',['../classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba6509b104c2d2ae4b436e2bab8ad28175',1,'dodo::network::X509Common']]]
+  ['read_1700',['Read',['../classdodo_1_1network_1_1TCPListener.html#aafb35a279611936c5be395154d73c345a7a1a5f3e79fdc91edf2f5ead9d66abb4',1,'dodo::network::TCPListener']]]
 ];

@@ -1,0 +1,5 @@
+<map id="dodo::persist::KVStore::KVStore" name="dodo::persist::KVStore::KVStore">
+<area shape="rect" id="node1" title="Create the KVStore object against the path." alt="" coords="5,39,172,80"/>
+<area shape="rect" id="node2" href="$classdodo_1_1persist_1_1KVStore.html#ac234ee7acdce103149fe6eb9f98f6a55" title="Create the SQLite schema." alt="" coords="220,5,387,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1persist_1_1KVStore.html#a683e0b168566db39c35a314d602efb21" title="Prepare all SQL statements." alt="" coords="220,71,387,112"/>
+</map>

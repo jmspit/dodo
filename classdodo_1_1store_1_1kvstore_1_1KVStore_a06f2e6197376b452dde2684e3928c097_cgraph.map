@@ -1,9 +1,0 @@
-<map id="dodo::store::kvstore::KVStore::init" name="dodo::store::kvstore::KVStore::init">
-<area shape="rect" id="node1" title="Init the KVStore." alt="" coords="5,169,157,211"/>
-<area shape="rect" id="node2" href="$structdodo_1_1store_1_1kvstore_1_1BlockHeader.html#a8dd9d2960c28faa9b69c1e24d74821c0" title="Calculate the crc32 of the block (excluding the crc32 itself)." alt="" coords="209,5,400,47"/>
-<area shape="rect" id="node3" href="$classdodo_1_1store_1_1kvstore_1_1FileHeader.html#a72bc452eac981350b829363c34f54fad" title="Provide access to the block." alt="" coords="222,71,387,112"/>
-<area shape="rect" id="node4" href="$classdodo_1_1store_1_1kvstore_1_1KVStore.html#a52531d6282de1f9726a26634cfaf8a88" title="Return a pointer to the block&#39;s BlockHeader." alt="" coords="205,136,404,177"/>
-<area shape="rect" id="node5" href="$classdodo_1_1store_1_1kvstore_1_1KVStore.html#a8c4ab098b343a8962521a41deab03d8e" title="Open the KVStore." alt="" coords="229,201,381,243"/>
-<area shape="rect" id="node6" href="$classdodo_1_1store_1_1kvstore_1_1FileHeader.html#a8d9c1b10c5ded2caf31600a6c8c9d80b" title="Set the name, description and contact information." alt="" coords="228,267,381,308"/>
-<area shape="rect" id="node7" href="$structdodo_1_1store_1_1kvstore_1_1BlockHeader.html#a70778c2f7ef878bd3981123fbea552f8" title="zero he block, which is assumed to be blocksize bytes." alt="" coords="229,332,381,373"/>
-</map>

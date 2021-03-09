@@ -1,5 +1,0 @@
-<map id="dodo::store::kvstore::BlockHeader::calcCRC32" name="dodo::store::kvstore::BlockHeader::calcCRC32">
-<area shape="rect" id="node1" title="Calculate the crc32 of the block (excluding the crc32 itself)." alt="" coords="205,39,396,80"/>
-<area shape="rect" id="node2" href="$classdodo_1_1store_1_1kvstore_1_1KVStore.html#aed0fba255047a94486ef24dc586af864" title="Analyze the store and produce fiudings to os." alt="" coords="5,5,157,47"/>
-<area shape="rect" id="node3" href="$classdodo_1_1store_1_1kvstore_1_1KVStore.html#a06f2e6197376b452dde2684e3928c097" title="Init the KVStore." alt="" coords="5,71,157,112"/>
-</map>

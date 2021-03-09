@@ -1,0 +1,10 @@
+<map id="dodo::common::OctetArray::reserve" name="dodo::common::OctetArray::reserve">
+<area shape="rect" id="node1" title="Reserve memory in the OctetArray." alt="" coords="515,181,712,223"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1OctetArray.html#a94882d4ab5d43d892cb947761cf59638" title="Append another OctetArray." alt="" coords="258,5,455,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1common_1_1DataCrypt.html#aa1b405ff388d738bc442bf14e084c6d9" title="Decrypt data with a key." alt="" coords="5,64,199,105"/>
+<area shape="rect" id="node4" href="$classdodo_1_1common_1_1OctetArray.html#afa64d6c494691fa3338480c1d447811e" title="Decodes the base64 string into this OctetArray." alt="" coords="258,123,455,164"/>
+<area shape="rect" id="node5" href="$classdodo_1_1common_1_1DataCrypt.html#ac6dd5410c39cfe7f9aca1b955b70664c" title="Encrypt data with a key into a string (so the encrypted data will not contain a 0/zero)." alt="" coords="5,243,199,284"/>
+<area shape="rect" id="node6" href="$classdodo_1_1common_1_1OctetArray.html#ade4e77ff1cc3dd4fbfe8e562b69b16bc" title="Assign from std::string, not including a NULL terminator (so size will be string.length() )." alt="" coords="258,240,455,281"/>
+<area shape="rect" id="node7" href="$classdodo_1_1common_1_1OctetArray.html#ae09cd70f438107f6b4bed4657723d87e" title="Generate a random set of Octets." alt="" coords="258,305,455,347"/>
+<area shape="rect" id="node8" href="$classdodo_1_1network_1_1TCPConnectionData.html#a6e52e4c29881c59aa2998da37ea58db0" title="Reads and appends data to read_buffer." alt="" coords="247,371,467,412"/>
+</map>

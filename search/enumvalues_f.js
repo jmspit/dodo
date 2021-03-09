@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['warning_1802',['Warning',['../classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba0eaadb4fcb48a0a0ed7bc9868be9fbaa',1,'dodo::common::Logger']]]
+  ['v1_5f2_1728',['v1_2',['../classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html#a77d5df70c7dd2fc85d5b53b90f9e0ca1a0fdcfe7bc01aadbcbb7ff8c0e1024336',1,'dodo::network::protocol::stomp::Frame']]],
+  ['virtualbox_1729',['VirtualBox',['../classdodo_1_1common_1_1Application.html#afd6cd92042b86c5f7db83245ff85a14aae8e4d1f0fe99af04575c1e0815054845',1,'dodo::common::Application']]],
+  ['vmware_1730',['VMWare',['../classdodo_1_1common_1_1Application.html#afd6cd92042b86c5f7db83245ff85a14aa7f8b37715b940736bc29a71b2f98126d',1,'dodo::common::Application']]]
 ];

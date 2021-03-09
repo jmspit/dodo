@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['destination_1557',['Destination',['../classdodo_1_1common_1_1Logger.html#a12d47647d4bd60f4596ce5c444ffc0fa',1,'dodo::common::Logger']]]
+  ['errorcode_1486',['ErrorCode',['../classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22',1,'dodo::common::SystemError']]]
 ];

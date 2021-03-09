@@ -23,51 +23,39 @@ for the JavaScript code in this file
 var NAVTREE =
 [
   [ "dodo", "index.html", [
-    [ "DODO - C++ container service library", "index.html", [
-      [ "Design goals", "index.html#autotoc_md12", null ],
-      [ "Dependencies", "index.html#autotoc_md13", null ],
-      [ "Developers", "index.html#autotoc_md14", null ],
-      [ "Maintainers", "index.html#autotoc_md15", null ],
-      [ "Build", "index.html#autotoc_md16", null ],
-      [ "Docker", "index.html#autotoc_md17", null ]
+    [ "DODO - C++ framework for Docker containers", "index.html", [
+      [ "Design goals", "index.html#autotoc_md1", null ],
+      [ "Dependencies", "index.html#autotoc_md2", null ],
+      [ "Developers", "index.html#autotoc_md3", null ],
+      [ "Maintainers", "index.html#autotoc_md4", null ],
+      [ "Build", "index.html#autotoc_md5", null ],
+      [ "Docker", "index.html#autotoc_md6", null ]
     ] ],
-    [ "Changelog", "md_src_ext_crc32_changelog.html", [
-      [ "December  6, 2019 (version 9)", "md_src_ext_crc32_changelog.html#autotoc_md1", null ],
-      [ "November 27, 2019", "md_src_ext_crc32_changelog.html#autotoc_md2", null ],
-      [ "May      27, 2019 (version 8)", "md_src_ext_crc32_changelog.html#autotoc_md3", null ],
-      [ "October  21, 2016 (version 7)", "md_src_ext_crc32_changelog.html#autotoc_md4", null ],
-      [ "August   14, 2015 (version 6)", "md_src_ext_crc32_changelog.html#autotoc_md5", null ],
-      [ "February  4, 2015 (version 5)", "md_src_ext_crc32_changelog.html#autotoc_md6", null ],
-      [ "August   12, 2014 (version 4)", "md_src_ext_crc32_changelog.html#autotoc_md7", null ],
-      [ "May       4, 2013 (version 3)", "md_src_ext_crc32_changelog.html#autotoc_md8", null ],
-      [ "November 13, 2011 (version 2)", "md_src_ext_crc32_changelog.html#autotoc_md9", null ],
-      [ "November 10, 2011 (version 1)", "md_src_ext_crc32_changelog.html#autotoc_md10", null ]
-    ] ],
-    [ "Fast CRC32", "md_src_ext_crc32_readme.html", null ],
     [ "Developer Manual", "developer.html", [
-      [ "Introduction", "developer.html#autotoc_md18", null ],
-      [ "Using dodo", "developer.html#autotoc_md19", null ],
-      [ "Exception and error handling", "developer.html#autotoc_md20", null ],
-      [ "Deployment configuration", "developer.html#autotoc_md21", null ],
-      [ "Logging", "developer.html#autotoc_md22", null ],
-      [ "Threads", "developer.html#autotoc_md23", null ],
-      [ "Networking", "developer.html#autotoc_md24", [
-        [ "Address", "developer.html#autotoc_md25", null ]
+      [ "Introduction", "developer.html#autotoc_md7", null ],
+      [ "Using dodo", "developer.html#autotoc_md8", null ],
+      [ "Exception and error handling", "developer.html#autotoc_md9", null ],
+      [ "Deployment configuration", "developer.html#autotoc_md10", null ],
+      [ "Logging", "developer.html#autotoc_md11", null ],
+      [ "Threads", "developer.html#autotoc_md12", null ],
+      [ "Networking", "developer.html#autotoc_md13", [
+        [ "Address", "developer.html#autotoc_md14", null ]
       ] ],
-      [ "Sockets", "developer.html#autotoc_md26", [
+      [ "Sockets", "developer.html#autotoc_md15", [
         [ "Secure sockets", "developer.html#developer_networking", [
-          [ "Asymmetric cryptography", "developer.html#autotoc_md27", null ],
-          [ "Transport Layer Security (TLS)", "developer.html#autotoc_md28", null ],
-          [ "Setup Certification Authority", "developer.html#autotoc_md29", null ]
+          [ "Asymmetric cryptography", "developer.html#autotoc_md16", null ],
+          [ "Transport Layer Security (TLS)", "developer.html#autotoc_md17", null ],
+          [ "Setup Certification Authority", "developer.html#autotoc_md18", null ]
         ] ]
       ] ],
-      [ "TCPListener / TCPServer", "developer.html#autotoc_md30", null ]
+      [ "TCPListener / TCPServer", "developer.html#autotoc_md19", null ],
+      [ "KVStore", "developer.html#autotoc_md20", null ]
     ] ],
     [ "Maintainer manual", "maintainer.html", [
       [ "Coding style", "maintainer.html#coding_style", [
-        [ "Identifiers", "maintainer.html#autotoc_md31", null ],
-        [ "Variables", "maintainer.html#autotoc_md32", null ],
-        [ "Indentation and curly brackets", "maintainer.html#autotoc_md33", null ]
+        [ "Identifiers", "maintainer.html#autotoc_md21", null ],
+        [ "Variables", "maintainer.html#autotoc_md22", null ],
+        [ "Indentation and curly brackets", "maintainer.html#autotoc_md23", null ]
       ] ]
     ] ],
     [ "Todo List", "todo.html", null ],
@@ -77,9 +65,7 @@ var NAVTREE =
         [ "All", "namespacemembers.html", null ],
         [ "Functions", "namespacemembers_func.html", null ],
         [ "Variables", "namespacemembers_vars.html", null ],
-        [ "Typedefs", "namespacemembers_type.html", null ],
-        [ "Enumerations", "namespacemembers_enum.html", null ],
-        [ "Enumerator", "namespacemembers_eval.html", null ]
+        [ "Typedefs", "namespacemembers_type.html", null ]
       ] ]
     ] ],
     [ "Data Structures", "annotated.html", [
@@ -90,7 +76,6 @@ var NAVTREE =
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", null ],
-        [ "Typedefs", "functions_type.html", null ],
         [ "Enumerations", "functions_enum.html", null ],
         [ "Enumerator", "functions_eval.html", null ],
         [ "Related Functions", "functions_rela.html", null ]
@@ -108,12 +93,12 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"Crc32_8cpp_source.html",
-"classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a504fcc9044f1e1a156d169ae3794973f",
-"classdodo_1_1network_1_1SocketParams.html#a941cc7578246143530f8a373359fca8f",
-"classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba35607b760d2e28683799aecb996d6ec0",
-"functions_t.html",
-"systemerror_8hpp_source.html"
+"address_8cpp.html",
+"classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a1f1ccc19c48a7b651ecfcee2881c9188",
+"classdodo_1_1network_1_1BaseSocket.html#af62964a8a5da647a11e190e75bcbcf68",
+"classdodo_1_1network_1_1X509Certificate.html#a20f8cf91380e9f1faf50210241637b83",
+"functions_func_p.html",
+"util_8cpp.html#a618fff4c4ef195cbdffb03b7a0768f58"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

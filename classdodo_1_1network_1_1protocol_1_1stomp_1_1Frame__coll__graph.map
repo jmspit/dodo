@@ -1,4 +1,4 @@
 <map id="dodo::network::protocol::stomp::Frame" name="dodo::network::protocol::stomp::Frame">
 <area shape="rect" id="node1" title="A generic STOMP 1.2 frame." alt="" coords="16,153,192,195"/>
-<area shape="rect" id="node2" href="$structdodo_1_1common_1_1OctetArray.html" title="An array of Octets with size elements." alt="" coords="5,5,203,32"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1OctetArray.html" title="An array of Octets with size elements." alt="" coords="5,5,203,32"/>
 </map>

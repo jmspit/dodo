@@ -16,8 +16,9 @@ var searchData=
   ['operator_3d_3d_531',['operator==',['../classdodo_1_1common_1_1SystemError.html#acaaddb26a3b2e826c8975654e25ddcf6',1,'dodo::common::SystemError::operator==(ErrorCode e)'],['../classdodo_1_1common_1_1SystemError.html#add8e3bf045cfc571d287b0c40010605d',1,'dodo::common::SystemError::operator==(const SystemError &amp;e)'],['../classdodo_1_1network_1_1Address.html#a199ba0c7d261a9ec4fddbe6107818aa5',1,'dodo::network::Address::operator==()'],['../classdodo_1_1network_1_1BaseSocket.html#a8b185fafeee8130429d49ee7c2ad8e08',1,'dodo::network::BaseSocket::operator==()'],['../classdodo_1_1network_1_1TLSSocket.html#a64e7586c8e56662b9d7a1c98aa34be46',1,'dodo::network::TLSSocket::operator==()']]],
   ['operator_5e_3d_532',['operator^=',['../classdodo_1_1network_1_1TCPListener.html#a32da9f6530e3d4fbf7cf847bd79ce123',1,'dodo::network::TCPListener::operator^=()'],['../namespacedodo_1_1network.html#a8bf2983a527322f4407184c15f771bb8',1,'dodo::network::operator^=()']]],
   ['operator_7c_3d_533',['operator|=',['../classdodo_1_1network_1_1TCPListener.html#a0f71f75818dfdf527a2e14ce8c874a40',1,'dodo::network::TCPListener::operator|=()'],['../namespacedodo_1_1network.html#a6ddc7fced9ab912c5bfa5fabc90c54b5',1,'dodo::network::operator|=()']]],
-  ['organization_534',['organization',['../structdodo_1_1network_1_1X509Common_1_1Identity.html#a280bab05d99c0335e6608aa10bbebef4',1,'dodo::network::X509Common::Identity']]],
-  ['organizationunit_535',['organizationUnit',['../structdodo_1_1network_1_1X509Common_1_1Identity.html#aeb8b34d581069b9a44352ab49a84b311',1,'dodo::network::X509Common::Identity']]],
-  ['other_536',['other',['../structdodo_1_1network_1_1X509Common_1_1Identity.html#a369f301df472fee6268a122814547893',1,'dodo::network::X509Common::Identity']]],
-  ['out_5f_537',['out_',['../classdodo_1_1common_1_1UnitTest.html#accc597701d7b4847d46fcd2e818c9e0e',1,'dodo::common::UnitTest']]]
+  ['optimize_534',['optimize',['../classdodo_1_1persist_1_1KVStore.html#a4de1e40de9bd814d9805267585efb911',1,'dodo::persist::KVStore']]],
+  ['organization_535',['organization',['../structdodo_1_1network_1_1X509Common_1_1Identity.html#a280bab05d99c0335e6608aa10bbebef4',1,'dodo::network::X509Common::Identity']]],
+  ['organizationunit_536',['organizationUnit',['../structdodo_1_1network_1_1X509Common_1_1Identity.html#aeb8b34d581069b9a44352ab49a84b311',1,'dodo::network::X509Common::Identity']]],
+  ['other_537',['other',['../structdodo_1_1network_1_1X509Common_1_1Identity.html#a369f301df472fee6268a122814547893',1,'dodo::network::X509Common::Identity']]],
+  ['out_5f_538',['out_',['../classdodo_1_1common_1_1UnitTest.html#accc597701d7b4847d46fcd2e818c9e0e',1,'dodo::common::UnitTest']]]
 ];

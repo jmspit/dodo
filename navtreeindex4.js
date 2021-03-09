@@ -1,5 +1,7 @@
 var NAVTREEINDEX4 =
 {
+"functions_func_m.html":[5,3,1,11],
+"functions_func_n.html":[5,3,1,12],
 "functions_func_o.html":[5,3,1,13],
 "functions_func_p.html":[5,3,1,14],
 "functions_func_r.html":[5,3,1,15],
@@ -34,8 +36,8 @@ var NAVTREEINDEX4 =
 "globals.html":[6,1,0],
 "globals_defs.html":[6,1,1],
 "hierarchy.html":[5,2],
-"index.html":[],
 "index.html":[0],
+"index.html":[],
 "index.html#autotoc_md1":[0,0],
 "index.html#autotoc_md2":[0,1],
 "index.html#autotoc_md3":[0,2],
@@ -70,16 +72,16 @@ var NAVTREEINDEX4 =
 "namespacedodo.html":[5,0,0],
 "namespacedodo_1_1common.html":[4,0,0,0],
 "namespacedodo_1_1common.html":[5,0,0,0],
-"namespacedodo_1_1network.html":[5,0,0,1],
 "namespacedodo_1_1network.html":[4,0,0,1],
+"namespacedodo_1_1network.html":[5,0,0,1],
 "namespacedodo_1_1network_1_1protocol.html":[4,0,0,1,0],
 "namespacedodo_1_1network_1_1protocol.html":[5,0,0,1,0],
 "namespacedodo_1_1network_1_1protocol_1_1stomp.html":[4,0,0,1,0,0],
 "namespacedodo_1_1network_1_1protocol_1_1stomp.html":[5,0,0,1,0,0],
-"namespacedodo_1_1persist.html":[5,0,0,2],
 "namespacedodo_1_1persist.html":[4,0,0,2],
-"namespacedodo_1_1threads.html":[4,0,0,3],
+"namespacedodo_1_1persist.html":[5,0,0,2],
 "namespacedodo_1_1threads.html":[5,0,0,3],
+"namespacedodo_1_1threads.html":[4,0,0,3],
 "namespacemembers.html":[4,1,0],
 "namespacemembers_func.html":[4,1,1],
 "namespacemembers_type.html":[4,1,3],
@@ -247,7 +249,5 @@ var NAVTREEINDEX4 =
 "util_8cpp.html#a104d4e51bb4e4af13d38d6e7b2c33a16":[6,0,1,1,0,7,27],
 "util_8cpp.html#a16ccd06483da22f6c895dd29cf50675a":[6,0,1,1,0,7,6],
 "util_8cpp.html#a20bba81253b4462f26e717d4fc5bef44":[6,0,1,1,0,7,28],
-"util_8cpp.html#a22bce32e6326c4938f1bb95b6a01fd5e":[6,0,1,1,0,7,8],
-"util_8cpp.html#a22d988a55b6320ca874f12606136ad87":[6,0,1,1,0,7,19],
-"util_8cpp.html#a51f4d72f1a4420b62f358af717646092":[6,0,1,1,0,7,30]
+"util_8cpp.html#a22bce32e6326c4938f1bb95b6a01fd5e":[6,0,1,1,0,7,8]
 };

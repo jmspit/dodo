@@ -10,6 +10,7 @@ var classdodo_1_1persist_1_1KVStore =
     ] ],
     [ "KVStore", "classdodo_1_1persist_1_1KVStore.html#a4fa1aab0f7a4beb1580c7d751773b224", null ],
     [ "~KVStore", "classdodo_1_1persist_1_1KVStore.html#a17546affd9861629f55d314ac62a2d8f", null ],
+    [ "checkPoint", "classdodo_1_1persist_1_1KVStore.html#a51fccb4ff13d62aa5ea49f224770f135", null ],
     [ "createSchema", "classdodo_1_1persist_1_1KVStore.html#ac234ee7acdce103149fe6eb9f98f6a55", null ],
     [ "deleteKey", "classdodo_1_1persist_1_1KVStore.html#a6955da9cdca9f27a93408e8bc7c204fe", null ],
     [ "ensureWithDefault", "classdodo_1_1persist_1_1KVStore.html#aaee004a033da74e40b5eee13b6e9304a", null ],

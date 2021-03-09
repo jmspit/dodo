@@ -128,6 +128,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4fa1aab0f7a4beb1580c7d751773b224"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1persist_1_1KVStore.html#a4fa1aab0f7a4beb1580c7d751773b224">KVStore</a> (const std::filesystem::path &amp;path)</td></tr>
 <tr class="memdesc:a4fa1aab0f7a4beb1580c7d751773b224"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create the <a class="el" href="classdodo_1_1persist_1_1KVStore.html" title="A persistent, multi-threaded key-value store backed by sqlite3 storage (file).">KVStore</a> object against the path.  <a href="classdodo_1_1persist_1_1KVStore.html#a4fa1aab0f7a4beb1580c7d751773b224">More...</a><br /></td></tr>
 <tr class="separator:a4fa1aab0f7a4beb1580c7d751773b224"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17546affd9861629f55d314ac62a2d8f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1persist_1_1KVStore.html#a17546affd9861629f55d314ac62a2d8f">~KVStore</a> ()</td></tr>
+<tr class="memdesc:a17546affd9861629f55d314ac62a2d8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor, cleanup sync and close the SQLLite database.  <a href="classdodo_1_1persist_1_1KVStore.html#a17546affd9861629f55d314ac62a2d8f">More...</a><br /></td></tr>
+<tr class="separator:a17546affd9861629f55d314ac62a2d8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6955da9cdca9f27a93408e8bc7c204fe"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1persist_1_1KVStore.html#a6955da9cdca9f27a93408e8bc7c204fe">deleteKey</a> (const std::string &amp;key)</td></tr>
 <tr class="memdesc:a6955da9cdca9f27a93408e8bc7c204fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete the key or return false if the key does not exist.  <a href="classdodo_1_1persist_1_1KVStore.html#a6955da9cdca9f27a93408e8bc7c204fe">More...</a><br /></td></tr>
 <tr class="separator:a6955da9cdca9f27a93408e8bc7c204fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -146,11 +149,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae5400594ab42ef03cf75d4887193545e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1persist_1_1KVStore.html#ae5400594ab42ef03cf75d4887193545e">filterKeys</a> (std::list&lt; std::string &gt; &amp;keys, const std::string &amp;filter)</td></tr>
 <tr class="memdesc:ae5400594ab42ef03cf75d4887193545e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a list of keys that match the filter.  <a href="classdodo_1_1persist_1_1KVStore.html#ae5400594ab42ef03cf75d4887193545e">More...</a><br /></td></tr>
 <tr class="separator:ae5400594ab42ef03cf75d4887193545e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a763b22e2cf02d5665ea8afee3d1fe29c"><td class="memItemLeft" align="right" valign="top"><a id="a763b22e2cf02d5665ea8afee3d1fe29c"></a>
-<a class="el" href="classdodo_1_1persist_1_1KVStore.html#ac5dfc1eb49cbeb65e1b8511eb721444a">DataType</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getDataType</b> (const std::string &amp;key) const</td></tr>
+<tr class="memitem:a763b22e2cf02d5665ea8afee3d1fe29c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classdodo_1_1persist_1_1KVStore.html#ac5dfc1eb49cbeb65e1b8511eb721444a">DataType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1persist_1_1KVStore.html#a763b22e2cf02d5665ea8afee3d1fe29c">getDataType</a> (const std::string &amp;key) const</td></tr>
+<tr class="memdesc:a763b22e2cf02d5665ea8afee3d1fe29c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the DataType for the key.  <a href="classdodo_1_1persist_1_1KVStore.html#a763b22e2cf02d5665ea8afee3d1fe29c">More...</a><br /></td></tr>
 <tr class="separator:a763b22e2cf02d5665ea8afee3d1fe29c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:accbf9a426fee34ceb17f55faa36e43cd"><td class="memItemLeft" align="right" valign="top"><a id="accbf9a426fee34ceb17f55faa36e43cd"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>getDouble</b> (const std::string &amp;key)</td></tr>
+<tr class="memitem:accbf9a426fee34ceb17f55faa36e43cd"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1persist_1_1KVStore.html#accbf9a426fee34ceb17f55faa36e43cd">getDouble</a> (const std::string &amp;key)</td></tr>
+<tr class="memdesc:accbf9a426fee34ceb17f55faa36e43cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Presumes the key exists, and throws an <a class="el" href="classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurrence should generally imply that t...">common::Exception</a> if it does not.  <a href="classdodo_1_1persist_1_1KVStore.html#accbf9a426fee34ceb17f55faa36e43cd">More...</a><br /></td></tr>
 <tr class="separator:accbf9a426fee34ceb17f55faa36e43cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a872d540c626b57e9594e8d61a58981f6"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1persist_1_1KVStore.html#a872d540c626b57e9594e8d61a58981f6">getString</a> (const std::string &amp;key)</td></tr>
 <tr class="memdesc:a872d540c626b57e9594e8d61a58981f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Presumes the key exists, and throws an <a class="el" href="classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurrence should generally imply that t...">common::Exception</a> if it does not.  <a href="classdodo_1_1persist_1_1KVStore.html#a872d540c626b57e9594e8d61a58981f6">More...</a><br /></td></tr>
@@ -265,9 +268,10 @@ Protected Attributes</h2></td></tr>
 </div><!-- fragment --><p>Moreover, SQLite will convert (CAST) between types where possible, but revert to defaults when it can't. For example,</p>
 <div class="fragment"><div class="line">store.insertKey( <span class="stringliteral">&quot;key&quot;</span>, <span class="stringliteral">&quot;value&quot;</span> );</div>
 <div class="line">cout &lt;&lt;  store.asInteger( <span class="stringliteral">&quot;key&quot;</span> ) &lt;&lt; endl;</div>
-</div><!-- fragment --><p> will output 0 as the string "value" does not convert to an integer. </p>
+</div><!-- fragment --><p> will output 0 as the string "value" does not convert to an integer. Use getDataType to check if a key is of the expected DataType.</p>
+<p>The SQLIte database is initailized in WAL mode for performance and concurrency. </p>
 
-<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00069">69</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00071">71</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="ac5dfc1eb49cbeb65e1b8511eb721444a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac5dfc1eb49cbeb65e1b8511eb721444a">&#9670;&nbsp;</a></span>DataType</h2>
@@ -295,7 +299,7 @@ Protected Attributes</h2></td></tr>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00072">72</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00074">74</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
 
 </div>
 </div>
@@ -326,7 +330,7 @@ Protected Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00033">33</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="kvstore_8cpp_source.html#l00060">createSchema()</a>, <a class="el" href="kvstore_8hpp_source.html#l00296">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00293">path_</a>, <a class="el" href="kvstore_8cpp_source.html#l00069">prepareSQL()</a>, <a class="el" href="kvstore_8hpp_source.html#l00308">stmt_delete_</a>, <a class="el" href="kvstore_8hpp_source.html#l00299">stmt_exists_</a>, <a class="el" href="kvstore_8hpp_source.html#l00302">stmt_getvalue_</a>, <a class="el" href="kvstore_8hpp_source.html#l00305">stmt_insert_</a>, <a class="el" href="kvstore_8hpp_source.html#l00314">stmt_key_filter_</a>, <a class="el" href="kvstore_8hpp_source.html#l00317">stmt_key_value_filter_</a>, <a class="el" href="kvstore_8hpp_source.html#l00311">stmt_update_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8cpp_source.html#l00060">createSchema()</a>, <a class="el" href="kvstore_8hpp_source.html#l00312">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00309">path_</a>, <a class="el" href="kvstore_8cpp_source.html#l00069">prepareSQL()</a>, <a class="el" href="kvstore_8hpp_source.html#l00324">stmt_delete_</a>, <a class="el" href="kvstore_8hpp_source.html#l00315">stmt_exists_</a>, <a class="el" href="kvstore_8hpp_source.html#l00318">stmt_getvalue_</a>, <a class="el" href="kvstore_8hpp_source.html#l00321">stmt_insert_</a>, <a class="el" href="kvstore_8hpp_source.html#l00330">stmt_key_filter_</a>, <a class="el" href="kvstore_8hpp_source.html#l00333">stmt_key_value_filter_</a>, <a class="el" href="kvstore_8hpp_source.html#l00327">stmt_update_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -337,6 +341,29 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="classdodo_1_1persist_1_1KVStore.html#a683e0b168566db39c35a314d602efb21" title="Prepare all SQL statements." alt="" coords="220,71,387,112"/>
 </map>
 </div>
+
+</div>
+</div>
+<a id="a17546affd9861629f55d314ac62a2d8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17546affd9861629f55d314ac62a2d8f">&#9670;&nbsp;</a></span>~KVStore()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">dodo::persist::KVStore::~KVStore </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destructor, cleanup sync and close the SQLLite database. </p>
+
+<p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00049">49</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00312">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00324">stmt_delete_</a>, <a class="el" href="kvstore_8hpp_source.html#l00315">stmt_exists_</a>, <a class="el" href="kvstore_8hpp_source.html#l00318">stmt_getvalue_</a>, <a class="el" href="kvstore_8hpp_source.html#l00321">stmt_insert_</a>, <a class="el" href="kvstore_8hpp_source.html#l00330">stmt_key_filter_</a>, <a class="el" href="kvstore_8hpp_source.html#l00333">stmt_key_value_filter_</a>, and <a class="el" href="kvstore_8hpp_source.html#l00327">stmt_update_</a>.</p>
 
 </div>
 </div>
@@ -368,7 +395,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00060">60</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00296">database_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00312">database_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00033">KVStore()</a>.</p>
 <div class="dynheader">
@@ -410,7 +437,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00390">390</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00296">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00308">stmt_delete_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00312">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00324">stmt_delete_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
 </div>
 </div>
@@ -587,7 +614,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Check if the key exists. </p>
-<p>Unless the value is not required , it is more efficient to get the value in one go by calling the <a class="el" href="classdodo_1_1persist_1_1KVStore.html#a872d540c626b57e9594e8d61a58981f6" title="Presumes the key exists, and throws an common::Exception if it does not.">getString()</a>, getDouble(), getInt64() and getData() members, which return false if the key does not exist. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Unless the value is not required , it is more efficient to get the value in one go by calling the <a class="el" href="classdodo_1_1persist_1_1KVStore.html#a872d540c626b57e9594e8d61a58981f6" title="Presumes the key exists, and throws an common::Exception if it does not.">getString()</a>, <a class="el" href="classdodo_1_1persist_1_1KVStore.html#accbf9a426fee34ceb17f55faa36e43cd" title="Presumes the key exists, and throws an common::Exception if it does not.">getDouble()</a>, getInt64() and getData() members, which return false if the key does not exist. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">key</td><td>The key to check for. </td></tr>
   </table>
@@ -597,7 +624,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00147">147</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00296">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00299">stmt_exists_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00312">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00315">stmt_exists_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
 </div>
 </div>
@@ -638,7 +665,65 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00402">402</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00296">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00314">stmt_key_filter_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00312">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00330">stmt_key_filter_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+
+</div>
+</div>
+<a id="a763b22e2cf02d5665ea8afee3d1fe29c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a763b22e2cf02d5665ea8afee3d1fe29c">&#9670;&nbsp;</a></span>getDataType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classdodo_1_1persist_1_1KVStore.html#ac5dfc1eb49cbeb65e1b8511eb721444a">KVStore::DataType</a> dodo::persist::KVStore::getDataType </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the DataType for the key. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The key name. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the DataType of the key. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00133">133</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00312">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00080">dtUnknown</a>, <a class="el" href="kvstore_8hpp_source.html#l00318">stmt_getvalue_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+
+</div>
+</div>
+<a id="accbf9a426fee34ceb17f55faa36e43cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#accbf9a426fee34ceb17f55faa36e43cd">&#9670;&nbsp;</a></span>getDouble()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double dodo::persist::KVStore::getDouble </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Presumes the key exists, and throws an <a class="el" href="classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurrence should generally imply that t...">common::Exception</a> if it does not. </p>
+<p>Otherwise, return the value for the key as a double. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The double value for the key. </dd></dl>
 
 </div>
 </div>
@@ -707,7 +792,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00224">224</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="octetarray_8cpp_source.html#l00065">dodo::common::OctetArray::append()</a>, <a class="el" href="kvstore_8hpp_source.html#l00296">database_</a>, <a class="el" href="octetarray_8cpp_source.html#l00056">dodo::common::OctetArray::free()</a>, <a class="el" href="kvstore_8hpp_source.html#l00302">stmt_getvalue_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="octetarray_8cpp_source.html#l00065">dodo::common::OctetArray::append()</a>, <a class="el" href="kvstore_8hpp_source.html#l00312">database_</a>, <a class="el" href="octetarray_8cpp_source.html#l00056">dodo::common::OctetArray::free()</a>, <a class="el" href="kvstore_8hpp_source.html#l00318">stmt_getvalue_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -766,7 +851,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00204">204</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00296">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00302">stmt_getvalue_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00312">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00318">stmt_getvalue_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
 </div>
 </div>
@@ -808,7 +893,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00176">176</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00296">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00302">stmt_getvalue_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00312">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00318">stmt_getvalue_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
 </div>
 </div>
@@ -850,7 +935,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00190">190</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00296">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00302">stmt_getvalue_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00312">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00318">stmt_getvalue_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
 </div>
 </div>
@@ -892,7 +977,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00159">159</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00296">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00302">stmt_getvalue_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00312">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00318">stmt_getvalue_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00103">ensureWithDefault()</a>.</p>
 <div class="dynheader">
@@ -945,7 +1030,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00303">303</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00296">database_</a>, <a class="el" href="octetarray_8hpp_source.html#l00182">dodo::common::OctetArray::getArray()</a>, <a class="el" href="octetarray_8hpp_source.html#l00188">dodo::common::OctetArray::getSize()</a>, <a class="el" href="kvstore_8hpp_source.html#l00305">stmt_insert_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00312">database_</a>, <a class="el" href="octetarray_8hpp_source.html#l00182">dodo::common::OctetArray::getArray()</a>, <a class="el" href="octetarray_8hpp_source.html#l00188">dodo::common::OctetArray::getSize()</a>, <a class="el" href="kvstore_8hpp_source.html#l00321">stmt_insert_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -997,7 +1082,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00258">258</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00296">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00305">stmt_insert_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00312">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00321">stmt_insert_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
 </div>
 </div>
@@ -1039,7 +1124,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00273">273</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00296">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00305">stmt_insert_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00312">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00321">stmt_insert_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
 </div>
 </div>
@@ -1081,7 +1166,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00243">243</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00296">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00305">stmt_insert_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00312">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00321">stmt_insert_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00103">ensureWithDefault()</a>.</p>
 <div class="dynheader">
@@ -1141,7 +1226,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00288">288</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00296">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00305">stmt_insert_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00312">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00321">stmt_insert_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
 </div>
 </div>
@@ -1172,7 +1257,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00069">69</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00296">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00308">stmt_delete_</a>, <a class="el" href="kvstore_8hpp_source.html#l00299">stmt_exists_</a>, <a class="el" href="kvstore_8hpp_source.html#l00302">stmt_getvalue_</a>, <a class="el" href="kvstore_8hpp_source.html#l00305">stmt_insert_</a>, <a class="el" href="kvstore_8hpp_source.html#l00314">stmt_key_filter_</a>, <a class="el" href="kvstore_8hpp_source.html#l00317">stmt_key_value_filter_</a>, <a class="el" href="kvstore_8hpp_source.html#l00311">stmt_update_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00312">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00324">stmt_delete_</a>, <a class="el" href="kvstore_8hpp_source.html#l00315">stmt_exists_</a>, <a class="el" href="kvstore_8hpp_source.html#l00318">stmt_getvalue_</a>, <a class="el" href="kvstore_8hpp_source.html#l00321">stmt_insert_</a>, <a class="el" href="kvstore_8hpp_source.html#l00330">stmt_key_filter_</a>, <a class="el" href="kvstore_8hpp_source.html#l00333">stmt_key_value_filter_</a>, <a class="el" href="kvstore_8hpp_source.html#l00327">stmt_update_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00033">KVStore()</a>.</p>
 <div class="dynheader">
@@ -1226,7 +1311,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00375">375</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00296">database_</a>, <a class="el" href="octetarray_8hpp_source.html#l00182">dodo::common::OctetArray::getArray()</a>, <a class="el" href="octetarray_8hpp_source.html#l00188">dodo::common::OctetArray::getSize()</a>, <a class="el" href="kvstore_8hpp_source.html#l00311">stmt_update_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00312">database_</a>, <a class="el" href="octetarray_8hpp_source.html#l00182">dodo::common::OctetArray::getArray()</a>, <a class="el" href="octetarray_8hpp_source.html#l00188">dodo::common::OctetArray::getSize()</a>, <a class="el" href="kvstore_8hpp_source.html#l00327">stmt_update_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1278,7 +1363,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00333">333</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00296">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00311">stmt_update_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00312">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00327">stmt_update_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
 </div>
 </div>
@@ -1320,7 +1405,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00347">347</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00296">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00311">stmt_update_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00312">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00327">stmt_update_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
 </div>
 </div>
@@ -1362,7 +1447,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00319">319</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00296">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00311">stmt_update_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00312">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00327">stmt_update_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
 </div>
 </div>
@@ -1411,7 +1496,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00361">361</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00296">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00311">stmt_update_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00312">database_</a>, <a class="el" href="kvstore_8hpp_source.html#l00327">stmt_update_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
 </div>
 </div>
@@ -1438,9 +1523,9 @@ Here is the call graph for this function:</div>
 
 <p>The database handle. </p>
 
-<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00296">296</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00312">312</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00060">createSchema()</a>, <a class="el" href="kvstore_8cpp_source.html#l00390">deleteKey()</a>, <a class="el" href="kvstore_8cpp_source.html#l00147">exists()</a>, <a class="el" href="kvstore_8cpp_source.html#l00402">filterKeys()</a>, <a class="el" href="kvstore_8cpp_source.html#l00159">getValue()</a>, <a class="el" href="kvstore_8cpp_source.html#l00243">insertKey()</a>, <a class="el" href="kvstore_8cpp_source.html#l00033">KVStore()</a>, <a class="el" href="kvstore_8cpp_source.html#l00069">prepareSQL()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00319">setKey()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00060">createSchema()</a>, <a class="el" href="kvstore_8cpp_source.html#l00390">deleteKey()</a>, <a class="el" href="kvstore_8cpp_source.html#l00147">exists()</a>, <a class="el" href="kvstore_8cpp_source.html#l00402">filterKeys()</a>, <a class="el" href="kvstore_8cpp_source.html#l00133">getDataType()</a>, <a class="el" href="kvstore_8cpp_source.html#l00159">getValue()</a>, <a class="el" href="kvstore_8cpp_source.html#l00243">insertKey()</a>, <a class="el" href="kvstore_8cpp_source.html#l00033">KVStore()</a>, <a class="el" href="kvstore_8cpp_source.html#l00069">prepareSQL()</a>, <a class="el" href="kvstore_8cpp_source.html#l00319">setKey()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00049">~KVStore()</a>.</p>
 
 </div>
 </div>
@@ -1466,7 +1551,7 @@ Here is the call graph for this function:</div>
 
 <p>The filesystem path to the kvstore. </p>
 
-<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00293">293</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00309">309</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00033">KVStore()</a>.</p>
 
@@ -1494,9 +1579,9 @@ Here is the call graph for this function:</div>
 
 <p>Delete key pair statement handle. </p>
 
-<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00308">308</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00324">324</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00390">deleteKey()</a>, <a class="el" href="kvstore_8cpp_source.html#l00033">KVStore()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00069">prepareSQL()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00390">deleteKey()</a>, <a class="el" href="kvstore_8cpp_source.html#l00033">KVStore()</a>, <a class="el" href="kvstore_8cpp_source.html#l00069">prepareSQL()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00049">~KVStore()</a>.</p>
 
 </div>
 </div>
@@ -1522,9 +1607,9 @@ Here is the call graph for this function:</div>
 
 <p>Existence-check statement handle. </p>
 
-<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00299">299</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00315">315</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00147">exists()</a>, <a class="el" href="kvstore_8cpp_source.html#l00033">KVStore()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00069">prepareSQL()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00147">exists()</a>, <a class="el" href="kvstore_8cpp_source.html#l00033">KVStore()</a>, <a class="el" href="kvstore_8cpp_source.html#l00069">prepareSQL()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00049">~KVStore()</a>.</p>
 
 </div>
 </div>
@@ -1550,9 +1635,9 @@ Here is the call graph for this function:</div>
 
 <p>Get-value-for-key statement handle. </p>
 
-<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00302">302</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00318">318</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00159">getValue()</a>, <a class="el" href="kvstore_8cpp_source.html#l00033">KVStore()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00069">prepareSQL()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00133">getDataType()</a>, <a class="el" href="kvstore_8cpp_source.html#l00159">getValue()</a>, <a class="el" href="kvstore_8cpp_source.html#l00033">KVStore()</a>, <a class="el" href="kvstore_8cpp_source.html#l00069">prepareSQL()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00049">~KVStore()</a>.</p>
 
 </div>
 </div>
@@ -1578,9 +1663,9 @@ Here is the call graph for this function:</div>
 
 <p>Insert key pair statement handle. </p>
 
-<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00305">305</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00321">321</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00243">insertKey()</a>, <a class="el" href="kvstore_8cpp_source.html#l00033">KVStore()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00069">prepareSQL()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00243">insertKey()</a>, <a class="el" href="kvstore_8cpp_source.html#l00033">KVStore()</a>, <a class="el" href="kvstore_8cpp_source.html#l00069">prepareSQL()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00049">~KVStore()</a>.</p>
 
 </div>
 </div>
@@ -1606,9 +1691,9 @@ Here is the call graph for this function:</div>
 
 <p>Key filter statement handle. </p>
 
-<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00314">314</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00330">330</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00402">filterKeys()</a>, <a class="el" href="kvstore_8cpp_source.html#l00033">KVStore()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00069">prepareSQL()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00402">filterKeys()</a>, <a class="el" href="kvstore_8cpp_source.html#l00033">KVStore()</a>, <a class="el" href="kvstore_8cpp_source.html#l00069">prepareSQL()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00049">~KVStore()</a>.</p>
 
 </div>
 </div>
@@ -1634,9 +1719,9 @@ Here is the call graph for this function:</div>
 
 <p>Key + value filter statement handle. </p>
 
-<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00317">317</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00333">333</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00033">KVStore()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00069">prepareSQL()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00033">KVStore()</a>, <a class="el" href="kvstore_8cpp_source.html#l00069">prepareSQL()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00049">~KVStore()</a>.</p>
 
 </div>
 </div>
@@ -1662,9 +1747,9 @@ Here is the call graph for this function:</div>
 
 <p>Update key pair statement handle. </p>
 
-<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00311">311</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00327">327</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00033">KVStore()</a>, <a class="el" href="kvstore_8cpp_source.html#l00069">prepareSQL()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00319">setKey()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00033">KVStore()</a>, <a class="el" href="kvstore_8cpp_source.html#l00069">prepareSQL()</a>, <a class="el" href="kvstore_8cpp_source.html#l00319">setKey()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00049">~KVStore()</a>.</p>
 
 </div>
 </div>

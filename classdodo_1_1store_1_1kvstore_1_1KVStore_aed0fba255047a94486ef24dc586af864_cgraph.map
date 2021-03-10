@@ -1,0 +1,7 @@
+<map id="dodo::store::kvstore::KVStore::analyze" name="dodo::store::kvstore::KVStore::analyze">
+<area shape="rect" id="node1" title="Analyze the store and produce fiudings to os." alt="" coords="5,104,157,145"/>
+<area shape="rect" id="node2" href="$structdodo_1_1store_1_1kvstore_1_1BlockHeader.html#a8dd9d2960c28faa9b69c1e24d74821c0" title="Calculate the crc32 of the block (excluding the crc32 itself)." alt="" coords="205,5,396,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1store_1_1kvstore_1_1FileHeader.html#a72bc452eac981350b829363c34f54fad" title="Provide access to the block." alt="" coords="218,71,383,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1store_1_1kvstore_1_1FileHeader.html#a0f25134bfb7b5f1fca09cd950582b0ea" title="Get the name, description and contact information." alt="" coords="223,136,378,177"/>
+<area shape="rect" id="node5" href="$classdodo_1_1store_1_1kvstore_1_1Tester.html#af5b2f95f0632dc39214779bb27b377c2" title="Test." alt="" coords="225,201,377,243"/>
+</map>

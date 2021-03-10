@@ -347,7 +347,7 @@ Additional Inherited Members</h2></td></tr>
 <p><a class="el" href="classdodo_1_1network_1_1Socket.html" title="A Linux socket.">Socket</a> objects refer to, but do not own a particular socket descriptor. The programmer controls closing the socket by calling <a class="el" href="classdodo_1_1network_1_1BaseSocket.html#a996a679e03babae5d0757a5839afb8e9" title="Closes the socket, causing the connection, if it exists, to be terminated.">close()</a>, the <a class="el" href="classdodo_1_1network_1_1Socket.html" title="A Linux socket.">Socket</a> destructor does not do this implicitly, as two <a class="el" href="classdodo_1_1network_1_1Socket.html" title="A Linux socket.">Socket</a> objects may refer to the same socket descriptor.</p>
 <p>The <a class="el" href="classdodo_1_1network_1_1Socket.html" title="A Linux socket.">Socket</a> operates either in blocking or non-blocking mode. In blocking mode, calls to <a class="el" href="classdodo_1_1network_1_1BaseSocket.html#a4a41dd44e87862d9730783b1c8a221ba" title="Sets up a listening socket on Address.">listen()</a> or <a class="el" href="classdodo_1_1network_1_1Socket.html#aa0739855526df27d6228ffdbaf27ab00" title="Receive bytes.">receive()</a> will block until data is received. Moreover, in blocking mode, there is no limit to the amount of data that can be sent or received in one go. In non-blocking mode, the send and receive sizes per call must fit in <a class="el" href="classdodo_1_1network_1_1BaseSocket.html#a28c9456798a203e9ac5909c073933448" title="Get the maximum buffer length for send.">Socket::getSendBufSize()</a> or <a class="el" href="classdodo_1_1network_1_1BaseSocket.html#a075c2ed960e446c8dd7e1d2e79398ba6" title="Get the maximum buffer length for receive.">Socket::getReceiveBufSize()</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="socket_8hpp_source.html#l00054">54</a> of file <a class="el" href="socket_8hpp_source.html">socket.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="socket_8hpp_source.html#l00052">52</a> of file <a class="el" href="socket_8hpp_source.html">socket.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a1b9a69c49093f7fc6b56a927cdc0be33"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1b9a69c49093f7fc6b56a927cdc0be33">&#9670;&nbsp;</a></span>Socket() <span class="overload">[1/5]</span></h2>
@@ -374,9 +374,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Default constructor creates an invalid socket. </p>
 
-<p class="definition">Definition at line <a class="el" href="socket_8hpp_source.html#l00061">61</a> of file <a class="el" href="socket_8hpp_source.html">socket.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="socket_8hpp_source.html#l00059">59</a> of file <a class="el" href="socket_8hpp_source.html">socket.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="socket_8cpp_source.html#l00102">accept()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="socket_8cpp_source.html#l00104">accept()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -421,7 +421,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="socket_8hpp_source.html#l00067">67</a> of file <a class="el" href="socket_8hpp_source.html">socket.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="socket_8hpp_source.html#l00065">65</a> of file <a class="el" href="socket_8hpp_source.html">socket.hpp</a>.</p>
 
 </div>
 </div>
@@ -468,7 +468,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="socket_8hpp_source.html#l00074">74</a> of file <a class="el" href="socket_8hpp_source.html">socket.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="socket_8hpp_source.html#l00072">72</a> of file <a class="el" href="socket_8hpp_source.html">socket.hpp</a>.</p>
 
 </div>
 </div>
@@ -504,7 +504,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="socket_8hpp_source.html#l00080">80</a> of file <a class="el" href="socket_8hpp_source.html">socket.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="socket_8hpp_source.html#l00078">78</a> of file <a class="el" href="socket_8hpp_source.html">socket.hpp</a>.</p>
 
 </div>
 </div>
@@ -532,9 +532,9 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="socket_8cpp_source.html#l00098">98</a> of file <a class="el" href="socket_8cpp_source.html">socket.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="socket_8cpp_source.html#l00100">100</a> of file <a class="el" href="socket_8cpp_source.html">socket.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="basesocket_8hpp_source.html#l00122">dodo::network::BaseSocket::getFD()</a>, and <a class="el" href="basesocket_8hpp_source.html#l00504">dodo::network::BaseSocket::socket_</a>.</p>
+<p class="reference">References <a class="el" href="basesocket_8hpp_source.html#l00121">dodo::network::BaseSocket::getFD()</a>, and <a class="el" href="basesocket_8hpp_source.html#l00503">dodo::network::BaseSocket::socket_</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -572,7 +572,7 @@ Here is the call graph for this function:</div>
 
 <p>Destructs this <a class="el" href="classdodo_1_1network_1_1Socket.html" title="A Linux socket.">Socket</a>, but does not call <a class="el" href="classdodo_1_1network_1_1BaseSocket.html#a996a679e03babae5d0757a5839afb8e9" title="Closes the socket, causing the connection, if it exists, to be terminated.">close()</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="socket_8hpp_source.html#l00091">91</a> of file <a class="el" href="socket_8hpp_source.html">socket.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="socket_8hpp_source.html#l00089">89</a> of file <a class="el" href="socket_8hpp_source.html">socket.hpp</a>.</p>
 
 </div>
 </div>
@@ -605,9 +605,9 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classdodo_1_1network_1_1BaseSocket.html#acf3ee5321588185efb19723f84a4727c">dodo::network::BaseSocket</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="socket_8cpp_source.html#l00102">102</a> of file <a class="el" href="socket_8cpp_source.html">socket.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="socket_8cpp_source.html#l00104">104</a> of file <a class="el" href="socket_8cpp_source.html">socket.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="socket_8hpp_source.html#l00061">Socket()</a>, <a class="el" href="basesocket_8hpp_source.html#l00504">dodo::network::BaseSocket::socket_</a>, <a class="el" href="socket_8hpp_source.html#l00139">SocketInvalid</a>, and <a class="el" href="exception_8hpp_source.html#l00196">throw_SystemExceptionObject</a>.</p>
+<p class="reference">References <a class="el" href="socket_8hpp_source.html#l00059">Socket()</a>, <a class="el" href="basesocket_8hpp_source.html#l00503">dodo::network::BaseSocket::socket_</a>, <a class="el" href="socket_8hpp_source.html#l00137">SocketInvalid</a>, and <a class="el" href="exception_8hpp_source.html#l00196">throw_SystemExceptionObject</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -679,9 +679,9 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classdodo_1_1network_1_1BaseSocket.html#aad3cf233ec9e63b83f9a96135166b725">dodo::network::BaseSocket</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="socket_8cpp_source.html#l00081">81</a> of file <a class="el" href="socket_8cpp_source.html">socket.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="socket_8cpp_source.html#l00083">83</a> of file <a class="el" href="socket_8cpp_source.html">socket.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="systemerror_8hpp_source.html#l00073">dodo::common::SystemError::ecEAGAIN</a>, <a class="el" href="systemerror_8hpp_source.html#l00173">dodo::common::SystemError::ecECONNREFUSED</a>, <a class="el" href="systemerror_8hpp_source.html#l00169">dodo::common::SystemError::ecENOTCONN</a>, <a class="el" href="systemerror_8hpp_source.html#l00062">dodo::common::SystemError::ecOK</a>, <a class="el" href="basesocket_8hpp_source.html#l00504">dodo::network::BaseSocket::socket_</a>, and <a class="el" href="exception_8hpp_source.html#l00196">throw_SystemExceptionObject</a>.</p>
+<p class="reference">References <a class="el" href="systemerror_8hpp_source.html#l00074">dodo::common::SystemError::ecEAGAIN</a>, <a class="el" href="systemerror_8hpp_source.html#l00174">dodo::common::SystemError::ecECONNREFUSED</a>, <a class="el" href="systemerror_8hpp_source.html#l00170">dodo::common::SystemError::ecENOTCONN</a>, <a class="el" href="systemerror_8hpp_source.html#l00063">dodo::common::SystemError::ecOK</a>, <a class="el" href="basesocket_8hpp_source.html#l00503">dodo::network::BaseSocket::socket_</a>, and <a class="el" href="exception_8hpp_source.html#l00196">throw_SystemExceptionObject</a>.</p>
 
 </div>
 </div>
@@ -743,9 +743,9 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classdodo_1_1network_1_1BaseSocket.html#a2c6fb3c1d732bc5a861716eed68f1cd0">dodo::network::BaseSocket</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="socket_8cpp_source.html#l00036">36</a> of file <a class="el" href="socket_8cpp_source.html">socket.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="socket_8cpp_source.html#l00038">38</a> of file <a class="el" href="socket_8cpp_source.html">socket.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="systemerror_8hpp_source.html#l00073">dodo::common::SystemError::ecEAGAIN</a>, <a class="el" href="systemerror_8hpp_source.html#l00166">dodo::common::SystemError::ecECONNRESET</a>, <a class="el" href="systemerror_8hpp_source.html#l00062">dodo::common::SystemError::ecOK</a>, <a class="el" href="basesocket_8hpp_source.html#l00504">dodo::network::BaseSocket::socket_</a>, and <a class="el" href="exception_8hpp_source.html#l00196">throw_SystemExceptionObject</a>.</p>
+<p class="reference">References <a class="el" href="systemerror_8hpp_source.html#l00074">dodo::common::SystemError::ecEAGAIN</a>, <a class="el" href="systemerror_8hpp_source.html#l00167">dodo::common::SystemError::ecECONNRESET</a>, <a class="el" href="systemerror_8hpp_source.html#l00063">dodo::common::SystemError::ecOK</a>, <a class="el" href="basesocket_8hpp_source.html#l00503">dodo::network::BaseSocket::socket_</a>, and <a class="el" href="exception_8hpp_source.html#l00196">throw_SystemExceptionObject</a>.</p>
 
 </div>
 </div>
@@ -800,9 +800,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The SystemError. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="socket_8cpp_source.html#l00059">59</a> of file <a class="el" href="socket_8cpp_source.html">socket.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="socket_8cpp_source.html#l00061">61</a> of file <a class="el" href="socket_8cpp_source.html">socket.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="address_8hpp_source.html#l00292">dodo::network::Address::addr_</a>, <a class="el" href="systemerror_8hpp_source.html#l00073">dodo::common::SystemError::ecEAGAIN</a>, <a class="el" href="systemerror_8hpp_source.html#l00166">dodo::common::SystemError::ecECONNRESET</a>, <a class="el" href="systemerror_8hpp_source.html#l00062">dodo::common::SystemError::ecOK</a>, <a class="el" href="basesocket_8hpp_source.html#l00504">dodo::network::BaseSocket::socket_</a>, and <a class="el" href="exception_8hpp_source.html#l00196">throw_SystemExceptionObject</a>.</p>
+<p class="reference">References <a class="el" href="address_8hpp_source.html#l00291">dodo::network::Address::addr_</a>, <a class="el" href="systemerror_8hpp_source.html#l00074">dodo::common::SystemError::ecEAGAIN</a>, <a class="el" href="systemerror_8hpp_source.html#l00167">dodo::common::SystemError::ecECONNRESET</a>, <a class="el" href="systemerror_8hpp_source.html#l00063">dodo::common::SystemError::ecOK</a>, <a class="el" href="basesocket_8hpp_source.html#l00503">dodo::network::BaseSocket::socket_</a>, and <a class="el" href="exception_8hpp_source.html#l00196">throw_SystemExceptionObject</a>.</p>
 
 </div>
 </div>
@@ -829,9 +829,9 @@ Here is the call graph for this function:</div>
 
 <p>An invalid SocketInvalid for comparison convenience - initialized to a <a class="el" href="classdodo_1_1network_1_1Socket.html" title="A Linux socket.">Socket</a> with socket fd=-1. </p>
 
-<p class="definition">Definition at line <a class="el" href="socket_8hpp_source.html#l00139">139</a> of file <a class="el" href="socket_8hpp_source.html">socket.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="socket_8hpp_source.html#l00137">137</a> of file <a class="el" href="socket_8hpp_source.html">socket.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="socket_8cpp_source.html#l00102">accept()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="socket_8cpp_source.html#l00104">accept()</a>.</p>
 
 </div>
 </div>

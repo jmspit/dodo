@@ -1,5 +1,0 @@
-<map id="dodo::persist::KVStore::insertKey" name="dodo::persist::KVStore::insertKey">
-<area shape="rect" id="node1" title="Insert a (key, OctetArray) pair." alt="" coords="5,39,172,80"/>
-<area shape="rect" id="node2" href="$classdodo_1_1common_1_1OctetArray.html#ace36db286fd1b6ffb185e97b74b29bbc" title="Return the array." alt="" coords="220,5,417,47"/>
-<area shape="rect" id="node3" href="$classdodo_1_1common_1_1OctetArray.html#a4bfcf35ebfa9c97f77c4bf7c68d4b9a2" title="Return the array size." alt="" coords="220,71,417,112"/>
-</map>

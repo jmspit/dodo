@@ -5,7 +5,6 @@ var util_8cpp =
     [ "directoryExists", "util_8cpp.html#a9bca9a04a61b100970ab9849736c0974", null ],
     [ "directoryWritable", "util_8cpp.html#ac47589087895d0c62c858abb5e58dc0b", null ],
     [ "dumpBinaryData", "util_8cpp.html#abaf2092ba0080fda10bb594f9d84effc", null ],
-    [ "escapeJSON", "util_8cpp.html#a05c8de76145b9902ce64df326c91462c", null ],
     [ "fileReadAccess", "util_8cpp.html#a16ccd06483da22f6c895dd29cf50675a", null ],
     [ "fileReadInt", "util_8cpp.html#a810ead9b0f5cfda60455bcafd2a6cdfe", null ],
     [ "fileReadString", "util_8cpp.html#a22bce32e6326c4938f1bb95b6a01fd5e", null ],

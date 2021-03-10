@@ -1,0 +1,4 @@
+<map id="dodo::store::kvstore::FileHeader" name="dodo::store::kvstore::FileHeader">
+<area shape="rect" id="node1" title="The first block in the file." alt="" coords="13,109,165,151"/>
+<area shape="rect" id="node2" href="$structdodo_1_1store_1_1kvstore_1_1FileHeader_1_1BlockDef.html" title="The block definition." alt="" coords="5,5,172,47"/>
+</map>

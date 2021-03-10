@@ -151,7 +151,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a28f6911ae6633e3a518b92371d5a689b inherit pub_types_classdodo_1_1network_1_1X509Common"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689b">SANType</a> { <a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba1af3c8cd9ea46d2a701ae919c0a8c5a0">SANType::stDNS</a> = GEN_DNS, 
 <a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba6509b104c2d2ae4b436e2bab8ad28175">SANType::stURI</a> = GEN_URI, 
 <a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba2c1a510163b7557581fd8d65c50fce75">SANType::stEMAIL</a> = GEN_EMAIL, 
-<a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689bae756ee54c00082fce60e7f9447e41358">SANType::stIP</a> = GEN_IPADD
+<a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba35607b760d2e28683799aecb996d6ec0">SANType::tsIP</a> = GEN_IPADD
  }</td></tr>
 <tr class="memdesc:a28f6911ae6633e3a518b92371d5a689b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The SubjectAltName type.  <a href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689b">More...</a><br /></td></tr>
 <tr class="separator:a28f6911ae6633e3a518b92371d5a689b inherit pub_types_classdodo_1_1network_1_1X509Common"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -308,7 +308,7 @@ Additional Inherited Members</h2></td></tr>
 <p><code>openssl list -digest-algorithms</code> shows a full list of hash (digest) names. Stick to newer hash algorithms from the SHA-3 family.</p>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurrence should generally imply that t...">common::Exception</a></td><td>if the digest name is invalid.</td></tr>
+    <tr><td class="paramname"><a class="el" href="classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurence should generally imply that th...">common::Exception</a></td><td>if the digest name is invalid.</td></tr>
   </table>
   </dd>
 </dl>
@@ -322,7 +322,7 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A string representation of the fingerprint. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00121">121</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00122">122</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="util_8cpp_source.html#l00154">dodo::common::getSSLErrors()</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 <div class="dynheader">
@@ -370,9 +370,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the CSR subject identity. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00112">112</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00113">113</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="util_8cpp_source.html#l00132">dodo::common::bio2String()</a>, and <a class="el" href="x509cert_8cpp_source.html#l00061">dodo::network::X509Common::parseIdentity()</a>.</p>
+<p class="reference">References <a class="el" href="util_8cpp_source.html#l00132">dodo::common::bio2String()</a>, and <a class="el" href="x509cert_8cpp_source.html#l00062">dodo::network::X509Common::parseIdentity()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -420,15 +420,15 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurrence should generally imply that t...">common::Exception</a></td><td>when the openSSL BIO fails to create. </td></tr>
-    <tr><td class="paramname"><a class="el" href="classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurrence should generally imply that t...">common::Exception</a></td><td>when the file cannot be read. </td></tr>
-    <tr><td class="paramname"><a class="el" href="classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurrence should generally imply that t...">common::Exception</a></td><td>when the file is not a valid PEM file. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurence should generally imply that th...">common::Exception</a></td><td>when the openSSL BIO fails to create. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurence should generally imply that th...">common::Exception</a></td><td>when the file cannot be read. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurence should generally imply that th...">common::Exception</a></td><td>when the file is not a valid PEM file. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to your X509_REQ. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00092">92</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00093">93</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="util_8cpp_source.html#l00154">dodo::common::getSSLErrors()</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 <div class="dynheader">

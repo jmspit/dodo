@@ -1,0 +1,8 @@
+<map id="dodo::store::kvstore::KVStore::open" name="dodo::store::kvstore::KVStore::open">
+<area shape="rect" id="node1" title="Open the KVStore." alt="" coords="5,122,157,163"/>
+<area shape="rect" id="node2" href="$namespacedodo_1_1common.html#ae1e4a7a218141abb2a29a277951612f6" title="Return the size of the file." alt="" coords="221,5,419,32"/>
+<area shape="rect" id="node3" href="$classdodo_1_1store_1_1kvstore_1_1KVStore.html#a8bd63ad5e6063c2c27f4cd14522475d9" title="Wait for and lock the blockid for reading in Private mode." alt="" coords="207,57,433,98"/>
+<area shape="rect" id="node4" href="$classdodo_1_1store_1_1kvstore_1_1KVStore.html#a5f576e8132a32bd8ccd55d7601893e42" title="Wait for and lock the blockid for reading in Shared mode." alt="" coords="207,122,433,163"/>
+<area shape="rect" id="node5" href="$classdodo_1_1store_1_1kvstore_1_1KVStore.html#af785538f1dde8533bea3d4b6c169281a" title="Wait for and lock the blockid for writing in Private mode." alt="" coords="205,187,435,229"/>
+<area shape="rect" id="node6" href="$classdodo_1_1store_1_1kvstore_1_1KVStore.html#a2d6457970f2f07f6ea51922b986d1402" title="Wait for and lock the blockid for writing in Shared mode." alt="" coords="206,253,434,294"/>
+</map>

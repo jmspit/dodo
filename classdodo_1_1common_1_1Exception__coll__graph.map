@@ -1,5 +1,5 @@
 <map id="dodo::common::Exception" name="dodo::common::Exception">
-<area shape="rect" id="node1" title="An Exception is thrown in exceptional circumstances, and its occurrence should generally imply that t..." alt="" coords="93,109,283,136"/>
+<area shape="rect" id="node1" title="An Exception is thrown in exceptional circumstances, and its occurence should generally imply that th..." alt="" coords="93,109,283,136"/>
 <area shape="rect" id="node2" title="STL class." alt="" coords="5,5,144,32"/>
 <area shape="rect" id="node3" title=" " alt="" coords="169,5,207,32"/>
 <area shape="rect" id="node4" title="STL class." alt="" coords="231,5,318,32"/>

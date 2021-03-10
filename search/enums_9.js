@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['santype_1505',['SANType',['../classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689b',1,'dodo::network::X509Common']]],
-  ['serverstate_1506',['ServerState',['../classdodo_1_1network_1_1TCPServer.html#ac62a28cc01537d35abfdca96496e7774',1,'dodo::network::TCPServer']]],
-  ['sockettype_1507',['SocketType',['../classdodo_1_1network_1_1SocketParams.html#af5e1bc4df22cd6c8c15ab6e98775e746',1,'dodo::network::SocketParams']]],
-  ['sockstate_1508',['SockState',['../classdodo_1_1network_1_1TCPListener.html#aafb35a279611936c5be395154d73c345',1,'dodo::network::TCPListener']]]
+  ['peerverification_1563',['PeerVerification',['../classdodo_1_1network_1_1TLSContext.html#ac52323d8c8ebb0024a917ab92640ee7d',1,'dodo::network::TLSContext']]],
+  ['protocolnumber_1564',['ProtocolNumber',['../classdodo_1_1network_1_1SocketParams.html#a941cc7578246143530f8a373359fca8f',1,'dodo::network::SocketParams']]]
 ];

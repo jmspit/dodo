@@ -1,9 +1,0 @@
-<map id="dodo::common::OctetArray::getSize" name="dodo::common::OctetArray::getSize">
-<area shape="rect" id="node1" title="Return the array size." alt="" coords="277,169,475,211"/>
-<area shape="rect" id="node2" href="$classdodo_1_1common_1_1DataCrypt.html#aa1b405ff388d738bc442bf14e084c6d9" title="Decrypt data with a key." alt="" coords="21,5,214,47"/>
-<area shape="rect" id="node3" href="$classdodo_1_1common_1_1DataCrypt.html#ac6dd5410c39cfe7f9aca1b955b70664c" title="Encrypt data with a key into a string (so the encrypted data will not contain a 0/zero)." alt="" coords="21,71,214,112"/>
-<area shape="rect" id="node4" href="$classdodo_1_1persist_1_1KVStore.html#a2acfb9b52ab9ec1f5ad05a6dd75c5e4e" title="Insert a (key, OctetArray) pair." alt="" coords="34,136,201,177"/>
-<area shape="rect" id="node5" href="$classdodo_1_1network_1_1TCPConnectionData.html#a6e52e4c29881c59aa2998da37ea58db0" title="Reads and appends data to read_buffer." alt="" coords="7,201,227,243"/>
-<area shape="rect" id="node6" href="$classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html#a0d9f3b91cbff6abe3cce77f3e9062653" title="Read a command from a frame." alt="" coords="5,267,229,308"/>
-<area shape="rect" id="node7" href="$classdodo_1_1persist_1_1KVStore.html#a828ee988ec6fe52ca7ec0128d7245d30" title="Set the binary data/OctetArray value of an existing key." alt="" coords="34,332,201,373"/>
-</map>

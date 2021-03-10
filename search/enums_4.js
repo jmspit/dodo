@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['framematch_1499',['FrameMatch',['../classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html#a0712237916b40baef0e9c91127ce1793',1,'dodo::network::protocol::stomp::Frame']]]
+  ['errorcode_1558',['ErrorCode',['../classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22',1,'dodo::common::SystemError']]]
 ];

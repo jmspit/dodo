@@ -1,12 +1,12 @@
 <map id="src/include/network/network.hpp" name="src/include/network/network.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="312,5,461,47"/>
-<area shape="rect" id="node2" href="$address_8hpp.html" title=" " alt="" coords="77,393,235,420"/>
-<area shape="rect" id="node3" href="$basesocket_8hpp.html" title=" " alt="" coords="66,319,246,345"/>
-<area shape="rect" id="node4" href="$stomp_8hpp.html" title=" " alt="" coords="93,95,299,121"/>
-<area shape="rect" id="node5" href="$socket_8hpp.html" title=" " alt="" coords="232,244,381,271"/>
-<area shape="rect" id="node6" href="$tcplistener_8hpp.html" title=" " alt="" coords="345,169,519,196"/>
-<area shape="rect" id="node7" href="$tcpserver_8hpp.html" title=" " alt="" coords="425,95,591,121"/>
-<area shape="rect" id="node8" href="$tlscontext_8hpp.html" title=" " alt="" coords="543,169,715,196"/>
-<area shape="rect" id="node9" href="$tlssocket_8hpp.html" title=" " alt="" coords="668,95,833,121"/>
-<area shape="rect" id="node10" href="$x509cert_8hpp.html" title=" " alt="" coords="791,169,955,196"/>
+<area shape="rect" id="node1" title=" " alt="" coords="300,5,449,47"/>
+<area shape="rect" id="node2" href="$address_8hpp.html" title=" " alt="" coords="54,393,213,420"/>
+<area shape="rect" id="node3" href="$basesocket_8hpp.html" title=" " alt="" coords="43,319,223,345"/>
+<area shape="rect" id="node4" href="$socket_8hpp.html" title=" " alt="" coords="187,244,336,271"/>
+<area shape="rect" id="node5" href="$x509cert_8hpp.html" title=" " alt="" coords="293,169,457,196"/>
+<area shape="rect" id="node6" href="$tcplistener_8hpp.html" title=" " alt="" coords="94,169,269,196"/>
+<area shape="rect" id="node7" href="$tcpserver_8hpp.html" title=" " alt="" coords="170,95,337,121"/>
+<area shape="rect" id="node8" href="$tlscontext_8hpp.html" title=" " alt="" coords="533,169,705,196"/>
+<area shape="rect" id="node9" href="$tlssocket_8hpp.html" title=" " alt="" coords="412,95,577,121"/>
+<area shape="rect" id="node10" href="$stomp_8hpp.html" title=" " alt="" coords="780,95,985,121"/>
 </map>

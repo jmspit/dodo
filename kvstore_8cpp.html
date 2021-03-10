@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>dodo: src/lib/persist/kvstore/kvstore.cpp File Reference</title>
+<title>dodo: src/lib/store/kvstore/kvstore.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -84,43 +84,63 @@ $(document).ready(function(){initNavTree('kvstore_8cpp.html',''); initResizable(
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle">
 <div class="title">kvstore.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="kvstore_8hpp_source.html">persist/kvstore/kvstore.hpp</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="exception_8hpp_source.html">common/exception.hpp</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="util_8hpp_source.html">common/util.hpp</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="kvstore_8hpp_source.html">store/kvstore/kvstore.hpp</a>&gt;</code><br />
+<code>#include &lt;store/kvstore/blockdefs/header.hpp&gt;</code><br />
+<code>#include &lt;sys/types.h&gt;</code><br />
+<code>#include &lt;sys/stat.h&gt;</code><br />
+<code>#include &lt;fcntl.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
-<code>#include &lt;climits&gt;</code><br />
+<code>#include &lt;sys/mman.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="util_8hpp_source.html">common/util.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="exception_8hpp_source.html">common/exception.hpp</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for kvstore.cpp:</div>
 <div class="dyncontent">
-<div class="center"><img src="kvstore_8cpp__incl.png" border="0" usemap="#src_2lib_2persist_2kvstore_2kvstore_8cpp" alt=""/></div>
-<map name="src_2lib_2persist_2kvstore_2kvstore_8cpp" id="src_2lib_2persist_2kvstore_2kvstore_8cpp">
-<area shape="rect" title=" " alt="" coords="413,5,576,47"/>
-<area shape="rect" href="kvstore_8hpp.html" title=" " alt="" coords="5,95,205,121"/>
-<area shape="rect" href="exception_8hpp.html" title=" " alt="" coords="230,95,405,121"/>
-<area shape="rect" href="util_8hpp.html" title=" " alt="" coords="429,95,561,121"/>
-<area shape="rect" title=" " alt="" coords="585,95,665,121"/>
-<area shape="rect" title=" " alt="" coords="689,95,756,121"/>
+<div class="center"><img src="kvstore_8cpp__incl.png" border="0" usemap="#src_2lib_2store_2kvstore_2kvstore_8cpp" alt=""/></div>
+<map name="src_2lib_2store_2kvstore_2kvstore_8cpp" id="src_2lib_2store_2kvstore_2kvstore_8cpp">
+<area shape="rect" title=" " alt="" coords="606,5,757,47"/>
+<area shape="rect" href="kvstore_8hpp.html" title=" " alt="" coords="5,102,195,129"/>
+<area shape="rect" title=" " alt="" coords="128,184,203,211"/>
+<area shape="rect" href="header_8hpp_source.html" title=" " alt="" coords="270,95,445,136"/>
+<area shape="rect" title=" " alt="" coords="469,102,565,129"/>
+<area shape="rect" title=" " alt="" coords="589,102,675,129"/>
+<area shape="rect" title=" " alt="" coords="699,102,762,129"/>
+<area shape="rect" title=" " alt="" coords="787,102,867,129"/>
+<area shape="rect" title=" " alt="" coords="891,102,994,129"/>
+<area shape="rect" href="util_8hpp.html" title=" " alt="" coords="1018,102,1150,129"/>
+<area shape="rect" href="exception_8hpp.html" title=" " alt="" coords="1174,102,1349,129"/>
 </map>
 </div>
 </div>
 <p><a href="kvstore_8cpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1store_1_1kvstore_1_1Tester.html">dodo::store::kvstore::Tester</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classdodo_1_1store_1_1kvstore_1_1Tester.html" title="Tester code convenience class.">Tester</a> code convenience class.  <a href="classdodo_1_1store_1_1kvstore_1_1Tester.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacedodo"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedodo.html">dodo</a></td></tr>
-<tr class="memdesc:namespacedodo"><td class="mdescLeft">&#160;</td><td class="mdescRight">A C++ platform interface to lean Linux services tailored for containerized deployment. <br /></td></tr>
+<tr class="memdesc:namespacedodo"><td class="mdescLeft">&#160;</td><td class="mdescRight">A C++ platform interface to lean linux services tailored for containerized deployment. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:namespacedodo_1_1persist"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedodo_1_1persist.html">dodo::persist</a></td></tr>
-<tr class="memdesc:namespacedodo_1_1persist"><td class="mdescLeft">&#160;</td><td class="mdescRight">Persistent storage structures. <br /></td></tr>
+<tr class="memitem:namespacedodo_1_1store"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedodo_1_1store.html">dodo::store</a></td></tr>
+<tr class="memdesc:namespacedodo_1_1store"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface to persistent storage. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacedodo_1_1store_1_1kvstore"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedodo_1_1store_1_1kvstore.html">dodo::store::kvstore</a></td></tr>
+<tr class="memdesc:namespacedodo_1_1store_1_1kvstore"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface to the key-value store. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Implements the dodo::persistent::KVStore class.. </p>
+<div class="textblock"><p>Implements the dodo::store::KVStore class. </p>
 
 <p class="definition">Definition in file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 </div></div><!-- contents -->
@@ -128,7 +148,7 @@ Namespaces</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_c85d3e3c5052e9ad9ce18c6863244a25.html">lib</a></li><li class="navelem"><a class="el" href="dir_6cfecc891320e8663df024ebefe083a7.html">persist</a></li><li class="navelem"><a class="el" href="dir_b8fe575777be11c87b543020eba1fdf8.html">kvstore</a></li><li class="navelem"><a class="el" href="kvstore_8cpp.html">kvstore.cpp</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_c85d3e3c5052e9ad9ce18c6863244a25.html">lib</a></li><li class="navelem"><a class="el" href="dir_5d23a14ca7ef94862dc0b425ca08172e.html">store</a></li><li class="navelem"><a class="el" href="dir_1f22e15c62b1c01408b366325d63a55f.html">kvstore</a></li><li class="navelem"><a class="el" href="kvstore_8cpp.html">kvstore.cpp</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

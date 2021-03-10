@@ -112,498 +112,497 @@ $(document).ready(function(){initNavTree('basesocket_8hpp_source.html',''); init
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#ifndef network_basesocket_hpp</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#define network_basesocket_hpp</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;fcntl.h&gt;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="exception_8hpp.html">common/exception.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="address_8hpp.html">network/address.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacedodo_1_1network.html">dodo::network</a> {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">   * Interface to and common implementation of concrete sockets (Socket, TLSSocket).</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classdodo_1_1network_1_1BaseSocket.html">   36</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classdodo_1_1network_1_1BaseSocket.html">BaseSocket</a> : <span class="keyword">public</span> <a class="code" href="classdodo_1_1common_1_1DebugObject.html">common::DebugObject</a> {</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">       * Default constructor creates an invalid socket.</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;      <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a62aad00e47526cb8585e8dd9b8480f8f">BaseSocket</a>();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">       * Construct from a socket descriptor.</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">       * @param socket The socket file descriptor.</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;      <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a62aad00e47526cb8585e8dd9b8480f8f">BaseSocket</a>( <span class="keywordtype">int</span> socket );</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">       * Construct from SocketParams.</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">       * @param blocking If true, create the socket in blocking mode.</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">       * @param params The SocketParams to use.</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;      <span class="keyword">explicit</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a62aad00e47526cb8585e8dd9b8480f8f">BaseSocket</a>( <span class="keywordtype">bool</span> blocking, <a class="code" href="classdodo_1_1network_1_1SocketParams.html">SocketParams</a> params );</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">       * Destructs this Socket, but does not call close().</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classdodo_1_1network_1_1BaseSocket.html#ada0c1f13af9e8f363d7cb66b4c372cb9">   60</a></span>&#160;      <span class="keyword">virtual</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#ada0c1f13af9e8f363d7cb66b4c372cb9">~BaseSocket</a>() {};</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">       * Return debug object state as a string.</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">       * @return The string.</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;      <span class="keyword">virtual</span> std::string <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#aae2d6a3aa6f8ed977c2ebee00843aafa">debugDetail</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">       * Connect to the address. These common::SystemError may be returned:</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">       *</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">       *   - SystemError::ecOK</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">       *   - SystemError::ecEACCES</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">       *   - SystemError::ecEADDRINUSE</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">       *   - SystemError::ecEADDRNOTAVAIL</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">       *   - SystemError::ecEALREADY</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">       *   - SystemError::ecECONNREFUSED</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">       *   - SystemError::ecEINPROGRESS</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">       *   - SystemError::ecEISCONN</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">       *   - SystemError::ecENETUNREACH</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">       *   - SystemError::ecETIMEDOUT</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">       *</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">       * In case the system returns other system errors on connect, a common::Exception is thrown.</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">       * @param address The address to connect to.</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">       * @return The SystemError</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;      <span class="keyword">virtual</span> <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#affb24aa81588362fb677024b8a046222">connect</a>( <span class="keyword">const</span> <a class="code" href="classdodo_1_1network_1_1Address.html">Address</a> &amp;address );</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">       * Closes the socket, causing the connection, if it exists, to be terminated.</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">       * @return nothing</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;      <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a996a679e03babae5d0757a5839afb8e9">close</a>();</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">       * Send bytes on the socket.</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">       * @param buf Take bytes from here</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">       * @param len The number of bytes.</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">       * @param more Set to true if more is to come (increases packet filling efficiency when accurate).</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">       * @return The SystemError.</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;      <span class="keyword">virtual</span> <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a2c6fb3c1d732bc5a861716eed68f1cd0">send</a>( <span class="keyword">const</span> <span class="keywordtype">void</span>* buf, ssize_t len, <span class="keywordtype">bool</span> more = <span class="keyword">false</span> ) = 0;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">       * Receive bytes from the socket.</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">       * @param buf Put bytes received here</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">       * @param request The maximum number of bytes to receive</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">       * @param received The number of bytes received</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">       * @return The SystemError.</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;      <span class="keyword">virtual</span> <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#aad3cf233ec9e63b83f9a96135166b725">receive</a>( <span class="keywordtype">void</span>* buf, ssize_t request, ssize_t &amp;received ) = 0;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">       * Rerurn true if the socket is operating in blocking mode.</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment">       * @return The mode.</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;      <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a3254f7ede2297ecbaad8234eb8048de4">getBlocking</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment">       * Return the socket file descriptor.</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment">       * @return The socket descriptor.</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="classdodo_1_1network_1_1BaseSocket.html#ab5864bc9317e07e2957ee5d2ebf13f24">  122</a></span>&#160;      <span class="keywordtype">int</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#ab5864bc9317e07e2957ee5d2ebf13f24">getFD</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a70ca42d94fd90607ff3ae9e6b5e03be1">socket_</a>; };</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment">       * Return true when the socket descriptor is a valid, hence &#39;possible&#39; descriptor.</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">       * A valid decsriptor does not have to be open/connected or even correct - a valid decsriptor is not -1.</span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment">       * @return true of the socket is a valid descriptor ( &gt;= 0 );</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="classdodo_1_1network_1_1BaseSocket.html#a19be8d7c4017219bc9b7d17f66825f27">  129</a></span>&#160;      <span class="keywordtype">bool</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a19be8d7c4017219bc9b7d17f66825f27">isValid</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a70ca42d94fd90607ff3ae9e6b5e03be1">socket_</a> &gt;= 0; };</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="comment">       * Set the Socket blocking mode.</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="comment">       * @param blocking Blocking if true.</span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#af62964a8a5da647a11e190e75bcbcf68">setBlocking</a>( <span class="keywordtype">bool</span> blocking );</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="comment">       * Set TCP_NODELAY. If true, disable Nagle&#39;s algorithm.</span></div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="comment">       * @param set If true, set TCP_NODELAY.</span></div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a5a777035395a02648f3fc975a574691b">setTCPNoDelay</a>( <span class="keywordtype">bool</span> set );</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="comment">       * Enable the socket to re-use an address when listen/bind is called.</span></div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="comment">       * In transit TCP messages sent to a server previously listening on this address</span></div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment">       * will not be picked up by the re-used address.</span></div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="comment">       * @see setReUsePort()</span></div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#af8a089b16d52457a1c70b6e07fdd5d96">setReUseAddress</a>();</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment">       * Make the socket re-use a port when listen is called.</span></div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="comment">       * @see setReUseAddress()</span></div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a689917db64fdae11c1754c5b5e66d91f">setReUsePort</a>();</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="comment">       * Get the maximum buffer length for send.</span></div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="comment">       * @return The send buffer size.</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="comment">       * @see setSendBufSize</span></div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;      socklen_t <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a28c9456798a203e9ac5909c073933448">getSendBufSize</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="comment">       * Get the maximum buffer length for receive.</span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="comment">       * @return The receive buffer size.</span></div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="comment">       * @see setReceiveBufSize()</span></div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;      <span class="keyword">virtual</span> socklen_t <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a075c2ed960e446c8dd7e1d2e79398ba6">getReceiveBufSize</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="comment">       * Get the Socket TTL (time to live) or the max number of packet hops.</span></div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="comment">       * @return The current socket TTL value.</span></div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;      <span class="keywordtype">int</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a6041a9310318204b2fdac10491b70c43">getTTL</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="comment">       * Set the size of the send buffer. Linux will (at least) double the memory for socket accounting purposes.</span></div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="comment">       * If size &lt; system minimum size or size &gt; system maximum size, the system will silently overrule.</span></div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="comment">       * Also note that getSendBufSize() and getReceiveBufSize() return the size of the kernel send buffer divided by</span></div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="comment">       * two, as the Linux man 7 socket states:</span></div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="comment">       * &quot;...Linux assumes that half of the send/receive buffer is used for internal kernel structures;&quot;</span></div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="comment">       * So getSendBufSize() and getReceiveBufSize() return the values from a programmer perspective - it is the number</span></div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="comment">       * of bytes the programmer can actually send or receive in one go</span></div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="comment">       * @code</span></div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="comment">       * Socket s;</span></div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="comment">       * s.setSendBufSize(8192);          // kernel has set it to 16384</span></div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="comment">       * int n = s.getSendBufSize();      // n = 8192</span></div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="comment">       * char buffer[s.getSendBufSize()]; // which is what you asked for and will fit</span></div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="comment">       * @endcode</span></div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="comment">       * @param size The size to set the send buffer to.</span></div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a2a4f9cfbfe21e2e38c1f18c04e3a5933">setSendBufSize</a>( socklen_t size );</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment">       * Set the Socket TTL (Time to Live).</span></div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment">       * @param ttl The ttl value to set.</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="comment">       * @see getTTL()</span></div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a3fe2a1a94de9f074dc97b5a652768e8f">setTTL</a>( <span class="keywordtype">int</span> ttl );</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="comment">       * Set the size of the receive buffer. Linux will (at least) double the memory for socket accounting purposes.</span></div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="comment">       * If size &lt; system minimum size, the system will set the latter.</span></div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="comment">       * @see setSendBufSize( socklen_t size )</span></div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="comment">       * @param size The size to set the receive buffer to.</span></div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a64714e73ea1e1ffa2155559a0afb7274">setReceiveBufSize</a>( socklen_t size );</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="comment">       * Set the receive timeout - a receive will fail if there is no data received before the timeout expires.</span></div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="comment">       * Note that the default is 0 seconds, meaning no timeout / wait forever.</span></div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;<span class="comment">       * @param sec Timeout value, in seconds, fractions allowed.</span></div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a3f761310b6c9f4b4b17d1bd5ea3c95ad">setReceiveTimeout</a>( <span class="keywordtype">double</span> sec );</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="comment">       * Set the send timeout - a send will fail if there is no data send before the timeout expires.</span></div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="comment">       * Note that the default is 0 seconds, meaning no timeout / wait forever.</span></div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;<span class="comment">       * @param sec Timeout value, in seconds, fractions allowed.</span></div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a04fe41d24898826e28a3cd0cf1e2ffb2">setSendTimeout</a>( <span class="keywordtype">double</span> sec );</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<span class="comment">       * Enable or disable TCP keep-alive on the socket. This might be useful to keep connections ope that run</span></div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;<span class="comment">       * through a firewall that disconnects connections that are idle. Note that keep-alive itself is configured</span></div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;<span class="comment">       * through the Linux kernel. Note that enabling keep-alive will not change the behavior of the socket</span></div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="comment">       * from a developers perspective but ti does incur a bit of network overhead.</span></div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="comment">       * @param enable If true enable, otherwise disable.</span></div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a4c515b24174b80501352a212c8e2a311">setTCPKeepAlive</a>( <span class="keywordtype">bool</span> enable );</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="comment">       * Get the local address for this socket.</span></div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="comment">       * @return The local Address.</span></div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;      <a class="code" href="classdodo_1_1network_1_1Address.html">Address</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a49a4511e1706e67c4bfd13af6ee61300">getAddress</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<span class="comment">       * Get the SocketParams::AddressFamily of the socket.</span></div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;<span class="comment">       * @return The address family.</span></div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;      <a class="code" href="classdodo_1_1network_1_1SocketParams.html#ab8adc702b32a0ddedb7c2c7fa2da1d77">SocketParams::AddressFamily</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a6d1cc805b846a905743bd515ab74f48e">getAddressFamily</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;<span class="comment">       * Get the SocketParams::SocketType of the socket.</span></div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<span class="comment">       * @return The SocketType.</span></div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;      <a class="code" href="classdodo_1_1network_1_1SocketParams.html#af5e1bc4df22cd6c8c15ab6e98775e746">SocketParams::SocketType</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#aa1e1c0ca02f099118b6f8a1ce4976128">getSocketType</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="comment">       * Get the SocketParams::ProtocolNumber of the socket.</span></div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="comment">       * @return The ProtocolNumber.</span></div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;      <a class="code" href="classdodo_1_1network_1_1SocketParams.html#a941cc7578246143530f8a373359fca8f">SocketParams::ProtocolNumber</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#acc6b937fefd5a0b5859043c3a6abc623">getProtocolNumber</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="comment">       * Return the SocketParams.</span></div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="comment">       * @see getAddressFamily(), getSocketType(), getProtocolNumber()</span></div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="comment">       * @return the SocketParams.</span></div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;      <a class="code" href="classdodo_1_1network_1_1SocketParams.html">SocketParams</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a7c3da36628c79de4d048c27796f95acb">getSocketParams</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="comment">       * Get the peer (remote) address for this socket.</span></div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;<span class="comment">       * @return The peer Address.</span></div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;      <a class="code" href="classdodo_1_1network_1_1Address.html">Address</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a9c2508f9fd34604542c7c53e9c64e58d">getPeerAddress</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;<span class="comment">       * Add identity</span></div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="comment">       * @param socket The socket to compare to.</span></div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="comment">       * @return True if both sockets are equal and have the sxame value of socket_.</span></div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00275"></a><span class="lineno"><a class="line" href="classdodo_1_1network_1_1BaseSocket.html#a8b185fafeee8130429d49ee7c2ad8e08">  275</a></span>&#160;      <span class="keywordtype">bool</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a8b185fafeee8130429d49ee7c2ad8e08">operator==</a>(<span class="keyword">const</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html">BaseSocket</a>&amp; socket )<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a70ca42d94fd90607ff3ae9e6b5e03be1">socket_</a> == socket.<a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a70ca42d94fd90607ff3ae9e6b5e03be1">socket_</a>; };</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;<span class="comment">       * Add ordering</span></div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;<span class="comment">       * @param socket The socket to compare to.</span></div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<span class="comment">       * @return True if this Socket has a smaller socket descriptor than socket.</span></div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00282"></a><span class="lineno"><a class="line" href="classdodo_1_1network_1_1BaseSocket.html#a38d384be705d438bab5304e90cbfbcd3">  282</a></span>&#160;      <span class="keywordtype">bool</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a38d384be705d438bab5304e90cbfbcd3">operator&lt;</a>(<span class="keyword">const</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html">BaseSocket</a>&amp; socket )<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a70ca42d94fd90607ff3ae9e6b5e03be1">socket_</a> &lt; socket.<a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a70ca42d94fd90607ff3ae9e6b5e03be1">socket_</a>; };</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;<span class="comment">       * Assign from existing socket descriptor (int).</span></div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;<span class="comment">       * @param socket The socket value to assign to this Socket.</span></div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;<span class="comment">       * @return This Socket.</span></div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;      <a class="code" href="classdodo_1_1network_1_1BaseSocket.html">BaseSocket</a>&amp; <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#ad4cc3452e3e7fe1aa8a0c2bb3ccfb16a">operator=</a>( <span class="keywordtype">int</span> socket );</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;<span class="comment">       * Assign from Socket.</span></div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;<span class="comment">       * @param socket The Socket to assign/copy to this Socket.</span></div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;<span class="comment">       * @return This Socket.</span></div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;      <a class="code" href="classdodo_1_1network_1_1BaseSocket.html">BaseSocket</a>&amp; <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#ad4cc3452e3e7fe1aa8a0c2bb3ccfb16a">operator=</a>( <span class="keyword">const</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html">BaseSocket</a>&amp; socket );</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;<span class="comment">       * Sets up a listening socket on Address.</span></div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;<span class="comment">       * @param address The Address (including a port) to listen on.</span></div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;<span class="comment">       * @param backlog The size of the queue used to cache pending connections.</span></div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;<span class="comment">       * @return A common::SystemError, if not ecOK</span></div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;<span class="comment">       *   - common::SystemError::ecEADDRINUSE</span></div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;<span class="comment">       *   - common::SystemError::ecEBADF</span></div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;<span class="comment">       *   - common::SystemError::ecENOTSOCK</span></div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;<span class="comment">       *   - common::SystemError::ecEOPNOTSUPP</span></div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;<span class="comment">       *</span></div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;<span class="comment">       * or one of the common::SystemError returned by bind( const Address &amp;address ).</span></div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a4a41dd44e87862d9730783b1c8a221ba">listen</a>( <span class="keyword">const</span> <a class="code" href="classdodo_1_1network_1_1Address.html">Address</a> &amp;address, <span class="keywordtype">int</span> backlog );</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;<span class="comment">       * Bind the socket to the Address.</span></div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;<span class="comment">       * @param address The address to bind to.</span></div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;<span class="comment">       * @return SystemError::ecOK or</span></div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;<span class="comment">       *   - SystemError::ecEACCES</span></div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;<span class="comment">       *   - SystemError::ecEADDRINUSE</span></div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;<span class="comment">       *   - SystemError::ecEBADF</span></div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;<span class="comment">       *   - SystemError::ecEINVAL</span></div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;<span class="comment">       *   - SystemError::ecENOTSOCK</span></div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#af72f5b968278b7390dc5ee57c3afb2d0">bind</a>( <span class="keyword">const</span> <a class="code" href="classdodo_1_1network_1_1Address.html">Address</a> &amp;address );</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;<span class="comment">       * Accepts a connection request and return a pointer to a new Socket for the new connection, the caller will</span></div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;<span class="comment">       * own the new Socket object.</span></div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;<span class="comment">       * @return The accepted socket.</span></div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;      <span class="keyword">virtual</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html">BaseSocket</a>* <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#acf3ee5321588185efb19723f84a4727c">accept</a>() = 0;</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;<span class="comment">       * Send an uint8_t.</span></div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;<span class="comment">       * @param value The value to send.</span></div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;<span class="comment">       * @param more If true, the caller indicates that more data will follow.</span></div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;<span class="comment">       * @return Same as send( const void* buf, ssize_t len )</span></div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;<span class="comment">       * @see receiveUInt8( uint8_t&amp; )</span></div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a9118300b9b8debd0fd52f2edd8855d79">sendUInt8</a>( uint8_t value, <span class="keywordtype">bool</span> more = <span class="keyword">false</span> );</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;<span class="comment">       * receive an uint8_t</span></div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;<span class="comment">       * @param value The value received.</span></div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;<span class="comment">       * @return Same as receive( void* buf, ssize_t request, ssize_t &amp;received )</span></div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;<span class="comment">       * @see sendUInt8( uint8_t )</span></div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#aab0b27a145ead185f2f24066b616cd07">receiveUInt8</a>( uint8_t &amp;value );</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;<span class="comment">       * Send an uint16_t.</span></div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;<span class="comment">       * @param value The value to send.</span></div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;<span class="comment">       * @param more If true, the caller indicates that more data will follow.</span></div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;<span class="comment">       * @return Same as send( const void* buf, ssize_t len )</span></div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;<span class="comment">       * @see receiveUInt16( uint16_t&amp; )</span></div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#ac989671d9a85b8ab09903b2d8246c819">sendUInt16</a>( uint16_t value, <span class="keywordtype">bool</span> more = <span class="keyword">false</span> );</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;<span class="comment">       * receive an uint16_t</span></div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;<span class="comment">       * @param value The value received.</span></div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<span class="comment">       * @return Same as receive( void* buf, ssize_t request, ssize_t &amp;received )</span></div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;<span class="comment">       * @see sendUInt16( uint16_t )</span></div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#ae680daa723e9092ab817d6480280c594">receiveUInt16</a>( uint16_t &amp;value );</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;<span class="comment">       * Send an uint32_t.</span></div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;<span class="comment">       * @param value The value to send.</span></div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;<span class="comment">       * @param more If true, the caller indicates that more data will follow.</span></div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;<span class="comment">       * @return Same as send( const void* buf, ssize_t len )</span></div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;<span class="comment">       * @see receiveUInt32( uint32_t&amp; )</span></div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a51af29b686f3eddecd0428bceb053f67">sendUInt32</a>( uint32_t value, <span class="keywordtype">bool</span> more = <span class="keyword">false</span> );</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;<span class="comment">       * receive an uint32_t</span></div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;<span class="comment">       * @param value The value received.</span></div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;<span class="comment">       * @return Same as receive( void* buf, ssize_t request, ssize_t &amp;received )</span></div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;<span class="comment">       * @see sendUInt32( uint32_t )</span></div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a50cde626367efe4a404163904f4c09d1">receiveUInt32</a>( uint32_t &amp;value );</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;<span class="comment">       * Send an sendUInt64.</span></div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;<span class="comment">       * @param value The value to send.</span></div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;<span class="comment">       * @param more If true, the caller indicates that more data will follow.</span></div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;<span class="comment">       * @return Same as send( const void* buf, ssize_t len )</span></div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;<span class="comment">       * @see receiveUInt64( uint64_t&amp; )</span></div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a95e1f342b4b89feadebf6d8c376043ec">sendUInt64</a>( uint64_t value, <span class="keywordtype">bool</span> more = <span class="keyword">false</span> );</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;<span class="comment">       * receive an uint64_t</span></div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;<span class="comment">       * @param value The value received.</span></div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;<span class="comment">       * @return Same as receive( void* buf, ssize_t request, ssize_t &amp;received )</span></div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;<span class="comment">       * @see sendUInt64( uint64_t )*</span></div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#acdbbba0a78559c47d26a5b29c5b9bb3c">receiveUInt64</a>( uint64_t &amp;value );</div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;<span class="comment">       * Send an int8_t.</span></div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;<span class="comment">       * @param value The value to send.</span></div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;<span class="comment">       * @param more If true, the caller indicates that more data will follow.</span></div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;<span class="comment">       * @return Same as send( const void* buf, ssize_t len )</span></div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;<span class="comment">       * @see receiveInt8( int8_t&amp; )</span></div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#ace6374e560c9b0cdd2d9519d3044d08e">sendInt8</a>( int8_t value, <span class="keywordtype">bool</span> more = <span class="keyword">false</span> );</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;<span class="comment">       * receive an int8_t</span></div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;<span class="comment">       * @param value The value received.</span></div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;<span class="comment">       * @return Same as receive( void* buf, ssize_t request, ssize_t &amp;received )</span></div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;<span class="comment">       * @see sendInt8( int8_t )*</span></div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#acd0cbf582dfa8ad2bd415accf6621bdf">receiveInt8</a>( int8_t &amp;value );</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;<span class="comment">       * Send an int16_t.</span></div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;<span class="comment">       * @param value The value to send.</span></div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;<span class="comment">       * @param more If true, the caller indicates that more data will follow.</span></div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;<span class="comment">       * @return Same as send( const void* buf, ssize_t len )</span></div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;<span class="comment">       * @see receiveInt16( int16_t&amp; )</span></div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a6ec7901d58e938eace9f50938d8902c7">sendInt16</a>( int16_t value, <span class="keywordtype">bool</span> more = <span class="keyword">false</span> );</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;<span class="comment">       * receive an int16_t</span></div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;<span class="comment">       * @param value The value received.</span></div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;<span class="comment">       * @return Same as receive( void* buf, ssize_t request, ssize_t &amp;received )</span></div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;<span class="comment">       * @see sendInt16( int16_t )*</span></div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a26e51239f996065f0f7c2cb50478ca3a">receiveInt16</a>( int16_t &amp;value );</div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;<span class="comment">       * Send an int32_t.</span></div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;<span class="comment">       * @param value The value to send.</span></div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;<span class="comment">       * @param more If true, the caller indicates that more data will follow.</span></div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;<span class="comment">       * @return Same as send( const void* buf, ssize_t len )</span></div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;<span class="comment">       * @see receiveInt32( int32_t&amp; )</span></div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a5d2d80bbe74b3969e661f9000c2bfa1b">sendInt32</a>( int32_t value, <span class="keywordtype">bool</span> more = <span class="keyword">false</span> );</div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;<span class="comment">       * receive an int32_t</span></div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;<span class="comment">       * @param value The value received.</span></div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;<span class="comment">       * @return Same as receive( void* buf, ssize_t request, ssize_t &amp;received )</span></div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;<span class="comment">       * @see sendInt32( int32_t )*</span></div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a3b9cc121efe005a5fcb58868511e3cde">receiveInt32</a>( int32_t &amp;value );</div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;<span class="comment">       * Send an int64_t.</span></div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;<span class="comment">       * @param value The value to send.</span></div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;<span class="comment">       * @param more If true, the caller indicates that more data will follow.</span></div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;<span class="comment">       * @return Same as send( const void* buf, ssize_t len )</span></div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;<span class="comment">       * @see receiveInt64( int64_t&amp; )</span></div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a55887f95122959877e92df9e2179057c">sendInt64</a>( int64_t value, <span class="keywordtype">bool</span> more = <span class="keyword">false</span> );</div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;<span class="comment">       * receive an int64_t</span></div>
-<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;<span class="comment">       * @param value The value received.</span></div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;<span class="comment">       * @return Same as receive( void* buf, ssize_t request, ssize_t &amp;received )</span></div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;<span class="comment">       * @see sendInt64( int64_t )*</span></div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a55730f7003a6916cc155138f0f1ec0bd">receiveInt64</a>( int64_t &amp;value );</div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;<span class="comment">       * Sends the std::string as understood by receiveString(). The send prefixes the string length in an uint64_t,</span></div>
-<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;<span class="comment">       * the number of bytes (characters) that follow.</span></div>
-<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;<span class="comment">       * @param s The string to send.</span></div>
-<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;<span class="comment">       * @param more If true, the caller indicates that more data will follow.</span></div>
-<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;<span class="comment">       * @return Same as send( const void* buf, ssize_t len )</span></div>
-<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a42390d41ef7b234543c5c50bb4b9cf1b">sendString</a>( <span class="keyword">const</span> std::string &amp;s, <span class="keywordtype">bool</span> more = <span class="keyword">false</span> );</div>
-<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;<span class="comment">       * Receive a std::string as sent by sendString( const std::string&amp; ).</span></div>
-<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;<span class="comment">       * @param s The string to receive into.</span></div>
-<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;<span class="comment">       * @return Same as receive( void* buf, ssize_t request, ssize_t &amp;received )</span></div>
-<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a1ee6afb5cb22c067b7725029c477ed4b">receiveString</a>( <span class="keywordtype">string</span> &amp;s );</div>
-<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;<span class="comment">       * Sends the std::string terminated by a &#39;\n&#39;.</span></div>
-<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;<span class="comment">       * @param s The string to send.</span></div>
-<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;<span class="comment">       * @param more If true, the caller indicates that more data will follow.</span></div>
-<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;<span class="comment">       * @return Same as send( const void* buf, ssize_t len )</span></div>
-<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a569075f8655cda3802ab4d81c0dec042">sendLine</a>( <span class="keyword">const</span> std::string &amp;s, <span class="keywordtype">bool</span> more );</div>
-<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;<span class="comment">       * receive a stream of characters until a &#39;\n&#39; is read (consumed from the socket read buffer but not</span></div>
-<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;<span class="comment">       * added to s).</span></div>
-<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;<span class="comment">       * @param s receives the read string.</span></div>
-<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;<span class="comment">       * @return The SystemError.</span></div>
-<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a9e1cc1168e026b93af72835eca3997df">receiveLine</a>( <span class="keywordtype">string</span> &amp;s );</div>
-<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160; </div>
-<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;    <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;<span class="comment">       * The socket file decsriptor.</span></div>
-<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00504"></a><span class="lineno"><a class="line" href="classdodo_1_1network_1_1BaseSocket.html#a70ca42d94fd90607ff3ae9e6b5e03be1">  504</a></span>&#160;      <span class="keywordtype">int</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a70ca42d94fd90607ff3ae9e6b5e03be1">socket_</a>;</div>
-<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160; </div>
-<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;  };</div>
-<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160; </div>
-<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;}</div>
-<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160; </div>
-<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="exception_8hpp.html">common/exception.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;fcntl.h&gt;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="address_8hpp.html">network/address.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacedodo_1_1network.html">dodo::network</a> {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">  /**</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">   * Interface to and common implementation of concrete sockets (Socket, TLSSocket).</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classdodo_1_1network_1_1BaseSocket.html">   35</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classdodo_1_1network_1_1BaseSocket.html">BaseSocket</a> : <span class="keyword">public</span> <a class="code" href="classdodo_1_1common_1_1DebugObject.html">common::DebugObject</a> {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">       * Default constructor creates an invalid socket.</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;      <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a62aad00e47526cb8585e8dd9b8480f8f">BaseSocket</a>();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">       * Construct from a socket descriptor.</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">       * @param socket The socket file descriptor.</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;      <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a62aad00e47526cb8585e8dd9b8480f8f">BaseSocket</a>( <span class="keywordtype">int</span> socket );</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">       * Construct from SocketParams.</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">       * @param blocking If true, create the socket in blocking mode.</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">       * @param params The SocketParams to use.</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;      <span class="keyword">explicit</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a62aad00e47526cb8585e8dd9b8480f8f">BaseSocket</a>( <span class="keywordtype">bool</span> blocking, <a class="code" href="classdodo_1_1network_1_1SocketParams.html">SocketParams</a> params );</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">       * Destructs this Socket, but does not call close().</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classdodo_1_1network_1_1BaseSocket.html#ada0c1f13af9e8f363d7cb66b4c372cb9">   59</a></span>&#160;      <span class="keyword">virtual</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#ada0c1f13af9e8f363d7cb66b4c372cb9">~BaseSocket</a>() {};</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">       * Return debug object state as a string.</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">       * @return The string.</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;      <span class="keyword">virtual</span> std::string <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#aae2d6a3aa6f8ed977c2ebee00843aafa">debugDetail</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">       * Connect to the address. These common::SystemError may be returned:</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">       *</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">       *   - SystemError::ecOK</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">       *   - SystemError::ecEACCES</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">       *   - SystemError::ecEADDRINUSE</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">       *   - SystemError::ecEADDRNOTAVAIL</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">       *   - SystemError::ecEALREADY</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">       *   - SystemError::ecECONNREFUSED</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">       *   - SystemError::ecEINPROGRESS</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">       *   - SystemError::ecEISCONN</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">       *   - SystemError::ecENETUNREACH</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">       *   - SystemError::ecETIMEDOUT</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">       *</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">       * In case the system returns other system errors on connect, a common::Exception is thrown.</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">       * @param address The address to connect to.</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">       * @return The SystemError</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;      <span class="keyword">virtual</span> <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#affb24aa81588362fb677024b8a046222">connect</a>( <span class="keyword">const</span> <a class="code" href="classdodo_1_1network_1_1Address.html">Address</a> &amp;address );</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">       * Closes the socket, causing the connection, if it exists, to be terminated.</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">       * @return nothing</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;      <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a996a679e03babae5d0757a5839afb8e9">close</a>();</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">       * Send bytes on the socket.</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">       * @param buf Take bytes from here</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">       * @param len The number of bytes.</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">       * @param more Set to true if more is to come (increases packet filling efficiency when accurate).</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">       * @return The SystemError.</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;      <span class="keyword">virtual</span> <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a2c6fb3c1d732bc5a861716eed68f1cd0">send</a>( <span class="keyword">const</span> <span class="keywordtype">void</span>* buf, ssize_t len, <span class="keywordtype">bool</span> more = <span class="keyword">false</span> ) = 0;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">       * Receive bytes from the socket.</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">       * @param buf Put bytes received here</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">       * @param request The maximum number of bytes to receive</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">       * @param received The number of bytes received</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">       * @return The SystemError.</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;      <span class="keyword">virtual</span> <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#aad3cf233ec9e63b83f9a96135166b725">receive</a>( <span class="keywordtype">void</span>* buf, ssize_t request, ssize_t &amp;received ) = 0;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">       * Rerurn true if the socket is operating in blocking mode.</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">       * @return The mode.</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;      <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a3254f7ede2297ecbaad8234eb8048de4">getBlocking</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment">       * Return the socket file descriptor.</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment">       * @return The socket descriptor.</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="classdodo_1_1network_1_1BaseSocket.html#ab5864bc9317e07e2957ee5d2ebf13f24">  121</a></span>&#160;      <span class="keywordtype">int</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#ab5864bc9317e07e2957ee5d2ebf13f24">getFD</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a70ca42d94fd90607ff3ae9e6b5e03be1">socket_</a>; };</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment">       * Return true when the socket descriptor is a valid, hence &#39;possible&#39; descriptor.</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment">       * A valid decsriptor does not have to be open/connected or even correct - a valid decsriptor is not -1.</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">       * @return true of the socket is a valid descriptor ( &gt;= 0 );</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="classdodo_1_1network_1_1BaseSocket.html#a19be8d7c4017219bc9b7d17f66825f27">  128</a></span>&#160;      <span class="keywordtype">bool</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a19be8d7c4017219bc9b7d17f66825f27">isValid</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a70ca42d94fd90607ff3ae9e6b5e03be1">socket_</a> &gt;= 0; };</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment">       * Set the Socket blocking mode.</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="comment">       * @param blocking Blocking if true.</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#af62964a8a5da647a11e190e75bcbcf68">setBlocking</a>( <span class="keywordtype">bool</span> blocking );</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="comment">       * Set TCP_NODELAY. If true, disable Nagle&#39;s algorithm.</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="comment">       * @param set If true, set TCP_NODELAY.</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a5a777035395a02648f3fc975a574691b">setTCPNoDelay</a>( <span class="keywordtype">bool</span> set );</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="comment">       * Enable the socket to re-use an address when listen/bind is called.</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="comment">       * In transit TCP messages sent to a server previously listening on this address</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="comment">       * will not be picked up by the re-used address.</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment">       * @see setReUsePort()</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#af8a089b16d52457a1c70b6e07fdd5d96">setReUseAddress</a>();</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="comment">       * Make the socket re-use a port when listen is called.</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment">       * @see setReUseAddress()</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a689917db64fdae11c1754c5b5e66d91f">setReUsePort</a>();</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="comment">       * Get the maximum buffer length for send.</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="comment">       * @return The send buffer size.</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="comment">       * @see setSendBufSize</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;      socklen_t <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a28c9456798a203e9ac5909c073933448">getSendBufSize</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="comment">       * Get the maximum buffer length for receive.</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="comment">       * @return The receive buffer size.</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="comment">       * @see setReceiveBufSize()</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;      <span class="keyword">virtual</span> socklen_t <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a075c2ed960e446c8dd7e1d2e79398ba6">getReceiveBufSize</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="comment">       * Get the Socket TTL (time to live) or the max number of packet hops.</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="comment">       * @return The current socket TTL value.</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;      <span class="keywordtype">int</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a6041a9310318204b2fdac10491b70c43">getTTL</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment">       * Set the size of the send buffer. Linux will (at least) double the memory for socket accounting purposes.</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="comment">       * If size &lt; system minimum size or size &gt; system maximum size, the system will silently overrule.</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="comment">       * Also note that getSendBufSize() and getReceiveBufSize() return the size of the kernel send buffer divided by</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="comment">       * two, as the Linux man 7 socket states:</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="comment">       * &quot;...Linux assumes that half of the send/receive buffer is used for internal kernel structures;&quot;</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="comment">       * So getSendBufSize() and getReceiveBufSize() return the values from a programmer perspective - it is the number</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="comment">       * of bytes the programmer can actually send or receive in one go</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="comment">       * @code</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="comment">       * Socket s;</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="comment">       * s.setSendBufSize(8192);          // kernel has set it to 16384</span></div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="comment">       * int n = s.getSendBufSize();      // n = 8192</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="comment">       * char buffer[s.getSendBufSize()]; // which is what you asked for and will fit</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="comment">       * @endcode</span></div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="comment">       * @param size The size to set the send buffer to.</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a2a4f9cfbfe21e2e38c1f18c04e3a5933">setSendBufSize</a>( socklen_t size );</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="comment">       * Set the Socket TTL (Time to Live).</span></div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment">       * @param ttl The ttl value to set.</span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment">       * @see getTTL()</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a3fe2a1a94de9f074dc97b5a652768e8f">setTTL</a>( <span class="keywordtype">int</span> ttl );</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="comment">       * Set the size of the receive buffer. Linux will (at least) double the memory for socket accounting purposes.</span></div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="comment">       * If size &lt; system minimum size, the system will set the latter.</span></div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="comment">       * @see setSendBufSize( socklen_t size )</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="comment">       * @param size The size to set the receive buffer to.</span></div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a64714e73ea1e1ffa2155559a0afb7274">setReceiveBufSize</a>( socklen_t size );</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="comment">       * Set the receive timeout - a receive will fail if there is no data received before the timeout expires.</span></div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="comment">       * Note that the default is 0 seconds, meaning no timeout / wait forever.</span></div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="comment">       * @param sec Timeout value, in seconds, fractions allowed.</span></div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a3f761310b6c9f4b4b17d1bd5ea3c95ad">setReceiveTimeout</a>( <span class="keywordtype">double</span> sec );</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<span class="comment">       * Set the send timeout - a send will fail if there is no data send before the timeout expires.</span></div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="comment">       * Note that the default is 0 seconds, meaning no timeout / wait forever.</span></div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="comment">       * @param sec Timeout value, in seconds, fractions allowed.</span></div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a04fe41d24898826e28a3cd0cf1e2ffb2">setSendTimeout</a>( <span class="keywordtype">double</span> sec );</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<span class="comment">       * Enable or disable TCP keep-alive on the socket. This might be useful to keep connections ope that run</span></div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<span class="comment">       * through a firewall that disconnects connections that are idle. Note that keep-alive itself is configured</span></div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;<span class="comment">       * through the Linux kernel. Note that enabling keep-alive will not change the behavior of the socket</span></div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;<span class="comment">       * from a developers perspective but ti does incur a bit of network overhead.</span></div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="comment">       * @param enable If true enable, otherwise disable.</span></div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a4c515b24174b80501352a212c8e2a311">setTCPKeepAlive</a>( <span class="keywordtype">bool</span> enable );</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="comment">       * Get the local address for this socket.</span></div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="comment">       * @return The local Address.</span></div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;      <a class="code" href="classdodo_1_1network_1_1Address.html">Address</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a49a4511e1706e67c4bfd13af6ee61300">getAddress</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="comment">       * Get the SocketParams::AddressFamily of the socket.</span></div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<span class="comment">       * @return The address family.</span></div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;      <a class="code" href="classdodo_1_1network_1_1SocketParams.html#ab8adc702b32a0ddedb7c2c7fa2da1d77">SocketParams::AddressFamily</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a6d1cc805b846a905743bd515ab74f48e">getAddressFamily</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;<span class="comment">       * Get the SocketParams::SocketType of the socket.</span></div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;<span class="comment">       * @return The SocketType.</span></div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;      <a class="code" href="classdodo_1_1network_1_1SocketParams.html#af5e1bc4df22cd6c8c15ab6e98775e746">SocketParams::SocketType</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#aa1e1c0ca02f099118b6f8a1ce4976128">getSocketType</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="comment">       * Get the SocketParams::ProtocolNumber of the socket.</span></div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="comment">       * @return The ProtocolNumber.</span></div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;      <a class="code" href="classdodo_1_1network_1_1SocketParams.html#a941cc7578246143530f8a373359fca8f">SocketParams::ProtocolNumber</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#acc6b937fefd5a0b5859043c3a6abc623">getProtocolNumber</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="comment">       * Return the SocketParams.</span></div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="comment">       * @see getAddressFamily(), getSocketType(), getProtocolNumber()</span></div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="comment">       * @return the SocketParams.</span></div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;      <a class="code" href="classdodo_1_1network_1_1SocketParams.html">SocketParams</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a7c3da36628c79de4d048c27796f95acb">getSocketParams</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="comment">       * Get the peer (remote) address for this socket.</span></div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="comment">       * @return The peer Address.</span></div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;      <a class="code" href="classdodo_1_1network_1_1Address.html">Address</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a9c2508f9fd34604542c7c53e9c64e58d">getPeerAddress</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;<span class="comment">       * Add identity</span></div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;<span class="comment">       * @param socket The socket to compare to.</span></div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="comment">       * @return True if both sockets are equal and have the sxame value of socket_.</span></div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00274"></a><span class="lineno"><a class="line" href="classdodo_1_1network_1_1BaseSocket.html#a8b185fafeee8130429d49ee7c2ad8e08">  274</a></span>&#160;      <span class="keywordtype">bool</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a8b185fafeee8130429d49ee7c2ad8e08">operator==</a>(<span class="keyword">const</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html">BaseSocket</a>&amp; socket )<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a70ca42d94fd90607ff3ae9e6b5e03be1">socket_</a> == socket.<a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a70ca42d94fd90607ff3ae9e6b5e03be1">socket_</a>; };</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<span class="comment">       * Add ordering</span></div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;<span class="comment">       * @param socket The socket to compare to.</span></div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;<span class="comment">       * @return True if this Socket has a smaller socket descriptor than socket.</span></div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00281"></a><span class="lineno"><a class="line" href="classdodo_1_1network_1_1BaseSocket.html#a38d384be705d438bab5304e90cbfbcd3">  281</a></span>&#160;      <span class="keywordtype">bool</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a38d384be705d438bab5304e90cbfbcd3">operator&lt;</a>(<span class="keyword">const</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html">BaseSocket</a>&amp; socket )<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a70ca42d94fd90607ff3ae9e6b5e03be1">socket_</a> &lt; socket.<a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a70ca42d94fd90607ff3ae9e6b5e03be1">socket_</a>; };</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;<span class="comment">       * Assign from existing socket descriptor (int).</span></div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;<span class="comment">       * @param socket The socket value to assign to this Socket.</span></div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;<span class="comment">       * @return This Socket.</span></div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;      <a class="code" href="classdodo_1_1network_1_1BaseSocket.html">BaseSocket</a>&amp; <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#ad4cc3452e3e7fe1aa8a0c2bb3ccfb16a">operator=</a>( <span class="keywordtype">int</span> socket );</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;<span class="comment">       * Assign from Socket.</span></div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;<span class="comment">       * @param socket The Socket to assign/copy to this Socket.</span></div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;<span class="comment">       * @return This Socket.</span></div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;      <a class="code" href="classdodo_1_1network_1_1BaseSocket.html">BaseSocket</a>&amp; <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#ad4cc3452e3e7fe1aa8a0c2bb3ccfb16a">operator=</a>( <span class="keyword">const</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html">BaseSocket</a>&amp; socket );</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;<span class="comment">       * Sets up a listening socket on Address.</span></div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;<span class="comment">       * @param address The Address (including a port) to listen on.</span></div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;<span class="comment">       * @param backlog The size of the queue used to cache pending connections.</span></div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;<span class="comment">       * @return A common::SystemError, if not ecOK</span></div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;<span class="comment">       *   - common::SystemError::ecEADDRINUSE</span></div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;<span class="comment">       *   - common::SystemError::ecEBADF</span></div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;<span class="comment">       *   - common::SystemError::ecENOTSOCK</span></div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;<span class="comment">       *   - common::SystemError::ecEOPNOTSUPP</span></div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;<span class="comment">       *</span></div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;<span class="comment">       * or one of the common::SystemError returned by bind( const Address &amp;address ).</span></div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a4a41dd44e87862d9730783b1c8a221ba">listen</a>( <span class="keyword">const</span> <a class="code" href="classdodo_1_1network_1_1Address.html">Address</a> &amp;address, <span class="keywordtype">int</span> backlog );</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;<span class="comment">       * Bind the socket to the Address.</span></div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;<span class="comment">       * @param address The address to bind to.</span></div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;<span class="comment">       * @return SystemError::ecOK or</span></div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;<span class="comment">       *   - SystemError::ecEACCES</span></div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;<span class="comment">       *   - SystemError::ecEADDRINUSE</span></div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;<span class="comment">       *   - SystemError::ecEBADF</span></div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;<span class="comment">       *   - SystemError::ecEINVAL</span></div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;<span class="comment">       *   - SystemError::ecENOTSOCK</span></div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#af72f5b968278b7390dc5ee57c3afb2d0">bind</a>( <span class="keyword">const</span> <a class="code" href="classdodo_1_1network_1_1Address.html">Address</a> &amp;address );</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;<span class="comment">       * Accepts a connection request and return a pointer to a new Socket for the new connection, the caller will</span></div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;<span class="comment">       * own the new Socket object.</span></div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;<span class="comment">       * @return The accepted socket.</span></div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;      <span class="keyword">virtual</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html">BaseSocket</a>* <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#acf3ee5321588185efb19723f84a4727c">accept</a>() = 0;</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;<span class="comment">       * Send an uint8_t.</span></div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;<span class="comment">       * @param value The value to send.</span></div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;<span class="comment">       * @param more If true, the caller indicates that more data will follow.</span></div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;<span class="comment">       * @return Same as send( const void* buf, ssize_t len )</span></div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;<span class="comment">       * @see receiveUInt8( uint8_t&amp; )</span></div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a9118300b9b8debd0fd52f2edd8855d79">sendUInt8</a>( uint8_t value, <span class="keywordtype">bool</span> more = <span class="keyword">false</span> );</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;<span class="comment">       * receive an uint8_t</span></div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;<span class="comment">       * @param value The value received.</span></div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;<span class="comment">       * @return Same as receive( void* buf, ssize_t request, ssize_t &amp;received )</span></div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;<span class="comment">       * @see sendUInt8( uint8_t )</span></div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#aab0b27a145ead185f2f24066b616cd07">receiveUInt8</a>( uint8_t &amp;value );</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;<span class="comment">       * Send an uint16_t.</span></div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;<span class="comment">       * @param value The value to send.</span></div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;<span class="comment">       * @param more If true, the caller indicates that more data will follow.</span></div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;<span class="comment">       * @return Same as send( const void* buf, ssize_t len )</span></div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;<span class="comment">       * @see receiveUInt16( uint16_t&amp; )</span></div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#ac989671d9a85b8ab09903b2d8246c819">sendUInt16</a>( uint16_t value, <span class="keywordtype">bool</span> more = <span class="keyword">false</span> );</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;<span class="comment">       * receive an uint16_t</span></div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;<span class="comment">       * @param value The value received.</span></div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;<span class="comment">       * @return Same as receive( void* buf, ssize_t request, ssize_t &amp;received )</span></div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<span class="comment">       * @see sendUInt16( uint16_t )</span></div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#ae680daa723e9092ab817d6480280c594">receiveUInt16</a>( uint16_t &amp;value );</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;<span class="comment">       * Send an uint32_t.</span></div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;<span class="comment">       * @param value The value to send.</span></div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;<span class="comment">       * @param more If true, the caller indicates that more data will follow.</span></div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;<span class="comment">       * @return Same as send( const void* buf, ssize_t len )</span></div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;<span class="comment">       * @see receiveUInt32( uint32_t&amp; )</span></div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a51af29b686f3eddecd0428bceb053f67">sendUInt32</a>( uint32_t value, <span class="keywordtype">bool</span> more = <span class="keyword">false</span> );</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;<span class="comment">       * receive an uint32_t</span></div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;<span class="comment">       * @param value The value received.</span></div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;<span class="comment">       * @return Same as receive( void* buf, ssize_t request, ssize_t &amp;received )</span></div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;<span class="comment">       * @see sendUInt32( uint32_t )</span></div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a50cde626367efe4a404163904f4c09d1">receiveUInt32</a>( uint32_t &amp;value );</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;<span class="comment">       * Send an sendUInt64.</span></div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;<span class="comment">       * @param value The value to send.</span></div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;<span class="comment">       * @param more If true, the caller indicates that more data will follow.</span></div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;<span class="comment">       * @return Same as send( const void* buf, ssize_t len )</span></div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;<span class="comment">       * @see receiveUInt64( uint64_t&amp; )</span></div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a95e1f342b4b89feadebf6d8c376043ec">sendUInt64</a>( uint64_t value, <span class="keywordtype">bool</span> more = <span class="keyword">false</span> );</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;<span class="comment">       * receive an uint64_t</span></div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;<span class="comment">       * @param value The value received.</span></div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;<span class="comment">       * @return Same as receive( void* buf, ssize_t request, ssize_t &amp;received )</span></div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;<span class="comment">       * @see sendUInt64( uint64_t )*</span></div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#acdbbba0a78559c47d26a5b29c5b9bb3c">receiveUInt64</a>( uint64_t &amp;value );</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;<span class="comment">       * Send an int8_t.</span></div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;<span class="comment">       * @param value The value to send.</span></div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;<span class="comment">       * @param more If true, the caller indicates that more data will follow.</span></div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;<span class="comment">       * @return Same as send( const void* buf, ssize_t len )</span></div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;<span class="comment">       * @see receiveInt8( int8_t&amp; )</span></div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#ace6374e560c9b0cdd2d9519d3044d08e">sendInt8</a>( int8_t value, <span class="keywordtype">bool</span> more = <span class="keyword">false</span> );</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;<span class="comment">       * receive an int8_t</span></div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;<span class="comment">       * @param value The value received.</span></div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;<span class="comment">       * @return Same as receive( void* buf, ssize_t request, ssize_t &amp;received )</span></div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;<span class="comment">       * @see sendInt8( int8_t )*</span></div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#acd0cbf582dfa8ad2bd415accf6621bdf">receiveInt8</a>( int8_t &amp;value );</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;<span class="comment">       * Send an int16_t.</span></div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;<span class="comment">       * @param value The value to send.</span></div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;<span class="comment">       * @param more If true, the caller indicates that more data will follow.</span></div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;<span class="comment">       * @return Same as send( const void* buf, ssize_t len )</span></div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;<span class="comment">       * @see receiveInt16( int16_t&amp; )</span></div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a6ec7901d58e938eace9f50938d8902c7">sendInt16</a>( int16_t value, <span class="keywordtype">bool</span> more = <span class="keyword">false</span> );</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;<span class="comment">       * receive an int16_t</span></div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;<span class="comment">       * @param value The value received.</span></div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;<span class="comment">       * @return Same as receive( void* buf, ssize_t request, ssize_t &amp;received )</span></div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;<span class="comment">       * @see sendInt16( int16_t )*</span></div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a26e51239f996065f0f7c2cb50478ca3a">receiveInt16</a>( int16_t &amp;value );</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;<span class="comment">       * Send an int32_t.</span></div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;<span class="comment">       * @param value The value to send.</span></div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;<span class="comment">       * @param more If true, the caller indicates that more data will follow.</span></div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;<span class="comment">       * @return Same as send( const void* buf, ssize_t len )</span></div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;<span class="comment">       * @see receiveInt32( int32_t&amp; )</span></div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a5d2d80bbe74b3969e661f9000c2bfa1b">sendInt32</a>( int32_t value, <span class="keywordtype">bool</span> more = <span class="keyword">false</span> );</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;<span class="comment">       * receive an int32_t</span></div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;<span class="comment">       * @param value The value received.</span></div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;<span class="comment">       * @return Same as receive( void* buf, ssize_t request, ssize_t &amp;received )</span></div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;<span class="comment">       * @see sendInt32( int32_t )*</span></div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a3b9cc121efe005a5fcb58868511e3cde">receiveInt32</a>( int32_t &amp;value );</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;<span class="comment">       * Send an int64_t.</span></div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;<span class="comment">       * @param value The value to send.</span></div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;<span class="comment">       * @param more If true, the caller indicates that more data will follow.</span></div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;<span class="comment">       * @return Same as send( const void* buf, ssize_t len )</span></div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;<span class="comment">       * @see receiveInt64( int64_t&amp; )</span></div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a55887f95122959877e92df9e2179057c">sendInt64</a>( int64_t value, <span class="keywordtype">bool</span> more = <span class="keyword">false</span> );</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;<span class="comment">       * receive an int64_t</span></div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;<span class="comment">       * @param value The value received.</span></div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;<span class="comment">       * @return Same as receive( void* buf, ssize_t request, ssize_t &amp;received )</span></div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;<span class="comment">       * @see sendInt64( int64_t )*</span></div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a55730f7003a6916cc155138f0f1ec0bd">receiveInt64</a>( int64_t &amp;value );</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;<span class="comment">       * Sends the std::string as understood by receiveString(). The send prefixes the string length in an uint64_t,</span></div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;<span class="comment">       * the number of bytes (characters) that follow.</span></div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;<span class="comment">       * @param s The string to send.</span></div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;<span class="comment">       * @param more If true, the caller indicates that more data will follow.</span></div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;<span class="comment">       * @return Same as send( const void* buf, ssize_t len )</span></div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a42390d41ef7b234543c5c50bb4b9cf1b">sendString</a>( <span class="keyword">const</span> std::string &amp;s, <span class="keywordtype">bool</span> more = <span class="keyword">false</span> );</div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;<span class="comment">       * Receive a std::string as sent by sendString( const std::string&amp; ).</span></div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;<span class="comment">       * @param s The string to receive into.</span></div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;<span class="comment">       * @return Same as receive( void* buf, ssize_t request, ssize_t &amp;received )</span></div>
+<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a1ee6afb5cb22c067b7725029c477ed4b">receiveString</a>( <span class="keywordtype">string</span> &amp;s );</div>
+<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;<span class="comment">       * Sends the std::string terminated by a &#39;\n&#39;.</span></div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;<span class="comment">       * @param s The string to send.</span></div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;<span class="comment">       * @param more If true, the caller indicates that more data will follow.</span></div>
+<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;<span class="comment">       * @return Same as send( const void* buf, ssize_t len )</span></div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a569075f8655cda3802ab4d81c0dec042">sendLine</a>( <span class="keyword">const</span> std::string &amp;s, <span class="keywordtype">bool</span> more );</div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;<span class="comment">       * receive a stream of characters until a &#39;\n&#39; is read (consumed from the socket read buffer but not</span></div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;<span class="comment">       * added to s).</span></div>
+<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;<span class="comment">       * @param s receives the read string.</span></div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;<span class="comment">       * @return The SystemError.</span></div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;      <a class="code" href="classdodo_1_1common_1_1SystemError.html">SystemError</a> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a9e1cc1168e026b93af72835eca3997df">receiveLine</a>( <span class="keywordtype">string</span> &amp;s );</div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160; </div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;    <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;<span class="comment">       * The socket file decsriptor.</span></div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00503"></a><span class="lineno"><a class="line" href="classdodo_1_1network_1_1BaseSocket.html#a70ca42d94fd90607ff3ae9e6b5e03be1">  503</a></span>&#160;      <span class="keywordtype">int</span> <a class="code" href="classdodo_1_1network_1_1BaseSocket.html#a70ca42d94fd90607ff3ae9e6b5e03be1">socket_</a>;</div>
+<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160; </div>
+<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;  };</div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160; </div>
+<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;}</div>
+<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160; </div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a3f761310b6c9f4b4b17d1bd5ea3c95ad"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a3f761310b6c9f4b4b17d1bd5ea3c95ad">dodo::network::BaseSocket::setReceiveTimeout</a></div><div class="ttdeci">void setReceiveTimeout(double sec)</div><div class="ttdoc">Set the receive timeout - a receive will fail if there is no data received before the timeout expires...</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00213">basesocket.cpp:213</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a5a777035395a02648f3fc975a574691b"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a5a777035395a02648f3fc975a574691b">dodo::network::BaseSocket::setTCPNoDelay</a></div><div class="ttdeci">void setTCPNoDelay(bool set)</div><div class="ttdoc">Set TCP_NODELAY.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00119">basesocket.cpp:119</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a55730f7003a6916cc155138f0f1ec0bd"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a55730f7003a6916cc155138f0f1ec0bd">dodo::network::BaseSocket::receiveInt64</a></div><div class="ttdeci">SystemError receiveInt64(int64_t &amp;value)</div><div class="ttdoc">receive an int64_t</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00437">basesocket.cpp:437</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a9c2508f9fd34604542c7c53e9c64e58d"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a9c2508f9fd34604542c7c53e9c64e58d">dodo::network::BaseSocket::getPeerAddress</a></div><div class="ttdeci">Address getPeerAddress() const</div><div class="ttdoc">Get the peer (remote) address for this socket.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00277">basesocket.cpp:277</a></div></div>
-<div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a8b185fafeee8130429d49ee7c2ad8e08"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a8b185fafeee8130429d49ee7c2ad8e08">dodo::network::BaseSocket::operator==</a></div><div class="ttdeci">bool operator==(const BaseSocket &amp;socket) const</div><div class="ttdoc">Add identity.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8hpp_source.html#l00275">basesocket.hpp:275</a></div></div>
+<div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a8b185fafeee8130429d49ee7c2ad8e08"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a8b185fafeee8130429d49ee7c2ad8e08">dodo::network::BaseSocket::operator==</a></div><div class="ttdeci">bool operator==(const BaseSocket &amp;socket) const</div><div class="ttdoc">Add identity.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8hpp_source.html#l00274">basesocket.hpp:274</a></div></div>
 <div class="ttc" id="aclassdodo_1_1common_1_1DebugObject_html"><div class="ttname"><a href="classdodo_1_1common_1_1DebugObject.html">dodo::common::DebugObject</a></div><div class="ttdoc">Interface to objects that support dumping their state to a string.</div><div class="ttdef"><b>Definition:</b> <a href="exception_8hpp_source.html#l00039">exception.hpp:39</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_af62964a8a5da647a11e190e75bcbcf68"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#af62964a8a5da647a11e190e75bcbcf68">dodo::network::BaseSocket::setBlocking</a></div><div class="ttdeci">void setBlocking(bool blocking)</div><div class="ttdoc">Set the Socket blocking mode.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00135">basesocket.cpp:135</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a075c2ed960e446c8dd7e1d2e79398ba6"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a075c2ed960e446c8dd7e1d2e79398ba6">dodo::network::BaseSocket::getReceiveBufSize</a></div><div class="ttdeci">virtual socklen_t getReceiveBufSize() const</div><div class="ttdoc">Get the maximum buffer length for receive.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00181">basesocket.cpp:181</a></div></div>
@@ -614,7 +613,7 @@ $(document).ready(function(){initNavTree('basesocket_8hpp_source.html',''); init
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a55887f95122959877e92df9e2179057c"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a55887f95122959877e92df9e2179057c">dodo::network::BaseSocket::sendInt64</a></div><div class="ttdeci">SystemError sendInt64(int64_t value, bool more=false)</div><div class="ttdoc">Send an int64_t.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00432">basesocket.cpp:432</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1SocketParams_html_ab8adc702b32a0ddedb7c2c7fa2da1d77"><div class="ttname"><a href="classdodo_1_1network_1_1SocketParams.html#ab8adc702b32a0ddedb7c2c7fa2da1d77">dodo::network::SocketParams::AddressFamily</a></div><div class="ttdeci">AddressFamily</div><div class="ttdoc">Addres family type.</div><div class="ttdef"><b>Definition:</b> <a href="socketparams_8hpp_source.html#l00043">socketparams.hpp:43</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a5d2d80bbe74b3969e661f9000c2bfa1b"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a5d2d80bbe74b3969e661f9000c2bfa1b">dodo::network::BaseSocket::sendInt32</a></div><div class="ttdeci">SystemError sendInt32(int32_t value, bool more=false)</div><div class="ttdoc">Send an int32_t.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00390">basesocket.cpp:390</a></div></div>
-<div class="ttc" id="aclassdodo_1_1network_1_1Address_html"><div class="ttname"><a href="classdodo_1_1network_1_1Address.html">dodo::network::Address</a></div><div class="ttdoc">Generic network Address, supporting ipv4 and ipv6 transparently.</div><div class="ttdef"><b>Definition:</b> <a href="address_8hpp_source.html#l00093">address.hpp:93</a></div></div>
+<div class="ttc" id="aclassdodo_1_1network_1_1Address_html"><div class="ttname"><a href="classdodo_1_1network_1_1Address.html">dodo::network::Address</a></div><div class="ttdoc">Generic network Address, supporting ipv4 and ipv6 transparently.</div><div class="ttdef"><b>Definition:</b> <a href="address_8hpp_source.html#l00092">address.hpp:92</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a3fe2a1a94de9f074dc97b5a652768e8f"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a3fe2a1a94de9f074dc97b5a652768e8f">dodo::network::BaseSocket::setTTL</a></div><div class="ttdeci">void setTTL(int ttl)</div><div class="ttdoc">Set the Socket TTL (Time to Live).</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00233">basesocket.cpp:233</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_aa1e1c0ca02f099118b6f8a1ce4976128"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#aa1e1c0ca02f099118b6f8a1ce4976128">dodo::network::BaseSocket::getSocketType</a></div><div class="ttdeci">SocketParams::SocketType getSocketType() const</div><div class="ttdoc">Get the SocketParams::SocketType of the socket.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00256">basesocket.cpp:256</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a50cde626367efe4a404163904f4c09d1"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a50cde626367efe4a404163904f4c09d1">dodo::network::BaseSocket::receiveUInt32</a></div><div class="ttdeci">SystemError receiveUInt32(uint32_t &amp;value)</div><div class="ttdoc">receive an uint32_t</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00374">basesocket.cpp:374</a></div></div>
@@ -629,7 +628,7 @@ $(document).ready(function(){initNavTree('basesocket_8hpp_source.html',''); init
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a6d1cc805b846a905743bd515ab74f48e"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a6d1cc805b846a905743bd515ab74f48e">dodo::network::BaseSocket::getAddressFamily</a></div><div class="ttdeci">SocketParams::AddressFamily getAddressFamily() const</div><div class="ttdoc">Get the SocketParams::AddressFamily of the socket.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00248">basesocket.cpp:248</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1SocketParams_html"><div class="ttname"><a href="classdodo_1_1network_1_1SocketParams.html">dodo::network::SocketParams</a></div><div class="ttdoc">Socket parameters - the family (domain), socket type and protocol triplet.</div><div class="ttdef"><b>Definition:</b> <a href="socketparams_8hpp_source.html#l00037">socketparams.hpp:37</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_aad3cf233ec9e63b83f9a96135166b725"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#aad3cf233ec9e63b83f9a96135166b725">dodo::network::BaseSocket::receive</a></div><div class="ttdeci">virtual SystemError receive(void *buf, ssize_t request, ssize_t &amp;received)=0</div><div class="ttdoc">Receive bytes from the socket.</div></div>
-<div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a70ca42d94fd90607ff3ae9e6b5e03be1"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a70ca42d94fd90607ff3ae9e6b5e03be1">dodo::network::BaseSocket::socket_</a></div><div class="ttdeci">int socket_</div><div class="ttdoc">The socket file decsriptor.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8hpp_source.html#l00504">basesocket.hpp:504</a></div></div>
+<div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a70ca42d94fd90607ff3ae9e6b5e03be1"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a70ca42d94fd90607ff3ae9e6b5e03be1">dodo::network::BaseSocket::socket_</a></div><div class="ttdeci">int socket_</div><div class="ttdoc">The socket file decsriptor.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8hpp_source.html#l00503">basesocket.hpp:503</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_ac989671d9a85b8ab09903b2d8246c819"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#ac989671d9a85b8ab09903b2d8246c819">dodo::network::BaseSocket::sendUInt16</a></div><div class="ttdeci">SystemError sendUInt16(uint16_t value, bool more=false)</div><div class="ttdoc">Send an uint16_t.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00306">basesocket.cpp:306</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a6041a9310318204b2fdac10491b70c43"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a6041a9310318204b2fdac10491b70c43">dodo::network::BaseSocket::getTTL</a></div><div class="ttdeci">int getTTL() const</div><div class="ttdoc">Get the Socket TTL (time to live) or the max number of packet hops.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00189">basesocket.cpp:189</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a3254f7ede2297ecbaad8234eb8048de4"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a3254f7ede2297ecbaad8234eb8048de4">dodo::network::BaseSocket::getBlocking</a></div><div class="ttdeci">virtual bool getBlocking() const</div><div class="ttdoc">Rerurn true if the socket is operating in blocking mode.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00129">basesocket.cpp:129</a></div></div>
@@ -637,17 +636,17 @@ $(document).ready(function(){initNavTree('basesocket_8hpp_source.html',''); init
 <div class="ttc" id="aaddress_8hpp_html"><div class="ttname"><a href="address_8hpp.html">address.hpp</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a569075f8655cda3802ab4d81c0dec042"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a569075f8655cda3802ab4d81c0dec042">dodo::network::BaseSocket::sendLine</a></div><div class="ttdeci">SystemError sendLine(const std::string &amp;s, bool more)</div><div class="ttdoc">Sends the std::string terminated by a ' '.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00484">basesocket.cpp:484</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a49a4511e1706e67c4bfd13af6ee61300"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a49a4511e1706e67c4bfd13af6ee61300">dodo::network::BaseSocket::getAddress</a></div><div class="ttdeci">Address getAddress() const</div><div class="ttdoc">Get the local address for this socket.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00240">basesocket.cpp:240</a></div></div>
-<div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_ab5864bc9317e07e2957ee5d2ebf13f24"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#ab5864bc9317e07e2957ee5d2ebf13f24">dodo::network::BaseSocket::getFD</a></div><div class="ttdeci">int getFD() const</div><div class="ttdoc">Return the socket file descriptor.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8hpp_source.html#l00122">basesocket.hpp:122</a></div></div>
-<div class="ttc" id="anamespacedodo_1_1network_html"><div class="ttname"><a href="namespacedodo_1_1network.html">dodo::network</a></div><div class="ttdoc">Interface for network communication.</div><div class="ttdef"><b>Definition:</b> <a href="address_8hpp_source.html#l00037">address.hpp:37</a></div></div>
+<div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_ab5864bc9317e07e2957ee5d2ebf13f24"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#ab5864bc9317e07e2957ee5d2ebf13f24">dodo::network::BaseSocket::getFD</a></div><div class="ttdeci">int getFD() const</div><div class="ttdoc">Return the socket file descriptor.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8hpp_source.html#l00121">basesocket.hpp:121</a></div></div>
+<div class="ttc" id="anamespacedodo_1_1network_html"><div class="ttname"><a href="namespacedodo_1_1network.html">dodo::network</a></div><div class="ttdoc">Interface for network communication.</div><div class="ttdef"><b>Definition:</b> <a href="address_8hpp_source.html#l00036">address.hpp:36</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_ace6374e560c9b0cdd2d9519d3044d08e"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#ace6374e560c9b0cdd2d9519d3044d08e">dodo::network::BaseSocket::sendInt8</a></div><div class="ttdeci">SystemError sendInt8(int8_t value, bool more=false)</div><div class="ttdoc">Send an int8_t.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00327">basesocket.cpp:327</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a7c3da36628c79de4d048c27796f95acb"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a7c3da36628c79de4d048c27796f95acb">dodo::network::BaseSocket::getSocketParams</a></div><div class="ttdeci">SocketParams getSocketParams() const</div><div class="ttdoc">Return the SocketParams.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00272">basesocket.cpp:272</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a2a4f9cfbfe21e2e38c1f18c04e3a5933"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a2a4f9cfbfe21e2e38c1f18c04e3a5933">dodo::network::BaseSocket::setSendBufSize</a></div><div class="ttdeci">void setSendBufSize(socklen_t size)</div><div class="ttdoc">Set the size of the send buffer.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00203">basesocket.cpp:203</a></div></div>
-<div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a38d384be705d438bab5304e90cbfbcd3"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a38d384be705d438bab5304e90cbfbcd3">dodo::network::BaseSocket::operator&lt;</a></div><div class="ttdeci">bool operator&lt;(const BaseSocket &amp;socket) const</div><div class="ttdoc">Add ordering.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8hpp_source.html#l00282">basesocket.hpp:282</a></div></div>
-<div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a19be8d7c4017219bc9b7d17f66825f27"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a19be8d7c4017219bc9b7d17f66825f27">dodo::network::BaseSocket::isValid</a></div><div class="ttdeci">bool isValid() const</div><div class="ttdoc">Return true when the socket descriptor is a valid, hence 'possible' descriptor.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8hpp_source.html#l00129">basesocket.hpp:129</a></div></div>
+<div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a38d384be705d438bab5304e90cbfbcd3"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a38d384be705d438bab5304e90cbfbcd3">dodo::network::BaseSocket::operator&lt;</a></div><div class="ttdeci">bool operator&lt;(const BaseSocket &amp;socket) const</div><div class="ttdoc">Add ordering.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8hpp_source.html#l00281">basesocket.hpp:281</a></div></div>
+<div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a19be8d7c4017219bc9b7d17f66825f27"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a19be8d7c4017219bc9b7d17f66825f27">dodo::network::BaseSocket::isValid</a></div><div class="ttdeci">bool isValid() const</div><div class="ttdoc">Return true when the socket descriptor is a valid, hence 'possible' descriptor.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8hpp_source.html#l00128">basesocket.hpp:128</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a1ee6afb5cb22c067b7725029c477ed4b"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a1ee6afb5cb22c067b7725029c477ed4b">dodo::network::BaseSocket::receiveString</a></div><div class="ttdeci">SystemError receiveString(string &amp;s)</div><div class="ttdoc">Receive a std::string as sent by sendString( const std::string&amp; ).</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00463">basesocket.cpp:463</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_aae2d6a3aa6f8ed977c2ebee00843aafa"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#aae2d6a3aa6f8ed977c2ebee00843aafa">dodo::network::BaseSocket::debugDetail</a></div><div class="ttdeci">virtual std::string debugDetail() const</div><div class="ttdoc">Return debug object state as a string.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00046">basesocket.cpp:46</a></div></div>
 <div class="ttc" id="aexception_8hpp_html"><div class="ttname"><a href="exception_8hpp.html">exception.hpp</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1SystemError_html"><div class="ttname"><a href="classdodo_1_1common_1_1SystemError.html">dodo::common::SystemError</a></div><div class="ttdoc">Linux system error primitive to provide a consistent interface to Linux error codes.</div><div class="ttdef"><b>Definition:</b> <a href="systemerror_8hpp_source.html#l00055">systemerror.hpp:55</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1SystemError_html"><div class="ttname"><a href="classdodo_1_1common_1_1SystemError.html">dodo::common::SystemError</a></div><div class="ttdoc">Linux system error primitive to provide a consistent interface to Linux error codes.</div><div class="ttdef"><b>Definition:</b> <a href="systemerror_8hpp_source.html#l00056">systemerror.hpp:56</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_acdbbba0a78559c47d26a5b29c5b9bb3c"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#acdbbba0a78559c47d26a5b29c5b9bb3c">dodo::network::BaseSocket::receiveUInt64</a></div><div class="ttdeci">SystemError receiveUInt64(uint64_t &amp;value)</div><div class="ttdoc">receive an uint64_t</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00416">basesocket.cpp:416</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_acc6b937fefd5a0b5859043c3a6abc623"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#acc6b937fefd5a0b5859043c3a6abc623">dodo::network::BaseSocket::getProtocolNumber</a></div><div class="ttdeci">SocketParams::ProtocolNumber getProtocolNumber() const</div><div class="ttdoc">Get the SocketParams::ProtocolNumber of the socket.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00264">basesocket.cpp:264</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a64714e73ea1e1ffa2155559a0afb7274"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a64714e73ea1e1ffa2155559a0afb7274">dodo::network::BaseSocket::setReceiveBufSize</a></div><div class="ttdeci">void setReceiveBufSize(socklen_t size)</div><div class="ttdoc">Set the size of the receive buffer.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00208">basesocket.cpp:208</a></div></div>
@@ -658,14 +657,14 @@ $(document).ready(function(){initNavTree('basesocket_8hpp_source.html',''); init
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_aab0b27a145ead185f2f24066b616cd07"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#aab0b27a145ead185f2f24066b616cd07">dodo::network::BaseSocket::receiveUInt8</a></div><div class="ttdeci">SystemError receiveUInt8(uint8_t &amp;value)</div><div class="ttdoc">receive an uint8_t</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00290">basesocket.cpp:290</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a95e1f342b4b89feadebf6d8c376043ec"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a95e1f342b4b89feadebf6d8c376043ec">dodo::network::BaseSocket::sendUInt64</a></div><div class="ttdeci">SystemError sendUInt64(uint64_t value, bool more=false)</div><div class="ttdoc">Send an sendUInt64.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00411">basesocket.cpp:411</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a689917db64fdae11c1754c5b5e66d91f"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a689917db64fdae11c1754c5b5e66d91f">dodo::network::BaseSocket::setReUsePort</a></div><div class="ttdeci">void setReUsePort()</div><div class="ttdoc">Make the socket re-use a port when listen is called.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00163">basesocket.cpp:163</a></div></div>
-<div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_ada0c1f13af9e8f363d7cb66b4c372cb9"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#ada0c1f13af9e8f363d7cb66b4c372cb9">dodo::network::BaseSocket::~BaseSocket</a></div><div class="ttdeci">virtual ~BaseSocket()</div><div class="ttdoc">Destructs this Socket, but does not call close().</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8hpp_source.html#l00060">basesocket.hpp:60</a></div></div>
+<div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_ada0c1f13af9e8f363d7cb66b4c372cb9"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#ada0c1f13af9e8f363d7cb66b4c372cb9">dodo::network::BaseSocket::~BaseSocket</a></div><div class="ttdeci">virtual ~BaseSocket()</div><div class="ttdoc">Destructs this Socket, but does not call close().</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8hpp_source.html#l00059">basesocket.hpp:59</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a04fe41d24898826e28a3cd0cf1e2ffb2"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a04fe41d24898826e28a3cd0cf1e2ffb2">dodo::network::BaseSocket::setSendTimeout</a></div><div class="ttdeci">void setSendTimeout(double sec)</div><div class="ttdoc">Set the send timeout - a send will fail if there is no data send before the timeout expires.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00223">basesocket.cpp:223</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a9e1cc1168e026b93af72835eca3997df"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a9e1cc1168e026b93af72835eca3997df">dodo::network::BaseSocket::receiveLine</a></div><div class="ttdeci">SystemError receiveLine(string &amp;s)</div><div class="ttdoc">receive a stream of characters until a ' ' is read (consumed from the socket read buffer but not adde...</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00492">basesocket.cpp:492</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_af72f5b968278b7390dc5ee57c3afb2d0"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#af72f5b968278b7390dc5ee57c3afb2d0">dodo::network::BaseSocket::bind</a></div><div class="ttdeci">SystemError bind(const Address &amp;address)</div><div class="ttdoc">Bind the socket to the Address.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00107">basesocket.cpp:107</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a6ec7901d58e938eace9f50938d8902c7"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a6ec7901d58e938eace9f50938d8902c7">dodo::network::BaseSocket::sendInt16</a></div><div class="ttdeci">SystemError sendInt16(int16_t value, bool more=false)</div><div class="ttdoc">Send an int16_t.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00348">basesocket.cpp:348</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a3b9cc121efe005a5fcb58868511e3cde"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a3b9cc121efe005a5fcb58868511e3cde">dodo::network::BaseSocket::receiveInt32</a></div><div class="ttdeci">SystemError receiveInt32(int32_t &amp;value)</div><div class="ttdoc">receive an int32_t</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00395">basesocket.cpp:395</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html_a4a41dd44e87862d9730783b1c8a221ba"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html#a4a41dd44e87862d9730783b1c8a221ba">dodo::network::BaseSocket::listen</a></div><div class="ttdeci">SystemError listen(const Address &amp;address, int backlog)</div><div class="ttdoc">Sets up a listening socket on Address.</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8cpp_source.html#l00093">basesocket.cpp:93</a></div></div>
-<div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html">dodo::network::BaseSocket</a></div><div class="ttdoc">Interface to and common implementation of concrete sockets (Socket, TLSSocket).</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8hpp_source.html#l00036">basesocket.hpp:36</a></div></div>
+<div class="ttc" id="aclassdodo_1_1network_1_1BaseSocket_html"><div class="ttname"><a href="classdodo_1_1network_1_1BaseSocket.html">dodo::network::BaseSocket</a></div><div class="ttdoc">Interface to and common implementation of concrete sockets (Socket, TLSSocket).</div><div class="ttdef"><b>Definition:</b> <a href="basesocket_8hpp_source.html#l00035">basesocket.hpp:35</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

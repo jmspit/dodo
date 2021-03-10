@@ -1,13 +1,8 @@
-<map id="src/lib/store/kvstore/kvstore.cpp" name="src/lib/store/kvstore/kvstore.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="606,5,757,47"/>
-<area shape="rect" id="node2" href="$kvstore_8hpp.html" title=" " alt="" coords="5,102,195,129"/>
-<area shape="rect" id="node3" title=" " alt="" coords="128,184,203,211"/>
-<area shape="rect" id="node4" href="$header_8hpp_source.html" title=" " alt="" coords="270,95,445,136"/>
-<area shape="rect" id="node5" title=" " alt="" coords="469,102,565,129"/>
-<area shape="rect" id="node6" title=" " alt="" coords="589,102,675,129"/>
-<area shape="rect" id="node7" title=" " alt="" coords="699,102,762,129"/>
-<area shape="rect" id="node8" title=" " alt="" coords="787,102,867,129"/>
-<area shape="rect" id="node9" title=" " alt="" coords="891,102,994,129"/>
-<area shape="rect" id="node10" href="$util_8hpp.html" title=" " alt="" coords="1018,102,1150,129"/>
-<area shape="rect" id="node11" href="$exception_8hpp.html" title=" " alt="" coords="1174,102,1349,129"/>
+<map id="src/lib/persist/kvstore/kvstore.cpp" name="src/lib/persist/kvstore/kvstore.cpp">
+<area shape="rect" id="node1" title=" " alt="" coords="413,5,576,47"/>
+<area shape="rect" id="node2" href="$kvstore_8hpp.html" title=" " alt="" coords="5,95,205,121"/>
+<area shape="rect" id="node3" href="$exception_8hpp.html" title=" " alt="" coords="230,95,405,121"/>
+<area shape="rect" id="node4" href="$util_8hpp.html" title=" " alt="" coords="429,95,561,121"/>
+<area shape="rect" id="node5" title=" " alt="" coords="585,95,665,121"/>
+<area shape="rect" id="node6" title=" " alt="" coords="689,95,756,121"/>
 </map>

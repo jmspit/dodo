@@ -6,7 +6,7 @@ var classdodo_1_1network_1_1X509Common =
       [ "stDNS", "classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba1af3c8cd9ea46d2a701ae919c0a8c5a0", null ],
       [ "stURI", "classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba6509b104c2d2ae4b436e2bab8ad28175", null ],
       [ "stEMAIL", "classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba2c1a510163b7557581fd8d65c50fce75", null ],
-      [ "tsIP", "classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba35607b760d2e28683799aecb996d6ec0", null ]
+      [ "stIP", "classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689bae756ee54c00082fce60e7f9447e41358", null ]
     ] ],
     [ "X509Type", "classdodo_1_1network_1_1X509Common.html#a072fef8b03e3c6ccd2fa35d95e0556db", [
       [ "Unknown", "classdodo_1_1network_1_1X509Common.html#a072fef8b03e3c6ccd2fa35d95e0556dba88183b946cc5f0e8c96b2e66e1c74a7e", null ],

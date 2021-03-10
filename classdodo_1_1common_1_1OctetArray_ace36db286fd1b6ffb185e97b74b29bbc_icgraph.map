@@ -1,0 +1,8 @@
+<map id="dodo::common::OctetArray::getArray" name="dodo::common::OctetArray::getArray">
+<area shape="rect" id="node1" title="Return the array." alt="" coords="273,136,471,177"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1DataCrypt.html#aa1b405ff388d738bc442bf14e084c6d9" title="Decrypt data with a key." alt="" coords="19,5,212,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1common_1_1DataCrypt.html#ac6dd5410c39cfe7f9aca1b955b70664c" title="Encrypt data with a key into a string (so the encrypted data will not contain a 0/zero)." alt="" coords="19,71,212,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1persist_1_1KVStore.html#a2acfb9b52ab9ec1f5ad05a6dd75c5e4e" title="Insert a (key, OctetArray) pair." alt="" coords="32,136,199,177"/>
+<area shape="rect" id="node5" href="$classdodo_1_1network_1_1TCPConnectionData.html#a6e52e4c29881c59aa2998da37ea58db0" title="Reads and appends data to read_buffer." alt="" coords="5,201,225,243"/>
+<area shape="rect" id="node6" href="$classdodo_1_1persist_1_1KVStore.html#a828ee988ec6fe52ca7ec0128d7245d30" title="Set the binary data/OctetArray value of an existing key." alt="" coords="32,267,199,308"/>
+</map>

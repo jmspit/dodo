@@ -1,8 +1,10 @@
 <map id="dodo::network::TCPConnectionData::readBuffer" name="dodo::network::TCPConnectionData::readBuffer">
-<area shape="rect" id="node1" title="Reads and appends data to read_buffer." alt="" coords="5,136,225,177"/>
+<area shape="rect" id="node1" title="Reads and appends data to read_buffer." alt="" coords="5,201,225,243"/>
 <area shape="rect" id="node2" href="$classdodo_1_1common_1_1SystemError.html#ae9c09a06443bae3d2d2cc95a5864f853" title="Get the system error string." alt="" coords="273,5,480,47"/>
-<area shape="rect" id="node3" href="$classdodo_1_1network_1_1BaseSocket.html#ab5864bc9317e07e2957ee5d2ebf13f24" title="Return the socket file descriptor." alt="" coords="277,71,476,112"/>
-<area shape="rect" id="node4" href="$structdodo_1_1common_1_1OctetArray.html#a3e564347d083d73b74b64a3c18a969f9" title="hex dump the first n octets of the data." alt="" coords="278,136,475,177"/>
-<area shape="rect" id="node5" href="$classdodo_1_1network_1_1BaseSocket.html#aad3cf233ec9e63b83f9a96135166b725" title="Receive bytes from the socket." alt="" coords="277,201,476,243"/>
-<area shape="rect" id="node6" href="$structdodo_1_1common_1_1OctetArray.html#a3083e4085a36bb82aac1ed23d7ac771e" title="Reserve memory in the OctetArray." alt="" coords="278,267,475,308"/>
+<area shape="rect" id="node3" href="$classdodo_1_1common_1_1OctetArray.html#ace36db286fd1b6ffb185e97b74b29bbc" title="Return the array." alt="" coords="278,71,475,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1network_1_1BaseSocket.html#ab5864bc9317e07e2957ee5d2ebf13f24" title="Return the socket file descriptor." alt="" coords="277,136,476,177"/>
+<area shape="rect" id="node5" href="$classdodo_1_1common_1_1OctetArray.html#a4bfcf35ebfa9c97f77c4bf7c68d4b9a2" title="Return the array size." alt="" coords="278,201,475,243"/>
+<area shape="rect" id="node6" href="$classdodo_1_1common_1_1OctetArray.html#a3e564347d083d73b74b64a3c18a969f9" title="hex dump the first n octets of the data." alt="" coords="278,267,475,308"/>
+<area shape="rect" id="node7" href="$classdodo_1_1network_1_1BaseSocket.html#aad3cf233ec9e63b83f9a96135166b725" title="Receive bytes from the socket." alt="" coords="277,332,476,373"/>
+<area shape="rect" id="node8" href="$classdodo_1_1common_1_1OctetArray.html#a326c6a76cc0ca5fe6a336d92c77b4ff3" title="Reserve memory in the OctetArray." alt="" coords="278,397,475,439"/>
 </map>

@@ -173,7 +173,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a28f6911ae6633e3a518b92371d5a689b inherit pub_types_classdodo_1_1network_1_1X509Common"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689b">SANType</a> { <a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba1af3c8cd9ea46d2a701ae919c0a8c5a0">SANType::stDNS</a> = GEN_DNS, 
 <a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba6509b104c2d2ae4b436e2bab8ad28175">SANType::stURI</a> = GEN_URI, 
 <a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba2c1a510163b7557581fd8d65c50fce75">SANType::stEMAIL</a> = GEN_EMAIL, 
-<a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba35607b760d2e28683799aecb996d6ec0">SANType::tsIP</a> = GEN_IPADD
+<a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689bae756ee54c00082fce60e7f9447e41358">SANType::stIP</a> = GEN_IPADD
  }</td></tr>
 <tr class="memdesc:a28f6911ae6633e3a518b92371d5a689b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The SubjectAltName type.  <a href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689b">More...</a><br /></td></tr>
 <tr class="separator:a28f6911ae6633e3a518b92371d5a689b inherit pub_types_classdodo_1_1network_1_1X509Common"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -290,7 +290,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="x509cert_8hpp_source.html#l00287">287</a> of file <a class="el" href="x509cert_8hpp_source.html">x509cert.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="x509cert_8cpp_source.html#l00173">getSerial()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="x509cert_8cpp_source.html#l00172">getSerial()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -341,7 +341,7 @@ Here is the caller graph for this function:</div>
 <p><code>openssl list -digest-algorithms</code> shows a full list of hash (digest) names. Stick to newer hash algorithms from the SHA-3 family.</p>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurence should generally imply that th...">common::Exception</a></td><td>if the digest name is invalid.</td></tr>
+    <tr><td class="paramname"><a class="el" href="classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurrence should generally imply that t...">common::Exception</a></td><td>if the digest name is invalid.</td></tr>
   </table>
   </dd>
 </dl>
@@ -355,7 +355,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A string representation of the fingerprint. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00231">231</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00230">230</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="util_8cpp_source.html#l00154">dodo::common::getSSLErrors()</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 <div class="dynheader">
@@ -403,9 +403,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the issuer string. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00164">164</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00163">163</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="util_8cpp_source.html#l00132">dodo::common::bio2String()</a>, and <a class="el" href="x509cert_8cpp_source.html#l00062">dodo::network::X509Common::parseIdentity()</a>.</p>
+<p class="reference">References <a class="el" href="util_8cpp_source.html#l00132">dodo::common::bio2String()</a>, and <a class="el" href="x509cert_8cpp_source.html#l00061">dodo::network::X509Common::parseIdentity()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -452,7 +452,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the serial string. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00173">173</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00172">172</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="x509cert_8hpp_source.html#l00287">free()</a>.</p>
 <div class="dynheader">
@@ -500,11 +500,11 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the subject identity. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00183">183</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00182">182</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="util_8cpp_source.html#l00132">dodo::common::bio2String()</a>, and <a class="el" href="x509cert_8cpp_source.html#l00062">dodo::network::X509Common::parseIdentity()</a>.</p>
+<p class="reference">References <a class="el" href="util_8cpp_source.html#l00132">dodo::common::bio2String()</a>, and <a class="el" href="x509cert_8cpp_source.html#l00061">dodo::network::X509Common::parseIdentity()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="x509cert_8cpp_source.html#l00279">verifySAN()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="x509cert_8cpp_source.html#l00278">verifySAN()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -560,9 +560,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A list of SAN. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00193">193</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00192">192</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="x509cert_8cpp_source.html#l00279">verifySAN()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="x509cert_8cpp_source.html#l00278">verifySAN()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -608,15 +608,15 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurence should generally imply that th...">common::Exception</a></td><td>when the openSSL BIO fails to create. </td></tr>
-    <tr><td class="paramname"><a class="el" href="classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurence should generally imply that th...">common::Exception</a></td><td>when the file cannot be read. </td></tr>
-    <tr><td class="paramname"><a class="el" href="classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurence should generally imply that th...">common::Exception</a></td><td>when the file is not a valid PEM file. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurrence should generally imply that t...">common::Exception</a></td><td>when the openSSL BIO fails to create. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurrence should generally imply that t...">common::Exception</a></td><td>when the file cannot be read. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurrence should generally imply that t...">common::Exception</a></td><td>when the file is not a valid PEM file. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the X509 document. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00144">144</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00143">143</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="util_8cpp_source.html#l00154">dodo::common::getSSLErrors()</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 <div class="dynheader">
@@ -675,11 +675,11 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true when the IP matches. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00270">270</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00269">269</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="address_8hpp_source.html#l00136">dodo::network::Address::isValid()</a>.</p>
+<p class="reference">References <a class="el" href="address_8hpp_source.html#l00137">dodo::network::Address::isValid()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="x509cert_8cpp_source.html#l00279">verifySAN()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="x509cert_8cpp_source.html#l00278">verifySAN()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -752,9 +752,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true when the name matches. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00249">249</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00248">248</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="x509cert_8cpp_source.html#l00279">verifySAN()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="x509cert_8cpp_source.html#l00278">verifySAN()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -812,11 +812,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if the name matches. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00279">279</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00278">278</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="x509cert_8hpp_source.html#l00119">dodo::network::X509Common::Identity::commonName</a>, <a class="el" href="x509cert_8cpp_source.html#l00183">getSubject()</a>, <a class="el" href="x509cert_8cpp_source.html#l00193">getSubjectAltNames()</a>, <a class="el" href="x509cert_8hpp_source.html#l00079">dodo::network::X509Common::SAN::san_name</a>, <a class="el" href="x509cert_8hpp_source.html#l00074">dodo::network::X509Common::SAN::san_type</a>, <a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba1af3c8cd9ea46d2a701ae919c0a8c5a0">dodo::network::X509Common::stDNS</a>, <a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba2c1a510163b7557581fd8d65c50fce75">dodo::network::X509Common::stEMAIL</a>, <a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba6509b104c2d2ae4b436e2bab8ad28175">dodo::network::X509Common::stURI</a>, <a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba35607b760d2e28683799aecb996d6ec0">dodo::network::X509Common::tsIP</a>, <a class="el" href="x509cert_8cpp_source.html#l00270">verifyIP()</a>, and <a class="el" href="x509cert_8cpp_source.html#l00249">verifyName()</a>.</p>
+<p class="reference">References <a class="el" href="x509cert_8hpp_source.html#l00119">dodo::network::X509Common::Identity::commonName</a>, <a class="el" href="x509cert_8cpp_source.html#l00182">getSubject()</a>, <a class="el" href="x509cert_8cpp_source.html#l00192">getSubjectAltNames()</a>, <a class="el" href="x509cert_8hpp_source.html#l00079">dodo::network::X509Common::SAN::san_name</a>, <a class="el" href="x509cert_8hpp_source.html#l00074">dodo::network::X509Common::SAN::san_type</a>, <a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba1af3c8cd9ea46d2a701ae919c0a8c5a0">dodo::network::X509Common::stDNS</a>, <a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba2c1a510163b7557581fd8d65c50fce75">dodo::network::X509Common::stEMAIL</a>, <a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689bae756ee54c00082fce60e7f9447e41358">dodo::network::X509Common::stIP</a>, <a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba6509b104c2d2ae4b436e2bab8ad28175">dodo::network::X509Common::stURI</a>, <a class="el" href="x509cert_8cpp_source.html#l00269">verifyIP()</a>, and <a class="el" href="x509cert_8cpp_source.html#l00248">verifyName()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="tlssocket_8cpp_source.html#l00057">dodo::network::TLSSocket::connect()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tlssocket_8cpp_source.html#l00056">dodo::network::TLSSocket::connect()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

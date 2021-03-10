@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>dodo: DODO - C++ container service library</title>
+<title>dodo: DODO - C++ framework for Docker containers</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -84,28 +84,52 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">DODO - C++ container service library </div>  </div>
+<div class="title">DODO - C++ framework for Docker containers </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md12"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md1"></a>
 Design goals</h1>
-<p>A library to facilitate C++ software development for the Linux platform with a focus on containerized deployments.</p>
-<h1><a class="anchor" id="autotoc_md13"></a>
+<p>A framework to facilitate C++ software development for the Linux platform with a focus on k8s (<a href="https://kubernetes.io/">kubernetes</a>) deployments of <a href="https://www.docker.com/">Docker</a> containers. By using C++ one produces Docker containers that are memory and CPU friendly, by using this framework a lot of red tape is automated and simplified.</p>
+<ul>
+<li>The <a class="el" href="classdodo_1_1common_1_1Application.html" title="Red tape wrapper class for applications, from command line to services.">dodo::common::Application</a> reads its run-time configuration from a single (or more) YAML file presented to the container by k8s. Many classes in the framework can be constructed by handing a YAML node as parameter. This integrates seamlessly with the k8s concept of a deployment and rolling deployments.</li>
+<li>Implicit signal handling by the Application allowing k8s to reliably operate the container.</li>
+<li>Standard logging that can be configured to write to one or more of these targets:<ul>
+<li>A directory with a configured trail (size, history) of log files.</li>
+<li>A syslog call to <a href="https://www.rsyslog.com/">rsyslog</a>.</li>
+<li>Console aka standard out of the container entrypoint.</li>
+</ul>
+</li>
+<li>Binary data is the OctetArray datatype used by a variety of interfaces.</li>
+<li>Encryption and compression.</li>
+<li>Transparent ipv4 and ipv6 Address classes, name resolution and networking.</li>
+<li>TCPSocket (insecure) and TLSSocket classes (encryption and trust).</li>
+<li>TCPServer and TLSServer classes ready for custom protocol implementation.</li>
+<li>HTTP(S)Server and HTTP(S)Client.</li>
+<li>REST(S)Listener is a specialization of HTTP(S)Server</li>
+<li>Persistent data stores based on <a href="https://sqlite.org/index.html">SQLite</a><ul>
+<li>Key-value store.</li>
+<li>Persistent FIFO queue.</li>
+<li>Persistent Priority queue.</li>
+</ul>
+</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md2"></a>
 Dependencies</h1>
 <ul>
-<li><a href="https://www.openssl.org/">OpenSSL</a></li>
-<li><a href="https://github.com/jbeder/yaml-cpp">yaml-cpp</a></li>
-<li><a href="https://github.com/stbrumme/crc32">crc32</a></li>
+<li><a href="https://www.openssl.org/">OpenSSL</a> For TLS, hashing and encryption.</li>
+<li><a href="https://sqlite.org/index.html">SQLite</a> Persistent storage.</li>
+<li><a href="https://github.com/jbeder/yaml-cpp">yaml-cpp</a> Read and write YAML.</li>
+<li>[rapidjson]()</li>
+<li><a href="https://github.com/stbrumme/crc32">crc32</a> CRC32 verfication codes.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md14"></a>
+<h1><a class="anchor" id="autotoc_md3"></a>
 Developers</h1>
-<p>See the <a class="el" href="developer.html">developer manual</a> for an overview.</p>
-<p>The source code is documented for Doxygen. To generate full library documentation, see <code>make doc</code> in the build section below.</p>
-<p>A shorter tour is available in</p>
-<h1><a class="anchor" id="autotoc_md15"></a>
+<p>See the developer manual for an overview.</p>
+<p>The source code is documented for Doxygen and automatically generated to github pages.</p>
+<h1><a class="anchor" id="autotoc_md4"></a>
 Maintainers</h1>
 <p>See the <a class="el" href="maintainer.html">maintainer manual</a> for an overview.</p>
-<h1><a class="anchor" id="autotoc_md16"></a>
+<h1><a class="anchor" id="autotoc_md5"></a>
 Build</h1>
 <div class="fragment"><div class="line">git clone https://github.com/jmspit/dodo.git</div>
 <div class="line">cd dodo &amp;&amp; \</div>
@@ -114,8 +138,8 @@ Build</h1>
 <div class="line">   cmake ..  -DCMAKE_INSTALL_PREFIX=/opt/dodo &amp;&amp; \</div>
 <div class="line">   make &amp;&amp; \</div>
 <div class="line">   make install</div>
-</div><!-- fragment --><p>To generate Docygen API documentation, <code>make doc</code> will generate doxygen documentation in the build/doxygen/html directory, which contains index.html.</p>
-<h1><a class="anchor" id="autotoc_md17"></a>
+</div><!-- fragment --><p>To generate Doxygen API documentation, <code>make doc</code> will generate doxygen documentation in the build/doxygen/html directory, which contains index.html.</p>
+<h1><a class="anchor" id="autotoc_md6"></a>
 Docker</h1>
 <p>A multistage build example (src/examples/docker/minideb/Dockerfile).</p>
 <div class="fragment"><div class="line">FROM bitnami/minideb:latest AS builder</div>

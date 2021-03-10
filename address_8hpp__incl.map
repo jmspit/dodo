@@ -1,12 +1,12 @@
 <map id="src/include/network/address.hpp" name="src/include/network/address.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="422,5,571,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="329,5,478,47"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,95,97,121"/>
-<area shape="rect" id="node3" href="$exception_8hpp.html" title=" " alt="" coords="121,95,296,121"/>
-<area shape="rect" id="node4" title=" " alt="" coords="305,169,363,196"/>
-<area shape="rect" id="node5" title=" " alt="" coords="371,95,451,121"/>
-<area shape="rect" id="node6" title=" " alt="" coords="475,95,518,121"/>
-<area shape="rect" id="node7" title=" " alt="" coords="542,95,593,121"/>
-<area shape="rect" id="node8" href="$socketparams_8hpp.html" title=" " alt="" coords="616,95,815,121"/>
-<area shape="rect" id="node9" title=" " alt="" coords="839,95,909,121"/>
-<area shape="rect" id="node10" title=" " alt="" coords="933,95,1036,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="122,95,202,121"/>
+<area shape="rect" id="node4" title=" " alt="" coords="226,95,269,121"/>
+<area shape="rect" id="node5" title=" " alt="" coords="293,95,343,121"/>
+<area shape="rect" id="node6" title=" " alt="" coords="368,95,439,121"/>
+<area shape="rect" id="node7" title=" " alt="" coords="699,169,758,196"/>
+<area shape="rect" id="node8" title=" " alt="" coords="515,95,617,121"/>
+<area shape="rect" id="node9" href="$exception_8hpp.html" title=" " alt="" coords="641,95,816,121"/>
+<area shape="rect" id="node10" href="$socketparams_8hpp.html" title=" " alt="" coords="840,95,1039,121"/>
 </map>

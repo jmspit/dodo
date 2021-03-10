@@ -6,7 +6,7 @@ var namespacedodo_1_1common =
     [ "DebugObject", "classdodo_1_1common_1_1DebugObject.html", "classdodo_1_1common_1_1DebugObject" ],
     [ "Exception", "classdodo_1_1common_1_1Exception.html", "classdodo_1_1common_1_1Exception" ],
     [ "Logger", "classdodo_1_1common_1_1Logger.html", "classdodo_1_1common_1_1Logger" ],
-    [ "OctetArray", "structdodo_1_1common_1_1OctetArray.html", "structdodo_1_1common_1_1OctetArray" ],
+    [ "OctetArray", "classdodo_1_1common_1_1OctetArray.html", "classdodo_1_1common_1_1OctetArray" ],
     [ "Puts", "classdodo_1_1common_1_1Puts.html", "classdodo_1_1common_1_1Puts" ],
     [ "StopWatch", "classdodo_1_1common_1_1StopWatch.html", "classdodo_1_1common_1_1StopWatch" ],
     [ "SystemError", "classdodo_1_1common_1_1SystemError.html", "classdodo_1_1common_1_1SystemError" ],

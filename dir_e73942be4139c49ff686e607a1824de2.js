@@ -4,7 +4,7 @@ var dir_e73942be4139c49ff686e607a1824de2 =
       [ "Application", "classdodo_1_1common_1_1Application.html", "classdodo_1_1common_1_1Application" ],
       [ "StartParameters", "structdodo_1_1common_1_1Application_1_1StartParameters.html", "structdodo_1_1common_1_1Application_1_1StartParameters" ]
     ] ],
-    [ "common.hpp", "common_2common_8hpp.html", "common_2common_8hpp" ],
+    [ "common.hpp", "common_8hpp.html", "common_8hpp" ],
     [ "config.hpp", "config_8hpp.html", [
       [ "Config", "classdodo_1_1common_1_1Config.html", "classdodo_1_1common_1_1Config" ]
     ] ],

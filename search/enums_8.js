@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['matchtype_1562',['MatchType',['../structdodo_1_1common_1_1OctetArray.html#ab9ae44f4175883df2bb785c3b1100ff2',1,'dodo::common::OctetArray']]]
+  ['peerverification_1503',['PeerVerification',['../classdodo_1_1network_1_1TLSContext.html#ac52323d8c8ebb0024a917ab92640ee7d',1,'dodo::network::TLSContext']]],
+  ['protocolnumber_1504',['ProtocolNumber',['../classdodo_1_1network_1_1SocketParams.html#a941cc7578246143530f8a373359fca8f',1,'dodo::network::SocketParams']]]
 ];

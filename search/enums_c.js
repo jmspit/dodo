@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['version_1571',['Version',['../classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html#a77d5df70c7dd2fc85d5b53b90f9e0ca1',1,'dodo::network::protocol::stomp::Frame']]]
+  ['x509type_1511',['X509Type',['../classdodo_1_1network_1_1X509Common.html#a072fef8b03e3c6ccd2fa35d95e0556db',1,'dodo::network::X509Common']]]
 ];

@@ -1,7 +1,0 @@
-<map id="dodo::store::kvstore::FileHeader::BlockDef" name="dodo::store::kvstore::FileHeader::BlockDef">
-<area shape="rect" id="node1" title="The block definition." alt="" coords="167,245,334,287"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,80,32"/>
-<area shape="rect" id="node5" href="$structdodo_1_1store_1_1kvstore_1_1BlockHeader.html" title="KVStore block header." alt="" coords="107,96,259,137"/>
-<area shape="rect" id="node3" title=" " alt="" coords="283,103,357,130"/>
-<area shape="rect" id="node4" title=" " alt="" coords="407,103,473,130"/>
-</map>

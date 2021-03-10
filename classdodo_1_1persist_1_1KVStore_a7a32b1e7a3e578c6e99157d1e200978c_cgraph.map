@@ -1,0 +1,5 @@
+<map id="dodo::persist::KVStore::getValue" name="dodo::persist::KVStore::getValue">
+<area shape="rect" id="node1" title="If the key exists, returns true and copies (overwrites) data to the OctetArray." alt="" coords="5,39,172,80"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1OctetArray.html#a94882d4ab5d43d892cb947761cf59638" title="Append another OctetArray." alt="" coords="220,5,417,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1common_1_1OctetArray.html#aa899989789cbe6f06b64d749fb472b8e" title="Free and clear data." alt="" coords="220,71,417,112"/>
+</map>

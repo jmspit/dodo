@@ -1,0 +1,5 @@
+<map id="dodo::persist::KVStore::ensureWithDefault" name="dodo::persist::KVStore::ensureWithDefault">
+<area shape="rect" id="node1" title="If the key does not exist, create it with the default and return the default." alt="" coords="5,39,172,80"/>
+<area shape="rect" id="node2" href="$classdodo_1_1persist_1_1KVStore.html#a42cdd191f2ba7ebefb914ab62698a7e6" title="If the key exists, returns true and sets the value parameter." alt="" coords="220,5,387,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1persist_1_1KVStore.html#a8578963405b8ce070fe61179a4bd16e7" title="Insert a (key, string) pair." alt="" coords="220,71,387,112"/>
+</map>

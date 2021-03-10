@@ -1,5 +1,5 @@
 <map id="dodo::common::SystemException" name="dodo::common::SystemException">
 <area shape="rect" id="node1" title="Descending from Exception, exceptions based on a dodo::common::SystemError code." alt="" coords="91,95,331,121"/>
-<area shape="rect" id="node2" href="$classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurence should generally imply that th..." alt="" coords="5,5,196,32"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurrence should generally imply that t..." alt="" coords="5,5,196,32"/>
 <area shape="rect" id="node3" href="$classdodo_1_1common_1_1SystemError.html" title="Linux system error primitive to provide a consistent interface to Linux error codes." alt="" coords="220,5,427,32"/>
 </map>

@@ -35,12 +35,12 @@
 namespace dodo::persist {
 
   /**
-   * A persistent, multi-threaded key-value store backed by sqlite3 storage (file). The same file
-   * can safely be used by multiple processes (but not across nodes). If each thread uses its
-   * own KVStore object, no explicit synchronization is required.
+   * A persistent, multi-threaded key-value store backed by sqlite3 database (file). If each thread uses its
+   * own KVStore object, no explicit synchronization is required between the threads. Cluster filesystems are
+   * not supported - two processes can only write to a single SQLite file if the processes run on the same host.
    *
-   * The KVStore is backed by a SQLite database with a table kvstore( key text primary key , value not null ). In SQLite,
-   * column values can have different data types, so the single table can store any of the supported data types
+   * The KVStore is backed by the kvstore table. In SQLite, values in the same column can have different data types, so
+   * the table can store values of any of the supported data types:
    *
    * | DataType | C++ type | SQLite type |
    * |-------------------|----------|-------------|
@@ -50,12 +50,12 @@ namespace dodo::persist {
    * | dtBlob | common::OctetArray | SQLITE_BLOB |
    * | dtUnknown | used to indicate the unknown dataType of a non-existing key |  |
    *
-   * In typical use the caller is aware of the datatype of a key, so typical use would be
+   * In typical use the code is aware of the datatype of a key, so typical use would be
    *
    * @code
    * persist::KVStore store("mystore.db");
    * store.insertKey( "pi", 3.14 );         // insert as a double value
-   * double pi = store.asDouble( "pi" );    // retrieve as a double value
+   * double pi = store.asDouble( "pi" );    // retrieve as a double value as we know it is a double.
    * @endcode
    *
    * Moreover, SQLite will convert (CAST) between types where possible, but revert to defaults when it can't. For example,
@@ -64,21 +64,41 @@ namespace dodo::persist {
    * store.insertKey( "key", "value" );
    * cout <<  store.asInteger( "key" ) << endl;
    * @endcode
-   * will output 0 as the string "value" does not convert to an integer. Use getDataType to check if a key is of the expected DataType.
+   * will output 0 as the string "value" does not convert to an integer. Use getMetaData to check if a key is of the expected DataType.
    *
-   * The SQLIte database is initailized in WAL mode for performance and concurrency. It can be checkpointed to make sure the
-   * contents are fully written out to persistent storage.
+   * It is also possible to store dodo::common::OctetArray (dtBlob / SQLITE_BLOB) types.
+   *
+   * The SQLite database is initailized in WAL mode for performance. Make sure to use transactions to group
+   * bulk insertKey or setKey as that is much faster.
+   *
+   * The examples/kvstore/kvstore.cpp is a simple speed test using a KVStore:
+   * @include examples/kvstore/kvstore.cpp
    */
   class KVStore {
     public:
 
+      /**
+       * The data type of a keyed value.
+       */
       enum DataType {
-        dtInteger = SQLITE_INTEGER, /**< Integer type (int64_t) */
-        dtFloat   = SQLITE_FLOAT,   /**< Floating point type (double) */
-        dtText    = SQLITE3_TEXT,   /**< Text type (string) */
-        dtBlob    = SQLITE_BLOB,    /**< Binary data type (OctetArray) */
-        dtNull    = SQLITE_NULL,    /**< NULL type (unset and undefined) */
+        dtInteger = SQLITE_INTEGER, /**< (1) Integer type (int64_t) */
+        dtFloat   = SQLITE_FLOAT,   /**< (2) Floating point type (double) */
+        dtText    = SQLITE3_TEXT,   /**< (3) Text type (string) */
+        dtBlob    = SQLITE_BLOB,    /**< (4) Binary data type (OctetArray) */
+        dtNull    = SQLITE_NULL,    /**< (5) NULL type (unset and undefined) */
         dtUnknown = 91,             /**< Used to indicate a DataType that could not be determined */
+      };
+
+      /**
+       * Meta data concerning the key.
+       */
+      struct MetaData {
+        /** unix timestamp in UTC (seconds) */
+        double last_modified = 0;
+        /** number of times the value was updates (is 0 after insertKey) */
+        int64_t update_count = 0;
+        /** The DataType of the key's value. */
+        DataType type;
       };
 
       /**
@@ -92,6 +112,133 @@ namespace dodo::persist {
        * Destructor, cleanup sync and close the SQLLite database.
        */
       ~KVStore();
+
+      /**
+       * Sync all to disk.
+       */
+      void checkpoint();
+
+      /**
+       * Commit a transaction. Throws a dodo::common::Exception when no transaction has started.
+       */
+      void commitTransaction();
+
+      /**
+       * Delete the key or return false if the key does not exist.
+       * @param key The key.
+       * @return True if the key existed.
+       */
+      bool deleteKey( const std::string &key );
+
+      /**
+       * If the key does not exist, create it with the default and return the default.
+       * If the key exists, return its value (which may not be the default).
+       * @param key The key.
+       * @param def The string value for the key if it does not exist.
+       * @return The key value.
+       */
+      std::string ensureWithDefault( const std::string &key, const std::string &def );
+
+      /**
+       * If the key does not exist, create it with the default and return the default.
+       * If the key exists, return its value (which may not be the default).
+       * @param key The key.
+       * @param def The double value for the key if it does not exist.
+       * @return The key value.
+       */
+      double ensureWithDefault( const std::string &key, double &def );
+
+      /**
+       * If the key does not exist, create it with the default and return the default.
+       * If the key exists, return its value (which may not be the default).
+       * @param key The key.
+       * @param def The int64_t value for the key if it does not exist.
+       * @return The key value.
+       */
+      int64_t ensureWithDefault( const std::string &key, int64_t &def );
+
+      /**
+       * Check if the key exists. Unless the value is not required , it is more efficient
+       * to get the value in one go by calling the getString(), getDouble(), getInt64() and getData()
+       * members, which return false if the key does not exist.
+       * @param key The key to check for.
+       * @return False if the key does not exist.
+       */
+      bool exists( const std::string &key ) const;
+
+      /**
+       * Return a list of keys that match the filter.
+       * @param keys The list that receives the keys. The list is cleared before assigning keys so it may turn up empty if
+       * the filter matches no keys.
+       * @param filter The SQL-style case-sensitive filter as in '%match%', 'match%'
+       */
+      void filterKeys( std::list<std::string>& keys, const std::string &filter );
+
+      /**
+       * Presumes the key exists, and throws an common::Exception if it does not. Otherwise, return the value
+       * for the key as a double.
+       * @param key
+       * @return The double value for the key.
+       */
+      double getDouble( const std::string &key );
+
+      /**
+       * Get MetaData for the key.
+       * @param key The key.
+       * @return the MetaData for the key.
+       */
+      MetaData getMetaData( const std::string &key );
+
+      /**
+       * If the key exists, returns true and sets the value parameter.
+       * @param key The key to get the value for.
+       * @param value The destination value to set.
+       * @return False if the key does not exist.
+       */
+      bool getValue( const std::string &key, std::string &value ) const;
+
+      /**
+       * Presumes the key exists, and throws an common::Exception if it does not. Otherwise, return the value
+       * for the key as a string.
+       * @param key
+       * @return The string value for the key.
+       */
+      std::string getString( const std::string &key );
+
+      /**
+       * If the key exists, returns true and sets the value parameter.
+       * @param key The key to get the value for.
+       * @param value The destination value to set.
+       * @return False if the key does not exist.
+       */
+      bool getValue( const std::string &key, double &value ) const;
+
+      /**
+       * If the key exists, returns true and sets the value parameter.
+       * @param key The key to get the value for.
+       * @param value The destination value to set.
+       * @return False if the key does not exist.
+       */
+      bool getValue( const std::string &key, int64_t &value ) const;
+
+      /**
+       * If the key exists, returns true and sets the data and size parameter. The blob is copied into
+       * memory allocated at the pointer returned in data, memory which becomes the caller's responsibility
+       * to clean up.
+       * @param key The key to get the value for.
+       * @param data The pointer that will be set and points to the data.
+       * @param size The size of the data.
+       * @return False if the key does not exist.
+       */
+      bool getValue( const std::string &key, const void* &data, int &size ) const;
+
+      /**
+       * If the key exists, returns true and copies (overwrites) data to the OctetArray.
+       * @param key The key to get the value for.
+       * @param data The OctetArray that will receive the data.
+       * @return False if the key does not exist.
+       */
+      bool getValue( const std::string &key, common::OctetArray &data ) const;
 
       /**
        * Insert a (key, string) pair.
@@ -136,6 +283,16 @@ namespace dodo::persist {
       bool insertKey( const std::string &key, const common::OctetArray &oa );
 
       /**
+       * Optimzime, preferably called after workload and implicitly called by the destructor.
+       */
+      void optimize();
+
+      /**
+       * Rollback a transaction. Throws a dodo::common::Exception when no transaction has started.
+       */
+      void rollbackTransaction();
+
+      /**
        * Set the string value of an existing key. The function returns false if the key does not exist.
        * @param key The key.
        * @param value The string value to set.
@@ -172,137 +329,15 @@ namespace dodo::persist {
        * Set the binary data/OctetArray value of an existing key. The function returns false if the key does not exist.
        * @param key The key.
        * @param oa The OctetArray to set.
-       * @param size The size of the data to set.
        * @return True if the key exists, in which case it is also updated.
        */
       bool setKey( const std::string &key, const common::OctetArray &oa );
 
       /**
-       * If the key does not exist, create it with the default and return the default.
-       * If the key exists, return its value (which may not be the default).
-       * @param key The key.
-       * @param def The string value for the key if it does not exist.
-       * @return The key value.
+       * Start a transaction. If insertKey or setKey calls are not inside a started transaction, each will commit
+       * automatically and indvidually, which is mach (much!) slower for bulk operations.
        */
-      std::string ensureWithDefault( const std::string &key, const std::string &def );
-
-      /**
-       * If the key does not exist, create it with the default and return the default.
-       * If the key exists, return its value (which may not be the default).
-       * @param key The key.
-       * @param def The double value for the key if it does not exist.
-       * @return The key value.
-       */
-      double ensureWithDefault( const std::string &key, double &def );
-
-      /**
-       * If the key does not exist, create it with the default and return the default.
-       * If the key exists, return its value (which may not be the default).
-       * @param key The key.
-       * @param def The int64_t value for the key if it does not exist.
-       * @return The key value.
-       */
-      int64_t ensureWithDefault( const std::string &key, int64_t &def );
-
-      /**
-       * Presumes the key exists, and throws an common::Exception if it does not. Otherwise, return the value
-       * for the key as a string.
-       * @param key
-       * @return The string value for the key.
-       */
-      std::string getString( const std::string &key );
-
-      /**
-       * Presumes the key exists, and throws an common::Exception if it does not. Otherwise, return the value
-       * for the key as a double.
-       * @param key
-       * @return The double value for the key.
-       */
-      double getDouble( const std::string &key );
-
-      /**
-       * If the key exists, returns true and sets the value parameter.
-       * @param key The key to get the value for.
-       * @param value The destination value to set.
-       * @return False if the key does not exist.
-       */
-      bool getValue( const std::string &key, std::string &value ) const;
-
-      /**
-       * If the key exists, returns true and sets the value parameter.
-       * @param key The key to get the value for.
-       * @param value The destination value to set.
-       * @return False if the key does not exist.
-       */
-      bool getValue( const std::string &key, double &value ) const;
-
-      /**
-       * If the key exists, returns true and sets the value parameter.
-       * @param key The key to get the value for.
-       * @param value The destination value to set.
-       * @return False if the key does not exist.
-       */
-      bool getValue( const std::string &key, int64_t &value ) const;
-
-      /**
-       * If the key exists, returns true and sets the data and size parameter. The blob is copied into
-       * memory allocated at the pointer returned in data, memory which becomes the caller's responsibility
-       * to clean up.
-       * @param key The key to get the value for.
-       * @param data The pointer that will be set and points to the data.
-       * @param size The size of the data.
-       * @return False if the key does not exist.
-       */
-      bool getValue( const std::string &key, const void* &data, int &size ) const;
-
-      /**
-       * If the key exists, returns true and copies (overwrites) data to the OctetArray.
-       * @param key The key to get the value for.
-       * @param data The OctetArray that will receive the data.
-       * @return False if the key does not exist.
-       */
-      bool getValue( const std::string &key, common::OctetArray &data ) const;
-
-      /**
-       * Check if the key exists. Unless the value is not required , it is more efficient
-       * to get the value in one go by calling the getString(), getDouble(), getInt64() and getData()
-       * members, which return false if the key does not exist.
-       * @param key The key to check for.
-       * @return False if the key does not exist.
-       */
-      bool exists( const std::string &key ) const;
-
-      /**
-       * Get the DataType for the key.
-       * @param key The key name.
-       * @return the DataType of the key.
-       */
-      DataType getDataType( const std::string &key ) const;
-
-      /**
-       * Delete the key or return false if the key does not exist.
-       * @param key The key.
-       * @return True if the key existed.
-       */
-      bool deleteKey( const std::string &key );
-
-      /**
-       * Return a list of keys that match the filter.
-       * @param keys The list that receives the keys. The list is cleared before assigning keys so it may turn up empty if
-       * the filter matches no keys.
-       * @param filter The SQL-style case-sensitive filter as in '%match%', 'match%'
-       */
-      void filterKeys( std::list<std::string>& keys, const std::string &filter );
-
-      /**
-       * Sync all to disk.
-       */
-      void checkPoint();
-
-      /**
-       * Optimzime, preferably called after workload and implicitly called by the destructor.
-       */
-      void optimize();
+      void startTransaction();
 
       /**
        * Vaccum - clean and defragment, which may increase efficiency after heavy deletion and/or modification.
@@ -347,6 +382,9 @@ namespace dodo::persist {
 
       /** Key + value filter statement handle. */
       sqlite3_stmt* stmt_key_value_filter_;
+
+      /** Get metadata statement handle. */
+      sqlite3_stmt* stmt_metadata_;
   };
 
 }

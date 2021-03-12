@@ -616,10 +616,10 @@ Suppose we require the hostname of a proxy server.
 
 ```C
 dodo::persist::KVStore store( "cm.db" );
-std::string proxy_server = ensureWidthDefault( "proxy-server", "proxy.domain.nl" );
+std::string proxy_server = store.ensureWidthDefault( "proxy-server", "proxy.domain.nl" );
 ```
 
-If the key `proxy-server` did not exist, proxy_server is now set to `"proxy.domain.nl"`. If it did exist, it is now set to whatever value was set in the store. If a default cannot be set by the code and the key is just expected to be there, once could do
+If the key `proxy-server` did not exist, it is now set to `"proxy.domain.nl"` in the store and that value is returned by dodo::persist::KVStore::ensureWithDefault. If it did exist, the ensureWidthDefault function retruns the value from the store (and ignores the default). If a default cannot be set by the code and the key is just expected to be there, one could do
 
 ```C
 dodo::persist::KVStore store( "cm.db" );
@@ -627,4 +627,15 @@ std::string proxy_server = "";
 if ( store.getValue( "proxy-server", proxy_server ) ) {
   ...
 } else throw std::runtime_error( "key not found" )
+```
+
+For bulk inserts (dodo::persist::KVStore::insertKey) or updates (dodo::persist::KVStore::setKey), be sure to call dodo::persist::KVStore::startTransaction before the modifications and dodo::persist::KVStore::commitTransaction (or dodo::persist::KVStore::rollbackTransaction) to speeds things up, as otherwise each modification
+will commit individually (this is seen to speed things up 1000x).
+
+```C
+store.startTransaction();
+for ( const auto &k : keys ) {
+  store.insertKey( k, random_string( rand() % DATA_MAX_LENGTH ) );
+}
+store.commitTransaction();
 ```

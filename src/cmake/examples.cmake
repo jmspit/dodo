@@ -45,3 +45,9 @@ set( ${EXAMPLE_KVSTORE}_objects  src/examples/${EXAMPLE_KVSTORE}/${EXAMPLE_KVSTO
 add_executable(${EXAMPLE_KVSTORE} ${${EXAMPLE_KVSTORE}_objects} )
 target_link_libraries( ${EXAMPLE_KVSTORE} ${LIB_DODO} )
 install( TARGETS ${EXAMPLE_KVSTORE} RUNTIME DESTINATION bin )
+
+set( EXAMPLE_FINGER  "finger" )
+set( ${EXAMPLE_FINGER}_objects  src/examples/${EXAMPLE_FINGER}/${EXAMPLE_FINGER}.cpp )
+add_executable(${EXAMPLE_FINGER} ${${EXAMPLE_FINGER}_objects} )
+target_link_libraries( ${EXAMPLE_FINGER} ${LIB_DODO} )
+install( TARGETS ${EXAMPLE_FINGER} RUNTIME DESTINATION bin )

@@ -6,7 +6,7 @@ using namespace dodo;
 bool test1() {
   try {
     X509* cert = network::X509Certificate::loadPEM( BuildEnv::getSourceDirectory() +
-                                                    "/examples/tls/artefacts/ca/root/ext/servers/localhost.cert.pem" );
+                                                    "/../tests/network/localhost.cert.pem" );
     std::cout << "Issuer:  " << network::X509Certificate::getIssuer( cert ).commonName << std::endl;
     std::cout << "Subject: " << network::X509Certificate::getSubject( cert ).commonName << std::endl;
     for ( auto san : network::X509Certificate::getSubjectAltNames( cert ) ) {

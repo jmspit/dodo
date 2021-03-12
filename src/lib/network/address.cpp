@@ -196,7 +196,7 @@ namespace dodo::network {
         }
       }
       return SystemError::ecEAI_NODATA;
-    } else return error; //SystemError::ecEAI_NODATA;
+    } else return error;
   }
 
   SystemError Address::getNameInfo( std::string &hostname ) const {

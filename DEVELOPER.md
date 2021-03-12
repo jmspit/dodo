@@ -614,17 +614,17 @@ object - even though they all point to the same SQLite file - no explicit synchr
 
 Suppose we require the hostname of a proxy server.
 
-```
+```C
 dodo::persist::KVStore store( "cm.db" );
 std::string proxy_server = ensureWidthDefault( "proxy-server", "proxy.domain.nl" );
 ```
 
 If the key `proxy-server` did not exist, proxy_server is now set to `"proxy.domain.nl"`. If it did exist, it is now set to whatever value was set in the store. If a default cannot be set by the code and the key is just expected to be there, once could do
 
-```
+```C
 dodo::persist::KVStore store( "cm.db" );
 std::string proxy_server = "";
 if ( store.getValue( "proxy-server", proxy_server ) ) {
-  # good
+  ...
 } else throw std::runtime_error( "key not found" )
 ```

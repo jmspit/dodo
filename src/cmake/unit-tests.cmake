@@ -31,11 +31,11 @@ target_link_libraries( ${TEST_COMMON_DATACRYPT} ${LIB_DODO} )
 add_test (NAME "common::DataCrypt=${TEST_COMMON_DATACRYPT}" COMMAND ${TEST_COMMON_DATACRYPT} )
 
 
-#set( TEST_NETWORK_ADDRESS  "test-network-address" )
-#set( ${TEST_NETWORK_ADDRESS}_objects  tests/network/${TEST_NETWORK_ADDRESS}.cpp )
-#add_executable(${TEST_NETWORK_ADDRESS} ${${TEST_NETWORK_ADDRESS}_objects} )
-#target_link_libraries( ${TEST_NETWORK_ADDRESS} ${LIB_DODO} )
-#add_test (NAME "network::Address=${TEST_NETWORK_ADDRESS}" COMMAND ${TEST_NETWORK_ADDRESS} )
+set( TEST_NETWORK_ADDRESS  "test-network-address" )
+set( ${TEST_NETWORK_ADDRESS}_objects  tests/network/${TEST_NETWORK_ADDRESS}.cpp )
+add_executable(${TEST_NETWORK_ADDRESS} ${${TEST_NETWORK_ADDRESS}_objects} )
+target_link_libraries( ${TEST_NETWORK_ADDRESS} ${LIB_DODO} )
+add_test (NAME "network::Address=${TEST_NETWORK_ADDRESS}" COMMAND ${TEST_NETWORK_ADDRESS} )
 
 set( TEST_NETWORK_SOCKET  "test-network-socket" )
 set( ${TEST_NETWORK_SOCKET}_objects  tests/network/${TEST_NETWORK_SOCKET}.cpp )

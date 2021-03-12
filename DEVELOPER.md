@@ -96,7 +96,7 @@ internal dodo errors that are more convenient in program flows. Among error cond
   - loading an invalid private key
   - unable to allocate memory
 
-whilst SystemError is *returned* when, for example,
+whilst dodo::common::SystemError is *returned* when, for example,
 
   - a fqdn fails to resolve
   - send / receive timeouts
@@ -113,9 +113,10 @@ catch ( const std::exception &e ) {
 }
 ```
 
-will catch anything that can go wrong in system plus dodo.
+will catch anything that can go wrong in system plus dodo. dodo::common::Exception instances will include the file and line number where the Exception was thrown. Developers may use or mimic the throw_Exception() macro's that are used by ddo internally.
 
-dodo::common::Exception instances will include the file and line number where the Exception was thrown. Developers may use or mimic the throw_Exception() macro's that are used by ddo internally.
+The dodo::common::SystemError is used in control flows, and is declared `[[nodiscard]]` so that the compiler issues a warning if any function that returns a
+dodo::common::SystemError ignores its return value.
 
 # Deployment configuration
 
@@ -602,15 +603,28 @@ and request queue size permit, it can handle intermediate burst that exceed it w
 
 # KVStore
 
-The key-value store
+The dodo::persist::KVStore class is a simple key-value store backed by SQLite. Under multithreading, if each thread uses its own KVStore
+object - even though they all point to the same SQLite file - no explicit synchronization is required.
 
-  - Is block-oriented with a configurable blocksize of 4096 byte multiples.
-  - Has string-based keys with a maximum key length slightly less than half a block.
-  - Values can span blocks and can be as large as uint64_t
-  - Can store arbitrary value data.
-  - Utilizes a b-tree index to store keys and pointers to values.
-  - Uses a memory mapped file with block-level locking allowing multithreaded, multiprocess or multi-node (clustered) use.
-  - Provides auto-upgrades on the data file.
-  - Block integrity checks with crc32.
-  - Ability to encrypt values.
-  - Ability to compress values.
+  - The SQLite database (file) is initialized in WAL mode for performance.
+  - All key-value pairs are stored in a single table (kvstore).
+  - The value column can hold any datatype that SQLite supports.
+  - The modified column stores the (unix timestamp) of the last modification.
+  - The updates column stores the total number of times the value was updated (after first insert this is 0).
+
+Suppose we require the hostname of a proxy server.
+
+```
+dodo::persist::KVStore store( "cm.db" );
+std::string proxy_server = ensureWidthDefault( "proxy-server", "proxy.domain.nl" );
+```
+
+If the key `proxy-server` did not exist, proxy_server is now set to `"proxy.domain.nl"`. If it did exist, it is now set to whatever value was set in the store. If a default cannot be set by the code and the key is just expected to be there, once could do
+
+```
+dodo::persist::KVStore store( "cm.db" );
+std::string proxy_server = "";
+if ( store.getValue( "proxy-server", proxy_server ) ) {
+  # good
+} else throw std::runtime_error( "key not found" )
+```

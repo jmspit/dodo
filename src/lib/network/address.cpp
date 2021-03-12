@@ -182,18 +182,20 @@ namespace dodo::network {
     if ( error == SystemError::ecOK ) {
       if ( info.items.size() < 1 ) return SystemError::ecEAI_NODATA;
       for ( auto item : info.items ) {
+        std::cout << "item: " << item.asString() << std::endl;
         if ( item.params.getAddressFamily() == params.getAddressFamily() || params.getAddressFamily() == SocketParams::afUNSPEC ) {
           if ( item.params.getSocketType() == params.getSocketType() ) {
             if ( item.params.getProtocol() == params.getProtocol() ) {
               canonicalname = info.canonicalname;
               address = item.address;
               params.setAddressFamily( address.getAddressFamily() );
+              std::cout << "item: " << item.asString() << " hit!" << std::endl;
               return SystemError::ecOK;
-            } else return SystemError::ecEAI_NODATA;
-          } else return SystemError::ecEAI_NODATA;
-        } else return SystemError::ecEAI_NODATA;
+            }
+          }
+        }
       }
-      return SystemError::ecOK;
+      return SystemError::ecEAI_NODATA;
     } else return error; //SystemError::ecEAI_NODATA;
   }
 

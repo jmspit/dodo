@@ -189,12 +189,12 @@ namespace dodo::network {
               address = item.address;
               params.setAddressFamily( address.getAddressFamily() );
               return SystemError::ecOK;
-            } else return SystemError::ecEAI_NODATA;
-          } else return SystemError::ecEAI_NODATA;
-        } else return SystemError::ecEAI_NODATA;
+            }
+          }
+        }
       }
-      return SystemError::ecOK;
-    } else return error; //SystemError::ecEAI_NODATA;
+      return SystemError::ecEAI_NODATA;
+    } else return error;
   }
 
   SystemError Address::getNameInfo( std::string &hostname ) const {

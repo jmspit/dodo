@@ -4,16 +4,24 @@
 
 # Introduction
 
-- Target is GNU/Linux.
-- API to write low level services with C++ traits as a low memory footprint and efficient binaries.
-- Implicit APIs for deployment configuration, logging, threading, networking, SQLite, PostgreSQL, MongoDB, Oracle
-  JSON, XML, Kafka, AVRO
-- Relies on the GNU C++ STL
+Framework to create services with C++ efficiency for deployment in Docker containers.
+
+- Target is GNU/Linux exclusively.
+- The Application class handles red tape
+  - Runtime configuration through yaml file
+  - Logging to one or more destinations, console, (rotating) files, syslog.
+  - Handling signals (to the container entrypoint, including stop requests)
+- Frameworks for typical demands such as
+  - Network and TLS network sockets
+  - TCP servers both with and without TLS support.
+  - HTTP servers both with and without TLS support.
+  - REST servers both with and without TLS support.
+  - Persistent Key-Value store based on SQLLite.
+- Framework classes can be initialized against YAML nodes that define the runtime configuration, a YAML node which may be in the same file that defines the Application as well as other classes.
 
 # Using dodo
 
-Include all headers by including dodo.hpp. Before using any of the dodo content, call dodo::initLibrary(). Call
-dodo::closeLibrary() to clean up at the end.
+When not using the dodo::common::Application class, include all headers by including dodo.hpp. Before using any of the dodo functionality, call dodo::initLibrary(). Call dodo::closeLibrary() to clean up at the end.
 
 ```C
 #include <dodo.hpp>
@@ -38,7 +46,7 @@ int main( int argc, char* argv[] ) {
 
 Or use the dodo::common::Application class, as that will
 
-  - initialize the dodo library
+  - initialize/unload the dodo library
   - install signal handlers
   - parse command line arguments, read environment variables
   - read configuration data from the specified configuration file.
@@ -82,13 +90,13 @@ int main( int argc, char* argv[], char** envp ) {
 
 Dodo throws dodo::common::Exception (or its descendant dodo::common::SystemException) only in exceptional circumstances.
 Methods that might be expected to fail return a SystemError, a (mostly 1-1) mapping of various types of system and
-internal dodo errors that can be used in program flows. Among error conditions that will throw are
+internal dodo errors that are more convenient in program flows. Among error conditions that will *throw* are
 
   - specifying an non-existing configuration file
   - loading an invalid private key
   - unable to allocate memory
 
-whilst SystemError is returned when
+whilst SystemError is *returned* when, for example,
 
   - a fqdn fails to resolve
   - send / receive timeouts
@@ -105,15 +113,13 @@ catch ( const std::exception &e ) {
 }
 ```
 
-will catch anything that can go wrong in system plus dodo - unless it is a bug.
+will catch anything that can go wrong in system plus dodo.
 
-dodo::common::Exception instances will include the file and line number where the Exception was thrown. Developers
-may use or mimic the throw_Exception() macro's.
+dodo::common::Exception instances will include the file and line number where the Exception was thrown. Developers may use or mimic the throw_Exception() macro's that are used by ddo internally.
 
 # Deployment configuration
 
-The dodo::common::Config interface enforces the use of a YAML configuration file with mandatory sections that
-configures mandatory configuration items
+The dodo::common::Config interface enforces the use of a YAML configuration file with mandatory keys that configure mandatory configuration items
 
 ```YAML
 dodo:
@@ -125,18 +131,17 @@ dodo:
         level: info
 ```
 
-A dodo Application configuration requires at least a name and a dodo::common::Logger::LogLevel for logging to console or
+A dodo Application configuration requires at least a name (myapp) and a dodo::common::Logger::LogLevel (info) for logging to console or
 standard out.
 
-The dodo mandatory section can appear anywhere in the YAML as long as it is a root node. Configuration formats
-of other dodo components are described by topic and class below.
+The dodo mandatory key tree can appear anywhere in the YAML as long as it is a root node. Configuration formats of other dodo components are described, below, but may be present in the same file.
 
 # Logging
 
 A logging framework is available to write log entries to one or more destinations. The available destinations are
 
-  - standard output aka console
-  - a file local to the process
+  - standard output aka the console of the container (assuming the Application is the entrypoint)
+  - a directory with a file rotation policy
   - the syslog
 
 The logging interface is thread-safe.
@@ -155,12 +160,9 @@ dodo:
 which specifies that log entries should be sent to the console (standard out) if they are level
 dodo::common::Logger::LogLevel::Info or worse.
 
-The other destinations are file and syslog. The logger writes entries to all destinations specified (so console
-logging cannot be disabled). The file destination requires directory and trailing limits specifications as the log
-files are rotated automatically. `max-size-mib` (the maximum size of a file before rotate) and `max-file-trail`
-(the maximum number of already rotated log files to keep, oldest removed if exceeded) may be omitted, in which case
+The other destinations are file and syslog. The logger writes entries to all destinations specified (so console logging cannot be disabled). The file destination requires directory and trailing limits specifications as the log files are rotated automatically. `max-size-mib` (the maximum size of a file before rotate) and `max-file-trail` (the maximum number of already rotated log files to keep, oldest removed if exceeded) may be omitted, in which case
 they have the values as specified below. The directory must be specified and may be relative to the current working
-directory (Dockerfile.WORKDIR in case of a docker container).
+directory.
 
 ```YAML
 dodo:
@@ -188,8 +190,8 @@ format, but the shorter format will be used in log entries written to console or
 | `WRN` | `warning` | 4 WARNING | Included in code |
 | `INF` | `info` | 6 INFORMATIONAL | Included in code |
 | `STA` | `statistics` | 6 INFORMATIONAL | Included in code |
-| `DBG` | `debug` | ignored | Excluded from code |
-| `TRC` | `trace` | ignored | Excluded from code |
+| `DBG` | `debug` | not logged | Excluded from code |
+| `TRC` | `trace` | not logged | Excluded from code |
 
 So it is not possible to debug or trace to the syslog, and debug and trace loglevels have no effect in release builds.
 
@@ -209,7 +211,7 @@ above fragment would reduce to
 ```
 
 
-The configure the syslog destination
+To configure the syslog destination
 
 ```YAML
 dodo:
@@ -226,11 +228,9 @@ The syslog facility should be either 1 for `user-level messages` or in the range
 as the remaining values are reserved for other use.
 
 
-# Threads
-
 # Networking
 
-The networking API is grouped in the dodo::network namespace.
+The networking framework is provided by the dodo::network namespace.
 
 ## Address
 
@@ -252,7 +252,7 @@ common::SystemError error = network::Address::getHostAddrInfo( host, sock_params
 
 # Sockets
 
-All sockets descend from network::BaseSocket.
+All sockets descend from dodo::network::BaseSocket.
 
 ## Secure sockets {#developer_networking}
 

@@ -19,7 +19,7 @@ class Server : public TCPServer {
 
     virtual SystemError readSocket( TCPListener::SocketWork &work, ssize_t &sent ) {
       SystemError error;
-      const OctetArray &buf = work.data->getReadBuffer();
+      const Bytes &buf = work.data->getReadBuffer();
       if ( buf.getSize() > 0 ) {
         if ( buf.getOctet(buf.getSize()-1) == '\n' ) {
           error = work.socket->send( buf.getArray(), buf.getSize() );

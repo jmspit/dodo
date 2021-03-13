@@ -16,8 +16,8 @@
  */
 
 /**
- * @file octetarray.cpp
- * Implements the dodo::common::OctetArray class.
+ * @file bytes.cpp
+ * Implements the dodo::common::Bytes class.
  */
 
 #include <cstring>
@@ -26,11 +26,11 @@
 #include <openssl/rand.h>
 
 #include "common/exception.hpp"
-#include "common/octetarray.hpp"
+#include "common/bytes.hpp"
 
 namespace dodo::common {
 
-  void OctetArray::reserve( size_t sz ) {
+  void Bytes::reserve( size_t sz ) {
     size_t chunkedsz = ( sz / alloc_block + 1 ) * alloc_block;
     if ( sz == size_ ) return;
     if ( array_ ) {
@@ -53,7 +53,7 @@ namespace dodo::common {
     }
   }
 
-  void OctetArray::free() {
+  void Bytes::free() {
     if ( array_ != nullptr ) {
       std::free( array_ );
       array_ = nullptr;
@@ -62,31 +62,31 @@ namespace dodo::common {
     allocated_size = 0;
   }
 
-  void OctetArray::append( const OctetArray& src ) {
+  void Bytes::append( const Bytes& src ) {
     size_t osize = size_;
     this->reserve( size_ + src.size_ );
     memcpy( array_ + osize, src.array_, src.size_ );
   }
 
-  void OctetArray::append( const OctetArray& src, size_t n ) {
+  void Bytes::append( const Bytes& src, size_t n ) {
     if ( n > src.size_ ) throw_Exception( "cannot append more than available in src" );
     size_t osize = size_;
     this->reserve( size_ + n );
     memcpy( array_ + osize, src.array_, n );
   }
 
-  void OctetArray::append( const Octet* src, size_t n ) {
+  void Bytes::append( const Octet* src, size_t n ) {
     size_t osize = size_;
     this->reserve( size_ + n );
     memcpy( array_ + osize, src, n );
   }
 
-  void OctetArray::append( Octet src ) {
+  void Bytes::append( Octet src ) {
     this->reserve( size_ + 1 );
     array_[size_ - 1 ] = src;
   }
 
-  OctetArray& OctetArray::operator=( const std::string &s ) {
+  Bytes& Bytes::operator=( const std::string &s ) {
     this->reserve( s.length() );
     for ( size_t i = 0; i < s.length(); i++ ) {
       array_[i] = static_cast<Octet>( s[i] );
@@ -94,8 +94,8 @@ namespace dodo::common {
     return *this;
   }
 
-  //OctetArray::operator std::string() const {
-  std::string OctetArray::asString() const {
+  //Bytes::operator std::string() const {
+  std::string Bytes::asString() const {
     std::stringstream ss;
     for ( size_t i = 0; i < size_; i++ ) {
       if ( array_[i] != 0 ) ss << array_[i];
@@ -103,7 +103,7 @@ namespace dodo::common {
     return ss.str();
   }
 
-  void OctetArray::random( size_t octets ) {
+  void Bytes::random( size_t octets ) {
     if ( octets != size_ ) {
       this->reserve( octets );
     }
@@ -111,7 +111,7 @@ namespace dodo::common {
   }
 
 
-  OctetArray& OctetArray::decodeBase64( const std::string& src ) {
+  Bytes& Bytes::decodeBase64( const std::string& src ) {
     Octet* temp = (Octet*)std::malloc( src.length() ); // too much, but safe, and temp anyway
 
 
@@ -133,7 +133,7 @@ namespace dodo::common {
     return *this;
   }
 
-  std::string OctetArray::encodeBase64() const {
+  std::string Bytes::encodeBase64() const {
     size_t base64sz = size_;
     base64sz = (base64sz / 48 + 1)*65+1;
     unsigned char* target = (unsigned char*)std::malloc( base64sz );
@@ -159,7 +159,7 @@ namespace dodo::common {
     return ss.str();
   }
 
-  OctetArray::MatchType OctetArray::match( const OctetArray& other, size_t index, size_t &octets  ) {
+  Bytes::MatchType Bytes::match( const Bytes& other, size_t index, size_t &octets  ) {
     size_t local_size = size_ - index;
     size_t match_size = std::min( local_size, other.size_ );
     int cmp = memcmp( array_, other.array_, match_size );
@@ -180,7 +180,7 @@ namespace dodo::common {
     }
   }
 
-  std::string OctetArray::hexDump( size_t n ) const {
+  std::string Bytes::hexDump( size_t n ) const {
     std::stringstream ss;
     for ( size_t i = 0; i < size_ && i < n; i++ ) {
       if ( i != 0 ) ss << ":";

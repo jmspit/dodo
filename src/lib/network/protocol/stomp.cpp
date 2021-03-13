@@ -21,7 +21,7 @@
  */
 
 #include "network/protocol/stomp.hpp"
-#include "common/octetarray.hpp"
+#include "common/bytes.hpp"
 #include "common/puts.hpp"
 
 #include <cstring>
@@ -29,7 +29,7 @@
 
 namespace dodo::network::protocol::stomp {
 
-  Frame::FrameMatch Frame::readCommand( const common::OctetArray& frame, size_t &index, const common::OctetArray& command ) const {
+  Frame::FrameMatch Frame::readCommand( const common::Bytes& frame, size_t &index, const common::Bytes& command ) const {
 
     enum State {
       command_read,
@@ -59,13 +59,13 @@ namespace dodo::network::protocol::stomp {
     return FrameMatch::IncompleteMatch;
   }
 
-  Frame::FrameMatch Connect::match( const common::OctetArray& frame, std::list<std::string> &errors ) const {
+  Frame::FrameMatch Connect::match( const common::Bytes& frame, std::list<std::string> &errors ) const {
     size_t index = 0;
     Frame::FrameMatch match = readCommand( frame, index, command_connect );
     return match;
   }
 
-  void Connect::generate( common::OctetArray& frame ) const {
+  void Connect::generate( common::Bytes& frame ) const {
     frame.free();
     frame.append( command_connect );
     frame.append( eol );

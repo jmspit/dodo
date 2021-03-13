@@ -31,7 +31,7 @@ set( ${LIB_DODO}_objects
   src/lib/common/datacrypt.cpp
   src/lib/common/exception.cpp
   src/lib/common/logger.cpp
-  src/lib/common/octetarray.cpp
+  src/lib/common/bytes.cpp
   src/lib/common/unittest.cpp
   src/lib/common/util.cpp
   src/lib/network/address.cpp
@@ -44,6 +44,7 @@ set( ${LIB_DODO}_objects
   src/lib/network/tlssocket.cpp
   src/lib/network/protocol/stomp.cpp
   src/lib/persist/kvstore/kvstore.cpp
+  src/lib/persist/sqlite/sqlite.cpp
   src/lib/threads/mutex.cpp
   src/lib/threads/thread.cpp
   src/ext/crc32/Crc32.cpp

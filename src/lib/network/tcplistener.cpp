@@ -36,7 +36,7 @@ namespace dodo {
     using namespace std;
 
       SystemError TCPConnectionData::readBuffer( BaseSocket* socket, ssize_t &received ) {
-        common::OctetArray tmp;
+        common::Bytes tmp;
         tmp.reserve( 4096 );
         ssize_t recv = 0;
         received = 0;

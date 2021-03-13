@@ -96,7 +96,7 @@ internal dodo errors that are more convenient in program flows. Among error cond
   - loading an invalid private key
   - unable to allocate memory
 
-whilst SystemError is *returned* when, for example,
+whilst dodo::common::SystemError is *returned* when, for example,
 
   - a fqdn fails to resolve
   - send / receive timeouts
@@ -113,9 +113,10 @@ catch ( const std::exception &e ) {
 }
 ```
 
-will catch anything that can go wrong in system plus dodo.
+will catch anything that can go wrong in system plus dodo. dodo::common::Exception instances will include the file and line number where the Exception was thrown. Developers may use or mimic the throw_Exception() macro's that are used by ddo internally.
 
-dodo::common::Exception instances will include the file and line number where the Exception was thrown. Developers may use or mimic the throw_Exception() macro's that are used by ddo internally.
+The dodo::common::SystemError is used in control flows, and is declared `[[nodiscard]]` so that the compiler issues a warning if any function that returns a
+dodo::common::SystemError ignores its return value.
 
 # Deployment configuration
 
@@ -602,15 +603,56 @@ and request queue size permit, it can handle intermediate burst that exceed it w
 
 # KVStore
 
-The key-value store
+The dodo::persist::KVStore class is a simple key-value store backed by SQLite. Under multithreading, if each thread uses its own KVStore
+object - even though they all point to the same SQLite file - no explicit synchronization is required.
 
-  - Is block-oriented with a configurable blocksize of 4096 byte multiples.
-  - Has string-based keys with a maximum key length slightly less than half a block.
-  - Values can span blocks and can be as large as uint64_t
-  - Can store arbitrary value data.
-  - Utilizes a b-tree index to store keys and pointers to values.
-  - Uses a memory mapped file with block-level locking allowing multithreaded, multiprocess or multi-node (clustered) use.
-  - Provides auto-upgrades on the data file.
-  - Block integrity checks with crc32.
-  - Ability to encrypt values.
-  - Ability to compress values.
+  - The SQLite database (file) is initialized in WAL mode for performance.
+  - All key-value pairs are stored in a single table (kvstore).
+  - The value column can hold any datatype that SQLite supports.
+  - The modified column stores the (unix timestamp) of the last modification.
+  - The updates column stores the total number of times the value was updated (after first insert this is 0).
+
+Suppose we require the hostname of a proxy server.
+
+```C
+dodo::persist::KVStore store( "cm.db" );
+std::string proxy_server = store.ensureWidthDefault( "proxy-server", "proxy.domain.nl" );
+```
+
+If the key `proxy-server` did not exist, it is now set to `"proxy.domain.nl"` in the store and that value is returned by dodo::persist::KVStore::ensureWithDefault. If it did exist, the ensureWidthDefault function retruns the value from the store (and ignores the default). If a default cannot be set by the code and the key is just expected to be there, one could do
+
+```C
+dodo::persist::KVStore store( "cm.db" );
+std::string proxy_server = "";
+if ( store.getValue( "proxy-server", proxy_server ) ) {
+  ...
+} else throw std::runtime_error( "key not found" )
+```
+
+For bulk inserts (dodo::persist::KVStore::insertKey) or updates (dodo::persist::KVStore::setKey), be sure to call dodo::persist::KVStore::startTransaction before the modifications and dodo::persist::KVStore::commitTransaction (or dodo::persist::KVStore::rollbackTransaction) to speeds things up, as otherwise each modification
+will commit individually (this is seen to speed things up 1000x).
+
+```C
+store.startTransaction();
+for ( const auto &k : keys ) {
+  store.insertKey( k, random_string( rand() % DATA_MAX_LENGTH ) );
+}
+store.commitTransaction();
+```
+
+The KVStore can be run as an in-memory database by opening the special file `:memory:`
+
+```C
+dodo::persist::KVStore store( ":memory:" );
+```
+but its contents are lost when the store object closes (destructs). Refer to the [SQLite documentation](https://sqlite.org/inmemorydb.html) for more details.
+
+# Performance
+
+The insertKey operations are enclosed between startTransaction / commitTransaction - all insertKey is comitted in one go. The setKey calls are individual commits. As a commit on persistent storage requires a physical write that has completed, the setKey speed is dominated by the write latency of the backing storage, as the huge difference in setKey speed below examplifies.
+
+**Intel Corei7 3.4GHz**
+| storage | insertKey | getValue | setKey |
+|---------|-----------|----------|--------|
+| memory | `575,000/s` | `1,000,000/s`| `345,000/s` |
+| Samsung SSD 860 | `660,000/s` | `420,000/s` | `414/s` |

@@ -16,12 +16,12 @@
  */
 
 /**
- * @file octetarray.hpp
- * Defines the dodo::common::OctetArray class..
+ * @file bytes.hpp
+ * Defines the dodo::common::Bytes class..
  */
 
-#ifndef common_octetarray_hpp
-#define common_octetarray_hpp
+#ifndef common_bytes_hpp
+#define common_bytes_hpp
 
 #include <string>
 #include <cassert>
@@ -36,22 +36,26 @@ namespace dodo::common {
   /**
    * An array of Octets with size elements. Provides base64 conversion, random data generation, appending of data from
    * various other sources. Memory management is implicit, resizing allocates at least a chunk.
+   *
+   * Note that Bytes objects are not thread safe, and that in general the pointer returned by getArray() may
+   * be invalidated by subjequent calls to append(), which could possibly realloc memory, invalidating the previously
+   * returned pointer.
    */
-  class OctetArray {
+  class Bytes {
 
     public:
 
       /**
-       * Construct an empty OctetArray.
+       * Construct an empty Bytes.
        */
-      OctetArray() : array_(nullptr), size_(0), allocated_size(0) {}
+      Bytes() : array_(nullptr), size_(0), allocated_size(0) {}
 
       /**
-       * Construct an OctetArray by taking ownership of existing data (which will be freed when this object is destructed).
+       * Construct an Bytes by taking ownership of existing data (which will be freed when this object is destructed).
        * @param data The data.
        * @param size The size of the data.
        */
-      OctetArray( Octet* data, size_t size ) {
+      Bytes( Octet* data, size_t size ) {
         array_ = data;
         size = size;
       }
@@ -60,32 +64,32 @@ namespace dodo::common {
        * Construct and fill from a std::string, not including the NULL terminator (so size will be string.length() ).
        * @param s The source string.
        */
-      OctetArray( const std::string &s ) : array_(nullptr), size_(0), allocated_size(0) {
+      Bytes( const std::string &s ) : array_(nullptr), size_(0), allocated_size(0) {
         *this = s;
       }
 
       /**
        * Destruct and clean.
        */
-      virtual ~OctetArray() { this->free(); }
+      virtual ~Bytes() { this->free(); }
 
       /**
        * Assign from std::string, not including a NULL terminator (so size will be string.length() ).
        * @param s The base64 string to assign from.
-       * @return This OctetArray.
+       * @return This Bytes.
        */
-      OctetArray& operator=( const std::string &s );
+      Bytes& operator=( const std::string &s );
 
       /**
-       * Decodes the base64 string into this OctetArray.
+       * Decodes the base64 string into this Bytes.
        * @param src The base64-encoded source string.
-       * @return A reference to this OctetArray
+       * @return A reference to this Bytes
        */
-      OctetArray& decodeBase64( const std::string& src );
+      Bytes& decodeBase64( const std::string& src );
 
       /**
-       * Encodes the this OctetArray into a base64-encoded string.
-       * @return The base64 encoded data of the OctetArray.
+       * Encodes the this Bytes into a base64-encoded string.
+       * @return The base64 encoded data of the Bytes.
        */
       std::string encodeBase64() const;
 
@@ -93,14 +97,14 @@ namespace dodo::common {
        * Cast to a std::string. Be aware that the string is read to
        * either the first zero (NULL) or up to size. So if the decoded data
        * contains intermediate zeros the string will not cover all octets.
-       * @return A string representation of OctetArray.
+       * @return A string representation of Bytes.
        */
       //operator std::string() const;
 
       std::string asString() const;
 
       /**
-       * Reserve memory in the OctetArray.
+       * Reserve memory in the Bytes.
        * @param size The size in bytes to allocate .
        */
       void reserve( size_t size );
@@ -111,7 +115,7 @@ namespace dodo::common {
       void free();
 
       /**
-       * The way in which two OctetArray instances match.
+       * The way in which two Bytes instances match.
        */
       enum class MatchType {
         Mismatch,   /**< The local array does not match the other array. */
@@ -121,26 +125,26 @@ namespace dodo::common {
       };
 
       /**
-       * Match this OctetArray from index to the other array (entirely).
-       * @param other The other OctetArray.
+       * Match this Bytes from index to the other array (entirely).
+       * @param other The other Bytes.
        * @param index The start index into the local array to match from.
        * @param octets The number of Octets, from the start of the arrays, that match.
        * @return The MatchType.
        */
-      MatchType match( const OctetArray& other, size_t index, size_t &octets );
+      MatchType match( const Bytes& other, size_t index, size_t &octets );
 
       /**
-       * Append another OctetArray.
-       * @param src The OctetArray to append.
+       * Append another Bytes.
+       * @param src The Bytes to append.
        */
-      void append( const OctetArray& src );
+      void append( const Bytes& src );
 
       /**
-       * Append the first n Octets from OctetArray.
-       * @param src The OctetArray to append from.
+       * Append the first n Octets from Bytes.
+       * @param src The Bytes to append from.
        * @param n The number of octets to append.
        */
-      void append( const OctetArray& src, size_t n );
+      void append( const Bytes& src, size_t n );
 
       /**
        * Append from arbitrary memory areas.
@@ -169,14 +173,16 @@ namespace dodo::common {
       std::string hexDump( size_t n ) const;
 
       /**
-       * Always allocate chunks of this size. Any OctetArray that has been called with reserve( n > 1 ) will
+       * Always allocate chunks of this size. Any Bytes that has been called with reserve( n > 1 ) will
        * at least allocate 1 chunk of alloc_block bytes. Avoids frequent calls to realloc when using many append
        * calls with small amount of data such as append( Octet ).
        */
       const size_t alloc_block = 32;
 
       /**
-       * Return the array.
+       * Return the array. Note that this pointer may be invalidated by
+       * subsequent calls to append (which implictly calls reserve, which may ralloc the memory block). Avoid using
+       * this method.
        * @return a pointer to the array of Octets.
        */
       Octet* getArray() const { return array_; }

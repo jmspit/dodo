@@ -1,79 +1,94 @@
 #include <iostream>
-#include <dodo.hpp>
 
-#include <fstream>
-#include <unistd.h>
+#include <dodo.hpp>
 
 using namespace dodo;
 using namespace std;
 
-#include <dodo.hpp>
+
+#define KEY_SPACE 160000
+#define KEY_MAX_LENGTH 64
+#define DATA_MAX_LENGTH 128
+#define MAX_SETKEYS 100
+
+set<string> keys;
+
+string random_string( size_t length ) {
+  auto randchar = []() -> char
+  {
+      const char charset[] =
+      "0123456789"
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      "abcdefghijklmnopqrstuvwxyz";
+      const size_t max_index = (sizeof(charset) - 1);
+      return charset[ rand() % max_index ];
+  };
+  string str(length,0);
+  generate_n( str.begin(), length, randchar );
+  return str;
+}
+
+void setupTestData() {
+  for ( size_t i = 0; i < KEY_SPACE; i++ ) {
+    keys.insert( random_string( rand() % KEY_MAX_LENGTH ) );
+  }
+}
+
+void insertKeys( persist::KVStore &store ) {
+  store.startTransaction();
+  for ( const auto &k : keys ) {
+    store.insertKey( k, random_string( rand() % DATA_MAX_LENGTH ) );
+  }
+  store.commitTransaction();
+}
+
+void fetchKeys( persist::KVStore &store ) {
+  for ( const auto &k : keys ) {
+    string value = "";
+    if ( ! store.getValue( k, value ) ) throw runtime_error( "key not found - cannot be!" );
+  }
+}
+
+void updateKeys( persist::KVStore &store ) {
+  size_t count = 0;
+  for ( const auto &k : keys ) {
+    store.setKey( k, random_string( rand() % DATA_MAX_LENGTH ) );
+    if ( ++count > MAX_SETKEYS ) break;
+  }
+}
 
 int main() {
 
   try {
-    dodo::persist::KVStore store( "kvstore.db" );
-
-    cout << "insert ok : " << store.insertKey( "supply-chain.distribution-centers.tilburg.id", "007" ) << endl;
-    cout << "insert ok : " << store.insertKey( "supply-chain.distribution-centers.tilburg.optimization.timeout-seconds", 360L ) << endl;
-
-    cout << "key 'foo' exists? " << store.exists( "foo" ) << endl;
-    std::string svalue;
-    if ( store.getValue( "foo", svalue ) )  {
-      cout << "value: " << svalue << endl;
-    }
-    cout << "insert ok : " << store.insertKey( "personal.security.code", 252979258343 ) << endl;
-    cout << "insert ok : " << store.insertKey( "Newton", 0.98 ) << endl;
-    cout << "insert ok : " << store.insertKey( "bert", "ernie" ) << endl;
-    cout << "insert ok : " << store.insertKey( "Donald", "duck" ) << endl;
-
-    common::OctetArray oa("{\"key\":\"value\"}");
-    cout << "insert ok : " << store.insertKey( "OctetArray", oa ) << endl;
-
-    unsigned char data[4] = { 10, 11, 12, 13 };
-    cout << "insert ok : " << store.insertKey( "binary", &data, 4 ) << endl;
-    data[0] = 9;
-    cout << "setKey ok : " << store.setKey( "binary", &data, 4 ) << endl;
-
-    if ( store.getValue( "binary", oa ) )  {
-      for ( size_t i = 0; i < oa.getSize(); i++ ) {
-        cout << "binary value: " << static_cast<int>(oa.getOctet(i)) << endl;
-      }
-    }
-
-    double dvalue = 0.0;
-    if ( store.getValue( "Newton", dvalue ) )  {
-      cout << "Newton value: " << dvalue << endl;
-    }
-
-    int64_t ivalue = 0.0;
-    if ( store.getValue( "personal.security.code", ivalue ) )  {
-      cout << "ivalue: " << ivalue << endl;
-    }
-
-    int64_t fvalue = 0.0;
-    if ( store.getValue( "Donald", fvalue ) )  {
-      cout << "fvalue: " << fvalue << endl;
-    }
-
-    cout << "delete ok : " << store.deleteKey( "bert" ) << endl;
-    cout << "delete ok : " << store.deleteKey( "ernie" ) << endl;
-
-    cout << "update ok : " << store.setKey( "Donald", "Duck" ) << endl;
-    cout << "update ok : " << store.setKey( "Newton", 0.99 ) << endl;
-    cout << "update ok : " << store.setKey( "Newton", 0.97 ) << endl;
-    cout << "update ok : " << store.setKey( "personal.security.code", 252979258342 ) << endl;
-
-    std::list<std::string> keys;
-    store.filterKeys( keys, "%na%" );
-    for ( auto k : keys ) {
-      cout << k << endl;
-    }
-
+    persist::KVStore store( "kvstore.db" );
+    common::StopWatch sw;
+    double time_setup = 0.0;
+    double time_insert = 0.0;
+    double time_checkpoint = 0.0;
+    double time_fetch = 0.0;
+    double time_update = 0.0;
+    sw.start();
+    setupTestData();
+    time_setup = sw.restart();
+    insertKeys( store );
+    time_insert = sw.restart();
+    store.checkpoint();
+    time_checkpoint = sw.restart();
+    fetchKeys( store );
+    time_fetch = sw.restart();
+    updateKeys( store );
+    time_update = sw.stop();
+    cout << "setup " << time_setup << "s" << endl;
+    cout << "insertKey (bulk) " << time_insert << "s" << endl;
+    cout << "checkpoint " << time_checkpoint << "s" << endl;
+    cout << "getValue " << time_fetch << "s" << endl;
+    cout << "setKey (single) " << time_update << "s" << endl;
+    cout << static_cast<double>(keys.size())/time_insert << " insertKey (bulk) per second" << endl;
+    cout << static_cast<double>(keys.size())/time_fetch << " getValue per second" << endl;
+    cout << static_cast<double>(MAX_SETKEYS)/time_update << " setKey (single) per second" << endl;
   }
-  catch ( const dodo::common::Exception &e ) {
-    cerr << e.what() << std::endl;
-    return 1;
+  catch ( const runtime_error  &e ) {
+    cerr << e.what() << endl;
   }
   return 0;
 }

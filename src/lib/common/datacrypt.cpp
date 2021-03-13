@@ -32,7 +32,7 @@ namespace dodo::common {
 
   void DataCrypt::encrypt( Cipher cipher,
                            const std::string &key,
-                           const OctetArray& src,
+                           const Bytes& src,
                            std::string &dest ) {
     EVP_CIPHER_CTX *ctx = nullptr;
 
@@ -40,9 +40,9 @@ namespace dodo::common {
       throw_Exception( "EVP_CIPHER_CTX_new : " << common::getSSLErrors( '\n' ) );
 
 
-    OctetArray k = paddedKey( cipher, key );
-    OctetArray iv;
-    OctetArray encrypted;
+    Bytes k = paddedKey( cipher, key );
+    Bytes iv;
+    Bytes encrypted;
     iv.random( ivOctets( cipher ) );
     encrypted.reserve( cipherOctets( cipher, src.getSize() ) );
 
@@ -82,7 +82,7 @@ namespace dodo::common {
     enc_size += len;
     encrypted.reserve( enc_size );
 
-    OctetArray tag;
+    Bytes tag;
     tag.reserve( tagLength( cipher ) );
     if ( EVP_CIPHER_CTX_ctrl( ctx, EVP_CTRL_GCM_GET_TAG, (int)tag.getSize(), tag.getArray() ) != 1 )
       throw_Exception( "EVP_CIPHER_CTX_ctrl : " << common::getSSLErrors( '\n' ) );
@@ -128,7 +128,7 @@ namespace dodo::common {
 
   int DataCrypt::decrypt( const std::string &key,
                           const std::string src,
-                          OctetArray &dest ) {
+                          Bytes &dest ) {
 
     std::string scipher;
     std::string sdata;
@@ -137,14 +137,14 @@ namespace dodo::common {
     int result = 0;
     if ( !decode( src, scipher, sdata, siv, stag ) ) return 1;
     Cipher cipher = string2Cipher( scipher );
-    OctetArray data;
-    OctetArray iv;
-    OctetArray tag;
+    Bytes data;
+    Bytes iv;
+    Bytes tag;
     data.decodeBase64( sdata );
     iv.decodeBase64( siv );
     tag.decodeBase64( stag );
 
-    OctetArray k = paddedKey( cipher, key );
+    Bytes k = paddedKey( cipher, key );
 
     EVP_CIPHER_CTX *ctx = nullptr;
 
@@ -172,7 +172,7 @@ namespace dodo::common {
 
     EVP_CIPHER_CTX_ctrl( ctx, EVP_CTRL_AEAD_SET_TAG, (int)tag.getSize(), tag.getArray() );
 
-    OctetArray tmp;
+    Bytes tmp;
     tmp.reserve( data.getSize() );
     dest.reserve(0);
 

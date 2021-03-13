@@ -82,10 +82,10 @@ int main() {
     cout << "insertKey (bulk) " << time_insert << "s" << endl;
     cout << "checkpoint " << time_checkpoint << "s" << endl;
     cout << "getValue " << time_fetch << "s" << endl;
-    cout << "setKey (single)" << time_update << "s" << endl;
-    cout << static_cast<double>(keys.size())/time_insert << " insertKey per second" << endl;
+    cout << "setKey (single) " << time_update << "s" << endl;
+    cout << static_cast<double>(keys.size())/time_insert << " insertKey (bulk) per second" << endl;
     cout << static_cast<double>(keys.size())/time_fetch << " getValue per second" << endl;
-    cout << static_cast<double>(MAX_SETKEYS)/time_update << " setKey per second" << endl;
+    cout << static_cast<double>(MAX_SETKEYS)/time_update << " setKey (single) per second" << endl;
   }
   catch ( const runtime_error  &e ) {
     cerr << e.what() << endl;

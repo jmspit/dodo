@@ -3,7 +3,7 @@
 
 Dodo is a C++ framework to facilitate development for the Linux platform that aims to ingerate with Docker containers and k8s ([kubernetes](https://kubernetes.io/)) deployments. Dodo is a response to the forgotton values of efficiency and quality - when a C++ implementaion provided more and faster functionality in 20MiB RAM than a so called 'low code' application manages to do in 2GiB.
 
-**A skeleton for services**
+### A skeleton for services
 
 The dodo::common::Application reads its run-time configuration from a YAML file, typically presented to the container by k8s. Many classes in the framework can be iniltialized (constructed) by passing a YAML node as parameter. This integrates nicely with rolling deployments.
 
@@ -15,7 +15,7 @@ Logging that can be configured to write to one or more of these targets:
   -  A syslog call to [rsyslog](https://www.rsyslog.com/).
   -  Console aka standard out of the container entrypoint.
 
-**High level APIs to common functionality**
+### High level APIs to common functionality
 
 Most services will require at least some of the functionality dodo provides as high-level C++ abstactaions without comrpomising low-level C/Linux performance.
 

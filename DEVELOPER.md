@@ -21,7 +21,7 @@ Framework to create services with C++ efficiency for deployment in Docker contai
 
 # Using dodo
 
-When not using the dodo::common::Application class, include all headers by including dodo.hpp. Before using any of the dodo functionality, call dodo::initLibrary(). Call dodo::closeLibrary() to clean up at the end.
+Include all headers by including dodo.hpp. Before using any of the dodo functionality, call dodo::initLibrary(). Call dodo::closeLibrary() to clean up before program termination.
 
 ```C
 #include <dodo.hpp>
@@ -44,12 +44,13 @@ int main( int argc, char* argv[] ) {
 }
 ```
 
-Or use the dodo::common::Application class, as that will
+Or use the dodo::common::Application class, as that will take care of
 
-  - initialize/unload the dodo library
+  - initializing / unloading the dodo library
   - install signal handlers
   - parse command line arguments, read environment variables
   - read configuration data from the specified configuration file.
+  - logging
 
 Subclass Application and implement the run method
 
@@ -89,8 +90,9 @@ int main( int argc, char* argv[], char** envp ) {
 # Exception and error handling
 
 Dodo throws dodo::common::Exception (or its descendant dodo::common::SystemException) only in exceptional circumstances.
-Methods that might be expected to fail return a SystemError, a (mostly 1-1) mapping of various types of system and
-internal dodo errors that are more convenient in program flows. Among error conditions that will *throw* are
+Methods that might be expected to fail return a SystemError, a mapping of of system and internal dodo errors which are more convenient in writing program flows.
+
+Among the exceptional error conditions that will *throw* are
 
   - specifying an non-existing configuration file
   - loading an invalid private key
@@ -101,8 +103,7 @@ whilst dodo::common::SystemError is *returned* when, for example,
   - a fqdn fails to resolve
   - send / receive timeouts
 
-As dodo::common::Exception itself descends from std::runtime_error, which in turn descends from std::exception,
-try / catch code such as
+As dodo::common::Exception itself descends from std::runtime_error, which in turn descends from std::exception, a try / catch block such as
 
 ```C
 try {
@@ -113,10 +114,10 @@ catch ( const std::exception &e ) {
 }
 ```
 
-will catch anything that can go wrong in system plus dodo. dodo::common::Exception instances will include the file and line number where the Exception was thrown. Developers may use or mimic the throw_Exception() macro's that are used by ddo internally.
+will also catch any dod exception. dodo::common::Exception instances include the file and line number where the Exception was thrown. Developers may use the throw_Exception() macro's that are used by dodo internally.
 
-The dodo::common::SystemError is used in control flows, and is declared `[[nodiscard]]` so that the compiler issues a warning if any function that returns a
-dodo::common::SystemError ignores its return value.
+The dodo::common::SystemError is declared `[[nodiscard]]` so that the compiler issues a warning if any function returns a
+dodo::common::SystemError that is ignored.
 
 # Deployment configuration
 

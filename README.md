@@ -1,7 +1,7 @@
 # DODO - C++ framework for Docker containers
 ## About
 
-Dodo is a C++ framework to facilitate development for the Linux platform that aims to ingerate with Docker containers and k8s ([kubernetes](https://kubernetes.io/)) deployments. Dodo is a response to the forgotton values of efficiency and quality - when a C++ implementaion provided more and faster functionality in 20MiB RAM than a so called 'low code' application manages to do in 2GiB.
+Dodo is a C++ framework to facilitate development for the Linux platform that aims to ingerate with Docker containers and k8s ([kubernetes](https://kubernetes.io/)) deployments. Dodo is a response to the forgotten value of efficiency.
 
 ### A skeleton for services
 
@@ -43,14 +43,14 @@ Most services will require at least some of the functionality dodo provides as h
   - [OpenSSL](https://www.openssl.org/) For TLS, hashing and encryption.
   - [SQLite](https://sqlite.org/index.html) Persistent storage.
   - [yaml-cpp](https://github.com/jbeder/yaml-cpp) Read and write YAML.
-  - [rapidjson]()
-  - [crc32](https://github.com/stbrumme/crc32) CRC32 verfication codes.
+  - [rapidjson]() Read and write JSON.
+  - [crc32](https://github.com/stbrumme/crc32) CRC32 verfication codes (dependency included in the source tree).
 
 ## Using the dodo framework
 
 See the [developer manual](DEVELOPER.md) for an overview.
 
-The source code is documented for Doxygen and automatically generated to github pages.
+The source code is documented for Doxygen and [automatically generated to github pages](https://jmspit.github.io/dodo/).
 
 ## Maintaining the dodo framework
 

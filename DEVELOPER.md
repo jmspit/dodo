@@ -639,3 +639,20 @@ for ( const auto &k : keys ) {
 }
 store.commitTransaction();
 ```
+
+The KVStore can be run as an in-memory database by opening the special file `:memory:`
+
+```C
+dodo::persist::KVStore store( ":memory:" );
+```
+but its contents are lost when the store object closes (destructs).
+
+# Performance
+
+The insertKey operations are enclosed between startTransaction / commitTransaction - all insertKey is comitted in one go. The setKey calls are individual commits. As a commit on persistent storage requires a physical write that has completed, the setKey speed dominated by the write latency of the backing storage, as the huge difference in setKey speed below examplifies.
+
+**Intel Corei7 3.4GHz**
+| storage | insertKey | getValue | setKey |
+|---------|-----------|----------|--------|
+| memory | `575,000/s` | `1,000,000/s`| `345,000/s` |
+| Samsung SSD 860 | `660,000/s` | `420,000/s` | `414/s` |

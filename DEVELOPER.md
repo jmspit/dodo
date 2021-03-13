@@ -645,11 +645,11 @@ The KVStore can be run as an in-memory database by opening the special file `:me
 ```C
 dodo::persist::KVStore store( ":memory:" );
 ```
-but its contents are lost when the store object closes (destructs).
+but its contents are lost when the store object closes (destructs). Refer to the [SQLite documentation](https://sqlite.org/inmemorydb.html) for more details.
 
 # Performance
 
-The insertKey operations are enclosed between startTransaction / commitTransaction - all insertKey is comitted in one go. The setKey calls are individual commits. As a commit on persistent storage requires a physical write that has completed, the setKey speed dominated by the write latency of the backing storage, as the huge difference in setKey speed below examplifies.
+The insertKey operations are enclosed between startTransaction / commitTransaction - all insertKey is comitted in one go. The setKey calls are individual commits. As a commit on persistent storage requires a physical write that has completed, the setKey speed is dominated by the write latency of the backing storage, as the huge difference in setKey speed below examplifies.
 
 **Intel Corei7 3.4GHz**
 | storage | insertKey | getValue | setKey |

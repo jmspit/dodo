@@ -44,6 +44,7 @@ set( ${LIB_DODO}_objects
   src/lib/network/tlssocket.cpp
   src/lib/network/protocol/stomp.cpp
   src/lib/persist/kvstore/kvstore.cpp
+  src/lib/persist/sqlite/sqlite.cpp
   src/lib/threads/mutex.cpp
   src/lib/threads/thread.cpp
   src/ext/crc32/Crc32.cpp

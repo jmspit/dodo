@@ -23,12 +23,15 @@
 #ifndef dodo_persist_hpp
 #define dodo_persist_hpp
 
+#include <persist/sqlite/sqlite.hpp>
 #include <persist/kvstore/kvstore.hpp>
 
 namespace dodo {
 
   /**
-   * Persistent storage structures.
+   * Persistent storage API.
+   *   - SQLite C++ API
+   *   - Key-value store API backed by sqlite
    */
   namespace persist {
   }

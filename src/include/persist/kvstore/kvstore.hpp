@@ -27,7 +27,7 @@
 #include <list>
 #include <vector>
 #include <sqlite3.h>
-#include <common/octetarray.hpp>
+#include <common/bytes.hpp>
 
 /**
  * Persistent storage structures.
@@ -47,7 +47,7 @@ namespace dodo::persist {
    * | dtInteger | int64_t | SQLITE_INTEGER |
    * | dtFloat | double | SQLITE_FLOAT |
    * | dtText | std::string | SQLITE3_TEXT |
-   * | dtBlob | common::OctetArray | SQLITE_BLOB |
+   * | dtBlob | common::Bytes | SQLITE_BLOB |
    * | dtUnknown | used to indicate the unknown dataType of a non-existing key |  |
    *
    * In typical use the code is aware of the datatype of a key, so typical use would be
@@ -66,7 +66,7 @@ namespace dodo::persist {
    * @endcode
    * will output 0 as the string "value" does not convert to an integer. Use getMetaData to check if a key is of the expected DataType.
    *
-   * It is also possible to store dodo::common::OctetArray (dtBlob / SQLITE_BLOB) types.
+   * It is also possible to store dodo::common::Bytes (dtBlob / SQLITE_BLOB) types.
    *
    * The SQLite database is initailized in WAL mode for performance. Make sure to use transactions to group
    * bulk insertKey or setKey as that is much faster.
@@ -84,7 +84,7 @@ namespace dodo::persist {
         dtInteger = SQLITE_INTEGER, /**< (1) Integer type (int64_t) */
         dtFloat   = SQLITE_FLOAT,   /**< (2) Floating point type (double) */
         dtText    = SQLITE3_TEXT,   /**< (3) Text type (string) */
-        dtBlob    = SQLITE_BLOB,    /**< (4) Binary data type (OctetArray) */
+        dtBlob    = SQLITE_BLOB,    /**< (4) Binary data type (Bytes) */
         dtNull    = SQLITE_NULL,    /**< (5) NULL type (unset and undefined) */
         dtUnknown = 91,             /**< Used to indicate a DataType that could not be determined */
       };
@@ -233,12 +233,12 @@ namespace dodo::persist {
       bool getValue( const std::string &key, const void* &data, int &size ) const;
 
       /**
-       * If the key exists, returns true and copies (overwrites) data to the OctetArray.
+       * If the key exists, returns true and copies (overwrites) data to the Bytes.
        * @param key The key to get the value for.
-       * @param data The OctetArray that will receive the data.
+       * @param data The Bytes that will receive the data.
        * @return False if the key does not exist.
        */
-      bool getValue( const std::string &key, common::OctetArray &data ) const;
+      bool getValue( const std::string &key, common::Bytes &data ) const;
 
       /**
        * Insert a (key, string) pair.
@@ -274,13 +274,13 @@ namespace dodo::persist {
       bool insertKey( const std::string &key, const void* data, int size );
 
       /**
-       * Insert a (key, OctetArray) pair. Note that the size of the data cannot exceed INT_MAX, and
-       * exception is thrown if the OctetArray is larger.
+       * Insert a (key, Bytes) pair. Note that the size of the data cannot exceed INT_MAX, and
+       * exception is thrown if the Bytes is larger.
        * @param key The key.
-       * @param oa The OctetArray to insert.
+       * @param oa The Bytes to insert.
        * @return True if the key was created, false if the key already exists.
        */
-      bool insertKey( const std::string &key, const common::OctetArray &oa );
+      bool insertKey( const std::string &key, const common::Bytes &oa );
 
       /**
        * Optimzime, preferably called after workload and implicitly called by the destructor.
@@ -326,12 +326,12 @@ namespace dodo::persist {
       bool setKey( const std::string &key, const void* data, int size );
 
       /**
-       * Set the binary data/OctetArray value of an existing key. The function returns false if the key does not exist.
+       * Set the binary data/Bytes value of an existing key. The function returns false if the key does not exist.
        * @param key The key.
-       * @param oa The OctetArray to set.
+       * @param oa The Bytes to set.
        * @return True if the key exists, in which case it is also updated.
        */
-      bool setKey( const std::string &key, const common::OctetArray &oa );
+      bool setKey( const std::string &key, const common::Bytes &oa );
 
       /**
        * Start a transaction. If insertKey or setKey calls are not inside a started transaction, each will commit

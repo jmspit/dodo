@@ -132,7 +132,7 @@ bool encrypt( std::istream& in, std::ostream& out ) {
   } while ( in.good() );
   in.clear();
   in.ignore(std::numeric_limits<std::streamsize>::max());
-  common::OctetArray oa = foo.str();
+  common::Bytes oa = foo.str();
   string key = options.key_value;
   std::string encrypted;
   dodo::common::DataCrypt::encrypt( options.cipher,
@@ -152,7 +152,7 @@ bool decrypt( std::istream& in, std::ostream& out ) {
   } while ( in.good() );
   in.clear();
   in.ignore(std::numeric_limits<std::streamsize>::max());
-  common::OctetArray oa;
+  common::Bytes oa;
   string key = options.key_value;
   int rc = dodo::common::DataCrypt::decrypt( key, foo.str(), oa );
   if ( rc == 0 ) cout << oa.asString();

@@ -37,7 +37,7 @@ bool DataCryptTest::verifyEncryption( dodo::common::DataCrypt::Cipher cipher, co
                                     encrypted );
   cout << encrypted << endl;
 
-  dodo::common::OctetArray dest;
+  dodo::common::Bytes dest;
   dodo::common::DataCrypt::decrypt( key, encrypted, dest );
 
   return dest.asString() == test;
@@ -56,7 +56,7 @@ bool DataCryptTest::test2() {
   std::string key = "secret";
   // this has 1 char damaged and should not decrypt
   std::string test = "ENC[cipher:EVP_aes_128_gcm,data:y0aXKeVMglWTOJ8c817EkLTiGJ9HdvplZsI8VW2nBZLdB9yiMVo=,iv:rMp6eCmQpZdCRHbr0OLEDQ==,tag:HwkCKBF1MS5NTz6VLDg67w==";
-  dodo::common::OctetArray dest;
+  dodo::common::Bytes dest;
   rc = dodo::common::DataCrypt::decrypt( key, test, dest );
   return writeSubTestResult( "en/decryption", "test detection of invalid cryptstring", rc == 1 );
 }
@@ -66,7 +66,7 @@ bool DataCryptTest::test3() {
   // the test string has valid format but we damage the key
   std::string test = "ENC[cipher:EVP_aes_128_gcm,data:y0aXKeVMglWTOJ8c817EkLTiGJ9HdvplZsI8VW2nBZLdB9yiMVo=,iv:rMp6eCmQpZdCRHbr0OLEDQ==,tag:HwkCKBF1MS5NTz6VLDg67w==]";
   std::string key = "sekreet";
-  dodo::common::OctetArray dest;
+  dodo::common::Bytes dest;
   rc = dodo::common::DataCrypt::decrypt( key, test, dest );
   return writeSubTestResult( "en/decryption", "test detection of decryption failure", rc == 2 );
 }

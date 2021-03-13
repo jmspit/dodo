@@ -274,11 +274,11 @@ namespace dodo::persist {
         void bind( int position, const std::string &value );
 
         /**
-         * Bind an OctetArray value to the bind at position.
+         * Bind an Bytes value to the bind at position.
          * @param position the bind position in the SQL (start with 1)
          * @param value the value to bind.
          */
-        //void bind( int position, const OctetArray &value );
+        //void bind( int position, const Bytes &value );
     };
 
     /**

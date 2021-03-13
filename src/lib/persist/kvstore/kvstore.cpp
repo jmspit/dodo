@@ -237,7 +237,7 @@ namespace dodo::persist {
     return result;
   }
 
-  bool KVStore::getValue( const std::string &key, common::OctetArray &data ) const {
+  bool KVStore::getValue( const std::string &key, common::Bytes &data ) const {
     bool result = true;
     auto rc = sqlite3_bind_text( stmt_getvalue_, 1, key.c_str(), static_cast<int>(key.length()), nullptr );
     if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
@@ -316,11 +316,11 @@ namespace dodo::persist {
     return result;
   }
 
-  bool KVStore::insertKey( const std::string &key, const common::OctetArray &oa ) {
+  bool KVStore::insertKey( const std::string &key, const common::Bytes &oa ) {
     bool result = true;
     auto rc = sqlite3_bind_text( stmt_insert_, 1, key.c_str(), static_cast<int>(key.length()), nullptr );
     if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    if ( oa.getSize() > INT_MAX ) throw_Exception( "OctetArray too large (INT_MAX)");
+    if ( oa.getSize() > INT_MAX ) throw_Exception( "Bytes too large (INT_MAX)");
     rc = sqlite3_bind_blob( stmt_insert_, 2, oa.getArray(), static_cast<int>(oa.getSize()), nullptr );
     if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
     rc = sqlite3_step( stmt_insert_ );
@@ -438,8 +438,8 @@ namespace dodo::persist {
     return count == 1;
   }
 
-  bool KVStore::setKey( const std::string &key, const common::OctetArray &oa ) {
-    if ( oa.getSize() > INT_MAX ) throw_Exception( "OctetArray too large (INT_MAX)");
+  bool KVStore::setKey( const std::string &key, const common::Bytes &oa ) {
+    if ( oa.getSize() > INT_MAX ) throw_Exception( "Bytes too large (INT_MAX)");
     auto rc = sqlite3_bind_blob( stmt_update_, 1, oa.getArray(), static_cast<int>(oa.getSize()), nullptr );
     if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
     rc = sqlite3_bind_text( stmt_update_, 2, key.c_str(), static_cast<int>(key.length()), nullptr );

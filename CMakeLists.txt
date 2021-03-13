@@ -31,7 +31,7 @@ set( ${LIB_DODO}_objects
   src/lib/common/datacrypt.cpp
   src/lib/common/exception.cpp
   src/lib/common/logger.cpp
-  src/lib/common/octetarray.cpp
+  src/lib/common/bytes.cpp
   src/lib/common/unittest.cpp
   src/lib/common/util.cpp
   src/lib/network/address.cpp

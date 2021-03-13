@@ -23,7 +23,7 @@
 #ifndef network_protocol_stomp_hpp
 #define network_protocol_stomp_hpp
 
-#include "common/octetarray.hpp"
+#include <common/bytes.hpp>
 
 #include <list>
 #include <string>
@@ -37,16 +37,16 @@ namespace dodo::network::protocol::stomp {
     public:
 
       /** EOL sequence - use only \n as the protocl allows it and the extra \n serves no purpose. */
-      const common::OctetArray eol{ "\n" };
+      const common::Bytes eol{ "\n" };
 
       /** CONNECT command. */
-      const common::OctetArray command_connect{ "STOMP" };
+      const common::Bytes command_connect{ "STOMP" };
 
       /** CONNECTED command. */
-      const common::OctetArray command_connected{ "CONNECTED" };
+      const common::Bytes command_connected{ "CONNECTED" };
 
       /** STOMP 1.2 accept header. */
-      const common::OctetArray header_accept_version_1_2{ "accept-version:1.2" };
+      const common::Bytes header_accept_version_1_2{ "accept-version:1.2" };
 
       /**
        * The manner in which frames match the STOMP protocol.
@@ -66,19 +66,19 @@ namespace dodo::network::protocol::stomp {
 
       /**
        * Checks how the data matches a frame specification.
-       * @param frame The frame / common::OctetArray to match against.
+       * @param frame The frame / common::Bytes to match against.
        * @param errors If returning FrameMatch::NoMatch, one or more errors.
        * @return FrameMatch::IncompleteMatch if the frame matches but is incomplete,
        *         FrameMatch::FullMatch if it matches completely.
        */
-      virtual FrameMatch match( const common::OctetArray& frame, std::list<std::string> &errors ) const = 0;
+      virtual FrameMatch match( const common::Bytes& frame, std::list<std::string> &errors ) const = 0;
 
       /**
        * Generate a frame.
        * @param frame The generation destination, which is overwritten.
        * @return void
        */
-      virtual void generate( common::OctetArray& frame ) const = 0;
+      virtual void generate( common::Bytes& frame ) const = 0;
 
     protected:
 
@@ -90,7 +90,7 @@ namespace dodo::network::protocol::stomp {
        * @return FrameMatch::IncompleteMatch if the frame matches but is incomplete,
        *         FrameMatch::FullMatch if it matches completely.
        */
-      FrameMatch readCommand( const common::OctetArray& frame, size_t &index, const common::OctetArray& command ) const;
+      FrameMatch readCommand( const common::Bytes& frame, size_t &index, const common::Bytes& command ) const;
 
   };
 
@@ -115,19 +115,19 @@ namespace dodo::network::protocol::stomp {
 
       /**
        * Checks how the data matches a frame specification.
-       * @param frame The frame / common::OctetArray to match against.
+       * @param frame The frame / common::Bytes to match against.
        * @param errors If returning FrameMatch::NoMatch, one or more errors.
        * @return FrameMatch::IncompleteMatch if the frame matches but is incomplete,
        *         FrameMatch::FullMatch if it matches completely.
        */
-      virtual FrameMatch match( const common::OctetArray& frame, std::list<std::string> &errors ) const;
+      virtual FrameMatch match( const common::Bytes& frame, std::list<std::string> &errors ) const;
 
       /**
        * Generate a STOMP (CONNECT) frame.
        * @param frame The generation destination, which is overwritten.
        * @return void
        */
-      virtual void generate( common::OctetArray& frame ) const;
+      virtual void generate( common::Bytes& frame ) const;
 
       /**
        * Return the STOMP host.
@@ -220,7 +220,7 @@ namespace dodo::network::protocol::stomp {
        * @param frame The generation destination, which is overwritten.
        * @return void
        */
-      virtual void generate( common::OctetArray& frame ) const;
+      virtual void generate( common::Bytes& frame ) const;
 
     protected:
 

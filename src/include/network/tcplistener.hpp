@@ -36,7 +36,7 @@
 #include <yaml-cpp/yaml.h>
 
 #include "common/exception.hpp"
-#include "common/octetarray.hpp"
+#include "common/bytes.hpp"
 #include "network/socket.hpp"
 #include "threads/mutex.hpp"
 #include "threads/thread.hpp"
@@ -85,11 +85,11 @@ namespace dodo {
          * Get a reference to the read buffer.
          * @return a reference to the read buffer.
          */
-        const common::OctetArray& getReadBuffer() const { return read_buffer; }
+        const common::Bytes& getReadBuffer() const { return read_buffer; }
 
       protected:
         /** Buffer for (incomplete) request data. */
-        common::OctetArray read_buffer;
+        common::Bytes read_buffer;
     };
 
     /**

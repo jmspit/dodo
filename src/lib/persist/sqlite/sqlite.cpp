@@ -430,7 +430,7 @@ namespace dodo::persist {
       }
     }
 
-/*     void DML::bind( int position, const OctetArray &value ) {
+/*     void DML::bind( int position, const Bytes &value ) {
       int r = sqlite3_bind_text( stmt_, position, value.c_str(), -1,  SQLITE_TRANSIENT );
       if ( r != SQLITE_OK ) {
         throw_Exception( sqlite3_errmsg( database_ ) );

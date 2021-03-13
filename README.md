@@ -9,7 +9,7 @@ A framework to facilitate C++ software development for the Linux platform with a
     -  A directory with a configured trail (size, history) of log files.
     -  A syslog call to [rsyslog](https://www.rsyslog.com/).
     -  Console aka standard out of the container entrypoint.
-  - Binary data is the OctetArray datatype used by a variety of interfaces.
+  - Binary data as the Bytes datatype used by a variety of interfaces.
   - Encryption and compression.
   - Transparent ipv4 and ipv6 Address classes, name resolution and networking.
   - TCPSocket (insecure) and TLSSocket classes (encryption and trust).

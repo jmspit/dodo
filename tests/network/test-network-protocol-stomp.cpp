@@ -14,7 +14,7 @@ int main() {
     c.setLogin( "spjm" );
     c.setPasscode( "secret" );
     c.setHeartbeat( 10000, 30000 );
-    common::OctetArray oa;
+    common::Bytes oa;
     c.generate( oa );
     std:: cout << oa.asString() << std::endl;
     std:: cout << oa.hexDump(4096) << std::endl;

@@ -29,7 +29,7 @@
 #include <sstream>
 #include <string>
 
-#include "common/puts.hpp"
+#include <common/puts.hpp>
 
 namespace dodo::common {
 

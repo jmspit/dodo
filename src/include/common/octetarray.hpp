@@ -36,6 +36,10 @@ namespace dodo::common {
   /**
    * An array of Octets with size elements. Provides base64 conversion, random data generation, appending of data from
    * various other sources. Memory management is implicit, resizing allocates at least a chunk.
+   *
+   * Note that OctetArray objects are not thread safe, and that in general the pointer returned by getArray() may
+   * be invalidated by subjequent calls to append(), which could possibly realloc memory, invalidating the previously
+   * returned pointer.
    */
   class OctetArray {
 
@@ -176,7 +180,9 @@ namespace dodo::common {
       const size_t alloc_block = 32;
 
       /**
-       * Return the array.
+       * Return the array. Note that this pointer may be invalidated by
+       * subsequent calls to append (which implictly calls reserve, which may ralloc the memory block). Avoid using
+       * this method.
        * @return a pointer to the array of Octets.
        */
       Octet* getArray() const { return array_; }

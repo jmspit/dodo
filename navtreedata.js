@@ -37,19 +37,19 @@ var NAVTREE =
       [ "Exception and error handling", "developer.html#autotoc_md9", null ],
       [ "Deployment configuration", "developer.html#autotoc_md10", null ],
       [ "Logging", "developer.html#autotoc_md11", null ],
-      [ "Threads", "developer.html#autotoc_md12", null ],
-      [ "Networking", "developer.html#autotoc_md13", [
-        [ "Address", "developer.html#autotoc_md14", null ]
+      [ "Networking", "developer.html#autotoc_md12", [
+        [ "Address", "developer.html#autotoc_md13", null ]
       ] ],
-      [ "Sockets", "developer.html#autotoc_md15", [
+      [ "Sockets", "developer.html#autotoc_md14", [
         [ "Secure sockets", "developer.html#developer_networking", [
-          [ "Asymmetric cryptography", "developer.html#autotoc_md16", null ],
-          [ "Transport Layer Security (TLS)", "developer.html#autotoc_md17", null ],
-          [ "Setup Certification Authority", "developer.html#autotoc_md18", null ]
+          [ "Asymmetric cryptography", "developer.html#autotoc_md15", null ],
+          [ "Transport Layer Security (TLS)", "developer.html#autotoc_md16", null ],
+          [ "Setup Certification Authority", "developer.html#autotoc_md17", null ]
         ] ]
       ] ],
-      [ "TCPListener / TCPServer", "developer.html#autotoc_md19", null ],
-      [ "KVStore", "developer.html#autotoc_md20", null ]
+      [ "TCPListener / TCPServer", "developer.html#autotoc_md18", null ],
+      [ "KVStore", "developer.html#autotoc_md19", null ],
+      [ "Performance", "developer.html#autotoc_md20", null ]
     ] ],
     [ "Maintainer manual", "maintainer.html", [
       [ "Coding style", "maintainer.html#coding_style", [
@@ -94,11 +94,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "address_8cpp.html",
-"classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a1f1ccc19c48a7b651ecfcee2881c9188",
-"classdodo_1_1network_1_1BaseSocket.html#af62964a8a5da647a11e190e75bcbcf68",
-"classdodo_1_1network_1_1X509Certificate.html#a20f8cf91380e9f1faf50210241637b83",
-"functions_func_m.html",
-"util_8cpp.html#a22d988a55b6320ca874f12606136ad87"
+"classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a17976d8054030335d7cb2ecfdb797a70",
+"classdodo_1_1network_1_1BaseSocket.html#acdbbba0a78559c47d26a5b29c5b9bb3c",
+"classdodo_1_1network_1_1TLSSocket.html#ab2b6dc1da0129c1c48a2789df6810ae3",
+"developer.html",
+"structdodo_1_1network_1_1TCPListener_1_1Stats.html#ac689fd73c46b82acb9e2272211f619fa"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -1,0 +1,4 @@
+<map id="dodo::persist::sqlite::Statement::prepare" name="dodo::persist::sqlite::Statement::prepare">
+<area shape="rect" id="node1" title="Prepare a SQL statement." alt="" coords="5,5,161,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1persist_1_1sqlite_1_1Statement.html#aef8f829a0385c968816b202a10396c37" title="A statement handle can be explicitly closed without deleting the Statement object itself." alt="" coords="209,5,360,47"/>
+</map>

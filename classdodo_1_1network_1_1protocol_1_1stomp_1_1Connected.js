@@ -1,7 +1,7 @@
 var classdodo_1_1network_1_1protocol_1_1stomp_1_1Connected =
 [
     [ "Connected", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Connected.html#a883a86a08c963946069412df3523740d", null ],
-    [ "generate", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Connected.html#a9f1a5856fa946ed9b453bb9c5fb39346", null ],
+    [ "generate", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Connected.html#abca5e55aecc1e0194d5854e986280f69", null ],
     [ "heartbeat_in_ms_", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Connected.html#a38ce1cd99428d7ad467bd530b2910bb5", null ],
     [ "heartbeat_out_ms_", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Connected.html#ac7597eb9804c4211080e881935fb0997", null ],
     [ "server_", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Connected.html#a4d81f1297354700f97b1305a4febc800", null ],

@@ -1,12 +1,9 @@
 var searchData=
 [
-  ['v1_5f2_779',['v1_2',['../classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html#a77d5df70c7dd2fc85d5b53b90f9e0ca1a0fdcfe7bc01aadbcbb7ff8c0e1024336',1,'dodo::network::protocol::stomp::Frame']]],
-  ['vacuum_780',['vacuum',['../classdodo_1_1persist_1_1KVStore.html#ad3e6555873a76c963e0524c43317b195',1,'dodo::persist::KVStore']]],
-  ['verifyip_781',['verifyIP',['../classdodo_1_1network_1_1X509Certificate.html#aa400207f2653906deea0d698406c9055',1,'dodo::network::X509Certificate']]],
-  ['verifyname_782',['verifyName',['../classdodo_1_1network_1_1X509Certificate.html#a2a5de8c3a91fd5315a75c665f57ac9fa',1,'dodo::network::X509Certificate']]],
-  ['verifysan_783',['verifySAN',['../classdodo_1_1network_1_1X509Certificate.html#a49509390a6532c56ff8360ef327c335e',1,'dodo::network::X509Certificate']]],
-  ['version_784',['Version',['../classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html#a77d5df70c7dd2fc85d5b53b90f9e0ca1',1,'dodo::network::protocol::stomp::Frame']]],
-  ['version_5f_785',['version_',['../classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect.html#a4d8f1a851cf7ad55fcdc0e76ab5d0db6',1,'dodo::network::protocol::stomp::Connect::version_()'],['../classdodo_1_1network_1_1protocol_1_1stomp_1_1Connected.html#a0d562c38c5c41bc2885993ab8e0ca058',1,'dodo::network::protocol::stomp::Connected::version_()']]],
-  ['virtualbox_786',['VirtualBox',['../classdodo_1_1common_1_1Application.html#afd6cd92042b86c5f7db83245ff85a14aae8e4d1f0fe99af04575c1e0815054845',1,'dodo::common::Application']]],
-  ['vmware_787',['VMWare',['../classdodo_1_1common_1_1Application.html#afd6cd92042b86c5f7db83245ff85a14aa7f8b37715b940736bc29a71b2f98126d',1,'dodo::common::Application']]]
+  ['unittest_816',['UnitTest',['../classdodo_1_1common_1_1UnitTest.html',1,'dodo::common::UnitTest'],['../classdodo_1_1common_1_1UnitTest.html#a30fa55809b1b3c7c9acd15d02943d1b1',1,'dodo::common::UnitTest::UnitTest()']]],
+  ['unknown_817',['Unknown',['../classdodo_1_1network_1_1X509Common.html#a072fef8b03e3c6ccd2fa35d95e0556dba88183b946cc5f0e8c96b2e66e1c74a7e',1,'dodo::network::X509Common']]],
+  ['unlock_818',['unLock',['../classdodo_1_1threads_1_1Mutex.html#ab2e479d6f0271aaab08987a5316defe2',1,'dodo::threads::Mutex']]],
+  ['update_5fcount_819',['update_count',['../structdodo_1_1persist_1_1KVStore_1_1MetaData.html#aaa5f76f7d82efe08d10bc13e8c3fa195',1,'dodo::persist::KVStore::MetaData']]],
+  ['util_2ecpp_820',['util.cpp',['../util_8cpp.html',1,'']]],
+  ['util_2ehpp_821',['util.hpp',['../util_8hpp.html',1,'']]]
 ];

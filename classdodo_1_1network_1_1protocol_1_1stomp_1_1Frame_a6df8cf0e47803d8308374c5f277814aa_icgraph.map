@@ -1,0 +1,4 @@
+<map id="dodo::network::protocol::stomp::Frame::readCommand" name="dodo::network::protocol::stomp::Frame::readCommand">
+<area shape="rect" id="node1" title="Read a command from a frame." alt="" coords="235,5,459,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect.html#aedab217f4f2485db9f04ce0401058994" title="Checks how the data matches a frame specification." alt="" coords="5,5,187,47"/>
+</map>

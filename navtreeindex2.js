@@ -1,5 +1,11 @@
 var NAVTREEINDEX2 =
 {
+"classdodo_1_1network_1_1BaseSocket.html#acdbbba0a78559c47d26a5b29c5b9bb3c":[5,0,0,1,4,35],
+"classdodo_1_1network_1_1BaseSocket.html#ace6374e560c9b0cdd2d9519d3044d08e":[5,0,0,1,4,41],
+"classdodo_1_1network_1_1BaseSocket.html#acf3ee5321588185efb19723f84a4727c":[5,0,0,1,4,4],
+"classdodo_1_1network_1_1BaseSocket.html#ad4cc3452e3e7fe1aa8a0c2bb3ccfb16a":[5,0,0,1,4,24],
+"classdodo_1_1network_1_1BaseSocket.html#ada0c1f13af9e8f363d7cb66b4c372cb9":[5,0,0,1,4,3],
+"classdodo_1_1network_1_1BaseSocket.html#ae680daa723e9092ab817d6480280c594":[5,0,0,1,4,33],
 "classdodo_1_1network_1_1BaseSocket.html#af62964a8a5da647a11e190e75bcbcf68":[5,0,0,1,4,48],
 "classdodo_1_1network_1_1BaseSocket.html#af72f5b968278b7390dc5ee57c3afb2d0":[5,0,0,1,4,5],
 "classdodo_1_1network_1_1BaseSocket.html#af8a089b16d52457a1c70b6e07fdd5d96":[5,0,0,1,4,51],
@@ -98,10 +104,10 @@ var NAVTREEINDEX2 =
 "classdodo_1_1network_1_1TCPConnectionData.html":[5,0,0,1,7],
 "classdodo_1_1network_1_1TCPConnectionData.html#a1c3699e2a692438a2835fa6364c0ec53":[5,0,0,1,7,0],
 "classdodo_1_1network_1_1TCPConnectionData.html#a6e52e4c29881c59aa2998da37ea58db0":[5,0,0,1,7,4],
+"classdodo_1_1network_1_1TCPConnectionData.html#a8dea0f2954f993f82324678980d604ad":[5,0,0,1,7,5],
 "classdodo_1_1network_1_1TCPConnectionData.html#aad39ba0301f868dd6d480e69f71d57e7":[5,0,0,1,7,1],
 "classdodo_1_1network_1_1TCPConnectionData.html#ac5ecbf16c9df124b001af0f298bfb25b":[5,0,0,1,7,2],
-"classdodo_1_1network_1_1TCPConnectionData.html#aeac34168ab94ae0c1df077ff05ab876c":[5,0,0,1,7,3],
-"classdodo_1_1network_1_1TCPConnectionData.html#af72b78355a109a6d902dba08542b9f31":[5,0,0,1,7,5],
+"classdodo_1_1network_1_1TCPConnectionData.html#af322bf468fbcee0a3bcb5535a174801c":[5,0,0,1,7,3],
 "classdodo_1_1network_1_1TCPListener.html":[5,0,0,1,8],
 "classdodo_1_1network_1_1TCPListener.html#a05f3381bcee837822c70c156c081d288":[5,0,0,1,8,10],
 "classdodo_1_1network_1_1TCPListener.html#a0c062bf6dbee59293759493a69ecb97d":[5,0,0,1,8,5],
@@ -243,11 +249,5 @@ var NAVTREEINDEX2 =
 "classdodo_1_1network_1_1TLSSocket.html#a93cf93b7d21c2961388622bb47cefd06":[5,0,0,1,12,15],
 "classdodo_1_1network_1_1TLSSocket.html#a953727178039678e8adc71c2ecc2da8f":[5,0,0,1,12,2],
 "classdodo_1_1network_1_1TLSSocket.html#aa19ee88fabae09de0aee1cf680b2a50c":[5,0,0,1,12,14],
-"classdodo_1_1network_1_1TLSSocket.html#aac4a213e093099709584ba4c8179c0da":[5,0,0,1,12,1],
-"classdodo_1_1network_1_1TLSSocket.html#ab2b6dc1da0129c1c48a2789df6810ae3":[5,0,0,1,12,8],
-"classdodo_1_1network_1_1TLSSocket.html#ac9f3d4a7b4bb653edaff562c1a7d6e8f":[5,0,0,1,12,13],
-"classdodo_1_1network_1_1TLSSocket.html#ad5bf66f4e88d4cbdc8dc0e19d6a5d031":[5,0,0,1,12,16],
-"classdodo_1_1network_1_1TLSSocket.html#afcffd2dace26644a73d55d1dc152fb54":[5,0,0,1,12,9],
-"classdodo_1_1network_1_1X509Certificate.html":[5,0,0,1,13],
-"classdodo_1_1network_1_1X509Certificate.html#a134d0ce6af2bb6b77e6c581bcc1063fe":[5,0,0,1,13,7]
+"classdodo_1_1network_1_1TLSSocket.html#aac4a213e093099709584ba4c8179c0da":[5,0,0,1,12,1]
 };

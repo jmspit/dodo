@@ -1,0 +1,4 @@
+<map id="dodo::persist::sqlite::DDL" name="dodo::persist::sqlite::DDL">
+<area shape="rect" id="node1" title="Data Definition Language, SQL that takes no parameters, returns no data such as CREATE TABLE." alt="" coords="5,95,191,121"/>
+<area shape="rect" id="node2" href="$classdodo_1_1persist_1_1sqlite_1_1Statement.html" title="Generic SQL Statement." alt="" coords="23,5,173,47"/>
+</map>

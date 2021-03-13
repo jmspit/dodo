@@ -1,6 +1,6 @@
 <map id="dodo::persist::KVStore" name="dodo::persist::KVStore">
-<area shape="rect" id="node1" title="A persistent, multi&#45;threaded key&#45;value store backed by sqlite3 storage (file)." alt="" coords="115,212,282,239"/>
+<area shape="rect" id="node1" title="A persistent, multi&#45;threaded key&#45;value store backed by sqlite3 database (file)." alt="" coords="118,227,285,253"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,5,120,32"/>
-<area shape="rect" id="node3" title=" " alt="" coords="173,5,224,32"/>
-<area shape="rect" id="node4" title=" " alt="" coords="248,5,325,32"/>
+<area shape="rect" id="node3" title=" " alt="" coords="176,5,227,32"/>
+<area shape="rect" id="node4" title=" " alt="" coords="251,5,328,32"/>
 </map>

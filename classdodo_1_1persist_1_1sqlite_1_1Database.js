@@ -1,0 +1,28 @@
+var classdodo_1_1persist_1_1sqlite_1_1Database =
+[
+    [ "Database", "classdodo_1_1persist_1_1sqlite_1_1Database.html#a98a4ae300d471099d8dce26318fdafef", null ],
+    [ "~Database", "classdodo_1_1persist_1_1sqlite_1_1Database.html#a9c748039b7f81e46c2a71f46d51781c4", null ],
+    [ "begin", "classdodo_1_1persist_1_1sqlite_1_1Database.html#aac94ea92eb6e06be1984c4351bafbde1", null ],
+    [ "beginExclusive", "classdodo_1_1persist_1_1sqlite_1_1Database.html#a69025cc938f740c4d07f722c2217d057", null ],
+    [ "beginImmediate", "classdodo_1_1persist_1_1sqlite_1_1Database.html#a92d8f26fec646cb82410daa4ab498aac", null ],
+    [ "checkPointPassive", "classdodo_1_1persist_1_1sqlite_1_1Database.html#a5b012f28b7d0552e6eefaeb3a272aff9", null ],
+    [ "checkPointTruncate", "classdodo_1_1persist_1_1sqlite_1_1Database.html#a550edc6572ee2f328f6b6ceeae05cdfd", null ],
+    [ "commit", "classdodo_1_1persist_1_1sqlite_1_1Database.html#ac1fe6f19d19ae5d0772c7b6583bb3f41", null ],
+    [ "disableForeignKeys", "classdodo_1_1persist_1_1sqlite_1_1Database.html#af8b43451d0a2918068167fa7fbcf2e3c", null ],
+    [ "enableForeignKeys", "classdodo_1_1persist_1_1sqlite_1_1Database.html#a2464366baf68edc8d28f245d9948da9f", null ],
+    [ "enableTriggers", "classdodo_1_1persist_1_1sqlite_1_1Database.html#acbe7f7eadc90003bcc971302804d1497", null ],
+    [ "fileName", "classdodo_1_1persist_1_1sqlite_1_1Database.html#a78f5ea81ac7d2aaed546a1474ebbe6b5", null ],
+    [ "getDB", "classdodo_1_1persist_1_1sqlite_1_1Database.html#ad661b24a692424210763beb32286e362", null ],
+    [ "getUserVersion", "classdodo_1_1persist_1_1sqlite_1_1Database.html#aeb9022709f820a3a75aa81c42fc6ba57", null ],
+    [ "lastInsertRowid", "classdodo_1_1persist_1_1sqlite_1_1Database.html#a23109dfdaeb4ff98576259856093ecf2", null ],
+    [ "memHighWater", "classdodo_1_1persist_1_1sqlite_1_1Database.html#a253df2c9be2589ec175793964fd8f993", null ],
+    [ "memUsed", "classdodo_1_1persist_1_1sqlite_1_1Database.html#ab415716f503d216364938d3ce9b28b6c", null ],
+    [ "release", "classdodo_1_1persist_1_1sqlite_1_1Database.html#a6eb87d4f52057da8e345736d82bafe3c", null ],
+    [ "releaseMemory", "classdodo_1_1persist_1_1sqlite_1_1Database.html#a04ca64d3658f8ad93e3aa782874a812c", null ],
+    [ "rollback", "classdodo_1_1persist_1_1sqlite_1_1Database.html#ab2a84d4406a0917a6f99b64cac008441", null ],
+    [ "rollback", "classdodo_1_1persist_1_1sqlite_1_1Database.html#ac187f8efe5789f75cffa58ec3bea9ce7", null ],
+    [ "savepoint", "classdodo_1_1persist_1_1sqlite_1_1Database.html#a36411a8b18c3946d70d8f4962c2fdfe5", null ],
+    [ "setUserVersion", "classdodo_1_1persist_1_1sqlite_1_1Database.html#aa4f0a53bc4866dad65dc77008c91724e", null ],
+    [ "softHeapLimit", "classdodo_1_1persist_1_1sqlite_1_1Database.html#a1e3b5a5acf477306ba50248cf776120d", null ],
+    [ "database_", "classdodo_1_1persist_1_1sqlite_1_1Database.html#ad703b4befd415a240b4caf12ffc7246f", null ]
+];

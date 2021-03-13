@@ -1,5 +1,11 @@
 var NAVTREEINDEX1 =
 {
+"classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a17976d8054030335d7cb2ecfdb797a70":[5,0,0,0,9,0,156],
+"classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a17b1cc2053f064c061d578991d57f1c1":[5,0,0,0,9,0,122],
+"classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a19ab59d95f8f3379c9b8c13e4a4ec1b5":[5,0,0,0,9,0,135],
+"classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a1a79e407b065be7cbb8de091b327cd6d":[5,0,0,0,9,0,24],
+"classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a1c73ab79eeb9899c30a9028b123a6df5":[5,0,0,0,9,0,41],
+"classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a1ce183a376b0c52cd0fe3725970445f7":[5,0,0,0,9,0,140],
 "classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a1f1ccc19c48a7b651ecfcee2881c9188":[5,0,0,0,9,0,113],
 "classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a1f8bdf1d41fafdf40c11f91ccb209a58":[5,0,0,0,9,0,50],
 "classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a20428100cfe0e12e37e5b52dddb3885e":[5,0,0,0,9,0,54],
@@ -243,11 +249,5 @@ var NAVTREEINDEX1 =
 "classdodo_1_1network_1_1BaseSocket.html#ab5864bc9317e07e2957ee5d2ebf13f24":[5,0,0,1,4,12],
 "classdodo_1_1network_1_1BaseSocket.html#ac989671d9a85b8ab09903b2d8246c819":[5,0,0,1,4,44],
 "classdodo_1_1network_1_1BaseSocket.html#acc6b937fefd5a0b5859043c3a6abc623":[5,0,0,1,4,14],
-"classdodo_1_1network_1_1BaseSocket.html#acd0cbf582dfa8ad2bd415accf6621bdf":[5,0,0,1,4,30],
-"classdodo_1_1network_1_1BaseSocket.html#acdbbba0a78559c47d26a5b29c5b9bb3c":[5,0,0,1,4,35],
-"classdodo_1_1network_1_1BaseSocket.html#ace6374e560c9b0cdd2d9519d3044d08e":[5,0,0,1,4,41],
-"classdodo_1_1network_1_1BaseSocket.html#acf3ee5321588185efb19723f84a4727c":[5,0,0,1,4,4],
-"classdodo_1_1network_1_1BaseSocket.html#ad4cc3452e3e7fe1aa8a0c2bb3ccfb16a":[5,0,0,1,4,24],
-"classdodo_1_1network_1_1BaseSocket.html#ada0c1f13af9e8f363d7cb66b4c372cb9":[5,0,0,1,4,3],
-"classdodo_1_1network_1_1BaseSocket.html#ae680daa723e9092ab817d6480280c594":[5,0,0,1,4,33]
+"classdodo_1_1network_1_1BaseSocket.html#acd0cbf582dfa8ad2bd415accf6621bdf":[5,0,0,1,4,30]
 };

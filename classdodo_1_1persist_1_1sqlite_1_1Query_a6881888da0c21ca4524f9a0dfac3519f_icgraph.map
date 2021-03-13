@@ -1,0 +1,4 @@
+<map id="dodo::persist::sqlite::Query::getInt" name="dodo::persist::sqlite::Query::getInt">
+<area shape="rect" id="node1" title="Get int value from select list." alt="" coords="252,5,403,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#aeb9022709f820a3a75aa81c42fc6ba57" title="get the current user_version pragma" alt="" coords="5,5,204,47"/>
+</map>

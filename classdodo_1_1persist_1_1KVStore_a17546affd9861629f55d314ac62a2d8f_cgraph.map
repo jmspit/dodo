@@ -1,5 +1,5 @@
 <map id="dodo::persist::KVStore::~KVStore" name="dodo::persist::KVStore::~KVStore">
 <area shape="rect" id="node1" title="Destructor, cleanup sync and close the SQLLite database." alt="" coords="5,39,172,80"/>
-<area shape="rect" id="node2" href="$classdodo_1_1persist_1_1KVStore.html#a51fccb4ff13d62aa5ea49f224770f135" title="Sync all to disk." alt="" coords="220,5,387,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1persist_1_1KVStore.html#a5ba2e6e25357e9390439db072ad1d207" title="Sync all to disk." alt="" coords="220,5,387,47"/>
 <area shape="rect" id="node3" href="$classdodo_1_1persist_1_1KVStore.html#a4de1e40de9bd814d9805267585efb911" title="Optimzime, preferably called after workload and implicitly called by the destructor." alt="" coords="220,71,387,112"/>
 </map>

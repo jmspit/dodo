@@ -1,4 +1,0 @@
-<map id="dodo::persist::KVStore::checkPoint" name="dodo::persist::KVStore::checkPoint">
-<area shape="rect" id="node1" title="Sync all to disk." alt="" coords="220,5,387,47"/>
-<area shape="rect" id="node2" href="$classdodo_1_1persist_1_1KVStore.html#a17546affd9861629f55d314ac62a2d8f" title="Destructor, cleanup sync and close the SQLLite database." alt="" coords="5,5,172,47"/>
-</map>

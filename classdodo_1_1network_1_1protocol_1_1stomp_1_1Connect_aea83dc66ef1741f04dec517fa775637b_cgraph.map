@@ -1,5 +1,0 @@
-<map id="dodo::network::protocol::stomp::Connect::generate" name="dodo::network::protocol::stomp::Connect::generate">
-<area shape="rect" id="node1" title="Generate a STOMP (CONNECT) frame." alt="" coords="5,39,204,80"/>
-<area shape="rect" id="node2" href="$classdodo_1_1common_1_1OctetArray.html#a94882d4ab5d43d892cb947761cf59638" title="Append another OctetArray." alt="" coords="252,5,449,47"/>
-<area shape="rect" id="node3" href="$classdodo_1_1common_1_1OctetArray.html#aa899989789cbe6f06b64d749fb472b8e" title="Free and clear data." alt="" coords="252,71,449,112"/>
-</map>

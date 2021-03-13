@@ -1,0 +1,4 @@
+<map id="dodo::common::StopWatch::getElapsedSeconds" name="dodo::common::StopWatch::getElapsedSeconds">
+<area shape="rect" id="node1" title="Return the number of seconds between." alt="" coords="249,5,445,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1StopWatch.html#a6869cbce9b290f008b387e249ff46dc0" title="Stop the stopwatch." alt="" coords="5,5,201,47"/>
+</map>

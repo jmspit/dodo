@@ -1,0 +1,8 @@
+<map id="dodo::common::Bytes::getArray" name="dodo::common::Bytes::getArray">
+<area shape="rect" id="node1" title="Return the array." alt="" coords="273,136,437,177"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1DataCrypt.html#aabf6cb0911efd72d438bc3fcb51a0db6" title="Decrypt data with a key." alt="" coords="19,5,212,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1common_1_1DataCrypt.html#a874b79bf3ef2b47eb59c7ca625a171ae" title="Encrypt data with a key into a string (so the encrypted data will not contain a 0/zero)." alt="" coords="19,71,212,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1persist_1_1KVStore.html#a50fc53edeff6e6f604518be2c94379bd" title="Insert a (key, Bytes) pair." alt="" coords="32,136,199,177"/>
+<area shape="rect" id="node5" href="$classdodo_1_1network_1_1TCPConnectionData.html#a6e52e4c29881c59aa2998da37ea58db0" title="Reads and appends data to read_buffer." alt="" coords="5,201,225,243"/>
+<area shape="rect" id="node6" href="$classdodo_1_1persist_1_1KVStore.html#a82fb7e195e91e9026ee5baa6887b735e" title="Set the binary data/Bytes value of an existing key." alt="" coords="32,267,199,308"/>
+</map>

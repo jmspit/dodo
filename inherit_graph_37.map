@@ -1,6 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classdodo_1_1threads_1_1Thread.html" title="Abstract Thread class." alt="" coords="5,64,169,91"/>
-<area shape="rect" id="node2" href="$classdodo_1_1network_1_1TCPListener.html" title="The TCPListener listens, accepts connections and generates socket events to produce TCP work to a poo..." alt="" coords="217,5,416,32"/>
-<area shape="rect" id="node3" href="$classdodo_1_1network_1_1TCPListenerTimer.html" title="Updates the attribute now_ in the TCPListener at a regular interval to avoid excessive number of call..." alt="" coords="217,57,416,98"/>
-<area shape="rect" id="node4" href="$classdodo_1_1network_1_1TCPServer.html" title="Used in conjunction with TCPListener to implement high speed, multithreaded TCP services." alt="" coords="222,123,411,149"/>
+<area shape="rect" id="node1" href="$classdodo_1_1persist_1_1sqlite_1_1Statement.html" title="Generic SQL Statement." alt="" coords="5,23,156,65"/>
+<area shape="rect" id="node2" href="$classdodo_1_1persist_1_1sqlite_1_1DDL.html" title="Data Definition Language, SQL that takes no parameters, returns no data such as CREATE TABLE." alt="" coords="205,5,390,32"/>
+<area shape="rect" id="node3" href="$classdodo_1_1persist_1_1sqlite_1_1DML.html" title="Data Modification Language statements can take bind values." alt="" coords="204,56,391,83"/>
+<area shape="rect" id="node4" href="$classdodo_1_1persist_1_1sqlite_1_1Query.html" title="Queries can take bind values and return select lists." alt="" coords="439,49,589,90"/>
 </map>

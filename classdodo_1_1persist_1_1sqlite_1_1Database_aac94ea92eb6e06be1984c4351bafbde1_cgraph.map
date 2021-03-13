@@ -1,0 +1,6 @@
+<map id="dodo::persist::sqlite::Database::begin" name="dodo::persist::sqlite::Database::begin">
+<area shape="rect" id="node1" title="Begin a transaction." alt="" coords="5,25,156,67"/>
+<area shape="rect" id="node2" href="$classdodo_1_1persist_1_1sqlite_1_1Statement.html#aef8f829a0385c968816b202a10396c37" title="A statement handle can be explicitly closed without deleting the Statement object itself." alt="" coords="408,29,559,71"/>
+<area shape="rect" id="node3" href="$classdodo_1_1persist_1_1sqlite_1_1DDL.html#ab33c8de3dca1b0e96760a10902b25d5b" title="execute, throws Oops on error." alt="" coords="207,25,357,67"/>
+<area shape="rect" id="node4" href="$classdodo_1_1persist_1_1sqlite_1_1Statement.html#a9a126dc9004edff369e6c9ea98d9dd10" title="Prepare a SQL statement." alt="" coords="204,91,360,132"/>
+</map>

@@ -1,4 +1,4 @@
 <map id="dodo::network::TCPConnectionData" name="dodo::network::TCPConnectionData">
 <area shape="rect" id="node1" title="Class to track a connection." alt="" coords="5,95,256,121"/>
-<area shape="rect" id="node2" href="$classdodo_1_1common_1_1OctetArray.html" title="An array of Octets with size elements." alt="" coords="32,5,229,32"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1Bytes.html" title="An array of Octets with size elements." alt="" coords="49,5,213,32"/>
 </map>

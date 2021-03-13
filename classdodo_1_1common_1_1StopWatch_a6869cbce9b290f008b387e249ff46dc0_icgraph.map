@@ -1,0 +1,4 @@
+<map id="dodo::common::StopWatch::stop" name="dodo::common::StopWatch::stop">
+<area shape="rect" id="node1" title="Stop the stopwatch." alt="" coords="249,5,445,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1StopWatch.html#a42ec0965765e0d2d62bcbfaa7a624c3c" title="Stop the stopwatch, start the Stopwatch again and return the elapsed time since previous start." alt="" coords="5,5,201,47"/>
+</map>

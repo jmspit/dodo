@@ -1,0 +1,5 @@
+<map id="dodo::network::protocol::stomp::Frame::readCommand" name="dodo::network::protocol::stomp::Frame::readCommand">
+<area shape="rect" id="node1" title="Read a command from a frame." alt="" coords="5,39,229,80"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1Bytes.html#aec56d8c9dad6981f3af06f695ef10254" title="Return the Octet at index." alt="" coords="277,5,441,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1common_1_1Bytes.html#afc34ec0de4068cd3ac41fd07668a7cde" title="Return the array size." alt="" coords="277,71,441,112"/>
+</map>

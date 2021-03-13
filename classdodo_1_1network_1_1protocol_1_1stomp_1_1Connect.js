@@ -1,12 +1,12 @@
 var classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect =
 [
     [ "Connect", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect.html#ac51b4ba72016f73f634dc2617da72b81", null ],
-    [ "generate", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect.html#aea83dc66ef1741f04dec517fa775637b", null ],
+    [ "generate", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect.html#a10628a4af5146ba43c08ebb418a7da2d", null ],
     [ "getHeartbeatOut", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect.html#ac664e656a227b06d10600aec58888ea2", null ],
     [ "getHost", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect.html#a764fcaf29073e3e37a4103c1090a5c7a", null ],
     [ "getLogin", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect.html#a1b2f074b0526b0cf7e67f7be115fa3a6", null ],
     [ "getPasscode", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect.html#afc7ad5317a93f0de91f018151dabc6e1", null ],
-    [ "match", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect.html#aa71ff21f93fdc2b6e3b51a6543e48699", null ],
+    [ "match", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect.html#aedab217f4f2485db9f04ce0401058994", null ],
     [ "setHeartbeat", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect.html#ac33318193d8866d8ab4e3c6650e6a3c6", null ],
     [ "setHost", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect.html#a0d5c9dcff86d4b95680f51be7120dc89", null ],
     [ "setLogin", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect.html#a50d28f86aa2fccf76ea8598f48f65d16", null ],

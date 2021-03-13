@@ -1,5 +1,5 @@
 <map id="dodo::common::DataCrypt::cipher2String" name="dodo::common::DataCrypt::cipher2String">
 <area shape="rect" id="node1" title="String representation of an Cipher instance." alt="" coords="247,39,440,80"/>
-<area shape="rect" id="node2" href="$classdodo_1_1common_1_1DataCrypt.html#ac6dd5410c39cfe7f9aca1b955b70664c" title="Encrypt data with a key into a string (so the encrypted data will not contain a 0/zero)." alt="" coords="5,5,199,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1DataCrypt.html#a874b79bf3ef2b47eb59c7ca625a171ae" title="Encrypt data with a key into a string (so the encrypted data will not contain a 0/zero)." alt="" coords="5,5,199,47"/>
 <area shape="rect" id="node3" href="$classdodo_1_1common_1_1DataCrypt.html#a9014a2a103a0742f919bd6a80fd8f7a5" title="Convert a string representation to an Cipher." alt="" coords="5,71,199,112"/>
 </map>

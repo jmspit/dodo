@@ -1,12 +1,7 @@
 var searchData=
 [
-  ['wait_1268',['wait',['../classdodo_1_1threads_1_1Thread.html#ad1b5fabdc0aae1620f2d4b61be98c59c',1,'dodo::threads::Thread']]],
-  ['waitforactivity_1269',['waitForActivity',['../classdodo_1_1network_1_1TCPListener.html#a1de0167c9e95cb73369eb5428db3576f',1,'dodo::network::TCPListener']]],
-  ['warning_1270',['warning',['../classdodo_1_1common_1_1Logger.html#a444d91d5d549189ddb65704ab6539aa1',1,'dodo::common::Logger']]],
-  ['what_1271',['what',['../classdodo_1_1common_1_1Exception.html#a208d26d25b9a36f48a6df2ec851bdff3',1,'dodo::common::Exception']]],
-  ['writeconfig_1272',['writeConfig',['../classdodo_1_1common_1_1Config.html#af3e6aa6b309aefb836570b42d57c0fe3',1,'dodo::common::Config']]],
-  ['writesslerrors_1273',['writeSSLErrors',['../namespacedodo_1_1common.html#a9cc37cf2f454ae7e459bdfb9234c2b1e',1,'dodo::common']]],
-  ['writesubtestresult_1274',['writeSubTestResult',['../classdodo_1_1common_1_1UnitTest.html#a20ecc1195cefdf66a92a53722b37bb11',1,'dodo::common::UnitTest']]],
-  ['writeunittestheader_1275',['writeUnitTestHeader',['../classdodo_1_1common_1_1UnitTest.html#aa549fb7f1349065767c738a1b549adcb',1,'dodo::common::UnitTest']]],
-  ['writeunittestsummary_1276',['writeUnitTestSummary',['../classdodo_1_1common_1_1UnitTest.html#a6c9280cfd598bd21f34c8e6ff7cace65',1,'dodo::common::UnitTest']]]
+  ['vacuum_1355',['vacuum',['../classdodo_1_1persist_1_1KVStore.html#ad3e6555873a76c963e0524c43317b195',1,'dodo::persist::KVStore']]],
+  ['verifyip_1356',['verifyIP',['../classdodo_1_1network_1_1X509Certificate.html#aa400207f2653906deea0d698406c9055',1,'dodo::network::X509Certificate']]],
+  ['verifyname_1357',['verifyName',['../classdodo_1_1network_1_1X509Certificate.html#a2a5de8c3a91fd5315a75c665f57ac9fa',1,'dodo::network::X509Certificate']]],
+  ['verifysan_1358',['verifySAN',['../classdodo_1_1network_1_1X509Certificate.html#a49509390a6532c56ff8360ef327c335e',1,'dodo::network::X509Certificate']]]
 ];

@@ -1,0 +1,11 @@
+<map id="dodo::persist::sqlite::DDL::execute" name="dodo::persist::sqlite::DDL::execute">
+<area shape="rect" id="node1" title="execute, throws Oops on error." alt="" coords="260,235,411,276"/>
+<area shape="rect" id="node2" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#aac94ea92eb6e06be1984c4351bafbde1" title="Begin a transaction." alt="" coords="33,5,184,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#a69025cc938f740c4d07f722c2217d057" title="Begin an exclusive transaction." alt="" coords="9,71,208,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#a92d8f26fec646cb82410daa4ab498aac" title="Begin an immediate transaction." alt="" coords="5,136,212,177"/>
+<area shape="rect" id="node5" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#ac1fe6f19d19ae5d0772c7b6583bb3f41" title="Commit a transaction." alt="" coords="33,201,184,243"/>
+<area shape="rect" id="node6" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#a6eb87d4f52057da8e345736d82bafe3c" title="Release a savepoint." alt="" coords="33,267,184,308"/>
+<area shape="rect" id="node7" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#ab2a84d4406a0917a6f99b64cac008441" title="Rollback a transaction." alt="" coords="33,332,185,373"/>
+<area shape="rect" id="node8" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#a36411a8b18c3946d70d8f4962c2fdfe5" title="Create a named savepoint." alt="" coords="27,397,191,439"/>
+<area shape="rect" id="node9" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#aa4f0a53bc4866dad65dc77008c91724e" title="set the user_version pragma" alt="" coords="9,463,208,504"/>
+</map>

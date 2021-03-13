@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['matchtype_1502',['MatchType',['../classdodo_1_1common_1_1OctetArray.html#ab9ae44f4175883df2bb785c3b1100ff2',1,'dodo::common::OctetArray']]]
+  ['matchtype_1603',['MatchType',['../classdodo_1_1common_1_1Bytes.html#a30aaaf4065d540e8eb3103ae4e6dfed9',1,'dodo::common::Bytes']]]
 ];

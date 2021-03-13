@@ -1,0 +1,5 @@
+<map id="dodo::persist::sqlite::Statement" name="dodo::persist::sqlite::Statement">
+<area shape="rect" id="node1" title="Generic SQL Statement." alt="" coords="128,5,279,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1persist_1_1sqlite_1_1DDL.html" title="Data Definition Language, SQL that takes no parameters, returns no data such as CREATE TABLE." alt="" coords="5,95,191,121"/>
+<area shape="rect" id="node3" href="$classdodo_1_1persist_1_1sqlite_1_1DML.html" title="Data Modification Language statements can take bind values." alt="" coords="215,95,402,121"/>
+</map>

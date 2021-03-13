@@ -100,11 +100,14 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Application.html">Application</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Red tape wrapper class for applications, from command line to services.  <a href="classdodo_1_1common_1_1Application.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Bytes.html">Bytes</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An array of Octets with size elements.  <a href="classdodo_1_1common_1_1Bytes.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html">Config</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Singleton class representing the deployment configuration, combining deployment constants from the configuration file, environment variables (whose names start with the appname) and some operating system quantities useful to developers, like the CPU count or an imposed memory limit.  <a href="classdodo_1_1common_1_1Config.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1DataCrypt.html">DataCrypt</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface to encrypt and decrypt <a class="el" href="classdodo_1_1common_1_1OctetArray.html" title="An array of Octets with size elements.">OctetArray</a> data to/from a secure string.  <a href="classdodo_1_1common_1_1DataCrypt.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface to encrypt and decrypt <a class="el" href="classdodo_1_1common_1_1Bytes.html" title="An array of Octets with size elements.">Bytes</a> data to/from a secure string.  <a href="classdodo_1_1common_1_1DataCrypt.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1DebugObject.html">DebugObject</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface to objects that support dumping their state to a string.  <a href="classdodo_1_1common_1_1DebugObject.html#details">More...</a><br /></td></tr>
@@ -114,9 +117,6 @@ Data Structures</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Logger.html">Logger</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="classdodo_1_1common_1_1Logger.html" title="A Logger interface.">Logger</a> interface.  <a href="classdodo_1_1common_1_1Logger.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1OctetArray.html">OctetArray</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An array of Octets with size elements.  <a href="classdodo_1_1common_1_1OctetArray.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Puts.html">Puts</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper class to write strings in stream format, eg.  <a href="classdodo_1_1common_1_1Puts.html#details">More...</a><br /></td></tr>
@@ -276,7 +276,7 @@ Functions</h2></td></tr>
 
 <p>Octet aka 'byte'. </p>
 
-<p class="definition">Definition at line <a class="el" href="octetarray_8hpp_source.html#l00034">34</a> of file <a class="el" href="octetarray_8hpp_source.html">octetarray.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bytes_8hpp_source.html#l00034">34</a> of file <a class="el" href="bytes_8hpp_source.html">bytes.hpp</a>.</p>
 
 </div>
 </div>
@@ -584,7 +584,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A vector of strings. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8hpp_source.html#l00150">150</a> of file <a class="el" href="util_8hpp_source.html">util.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8hpp_source.html#l00157">157</a> of file <a class="el" href="util_8hpp_source.html">util.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="x509cert_8cpp_source.html#l00061">dodo::network::X509Common::parseIdentity()</a>.</p>
 <div class="dynheader">
@@ -972,7 +972,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the difference in seconds from t1 to t2. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8hpp_source.html#l00119">119</a> of file <a class="el" href="util_8hpp_source.html">util.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8hpp_source.html#l00126">126</a> of file <a class="el" href="util_8hpp_source.html">util.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="tcpserver_8cpp_source.html#l00185">dodo::network::TCPServer::getIdleSeconds()</a>, <a class="el" href="thread_8cpp_source.html#l00153">dodo::threads::Thread::getRunTime()</a>, <a class="el" href="thread_8cpp_source.html#l00157">dodo::threads::Thread::getSnapDiffTime()</a>, <a class="el" href="tcplistener_8cpp_source.html#l00511">dodo::network::TCPListener::logStats()</a>, and <a class="el" href="tcpserver_8cpp_source.html#l00046">dodo::network::TCPServer::run()</a>.</p>
 <div class="dynheader">
@@ -1039,8 +1039,8 @@ Here is the caller graph for this function:</div>
 <area shape="rect" title="Get all OpenSSL errors as a single string, and clear their error state." alt="" coords="276,470,485,497"/>
 <area shape="rect" href="classdodo_1_1network_1_1TLSSocket.html#a37b427a43fce53f5b6473aea8844b468" title="Accept a connection." alt="" coords="22,5,211,47"/>
 <area shape="rect" href="classdodo_1_1network_1_1TLSSocket.html#a8d461dcb17d488050c8576431670ea4d" title="Connect to the Address." alt="" coords="22,71,211,112"/>
-<area shape="rect" href="classdodo_1_1common_1_1DataCrypt.html#aa1b405ff388d738bc442bf14e084c6d9" title="Decrypt data with a key." alt="" coords="20,136,213,177"/>
-<area shape="rect" href="classdodo_1_1common_1_1DataCrypt.html#ac6dd5410c39cfe7f9aca1b955b70664c" title="Encrypt data with a key into a string (so the encrypted data will not contain a 0/zero)." alt="" coords="20,201,213,243"/>
+<area shape="rect" href="classdodo_1_1common_1_1DataCrypt.html#aabf6cb0911efd72d438bc3fcb51a0db6" title="Decrypt data with a key." alt="" coords="20,136,213,177"/>
+<area shape="rect" href="classdodo_1_1common_1_1DataCrypt.html#a874b79bf3ef2b47eb59c7ca625a171ae" title="Encrypt data with a key into a string (so the encrypted data will not contain a 0/zero)." alt="" coords="20,201,213,243"/>
 <area shape="rect" href="classdodo_1_1network_1_1X509CertificateSigningRequest.html#ab52332e3ec015e019327edf3678ad06b" title="Get the certificate fingerprint (a hash on the public key modulus) in string format,..." alt="" coords="5,267,228,308"/>
 <area shape="rect" href="classdodo_1_1network_1_1X509Certificate.html#a4ba6e740b4500f3706510dc318767db9" title="Get the certificate fingerprint (a hash on the public key modulus) in string format,..." alt="" coords="5,332,228,373"/>
 <area shape="rect" href="classdodo_1_1network_1_1X509CertificateSigningRequest.html#a701f2684b54acbba633f10de3b29e39a" title="Load a certificate signing request (CSR) from a PEM file." alt="" coords="5,397,228,439"/>
@@ -1135,7 +1135,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A vector of strings. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8hpp_source.html#l00129">129</a> of file <a class="el" href="util_8hpp_source.html">util.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8hpp_source.html#l00136">136</a> of file <a class="el" href="util_8hpp_source.html">util.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="datacrypt_8cpp_source.html#l00101">dodo::common::DataCrypt::decode()</a>, and <a class="el" href="x509cert_8cpp_source.html#l00061">dodo::network::X509Common::parseIdentity()</a>.</p>
 <div class="dynheader">

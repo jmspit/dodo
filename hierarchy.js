@@ -3,6 +3,7 @@ var hierarchy =
     [ "dodo::BuildEnv", "classdodo_1_1BuildEnv.html", null ],
     [ "dodo::common::Application", "classdodo_1_1common_1_1Application.html", null ],
     [ "dodo::common::Application::StartParameters", "structdodo_1_1common_1_1Application_1_1StartParameters.html", null ],
+    [ "dodo::common::Bytes", "classdodo_1_1common_1_1Bytes.html", null ],
     [ "dodo::common::Config", "classdodo_1_1common_1_1Config.html", null ],
     [ "dodo::common::DataCrypt", "classdodo_1_1common_1_1DataCrypt.html", null ],
     [ "dodo::common::DebugObject", "classdodo_1_1common_1_1DebugObject.html", [
@@ -16,7 +17,6 @@ var hierarchy =
     [ "dodo::common::Logger", "classdodo_1_1common_1_1Logger.html", null ],
     [ "dodo::common::Logger::FileParams", "structdodo_1_1common_1_1Logger_1_1FileParams.html", null ],
     [ "dodo::common::Logger::SyslogParams", "structdodo_1_1common_1_1Logger_1_1SyslogParams.html", null ],
-    [ "dodo::common::OctetArray", "classdodo_1_1common_1_1OctetArray.html", null ],
     [ "dodo::common::Puts", "classdodo_1_1common_1_1Puts.html", null ],
     [ "dodo::common::Puts::dec", "structdodo_1_1common_1_1Puts_1_1dec.html", null ],
     [ "dodo::common::Puts::endl", "structdodo_1_1common_1_1Puts_1_1endl.html", null ],
@@ -47,6 +47,14 @@ var hierarchy =
     [ "dodo::network::X509Common::Identity", "structdodo_1_1network_1_1X509Common_1_1Identity.html", null ],
     [ "dodo::network::X509Common::SAN", "structdodo_1_1network_1_1X509Common_1_1SAN.html", null ],
     [ "dodo::persist::KVStore", "classdodo_1_1persist_1_1KVStore.html", null ],
+    [ "dodo::persist::KVStore::MetaData", "structdodo_1_1persist_1_1KVStore_1_1MetaData.html", null ],
+    [ "dodo::persist::sqlite::Database", "classdodo_1_1persist_1_1sqlite_1_1Database.html", null ],
+    [ "dodo::persist::sqlite::Statement", "classdodo_1_1persist_1_1sqlite_1_1Statement.html", [
+      [ "dodo::persist::sqlite::DDL", "classdodo_1_1persist_1_1sqlite_1_1DDL.html", null ],
+      [ "dodo::persist::sqlite::DML", "classdodo_1_1persist_1_1sqlite_1_1DML.html", [
+        [ "dodo::persist::sqlite::Query", "classdodo_1_1persist_1_1sqlite_1_1Query.html", null ]
+      ] ]
+    ] ],
     [ "dodo::threads::Mutex", "classdodo_1_1threads_1_1Mutex.html", null ],
     [ "dodo::threads::Mutexer", "classdodo_1_1threads_1_1Mutexer.html", null ],
     [ "dodo::threads::Thread", "classdodo_1_1threads_1_1Thread.html", [

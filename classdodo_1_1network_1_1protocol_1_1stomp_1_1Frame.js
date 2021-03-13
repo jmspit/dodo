@@ -8,11 +8,11 @@ var classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame =
     [ "Version", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html#a77d5df70c7dd2fc85d5b53b90f9e0ca1", [
       [ "v1_2", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html#a77d5df70c7dd2fc85d5b53b90f9e0ca1a0fdcfe7bc01aadbcbb7ff8c0e1024336", null ]
     ] ],
-    [ "generate", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html#a86e1d824654b740d80d038e73181b454", null ],
-    [ "match", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html#adef0539f3c2204c6dbbf26435bb9da22", null ],
-    [ "readCommand", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html#a0d9f3b91cbff6abe3cce77f3e9062653", null ],
-    [ "command_connect", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html#a9646779e392e3e41c05690e94116842b", null ],
-    [ "command_connected", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html#a7b1b75f86c4e3f36777a628bc9668a83", null ],
-    [ "eol", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html#aea729a1091d543596d57d934c200e6a6", null ],
-    [ "header_accept_version_1_2", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html#a2589eb27550e3fbad37954752c10cbac", null ]
+    [ "generate", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html#a7aa5fdd4cd93145f42a056d21ae3602c", null ],
+    [ "match", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html#a5f11f05992eb125f581451c067b18e4f", null ],
+    [ "readCommand", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html#a6df8cf0e47803d8308374c5f277814aa", null ],
+    [ "command_connect", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html#a9dc34df278814e1891b3c308f2d44e72", null ],
+    [ "command_connected", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html#af7166076e5f665421a3d24c8d129349e", null ],
+    [ "eol", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html#ad076a06ab5a28181fd1b680c082614c7", null ],
+    [ "header_accept_version_1_2", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html#a09e4ac62f814d1f837a5ae229a5f1da0", null ]
 ];

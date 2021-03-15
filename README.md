@@ -14,12 +14,12 @@ Logging can be configured to write to one or more of these targets:
   -  A syslog call to [rsyslog](https://www.rsyslog.com/).
   -  Console aka standard out of the container entrypoint.
 
-Docker healthchecks that run an in-container command (aka native healthchecks, such as say `pidof myservice`) are pretty costly, especially if the healthchecks need to be frequent. The dodo::common::Application class can be instructed to setup a healthceck listener (dodo::common::Application::HealthChecker) that can be network-probed by the Docker host, which is much more efficient. This HealthChecker can be declared sick or healthy, which is also implictly set to sick when the dodo::common::Application catches an exception trying to escape the main loop.
+Docker healthchecks that run an in-container command (aka native healthchecks, such as say `pidof myservice`) are pretty costly, especially if the healthchecks need to be frequent or there are a lot pof pods to healthcheck. The dodo::common::Application class can be instructed to setup a healthceck listener (dodo::common::Application::HealthChecker) that can be network-probed by the Docker host, which is much more efficient. This HealthChecker can be declared sick or healthy by the code at runtime.
 ### High level APIs to common functionality
 
 Most services will require at least some of the functionality dodo provides as high-level C++ abstractions without compromising low-level C/Linux performance.
 
-  - Binary data as the Bytes datatype used by a variety of the other interfaces.
+  - Binary data as the `common::Bytes` datatype used by a variety of the other interfaces.
   - Encryption and compression.
   - Transparent ipv4 and ipv6 Address classes, name resolution.
   - TCPSocket (insecure) and TLSSocket classes (encryption and trust).

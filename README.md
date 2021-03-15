@@ -1,23 +1,23 @@
 # DODO - C++ framework for Docker containers
 ## About
 
-Dodo is a C++ framework to facilitate development for the Linux platform that aims to ingerate with Docker containers and k8s ([kubernetes](https://kubernetes.io/)) deployments. Dodo is a response to the forgotten value of efficiency.
+Dodo is a C++ framework to GNU/Linux development and aims to integrate seamlessly with Docker containers and k8s ([kubernetes](https://kubernetes.io/)).
 ### A skeleton for services
 
-The dodo::common::Application reads its run-time configuration from a YAML file, typically presented to the container by k8s. Many classes in the framework can be iniltialized (constructed) by passing a YAML node as parameter. This integrates nicely with rolling deployments.
+The dodo::common::Application reads its run-time configuration from a YAML file, typically presented to the container as a [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/). Many classes in the framework can be iniltialized (constructed) by passing a YAML node as parameter.
 
-Additionally, the dodo::common::Application implitly installs the signal handlers that are trigger on Docker stop request so that the container can shut down cleanly when requested to.
+Additionally, the dodo::common::Application implicitly installs signal handlers that are triggered on Docker stop requests, so that the container can shut down cleanly and quickly when requested.
 
-Logging that can be configured to write to one or more of these targets:
+Logging can be configured to write to one or more of these targets:
 
   -  A directory with a configured trail (size, history) of log files.
   -  A syslog call to [rsyslog](https://www.rsyslog.com/).
   -  Console aka standard out of the container entrypoint.
 
-Docker healthchecks that run an in-container command (such as say `pidof myservice`) are pretty costly, especially if the healthchecks need to be frequent. The dodo::common::Application class can be instructed to setup a healthceck listener (dodo::common::Application::HealthChecker) that can be network-probed by the Docker host, which is much more efficient. This HealthChecker can be declared sick or healthy, which is also implictly set to sick when the dodo::common::Application catches an exception trying to escape the main loop.
+Docker healthchecks that run an in-container command (aka native healthchecks, such as say `pidof myservice`) are pretty costly, especially if the healthchecks need to be frequent. The dodo::common::Application class can be instructed to setup a healthceck listener (dodo::common::Application::HealthChecker) that can be network-probed by the Docker host, which is much more efficient. This HealthChecker can be declared sick or healthy, which is also implictly set to sick when the dodo::common::Application catches an exception trying to escape the main loop.
 ### High level APIs to common functionality
 
-Most services will require at least some of the functionality dodo provides as high-level C++ abstactaions without comrpomising low-level C/Linux performance.
+Most services will require at least some of the functionality dodo provides as high-level C++ abstractions without compromising low-level C/Linux performance.
 
   - Binary data as the Bytes datatype used by a variety of the other interfaces.
   - Encryption and compression.

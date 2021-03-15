@@ -4,11 +4,11 @@
 Dodo is a C++ framework to GNU/Linux development and aims to integrate seamlessly with Docker containers and k8s ([kubernetes](https://kubernetes.io/)).
 ### A skeleton for services
 
-The dodo::common::Application reads its run-time configuration from a YAML file, typically presented to the container as a [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/). Many classes in the framework can be iniltialized (constructed) by passing a YAML node as parameter.
+The `dodo::common::Application` reads its run-time configuration from a YAML file, typically presented to the container as a [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/). Many classes in the framework can be iniltialized (constructed) by passing a YAML node as parameter.
 
-Additionally, the dodo::common::Application implicitly installs signal handlers that are triggered on Docker stop requests, so that the container can shut down cleanly and quickly when requested.
+Additionally, the `dodo::common::Application` implicitly installs signal handlers that are triggered on Docker stop requests, so that the container can shut down cleanly and quickly when requested.
 
-Logging can be configured to write to one or more of these targets:
+Logging (`dodo::common::Logger`) can be configured to write to one or more of these targets:
 
   -  A directory with a configured trail (size, history) of log files.
   -  A syslog call to [rsyslog](https://www.rsyslog.com/).
@@ -19,7 +19,7 @@ Docker healthchecks that run an in-container command (aka native healthchecks, s
 
 Most services will require at least some of the functionality dodo provides as high-level C++ abstractions without compromising low-level C/Linux performance.
 
-  - Binary data as the `common::Bytes` datatype used by a variety of the other interfaces.
+  - Binary data as the `dodo::common::Bytes` datatype used by a variety of the other interfaces.
   - Encryption and compression.
   - Transparent ipv4 and ipv6 Address classes, name resolution.
   - TCPSocket (insecure) and TLSSocket classes (encryption and trust).

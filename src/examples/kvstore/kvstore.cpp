@@ -9,7 +9,7 @@ using namespace std;
 #define KEY_SPACE 160000
 #define KEY_MAX_LENGTH 64
 #define DATA_MAX_LENGTH 128
-#define MAX_SETKEYS 100
+#define MAX_SETKEYS 1000
 
 set<string> keys;
 

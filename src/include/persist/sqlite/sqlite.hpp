@@ -25,6 +25,7 @@
 
 #include <string>
 #include <sqlite3.h>
+#include <common/bytes.hpp>
 
 namespace dodo::persist {
 
@@ -58,56 +59,27 @@ namespace dodo::persist {
         ~Database();
 
         /**
-         * Enable foreign key constraints.
+         * Begin a transaction.
+         * @see https://sqlite.org/lang_transaction.html
          */
-        void enableForeignKeys();
-
-        void disableForeignKeys();
+        void beginTransaction();
 
         /**
-         * Enable triggers.
+         * Begin an immediate transaction.
+         * @see https://sqlite.org/lang_transaction.html
          */
-        void enableTriggers();
+        void beginImmediateTransaction();
 
         /**
-         * Return database handle.
-         * @return the sqlite3 database handle.
+         * Begin an exclusive transaction.
+         * @see https://sqlite.org/lang_transaction.html
          */
-        sqlite3* getDB() const { return database_; };
-
-        /** Begin a transaction. */
-        void begin();
-
-        /** Begin an immediate transaction. */
-        void beginImmediate();
-
-        /** Begin an exclusive transaction. */
-        void beginExclusive();
-
-        /** Commit a transaction. */
-        void commit();
-
-        /** Rollback a transaction. */
-        void rollback();
+        void beginExclusiveTransaction();
 
         /**
-         * Create a named savepoint.
-         * @param sp the savepoint name
-         * @see release, rollback
+         * Issue a full checpoint.
          */
-        void savepoint( const std::string &sp );
-
-        /**
-         * Release a savepoint.
-         * @param sp the savepoint name
-         */
-        void release( const std::string &sp );
-
-        /**
-         * Rollback to a savepoint.
-         * @param sp the savepoint name
-         */
-        void rollback( const std::string &sp );
+        void checkPointFull();
 
         /**
          * Issue a passive checpoint.
@@ -119,10 +91,85 @@ namespace dodo::persist {
          */
         void checkPointTruncate();
 
+        /** Commit a transaction. */
+        void commit();
+
+        /**
+         * Disable foreign key constraints.
+         */
+        void disableForeignKeys();
+
+        /**
+         * Enable foreign key constraints.
+         */
+        void enableForeignKeys();
+
+        /**
+         * Enable triggers.
+         */
+        void enableTriggers();
+
+        /**
+         * Return the database filename.
+         */
+        std::string getFileName() const { return sqlite3_db_filename( database_, "main" ); };
+
+        /**
+         * Return database handle.
+         * @return the sqlite3 database handle.
+         */
+        sqlite3* getDB() const { return database_; };
+
+        /**
+         * get the current user_version pragma
+         */
+        int getUserVersion() const;
+
         /**
          * Get the rowid of the last inserted row.
          */
         int64_t lastInsertRowid() const;
+
+        /**
+         * Get memory in use by the SQLite library.
+         */
+        static int64_t memUsed() {
+          return sqlite3_memory_used();
+        }
+
+        /**
+         * Get memory highwater by the SQLite library.
+         */
+        static int64_t memHighWater() {
+          return sqlite3_memory_highwater(0);
+        }
+
+        /**
+         * Release a savepoint.
+         * @param sp the savepoint name
+         */
+        void releaseSavepoint( const std::string &sp );
+
+        /**
+         * Have SQLite attempt to release a much memory as possible.
+         */
+        void releaseMemory();
+
+        /** Rollback a transaction. */
+        void rollback();
+
+        /**
+         * Create a named savepoint.
+         * @param sp the savepoint name
+         * @see release, rollback
+         */
+        void createSavepoint( const std::string &sp );
+
+        /**
+         * Rollback to a savepoint.
+         * @param sp the savepoint name
+         */
+        void rollback( const std::string &sp );
 
         /**
          * set the user_version pragma
@@ -130,28 +177,14 @@ namespace dodo::persist {
         void setUserVersion( int version );
 
         /**
-         * get the current user_version pragma
+         * Get the SQLite soft heap limti.
          */
-        int getUserVersion();
-
-        void releaseMemory();
-
-        static int64_t memUsed() {
-          return sqlite3_memory_used();
-        }
-
-        static int64_t memHighWater() {
-          return sqlite3_memory_highwater(0);
-        }
-
         static int64_t softHeapLimit( int64_t limit ) {
           return sqlite3_soft_heap_limit64( limit );
         }
 
-        std::string fileName() const { return sqlite3_db_filename( database_, "main" ); };
-
       protected:
-        /** Database handle. */
+        /** The SQLite database handle. */
         sqlite3 *database_;
     };
 
@@ -180,9 +213,12 @@ namespace dodo::persist {
         void prepare( const std::string &sql );
 
         /**
-         * Reset a SQL statement for rexecute or even re-prepare.
+         * Reset a SQL statement for re-execute or even re-prepare.
+         * @param clear If true (default), unbind the bind variables. If the statement is going to be
+         * re-executed, new bind calls must be made. If the satemetn is going to be re-executed with
+         * the same bind values, cler can be set to false and no re-binding is required.
          */
-        void reset();
+        void reset( bool clear = true );
 
         /**
          * A statement handle can be explicitly closed without deleting
@@ -241,9 +277,10 @@ namespace dodo::persist {
         virtual ~DML() {};
 
         /**
-         * Execute.
+         * Execute and return the number of rows affected.
+         * @return The number of rows affected by the DML statement.
          */
-        void execute();
+        int execute();
 
         /**
          * Bind a double value to the bind at position.
@@ -278,7 +315,7 @@ namespace dodo::persist {
          * @param position the bind position in the SQL (start with 1)
          * @param value the value to bind.
          */
-        //void bind( int position, const Bytes &value );
+        void bind( int position, const common::Bytes &value );
     };
 
     /**
@@ -286,6 +323,19 @@ namespace dodo::persist {
      */
     class Query : public DML {
       public:
+
+        /**
+         * The data type of a select-list value.
+         */
+        enum DataType {
+          dtInteger = SQLITE_INTEGER, /**< (1) Integer type (int64_t) */
+          dtFloat   = SQLITE_FLOAT,   /**< (2) Floating point type (double) */
+          dtText    = SQLITE3_TEXT,   /**< (3) Text type (string) */
+          dtBlob    = SQLITE_BLOB,    /**< (4) Binary data type (Bytes) */
+          dtNull    = SQLITE_NULL,    /**< (5) NULL type (unset and undefined) */
+          dtUnknown = 91,             /**< Used to indicate a DataType that could not be determined */
+        };
+
         /** Constructor. */
         Query( const Database& db ) : DML( db ) {};
 
@@ -304,6 +354,11 @@ namespace dodo::persist {
          * @return true if the col holds a NULL value
          */
         bool isNull( int col ) const;
+
+        /**
+         * Get the dataype of a select list column.
+         */
+        DataType getDataType( int col ) const;
 
         /**
          * Get int value from select list.
@@ -332,6 +387,13 @@ namespace dodo::persist {
          * @return the select list value.
          */
         std::string getText( int col ) const;
+
+        /**
+         * Get Bytes value from select list.
+         * @param col the select list column (start with 0).
+         * @param bytes The Bytes value to get.
+         */
+        void getBytes( int col, common::Bytes &bytes ) const;
 
         /**
          * get the number of columns in the query result set.

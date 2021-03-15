@@ -78,18 +78,6 @@ namespace dodo::persist {
     public:
 
       /**
-       * The data type of a keyed value.
-       */
-      enum DataType {
-        dtInteger = SQLITE_INTEGER, /**< (1) Integer type (int64_t) */
-        dtFloat   = SQLITE_FLOAT,   /**< (2) Floating point type (double) */
-        dtText    = SQLITE3_TEXT,   /**< (3) Text type (string) */
-        dtBlob    = SQLITE_BLOB,    /**< (4) Binary data type (Bytes) */
-        dtNull    = SQLITE_NULL,    /**< (5) NULL type (unset and undefined) */
-        dtUnknown = 91,             /**< Used to indicate a DataType that could not be determined */
-      };
-
-      /**
        * Meta data concerning the key.
        */
       struct MetaData {
@@ -98,7 +86,7 @@ namespace dodo::persist {
         /** number of times the value was updates (is 0 after insertKey) */
         int64_t update_count = 0;
         /** The DataType of the key's value. */
-        DataType type;
+        sqlite::Query::DataType type;
       };
 
       /**
@@ -114,7 +102,7 @@ namespace dodo::persist {
       ~KVStore();
 
       /**
-       * Sync all to disk.
+       * Sync all to disk - issue a SQLite full checkpoint.
        */
       void checkpoint();
 
@@ -222,23 +210,12 @@ namespace dodo::persist {
       bool getValue( const std::string &key, int64_t &value ) const;
 
       /**
-       * If the key exists, returns true and sets the data and size parameter. The blob is copied into
-       * memory allocated at the pointer returned in data, memory which becomes the caller's responsibility
-       * to clean up.
-       * @param key The key to get the value for.
-       * @param data The pointer that will be set and points to the data.
-       * @param size The size of the data.
-       * @return False if the key does not exist.
-       */
-      bool getValue( const std::string &key, const void* &data, int &size ) const;
-
-      /**
        * If the key exists, returns true and copies (overwrites) data to the Bytes.
        * @param key The key to get the value for.
-       * @param data The Bytes that will receive the data.
+       * @param value The Bytes that will receive the data.
        * @return False if the key does not exist.
        */
-      bool getValue( const std::string &key, common::Bytes &data ) const;
+      bool getValue( const std::string &key, common::Bytes &value ) const;
 
       /**
        * Insert a (key, string) pair.
@@ -265,22 +242,13 @@ namespace dodo::persist {
       bool insertKey( const std::string &key, const int64_t &value );
 
       /**
-       * Insert a (key, binary data) pair.
-       * @param key The key.
-       * @param data A pointer to the data.
-       * @param size The size of the data.
-       * @return True if the key was created, false if the key already exists.
-       */
-      bool insertKey( const std::string &key, const void* data, int size );
-
-      /**
        * Insert a (key, Bytes) pair. Note that the size of the data cannot exceed INT_MAX, and
        * exception is thrown if the Bytes is larger.
        * @param key The key.
        * @param oa The Bytes to insert.
        * @return True if the key was created, false if the key already exists.
        */
-      bool insertKey( const std::string &key, const common::Bytes &oa );
+      bool insertKey( const std::string &key, const common::Bytes &value );
 
       /**
        * Optimzime, preferably called after workload and implicitly called by the destructor.
@@ -317,21 +285,12 @@ namespace dodo::persist {
       bool setKey( const std::string &key, const int64_t &value );
 
       /**
-       * Set the binary data value of an existing key. The function returns false if the key does not exist.
-       * @param key The key.
-       * @param data The data to set.
-       * @param size The size of the data to set.
-       * @return True if the key exists, in which case it is also updated.
-       */
-      bool setKey( const std::string &key, const void* data, int size );
-
-      /**
        * Set the binary data/Bytes value of an existing key. The function returns false if the key does not exist.
        * @param key The key.
-       * @param oa The Bytes to set.
+       * @param value The Bytes to set.
        * @return True if the key exists, in which case it is also updated.
        */
-      bool setKey( const std::string &key, const common::Bytes &oa );
+      bool setKey( const std::string &key, const common::Bytes &value );
 
       /**
        * Start a transaction. If insertKey or setKey calls are not inside a started transaction, each will commit
@@ -359,32 +318,30 @@ namespace dodo::persist {
       /** The filesystem path to the kvstore. */
       std::filesystem::path path_;
 
-      /** The database handle. */
-      sqlite3 *database_;
+      sqlite::Database* db_;
 
-      /** Existence-check statement handle. */
-      sqlite3_stmt* stmt_exists_;
+      sqlite::Query* stmt_exists_;
 
       /** Get-value-for-key statement handle. */
-      sqlite3_stmt* stmt_getvalue_;
+      sqlite::Query* stmt_getvalue_;
 
       /** Insert key pair statement handle. */
-      sqlite3_stmt* stmt_insert_;
+      sqlite::DML* stmt_insert_;
 
       /** Delete key pair statement handle. */
-      sqlite3_stmt* stmt_delete_;
+      sqlite::DML* stmt_delete_;
 
       /** Update key pair statement handle. */
-      sqlite3_stmt* stmt_update_;
+      sqlite::DML* stmt_update_;
 
       /** Key filter statement handle. */
-      sqlite3_stmt* stmt_key_filter_;
+      sqlite::Query* stmt_key_filter_;
 
       /** Key + value filter statement handle. */
-      sqlite3_stmt* stmt_key_value_filter_;
+      sqlite::Query* stmt_key_value_filter_;
 
       /** Get metadata statement handle. */
-      sqlite3_stmt* stmt_metadata_;
+      sqlite::Query* stmt_metadata_;
   };
 
 }

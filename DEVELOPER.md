@@ -333,7 +333,8 @@ In order to verify a peer certificate, there is dodo::network::TLSContext::PeerV
     (encrypted), but information is shared with an unknown peer identity (like a man in the middle).
   - dodo::network::TLSContext::PeerVerification::pvVerifyPeer - The client verifies that peer offers a certificate that
     is signed by an entity trusted by the client. Note that this merely proves the server has a copy of a trusted
-    certificate - not the the server is the identity specified by the certificate.
+    certificate - but for the peer to decrypt messages sent by the advertised public key, the peer must also have the
+    private key to decrypt.
   - dodo::network::TLSContext::PeerVerification::pvVerifyFQDN - In addition to pvVerifyPeer, the client verifies that
     the target FQDN of the server either matches its CN (common name) or one of its
     [SAN](https://en.wikipedia.org/wiki/Subject_Alternative_Name) entries.

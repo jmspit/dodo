@@ -124,7 +124,7 @@ namespace dodo::persist {
 
     Database::Database( const std::string &filename, WaitHandler handler ) {
       database_ = NULL;
-      int r = sqlite3_open_v2( filename.c_str(), &database_, SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE | SQLITE_OPEN_NOMUTEX, NULL );
+      int r = sqlite3_open_v2( filename.c_str(), &database_, SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE | SQLITE_OPEN_NOMUTEX, nullptr );
       if ( r != SQLITE_OK ) {
         throw_Exception( sqlite3_errmsg( database_ ) );
       }
@@ -214,31 +214,28 @@ namespace dodo::persist {
       }
     }
 
-    void Database::begin() {
+    void Database::beginTransaction() {
       std::stringstream ss;
       ss << "BEGIN";
       DDL ddl( *this );
       ddl.prepare( ss.str() );
       ddl.execute();
-      ddl.close();
     }
 
-    void Database::beginImmediate() {
+    void Database::beginImmediateTransaction() {
       std::stringstream ss;
       ss << "BEGIN IMMEDIATE";
       DDL ddl( *this );
       ddl.prepare( ss.str() );
       ddl.execute();
-      ddl.close();
     }
 
-    void Database::beginExclusive() {
+    void Database::beginExclusiveTransaction() {
       std::stringstream ss;
       ss << "BEGIN EXCLUSIVE";
       DDL ddl( *this );
       ddl.prepare( ss.str() );
       ddl.execute();
-      ddl.close();
     }
 
     void Database::commit() {
@@ -247,7 +244,6 @@ namespace dodo::persist {
       DDL ddl( *this );
       ddl.prepare( ss.str() );
       ddl.execute();
-      ddl.close();
     }
 
     void Database::rollback() {
@@ -256,25 +252,22 @@ namespace dodo::persist {
       DDL ddl( *this );
       ddl.prepare( ss.str() );
       ddl.execute();
-      ddl.close();
     }
 
-    void Database::savepoint( const std::string &sp ) {
+    void Database::createSavepoint( const std::string &sp ) {
       std::stringstream ss;
       ss << "SAVEPOINT " << sp;
       DDL ddl( *this );
       ddl.prepare( ss.str() );
       ddl.execute();
-      ddl.close();
     }
 
-    void Database::release( const std::string &sp ) {
+    void Database::releaseSavepoint( const std::string &sp ) {
       std::stringstream ss;
       ss << "RELEASE " << sp;
       DDL ddl( *this );
       ddl.prepare( ss.str() );
       ddl.execute();
-      ddl.close();
     }
 
     void Database::rollback( const std::string &sp ) {
@@ -283,7 +276,6 @@ namespace dodo::persist {
       DDL ddl( *this );
       ddl.prepare( ss.str() );
       ddl.execute();
-      ddl.close();
     }
 
     int64_t Database::lastInsertRowid() const {
@@ -292,6 +284,15 @@ namespace dodo::persist {
         throw_Exception( "lastInsertRowid failed" );
       }
       return r;
+    }
+
+    void Database::checkPointFull() {
+      int nLog = 0;
+      int nCkpt = 0;
+      int r = sqlite3_wal_checkpoint_v2( database_, NULL, SQLITE_CHECKPOINT_FULL, &nLog, &nCkpt );
+      if ( r != SQLITE_OK ) {
+        throw_Exception( sqlite3_errmsg( database_ ) );
+      }
     }
 
     void Database::checkPointPassive() {
@@ -306,7 +307,7 @@ namespace dodo::persist {
     void Database::checkPointTruncate() {
       int nLog = 0;
       int nCkpt = 0;
-      #if SQLITE_VERSION_NUMBERS > 30080303
+      #if SQLITE_VERSION_NUMBER > 30080303
       int r = sqlite3_wal_checkpoint_v2( database_, NULL, SQLITE_CHECKPOINT_TRUNCATE, &nLog, &nCkpt );
       #else
       int r = sqlite3_wal_checkpoint_v2( database_, NULL, SQLITE_CHECKPOINT_RESTART, &nLog, &nCkpt );
@@ -322,17 +323,15 @@ namespace dodo::persist {
       DDL ddl( *this );
       ddl.prepare( ss.str() );
       ddl.execute();
-      ddl.close();
     }
 
-    int Database::getUserVersion() {
+    int Database::getUserVersion() const {
       int r = 0;
       sqlite::Query query( *this );
       query.prepare( "PRAGMA user_version" );
       if ( query.step() ) {
         r = query.getInt( 0 );
       } else throw_Exception( sqlite3_errmsg( database_ ) );
-      query.close();
       return r;
     }
 
@@ -346,9 +345,7 @@ namespace dodo::persist {
     }
 
     Statement::~Statement() {
-      if ( stmt_ ) {
-        sqlite3_finalize( stmt_ );
-      }
+      if ( stmt_ ) close();
     }
 
     void Statement::prepare( const std::string &sql ) {
@@ -362,12 +359,14 @@ namespace dodo::persist {
       }
     }
 
-    void Statement::reset() {
-      auto r = sqlite3_clear_bindings( stmt_ );
-      if ( r != SQLITE_OK ) {
-        throw_Exception( sqlite3_errmsg( database_ ) );
+    void Statement::reset( bool clear ) {
+      if ( clear ) {
+        auto r = sqlite3_clear_bindings( stmt_ );
+        if ( r != SQLITE_OK ) {
+          throw_Exception( sqlite3_errmsg( database_ ) );
+        }
       }
-      r = sqlite3_reset( stmt_ );
+      auto r = sqlite3_reset( stmt_ );
       if ( r != SQLITE_OK ) {
         throw_Exception( sqlite3_errmsg( database_ ) );
       }
@@ -395,11 +394,12 @@ namespace dodo::persist {
     DML::DML( const Database& db ) : Statement( db ) {
     }
 
-    void DML::execute() {
+    int DML::execute() {
       int r = sqlite3_step( stmt_ );
       if ( r != SQLITE_DONE ) {
         throw_Exception( sqlite3_errmsg( database_ ) );
       }
+      return sqlite3_changes( database_ );
     }
 
     void DML::bind( int position, double value ) {
@@ -424,18 +424,18 @@ namespace dodo::persist {
     }
 
     void DML::bind( int position, const std::string &value ) {
-      int r = sqlite3_bind_text( stmt_, position, value.c_str(), -1,  SQLITE_TRANSIENT );
+      int r = sqlite3_bind_text( stmt_, position, value.c_str(), static_cast<int>(value.length()),  SQLITE_TRANSIENT );
       if ( r != SQLITE_OK ) {
         throw_Exception( sqlite3_errmsg( database_ ) );
       }
     }
 
-/*     void DML::bind( int position, const Bytes &value ) {
-      int r = sqlite3_bind_text( stmt_, position, value.c_str(), -1,  SQLITE_TRANSIENT );
+    void DML::bind( int position, const common::Bytes &value ) {
+      int r = sqlite3_bind_blob64( stmt_, position, value.getArray(), value.getSize(),  SQLITE_TRANSIENT );
       if ( r != SQLITE_OK ) {
         throw_Exception( sqlite3_errmsg( database_ ) );
       }
-    } */
+    }
 
     bool Query::step() {
       int r = sqlite3_step( stmt_ );
@@ -447,6 +447,10 @@ namespace dodo::persist {
 
     bool Query::isNull( int col ) const {
       return sqlite3_column_type( stmt_, col ) == SQLITE_NULL;
+    }
+
+    Query::DataType Query::getDataType( int col ) const {
+      return static_cast<DataType>( sqlite3_column_type( stmt_, col ) );
     }
 
     int Query::getInt( int col ) const {
@@ -464,6 +468,13 @@ namespace dodo::persist {
     std::string Query::getText( int col ) const {
       const char* c = (const char*)sqlite3_column_text( stmt_, col );
       if ( c ) return c; else return "";
+    }
+
+    void Query::getBytes( int col, common::Bytes &bytes ) const {
+      const common::Octet* tmp_data = static_cast<const common::Octet*>( sqlite3_column_blob( stmt_, col ) );
+      int size = sqlite3_column_bytes( stmt_, col );
+      bytes.free();
+      bytes.append( tmp_data, size );
     }
 
     int Query::getColumnCount() const {

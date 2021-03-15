@@ -2,7 +2,6 @@
 ## About
 
 Dodo is a C++ framework to facilitate development for the Linux platform that aims to ingerate with Docker containers and k8s ([kubernetes](https://kubernetes.io/)) deployments. Dodo is a response to the forgotten value of efficiency.
-
 ### A skeleton for services
 
 The dodo::common::Application reads its run-time configuration from a YAML file, typically presented to the container by k8s. Many classes in the framework can be iniltialized (constructed) by passing a YAML node as parameter. This integrates nicely with rolling deployments.
@@ -15,6 +14,7 @@ Logging that can be configured to write to one or more of these targets:
   -  A syslog call to [rsyslog](https://www.rsyslog.com/).
   -  Console aka standard out of the container entrypoint.
 
+Docker healthchecks that run an in-container command (such as say `pidof myservice`) are pretty costly, especially if the healthchecks need to be frequent. The dodo::common::Application class can be instructed to setup a healthceck listener (dodo::common::Application::HealthChecker) that can be network-probed by the Docker host, which is much more efficient. This HealthChecker can be declared sick or healthy, which is also implictly set to sick when the dodo::common::Application catches an exception trying to escape the main loop.
 ### High level APIs to common functionality
 
 Most services will require at least some of the functionality dodo provides as high-level C++ abstactaions without comrpomising low-level C/Linux performance.

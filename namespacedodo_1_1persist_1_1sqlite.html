@@ -136,8 +136,66 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>sqlite_ext_pow
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>C++ API to SQLite. </p>
-</div></div><!-- contents -->
+<p>An example of the basics (src/examples/sqlite/sqlite.cpp): </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="dodo_8hpp.html">dodo.hpp</a>&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;cstdio&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using namespace </span><a class="code" href="namespacedodo.html">dodo</a>;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">  <span class="keywordtype">int</span> exit_code = 0;</div>
+<div class="line">  <span class="keyword">const</span> std::string database_name = <span class="stringliteral">&quot;mydb.sqlite&quot;</span>;</div>
+<div class="line">  <span class="keywordflow">try</span> {</div>
+<div class="line">    {</div>
+<div class="line">      <span class="comment">// open existing or create new database</span></div>
+<div class="line">      <a class="code" href="classdodo_1_1persist_1_1sqlite_1_1Database.html">persist::sqlite::Database</a> db( database_name );</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// create a schema</span></div>
+<div class="line">      <a class="code" href="classdodo_1_1persist_1_1sqlite_1_1DDL.html">persist::sqlite::DDL</a> schema( db );</div>
+<div class="line">      schema.prepare( <span class="stringliteral">&quot;CREATE TABLE IF NOT EXISTS foo ( foo NOT NULL PRIMARY KEY)&quot;</span> );</div>
+<div class="line">      schema.execute();</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// setup an insert statement</span></div>
+<div class="line">      <a class="code" href="classdodo_1_1persist_1_1sqlite_1_1DML.html">persist::sqlite::DML</a> insert( db );</div>
+<div class="line">      insert.prepare( <span class="stringliteral">&quot;INSERT INTO foo (foo) VALUES (?)&quot;</span> );</div>
+<div class="line">      insert.bind( 1, <span class="stringliteral">&quot;insert1&quot;</span> );</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// start a transaction</span></div>
+<div class="line">      db.beginTransaction();</div>
+<div class="line">      insert.execute();</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// reset the query for re-execute with different value</span></div>
+<div class="line">      insert.reset(<span class="keyword">true</span>);</div>
+<div class="line">      insert.bind( 1, <span class="stringliteral">&quot;insert2&quot;</span> );</div>
+<div class="line">      insert.execute();</div>
+<div class="line"> </div>
+<div class="line">      db.commit();</div>
+<div class="line">      <span class="comment">// other persist::sqlite::Database objects will now see the inserts</span></div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// query and step the result set</span></div>
+<div class="line">      <a class="code" href="classdodo_1_1persist_1_1sqlite_1_1Query.html">persist::sqlite::Query</a> qry( db );</div>
+<div class="line">      qry.prepare( <span class="stringliteral">&quot;select foo from foo order by foo&quot;</span> );</div>
+<div class="line">      <span class="keywordflow">while</span> ( qry.step() ) {</div>
+<div class="line">        std::cout &lt;&lt; qry.getText(0) &lt;&lt; std::endl;</div>
+<div class="line">      }</div>
+<div class="line">    }</div>
+<div class="line">  }</div>
+<div class="line">  <span class="keywordflow">catch</span> ( <span class="keyword">const</span> std::exception &amp;e ) {</div>
+<div class="line">    <span class="comment">// as the db object is now destructed, any un-comitted transaction is rolled back and the database is closed.</span></div>
+<div class="line">    std::cerr &lt;&lt; e.what() &lt;&lt; std::endl;</div>
+<div class="line">    exit_code = 1;</div>
+<div class="line">  }</div>
+<div class="line">  <span class="comment">// delete the database file</span></div>
+<div class="line">  remove( database_name.c_str() );</div>
+<div class="line">  <span class="keywordflow">return</span> exit_code;</div>
+<div class="line">}</div>
+</div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="aclassdodo_1_1persist_1_1sqlite_1_1Query_html"><div class="ttname"><a href="classdodo_1_1persist_1_1sqlite_1_1Query.html">dodo::persist::sqlite::Query</a></div><div class="ttdoc">Queries can take bind values and return select lists.</div><div class="ttdef"><b>Definition:</b> <a href="sqlite_8hpp_source.html#l00363">sqlite.hpp:363</a></div></div>
+<div class="ttc" id="anamespacedodo_html"><div class="ttname"><a href="namespacedodo.html">dodo</a></div><div class="ttdoc">A C++ platform interface to lean Linux services tailored for containerized deployment.</div><div class="ttdef"><b>Definition:</b> <a href="application_8hpp_source.html#l00029">application.hpp:29</a></div></div>
+<div class="ttc" id="adodo_8hpp_html"><div class="ttname"><a href="dodo_8hpp.html">dodo.hpp</a></div><div class="ttdoc">Includes all dodo headers.</div></div>
+<div class="ttc" id="aclassdodo_1_1persist_1_1sqlite_1_1DML_html"><div class="ttname"><a href="classdodo_1_1persist_1_1sqlite_1_1DML.html">dodo::persist::sqlite::DML</a></div><div class="ttdoc">Data Modification Language statements can take bind values.</div><div class="ttdef"><b>Definition:</b> <a href="sqlite_8hpp_source.html#l00273">sqlite.hpp:273</a></div></div>
+<div class="ttc" id="aclassdodo_1_1persist_1_1sqlite_1_1Database_html"><div class="ttname"><a href="classdodo_1_1persist_1_1sqlite_1_1Database.html">dodo::persist::sqlite::Database</a></div><div class="ttdoc">A STL friendly wrapper around the great sqlite3.</div><div class="ttdef"><b>Definition:</b> <a href="sqlite_8hpp_source.html#l00049">sqlite.hpp:49</a></div></div>
+<div class="ttc" id="aclassdodo_1_1persist_1_1sqlite_1_1DDL_html"><div class="ttname"><a href="classdodo_1_1persist_1_1sqlite_1_1DDL.html">dodo::persist::sqlite::DDL</a></div><div class="ttdoc">Data Definition Language, SQL that takes no parameters, returns no data such as CREATE TABLE.</div><div class="ttdef"><b>Definition:</b> <a href="sqlite_8hpp_source.html#l00247">sqlite.hpp:247</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

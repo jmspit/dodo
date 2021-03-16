@@ -1,5 +1,0 @@
-<map id="dodo::persist::KVStore::getValue" name="dodo::persist::KVStore::getValue">
-<area shape="rect" id="node1" title="If the key exists, returns true and copies (overwrites) data to the Bytes." alt="" coords="5,39,172,80"/>
-<area shape="rect" id="node2" href="$classdodo_1_1common_1_1Bytes.html#ac3fbc9077e4765ac5c2c90c9dae12678" title="Append another Bytes." alt="" coords="220,5,384,47"/>
-<area shape="rect" id="node3" href="$classdodo_1_1common_1_1Bytes.html#aa6ed173df7bee74f44021b981c12083e" title="Free and clear data." alt="" coords="220,71,384,112"/>
-</map>

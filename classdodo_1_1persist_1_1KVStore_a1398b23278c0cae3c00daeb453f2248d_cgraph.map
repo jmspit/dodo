@@ -1,0 +1,4 @@
+<map id="dodo::persist::KVStore::commitTransaction" name="dodo::persist::KVStore::commitTransaction">
+<area shape="rect" id="node1" title="Commit a transaction." alt="" coords="5,5,172,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#ac1fe6f19d19ae5d0772c7b6583bb3f41" title="Commit a transaction." alt="" coords="220,5,371,47"/>
+</map>

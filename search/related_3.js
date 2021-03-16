@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['socket_1851',['Socket',['../classdodo_1_1network_1_1Address.html#ab510887d735ee73ab1cb598c66260e87',1,'dodo::network::Address']]]
+  ['socket_1867',['Socket',['../classdodo_1_1network_1_1Address.html#ab510887d735ee73ab1cb598c66260e87',1,'dodo::network::Address']]]
 ];

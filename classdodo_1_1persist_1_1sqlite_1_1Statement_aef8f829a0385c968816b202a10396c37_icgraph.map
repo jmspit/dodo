@@ -1,13 +1,5 @@
 <map id="dodo::persist::sqlite::Statement::close" name="dodo::persist::sqlite::Statement::close">
-<area shape="rect" id="node1" title="A statement handle can be explicitly closed without deleting the Statement object itself." alt="" coords="464,271,615,312"/>
-<area shape="rect" id="node2" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#aac94ea92eb6e06be1984c4351bafbde1" title="Begin a transaction." alt="" coords="33,5,184,47"/>
-<area shape="rect" id="node3" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#a69025cc938f740c4d07f722c2217d057" title="Begin an exclusive transaction." alt="" coords="9,71,208,112"/>
-<area shape="rect" id="node4" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#a92d8f26fec646cb82410daa4ab498aac" title="Begin an immediate transaction." alt="" coords="5,136,212,177"/>
-<area shape="rect" id="node5" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#ac1fe6f19d19ae5d0772c7b6583bb3f41" title="Commit a transaction." alt="" coords="33,201,184,243"/>
-<area shape="rect" id="node6" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#aeb9022709f820a3a75aa81c42fc6ba57" title="get the current user_version pragma" alt="" coords="9,267,208,308"/>
-<area shape="rect" id="node7" href="$classdodo_1_1persist_1_1sqlite_1_1Statement.html#a9a126dc9004edff369e6c9ea98d9dd10" title="Prepare a SQL statement." alt="" coords="260,241,416,283"/>
-<area shape="rect" id="node8" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#a6eb87d4f52057da8e345736d82bafe3c" title="Release a savepoint." alt="" coords="33,332,184,373"/>
-<area shape="rect" id="node9" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#ab2a84d4406a0917a6f99b64cac008441" title="Rollback a transaction." alt="" coords="33,397,185,439"/>
-<area shape="rect" id="node10" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#a36411a8b18c3946d70d8f4962c2fdfe5" title="Create a named savepoint." alt="" coords="27,463,191,504"/>
-<area shape="rect" id="node11" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#aa4f0a53bc4866dad65dc77008c91724e" title="set the user_version pragma" alt="" coords="9,528,208,569"/>
+<area shape="rect" id="node1" title="A statement handle can be explicitly closed without deleting the Statement object itself." alt="" coords="239,39,389,80"/>
+<area shape="rect" id="node2" href="$classdodo_1_1persist_1_1sqlite_1_1Statement.html#a9a126dc9004edff369e6c9ea98d9dd10" title="Prepare a SQL statement." alt="" coords="20,5,176,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1persist_1_1sqlite_1_1Statement.html#aa391f4615b6de6ab6733d0b5516f564f" title="Destructor." alt="" coords="5,71,191,112"/>
 </map>

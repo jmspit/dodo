@@ -1,0 +1,4 @@
+<map id="dodo::persist::KVStore::rollbackTransaction" name="dodo::persist::KVStore::rollbackTransaction">
+<area shape="rect" id="node1" title="Rollback a transaction." alt="" coords="5,5,172,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#ab2a84d4406a0917a6f99b64cac008441" title="Rollback a transaction." alt="" coords="220,5,372,47"/>
+</map>

@@ -1,6 +1,7 @@
 <map id="dodo::persist::KVStore" name="dodo::persist::KVStore">
-<area shape="rect" id="node1" title="A persistent, multi&#45;threaded key&#45;value store backed by sqlite3 database (file)." alt="" coords="118,227,285,253"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,120,32"/>
-<area shape="rect" id="node3" title=" " alt="" coords="176,5,227,32"/>
-<area shape="rect" id="node4" title=" " alt="" coords="251,5,328,32"/>
+<area shape="rect" id="node1" title="A persistent, multi&#45;threaded key&#45;value store backed by sqlite3 database (file)." alt="" coords="548,192,715,219"/>
+<area shape="rect" id="node2" href="$classdodo_1_1persist_1_1sqlite_1_1DML.html" title="Data Modification Language statements can take bind values." alt="" coords="5,89,192,116"/>
+<area shape="rect" id="node4" href="$classdodo_1_1persist_1_1sqlite_1_1Query.html" title="Queries can take bind values and return select lists." alt="" coords="241,125,392,166"/>
+<area shape="rect" id="node3" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html" title="A STL friendly wrapper around the great sqlite3." alt="" coords="241,207,392,249"/>
+<area shape="rect" id="node5" title=" " alt="" coords="291,273,342,300"/>
 </map>

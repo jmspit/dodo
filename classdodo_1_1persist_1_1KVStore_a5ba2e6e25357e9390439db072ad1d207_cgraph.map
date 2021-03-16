@@ -1,0 +1,4 @@
+<map id="dodo::persist::KVStore::checkpoint" name="dodo::persist::KVStore::checkpoint">
+<area shape="rect" id="node1" title="Sync all to disk &#45; issue a SQLite full checkpoint." alt="" coords="5,5,172,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#a38dd92a6d8f8728a57d14dc9eae6dee6" title="Issue a full checpoint." alt="" coords="220,5,415,47"/>
+</map>

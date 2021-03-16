@@ -1,0 +1,5 @@
+<map id="dodo::persist::sqlite::Query::getDouble" name="dodo::persist::sqlite::Query::getDouble">
+<area shape="rect" id="node1" title="Get double value from select list." alt="" coords="220,39,371,80"/>
+<area shape="rect" id="node2" href="$classdodo_1_1persist_1_1KVStore.html#a8ab6d5c7192b9117a666910976e7e57b" title="Get MetaData for the key." alt="" coords="5,5,172,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1persist_1_1KVStore.html#ab01e1f217122ee85bf2c0436888e6ad3" title="If the key exists, returns true and sets the value parameter." alt="" coords="5,71,172,112"/>
+</map>

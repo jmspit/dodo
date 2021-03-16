@@ -1,0 +1,6 @@
+<map id="dodo::persist::sqlite::DML::execute" name="dodo::persist::sqlite::DML::execute">
+<area shape="rect" id="node1" title="Execute and return the number of rows affected." alt="" coords="220,71,371,112"/>
+<area shape="rect" id="node2" href="$classdodo_1_1persist_1_1KVStore.html#a6955da9cdca9f27a93408e8bc7c204fe" title="Delete the key or return false if the key does not exist." alt="" coords="5,5,172,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1persist_1_1KVStore.html#a8578963405b8ce070fe61179a4bd16e7" title="Insert a (key, string) pair." alt="" coords="5,71,172,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1persist_1_1KVStore.html#ac8ec7ef3eac8a32d5fefcc998c3435cc" title="Set the string value of an existing key." alt="" coords="5,136,172,177"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="dodo::persist::sqlite::Query::getInt64" name="dodo::persist::sqlite::Query::getInt64">
+<area shape="rect" id="node1" title="Get int64_t value from select list." alt="" coords="220,39,371,80"/>
+<area shape="rect" id="node2" href="$classdodo_1_1persist_1_1KVStore.html#a8ab6d5c7192b9117a666910976e7e57b" title="Get MetaData for the key." alt="" coords="5,5,172,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1persist_1_1KVStore.html#a98c6bf8a5b6ab3a6303be12fc308d201" title="If the key exists, returns true and sets the value parameter." alt="" coords="5,71,172,112"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="dodo::persist::KVStore::getMetaData" name="dodo::persist::KVStore::getMetaData">
+<area shape="rect" id="node1" title="Get MetaData for the key." alt="" coords="5,169,172,211"/>
+<area shape="rect" id="node2" href="$classdodo_1_1persist_1_1sqlite_1_1DML.html#a8c059f0dc5fe94ff46a23ea388b2d18f" title="Bind a double value to the bind at position." alt="" coords="224,5,375,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1persist_1_1sqlite_1_1Query.html#ac733c40856e82cdbc191d5bf11c5c4ce" title="Get the dataype of a select list column." alt="" coords="220,71,379,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1persist_1_1sqlite_1_1Query.html#a58bf8ab38411e796d08e85e577961ead" title="Get double value from select list." alt="" coords="224,136,375,177"/>
+<area shape="rect" id="node5" href="$classdodo_1_1persist_1_1sqlite_1_1Query.html#aaf6c1f37d50eba91f4f3802ac45005cd" title="Get int64_t value from select list." alt="" coords="224,201,375,243"/>
+<area shape="rect" id="node6" href="$classdodo_1_1persist_1_1sqlite_1_1Statement.html#a2e7c79e5a522bfdc0c861e4780c871ec" title="Reset a SQL statement for re&#45;execute or even re&#45;prepare." alt="" coords="224,267,375,308"/>
+<area shape="rect" id="node7" href="$classdodo_1_1persist_1_1sqlite_1_1Query.html#a58fca8cb1c7fbecda5d762a60d060aa0" title="Step the result list, end of list returns false." alt="" coords="224,332,375,373"/>
+</map>

@@ -130,9 +130,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9a126dc9004edff369e6c9ea98d9dd10"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1persist_1_1sqlite_1_1Statement.html#a9a126dc9004edff369e6c9ea98d9dd10">prepare</a> (const std::string &amp;sql)</td></tr>
 <tr class="memdesc:a9a126dc9004edff369e6c9ea98d9dd10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepare a SQL statement.  <a href="classdodo_1_1persist_1_1sqlite_1_1Statement.html#a9a126dc9004edff369e6c9ea98d9dd10">More...</a><br /></td></tr>
 <tr class="separator:a9a126dc9004edff369e6c9ea98d9dd10"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9784a8ba70e0e596e60e9982eed5003b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1persist_1_1sqlite_1_1Statement.html#a9784a8ba70e0e596e60e9982eed5003b">reset</a> ()</td></tr>
-<tr class="memdesc:a9784a8ba70e0e596e60e9982eed5003b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset a SQL statement for rexecute or even re-prepare.  <a href="classdodo_1_1persist_1_1sqlite_1_1Statement.html#a9784a8ba70e0e596e60e9982eed5003b">More...</a><br /></td></tr>
-<tr class="separator:a9784a8ba70e0e596e60e9982eed5003b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e7c79e5a522bfdc0c861e4780c871ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1persist_1_1sqlite_1_1Statement.html#a2e7c79e5a522bfdc0c861e4780c871ec">reset</a> (bool clear=true)</td></tr>
+<tr class="memdesc:a2e7c79e5a522bfdc0c861e4780c871ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset a SQL statement for re-execute or even re-prepare.  <a href="classdodo_1_1persist_1_1sqlite_1_1Statement.html#a2e7c79e5a522bfdc0c861e4780c871ec">More...</a><br /></td></tr>
+<tr class="separator:a2e7c79e5a522bfdc0c861e4780c871ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -146,7 +146,7 @@ Protected Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Generic SQL <a class="el" href="classdodo_1_1persist_1_1sqlite_1_1Statement.html" title="Generic SQL Statement.">Statement</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8hpp_source.html#l00161">161</a> of file <a class="el" href="sqlite_8hpp_source.html">sqlite.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8hpp_source.html#l00197">197</a> of file <a class="el" href="sqlite_8hpp_source.html">sqlite.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad27a48abb1b176e14f0b958724dc4aa2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad27a48abb1b176e14f0b958724dc4aa2">&#9670;&nbsp;</a></span>Statement()</h2>
@@ -166,9 +166,9 @@ Protected Attributes</h2></td></tr>
 
 <p>Constructor. </p>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00343">343</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00337">337</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00200">database_</a>, <a class="el" href="sqlite_8hpp_source.html#l00076">dodo::persist::sqlite::Database::getDB()</a>, and <a class="el" href="sqlite_8hpp_source.html#l00197">stmt_</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00239">database_</a>, <a class="el" href="sqlite_8hpp_source.html#l00124">dodo::persist::sqlite::Database::getDB()</a>, and <a class="el" href="sqlite_8hpp_source.html#l00236">stmt_</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -207,9 +207,18 @@ Here is the call graph for this function:</div>
 <p>Destructor. </p>
 <p>Virtual so that this destructor will be called when descendants are deleted. </p>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00348">348</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00342">342</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00197">stmt_</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00370">close()</a>, and <a class="el" href="sqlite_8hpp_source.html#l00236">stmt_</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classdodo_1_1persist_1_1sqlite_1_1Statement_aa391f4615b6de6ab6733d0b5516f564f_cgraph.png" border="0" usemap="#classdodo_1_1persist_1_1sqlite_1_1Statement_aa391f4615b6de6ab6733d0b5516f564f_cgraph" alt=""/></div>
+<map name="classdodo_1_1persist_1_1sqlite_1_1Statement_aa391f4615b6de6ab6733d0b5516f564f_cgraph" id="classdodo_1_1persist_1_1sqlite_1_1Statement_aa391f4615b6de6ab6733d0b5516f564f_cgraph">
+<area shape="rect" title="Destructor." alt="" coords="5,5,191,47"/>
+<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Statement.html#aef8f829a0385c968816b202a10396c37" title="A statement handle can be explicitly closed without deleting the Statement object itself." alt="" coords="239,5,389,47"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -232,27 +241,19 @@ Here is the call graph for this function:</div>
 <p>A statement handle can be explicitly closed without deleting the <a class="el" href="classdodo_1_1persist_1_1sqlite_1_1Statement.html" title="Generic SQL Statement.">Statement</a> object itself. </p>
 <p>This frees the resources in SQLite, . it's allowed to call <a class="el" href="classdodo_1_1persist_1_1sqlite_1_1Statement.html#a9a126dc9004edff369e6c9ea98d9dd10" title="Prepare a SQL statement.">prepare()</a> again. </p>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00376">376</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00370">370</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00200">database_</a>, <a class="el" href="sqlite_8hpp_source.html#l00197">stmt_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00239">database_</a>, <a class="el" href="sqlite_8hpp_source.html#l00236">stmt_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sqlite_8cpp_source.html#l00217">dodo::persist::sqlite::Database::begin()</a>, <a class="el" href="sqlite_8cpp_source.html#l00235">dodo::persist::sqlite::Database::beginExclusive()</a>, <a class="el" href="sqlite_8cpp_source.html#l00226">dodo::persist::sqlite::Database::beginImmediate()</a>, <a class="el" href="sqlite_8cpp_source.html#l00244">dodo::persist::sqlite::Database::commit()</a>, <a class="el" href="sqlite_8cpp_source.html#l00328">dodo::persist::sqlite::Database::getUserVersion()</a>, <a class="el" href="sqlite_8cpp_source.html#l00354">prepare()</a>, <a class="el" href="sqlite_8cpp_source.html#l00271">dodo::persist::sqlite::Database::release()</a>, <a class="el" href="sqlite_8cpp_source.html#l00253">dodo::persist::sqlite::Database::rollback()</a>, <a class="el" href="sqlite_8cpp_source.html#l00262">dodo::persist::sqlite::Database::savepoint()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00319">dodo::persist::sqlite::Database::setUserVersion()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sqlite_8cpp_source.html#l00346">prepare()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00342">~Statement()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classdodo_1_1persist_1_1sqlite_1_1Statement_aef8f829a0385c968816b202a10396c37_icgraph.png" border="0" usemap="#classdodo_1_1persist_1_1sqlite_1_1Statement_aef8f829a0385c968816b202a10396c37_icgraph" alt=""/></div>
 <map name="classdodo_1_1persist_1_1sqlite_1_1Statement_aef8f829a0385c968816b202a10396c37_icgraph" id="classdodo_1_1persist_1_1sqlite_1_1Statement_aef8f829a0385c968816b202a10396c37_icgraph">
-<area shape="rect" title="A statement handle can be explicitly closed without deleting the Statement object itself." alt="" coords="464,271,615,312"/>
-<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#aac94ea92eb6e06be1984c4351bafbde1" title="Begin a transaction." alt="" coords="33,5,184,47"/>
-<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#a69025cc938f740c4d07f722c2217d057" title="Begin an exclusive transaction." alt="" coords="9,71,208,112"/>
-<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#a92d8f26fec646cb82410daa4ab498aac" title="Begin an immediate transaction." alt="" coords="5,136,212,177"/>
-<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#ac1fe6f19d19ae5d0772c7b6583bb3f41" title="Commit a transaction." alt="" coords="33,201,184,243"/>
-<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#aeb9022709f820a3a75aa81c42fc6ba57" title="get the current user_version pragma" alt="" coords="9,267,208,308"/>
-<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Statement.html#a9a126dc9004edff369e6c9ea98d9dd10" title="Prepare a SQL statement." alt="" coords="260,241,416,283"/>
-<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#a6eb87d4f52057da8e345736d82bafe3c" title="Release a savepoint." alt="" coords="33,332,184,373"/>
-<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#ab2a84d4406a0917a6f99b64cac008441" title="Rollback a transaction." alt="" coords="33,397,185,439"/>
-<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#a36411a8b18c3946d70d8f4962c2fdfe5" title="Create a named savepoint." alt="" coords="27,463,191,504"/>
-<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#aa4f0a53bc4866dad65dc77008c91724e" title="set the user_version pragma" alt="" coords="9,528,208,569"/>
+<area shape="rect" title="A statement handle can be explicitly closed without deleting the Statement object itself." alt="" coords="239,39,389,80"/>
+<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Statement.html#a9a126dc9004edff369e6c9ea98d9dd10" title="Prepare a SQL statement." alt="" coords="20,5,176,47"/>
+<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Statement.html#aa391f4615b6de6ab6733d0b5516f564f" title="Destructor." alt="" coords="5,71,191,112"/>
 </map>
 </div>
 
@@ -282,11 +283,11 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00354">354</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00346">346</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00376">close()</a>, <a class="el" href="sqlite_8hpp_source.html#l00200">database_</a>, <a class="el" href="sqlite_8hpp_source.html#l00197">stmt_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00370">close()</a>, <a class="el" href="sqlite_8hpp_source.html#l00239">database_</a>, <a class="el" href="sqlite_8hpp_source.html#l00236">stmt_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sqlite_8cpp_source.html#l00217">dodo::persist::sqlite::Database::begin()</a>, <a class="el" href="sqlite_8cpp_source.html#l00235">dodo::persist::sqlite::Database::beginExclusive()</a>, <a class="el" href="sqlite_8cpp_source.html#l00226">dodo::persist::sqlite::Database::beginImmediate()</a>, <a class="el" href="sqlite_8cpp_source.html#l00244">dodo::persist::sqlite::Database::commit()</a>, <a class="el" href="sqlite_8cpp_source.html#l00328">dodo::persist::sqlite::Database::getUserVersion()</a>, <a class="el" href="sqlite_8cpp_source.html#l00271">dodo::persist::sqlite::Database::release()</a>, <a class="el" href="sqlite_8cpp_source.html#l00253">dodo::persist::sqlite::Database::rollback()</a>, <a class="el" href="sqlite_8cpp_source.html#l00262">dodo::persist::sqlite::Database::savepoint()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00319">dodo::persist::sqlite::Database::setUserVersion()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sqlite_8cpp_source.html#l00228">dodo::persist::sqlite::Database::beginExclusiveTransaction()</a>, <a class="el" href="sqlite_8cpp_source.html#l00220">dodo::persist::sqlite::Database::beginImmediateTransaction()</a>, <a class="el" href="sqlite_8cpp_source.html#l00212">dodo::persist::sqlite::Database::beginTransaction()</a>, <a class="el" href="sqlite_8cpp_source.html#l00236">dodo::persist::sqlite::Database::commit()</a>, <a class="el" href="sqlite_8cpp_source.html#l00252">dodo::persist::sqlite::Database::createSavepoint()</a>, <a class="el" href="kvstore_8cpp_source.html#l00072">dodo::persist::KVStore::createSchema()</a>, <a class="el" href="sqlite_8cpp_source.html#l00323">dodo::persist::sqlite::Database::getUserVersion()</a>, <a class="el" href="kvstore_8cpp_source.html#l00235">dodo::persist::KVStore::optimize()</a>, <a class="el" href="kvstore_8cpp_source.html#l00241">dodo::persist::KVStore::prepareSQL()</a>, <a class="el" href="sqlite_8cpp_source.html#l00260">dodo::persist::sqlite::Database::releaseSavepoint()</a>, <a class="el" href="sqlite_8cpp_source.html#l00244">dodo::persist::sqlite::Database::rollback()</a>, <a class="el" href="sqlite_8cpp_source.html#l00315">dodo::persist::sqlite::Database::setUserVersion()</a>, <a class="el" href="kvstore_8cpp_source.html#l00292">dodo::persist::KVStore::startTransaction()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00298">dodo::persist::KVStore::vacuum()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -301,23 +302,28 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classdodo_1_1persist_1_1sqlite_1_1Statement_a9a126dc9004edff369e6c9ea98d9dd10_icgraph.png" border="0" usemap="#classdodo_1_1persist_1_1sqlite_1_1Statement_a9a126dc9004edff369e6c9ea98d9dd10_icgraph" alt=""/></div>
 <map name="classdodo_1_1persist_1_1sqlite_1_1Statement_a9a126dc9004edff369e6c9ea98d9dd10_icgraph" id="classdodo_1_1persist_1_1sqlite_1_1Statement_a9a126dc9004edff369e6c9ea98d9dd10_icgraph">
-<area shape="rect" title="Prepare a SQL statement." alt="" coords="260,267,416,308"/>
-<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#aac94ea92eb6e06be1984c4351bafbde1" title="Begin a transaction." alt="" coords="33,5,184,47"/>
-<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#a69025cc938f740c4d07f722c2217d057" title="Begin an exclusive transaction." alt="" coords="9,71,208,112"/>
-<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#a92d8f26fec646cb82410daa4ab498aac" title="Begin an immediate transaction." alt="" coords="5,136,212,177"/>
-<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#ac1fe6f19d19ae5d0772c7b6583bb3f41" title="Commit a transaction." alt="" coords="33,201,184,243"/>
-<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#aeb9022709f820a3a75aa81c42fc6ba57" title="get the current user_version pragma" alt="" coords="9,267,208,308"/>
-<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#a6eb87d4f52057da8e345736d82bafe3c" title="Release a savepoint." alt="" coords="33,332,184,373"/>
-<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#ab2a84d4406a0917a6f99b64cac008441" title="Rollback a transaction." alt="" coords="33,397,185,439"/>
-<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#a36411a8b18c3946d70d8f4962c2fdfe5" title="Create a named savepoint." alt="" coords="27,463,191,504"/>
-<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#aa4f0a53bc4866dad65dc77008c91724e" title="set the user_version pragma" alt="" coords="9,528,208,569"/>
+<area shape="rect" title="Prepare a SQL statement." alt="" coords="335,431,491,472"/>
+<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#afbf1e41202ec5188e239f6c59c90ca3a" title="Begin an exclusive transaction." alt="" coords="10,5,282,47"/>
+<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#a88a4651010c6b28b99c19659c4590e5c" title="Begin an immediate transaction." alt="" coords="5,71,287,112"/>
+<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#a1a488ffc6bb5a06b3ec45b75b990ae93" title="Begin a transaction." alt="" coords="41,136,251,177"/>
+<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#ac1fe6f19d19ae5d0772c7b6583bb3f41" title="Commit a transaction." alt="" coords="71,201,221,243"/>
+<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#ad6605ff0d054e62dd8b0313a61c8192f" title="Create a named savepoint." alt="" coords="43,267,249,308"/>
+<area shape="rect" href="classdodo_1_1persist_1_1KVStore.html#ac234ee7acdce103149fe6eb9f98f6a55" title="Create the SQLite schema." alt="" coords="63,332,229,373"/>
+<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#a872f275b261bf66390ea023e08e1468b" title="get the current user_version pragma" alt="" coords="47,397,245,439"/>
+<area shape="rect" href="classdodo_1_1persist_1_1KVStore.html#a4de1e40de9bd814d9805267585efb911" title="Optimzime, preferably called after workload and implicitly called by the destructor." alt="" coords="63,463,229,504"/>
+<area shape="rect" href="classdodo_1_1persist_1_1KVStore.html#a683e0b168566db39c35a314d602efb21" title="Prepare all SQL statements." alt="" coords="63,528,229,569"/>
+<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#a11586f7b73954bc9cd0122561a542e6a" title="Release a savepoint." alt="" coords="39,593,253,635"/>
+<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#ab2a84d4406a0917a6f99b64cac008441" title="Rollback a transaction." alt="" coords="70,659,222,700"/>
+<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#aa4f0a53bc4866dad65dc77008c91724e" title="set the user_version pragma" alt="" coords="47,724,245,765"/>
+<area shape="rect" href="classdodo_1_1persist_1_1KVStore.html#abf3f0694a3be71a024e7da59862d9817" title="Start a transaction." alt="" coords="63,789,229,831"/>
+<area shape="rect" href="classdodo_1_1persist_1_1KVStore.html#ad3e6555873a76c963e0524c43317b195" title="Vaccum &#45; clean and defragment, which may increase efficiency after heavy deletion and/or modification..." alt="" coords="63,855,229,896"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a9784a8ba70e0e596e60e9982eed5003b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9784a8ba70e0e596e60e9982eed5003b">&#9670;&nbsp;</a></span>reset()</h2>
+<a id="a2e7c79e5a522bfdc0c861e4780c871ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e7c79e5a522bfdc0c861e4780c871ec">&#9670;&nbsp;</a></span>reset()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -325,17 +331,41 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">void dodo::persist::sqlite::Statement::reset </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>clear</em> = <code>true</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Reset a SQL statement for rexecute or even re-prepare. </p>
+<p>Reset a SQL statement for re-execute or even re-prepare. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">clear</td><td>If true (default), unbind the bind variables. If the statement is going to be re-executed, new bind calls must be made. If the satemetn is going to be re-executed with the same bind values, cler can be set to false and no re-binding is required. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00365">365</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00357">357</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00200">database_</a>, <a class="el" href="sqlite_8hpp_source.html#l00197">stmt_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00239">database_</a>, <a class="el" href="sqlite_8hpp_source.html#l00236">stmt_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00090">dodo::persist::KVStore::deleteKey()</a>, <a class="el" href="kvstore_8cpp_source.html#l00127">dodo::persist::KVStore::exists()</a>, <a class="el" href="kvstore_8cpp_source.html#l00135">dodo::persist::KVStore::filterKeys()</a>, <a class="el" href="kvstore_8cpp_source.html#l00144">dodo::persist::KVStore::getMetaData()</a>, <a class="el" href="kvstore_8cpp_source.html#l00156">dodo::persist::KVStore::getValue()</a>, <a class="el" href="kvstore_8cpp_source.html#l00200">dodo::persist::KVStore::insertKey()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00260">dodo::persist::KVStore::setKey()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classdodo_1_1persist_1_1sqlite_1_1Statement_a2e7c79e5a522bfdc0c861e4780c871ec_icgraph.png" border="0" usemap="#classdodo_1_1persist_1_1sqlite_1_1Statement_a2e7c79e5a522bfdc0c861e4780c871ec_icgraph" alt=""/></div>
+<map name="classdodo_1_1persist_1_1sqlite_1_1Statement_a2e7c79e5a522bfdc0c861e4780c871ec_icgraph" id="classdodo_1_1persist_1_1sqlite_1_1Statement_a2e7c79e5a522bfdc0c861e4780c871ec_icgraph">
+<area shape="rect" title="Reset a SQL statement for re&#45;execute or even re&#45;prepare." alt="" coords="220,201,371,243"/>
+<area shape="rect" href="classdodo_1_1persist_1_1KVStore.html#a6955da9cdca9f27a93408e8bc7c204fe" title="Delete the key or return false if the key does not exist." alt="" coords="5,5,172,47"/>
+<area shape="rect" href="classdodo_1_1persist_1_1KVStore.html#a0891482cce9144950f513e8807a5266e" title="Check if the key exists." alt="" coords="5,71,172,112"/>
+<area shape="rect" href="classdodo_1_1persist_1_1KVStore.html#ae5400594ab42ef03cf75d4887193545e" title="Return a list of keys that match the filter." alt="" coords="5,136,172,177"/>
+<area shape="rect" href="classdodo_1_1persist_1_1KVStore.html#a8ab6d5c7192b9117a666910976e7e57b" title="Get MetaData for the key." alt="" coords="5,201,172,243"/>
+<area shape="rect" href="classdodo_1_1persist_1_1KVStore.html#a42cdd191f2ba7ebefb914ab62698a7e6" title="If the key exists, returns true and sets the value parameter." alt="" coords="5,267,172,308"/>
+<area shape="rect" href="classdodo_1_1persist_1_1KVStore.html#a8578963405b8ce070fe61179a4bd16e7" title="Insert a (key, string) pair." alt="" coords="5,332,172,373"/>
+<area shape="rect" href="classdodo_1_1persist_1_1KVStore.html#ac8ec7ef3eac8a32d5fefcc998c3435cc" title="Set the string value of an existing key." alt="" coords="5,397,172,439"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -362,9 +392,9 @@ Here is the caller graph for this function:</div>
 
 <p>database handle on which the stmt_ is created. </p>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8hpp_source.html#l00200">200</a> of file <a class="el" href="sqlite_8hpp_source.html">sqlite.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8hpp_source.html#l00239">239</a> of file <a class="el" href="sqlite_8hpp_source.html">sqlite.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sqlite_8cpp_source.html#l00405">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00376">close()</a>, <a class="el" href="sqlite_8cpp_source.html#l00384">dodo::persist::sqlite::DDL::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00398">dodo::persist::sqlite::DML::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00354">prepare()</a>, <a class="el" href="sqlite_8cpp_source.html#l00365">reset()</a>, <a class="el" href="sqlite_8cpp_source.html#l00343">Statement()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00440">dodo::persist::sqlite::Query::step()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sqlite_8cpp_source.html#l00400">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00370">close()</a>, <a class="el" href="sqlite_8cpp_source.html#l00378">dodo::persist::sqlite::DDL::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00392">dodo::persist::sqlite::DML::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00346">prepare()</a>, <a class="el" href="sqlite_8cpp_source.html#l00357">reset()</a>, <a class="el" href="sqlite_8cpp_source.html#l00337">Statement()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00465">dodo::persist::sqlite::Query::step()</a>.</p>
 
 </div>
 </div>
@@ -390,9 +420,9 @@ Here is the caller graph for this function:</div>
 
 <p>statement handle. </p>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8hpp_source.html#l00197">197</a> of file <a class="el" href="sqlite_8hpp_source.html">sqlite.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8hpp_source.html#l00236">236</a> of file <a class="el" href="sqlite_8hpp_source.html">sqlite.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sqlite_8cpp_source.html#l00405">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00376">close()</a>, <a class="el" href="sqlite_8cpp_source.html#l00384">dodo::persist::sqlite::DDL::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00398">dodo::persist::sqlite::DML::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00391">dodo::persist::sqlite::DDL::execute_r()</a>, <a class="el" href="sqlite_8cpp_source.html#l00469">dodo::persist::sqlite::Query::getColumnCount()</a>, <a class="el" href="sqlite_8cpp_source.html#l00460">dodo::persist::sqlite::Query::getDouble()</a>, <a class="el" href="sqlite_8cpp_source.html#l00452">dodo::persist::sqlite::Query::getInt()</a>, <a class="el" href="sqlite_8cpp_source.html#l00456">dodo::persist::sqlite::Query::getInt64()</a>, <a class="el" href="sqlite_8cpp_source.html#l00464">dodo::persist::sqlite::Query::getText()</a>, <a class="el" href="sqlite_8cpp_source.html#l00448">dodo::persist::sqlite::Query::isNull()</a>, <a class="el" href="sqlite_8cpp_source.html#l00354">prepare()</a>, <a class="el" href="sqlite_8cpp_source.html#l00365">reset()</a>, <a class="el" href="sqlite_8cpp_source.html#l00343">Statement()</a>, <a class="el" href="sqlite_8cpp_source.html#l00440">dodo::persist::sqlite::Query::step()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00348">~Statement()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sqlite_8cpp_source.html#l00400">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00370">close()</a>, <a class="el" href="sqlite_8cpp_source.html#l00378">dodo::persist::sqlite::DDL::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00392">dodo::persist::sqlite::DML::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00385">dodo::persist::sqlite::DDL::execute_r()</a>, <a class="el" href="sqlite_8cpp_source.html#l00498">dodo::persist::sqlite::Query::getBytes()</a>, <a class="el" href="sqlite_8cpp_source.html#l00505">dodo::persist::sqlite::Query::getColumnCount()</a>, <a class="el" href="sqlite_8cpp_source.html#l00477">dodo::persist::sqlite::Query::getDataType()</a>, <a class="el" href="sqlite_8cpp_source.html#l00489">dodo::persist::sqlite::Query::getDouble()</a>, <a class="el" href="sqlite_8cpp_source.html#l00481">dodo::persist::sqlite::Query::getInt()</a>, <a class="el" href="sqlite_8cpp_source.html#l00485">dodo::persist::sqlite::Query::getInt64()</a>, <a class="el" href="sqlite_8cpp_source.html#l00493">dodo::persist::sqlite::Query::getText()</a>, <a class="el" href="sqlite_8cpp_source.html#l00473">dodo::persist::sqlite::Query::isNull()</a>, <a class="el" href="sqlite_8cpp_source.html#l00346">prepare()</a>, <a class="el" href="sqlite_8cpp_source.html#l00357">reset()</a>, <a class="el" href="sqlite_8cpp_source.html#l00337">Statement()</a>, <a class="el" href="sqlite_8cpp_source.html#l00465">dodo::persist::sqlite::Query::step()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00342">~Statement()</a>.</p>
 
 </div>
 </div>

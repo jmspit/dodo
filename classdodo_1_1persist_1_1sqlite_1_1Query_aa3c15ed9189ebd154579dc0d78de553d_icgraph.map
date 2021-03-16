@@ -1,0 +1,5 @@
+<map id="dodo::persist::sqlite::Query::getText" name="dodo::persist::sqlite::Query::getText">
+<area shape="rect" id="node1" title="Get string value from select list." alt="" coords="220,39,371,80"/>
+<area shape="rect" id="node2" href="$classdodo_1_1persist_1_1KVStore.html#ae5400594ab42ef03cf75d4887193545e" title="Return a list of keys that match the filter." alt="" coords="5,5,172,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1persist_1_1KVStore.html#a42cdd191f2ba7ebefb914ab62698a7e6" title="If the key exists, returns true and sets the value parameter." alt="" coords="5,71,172,112"/>
+</map>

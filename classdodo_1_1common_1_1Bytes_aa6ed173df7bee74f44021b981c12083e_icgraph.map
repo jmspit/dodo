@@ -1,6 +1,6 @@
 <map id="dodo::common::Bytes::free" name="dodo::common::Bytes::free">
 <area shape="rect" id="node1" title="Free and clear data." alt="" coords="252,71,416,112"/>
 <area shape="rect" id="node2" href="$classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect.html#a10628a4af5146ba43c08ebb418a7da2d" title="Generate a STOMP (CONNECT) frame." alt="" coords="5,5,204,47"/>
-<area shape="rect" id="node3" href="$classdodo_1_1persist_1_1KVStore.html#a3351b59cdd4643f0aa2e1d63687f7c39" title="If the key exists, returns true and copies (overwrites) data to the Bytes." alt="" coords="21,71,188,112"/>
+<area shape="rect" id="node3" href="$classdodo_1_1persist_1_1sqlite_1_1Query.html#a55c48b68657b3a66ac7a39643dd5f271" title="Get Bytes value from select list." alt="" coords="29,71,180,112"/>
 <area shape="rect" id="node4" href="$classdodo_1_1common_1_1Bytes.html#ad97788b764d9a26925a8ff34052217cf" title="Destruct and clean." alt="" coords="23,136,187,177"/>
 </map>

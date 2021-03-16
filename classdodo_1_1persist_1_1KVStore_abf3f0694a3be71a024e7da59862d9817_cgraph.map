@@ -1,0 +1,5 @@
+<map id="dodo::persist::KVStore::startTransaction" name="dodo::persist::KVStore::startTransaction">
+<area shape="rect" id="node1" title="Start a transaction." alt="" coords="5,39,172,80"/>
+<area shape="rect" id="node2" href="$classdodo_1_1persist_1_1sqlite_1_1DDL.html#ab33c8de3dca1b0e96760a10902b25d5b" title="execute, throws Oops on error." alt="" coords="223,5,373,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1persist_1_1sqlite_1_1Statement.html#a9a126dc9004edff369e6c9ea98d9dd10" title="Prepare a SQL statement." alt="" coords="220,71,376,112"/>
+</map>

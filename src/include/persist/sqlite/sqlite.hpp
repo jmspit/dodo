@@ -31,6 +31,9 @@ namespace dodo::persist {
 
   /**
    * C++ API to SQLite.
+   *
+   * An example of the basics (src/examples/sqlite/sqlite.cpp):
+   * @include sqlite/sqlite.cpp
    */
   namespace sqlite {
 
@@ -316,6 +319,42 @@ namespace dodo::persist {
          * @param value the value to bind.
          */
         void bind( int position, const common::Bytes &value );
+
+        /**
+         * Bind a string value to the bind by name. Note that this is less efficient than binding by index/position.
+         * @param name The name of the bind parameter.
+         * @param value the value to bind.
+         */
+        void bind( const std::string &name, double value );
+
+        /**
+         * Bind a string value to the bind by name. Note that this is less efficient than binding by index/position.
+         * @param name The name of the bind parameter.
+         * @param value the value to bind.
+         */
+        void bind( const std::string &name, int value );
+
+        /**
+         * Bind a string value to the bind by name. Note that this is less efficient than binding by index/position.
+         * @param name The name of the bind parameter.
+         * @param value the value to bind.
+         */
+        void bind( const std::string &name, int64_t value );
+
+        /**
+         * Bind a string value to the bind by name. Note that this is less efficient than binding by index/position.
+         * @param name The name of the bind parameter.
+         * @param value the value to bind.
+         */
+        void bind( const std::string &name, const std::string &value );
+
+        /**
+         * Bind a string value to the bind by name. Note that this is less efficient than binding by index/position.
+         * @param name The name of the bind parameter.
+         * @param value the value to bind.
+         */
+        void bind( const std::string &name, const common::Bytes &value );
+
     };
 
     /**

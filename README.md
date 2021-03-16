@@ -4,9 +4,7 @@
 Dodo is a C++ framework to GNU/Linux development and aims to integrate seamlessly with Docker containers and k8s ([kubernetes](https://kubernetes.io/)). Capable by itself, projects can obviously add other dependenices to realize any type of service at C++ speed and resource requirements.
 ### A skeleton for services
 
-The `dodo::common::Application` reads its run-time configuration from a YAML file, typically presented to the container as a [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/). Many classes in the framework can be iniltialized (constructed) by passing a YAML node as parameter.
-
-Wether the `dodo::common::Application` is a service is up to the code - one-pass runs as well as listening servers are easily implemented.
+The `dodo::common::Application` reads its run-time configuration from a YAML file, typically presented to the container as a [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/). Many classes in the framework can be iniltialized (constructed) by passing a YAML node as parameter, so things are up and running quickly ready for deeper implementation - that continues on the same YAML paradigm, so that the entire deployment configuration is specified in a single (or more if desired) YAML file.
 
 Additionally, the `dodo::common::Application` implicitly installs signal handlers that are triggered on Docker stop requests, so that the container can shut down cleanly and quickly when requested.
 
@@ -69,7 +67,7 @@ cd dodo && \
    cmake --build . && \
    cmake --install .
 ```
-If installed to a location outside the library paths the link-loader expects (eg usr/lib and so on), the `LD_LIBRARY_PATH` can be amended with `CMAKE_INSTALL_PREFIX/lib`.
+If installed to a location outside the library paths the link-loader searches, set the `LD_LIBRARY_PATH` to `<CMAKE_INSTALL_PREFIX>/lib`.
 
 To generate Doxygen API documentation, `make doc` will generate doxygen documentation in the build/doxygen/html directory, which contains an index.html.
 

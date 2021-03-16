@@ -40,6 +40,12 @@ add_executable(${EXAMPLE_TLS_CLIENT} ${${EXAMPLE_TLS_CLIENT}_objects} )
 target_link_libraries( ${EXAMPLE_TLS_CLIENT} ${LIB_DODO} )
 install( TARGETS ${EXAMPLE_TLS_CLIENT} RUNTIME DESTINATION bin )
 
+set( EXAMPLE_SQLITE  "sqlite" )
+set( ${EXAMPLE_SQLITE}_objects  src/examples/${EXAMPLE_SQLITE}/${EXAMPLE_SQLITE}.cpp )
+add_executable(${EXAMPLE_SQLITE} ${${EXAMPLE_SQLITE}_objects} )
+target_link_libraries( ${EXAMPLE_SQLITE} ${LIB_DODO} )
+install( TARGETS ${EXAMPLE_SQLITE} RUNTIME DESTINATION bin )
+
 set( EXAMPLE_KVSTORE  "kvstore" )
 set( ${EXAMPLE_KVSTORE}_objects  src/examples/${EXAMPLE_KVSTORE}/${EXAMPLE_KVSTORE}.cpp )
 add_executable(${EXAMPLE_KVSTORE} ${${EXAMPLE_KVSTORE}_objects} )

@@ -31,11 +31,6 @@
 #include <math.h>
 #include <string.h>
 
-/**
- * @file
- * SQLite3 wrapper c++ source file.
- */
-
 namespace dodo::persist {
 
   namespace sqlite {
@@ -435,6 +430,36 @@ namespace dodo::persist {
       if ( r != SQLITE_OK ) {
         throw_Exception( sqlite3_errmsg( database_ ) );
       }
+    }
+
+    void DML::bind( const std::string &name, double value ) {
+      auto rc = sqlite3_bind_parameter_index( stmt_, name.c_str() );
+      if ( !rc ) throw_Exception( "parameter " << name << " not found i ");
+      else bind( rc, value );
+    }
+
+    void DML::bind( const std::string &name, int value ) {
+      auto rc = sqlite3_bind_parameter_index( stmt_, name.c_str() );
+      if ( !rc ) throw_Exception( "parameter " << name << " not found i ");
+      else bind( rc, value );
+    }
+
+    void DML::bind( const std::string &name, int64_t value ) {
+      auto rc = sqlite3_bind_parameter_index( stmt_, name.c_str() );
+      if ( !rc ) throw_Exception( "parameter " << name << " not found i ");
+      else bind( rc, value );
+    }
+
+    void DML::bind( const std::string &name, const std::string &value ) {
+      auto rc = sqlite3_bind_parameter_index( stmt_, name.c_str() );
+      if ( !rc ) throw_Exception( "parameter " << name << " not found i ");
+      else bind( rc, value );
+    }
+
+    void DML::bind( const std::string &name, const common::Bytes &value ) {
+      auto rc = sqlite3_bind_parameter_index( stmt_, name.c_str() );
+      if ( !rc ) throw_Exception( "parameter " << name << " not found i ");
+      else bind( rc, value );
     }
 
     bool Query::step() {

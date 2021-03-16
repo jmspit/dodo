@@ -29,9 +29,7 @@
 namespace dodo {
 
   /**
-   * Persistent storage API.
-   *   - SQLite C++ API
-   *   - Key-value store API backed by sqlite
+   * All things persistent.
    */
   namespace persist {
   }

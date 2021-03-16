@@ -23,11 +23,11 @@
 #ifndef network_x509cert_hpp
 #define network_x509cert_hpp
 
+#include <list>
+#include <map>
 #include <openssl/ssl.h>
 #include <openssl/x509v3.h>
 #include <string>
-#include <list>
-#include <map>
 
 namespace dodo::network {
 
@@ -46,7 +46,7 @@ namespace dodo::network {
         stDNS   = GEN_DNS,    /**< A DNS name such as myhost.mydomain.org */
         stURI   = GEN_URI,    /**< An URI */
         stEMAIL = GEN_EMAIL,  /**< An email address */
-        tsIP    = GEN_IPADD   /**< An IPv4 or IPv6 address */
+        stIP    = GEN_IPADD   /**< An IPv4 or IPv6 address */
       };
 
       /**
@@ -59,7 +59,7 @@ namespace dodo::network {
           case SANType::stDNS : return "DNS";
           case SANType::stURI : return "URI";
           case SANType::stEMAIL : return "EMAIL";
-          case SANType::tsIP : return "IP";
+          case SANType::stIP : return "IP";
         }
         return "?";
       }

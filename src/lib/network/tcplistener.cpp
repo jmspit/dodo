@@ -20,10 +20,10 @@
  * Implements the dodo::network::TCPListener class.
  */
 
-#include "network/tcplistener.hpp"
-#include "network/tcpserver.hpp"
-#include "common/logger.hpp"
-#include "common/util.hpp"
+#include <network/tcplistener.hpp>
+#include <network/tcpserver.hpp>
+#include <common/logger.hpp>
+#include <common/util.hpp>
 
 #include <algorithm>
 #include <map>
@@ -36,13 +36,13 @@ namespace dodo {
     using namespace std;
 
       SystemError TCPConnectionData::readBuffer( BaseSocket* socket, ssize_t &received ) {
-        common::OctetArray tmp;
+        common::Bytes tmp;
         tmp.reserve( 4096 );
         ssize_t recv = 0;
         received = 0;
         SystemError error = SystemError::ecOK;
         do {
-          error = socket->receive( tmp.array, tmp.size, recv );
+          error = socket->receive( tmp.getArray(), tmp.getSize(), recv );
           if ( ( error == SystemError::ecOK || error == SystemError::ecEAGAIN ) && recv > 0 ) {
             log_Debug( "TCPConnectionData::readBuffer socket " << socket->getFD() <<
                        " received " << recv << " bytes" );
@@ -103,35 +103,35 @@ namespace dodo {
           bool stopped_;
       };
 
-    /** minservers YAML config name */
+    /** minservers YAML configuration name */
     const std::string yaml_minservers = "min-servers";
-    /** maxservers YAML config name */
+    /** maxservers YAML configuration name */
     const std::string yaml_maxservers = "max-servers";
-    /** maxconnections YAML config name */
+    /** maxconnections YAML configuration name */
     const std::string yaml_maxconnections = "max-connections";
-    /** maxqdepth YAML config name */
+    /** maxqdepth YAML configuration name */
     const std::string yaml_maxqdepth = "max-queue-depth";
-    /** sendbufsz YAML config name */
+    /** sendbufsz YAML configuration name */
     const std::string yaml_sendbufsz = "send-buffer";
-    /** recvbufsz YAML config name */
+    /** recvbufsz YAML configuration name */
     const std::string yaml_recvbufsz = "receive-buffer";
-    /** server_idle_ttl_s YAML config name */
+    /** server_idle_ttl_s YAML configuration name */
     const std::string yaml_server_idle_ttl_s = "server-idle-ttl-s";
-    /** pollbatch YAML config name */
+    /** pollbatch YAML configuration name */
     const std::string yaml_pollbatch = "poll-batch";
-    /** listener_sleep_ms YAML config name */
+    /** listener_sleep_ms YAML configuration name */
     const std::string yaml_listener_sleep_ms = "listener-sleep-ms";
-    /** throttle_sleep_us YAML config name */
+    /** throttle_sleep_us YAML configuration name */
     const std::string yaml_throttle_sleep_us = "throttle-sleep-us";
-    /** cycle_max_throttles YAML config name */
+    /** cycle_max_throttles YAML configuration name */
     const std::string yaml_cycle_max_throttles = "cycle-max-throttles";
-    /** stat_trc_interval_s YAML config name */
+    /** stat_trc_interval_s YAML configuration name */
     const std::string yaml_stat_trc_interval_s = "stat-trc-interval-s";
-    /** yaml_send_timeout_seconds YAML config name */
+    /** yaml_send_timeout_seconds YAML configuration name */
     const std::string yaml_send_timeout_seconds = "send-timeout-seconds";
-    /** yaml_receive_timeout_seconds YAML config name */
+    /** yaml_receive_timeout_seconds YAML configuration name */
     const std::string yaml_receive_timeout_seconds = "receive-timeout-seconds";
-    /** yaml_tcp_keep_alive YAML config name */
+    /** yaml_tcp_keep_alive YAML configuration name */
     const std::string yaml_tcp_keep_alive = "tcp-keep-alive";
 
 
@@ -606,7 +606,7 @@ namespace dodo {
               delete init_server_;
               init_server_ = new_server;
               servers_.push_back( init_server_ );
-              log_Debug( "TCPListener::run replaced stopped init TCPServer " << common::Puts::hex() <<
+              log_Debug( "TCPListener::run replaced stopped initial TCPServer " << common::Puts::hex() <<
                          init_server_->getTID() << common::Puts::dec() );
             }
             i_server++;

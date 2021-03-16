@@ -42,7 +42,6 @@ bool SystemErrorTest::test3() {
   dodo::common::SystemError e(dodo::common::SystemError::ecENOENT);
   std::stringstream ss;
   ss << e.asString();
-  std::cout << ss.str() << std::endl;
   return writeSubTestResult( "test SystemErrorTest",
                              "test init as string conversion",
                              ss.str() == "No such file or directory (2)" );

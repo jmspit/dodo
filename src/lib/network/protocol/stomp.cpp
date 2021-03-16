@@ -17,11 +17,11 @@
 
 /**
  * @file stomp.cpp
- * Implements the dodo::network::TLSSocket class.
+ * Implements the dodo::network::stomp classes.
  */
 
 #include "network/protocol/stomp.hpp"
-#include "common/octetarray.hpp"
+#include "common/bytes.hpp"
 #include "common/puts.hpp"
 
 #include <cstring>
@@ -29,7 +29,8 @@
 
 namespace dodo::network::protocol::stomp {
 
-  Frame::FrameMatch Frame::readCommand( const common::OctetArray& frame, size_t &index, const common::OctetArray& command ) const {
+  Frame::FrameMatch Frame::readCommand( const common::Bytes& frame, size_t &index, const common::Bytes& command ) const {
+
     enum State {
       command_read,
       endofline,
@@ -37,20 +38,20 @@ namespace dodo::network::protocol::stomp {
 
     State state = command_read;
     size_t cmd_idx = 0;
-    while ( index < frame.size ) {
+    while ( index < frame.getSize() ) {
       switch ( state ) {
         case command_read:
-          if ( cmd_idx == command.size ) {
+          if ( cmd_idx == command.getSize() ) {
             state = endofline;
           } else {
-            if ( frame.array[index] != command.array[cmd_idx] ) return FrameMatch::NoMatch;
+            if ( frame.getOctet(index) != command.getOctet(cmd_idx) ) return FrameMatch::NoMatch;
             index++;
             cmd_idx++;
           }
         case endofline:
-          if ( frame.array[index] == '\r' ) {
+          if ( frame.getOctet(index) == '\r' ) {
             index++;
-          } else if ( frame.array[index] == '\n' ) {
+          } else if ( frame.getOctet(index) == '\n' ) {
             return FrameMatch::FullMatch;
           } else return FrameMatch::NoMatch;
       }
@@ -58,13 +59,13 @@ namespace dodo::network::protocol::stomp {
     return FrameMatch::IncompleteMatch;
   }
 
-  Frame::FrameMatch Connect::match( const common::OctetArray& frame, std::list<std::string> &errors ) const {
+  Frame::FrameMatch Connect::match( const common::Bytes& frame, std::list<std::string> &errors ) const {
     size_t index = 0;
     Frame::FrameMatch match = readCommand( frame, index, command_connect );
     return match;
   }
 
-  void Connect::generate( common::OctetArray& frame ) const {
+  void Connect::generate( common::Bytes& frame ) const {
     frame.free();
     frame.append( command_connect );
     frame.append( eol );

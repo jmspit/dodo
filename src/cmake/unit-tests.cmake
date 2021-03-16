@@ -18,11 +18,11 @@ add_executable(${TEST_COMMON_PUTS} ${${TEST_COMMON_PUTS}_objects} )
 target_link_libraries( ${TEST_COMMON_PUTS} ${LIB_DODO} )
 add_test (NAME "common::Puts=${TEST_COMMON_PUTS}" COMMAND ${TEST_COMMON_PUTS} )
 
-set( TEST_COMMON_OCTETARRAY  "test-common-octetarray" )
-set( ${TEST_COMMON_OCTETARRAY}_objects  tests/common/${TEST_COMMON_OCTETARRAY}.cpp )
-add_executable(${TEST_COMMON_OCTETARRAY} ${${TEST_COMMON_OCTETARRAY}_objects} )
-target_link_libraries( ${TEST_COMMON_OCTETARRAY} ${LIB_DODO} )
-add_test (NAME "common::OctetArray=${TEST_COMMON_OCTETARRAY}" COMMAND ${TEST_COMMON_OCTETARRAY} )
+set( TEST_COMMON_BYTES  "test-common-bytes" )
+set( ${TEST_COMMON_BYTES}_objects  tests/common/${TEST_COMMON_BYTES}.cpp )
+add_executable(${TEST_COMMON_BYTES} ${${TEST_COMMON_BYTES}_objects} )
+target_link_libraries( ${TEST_COMMON_BYTES} ${LIB_DODO} )
+add_test (NAME "common::Bytes=${TEST_COMMON_BYTES}" COMMAND ${TEST_COMMON_BYTES} )
 
 set( TEST_COMMON_DATACRYPT  "test-common-datacrypt" )
 set( ${TEST_COMMON_DATACRYPT}_objects  tests/common/${TEST_COMMON_DATACRYPT}.cpp )
@@ -55,6 +55,6 @@ add_executable(${TEST_NETWORK_PROTOCOL_STOMP} ${${TEST_NETWORK_PROTOCOL_STOMP}_o
 target_link_libraries( ${TEST_NETWORK_PROTOCOL_STOMP} ${LIB_DODO} )
 add_test (NAME "network::protocol:stomp=${TEST_NETWORK_PROTOCOL_STOMP}" COMMAND ${TEST_NETWORK_PROTOCOL_STOMP} )
 
-set( TEST_NETWORK_TLS  "test-network-tls" )
-add_test (NAME "network::TLSContext+TLSSocket=${TEST_NETWORK_TLS}"
-          COMMAND "${CMAKE_CURRENT_SOURCE_DIR}/tests/network/${TEST_NETWORK_TLS}.sh" "${CMAKE_CURRENT_BINARY_DIR}/bin" )
+#set( TEST_NETWORK_TLS  "test-network-tls" )
+#add_test (NAME "network::TLSContext+TLSSocket=${TEST_NETWORK_TLS}"
+#          COMMAND "${CMAKE_CURRENT_SOURCE_DIR}/tests/network/${TEST_NETWORK_TLS}.sh" "${CMAKE_CURRENT_BINARY_DIR}/bin" )

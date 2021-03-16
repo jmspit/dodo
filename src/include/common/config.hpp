@@ -24,8 +24,8 @@
 #include <string>
 
 #include <yaml-cpp/yaml.h>
-#include "common/exception.hpp"
-#include "threads/mutex.hpp"
+#include <common/exception.hpp>
+#include <threads/mutex.hpp>
 
 #ifndef common_config_hpp
 #define common_config_hpp

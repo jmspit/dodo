@@ -20,7 +20,7 @@
  * Defines the dodo::network::Logger class.
  */
 
-#include "threads/mutex.hpp"
+#include <threads/mutex.hpp>
 
 #include <fstream>
 #include <map>

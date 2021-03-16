@@ -16,28 +16,22 @@
  */
 
 /**
- * @file store.hpp
- * Includes store headers.
+ * @file persist.hpp
+ * Defines the persist namespace.
  */
 
-#ifndef store_store_hpp
-#define store_store_hpp
+#ifndef dodo_persist_hpp
+#define dodo_persist_hpp
 
-#include <store/kvstore/kvstore.hpp>
+#include <persist/sqlite/sqlite.hpp>
+#include <persist/kvstore/kvstore.hpp>
 
 namespace dodo {
 
   /**
-   * Interface to persistent storage.
+   * All things persistent.
    */
-  namespace store {
-
-    /**
-     * Interface to the key-value store
-     */
-    namespace kvstore {
-    }
-
+  namespace persist {
   }
 
 }

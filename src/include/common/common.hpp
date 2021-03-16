@@ -27,7 +27,7 @@
 #include <common/config.hpp>
 #include <common/datacrypt.hpp>
 #include <common/exception.hpp>
-#include <common/octetarray.hpp>
+#include <common/bytes.hpp>
 #include <common/puts.hpp>
 #include <common/systemerror.hpp>
 #include <common/util.hpp>

@@ -31,7 +31,7 @@ set( ${LIB_DODO}_objects
   src/lib/common/datacrypt.cpp
   src/lib/common/exception.cpp
   src/lib/common/logger.cpp
-  src/lib/common/octetarray.cpp
+  src/lib/common/bytes.cpp
   src/lib/common/unittest.cpp
   src/lib/common/util.cpp
   src/lib/network/address.cpp
@@ -43,9 +43,8 @@ set( ${LIB_DODO}_objects
   src/lib/network/tlscontext.cpp
   src/lib/network/tlssocket.cpp
   src/lib/network/protocol/stomp.cpp
-  src/lib/store/kvstore/blockdefs/common.cpp
-  src/lib/store/kvstore/blockdefs/header.cpp
-  src/lib/store/kvstore/kvstore.cpp
+  src/lib/persist/kvstore/kvstore.cpp
+  src/lib/persist/sqlite/sqlite.cpp
   src/lib/threads/mutex.cpp
   src/lib/threads/thread.cpp
   src/ext/crc32/Crc32.cpp
@@ -54,7 +53,7 @@ set( ${LIB_DODO}_objects
 
 include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/src/ext/crc32 )
 
-set( DODO_USE_LIBS crypto ssl pthread yaml-cpp stdc++fs )
+set( DODO_USE_LIBS crypto ssl pthread yaml-cpp stdc++fs sqlite3 )
 
 add_library( ${LIB_DODO} SHARED ${${LIB_DODO}_objects} )
 

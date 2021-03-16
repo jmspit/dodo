@@ -23,22 +23,20 @@
 #ifndef network_tcplistener_hpp
 #define network_tcplistener_hpp
 
-#include <stdint.h>
-#include <sys/socket.h>
-#include <sys/epoll.h>
-#include <sys/resource.h>
-
 #include <atomic>
+#include <condition_variable>
 #include <functional>
 #include <map>
 #include <queue>
 #include <set>
-#include <atomic>
-#include <condition_variable>
+#include <stdint.h>
+#include <sys/epoll.h>
+#include <sys/resource.h>
+#include <sys/socket.h>
 #include <yaml-cpp/yaml.h>
 
 #include "common/exception.hpp"
-#include "common/octetarray.hpp"
+#include "common/bytes.hpp"
 #include "network/socket.hpp"
 #include "threads/mutex.hpp"
 #include "threads/thread.hpp"
@@ -87,11 +85,11 @@ namespace dodo {
          * Get a reference to the read buffer.
          * @return a reference to the read buffer.
          */
-        const common::OctetArray& getReadBuffer() const { return read_buffer; }
+        const common::Bytes& getReadBuffer() const { return read_buffer; }
 
       protected:
         /** Buffer for (incomplete) request data. */
-        common::OctetArray read_buffer;
+        common::Bytes read_buffer;
     };
 
     /**

@@ -42,7 +42,6 @@ struct ping_pkt6 {
 };
 
 struct reply_pkt6 {
-  //ip6_hdr  ip_hdr;
   ping_pkt6 icmp_reply;
 };
 
@@ -126,7 +125,7 @@ struct runtime_options {
     cout << "precision        : " << precision << endl;
     cout << "ping_count       : " << ping_count << endl;
     cout << "ping_packet_size : " << ping_packet_size << endl;
-    cout << "ttl              : " << ttl << endl;
+    cout << "TTL              : " << ttl << endl;
     cout << "receive_timeout  : " << receive_timeout << endl;
   }
 };
@@ -178,7 +177,6 @@ void initPacket( ping_pkt6 *pkt ) {
 void nextPacket( ping_pkt6 *pkt, uint16_t sq ) {
   pkt->hdr.icmp6_seq = htons( sq );
   pkt->hdr.icmp6_cksum = 0;
-  //pkt->hdr.icmp6_cksum = checksum( pkt, sizeof(struct ping_pkt6) );
   pkt->hdr.icmp6_cksum = checksum( pkt, options.ping_packet_size );
 }
 
@@ -226,8 +224,9 @@ void ping( const network::AddrInfoItem &item, ping_stats &stats ) {
   common::StopWatch sw;
   common::SystemError error;
 
-  string reverse;
-  if ( error = item.address.getNameInfo( reverse ) != common::SystemError::ecOK )
+  string reverse = item.address.asString();
+  error = item.address.getNameInfo( reverse );
+  if ( error != common::SystemError::ecOK && error != common::SystemError::ecEAI_NONAME )
     throw_SystemException( "address.getNameInfo", error );
 
   network::SocketParams sock_params = network::SocketParams( item.params.getAddressFamily(),
@@ -282,8 +281,9 @@ void ping6( const network::AddrInfoItem &item, ping_stats &stats ) {
   common::StopWatch sw;
   common::SystemError error;
 
-  string reverse;
-  if ( error = item.address.getNameInfo( reverse ) != common::SystemError::ecOK )
+  string reverse = item.address.asString();
+  error = item.address.getNameInfo( reverse );
+  if ( error != common::SystemError::ecOK && error != common::SystemError::ecEAI_NONAME )
     throw_SystemException( "address.getNameInfo", error );
 
   network::SocketParams sock_params = network::SocketParams( item.params.getAddressFamily(),
@@ -338,8 +338,8 @@ void printHelp() {
   cout << "  -W timeout    : receive timeout in seconds, default 10" << endl;
   cout << "  -t ttl        : time to live, default 59" << endl;
   cout << "  -s packetsize : ICMP packet size, between 48 and 60000 bytes, default 64" << endl;
-  cout << "  -4            : ping ipv4 adresses" << endl;
-  cout << "  -6            : ping ipv6 adresses" << endl;
+  cout << "  -4            : ping ipv4 addresses" << endl;
+  cout << "  -6            : ping ipv6 addresses" << endl;
   cout << "  -h            : display help" << endl;
   cout << endl;
   cout << "Sends ICMP echo requests to destination, either an ipv4 or ipv6 address, or a DNS name." << endl;

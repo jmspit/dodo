@@ -24,14 +24,14 @@
 #define common_datacrypt_hpp
 
 #include <string>
-#include "common/exception.hpp"
-#include "common/octetarray.hpp"
+#include <common/exception.hpp>
+#include <common/bytes.hpp>
 #include <openssl/err.h>
 
 namespace dodo::common {
 
   /**
-   * Interface to encrypt and decrypt OctetArray data to/from a secure string. Intended for smaller secrets such as
+   * Interface to encrypt and decrypt Bytes data to/from a secure string. Intended for smaller secrets such as
    * passwords, works for larger data volumes but with a time penalty, encryption/decryption of 10MiB on a
    * 3.4GHz Corei7 takes 0.8s/0.7s. Ideal for deployment configuration data.
    *
@@ -184,21 +184,21 @@ namespace dodo::common {
        */
       static void encrypt( Cipher cipher,
                            const std::string &key,
-                           const OctetArray& src,
+                           const Bytes& src,
                            std::string &dst );
 
       /**
        * Decrypt data with a key.
        * @param key The key to decrypt with.
        * @param src The source data to decrypt.
-       * @param dest The OctetArray that will receive the decrypted data. The caller will become owner of the
-       * pointer in OctetArray and responsible for cleaning it up with free().
+       * @param dest The Bytes that will receive the decrypted data. The caller will become owner of the
+       * pointer in Bytes and responsible for cleaning it up with free().
        * @return 0 if decryption ok, 1 if failure due to the format not being recognized, 2 if key was incorrect
        * or the data corrupted.
        */
       static int decrypt( const std::string &key,
                           const std::string src,
-                          OctetArray &dest );
+                          Bytes &dest );
 
     private:
       /**

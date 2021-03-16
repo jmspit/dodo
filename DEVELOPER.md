@@ -4,16 +4,24 @@
 
 # Introduction
 
-- Target is Linux.
-- API to write low level services with C++ traits as a low memory footprint and efficient binaries.
-- Implicit APIs for deployment configuration, logging, threading, networking, SQLite, PostgreSQL, MongoDB, Oracle
-  JSON, XML, Kafka, AVRO
-- Relies on the GNU C++ STL
+Framework to create services with C++ efficiency for deployment in Docker containers.
+
+- Target is GNU/Linux exclusively.
+- The Application class handles red tape
+  - Runtime configuration through yaml file
+  - Logging to one or more destinations, console, (rotating) files, syslog.
+  - Handling signals (to the container entrypoint, including stop requests)
+- Frameworks for typical demands such as
+  - Network and TLS network sockets
+  - TCP servers both with and without TLS support.
+  - HTTP servers both with and without TLS support.
+  - REST servers both with and without TLS support.
+  - Persistent Key-Value store based on SQLLite.
+- Framework classes can be initialized against YAML nodes that define the runtime configuration, a YAML node which may be in the same file that defines the Application as well as other classes.
 
 # Using dodo
 
-Include all headers by including dodo.hpp. Before using any of the dodo content, call dodo::initLibrary(). Call
-dodo::closeLibrary() to clean up at the end.
+Include all headers by including dodo.hpp. Before using any of the dodo functionality, call dodo::initLibrary(). Call dodo::closeLibrary() to clean up before program termination.
 
 ```C
 #include <dodo.hpp>
@@ -36,12 +44,13 @@ int main( int argc, char* argv[] ) {
 }
 ```
 
-Or use the dodo::common::Application class, as that will
+Or use the dodo::common::Application class, as that will take care of
 
-  - initialize the dodo library
+  - initializing / unloading the dodo library
   - install signal handlers
   - parse command line arguments, read environment variables
   - read configuration data from the specified configuration file.
+  - logging
 
 Subclass Application and implement the run method
 
@@ -81,20 +90,20 @@ int main( int argc, char* argv[], char** envp ) {
 # Exception and error handling
 
 Dodo throws dodo::common::Exception (or its descendant dodo::common::SystemException) only in exceptional circumstances.
-Methods that might be expected to fail return a SystemError, a (mostly 1-1) mapping of various types of system and
-internal dodo errors that can be used in program flows. Among error conditions that will throw are
+Methods that might be expected to fail return a SystemError, a mapping of of system and internal dodo errors which are more convenient in writing program flows.
+
+Among the exceptional error conditions that will *throw* are
 
   - specifying an non-existing configuration file
   - loading an invalid private key
   - unable to allocate memory
 
-whilst SystemError is returned when
+whilst dodo::common::SystemError is *returned* when, for example,
 
   - a fqdn fails to resolve
   - send / receive timeouts
 
-As dodo::common::Exception itself descends from std::runtime_error, which in turn descends from std::exception,
-try / catch code such as
+As dodo::common::Exception itself descends from std::runtime_error, which in turn descends from std::exception, a try / catch block such as
 
 ```C
 try {
@@ -105,15 +114,14 @@ catch ( const std::exception &e ) {
 }
 ```
 
-will catch anything that can go wrong in system plus dodo - unless it is a bug.
+will also catch any dod exception. dodo::common::Exception instances include the file and line number where the Exception was thrown. Developers may use the throw_Exception() macro's that are used by dodo internally.
 
-dodo::common::Exception instances will include the file and line number where the Exception was thrown. Developers
-may use or mimic the throw_Exception() macro's.
+The dodo::common::SystemError is declared `[[nodiscard]]` so that the compiler issues a warning if any function returns a
+dodo::common::SystemError that is ignored.
 
 # Deployment configuration
 
-The dodo::common::Config interface enforces the use of a YAML configuration file with mandatory sections that
-configures mandatory configuration items
+The dodo::common::Config interface enforces the use of a YAML configuration file with mandatory keys that configure mandatory configuration items
 
 ```YAML
 dodo:
@@ -125,18 +133,17 @@ dodo:
         level: info
 ```
 
-A dodo Application configuration requires at least a name and a dodo::common::Logger::LogLevel for logging to console or
+A dodo Application configuration requires at least a name (myapp) and a dodo::common::Logger::LogLevel (info) for logging to console or
 standard out.
 
-The dodo mandatory section can appear anywhere in the YAML as long as it is a root node. Configuration formats
-of other dodo components are described by topic and class below.
+The dodo mandatory key tree can appear anywhere in the YAML as long as it is a root node. Configuration formats of other dodo components are described, below, but may be present in the same file.
 
 # Logging
 
 A logging framework is available to write log entries to one or more destinations. The available destinations are
 
-  - standard output aka console
-  - a file local to the process
+  - standard output aka the console of the container (assuming the Application is the entrypoint)
+  - a directory with a file rotation policy
   - the syslog
 
 The logging interface is thread-safe.
@@ -155,12 +162,9 @@ dodo:
 which specifies that log entries should be sent to the console (standard out) if they are level
 dodo::common::Logger::LogLevel::Info or worse.
 
-The other destinations are file and syslog. The logger writes entries to all destinations specified (so console
-logging cannot be disabled). The file destination requires directory and trailing limits specifications as the log
-files are rotated automatically. `max-size-mib` (the maximum size of a file before rotate) and `max-file-trail`
-(the maximum number of already rotated log files to keep, oldest removed if exceeded) may be omitted, in which case
+The other destinations are file and syslog. The logger writes entries to all destinations specified (so console logging cannot be disabled). The file destination requires directory and trailing limits specifications as the log files are rotated automatically. `max-size-mib` (the maximum size of a file before rotate) and `max-file-trail` (the maximum number of already rotated log files to keep, oldest removed if exceeded) may be omitted, in which case
 they have the values as specified below. The directory must be specified and may be relative to the current working
-directory (Dockerfile.WORKDIR in case of a docker container).
+directory.
 
 ```YAML
 dodo:
@@ -188,8 +192,8 @@ format, but the shorter format will be used in log entries written to console or
 | `WRN` | `warning` | 4 WARNING | Included in code |
 | `INF` | `info` | 6 INFORMATIONAL | Included in code |
 | `STA` | `statistics` | 6 INFORMATIONAL | Included in code |
-| `DBG` | `debug` | ignored | Excluded from code |
-| `TRC` | `trace` | ignored | Excluded from code |
+| `DBG` | `debug` | not logged | Excluded from code |
+| `TRC` | `trace` | not logged | Excluded from code |
 
 So it is not possible to debug or trace to the syslog, and debug and trace loglevels have no effect in release builds.
 
@@ -209,7 +213,7 @@ above fragment would reduce to
 ```
 
 
-The configure the syslog destination
+To configure the syslog destination
 
 ```YAML
 dodo:
@@ -226,11 +230,9 @@ The syslog facility should be either 1 for `user-level messages` or in the range
 as the remaining values are reserved for other use.
 
 
-# Threads
-
 # Networking
 
-The networking API is grouped in the dodo::network namespace.
+The networking framework is provided by the dodo::network namespace.
 
 ## Address
 
@@ -252,7 +254,7 @@ common::SystemError error = network::Address::getHostAddrInfo( host, sock_params
 
 # Sockets
 
-All sockets descend from network::BaseSocket.
+All sockets descend from dodo::network::BaseSocket.
 
 ## Secure sockets {#developer_networking}
 
@@ -331,7 +333,8 @@ In order to verify a peer certificate, there is dodo::network::TLSContext::PeerV
     (encrypted), but information is shared with an unknown peer identity (like a man in the middle).
   - dodo::network::TLSContext::PeerVerification::pvVerifyPeer - The client verifies that peer offers a certificate that
     is signed by an entity trusted by the client. Note that this merely proves the server has a copy of a trusted
-    certificate - not the the server is the identity specified by the certificate.
+    certificate - but for the peer to decrypt messages sent by the advertised public key, the peer must also have the
+    private key to decrypt.
   - dodo::network::TLSContext::PeerVerification::pvVerifyFQDN - In addition to pvVerifyPeer, the client verifies that
     the target FQDN of the server either matches its CN (common name) or one of its
     [SAN](https://en.wikipedia.org/wiki/Subject_Alternative_Name) entries.
@@ -581,7 +584,7 @@ myapp:
 
 To highlight the purpose and effect of the parameters, the TCPListener loop roughly iterates as
 
-```
+```BASH
 while ( ! stopped ) {
   throttle if needed, at max cycle-max-throttles times throttle-sleep-us microseconds
   check if servers need to be added (when the queue size is not shrinking)
@@ -597,4 +600,123 @@ The implicit throttling mechanism of the TCPListener protects the TCPServer pool
 queue client data in the hosts receive buffers initially, and if they are full, clients will start to experience
 send latency up until their send timeout values. So the TCPListener will seek to maximize the sustained
 arrival rate of work against the configured capacity of the TCPServer pool, although, as the receive buffers
-and request queue size permit, it can handle intermediate burst that exceed it without additional wait latency.
+and request queue size permit, it can handle intermediate burst that exceed it without additional latency.
+
+
+# Persistent data
+
+## SQLite wrapper
+
+The classes in the `dodo::persist::sqlite` namespace simplify the use of SQLite.
+
+```C
+#include <dodo.hpp>
+#include <cstdio>
+
+using namespace dodo;
+
+int main() {
+  int exit_code = 0;
+  const std::string database_name = "mydb.sqlite";
+  try {
+    {
+      // open existing or create new database
+      persist::sqlite::Database db( database_name );
+
+      // create a schema
+      persist::sqlite::DDL schema( db );
+      schema.prepare( "CREATE TABLE IF NOT EXISTS foo ( foo NOT NULL PRIMARY KEY)" );
+      schema.execute();
+
+      // setup an insert statement
+      persist::sqlite::DML insert( db );
+      insert.prepare( "INSERT INTO foo (foo) VALUES (?)" );
+      insert.bind( 1, "insert1" );
+
+      // start a transaction
+      db.beginTransaction();
+      insert.execute();
+
+      // reset the query for re-execute with different value
+      insert.reset(true);
+      insert.bind( 1, "insert2" );
+      insert.execute();
+
+      db.commit();
+      // other persist::sqlite::Database objects will now see the inserts
+
+      // query and step the result set
+      persist::sqlite::Query qry( db );
+      qry.prepare( "select foo from foo order by foo" );
+      while ( qry.step() ) {
+        std::cout << qry.getText(0) << std::endl;
+      }
+    }
+  }
+  catch ( const std::exception &e ) {
+    // as the db object is now destructed, any un-comitted transaction is
+    // rolled back and the database is closed.
+    std::cerr << e.what() << std::endl;
+    exit_code = 1;
+  }
+  // delete the database file
+  remove( database_name.c_str() );
+  return exit_code;
+}
+```
+
+## KVStore
+
+The dodo::persist::KVStore class is a simple key-value store backed by SQLite. Under multithreading, if each thread uses its own KVStore
+object - even though they all point to the same SQLite file - no explicit synchronization is required.
+
+  - The SQLite database (file) is initialized in WAL mode for performance.
+  - All key-value pairs are stored in a single table (kvstore).
+  - The value column can hold any datatype that SQLite supports.
+  - The modified column stores the (unix timestamp) of the last modification.
+  - The updates column stores the total number of times the value was updated (after first insert this is 0).
+
+Suppose we require the hostname of a proxy server.
+
+```C
+dodo::persist::KVStore store( "cm.db" );
+std::string proxy_server = store.ensureWidthDefault( "proxy-server", "proxy.domain.nl" );
+```
+
+If the key `proxy-server` did not exist, it is now set to `"proxy.domain.nl"` in the store and that value is returned by dodo::persist::KVStore::ensureWithDefault. If it did exist, the ensureWidthDefault function retruns the value from the store (and ignores the default). If a default cannot be set by the code and the key is just expected to be there, one could do
+
+```C
+dodo::persist::KVStore store( "cm.db" );
+std::string proxy_server = "";
+if ( store.getValue( "proxy-server", proxy_server ) ) {
+  ...
+} else throw std::runtime_error( "key not found" )
+```
+
+For bulk inserts (dodo::persist::KVStore::insertKey) or updates (dodo::persist::KVStore::setKey), be sure to call dodo::persist::KVStore::startTransaction before the modifications and dodo::persist::KVStore::commitTransaction (or dodo::persist::KVStore::rollbackTransaction) to speeds things up, as otherwise each modification
+will commit individually (this is seen to speed things up 1000x).
+
+```C
+store.startTransaction();
+for ( const auto &k : keys ) {
+  store.insertKey( k, random_string( rand() % DATA_MAX_LENGTH ) );
+}
+store.commitTransaction();
+```
+
+The KVStore can be run as an in-memory database by opening the special file `:memory:`
+
+```C
+dodo::persist::KVStore store( ":memory:" );
+```
+but its contents are lost when the store object closes (destructs). Refer to the [SQLite documentation](https://sqlite.org/inmemorydb.html) for more details.
+
+# Performance
+
+The insertKey operations are enclosed between startTransaction / commitTransaction - all insertKey is comitted in one go. The setKey calls are individual commits. As a commit on persistent storage requires a physical write that has completed, the setKey speed is dominated by the write latency of the backing storage, as the huge difference in setKey speed below examplifies.
+
+**Intel Corei7 3.4GHz**
+| storage | insertKey | getValue | setKey |
+|---------|-----------|----------|--------|
+| memory | `575,000/s` | `1,000,000/s`| `345,000/s` |
+| Samsung SSD 860 | `660,000/s` | `420,000/s` | `414/s` |

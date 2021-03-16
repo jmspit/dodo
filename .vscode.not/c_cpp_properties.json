@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "intelliSenseMode": "gcc-x64",
+            "configurationProvider": "go2sh.cmake-integration",
+            "includePath": [
+                "${workspaceFolder}/src/include"
+            ],
+            "forcedInclude": [
+                "${workspaceFolder}/src/include/vscode/ingoreIntelliSenseErrors.h"
+            ]
+        }
+    ],
+    "version": 4
+}

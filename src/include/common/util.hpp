@@ -73,8 +73,15 @@ namespace dodo::common {
 
       /**
        * Stop the stopwatch.
+       * @return the elapsed time in seconds.
        */
-      void stop() { stop_ = std::chrono::high_resolution_clock::now(); }
+      double stop() { stop_ = std::chrono::high_resolution_clock::now(); return getElapsedSeconds(); }
+
+      /**
+       * Stop the stopwatch, start the Stopwatch again and return the elapsed time since previous start.
+       * @return the elapsed time in seconds.
+       */
+      double restart() { double t = stop(); start(); return t; };
 
       /**
        * Return the number of seconds between
@@ -263,6 +270,12 @@ namespace dodo::common {
    * @return The formatted datetime.
    */
   std::string formatDateTimeUTC( const struct timeval &tv );
+
+  /**
+   * Escape a JSOn string.
+   * @return The escaped string.
+   */
+  std::string escapeJSON( const std::string &s );
 
   /**
    * Template function to check existence and assign YAML values of arbitrary type. The key-value

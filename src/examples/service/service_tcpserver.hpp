@@ -19,13 +19,13 @@ class Server : public TCPServer {
 
     virtual SystemError readSocket( TCPListener::SocketWork &work, ssize_t &sent ) {
       SystemError error;
-      const OctetArray &buf = work.data->getReadBuffer();
-      if ( buf.size > 0 ) {
-        if ( buf.array[buf.size-1] == '\n' ) {
-          error = work.socket->send( buf.array, buf.size );
+      const Bytes &buf = work.data->getReadBuffer();
+      if ( buf.getSize() > 0 ) {
+        if ( buf.getOctet(buf.getSize()-1) == '\n' ) {
+          error = work.socket->send( buf.getArray(), buf.getSize() );
           work.data->clearBuffer();
           return error;
-        } else if ( buf.array[0] == 0xff || buf.array[0] == 0x04 ) {
+        } else if ( buf.getOctet(0) == 0xff || buf.getOctet(0) == 0x04 ) {
           return SystemError::ecECONNABORTED;
         } else return SystemError::ecEAGAIN;
       } else return SystemError::ecEAGAIN;
@@ -36,4 +36,3 @@ class Server : public TCPServer {
 };
 
 #endif
-

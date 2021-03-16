@@ -20,9 +20,9 @@
  * Implements the dodo::common::Application class..
  */
 
-#include "common/application.hpp"
-#include "common/logger.hpp"
-#include "dodo.hpp"
+#include <common/application.hpp>
+#include <common/logger.hpp>
+#include <dodo.hpp>
 
 #include <csignal>
 

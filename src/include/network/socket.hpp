@@ -24,13 +24,15 @@
 #define network_socket_hpp
 
 #include <arpa/inet.h>
-#include <common/systemerror.hpp>
+
 #include <map>
 #include <netdb.h>
-#include <network/address.hpp>
-#include <network/basesocket.hpp>
 #include <stdint.h>
 #include <sys/socket.h>
+
+#include "common/systemerror.hpp"
+#include "network/address.hpp"
+#include "network/basesocket.hpp"
 
 namespace dodo::network {
 

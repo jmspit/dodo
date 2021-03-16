@@ -20,19 +20,17 @@
  * Implements the dodo::network::TLSContext class.
  */
 
+#include <cstring>
+#include <iostream>
+#include <openssl/pkcs12.h>
+#include <openssl/ssl.h>
+#include <openssl/x509_vfy.h>
+#include <openssl/x509v3.h>
+
 #include "common/exception.hpp"
 #include "common/util.hpp"
-#include <network/tlscontext.hpp>
-#include <network/x509cert.hpp>
-
-#include <string.h>
-
-#include <openssl/ssl.h>
-#include <openssl/x509v3.h>
-#include <openssl/x509_vfy.h>
-#include <openssl/pkcs12.h>
-
-#include <iostream>
+#include "network/tlscontext.hpp"
+#include "network/x509cert.hpp"
 
 namespace dodo::network {
 

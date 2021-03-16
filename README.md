@@ -1,10 +1,12 @@
 # DODO - C++ framework for Docker containers
 ## About
 
-Dodo is a C++ framework to GNU/Linux development and aims to integrate seamlessly with Docker containers and k8s ([kubernetes](https://kubernetes.io/)).
+Dodo is a C++ framework to GNU/Linux development and aims to integrate seamlessly with Docker containers and k8s ([kubernetes](https://kubernetes.io/)). Capable by itself, projects can obviously add other dependenices to realize any type of service at C++ speed and resource requirements.
 ### A skeleton for services
 
 The `dodo::common::Application` reads its run-time configuration from a YAML file, typically presented to the container as a [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/). Many classes in the framework can be iniltialized (constructed) by passing a YAML node as parameter.
+
+Wether the `dodo::common::Application` is a service is up to the code - one-pass runs as well as listening servers are easily implemented.
 
 Additionally, the `dodo::common::Application` implicitly installs signal handlers that are triggered on Docker stop requests, so that the container can shut down cleanly and quickly when requested.
 
@@ -14,7 +16,7 @@ Logging (`dodo::common::Logger`) can be configured to write to one or more of th
   -  A syslog call to [rsyslog](https://www.rsyslog.com/).
   -  Console aka standard out of the container entrypoint.
 
-Docker healthchecks that run an in-container command (aka native healthchecks, such as say `pidof myservice`) are pretty costly, especially if the healthchecks need to be frequent or there are a lot pof pods to healthcheck. The dodo::common::Application class can be instructed to setup a healthceck listener (dodo::common::Application::HealthChecker) that can be network-probed by the Docker host, which is much more efficient. This HealthChecker can be declared sick or healthy by the code at runtime.
+Docker healthchecks that run an in-container command (aka native healthchecks, such as say `pidof myservice`) are pretty costly, especially if the healthchecks need to be frequent or there are a lot of pods to healthcheck. The dodo::common::Application class can be instructed to setup a healthceck listener (dodo::common::Application::HealthChecker) that can be network-probed by the Docker host, which is much more efficient. This HealthChecker can be declared sick or healthy by the code at runtime.
 ### High level APIs to common functionality
 
 Most services will require at least some of the functionality dodo provides as high-level C++ abstractions without compromising low-level C/Linux performance.
@@ -64,12 +66,12 @@ cd dodo && \
    mkdir build && \
    cd build && \
    cmake ..  -DCMAKE_INSTALL_PREFIX=/opt/dodo && \
-   make && \
-   make install
+   cmake --build . && \
+   cmake --install .
 ```
+If installed to a location outside the library paths the link-loader expects (eg usr/lib and so on), the `LD_LIBRARY_PATH` can be amended with `CMAKE_INSTALL_PREFIX/lib`.
 
-To generate Doxygen API documentation, `make doc` will generate doxygen documentation
-in the build/doxygen/html directory, which contains index.html.
+To generate Doxygen API documentation, `make doc` will generate doxygen documentation in the build/doxygen/html directory, which contains an index.html.
 
 ## Docker
 

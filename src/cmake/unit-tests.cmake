@@ -55,6 +55,10 @@ add_executable(${TEST_NETWORK_PROTOCOL_STOMP} ${${TEST_NETWORK_PROTOCOL_STOMP}_o
 target_link_libraries( ${TEST_NETWORK_PROTOCOL_STOMP} ${LIB_DODO} )
 add_test (NAME "network::protocol:stomp=${TEST_NETWORK_PROTOCOL_STOMP}" COMMAND ${TEST_NETWORK_PROTOCOL_STOMP} )
 
+add_test (NAME "persist::sqlite" COMMAND bin/sqlite )
+
+add_test (NAME "persist::kvstore" COMMAND bin/kvstore )
+
 #set( TEST_NETWORK_TLS  "test-network-tls" )
 #add_test (NAME "network::TLSContext+TLSSocket=${TEST_NETWORK_TLS}"
 #          COMMAND "${CMAKE_CURRENT_SOURCE_DIR}/tests/network/${TEST_NETWORK_TLS}.sh" "${CMAKE_CURRENT_BINARY_DIR}/bin" )

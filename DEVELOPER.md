@@ -21,7 +21,7 @@ Framework to create services with C++ efficiency for deployment in Docker contai
 
 # Using dodo
 
-When not using the dodo::common::Application class, include all headers by including dodo.hpp. Before using any of the dodo functionality, call dodo::initLibrary(). Call dodo::closeLibrary() to clean up at the end.
+Include all headers by including dodo.hpp. Before using any of the dodo functionality, call dodo::initLibrary(). Call dodo::closeLibrary() to clean up before program termination.
 
 ```C
 #include <dodo.hpp>
@@ -44,12 +44,13 @@ int main( int argc, char* argv[] ) {
 }
 ```
 
-Or use the dodo::common::Application class, as that will
+Or use the dodo::common::Application class, as that will take care of
 
-  - initialize/unload the dodo library
+  - initializing / unloading the dodo library
   - install signal handlers
   - parse command line arguments, read environment variables
   - read configuration data from the specified configuration file.
+  - logging
 
 Subclass Application and implement the run method
 
@@ -89,8 +90,9 @@ int main( int argc, char* argv[], char** envp ) {
 # Exception and error handling
 
 Dodo throws dodo::common::Exception (or its descendant dodo::common::SystemException) only in exceptional circumstances.
-Methods that might be expected to fail return a SystemError, a (mostly 1-1) mapping of various types of system and
-internal dodo errors that are more convenient in program flows. Among error conditions that will *throw* are
+Methods that might be expected to fail return a SystemError, a mapping of of system and internal dodo errors which are more convenient in writing program flows.
+
+Among the exceptional error conditions that will *throw* are
 
   - specifying an non-existing configuration file
   - loading an invalid private key
@@ -101,8 +103,7 @@ whilst dodo::common::SystemError is *returned* when, for example,
   - a fqdn fails to resolve
   - send / receive timeouts
 
-As dodo::common::Exception itself descends from std::runtime_error, which in turn descends from std::exception,
-try / catch code such as
+As dodo::common::Exception itself descends from std::runtime_error, which in turn descends from std::exception, a try / catch block such as
 
 ```C
 try {
@@ -113,10 +114,10 @@ catch ( const std::exception &e ) {
 }
 ```
 
-will catch anything that can go wrong in system plus dodo. dodo::common::Exception instances will include the file and line number where the Exception was thrown. Developers may use or mimic the throw_Exception() macro's that are used by ddo internally.
+will also catch any dod exception. dodo::common::Exception instances include the file and line number where the Exception was thrown. Developers may use the throw_Exception() macro's that are used by dodo internally.
 
-The dodo::common::SystemError is used in control flows, and is declared `[[nodiscard]]` so that the compiler issues a warning if any function that returns a
-dodo::common::SystemError ignores its return value.
+The dodo::common::SystemError is declared `[[nodiscard]]` so that the compiler issues a warning if any function returns a
+dodo::common::SystemError that is ignored.
 
 # Deployment configuration
 
@@ -332,7 +333,8 @@ In order to verify a peer certificate, there is dodo::network::TLSContext::PeerV
     (encrypted), but information is shared with an unknown peer identity (like a man in the middle).
   - dodo::network::TLSContext::PeerVerification::pvVerifyPeer - The client verifies that peer offers a certificate that
     is signed by an entity trusted by the client. Note that this merely proves the server has a copy of a trusted
-    certificate - not the the server is the identity specified by the certificate.
+    certificate - but for the peer to decrypt messages sent by the advertised public key, the peer must also have the
+    private key to decrypt.
   - dodo::network::TLSContext::PeerVerification::pvVerifyFQDN - In addition to pvVerifyPeer, the client verifies that
     the target FQDN of the server either matches its CN (common name) or one of its
     [SAN](https://en.wikipedia.org/wiki/Subject_Alternative_Name) entries.
@@ -601,7 +603,69 @@ arrival rate of work against the configured capacity of the TCPServer pool, alth
 and request queue size permit, it can handle intermediate burst that exceed it without additional latency.
 
 
-# KVStore
+# Persistent data
+
+## SQLite wrapper
+
+The classes in the `dodo::persist::sqlite` namespace simplify the use of SQLite.
+
+```C
+#include <dodo.hpp>
+#include <cstdio>
+
+using namespace dodo;
+
+int main() {
+  int exit_code = 0;
+  const std::string database_name = "mydb.sqlite";
+  try {
+    {
+      // open existing or create new database
+      persist::sqlite::Database db( database_name );
+
+      // create a schema
+      persist::sqlite::DDL schema( db );
+      schema.prepare( "CREATE TABLE IF NOT EXISTS foo ( foo NOT NULL PRIMARY KEY)" );
+      schema.execute();
+
+      // setup an insert statement
+      persist::sqlite::DML insert( db );
+      insert.prepare( "INSERT INTO foo (foo) VALUES (?)" );
+      insert.bind( 1, "insert1" );
+
+      // start a transaction
+      db.beginTransaction();
+      insert.execute();
+
+      // reset the query for re-execute with different value
+      insert.reset(true);
+      insert.bind( 1, "insert2" );
+      insert.execute();
+
+      db.commit();
+      // other persist::sqlite::Database objects will now see the inserts
+
+      // query and step the result set
+      persist::sqlite::Query qry( db );
+      qry.prepare( "select foo from foo order by foo" );
+      while ( qry.step() ) {
+        std::cout << qry.getText(0) << std::endl;
+      }
+    }
+  }
+  catch ( const std::exception &e ) {
+    // as the db object is now destructed, any un-comitted transaction is
+    // rolled back and the database is closed.
+    std::cerr << e.what() << std::endl;
+    exit_code = 1;
+  }
+  // delete the database file
+  remove( database_name.c_str() );
+  return exit_code;
+}
+```
+
+## KVStore
 
 The dodo::persist::KVStore class is a simple key-value store backed by SQLite. Under multithreading, if each thread uses its own KVStore
 object - even though they all point to the same SQLite file - no explicit synchronization is required.

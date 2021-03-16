@@ -21,6 +21,7 @@
  */
 
 
+#include <persist/sqlite/sqlite.hpp>
 #include <persist/kvstore/kvstore.hpp>
 #include <common/exception.hpp>
 #include <common/util.hpp>
@@ -32,68 +33,65 @@ namespace dodo::persist {
 
   KVStore::KVStore( const std::filesystem::path &path ) {
     path_ = path;
-    database_ = nullptr;
-    stmt_exists_ = nullptr;
-    stmt_getvalue_ = nullptr;
-    stmt_insert_ = nullptr;
-    stmt_delete_ = nullptr;
-    stmt_update_ = nullptr;
-    stmt_key_filter_ = nullptr;
-    stmt_key_value_filter_ = nullptr;
-    stmt_metadata_ = nullptr;
-    auto rc = sqlite3_open_v2( path.c_str(), &database_, SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE | SQLITE_OPEN_NOMUTEX, nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
+    db_ = new sqlite::Database( path_ );
+
+    stmt_exists_ = new sqlite::Query( *db_ );
+    stmt_getvalue_ = new sqlite::Query( *db_ );;
+    stmt_insert_ = new sqlite::DML( *db_ );;
+    stmt_delete_ = new sqlite::DML( *db_ );;
+    stmt_update_ = new sqlite::DML( *db_ );;
+    stmt_key_filter_ = new sqlite::Query( *db_ );;;
+    stmt_key_value_filter_ = new sqlite::Query( *db_ );;;
+    stmt_metadata_ = new sqlite::Query( *db_ );;;
     createSchema();
     prepareSQL();
   }
 
   KVStore::~KVStore() {
+    if ( stmt_metadata_ ) delete stmt_metadata_;
+    if ( stmt_key_value_filter_ ) delete stmt_key_value_filter_ ;
+    if ( stmt_key_filter_ ) delete stmt_key_filter_;
+    if ( stmt_update_ ) delete stmt_update_;
+    if ( stmt_delete_ ) delete stmt_delete_;
+    if ( stmt_insert_ ) delete stmt_insert_;
+    if ( stmt_getvalue_ ) delete stmt_getvalue_;
+    if ( stmt_exists_ ) delete stmt_exists_;
     optimize();
     checkpoint();
-    if ( stmt_metadata_ ) sqlite3_finalize( stmt_metadata_ );
-    if ( stmt_key_value_filter_ ) sqlite3_finalize( stmt_key_value_filter_ );
-    if ( stmt_key_filter_ ) sqlite3_finalize( stmt_key_filter_ );
-    if ( stmt_update_ ) sqlite3_finalize( stmt_update_ );
-    if ( stmt_delete_ ) sqlite3_finalize( stmt_delete_ );
-    if ( stmt_insert_ ) sqlite3_finalize( stmt_insert_ );
-    if ( stmt_getvalue_ ) sqlite3_finalize( stmt_getvalue_ );
-    if ( stmt_exists_ ) sqlite3_finalize( stmt_exists_ );
-    if ( database_ ) sqlite3_close( database_ );
+    if( db_) delete db_;
   }
 
   void KVStore::checkpoint() {
-    auto rc =  sqlite3_wal_checkpoint_v2( database_, nullptr, SQLITE_CHECKPOINT_FULL, nullptr, nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
+    db_->checkPointFull();
   }
 
   void KVStore::commitTransaction() {
-    std::string sql = "COMMIT TRANSACTION";
-    auto rc = sqlite3_exec( database_, sql.c_str(), nullptr, 0, nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
+    db_->commit();
   }
 
   void KVStore::createSchema() {
-    std::string sql = "PRAGMA journal_mode=WAL;"
-                      "CREATE TABLE IF NOT EXISTS kvstore ( "
-                      "key TEXT NOT NULL PRIMARY KEY, "
-                      "value NOT NULL, "
-                      "modified NUMBER NOT NULL DEFAULT ((julianday('now') - 2440587.5) * 86400.0), "
-                      "updates INTEGER NOT NULL DEFAULT 0"
-                      " )";
-    auto rc = sqlite3_exec( database_, sql.c_str(), nullptr, 0, nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
+    {
+      sqlite::Query pragma( *db_ );
+      pragma.prepare( "PRAGMA journal_mode=WAL;" );
+      pragma.step();
+    }
+    {
+      sqlite::DDL ddl( *db_ );
+      ddl.prepare(  "CREATE TABLE IF NOT EXISTS kvstore ( "
+                    "key TEXT NOT NULL PRIMARY KEY, "
+                    "value NOT NULL, "
+                    "modified NUMBER NOT NULL DEFAULT ((julianday('now') - 2440587.5) * 86400.0), "
+                    "updates INTEGER NOT NULL DEFAULT 0"
+                    " )" );
+      ddl.execute();
+    }
   }
 
   bool KVStore::deleteKey( const std::string &key ) {
-    auto rc = sqlite3_bind_text( stmt_delete_, 1, key.c_str(), static_cast<int>(key.length()), nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_step( stmt_delete_ );
-    if ( rc != SQLITE_DONE ) throw_Exception( sqlite3_errmsg(database_) );
-    int count = sqlite3_changes( database_ );
-    rc = sqlite3_clear_bindings( stmt_delete_ );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    sqlite3_reset( stmt_delete_ );
-    return count == 1;
+    stmt_delete_->bind( 1, key );
+    int affected = stmt_delete_->execute();
+    stmt_delete_->reset();
+    return (affected == 1);
   }
 
   std::string KVStore::ensureWithDefault( const std::string &key, const std::string &def ) {
@@ -127,342 +125,180 @@ namespace dodo::persist {
   }
 
   bool KVStore::exists( const std::string &key ) const {
-    auto rc = sqlite3_bind_text( stmt_exists_, 1, key.c_str(), static_cast<int>(key.length()), nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_step( stmt_exists_ );
-    if ( rc != SQLITE_ROW ) throw_Exception( sqlite3_errmsg(database_) );
-    auto count = sqlite3_column_int( stmt_exists_, 0 );
-    rc = sqlite3_clear_bindings( stmt_exists_ );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    sqlite3_reset( stmt_exists_ );
+    stmt_exists_->bind( 1, key );
+    stmt_exists_->step();
+    int count = stmt_exists_->getInt(0);
+    stmt_exists_->reset();
     return count == 1;
   }
 
   void KVStore::filterKeys( std::list<std::string>& keys, const std::string &filter ) {
     keys.clear();
-    auto rc = sqlite3_bind_text( stmt_key_filter_, 1, filter.c_str(), static_cast<int>(filter.length()), nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_step( stmt_key_filter_ );
-    while ( rc == SQLITE_ROW ) {
-      const unsigned char *dbkey = sqlite3_column_text( stmt_key_filter_, 0 );
-      std::string t = reinterpret_cast<const char*>( dbkey );
-      keys.push_back( t );
-      rc = sqlite3_step( stmt_key_filter_ );
+    stmt_key_filter_->bind( 1, filter );
+    while ( stmt_key_filter_->step() ) {
+      keys.push_back( stmt_key_filter_->getText( 0 ) );
     }
-    rc = sqlite3_clear_bindings( stmt_key_filter_ );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    sqlite3_reset( stmt_key_filter_ );
+    stmt_key_filter_->reset();
   }
 
   KVStore::MetaData KVStore::getMetaData( const std::string &key ) {
     MetaData data;
-    auto rc = sqlite3_bind_text( stmt_metadata_, 1, key.c_str(), static_cast<int>(key.length()), nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_step( stmt_metadata_ );
-    if ( rc == SQLITE_DONE ) return data;
-    else if ( rc != SQLITE_ROW ) throw_Exception( sqlite3_errmsg(database_) );
-    else {
-      data.last_modified = sqlite3_column_double( stmt_metadata_, 0 );
-      data.update_count = sqlite3_column_int64( stmt_metadata_, 1 );
-      data.type = static_cast<DataType>( sqlite3_column_type( stmt_metadata_, 2 ) );
+    stmt_metadata_->bind( 1, key );
+    if ( stmt_metadata_->step() ) {
+      data.last_modified = stmt_metadata_->getDouble( 0 );
+      data.update_count = stmt_metadata_->getInt64( 1 );
+      data.type = stmt_metadata_->getDataType( 2 );
     }
-    rc = sqlite3_clear_bindings( stmt_metadata_ );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    sqlite3_reset( stmt_metadata_ );
+    stmt_metadata_->reset();
     return data;
   }
 
   bool KVStore::getValue( const std::string &key, std::string &value ) const {
     bool result = true;
-    auto rc = sqlite3_bind_text( stmt_getvalue_, 1, key.c_str(), static_cast<int>(key.length()), nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_step( stmt_getvalue_ );
-    if ( rc == SQLITE_DONE ) result = false;
-    else if ( rc != SQLITE_ROW ) throw_Exception( sqlite3_errmsg(database_) );
-    else {
-      const unsigned char *t = sqlite3_column_text( stmt_getvalue_, 0 );
-      if ( t ) value = std::string( reinterpret_cast<const char*>(t) ); else value = "";
-    }
-    rc = sqlite3_clear_bindings( stmt_getvalue_ );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    sqlite3_reset( stmt_getvalue_ );
+    stmt_getvalue_->bind( 1, key );
+    if ( stmt_getvalue_->step() ) {
+      value = stmt_getvalue_->getText(0);
+      result = true;
+    } else result = false;
+    stmt_getvalue_->reset();
     return result;
   }
 
   bool KVStore::getValue( const std::string &key, double &value ) const {
     bool result = true;
-    auto rc = sqlite3_bind_text( stmt_getvalue_, 1, key.c_str(), static_cast<int>(key.length()), nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_step( stmt_getvalue_ );
-    if ( rc == SQLITE_DONE ) result = false;
-    else if ( rc != SQLITE_ROW ) throw_Exception( sqlite3_errmsg(database_) );
-    else value = sqlite3_column_double( stmt_getvalue_, 0 );
-    rc = sqlite3_clear_bindings( stmt_getvalue_ );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    sqlite3_reset( stmt_getvalue_ );
+    stmt_getvalue_->bind( 1, key );
+    if ( stmt_getvalue_->step() ) {
+      value = stmt_getvalue_->getDouble(0);
+      result = true;
+    } else result = false;
+    stmt_getvalue_->reset();
     return result;
   }
 
   bool KVStore::getValue( const std::string &key, int64_t &value ) const {
     bool result = true;
-    auto rc = sqlite3_bind_text( stmt_getvalue_, 1, key.c_str(), static_cast<int>(key.length()), nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_step( stmt_getvalue_ );
-    if ( rc == SQLITE_DONE ) result = false;
-    else if ( rc != SQLITE_ROW ) throw_Exception( sqlite3_errmsg(database_) );
-    else value = sqlite3_column_int64( stmt_getvalue_, 0 );
-    rc = sqlite3_clear_bindings( stmt_getvalue_ );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    sqlite3_reset( stmt_getvalue_ );
+    stmt_getvalue_->bind( 1, key );
+    if ( stmt_getvalue_->step() ) {
+      value = stmt_getvalue_->getInt64(0);
+      result = true;
+    } else result = false;
+    stmt_getvalue_->reset();
     return result;
   }
 
-  bool KVStore::getValue( const std::string &key, const void* &data, int &size ) const {
+  bool KVStore::getValue( const std::string &key, common::Bytes &value ) const {
     bool result = true;
-    auto rc = sqlite3_bind_text( stmt_getvalue_, 1, key.c_str(), static_cast<int>(key.length()), nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_step( stmt_getvalue_ );
-    if ( rc == SQLITE_DONE ) result = false;
-    else if ( rc != SQLITE_ROW ) throw_Exception( sqlite3_errmsg(database_) );
-    else {
-      const void* tmp_data = sqlite3_column_blob( stmt_getvalue_, 0 );
-      size = sqlite3_column_bytes( stmt_getvalue_, 0 );
-      data = malloc( size );
-      if ( data == nullptr ) throw_Exception( "malloc failed" );
-      memcpy( const_cast<void*>(data), const_cast<void*>(tmp_data), size );
-    }
-    rc = sqlite3_clear_bindings( stmt_getvalue_ );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    sqlite3_reset( stmt_getvalue_ );
-    return result;
-  }
-
-  bool KVStore::getValue( const std::string &key, common::Bytes &data ) const {
-    bool result = true;
-    auto rc = sqlite3_bind_text( stmt_getvalue_, 1, key.c_str(), static_cast<int>(key.length()), nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_step( stmt_getvalue_ );
-    if ( rc == SQLITE_DONE ) result = false;
-    else if ( rc != SQLITE_ROW ) throw_Exception( sqlite3_errmsg(database_) );
-    else {
-      const common::Octet* tmp_data = static_cast<const common::Octet*>( sqlite3_column_blob( stmt_getvalue_, 0 ) );
-      int size = sqlite3_column_bytes( stmt_getvalue_, 0 );
-      data.free();
-      data.append( tmp_data, size );
-    }
-    rc = sqlite3_clear_bindings( stmt_getvalue_ );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    sqlite3_reset( stmt_getvalue_ );
+    stmt_getvalue_->bind( 1, key );
+    if ( stmt_getvalue_->step() ) {
+      stmt_getvalue_->getBytes( 0, value );
+      result = true;
+    } else result = false;
+    stmt_getvalue_->reset();
     return result;
   }
 
   bool KVStore::insertKey( const std::string &key, const std::string &value ) {
-    bool result = true;
-    auto rc = sqlite3_bind_text( stmt_insert_, 1, key.c_str(), static_cast<int>(key.length()), nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_bind_text( stmt_insert_, 2, value.c_str(), static_cast<int>(value.length()), nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_step( stmt_insert_ );
-    if ( rc == SQLITE_CONSTRAINT ) result = false;
-    else if ( rc != SQLITE_DONE ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_clear_bindings( stmt_insert_ );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    sqlite3_reset( stmt_insert_ );
-    return result;
+    stmt_insert_->bind( 1, key );
+    stmt_insert_->bind( 2, value );
+    auto count = stmt_insert_->execute();
+    stmt_insert_->reset();
+    return count == 1;
   }
 
   bool KVStore::insertKey( const std::string &key, const double &value ) {
     bool result = true;
-    auto rc = sqlite3_bind_text( stmt_insert_, 1, key.c_str(), static_cast<int>(key.length()), nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_bind_double( stmt_insert_, 2, value );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_step( stmt_insert_ );
-    if ( rc == SQLITE_CONSTRAINT ) result = false;
-    else if ( rc != SQLITE_DONE ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_clear_bindings( stmt_insert_ );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    sqlite3_reset( stmt_insert_ );
+    stmt_insert_->bind( 1, key );
+    stmt_insert_->bind( 2, value );
+    stmt_insert_->execute();
+    stmt_insert_->reset();
     return result;
   }
 
   bool KVStore::insertKey( const std::string &key, const int64_t &value ) {
     bool result = true;
-    auto rc = sqlite3_bind_text( stmt_insert_, 1, key.c_str(), static_cast<int>(key.length()), nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_bind_int64( stmt_insert_, 2, value );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_step( stmt_insert_ );
-    if ( rc == SQLITE_CONSTRAINT ) result = false;
-    else if ( rc != SQLITE_DONE ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_clear_bindings( stmt_insert_ );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    sqlite3_reset( stmt_insert_ );
+    stmt_insert_->bind( 1, key );
+    stmt_insert_->bind( 2, value );
+    stmt_insert_->execute();
+    stmt_insert_->reset();
     return result;
   }
 
-  bool KVStore::insertKey( const std::string &key, const void* data, int size ) {
+  bool KVStore::insertKey( const std::string &key, const common::Bytes &value ) {
     bool result = true;
-    auto rc = sqlite3_bind_text( stmt_insert_, 1, key.c_str(), static_cast<int>(key.length()), nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_bind_blob( stmt_insert_, 2, data, size, nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_step( stmt_insert_ );
-    if ( rc == SQLITE_CONSTRAINT ) result = false;
-    else if ( rc != SQLITE_DONE ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_clear_bindings( stmt_insert_ );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    sqlite3_reset( stmt_insert_ );
-    return result;
-  }
-
-  bool KVStore::insertKey( const std::string &key, const common::Bytes &oa ) {
-    bool result = true;
-    auto rc = sqlite3_bind_text( stmt_insert_, 1, key.c_str(), static_cast<int>(key.length()), nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    if ( oa.getSize() > INT_MAX ) throw_Exception( "Bytes too large (INT_MAX)");
-    rc = sqlite3_bind_blob( stmt_insert_, 2, oa.getArray(), static_cast<int>(oa.getSize()), nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_step( stmt_insert_ );
-    if ( rc == SQLITE_CONSTRAINT ) result = false;
-    else if ( rc != SQLITE_DONE ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_clear_bindings( stmt_insert_ );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    sqlite3_reset( stmt_insert_ );
+    stmt_insert_->bind( 1, key );
+    stmt_insert_->bind( 2, value );
+    stmt_insert_->execute();
+    stmt_insert_->reset();
     return result;
   }
 
   void KVStore::optimize() {
-    std::string sql = "PRAGMA optimize;";
-    auto rc = sqlite3_exec( database_, sql.c_str(), nullptr, 0, nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
+    sqlite::DDL ddl( *db_ );
+    ddl.prepare( "PRAGMA optimize;" );
+    ddl.execute();
   }
 
   void KVStore::prepareSQL() {
-    std::string sql = "PRAGMA case_sensitive_like=ON;PRAGMA journal_mode=WAL;";
-    auto rc = sqlite3_exec( database_, sql.c_str(), nullptr, 0, nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
+    persist::sqlite::DDL ddl( *db_ );
+    ddl.prepare( "PRAGMA case_sensitive_like=ON;" );
+    ddl.execute();
 
-    sql = "SELECT COUNT(1) FROM kvstore WHERE key = ?";
-    rc = sqlite3_prepare_v2( database_, sql.c_str(), static_cast<int>(sql.size()), &stmt_exists_, nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-
-    sql = "SELECT value FROM kvstore WHERE key = ?";
-    rc = sqlite3_prepare_v2( database_, sql.c_str(), static_cast<int>(sql.size()), &stmt_getvalue_, nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-
-    sql = "INSERT INTO kvstore ( key, value ) VALUES ( ?, ? )";
-    rc = sqlite3_prepare_v2( database_, sql.c_str(), static_cast<int>(sql.size()), &stmt_insert_, nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-
-    sql = "DELETE FROM kvstore WHERE key = ?";
-    rc = sqlite3_prepare_v2( database_, sql.c_str(), static_cast<int>(sql.size()), &stmt_delete_, nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-
-    sql = "UPDATE kvstore SET value = ?, modified = ((julianday('now') - 2440587.5) * 86400.0), updates = updates + 1 WHERE key = ?";
-    rc = sqlite3_prepare_v2( database_, sql.c_str(), static_cast<int>(sql.size()), &stmt_update_, nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-
-    sql = "SELECT key FROM kvstore WHERE key LIKE ? ORDER BY key";
-    rc = sqlite3_prepare_v2( database_, sql.c_str(), static_cast<int>(sql.size()), &stmt_key_filter_, nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-
-    sql = "SELECT key, value FROM kvstore WHERE key LIKE ? ORDER BY key";
-    rc = sqlite3_prepare_v2( database_, sql.c_str(), static_cast<int>(sql.size()), &stmt_key_value_filter_, nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-
-    sql = "SELECT modified, updates, value FROM kvstore WHERE key = ?";
-    rc = sqlite3_prepare_v2( database_, sql.c_str(), static_cast<int>(sql.size()), &stmt_metadata_, nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
+    stmt_exists_->prepare( "SELECT COUNT(1) FROM kvstore WHERE key = ?" );
+    stmt_getvalue_->prepare( "SELECT value FROM kvstore WHERE key = ?" );
+    stmt_insert_->prepare( "INSERT INTO kvstore ( key, value ) VALUES ( ?, ? )" );
+    stmt_delete_->prepare( "DELETE FROM kvstore WHERE key = ?" );
+    stmt_update_->prepare( "UPDATE kvstore SET value = ?, modified = ((julianday('now') - 2440587.5) * 86400.0), updates = updates + 1 WHERE key = ?" );
+    stmt_key_filter_->prepare( "SELECT key FROM kvstore WHERE key LIKE ? ORDER BY key" );
+    stmt_key_value_filter_->prepare( "SELECT key, value FROM kvstore WHERE key LIKE ? ORDER BY key" );
+    stmt_metadata_->prepare( "SELECT modified, updates, value FROM kvstore WHERE key = ?" );
   }
 
   void KVStore::rollbackTransaction() {
-    std::string sql = "ROLLBACK TRANSACTION";
-    auto rc = sqlite3_exec( database_, sql.c_str(), nullptr, 0, nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
+    db_->rollback();
   }
 
   bool KVStore::setKey( const std::string &key, const std::string &value ) {
-    auto rc = sqlite3_bind_text( stmt_update_, 1, value.c_str(), static_cast<int>(value.length()), nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_bind_text( stmt_update_, 2, key.c_str(), static_cast<int>(key.length()), nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_step( stmt_update_ );
-    if ( rc != SQLITE_DONE ) throw_Exception( sqlite3_errmsg(database_) );
-    int count = sqlite3_changes( database_ );
-    rc = sqlite3_clear_bindings( stmt_update_ );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    sqlite3_reset( stmt_update_ );
-    return count == 1;
+    stmt_update_->bind( 1, value );
+    stmt_update_->bind( 2, key );
+    int rows = stmt_update_->execute();
+    stmt_update_->reset();
+    return rows == 1;
   }
 
   bool KVStore::setKey( const std::string &key, const double &value ) {
-    auto rc = sqlite3_bind_double( stmt_update_, 1, value );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_bind_text( stmt_update_, 2, key.c_str(), static_cast<int>(key.length()), nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_step( stmt_update_ );
-    if ( rc != SQLITE_DONE ) throw_Exception( sqlite3_errmsg(database_) );
-    int count = sqlite3_changes( database_ );
-    rc = sqlite3_clear_bindings( stmt_update_ );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    sqlite3_reset( stmt_update_ );
-    return count == 1;
+    stmt_update_->bind( 1, value );
+    stmt_update_->bind( 2, key );
+    int rows = stmt_update_->execute();
+    stmt_update_->reset();
+    return rows == 1;
   }
 
   bool KVStore::setKey( const std::string &key, const int64_t &value ) {
-    auto rc = sqlite3_bind_int64( stmt_update_, 1, value );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_bind_text( stmt_update_, 2, key.c_str(), static_cast<int>(key.length()), nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_step( stmt_update_ );
-    if ( rc != SQLITE_DONE ) throw_Exception( sqlite3_errmsg(database_) );
-    int count = sqlite3_changes( database_ );
-    rc = sqlite3_clear_bindings( stmt_update_ );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    sqlite3_reset( stmt_update_ );
-    return count == 1;
+    stmt_update_->bind( 1, value );
+    stmt_update_->bind( 2, key );
+    int rows = stmt_update_->execute();
+    stmt_update_->reset();
+    return rows == 1;
   }
 
-  bool KVStore::setKey( const std::string &key, const void* data, int size ) {
-    auto rc = sqlite3_bind_blob( stmt_update_, 1, data, size, nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_bind_text( stmt_update_, 2, key.c_str(), static_cast<int>(key.length()), nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_step( stmt_update_ );
-    if ( rc != SQLITE_DONE ) throw_Exception( sqlite3_errmsg(database_) );
-    int count = sqlite3_changes( database_ );
-    rc = sqlite3_clear_bindings( stmt_update_ );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    sqlite3_reset( stmt_update_ );
-    return count == 1;
-  }
-
-  bool KVStore::setKey( const std::string &key, const common::Bytes &oa ) {
-    if ( oa.getSize() > INT_MAX ) throw_Exception( "Bytes too large (INT_MAX)");
-    auto rc = sqlite3_bind_blob( stmt_update_, 1, oa.getArray(), static_cast<int>(oa.getSize()), nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_bind_text( stmt_update_, 2, key.c_str(), static_cast<int>(key.length()), nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    rc = sqlite3_step( stmt_update_ );
-    if ( rc != SQLITE_DONE ) throw_Exception( sqlite3_errmsg(database_) );
-    int count = sqlite3_changes( database_ );
-    rc = sqlite3_clear_bindings( stmt_update_ );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
-    sqlite3_reset( stmt_update_ );
-    return count == 1;
+  bool KVStore::setKey( const std::string &key, const common::Bytes &value ) {
+    stmt_update_->bind( 1, value );
+    stmt_update_->bind( 2, key );
+    int rows = stmt_update_->execute();
+    stmt_update_->reset();
+    return rows == 1;
   }
 
   void KVStore::startTransaction() {
-    std::string sql = "BEGIN TRANSACTION";
-    auto rc = sqlite3_exec( database_, sql.c_str(), nullptr, 0, nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
+    sqlite::DDL ddl( *db_ );
+    ddl.prepare( "BEGIN TRANSACTION" );
+    ddl.execute();
   }
 
   void KVStore::vacuum() {
-    std::string sql = "VACUUM;";
-    auto rc = sqlite3_exec( database_, sql.c_str(), nullptr, 0, nullptr );
-    if ( rc != SQLITE_OK ) throw_Exception( sqlite3_errmsg(database_) );
+    sqlite::DDL ddl( *db_ );
+    ddl.prepare( "VACUUM;" );
+    ddl.execute();
   }
 
 };

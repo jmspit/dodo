@@ -322,7 +322,11 @@ namespace dodo::common {
               ss << libstrerror( errorcode_ );
             else
               ss << strerror(errorcode_);
-          } else ss << gai_strerror(errorcode_);
+          } else if ( errorcode_ == 0 ) {
+            ss << "Succes";
+          } else {
+            ss << gai_strerror(errorcode_);
+          }
           ss << " (" << errorcode_ << ")";
           return ss.str();
         };

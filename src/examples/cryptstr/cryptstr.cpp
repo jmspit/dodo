@@ -170,7 +170,7 @@ bool decrypt( std::istream& in, std::ostream& out ) {
 int main( int argc, char* argv[] ) {
   int rc = 0;
   try {
-    initLibrary();
+    dodo::initLibrary();
     if ( parseArgs( argc, argv ) ) {
       if ( options.encrypt ) {
         rc = ( encrypt( cin, cout ) == false );
@@ -184,6 +184,6 @@ int main( int argc, char* argv[] ) {
     cerr << e.what() << endl;
     rc = 1;
   }
-  closeLibrary();
+  dodo::closeLibrary();
   return rc;
 }

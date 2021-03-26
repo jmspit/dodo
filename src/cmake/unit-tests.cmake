@@ -30,6 +30,7 @@ add_executable(${TEST_COMMON_DATACRYPT} ${${TEST_COMMON_DATACRYPT}_objects} )
 target_link_libraries( ${TEST_COMMON_DATACRYPT} ${LIB_DODO} )
 add_test (NAME "common::DataCrypt=${TEST_COMMON_DATACRYPT}" COMMAND ${TEST_COMMON_DATACRYPT} )
 
+add_test (NAME "common::DataCrypt::cryptstr" COMMAND test "$(echo $(echo 'secret' | bin/cryptstr -e -k val:password) | bin/cryptstr -d -k val:password ) == 'secret'" )
 
 set( TEST_NETWORK_ADDRESS  "test-network-address" )
 set( ${TEST_NETWORK_ADDRESS}_objects  tests/network/${TEST_NETWORK_ADDRESS}.cpp )
@@ -48,6 +49,18 @@ set( ${TEST_NETWORK_X509}_objects  tests/network/${TEST_NETWORK_X509}.cpp )
 add_executable(${TEST_NETWORK_X509} ${${TEST_NETWORK_X509}_objects} )
 target_link_libraries( ${TEST_NETWORK_X509} ${LIB_DODO} )
 add_test (NAME "network::X509Certificate=${TEST_NETWORK_X509}" COMMAND ${TEST_NETWORK_X509} )
+
+set( TEST_NETWORK_URI  "test-network-uri" )
+set( ${TEST_NETWORK_URI}_objects  tests/network/${TEST_NETWORK_URI}.cpp )
+add_executable(${TEST_NETWORK_URI} ${${TEST_NETWORK_URI}_objects} )
+target_link_libraries( ${TEST_NETWORK_URI} ${LIB_DODO} )
+add_test (NAME "network::URI=${TEST_NETWORK_URI}" COMMAND ${TEST_NETWORK_URI} )
+
+set( TEST_NETWORK_PROTOCOL_HTTP  "test-network-protocol-http" )
+set( ${TEST_NETWORK_PROTOCOL_HTTP}_objects  tests/network/${TEST_NETWORK_PROTOCOL_HTTP}.cpp )
+add_executable(${TEST_NETWORK_PROTOCOL_HTTP} ${${TEST_NETWORK_PROTOCOL_HTTP}_objects} )
+target_link_libraries( ${TEST_NETWORK_PROTOCOL_HTTP} ${LIB_DODO} )
+add_test (NAME "network::protocol:http=${TEST_NETWORK_PROTOCOL_HTTP}" COMMAND ${TEST_NETWORK_PROTOCOL_HTTP} )
 
 set( TEST_NETWORK_PROTOCOL_STOMP  "test-network-protocol-stomp" )
 set( ${TEST_NETWORK_PROTOCOL_STOMP}_objects  tests/network/${TEST_NETWORK_PROTOCOL_STOMP}.cpp )

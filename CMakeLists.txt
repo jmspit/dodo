@@ -37,12 +37,15 @@ set( ${LIB_DODO}_objects
   src/lib/network/address.cpp
   src/lib/network/basesocket.cpp
   src/lib/network/socket.cpp
+  src/lib/network/socketreadbuffer.cpp
   src/lib/network/x509cert.cpp
   src/lib/network/tcplistener.cpp
   src/lib/network/tcpserver.cpp
   src/lib/network/tlscontext.cpp
   src/lib/network/tlssocket.cpp
-  src/lib/network/protocol/stomp.cpp
+  src/lib/network/protocol/http/http.cpp
+  src/lib/network/protocol/stomp/stomp.cpp
+  src/lib/network/uri.cpp
   src/lib/persist/kvstore/kvstore.cpp
   src/lib/persist/sqlite/sqlite.cpp
   src/lib/threads/mutex.cpp

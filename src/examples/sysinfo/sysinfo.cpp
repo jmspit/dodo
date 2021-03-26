@@ -19,7 +19,7 @@ class MyApp : public common::Application {
 
 int main( int argc, char* argv[], char** envp ) {
   try {
-    MyApp app( { "myapp.cnf", argc, argv, envp } );
+    MyApp app( { "sysinfo.yaml", argc, argv, envp } );
     return app.run();
   }
   catch ( const std::exception &e ) {

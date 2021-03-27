@@ -118,359 +118,359 @@ $(document).ready(function(){initNavTree('puts_8hpp_source.html',''); initResiza
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &lt;thread&gt;</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacedodo_1_1common.html">dodo::common</a> {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;  <span class="keyword">using namespace </span>std;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">   * Helper class to write strings in stream format, eg</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">   * \code</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">   * string s = common::Puts() &lt;&lt; &quot;integer: &quot; &lt;&lt; 3 &lt;&lt; &quot; double: &quot; &lt;&lt; common::Puts:setprecision(2) &lt;&lt; 3.145;</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">   * \endcode</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">   * which is very convenient in, for example, throwing exceptions, where the throw_Exception macro already inserts</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">   *  the &quot;Puts() &lt;&lt;&quot; in the expression, so one can write</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">   * \code</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">   * throw Exception( &quot;open failed with errorcode: &quot; &lt;&lt; errorcode );</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">   * \endcode</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html">   48</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a> {</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">       * Mimics std::endl.</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="structdodo_1_1common_1_1Puts_1_1endl.html">   54</a></span>&#160;     <span class="keyword">struct </span><a class="code" href="structdodo_1_1common_1_1Puts_1_1endl.html">endl</a> {</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;      };</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">       * Put the stream in floating point fixed-format mode.</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">       * @see operator&lt;&lt;( fixed )</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="structdodo_1_1common_1_1Puts_1_1fixed.html">   61</a></span>&#160;      <span class="keyword">struct </span><a class="code" href="structdodo_1_1common_1_1Puts_1_1fixed.html">fixed</a> {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;      };</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">       * Put the stream in floating point scientific-format mode.</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">       * @see operator&lt;&lt;( scientific )</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="structdodo_1_1common_1_1Puts_1_1scientific.html">   68</a></span>&#160;      <span class="keyword">struct </span><a class="code" href="structdodo_1_1common_1_1Puts_1_1scientific.html">scientific</a> {</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;      };</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">       * Put the stream in decimal mode.</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">       * @see operator&lt;&lt;( dec )</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="structdodo_1_1common_1_1Puts_1_1dec.html">   75</a></span>&#160;      <span class="keyword">struct </span><a class="code" href="structdodo_1_1common_1_1Puts_1_1dec.html">dec</a> {</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;      };</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">       * Put the stream in hexadecimal mode.</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">       * @see operator&lt;&lt;( hex )</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="structdodo_1_1common_1_1Puts_1_1hex.html">   82</a></span>&#160;      <span class="keyword">struct </span><a class="code" href="structdodo_1_1common_1_1Puts_1_1hex.html">hex</a> {</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;      };</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">       * Put the stream in octal mode.</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">       * @see operator&lt;&lt;( oct )</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="structdodo_1_1common_1_1Puts_1_1oct.html">   89</a></span>&#160;      <span class="keyword">struct </span><a class="code" href="structdodo_1_1common_1_1Puts_1_1oct.html">oct</a> {</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;      };</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">       * Set the width of things to w characters.</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">       * @see operator&lt;&lt;( setw w )</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="structdodo_1_1common_1_1Puts_1_1setw.html">   97</a></span>&#160;      <span class="keyword">struct </span><a class="code" href="structdodo_1_1common_1_1Puts_1_1setw.html">setw</a> {<span class="comment"></span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">        /**</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">         * Construct with width.</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">         * @param w The width.</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">         */</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="structdodo_1_1common_1_1Puts_1_1setw.html#a566767de9b339a19c0d621f8a0b1abbe">  102</a></span>&#160;        <a class="code" href="structdodo_1_1common_1_1Puts_1_1setw.html">setw</a>( <span class="keywordtype">int</span> w ) : w_(w) {};</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">        /** The width. */</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordtype">int</span> w_;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;      };</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">       * Set the precision for floating point fixed format</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">       * @see opeartor&lt;&lt;( setprecision )</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="structdodo_1_1common_1_1Puts_1_1setprecision.html">  112</a></span>&#160;      <span class="keyword">struct </span><a class="code" href="structdodo_1_1common_1_1Puts_1_1setprecision.html">setprecision</a> {<span class="comment"></span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">        /**</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment">         * Construct with precision.</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">         * @param p The precision.</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">         */</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="structdodo_1_1common_1_1Puts_1_1setprecision.html#aaa09880acecebeb3bcd17732a351633d">  117</a></span>&#160;        <a class="code" href="structdodo_1_1common_1_1Puts_1_1setprecision.html#aaa09880acecebeb3bcd17732a351633d">setprecision</a>( <span class="keywordtype">int</span> p ) : p_(p) {};<span class="comment"></span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment">        /** The precision. */</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keywordtype">int</span> p_;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;      };</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment">       * Constructor inits to fixed format for double with precision 3.</span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#aa32a9c774e80bfc2cddf7fe0912b80ff">  125</a></span>&#160;      <a class="code" href="classdodo_1_1common_1_1Puts.html#aa32a9c774e80bfc2cddf7fe0912b80ff">Puts</a>() { ss_ &lt;&lt;  std::setprecision(3) &lt;&lt; std::fixed; };</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment">       * Append a STL string.</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment">       * @param s The string.</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment">       * @return This Puts.</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a00cfb816a88b4d62a13e6a5a3af2b706">  132</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a00cfb816a88b4d62a13e6a5a3af2b706">operator&lt;&lt;</a>( <span class="keyword">const</span> <span class="keywordtype">string</span>&amp; s )<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        ss_ &lt;&lt; s;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;      }</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="comment">       * Append a C string.</span></div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="comment">       * @param s The const char*</span></div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="comment">       * @return This Puts.</span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a5374754d859ee373a13811c26fac0299">  142</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a5374754d859ee373a13811c26fac0299">operator&lt;&lt;</a>( <span class="keyword">const</span> <span class="keywordtype">char</span>* s )<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        ss_ &lt;&lt; s;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;      }</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment">       * Append a char.</span></div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="comment">       * @param c The char</span></div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="comment">       * @return This Puts.</span></div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00152"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a28c13bbe93a52360bea41e8fae923507">  152</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a28c13bbe93a52360bea41e8fae923507">operator&lt;&lt;</a>( <span class="keywordtype">char</span> c )<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        ss_ &lt;&lt; c;</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;      }</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="comment">       * Append an integer.</span></div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="comment">       * @param i The int</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="comment">       * @return This Puts.</span></div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00162"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a58f6473f0d18bfae2cac7cde9fc55790">  162</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a58f6473f0d18bfae2cac7cde9fc55790">operator&lt;&lt;</a>( <span class="keywordtype">int</span> i )<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        ss_ &lt;&lt; i;</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;      }</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="comment">       * Append a long.</span></div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="comment">       * @param l The long</span></div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="comment">       * @return This Puts.</span></div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#ac4b31ba08288a2d5bf9e0e9ee80e7526">  172</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#ac4b31ba08288a2d5bf9e0e9ee80e7526">operator&lt;&lt;</a>( <span class="keywordtype">long</span> l )<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        ss_ &lt;&lt; l;</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;      }</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="comment">       * Append a long long.</span></div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="comment">       * @param l The long long</span></div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="comment">       * @return This Puts.</span></div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00182"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a2720f8ef0a8604ac1e933d14a62ef842">  182</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a2720f8ef0a8604ac1e933d14a62ef842">operator&lt;&lt;</a>( <span class="keywordtype">long</span> <span class="keywordtype">long</span> l )<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        ss_ &lt;&lt; l;</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;      }</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="comment">       * Append an unsigned integer.</span></div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="comment">       * @param i The unsigned integer to append.</span></div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="comment">       * @return This Puts.</span></div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00192"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#ac59a54d9b190a40ec1310b51ada82886">  192</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#ac59a54d9b190a40ec1310b51ada82886">operator&lt;&lt;</a>( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i )<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        ss_ &lt;&lt; i;</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;      }</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="comment">       * Append an unsigned long.</span></div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment">       * @param l The unsigned long to append.</span></div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="comment">       * @return This Puts.</span></div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00202"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a09cc6d4d8a162ff4268b9ce29b7c3e90">  202</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a09cc6d4d8a162ff4268b9ce29b7c3e90">operator&lt;&lt;</a>( <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> l )<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        ss_ &lt;&lt; l;</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;      }</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="comment">       * Append an unsigned long long.</span></div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="comment">       * @param l The unsigned long long to append.</span></div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="comment">       * @return This Puts.</span></div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00212"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a5c147230181d80177473d27aa5b79700">  212</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a5c147230181d80177473d27aa5b79700">operator&lt;&lt;</a>( <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> l )<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        ss_ &lt;&lt; l;</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;      }</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="comment">       * Append a float.</span></div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="comment">       * @param f The float to append.</span></div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;<span class="comment">       * @return This Puts.</span></div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00222"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a9e572b8a34159f69fd93c747487fe266">  222</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a9e572b8a34159f69fd93c747487fe266">operator&lt;&lt;</a>( <span class="keywordtype">float</span> f )<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        ss_ &lt;&lt; f;</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;      }</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="comment">       * Append a double.</span></div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="comment">       * @param d The double to append.</span></div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="comment">       * @return This Puts.</span></div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00232"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a11f675a94dbb0e4f9a13ca2d622f92ff">  232</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a11f675a94dbb0e4f9a13ca2d622f92ff">operator&lt;&lt;</a>( <span class="keywordtype">double</span> d )<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        ss_ &lt;&lt; d;</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;      }</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="comment">       * Append a void*.</span></div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="comment">       * @param p The void* to append.</span></div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<span class="comment">       * @return This Puts.</span></div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00242"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a0858c1061cf5717863a89e49e8e50469">  242</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a0858c1061cf5717863a89e49e8e50469">operator&lt;&lt;</a>( <span class="keywordtype">void</span> *p )<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        ss_ &lt;&lt; p;</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;      }</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="comment">       * Append a std::thread::id.</span></div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="comment">       * @param id The std::thread::id to append.</span></div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="comment">       * @return This Puts.</span></div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00252"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a142b4a3f7bbd581c457497a72c48ac84">  252</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a142b4a3f7bbd581c457497a72c48ac84">operator&lt;&lt;</a>( std::thread::id <span class="keywordtype">id</span> )<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;        ss_ &lt;&lt; id;</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;      }</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="comment">       * Appends std::endl</span></div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="comment">       * @return This Puts.</span></div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00261"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a76a5f3d76736e71bbe3aa345864d90fc">  261</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a76a5f3d76736e71bbe3aa345864d90fc">operator&lt;&lt;</a>( <a class="code" href="structdodo_1_1common_1_1Puts_1_1endl.html">Puts::endl</a> )<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;        ss_ &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;      }</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="comment">       * Applies std::fixed</span></div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;<span class="comment">       * @return This Puts.</span></div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00270"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a566d909e498b31e292908a5d3574aff0">  270</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a566d909e498b31e292908a5d3574aff0">operator&lt;&lt;</a>( <a class="code" href="structdodo_1_1common_1_1Puts_1_1fixed.html">fixed</a> )<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        ss_ &lt;&lt; std::fixed;</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;      }</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;<span class="comment">       * Applies std::scientific</span></div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<span class="comment">       * @return This Puts.</span></div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00279"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#ab2507a3b7af5ca01424bcb9364c4f739">  279</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#ab2507a3b7af5ca01424bcb9364c4f739">operator&lt;&lt;</a>( <a class="code" href="structdodo_1_1common_1_1Puts_1_1scientific.html">scientific</a> )<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        ss_ &lt;&lt; std::scientific;</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;      }</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;<span class="comment">       * Applies std::dec</span></div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;<span class="comment">       * @return This Puts.</span></div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00288"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a71958e1bab9605e256f6d11e56491ca1">  288</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a71958e1bab9605e256f6d11e56491ca1">operator&lt;&lt;</a>( <a class="code" href="structdodo_1_1common_1_1Puts_1_1dec.html">dec</a> )<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;        ss_ &lt;&lt; std::dec;</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;      }</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;<span class="comment">       * Applies std::oct</span></div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;<span class="comment">       * @return This Puts.</span></div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00297"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#af1a84a1f93c4181d19c4db753c7ed362">  297</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#af1a84a1f93c4181d19c4db753c7ed362">operator&lt;&lt;</a>( <a class="code" href="structdodo_1_1common_1_1Puts_1_1oct.html">oct</a> )<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;        ss_ &lt;&lt; std::oct;</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;      }</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;<span class="comment">       * Applies std::hex</span></div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;<span class="comment">       * @return This Puts.</span></div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00306"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a4cc29eb5e1446ae4c960d00385390b7c">  306</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a4cc29eb5e1446ae4c960d00385390b7c">operator&lt;&lt;</a>( <a class="code" href="structdodo_1_1common_1_1Puts_1_1hex.html">hex</a> )<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        ss_ &lt;&lt; std::hex;</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;      }</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;<span class="comment">       * Applies std::setw</span></div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;<span class="comment">       * @param w The width.</span></div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;<span class="comment">       * @return This Piuts.</span></div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00316"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#ab6aaae8fb1924cb6f34de12758c4f9d8">  316</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#ab6aaae8fb1924cb6f34de12758c4f9d8">operator&lt;&lt;</a>( <a class="code" href="structdodo_1_1common_1_1Puts_1_1setw.html">setw</a> w )<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;        ss_ &lt;&lt; std::setw( w.<a class="code" href="structdodo_1_1common_1_1Puts_1_1setw.html#a566767de9b339a19c0d621f8a0b1abbe">w_</a> );</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;      }</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="comment">       * Applies std::setprecision</span></div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;<span class="comment">       * @param p The precision.</span></div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;<span class="comment">       * @return This Piuts.</span></div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00326"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a31dd58c4ae7e46acabd55b7871292131">  326</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a31dd58c4ae7e46acabd55b7871292131">operator&lt;&lt;</a>( <a class="code" href="structdodo_1_1common_1_1Puts_1_1setprecision.html">setprecision</a> p )<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;        ss_ &lt;&lt; std::setprecision( p.<a class="code" href="structdodo_1_1common_1_1Puts_1_1setprecision.html#a1c9f3ed854602dbba1fcfed38bedfd38">p_</a> );</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;      }</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;<span class="comment">       * Implicit Puts conversion to string for the compiler</span></div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;<span class="comment">       * @return The string build in stringstream ss_.</span></div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00335"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a5585d801f16aaf211c918e97cd48d8b0">  335</a></span>&#160;      <span class="keyword">operator</span> string()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> ss_.str(); };</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160; </div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    <span class="keyword">private</span>:<span class="comment"></span></div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;<span class="comment">       * Use a stringstream internally.</span></div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;      <span class="keyword">mutable</span> stringstream ss_;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">  /**</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">   * Helper class to write strings in stream format, eg</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">   * \code</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">   * string s = common::Puts() &lt;&lt; &quot;integer: &quot; &lt;&lt; 3 &lt;&lt; &quot; double: &quot; &lt;&lt; common::Puts:setprecision(2) &lt;&lt; 3.145;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">   * \endcode</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">   * which is very convenient in, for example, throwing exceptions, where the throw_Exception macro already inserts</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">   *  the &quot;Puts() &lt;&lt;&quot; in the expression, so one can write</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">   * \code</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">   * throw Exception( &quot;open failed with errorcode: &quot; &lt;&lt; errorcode );</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">   * \endcode</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html">   46</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a> {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">       * Mimics std::endl.</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="structdodo_1_1common_1_1Puts_1_1endl.html">   52</a></span>&#160;     <span class="keyword">struct </span><a class="code" href="structdodo_1_1common_1_1Puts_1_1endl.html">endl</a> {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;      };</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">       * Put the stream in floating point fixed-format mode.</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">       * @see operator&lt;&lt;( fixed )</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="structdodo_1_1common_1_1Puts_1_1fixed.html">   59</a></span>&#160;      <span class="keyword">struct </span><a class="code" href="structdodo_1_1common_1_1Puts_1_1fixed.html">fixed</a> {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;      };</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">       * Put the stream in floating point scientific-format mode.</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">       * @see operator&lt;&lt;( scientific )</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="structdodo_1_1common_1_1Puts_1_1scientific.html">   66</a></span>&#160;      <span class="keyword">struct </span><a class="code" href="structdodo_1_1common_1_1Puts_1_1scientific.html">scientific</a> {</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;      };</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">       * Put the stream in decimal mode.</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">       * @see operator&lt;&lt;( dec )</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="structdodo_1_1common_1_1Puts_1_1dec.html">   73</a></span>&#160;      <span class="keyword">struct </span><a class="code" href="structdodo_1_1common_1_1Puts_1_1dec.html">dec</a> {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;      };</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">       * Put the stream in hexadecimal mode.</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">       * @see operator&lt;&lt;( hex )</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="structdodo_1_1common_1_1Puts_1_1hex.html">   80</a></span>&#160;      <span class="keyword">struct </span><a class="code" href="structdodo_1_1common_1_1Puts_1_1hex.html">hex</a> {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;      };</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">       * Put the stream in octal mode.</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">       * @see operator&lt;&lt;( oct )</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="structdodo_1_1common_1_1Puts_1_1oct.html">   87</a></span>&#160;      <span class="keyword">struct </span><a class="code" href="structdodo_1_1common_1_1Puts_1_1oct.html">oct</a> {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;      };</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">       * Set the width of things to w characters.</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">       * @see operator&lt;&lt;( setw w )</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="structdodo_1_1common_1_1Puts_1_1setw.html">   95</a></span>&#160;      <span class="keyword">struct </span><a class="code" href="structdodo_1_1common_1_1Puts_1_1setw.html">setw</a> {<span class="comment"></span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">        /**</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">         * Construct with width.</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">         * @param w The width.</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="structdodo_1_1common_1_1Puts_1_1setw.html#a566767de9b339a19c0d621f8a0b1abbe">  100</a></span>&#160;        <a class="code" href="structdodo_1_1common_1_1Puts_1_1setw.html#a1084113fd0b577a15fe1d0f67589899f">setw</a>( <span class="keywordtype">int</span> w ) : <a class="code" href="structdodo_1_1common_1_1Puts_1_1setw.html#a566767de9b339a19c0d621f8a0b1abbe">w_</a>(w) {};</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">        /** The width. */</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="structdodo_1_1common_1_1Puts_1_1setw.html#a566767de9b339a19c0d621f8a0b1abbe">w_</a>;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;      };</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">       * Set the precision for floating point fixed format</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">       * @see opeartor&lt;&lt;( setprecision )</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="structdodo_1_1common_1_1Puts_1_1setprecision.html">  110</a></span>&#160;      <span class="keyword">struct </span><a class="code" href="structdodo_1_1common_1_1Puts_1_1setprecision.html">setprecision</a> {<span class="comment"></span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">        /**</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">         * Construct with precision.</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">         * @param p The precision.</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="structdodo_1_1common_1_1Puts_1_1setprecision.html#aaa09880acecebeb3bcd17732a351633d">  115</a></span>&#160;        <a class="code" href="structdodo_1_1common_1_1Puts_1_1setprecision.html#aaa09880acecebeb3bcd17732a351633d">setprecision</a>( <span class="keywordtype">int</span> p ) : <a class="code" href="structdodo_1_1common_1_1Puts_1_1setprecision.html#a1c9f3ed854602dbba1fcfed38bedfd38">p_</a>(p) {};<span class="comment"></span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">        /** The precision. */</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="structdodo_1_1common_1_1Puts_1_1setprecision.html#a1c9f3ed854602dbba1fcfed38bedfd38">p_</a>;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;      };</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment">       * Constructor inits to fixed format for double with precision 3.</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#aa32a9c774e80bfc2cddf7fe0912b80ff">  123</a></span>&#160;      <a class="code" href="classdodo_1_1common_1_1Puts.html#aa32a9c774e80bfc2cddf7fe0912b80ff">Puts</a>() { <a class="code" href="classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815">ss_</a> &lt;&lt;  std::setprecision(3) &lt;&lt; std::fixed; };</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">       * Append a STL string.</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment">       * @param s The string.</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment">       * @return This Puts.</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a0cb16b58a0236419a50b939f6ece8d1a">  130</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a0cb16b58a0236419a50b939f6ece8d1a">operator&lt;&lt;</a>( <span class="keyword">const</span> std::string&amp; s )<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        <a class="code" href="classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815">ss_</a> &lt;&lt; s;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;      }</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment">       * Append a C string.</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="comment">       * @param s The const char*</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="comment">       * @return This Puts.</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a5374754d859ee373a13811c26fac0299">  140</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a5374754d859ee373a13811c26fac0299">operator&lt;&lt;</a>( <span class="keyword">const</span> <span class="keywordtype">char</span>* s )<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <a class="code" href="classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815">ss_</a> &lt;&lt; s;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;      }</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment">       * Append a char.</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="comment">       * @param c The char</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment">       * @return This Puts.</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a28c13bbe93a52360bea41e8fae923507">  150</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a28c13bbe93a52360bea41e8fae923507">operator&lt;&lt;</a>( <span class="keywordtype">char</span> c )<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <a class="code" href="classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815">ss_</a> &lt;&lt; c;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;      }</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="comment">       * Append an integer.</span></div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="comment">       * @param i The int</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="comment">       * @return This Puts.</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a58f6473f0d18bfae2cac7cde9fc55790">  160</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a58f6473f0d18bfae2cac7cde9fc55790">operator&lt;&lt;</a>( <span class="keywordtype">int</span> i )<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        <a class="code" href="classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815">ss_</a> &lt;&lt; i;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;      }</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="comment">       * Append a long.</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="comment">       * @param l The long</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="comment">       * @return This Puts.</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#ac4b31ba08288a2d5bf9e0e9ee80e7526">  170</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#ac4b31ba08288a2d5bf9e0e9ee80e7526">operator&lt;&lt;</a>( <span class="keywordtype">long</span> l )<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        <a class="code" href="classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815">ss_</a> &lt;&lt; l;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;      }</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="comment">       * Append a long long.</span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment">       * @param l The long long</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="comment">       * @return This Puts.</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a2720f8ef0a8604ac1e933d14a62ef842">  180</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a2720f8ef0a8604ac1e933d14a62ef842">operator&lt;&lt;</a>( <span class="keywordtype">long</span> <span class="keywordtype">long</span> l )<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        <a class="code" href="classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815">ss_</a> &lt;&lt; l;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;      }</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="comment">       * Append an unsigned integer.</span></div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="comment">       * @param i The unsigned integer to append.</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="comment">       * @return This Puts.</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00190"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#ac59a54d9b190a40ec1310b51ada82886">  190</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#ac59a54d9b190a40ec1310b51ada82886">operator&lt;&lt;</a>( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i )<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        <a class="code" href="classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815">ss_</a> &lt;&lt; i;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;      }</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment">       * Append an unsigned long.</span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment">       * @param l The unsigned long to append.</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="comment">       * @return This Puts.</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a09cc6d4d8a162ff4268b9ce29b7c3e90">  200</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a09cc6d4d8a162ff4268b9ce29b7c3e90">operator&lt;&lt;</a>( <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> l )<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        <a class="code" href="classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815">ss_</a> &lt;&lt; l;</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;      }</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="comment">       * Append an unsigned long long.</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="comment">       * @param l The unsigned long long to append.</span></div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="comment">       * @return This Puts.</span></div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00210"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a5c147230181d80177473d27aa5b79700">  210</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a5c147230181d80177473d27aa5b79700">operator&lt;&lt;</a>( <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> l )<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        <a class="code" href="classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815">ss_</a> &lt;&lt; l;</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;      }</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="comment">       * Append a float.</span></div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<span class="comment">       * @param f The float to append.</span></div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="comment">       * @return This Puts.</span></div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00220"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a9e572b8a34159f69fd93c747487fe266">  220</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a9e572b8a34159f69fd93c747487fe266">operator&lt;&lt;</a>( <span class="keywordtype">float</span> f )<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        <a class="code" href="classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815">ss_</a> &lt;&lt; f;</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;      }</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;<span class="comment">       * Append a double.</span></div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;<span class="comment">       * @param d The double to append.</span></div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="comment">       * @return This Puts.</span></div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00230"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a11f675a94dbb0e4f9a13ca2d622f92ff">  230</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a11f675a94dbb0e4f9a13ca2d622f92ff">operator&lt;&lt;</a>( <span class="keywordtype">double</span> d )<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;        <a class="code" href="classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815">ss_</a> &lt;&lt; d;</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;      }</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="comment">       * Append a void*.</span></div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="comment">       * @param p The void* to append.</span></div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="comment">       * @return This Puts.</span></div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00240"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a0858c1061cf5717863a89e49e8e50469">  240</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a0858c1061cf5717863a89e49e8e50469">operator&lt;&lt;</a>( <span class="keywordtype">void</span> *p )<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        <a class="code" href="classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815">ss_</a> &lt;&lt; p;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;      }</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;<span class="comment">       * Append a std::thread::id.</span></div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<span class="comment">       * @param id The std::thread::id to append.</span></div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="comment">       * @return This Puts.</span></div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00250"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a142b4a3f7bbd581c457497a72c48ac84">  250</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a142b4a3f7bbd581c457497a72c48ac84">operator&lt;&lt;</a>( std::thread::id <span class="keywordtype">id</span> )<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        <a class="code" href="classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815">ss_</a> &lt;&lt; id;</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;      }</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;<span class="comment">       * Appends std::endl</span></div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="comment">       * @return This Puts.</span></div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00259"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a76a5f3d76736e71bbe3aa345864d90fc">  259</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a76a5f3d76736e71bbe3aa345864d90fc">operator&lt;&lt;</a>( <a class="code" href="structdodo_1_1common_1_1Puts_1_1endl.html">Puts::endl</a> )<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;        <a class="code" href="classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815">ss_</a> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;      }</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="comment">       * Applies std::fixed</span></div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;<span class="comment">       * @return This Puts.</span></div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00268"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a566d909e498b31e292908a5d3574aff0">  268</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a566d909e498b31e292908a5d3574aff0">operator&lt;&lt;</a>( <a class="code" href="structdodo_1_1common_1_1Puts_1_1fixed.html">fixed</a> )<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        <a class="code" href="classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815">ss_</a> &lt;&lt; std::fixed;</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;      }</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;<span class="comment">       * Applies std::scientific</span></div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;<span class="comment">       * @return This Puts.</span></div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00277"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#ab2507a3b7af5ca01424bcb9364c4f739">  277</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#ab2507a3b7af5ca01424bcb9364c4f739">operator&lt;&lt;</a>( <a class="code" href="structdodo_1_1common_1_1Puts_1_1scientific.html">scientific</a> )<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;        <a class="code" href="classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815">ss_</a> &lt;&lt; std::scientific;</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;      }</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;<span class="comment">       * Applies std::dec</span></div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;<span class="comment">       * @return This Puts.</span></div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00286"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a71958e1bab9605e256f6d11e56491ca1">  286</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a71958e1bab9605e256f6d11e56491ca1">operator&lt;&lt;</a>( <a class="code" href="structdodo_1_1common_1_1Puts_1_1dec.html">dec</a> )<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;        <a class="code" href="classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815">ss_</a> &lt;&lt; std::dec;</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;      }</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;<span class="comment">       * Applies std::oct</span></div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;<span class="comment">       * @return This Puts.</span></div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00295"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#af1a84a1f93c4181d19c4db753c7ed362">  295</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#af1a84a1f93c4181d19c4db753c7ed362">operator&lt;&lt;</a>( <a class="code" href="structdodo_1_1common_1_1Puts_1_1oct.html">oct</a> )<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;        <a class="code" href="classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815">ss_</a> &lt;&lt; std::oct;</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;      }</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;<span class="comment">       * Applies std::hex</span></div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;<span class="comment">       * @return This Puts.</span></div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00304"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a4cc29eb5e1446ae4c960d00385390b7c">  304</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a4cc29eb5e1446ae4c960d00385390b7c">operator&lt;&lt;</a>( <a class="code" href="structdodo_1_1common_1_1Puts_1_1hex.html">hex</a> )<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        <a class="code" href="classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815">ss_</a> &lt;&lt; std::hex;</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;      }</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;<span class="comment">       * Applies std::setw</span></div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;<span class="comment">       * @param w The width.</span></div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;<span class="comment">       * @return This Piuts.</span></div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00314"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#ab6aaae8fb1924cb6f34de12758c4f9d8">  314</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#ab6aaae8fb1924cb6f34de12758c4f9d8">operator&lt;&lt;</a>( <a class="code" href="structdodo_1_1common_1_1Puts_1_1setw.html">setw</a> w )<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;        <a class="code" href="classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815">ss_</a> &lt;&lt; std::setw( w.<a class="code" href="structdodo_1_1common_1_1Puts_1_1setw.html#a566767de9b339a19c0d621f8a0b1abbe">w_</a> );</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;      }</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;<span class="comment">       * Applies std::setprecision</span></div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;<span class="comment">       * @param p The precision.</span></div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="comment">       * @return This Piuts.</span></div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00324"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#a31dd58c4ae7e46acabd55b7871292131">  324</a></span>&#160;      <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Puts.html">Puts</a>&amp; <a class="code" href="classdodo_1_1common_1_1Puts.html#a31dd58c4ae7e46acabd55b7871292131">operator&lt;&lt;</a>( <a class="code" href="structdodo_1_1common_1_1Puts_1_1setprecision.html">setprecision</a> p )<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;        <a class="code" href="classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815">ss_</a> &lt;&lt; std::setprecision( p.<a class="code" href="structdodo_1_1common_1_1Puts_1_1setprecision.html#a1c9f3ed854602dbba1fcfed38bedfd38">p_</a> );</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;      }</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;<span class="comment">       * Implicit Puts conversion to string for the compiler</span></div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;<span class="comment">       * @return The string build in stringstream ss_.</span></div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00333"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815">  333</a></span>&#160;      <span class="keyword">operator</span> std::string()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815">ss_</a>.str(); };</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160; </div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;    <span class="keyword">private</span>:<span class="comment"></span></div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;<span class="comment">       * Use a stringstream internally.</span></div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;      <span class="keyword">mutable</span> std::stringstream <a class="code" href="classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815">ss_</a>;</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160; </div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;  };</div>
 <div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160; </div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;  };</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;}</div>
 <div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160; </div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;}</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160; </div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a9e572b8a34159f69fd93c747487fe266"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a9e572b8a34159f69fd93c747487fe266">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(float f) const</div><div class="ttdoc">Append a float.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00222">puts.hpp:222</a></div></div>
-<div class="ttc" id="astructdodo_1_1common_1_1Puts_1_1oct_html"><div class="ttname"><a href="structdodo_1_1common_1_1Puts_1_1oct.html">dodo::common::Puts::oct</a></div><div class="ttdoc">Put the stream in octal mode.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00089">puts.hpp:89</a></div></div>
-<div class="ttc" id="astructdodo_1_1common_1_1Puts_1_1setw_html_a566767de9b339a19c0d621f8a0b1abbe"><div class="ttname"><a href="structdodo_1_1common_1_1Puts_1_1setw.html#a566767de9b339a19c0d621f8a0b1abbe">dodo::common::Puts::setw::w_</a></div><div class="ttdeci">int w_</div><div class="ttdoc">The width.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00102">puts.hpp:102</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_ac59a54d9b190a40ec1310b51ada82886"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#ac59a54d9b190a40ec1310b51ada82886">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(unsigned int i) const</div><div class="ttdoc">Append an unsigned integer.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00192">puts.hpp:192</a></div></div>
-<div class="ttc" id="astructdodo_1_1common_1_1Puts_1_1setprecision_html"><div class="ttname"><a href="structdodo_1_1common_1_1Puts_1_1setprecision.html">dodo::common::Puts::setprecision</a></div><div class="ttdoc">Set the precision for floating point fixed format.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00112">puts.hpp:112</a></div></div>
-<div class="ttc" id="astructdodo_1_1common_1_1Puts_1_1hex_html"><div class="ttname"><a href="structdodo_1_1common_1_1Puts_1_1hex.html">dodo::common::Puts::hex</a></div><div class="ttdoc">Put the stream in hexadecimal mode.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00082">puts.hpp:82</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a0858c1061cf5717863a89e49e8e50469"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a0858c1061cf5717863a89e49e8e50469">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(void *p) const</div><div class="ttdoc">Append a void*.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00242">puts.hpp:242</a></div></div>
-<div class="ttc" id="astructdodo_1_1common_1_1Puts_1_1setprecision_html_a1c9f3ed854602dbba1fcfed38bedfd38"><div class="ttname"><a href="structdodo_1_1common_1_1Puts_1_1setprecision.html#a1c9f3ed854602dbba1fcfed38bedfd38">dodo::common::Puts::setprecision::p_</a></div><div class="ttdeci">int p_</div><div class="ttdoc">The precision.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00117">puts.hpp:117</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_af1a84a1f93c4181d19c4db753c7ed362"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#af1a84a1f93c4181d19c4db753c7ed362">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(oct) const</div><div class="ttdoc">Applies std::oct.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00297">puts.hpp:297</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_ab2507a3b7af5ca01424bcb9364c4f739"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#ab2507a3b7af5ca01424bcb9364c4f739">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(scientific) const</div><div class="ttdoc">Applies std::scientific.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00279">puts.hpp:279</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a4cc29eb5e1446ae4c960d00385390b7c"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a4cc29eb5e1446ae4c960d00385390b7c">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(hex) const</div><div class="ttdoc">Applies std::hex.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00306">puts.hpp:306</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a566d909e498b31e292908a5d3574aff0"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a566d909e498b31e292908a5d3574aff0">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(fixed) const</div><div class="ttdoc">Applies std::fixed.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00270">puts.hpp:270</a></div></div>
-<div class="ttc" id="astructdodo_1_1common_1_1Puts_1_1setprecision_html_aaa09880acecebeb3bcd17732a351633d"><div class="ttname"><a href="structdodo_1_1common_1_1Puts_1_1setprecision.html#aaa09880acecebeb3bcd17732a351633d">dodo::common::Puts::setprecision::setprecision</a></div><div class="ttdeci">setprecision(int p)</div><div class="ttdoc">Construct with precision.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00117">puts.hpp:117</a></div></div>
-<div class="ttc" id="astructdodo_1_1common_1_1Puts_1_1fixed_html"><div class="ttname"><a href="structdodo_1_1common_1_1Puts_1_1fixed.html">dodo::common::Puts::fixed</a></div><div class="ttdoc">Put the stream in floating point fixed-format mode.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00061">puts.hpp:61</a></div></div>
-<div class="ttc" id="astructdodo_1_1common_1_1Puts_1_1scientific_html"><div class="ttname"><a href="structdodo_1_1common_1_1Puts_1_1scientific.html">dodo::common::Puts::scientific</a></div><div class="ttdoc">Put the stream in floating point scientific-format mode.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00068">puts.hpp:68</a></div></div>
-<div class="ttc" id="astructdodo_1_1common_1_1Puts_1_1endl_html"><div class="ttname"><a href="structdodo_1_1common_1_1Puts_1_1endl.html">dodo::common::Puts::endl</a></div><div class="ttdoc">Mimics std::endl.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00054">puts.hpp:54</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_ab6aaae8fb1924cb6f34de12758c4f9d8"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#ab6aaae8fb1924cb6f34de12758c4f9d8">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(setw w) const</div><div class="ttdoc">Applies std::setw.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00316">puts.hpp:316</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a31dd58c4ae7e46acabd55b7871292131"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a31dd58c4ae7e46acabd55b7871292131">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(setprecision p) const</div><div class="ttdoc">Applies std::setprecision.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00326">puts.hpp:326</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a00cfb816a88b4d62a13e6a5a3af2b706"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a00cfb816a88b4d62a13e6a5a3af2b706">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(const string &amp;s) const</div><div class="ttdoc">Append a STL string.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00132">puts.hpp:132</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a28c13bbe93a52360bea41e8fae923507"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a28c13bbe93a52360bea41e8fae923507">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(char c) const</div><div class="ttdoc">Append a char.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00152">puts.hpp:152</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a76a5f3d76736e71bbe3aa345864d90fc"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a76a5f3d76736e71bbe3aa345864d90fc">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(Puts::endl) const</div><div class="ttdoc">Appends std::endl.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00261">puts.hpp:261</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a9e572b8a34159f69fd93c747487fe266"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a9e572b8a34159f69fd93c747487fe266">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(float f) const</div><div class="ttdoc">Append a float.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00220">puts.hpp:220</a></div></div>
+<div class="ttc" id="astructdodo_1_1common_1_1Puts_1_1oct_html"><div class="ttname"><a href="structdodo_1_1common_1_1Puts_1_1oct.html">dodo::common::Puts::oct</a></div><div class="ttdoc">Put the stream in octal mode.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00087">puts.hpp:87</a></div></div>
+<div class="ttc" id="astructdodo_1_1common_1_1Puts_1_1setw_html_a566767de9b339a19c0d621f8a0b1abbe"><div class="ttname"><a href="structdodo_1_1common_1_1Puts_1_1setw.html#a566767de9b339a19c0d621f8a0b1abbe">dodo::common::Puts::setw::w_</a></div><div class="ttdeci">int w_</div><div class="ttdoc">The width.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00100">puts.hpp:100</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_ac59a54d9b190a40ec1310b51ada82886"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#ac59a54d9b190a40ec1310b51ada82886">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(unsigned int i) const</div><div class="ttdoc">Append an unsigned integer.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00190">puts.hpp:190</a></div></div>
+<div class="ttc" id="astructdodo_1_1common_1_1Puts_1_1setprecision_html"><div class="ttname"><a href="structdodo_1_1common_1_1Puts_1_1setprecision.html">dodo::common::Puts::setprecision</a></div><div class="ttdoc">Set the precision for floating point fixed format.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00110">puts.hpp:110</a></div></div>
+<div class="ttc" id="astructdodo_1_1common_1_1Puts_1_1hex_html"><div class="ttname"><a href="structdodo_1_1common_1_1Puts_1_1hex.html">dodo::common::Puts::hex</a></div><div class="ttdoc">Put the stream in hexadecimal mode.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00080">puts.hpp:80</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a0858c1061cf5717863a89e49e8e50469"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a0858c1061cf5717863a89e49e8e50469">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(void *p) const</div><div class="ttdoc">Append a void*.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00240">puts.hpp:240</a></div></div>
+<div class="ttc" id="astructdodo_1_1common_1_1Puts_1_1setprecision_html_a1c9f3ed854602dbba1fcfed38bedfd38"><div class="ttname"><a href="structdodo_1_1common_1_1Puts_1_1setprecision.html#a1c9f3ed854602dbba1fcfed38bedfd38">dodo::common::Puts::setprecision::p_</a></div><div class="ttdeci">int p_</div><div class="ttdoc">The precision.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00115">puts.hpp:115</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_af1a84a1f93c4181d19c4db753c7ed362"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#af1a84a1f93c4181d19c4db753c7ed362">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(oct) const</div><div class="ttdoc">Applies std::oct.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00295">puts.hpp:295</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_ab2507a3b7af5ca01424bcb9364c4f739"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#ab2507a3b7af5ca01424bcb9364c4f739">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(scientific) const</div><div class="ttdoc">Applies std::scientific.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00277">puts.hpp:277</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a4cc29eb5e1446ae4c960d00385390b7c"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a4cc29eb5e1446ae4c960d00385390b7c">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(hex) const</div><div class="ttdoc">Applies std::hex.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00304">puts.hpp:304</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a566d909e498b31e292908a5d3574aff0"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a566d909e498b31e292908a5d3574aff0">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(fixed) const</div><div class="ttdoc">Applies std::fixed.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00268">puts.hpp:268</a></div></div>
+<div class="ttc" id="astructdodo_1_1common_1_1Puts_1_1setw_html_a1084113fd0b577a15fe1d0f67589899f"><div class="ttname"><a href="structdodo_1_1common_1_1Puts_1_1setw.html#a1084113fd0b577a15fe1d0f67589899f">dodo::common::Puts::setw::setw</a></div><div class="ttdeci">setw(int w)</div><div class="ttdoc">Construct with width.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00100">puts.hpp:100</a></div></div>
+<div class="ttc" id="astructdodo_1_1common_1_1Puts_1_1setprecision_html_aaa09880acecebeb3bcd17732a351633d"><div class="ttname"><a href="structdodo_1_1common_1_1Puts_1_1setprecision.html#aaa09880acecebeb3bcd17732a351633d">dodo::common::Puts::setprecision::setprecision</a></div><div class="ttdeci">setprecision(int p)</div><div class="ttdoc">Construct with precision.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00115">puts.hpp:115</a></div></div>
+<div class="ttc" id="astructdodo_1_1common_1_1Puts_1_1fixed_html"><div class="ttname"><a href="structdodo_1_1common_1_1Puts_1_1fixed.html">dodo::common::Puts::fixed</a></div><div class="ttdoc">Put the stream in floating point fixed-format mode.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00059">puts.hpp:59</a></div></div>
+<div class="ttc" id="astructdodo_1_1common_1_1Puts_1_1scientific_html"><div class="ttname"><a href="structdodo_1_1common_1_1Puts_1_1scientific.html">dodo::common::Puts::scientific</a></div><div class="ttdoc">Put the stream in floating point scientific-format mode.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00066">puts.hpp:66</a></div></div>
+<div class="ttc" id="astructdodo_1_1common_1_1Puts_1_1endl_html"><div class="ttname"><a href="structdodo_1_1common_1_1Puts_1_1endl.html">dodo::common::Puts::endl</a></div><div class="ttdoc">Mimics std::endl.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00052">puts.hpp:52</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_ab6aaae8fb1924cb6f34de12758c4f9d8"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#ab6aaae8fb1924cb6f34de12758c4f9d8">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(setw w) const</div><div class="ttdoc">Applies std::setw.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00314">puts.hpp:314</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a31dd58c4ae7e46acabd55b7871292131"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a31dd58c4ae7e46acabd55b7871292131">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(setprecision p) const</div><div class="ttdoc">Applies std::setprecision.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00324">puts.hpp:324</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a28c13bbe93a52360bea41e8fae923507"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a28c13bbe93a52360bea41e8fae923507">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(char c) const</div><div class="ttdoc">Append a char.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00150">puts.hpp:150</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a0cb16b58a0236419a50b939f6ece8d1a"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a0cb16b58a0236419a50b939f6ece8d1a">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(const std::string &amp;s) const</div><div class="ttdoc">Append a STL string.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00130">puts.hpp:130</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a76a5f3d76736e71bbe3aa345864d90fc"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a76a5f3d76736e71bbe3aa345864d90fc">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(Puts::endl) const</div><div class="ttdoc">Appends std::endl.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00259">puts.hpp:259</a></div></div>
 <div class="ttc" id="anamespacedodo_1_1common_html"><div class="ttname"><a href="namespacedodo_1_1common.html">dodo::common</a></div><div class="ttdoc">Common and utility interfaces.</div><div class="ttdef"><b>Definition:</b> <a href="application_8hpp_source.html#l00029">application.hpp:29</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_aa32a9c774e80bfc2cddf7fe0912b80ff"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#aa32a9c774e80bfc2cddf7fe0912b80ff">dodo::common::Puts::Puts</a></div><div class="ttdeci">Puts()</div><div class="ttdoc">Constructor inits to fixed format for double with precision 3.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00125">puts.hpp:125</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a5374754d859ee373a13811c26fac0299"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a5374754d859ee373a13811c26fac0299">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(const char *s) const</div><div class="ttdoc">Append a C string.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00142">puts.hpp:142</a></div></div>
-<div class="ttc" id="astructdodo_1_1common_1_1Puts_1_1setw_html"><div class="ttname"><a href="structdodo_1_1common_1_1Puts_1_1setw.html">dodo::common::Puts::setw</a></div><div class="ttdoc">Set the width of things to w characters.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00097">puts.hpp:97</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a5c147230181d80177473d27aa5b79700"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a5c147230181d80177473d27aa5b79700">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(unsigned long long l) const</div><div class="ttdoc">Append an unsigned long long.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00212">puts.hpp:212</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a09cc6d4d8a162ff4268b9ce29b7c3e90"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a09cc6d4d8a162ff4268b9ce29b7c3e90">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(unsigned long l) const</div><div class="ttdoc">Append an unsigned long.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00202">puts.hpp:202</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a71958e1bab9605e256f6d11e56491ca1"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a71958e1bab9605e256f6d11e56491ca1">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(dec) const</div><div class="ttdoc">Applies std::dec.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00288">puts.hpp:288</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html">dodo::common::Puts</a></div><div class="ttdoc">Helper class to write strings in stream format, eg.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00048">puts.hpp:48</a></div></div>
-<div class="ttc" id="astructdodo_1_1common_1_1Puts_1_1dec_html"><div class="ttname"><a href="structdodo_1_1common_1_1Puts_1_1dec.html">dodo::common::Puts::dec</a></div><div class="ttdoc">Put the stream in decimal mode.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00075">puts.hpp:75</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_ac4b31ba08288a2d5bf9e0e9ee80e7526"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#ac4b31ba08288a2d5bf9e0e9ee80e7526">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(long l) const</div><div class="ttdoc">Append a long.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00172">puts.hpp:172</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a58f6473f0d18bfae2cac7cde9fc55790"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a58f6473f0d18bfae2cac7cde9fc55790">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(int i) const</div><div class="ttdoc">Append an integer.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00162">puts.hpp:162</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a142b4a3f7bbd581c457497a72c48ac84"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a142b4a3f7bbd581c457497a72c48ac84">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(std::thread::id id) const</div><div class="ttdoc">Append a std::thread::id.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00252">puts.hpp:252</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a11f675a94dbb0e4f9a13ca2d622f92ff"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a11f675a94dbb0e4f9a13ca2d622f92ff">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(double d) const</div><div class="ttdoc">Append a double.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00232">puts.hpp:232</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a2720f8ef0a8604ac1e933d14a62ef842"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a2720f8ef0a8604ac1e933d14a62ef842">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(long long l) const</div><div class="ttdoc">Append a long long.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00182">puts.hpp:182</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_aa32a9c774e80bfc2cddf7fe0912b80ff"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#aa32a9c774e80bfc2cddf7fe0912b80ff">dodo::common::Puts::Puts</a></div><div class="ttdeci">Puts()</div><div class="ttdoc">Constructor inits to fixed format for double with precision 3.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00123">puts.hpp:123</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a5374754d859ee373a13811c26fac0299"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a5374754d859ee373a13811c26fac0299">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(const char *s) const</div><div class="ttdoc">Append a C string.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00140">puts.hpp:140</a></div></div>
+<div class="ttc" id="astructdodo_1_1common_1_1Puts_1_1setw_html"><div class="ttname"><a href="structdodo_1_1common_1_1Puts_1_1setw.html">dodo::common::Puts::setw</a></div><div class="ttdoc">Set the width of things to w characters.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00095">puts.hpp:95</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a5c147230181d80177473d27aa5b79700"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a5c147230181d80177473d27aa5b79700">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(unsigned long long l) const</div><div class="ttdoc">Append an unsigned long long.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00210">puts.hpp:210</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_ade3bea31887285cc193d28a3f94a8815"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815">dodo::common::Puts::ss_</a></div><div class="ttdeci">std::stringstream ss_</div><div class="ttdoc">Use a stringstream internally.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00333">puts.hpp:333</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a09cc6d4d8a162ff4268b9ce29b7c3e90"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a09cc6d4d8a162ff4268b9ce29b7c3e90">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(unsigned long l) const</div><div class="ttdoc">Append an unsigned long.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00200">puts.hpp:200</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a71958e1bab9605e256f6d11e56491ca1"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a71958e1bab9605e256f6d11e56491ca1">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(dec) const</div><div class="ttdoc">Applies std::dec.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00286">puts.hpp:286</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html">dodo::common::Puts</a></div><div class="ttdoc">Helper class to write strings in stream format, eg.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00046">puts.hpp:46</a></div></div>
+<div class="ttc" id="astructdodo_1_1common_1_1Puts_1_1dec_html"><div class="ttname"><a href="structdodo_1_1common_1_1Puts_1_1dec.html">dodo::common::Puts::dec</a></div><div class="ttdoc">Put the stream in decimal mode.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00073">puts.hpp:73</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_ac4b31ba08288a2d5bf9e0e9ee80e7526"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#ac4b31ba08288a2d5bf9e0e9ee80e7526">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(long l) const</div><div class="ttdoc">Append a long.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00170">puts.hpp:170</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a58f6473f0d18bfae2cac7cde9fc55790"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a58f6473f0d18bfae2cac7cde9fc55790">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(int i) const</div><div class="ttdoc">Append an integer.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00160">puts.hpp:160</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a142b4a3f7bbd581c457497a72c48ac84"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a142b4a3f7bbd581c457497a72c48ac84">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(std::thread::id id) const</div><div class="ttdoc">Append a std::thread::id.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00250">puts.hpp:250</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a11f675a94dbb0e4f9a13ca2d622f92ff"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a11f675a94dbb0e4f9a13ca2d622f92ff">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(double d) const</div><div class="ttdoc">Append a double.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00230">puts.hpp:230</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1Puts_html_a2720f8ef0a8604ac1e933d14a62ef842"><div class="ttname"><a href="classdodo_1_1common_1_1Puts.html#a2720f8ef0a8604ac1e933d14a62ef842">dodo::common::Puts::operator&lt;&lt;</a></div><div class="ttdeci">const Puts &amp; operator&lt;&lt;(long long l) const</div><div class="ttdoc">Append a long long.</div><div class="ttdef"><b>Definition:</b> <a href="puts_8hpp_source.html#l00180">puts.hpp:180</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

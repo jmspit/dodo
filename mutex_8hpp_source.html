@@ -116,114 +116,114 @@ $(document).ready(function(){initNavTree('mutex_8hpp_source.html',''); initResiz
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
 <div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="namespacedodo_1_1threads.html">   29</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacedodo_1_1threads.html">dodo::threads</a> {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;  <span class="keyword">using namespace </span>std;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">   * A Mutex to synchronize access to resources between threads.</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">  /**</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">   * A Mutex to synchronize access to resources between threads.</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">   * Use a Mutexer to control a Mutex by mere scope.</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">   * Use a Mutexer to control a Mutex by mere scope.</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">   * @see Mutexer</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">   * @see std::mutex</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classdodo_1_1threads_1_1Mutex.html">   41</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classdodo_1_1threads_1_1Mutex.html">Mutex</a> {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">       * Construct a Mutex.</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classdodo_1_1threads_1_1Mutex.html#a086174bb18d6f84db1483d07fedbec20">   47</a></span>&#160;      <a class="code" href="classdodo_1_1threads_1_1Mutex.html#a086174bb18d6f84db1483d07fedbec20">Mutex</a>() : mutex_() {};</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">       * Destruct a Mutex.</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classdodo_1_1threads_1_1Mutex.html#ac69c82759eba5cc48218cc2fe8f8a88a">   52</a></span>&#160;      <span class="keyword">virtual</span> <a class="code" href="classdodo_1_1threads_1_1Mutex.html#ac69c82759eba5cc48218cc2fe8f8a88a">~Mutex</a>() {};</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">       * Waits for a Mutex and locks it (atomically). You must not call lock if the lock is already</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">       * held by the calling thread, that is a deadlock.</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">       * @see std::mutex::lock()</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classdodo_1_1threads_1_1Mutex.html#a0b4a13aa7f033803936f6c11a18a4d75">   59</a></span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1threads_1_1Mutex.html#a0b4a13aa7f033803936f6c11a18a4d75">lock</a>() { mutex_.lock(); };</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">       * If the Mutex is currently not locked, lock it and return true. If the Mutex is locked, return false.</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">       * You must not call lock if the lock is alread held by the calling thread, that is a deadlock.</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">       * Mutex from the same thread twice - that is a deadlock.</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">       * @return true if the Mutex was locked. false if the Mutex was already locked.</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">       * @see std::mutex::try_lock()</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classdodo_1_1threads_1_1Mutex.html#ab4298b371ed0d588ceebc3fb00287ed4">   68</a></span>&#160;      <span class="keywordtype">bool</span> <a class="code" href="classdodo_1_1threads_1_1Mutex.html#ab4298b371ed0d588ceebc3fb00287ed4">tryLock</a>() { <span class="keywordflow">return</span> mutex_.try_lock(); };</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">       * Unlocks the Mutex. Calling unLOck whilst the calling thread is not holding the lock causes undefined</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">       * behavior in the Mutex.</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">       * @see std::mutex::unlock()</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="classdodo_1_1threads_1_1Mutex.html#ab2e479d6f0271aaab08987a5316defe2">   75</a></span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1threads_1_1Mutex.html#ab2e479d6f0271aaab08987a5316defe2">unLock</a>() { mutex_.unlock(); };</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">private</span>:<span class="comment"></span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">       * the internal std::mutex</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;      std::mutex mutex_;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  };</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">   * Waits for and locks the Mutex on construction, unlocks the Mutex when this Mutexer is destructed.</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">   * In the below code, it would be safe to call addInt from multiple threads. The Mutexer object calls</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">   * thelist_mutex.lock() when constructed, and thelist_mutex.unLock() when it goes out of</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">   * scope( the function returns or an exception is thrown).</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">   * @code</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">   * // Mutex to protect thelist</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">   * threads::Mutex thelist_mutex;</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">   * std::list&lt;int&gt; thelist;</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">   * function addInt( int i ) {</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">   *   Mutexer lock( thelist_mutex );</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">   *   thelist.push_back( i );</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">   * }</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">   * @endcode</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">   * @see Mutex</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="classdodo_1_1threads_1_1Mutexer.html">  102</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classdodo_1_1threads_1_1Mutexer.html">Mutexer</a> {</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">       * Constructor.</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">       * @param mutex The mutex to guard.</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="classdodo_1_1threads_1_1Mutexer.html#a9071d9d9165e0801c1f47265fe7b6110">  108</a></span>&#160;      <a class="code" href="classdodo_1_1threads_1_1Mutexer.html#a9071d9d9165e0801c1f47265fe7b6110">Mutexer</a>( <a class="code" href="classdodo_1_1threads_1_1Mutex.html">Mutex</a>&amp; mutex ) : mutex_(mutex) { mutex_.lock(); };</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">       * Destructor.</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">       * Unlocks the guarded mutex.</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="classdodo_1_1threads_1_1Mutexer.html#afbef565176acd857f930c3c1c32c9e71">  114</a></span>&#160;      <a class="code" href="classdodo_1_1threads_1_1Mutexer.html#afbef565176acd857f930c3c1c32c9e71">~Mutexer</a>() { mutex_.unLock(); };</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment">       * Reference to the guarded mutex.</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;      <a class="code" href="classdodo_1_1threads_1_1Mutex.html">Mutex</a> &amp;mutex_;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;  };</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">   * @see Mutexer</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">   * @see std::mutex</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classdodo_1_1threads_1_1Mutex.html">   39</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classdodo_1_1threads_1_1Mutex.html">Mutex</a> {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">       * Construct a Mutex.</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classdodo_1_1threads_1_1Mutex.html#a086174bb18d6f84db1483d07fedbec20">   45</a></span>&#160;      <a class="code" href="classdodo_1_1threads_1_1Mutex.html#a086174bb18d6f84db1483d07fedbec20">Mutex</a>() : <a class="code" href="classdodo_1_1threads_1_1Mutex.html#a379b25211c9ddc37ec532d1907c71903">mutex_</a>() {};</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">       * Destruct a Mutex.</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classdodo_1_1threads_1_1Mutex.html#ac69c82759eba5cc48218cc2fe8f8a88a">   50</a></span>&#160;      <span class="keyword">virtual</span> <a class="code" href="classdodo_1_1threads_1_1Mutex.html#ac69c82759eba5cc48218cc2fe8f8a88a">~Mutex</a>() {};</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">       * Waits for a Mutex and locks it (atomically). You must not call lock if the lock is already</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">       * held by the calling thread, that is a deadlock.</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">       * @see std::mutex::lock()</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classdodo_1_1threads_1_1Mutex.html#a0b4a13aa7f033803936f6c11a18a4d75">   57</a></span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1threads_1_1Mutex.html#a0b4a13aa7f033803936f6c11a18a4d75">lock</a>() { <a class="code" href="classdodo_1_1threads_1_1Mutex.html#a379b25211c9ddc37ec532d1907c71903">mutex_</a>.lock(); };</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">       * If the Mutex is currently not locked, lock it and return true. If the Mutex is locked, return false.</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">       * You must not call lock if the lock is alread held by the calling thread, that is a deadlock.</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">       * Mutex from the same thread twice - that is a deadlock.</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">       * @return true if the Mutex was locked. false if the Mutex was already locked.</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">       * @see std::mutex::try_lock()</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="classdodo_1_1threads_1_1Mutex.html#ab4298b371ed0d588ceebc3fb00287ed4">   66</a></span>&#160;      <span class="keywordtype">bool</span> <a class="code" href="classdodo_1_1threads_1_1Mutex.html#ab4298b371ed0d588ceebc3fb00287ed4">tryLock</a>() { <span class="keywordflow">return</span> <a class="code" href="classdodo_1_1threads_1_1Mutex.html#a379b25211c9ddc37ec532d1907c71903">mutex_</a>.try_lock(); };</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">       * Unlocks the Mutex. Calling unLOck whilst the calling thread is not holding the lock causes undefined</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">       * behavior in the Mutex.</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">       * @see std::mutex::unlock()</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="classdodo_1_1threads_1_1Mutex.html#ab2e479d6f0271aaab08987a5316defe2">   73</a></span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1threads_1_1Mutex.html#ab2e479d6f0271aaab08987a5316defe2">unLock</a>() { <a class="code" href="classdodo_1_1threads_1_1Mutex.html#a379b25211c9ddc37ec532d1907c71903">mutex_</a>.unlock(); };</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">private</span>:<span class="comment"></span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">       * the internal std::mutex</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;      std::mutex <a class="code" href="classdodo_1_1threads_1_1Mutex.html#a379b25211c9ddc37ec532d1907c71903">mutex_</a>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  };</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">  /**</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">   * Waits for and locks the Mutex on construction, unlocks the Mutex when this Mutexer is destructed.</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">   * In the below code, it would be safe to call addInt from multiple threads. The Mutexer object calls</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">   * thelist_mutex.lock() when constructed, and thelist_mutex.unLock() when it goes out of</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">   * scope( the function returns or an exception is thrown).</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">   * @code</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">   * // Mutex to protect thelist</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">   * threads::Mutex thelist_mutex;</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">   * std::list&lt;int&gt; thelist;</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">   * function addInt( int i ) {</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">   *   Mutexer lock( thelist_mutex );</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">   *   thelist.push_back( i );</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">   * }</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">   * @endcode</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">   * @see Mutex</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="classdodo_1_1threads_1_1Mutexer.html">  100</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classdodo_1_1threads_1_1Mutexer.html">Mutexer</a> {</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keyword">public</span>:<span class="comment"></span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">       * Constructor.</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">       * @param mutex The mutex to guard.</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="classdodo_1_1threads_1_1Mutexer.html#a9071d9d9165e0801c1f47265fe7b6110">  106</a></span>&#160;      <a class="code" href="classdodo_1_1threads_1_1Mutexer.html#a9071d9d9165e0801c1f47265fe7b6110">Mutexer</a>( <a class="code" href="classdodo_1_1threads_1_1Mutex.html">Mutex</a>&amp; mutex ) : <a class="code" href="classdodo_1_1threads_1_1Mutexer.html#a8340ac2e2e26bc1a200de9cf8d22574d">mutex_</a>(mutex) { <a class="code" href="classdodo_1_1threads_1_1Mutexer.html#a8340ac2e2e26bc1a200de9cf8d22574d">mutex_</a>.<a class="code" href="classdodo_1_1threads_1_1Mutex.html#a0b4a13aa7f033803936f6c11a18a4d75">lock</a>(); };</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">       * Destructor.</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">       * Unlocks the guarded mutex.</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="classdodo_1_1threads_1_1Mutexer.html#afbef565176acd857f930c3c1c32c9e71">  112</a></span>&#160;      <a class="code" href="classdodo_1_1threads_1_1Mutexer.html#afbef565176acd857f930c3c1c32c9e71">~Mutexer</a>() { <a class="code" href="classdodo_1_1threads_1_1Mutexer.html#a8340ac2e2e26bc1a200de9cf8d22574d">mutex_</a>.<a class="code" href="classdodo_1_1threads_1_1Mutex.html#ab2e479d6f0271aaab08987a5316defe2">unLock</a>(); };</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">       * Reference to the guarded mutex.</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;      <a class="code" href="classdodo_1_1threads_1_1Mutex.html">Mutex</a> &amp;<a class="code" href="classdodo_1_1threads_1_1Mutexer.html#a8340ac2e2e26bc1a200de9cf8d22574d">mutex_</a>;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;  };</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;}</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;}</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclassdodo_1_1threads_1_1Mutexer_html"><div class="ttname"><a href="classdodo_1_1threads_1_1Mutexer.html">dodo::threads::Mutexer</a></div><div class="ttdoc">Waits for and locks the Mutex on construction, unlocks the Mutex when this Mutexer is destructed.</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00102">mutex.hpp:102</a></div></div>
-<div class="ttc" id="aclassdodo_1_1threads_1_1Mutex_html_ac69c82759eba5cc48218cc2fe8f8a88a"><div class="ttname"><a href="classdodo_1_1threads_1_1Mutex.html#ac69c82759eba5cc48218cc2fe8f8a88a">dodo::threads::Mutex::~Mutex</a></div><div class="ttdeci">virtual ~Mutex()</div><div class="ttdoc">Destruct a Mutex.</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00052">mutex.hpp:52</a></div></div>
-<div class="ttc" id="aclassdodo_1_1threads_1_1Mutex_html_a086174bb18d6f84db1483d07fedbec20"><div class="ttname"><a href="classdodo_1_1threads_1_1Mutex.html#a086174bb18d6f84db1483d07fedbec20">dodo::threads::Mutex::Mutex</a></div><div class="ttdeci">Mutex()</div><div class="ttdoc">Construct a Mutex.</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00047">mutex.hpp:47</a></div></div>
-<div class="ttc" id="aclassdodo_1_1threads_1_1Mutex_html_ab2e479d6f0271aaab08987a5316defe2"><div class="ttname"><a href="classdodo_1_1threads_1_1Mutex.html#ab2e479d6f0271aaab08987a5316defe2">dodo::threads::Mutex::unLock</a></div><div class="ttdeci">void unLock()</div><div class="ttdoc">Unlocks the Mutex.</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00075">mutex.hpp:75</a></div></div>
-<div class="ttc" id="aclassdodo_1_1threads_1_1Mutex_html_a0b4a13aa7f033803936f6c11a18a4d75"><div class="ttname"><a href="classdodo_1_1threads_1_1Mutex.html#a0b4a13aa7f033803936f6c11a18a4d75">dodo::threads::Mutex::lock</a></div><div class="ttdeci">void lock()</div><div class="ttdoc">Waits for a Mutex and locks it (atomically).</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00059">mutex.hpp:59</a></div></div>
-<div class="ttc" id="aclassdodo_1_1threads_1_1Mutex_html"><div class="ttname"><a href="classdodo_1_1threads_1_1Mutex.html">dodo::threads::Mutex</a></div><div class="ttdoc">A Mutex to synchronize access to resources between threads.</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00041">mutex.hpp:41</a></div></div>
-<div class="ttc" id="aclassdodo_1_1threads_1_1Mutex_html_ab4298b371ed0d588ceebc3fb00287ed4"><div class="ttname"><a href="classdodo_1_1threads_1_1Mutex.html#ab4298b371ed0d588ceebc3fb00287ed4">dodo::threads::Mutex::tryLock</a></div><div class="ttdeci">bool tryLock()</div><div class="ttdoc">If the Mutex is currently not locked, lock it and return true.</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00068">mutex.hpp:68</a></div></div>
-<div class="ttc" id="aclassdodo_1_1threads_1_1Mutexer_html_a9071d9d9165e0801c1f47265fe7b6110"><div class="ttname"><a href="classdodo_1_1threads_1_1Mutexer.html#a9071d9d9165e0801c1f47265fe7b6110">dodo::threads::Mutexer::Mutexer</a></div><div class="ttdeci">Mutexer(Mutex &amp;mutex)</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00108">mutex.hpp:108</a></div></div>
-<div class="ttc" id="aclassdodo_1_1threads_1_1Mutexer_html_afbef565176acd857f930c3c1c32c9e71"><div class="ttname"><a href="classdodo_1_1threads_1_1Mutexer.html#afbef565176acd857f930c3c1c32c9e71">dodo::threads::Mutexer::~Mutexer</a></div><div class="ttdeci">~Mutexer()</div><div class="ttdoc">Destructor.</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00114">mutex.hpp:114</a></div></div>
+<div class="ttc" id="aclassdodo_1_1threads_1_1Mutexer_html"><div class="ttname"><a href="classdodo_1_1threads_1_1Mutexer.html">dodo::threads::Mutexer</a></div><div class="ttdoc">Waits for and locks the Mutex on construction, unlocks the Mutex when this Mutexer is destructed.</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00100">mutex.hpp:100</a></div></div>
+<div class="ttc" id="aclassdodo_1_1threads_1_1Mutex_html_ac69c82759eba5cc48218cc2fe8f8a88a"><div class="ttname"><a href="classdodo_1_1threads_1_1Mutex.html#ac69c82759eba5cc48218cc2fe8f8a88a">dodo::threads::Mutex::~Mutex</a></div><div class="ttdeci">virtual ~Mutex()</div><div class="ttdoc">Destruct a Mutex.</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00050">mutex.hpp:50</a></div></div>
+<div class="ttc" id="aclassdodo_1_1threads_1_1Mutex_html_a086174bb18d6f84db1483d07fedbec20"><div class="ttname"><a href="classdodo_1_1threads_1_1Mutex.html#a086174bb18d6f84db1483d07fedbec20">dodo::threads::Mutex::Mutex</a></div><div class="ttdeci">Mutex()</div><div class="ttdoc">Construct a Mutex.</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00045">mutex.hpp:45</a></div></div>
+<div class="ttc" id="aclassdodo_1_1threads_1_1Mutex_html_a379b25211c9ddc37ec532d1907c71903"><div class="ttname"><a href="classdodo_1_1threads_1_1Mutex.html#a379b25211c9ddc37ec532d1907c71903">dodo::threads::Mutex::mutex_</a></div><div class="ttdeci">std::mutex mutex_</div><div class="ttdoc">the internal std::mutex</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00073">mutex.hpp:73</a></div></div>
+<div class="ttc" id="aclassdodo_1_1threads_1_1Mutex_html_ab2e479d6f0271aaab08987a5316defe2"><div class="ttname"><a href="classdodo_1_1threads_1_1Mutex.html#ab2e479d6f0271aaab08987a5316defe2">dodo::threads::Mutex::unLock</a></div><div class="ttdeci">void unLock()</div><div class="ttdoc">Unlocks the Mutex.</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00073">mutex.hpp:73</a></div></div>
+<div class="ttc" id="aclassdodo_1_1threads_1_1Mutex_html_a0b4a13aa7f033803936f6c11a18a4d75"><div class="ttname"><a href="classdodo_1_1threads_1_1Mutex.html#a0b4a13aa7f033803936f6c11a18a4d75">dodo::threads::Mutex::lock</a></div><div class="ttdeci">void lock()</div><div class="ttdoc">Waits for a Mutex and locks it (atomically).</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00057">mutex.hpp:57</a></div></div>
+<div class="ttc" id="aclassdodo_1_1threads_1_1Mutex_html"><div class="ttname"><a href="classdodo_1_1threads_1_1Mutex.html">dodo::threads::Mutex</a></div><div class="ttdoc">A Mutex to synchronize access to resources between threads.</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00039">mutex.hpp:39</a></div></div>
+<div class="ttc" id="aclassdodo_1_1threads_1_1Mutexer_html_a8340ac2e2e26bc1a200de9cf8d22574d"><div class="ttname"><a href="classdodo_1_1threads_1_1Mutexer.html#a8340ac2e2e26bc1a200de9cf8d22574d">dodo::threads::Mutexer::mutex_</a></div><div class="ttdeci">Mutex &amp; mutex_</div><div class="ttdoc">Reference to the guarded mutex.</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00112">mutex.hpp:112</a></div></div>
+<div class="ttc" id="aclassdodo_1_1threads_1_1Mutex_html_ab4298b371ed0d588ceebc3fb00287ed4"><div class="ttname"><a href="classdodo_1_1threads_1_1Mutex.html#ab4298b371ed0d588ceebc3fb00287ed4">dodo::threads::Mutex::tryLock</a></div><div class="ttdeci">bool tryLock()</div><div class="ttdoc">If the Mutex is currently not locked, lock it and return true.</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00066">mutex.hpp:66</a></div></div>
+<div class="ttc" id="aclassdodo_1_1threads_1_1Mutexer_html_a9071d9d9165e0801c1f47265fe7b6110"><div class="ttname"><a href="classdodo_1_1threads_1_1Mutexer.html#a9071d9d9165e0801c1f47265fe7b6110">dodo::threads::Mutexer::Mutexer</a></div><div class="ttdeci">Mutexer(Mutex &amp;mutex)</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00106">mutex.hpp:106</a></div></div>
+<div class="ttc" id="aclassdodo_1_1threads_1_1Mutexer_html_afbef565176acd857f930c3c1c32c9e71"><div class="ttname"><a href="classdodo_1_1threads_1_1Mutexer.html#afbef565176acd857f930c3c1c32c9e71">dodo::threads::Mutexer::~Mutexer</a></div><div class="ttdeci">~Mutexer()</div><div class="ttdoc">Destructor.</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00112">mutex.hpp:112</a></div></div>
 <div class="ttc" id="anamespacedodo_1_1threads_html"><div class="ttname"><a href="namespacedodo_1_1threads.html">dodo::threads</a></div><div class="ttdoc">Interface for Thread programming.</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00029">mutex.hpp:29</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

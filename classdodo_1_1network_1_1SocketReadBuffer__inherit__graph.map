@@ -1,0 +1,4 @@
+<map id="dodo::network::SocketReadBuffer" name="dodo::network::SocketReadBuffer">
+<area shape="rect" id="node1" title="SocketReadBuffer is a VirtualReadBuffer that reads from the BaseSocket in chunks internally." alt="" coords="5,95,204,136"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1VirtualReadBuffer.html" title="Interface to read individual bytes whilst the implementation can read from an actual source (such as ..." alt="" coords="5,5,204,47"/>
+</map>

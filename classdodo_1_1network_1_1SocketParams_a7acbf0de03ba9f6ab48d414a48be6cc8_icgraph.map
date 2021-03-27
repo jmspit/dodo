@@ -1,5 +1,5 @@
 <map id="dodo::network::SocketParams::getAddressFamily" name="dodo::network::SocketParams::getAddressFamily">
 <area shape="rect" id="node1" title="Get the AddressFamily." alt="" coords="252,39,467,80"/>
 <area shape="rect" id="node2" href="$classdodo_1_1network_1_1BaseSocket.html#a86fdfe01fd61dc924f04bf52296ee53a" title="Construct from SocketParams." alt="" coords="5,5,204,47"/>
-<area shape="rect" id="node3" href="$classdodo_1_1network_1_1Address.html#a1a016464e617beef4c8f87643a869809" title="Return the first hit on SocketParams in address and canonicalname." alt="" coords="17,71,192,112"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1Address.html#aa1672ec99e8696e1d8654999cdca72de" title="Return the first hit on SocketParams in address and canonicalname." alt="" coords="17,71,192,112"/>
 </map>

@@ -6,7 +6,7 @@
 <area shape="rect" id="node5" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#ac1fe6f19d19ae5d0772c7b6583bb3f41" title="Commit a transaction." alt="" coords="71,201,221,243"/>
 <area shape="rect" id="node6" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#ad6605ff0d054e62dd8b0313a61c8192f" title="Create a named savepoint." alt="" coords="43,267,249,308"/>
 <area shape="rect" id="node7" href="$classdodo_1_1persist_1_1KVStore.html#ac234ee7acdce103149fe6eb9f98f6a55" title="Create the SQLite schema." alt="" coords="63,332,229,373"/>
-<area shape="rect" id="node8" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#a872f275b261bf66390ea023e08e1468b" title="get the current user_version pragma" alt="" coords="47,397,245,439"/>
+<area shape="rect" id="node8" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#a872f275b261bf66390ea023e08e1468b" title="get the current user_version pragma (a user defined database schema version)" alt="" coords="47,397,245,439"/>
 <area shape="rect" id="node9" href="$classdodo_1_1persist_1_1KVStore.html#a4de1e40de9bd814d9805267585efb911" title="Optimzime, preferably called after workload and implicitly called by the destructor." alt="" coords="63,463,229,504"/>
 <area shape="rect" id="node10" href="$classdodo_1_1persist_1_1KVStore.html#a683e0b168566db39c35a314d602efb21" title="Prepare all SQL statements." alt="" coords="63,528,229,569"/>
 <area shape="rect" id="node11" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#a11586f7b73954bc9cd0122561a542e6a" title="Release a savepoint." alt="" coords="39,593,253,635"/>

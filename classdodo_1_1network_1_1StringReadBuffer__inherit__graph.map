@@ -1,0 +1,4 @@
+<map id="dodo::network::StringReadBuffer" name="dodo::network::StringReadBuffer">
+<area shape="rect" id="node1" title="String based VirtualReadBuffer, conventient for testing purposes as parsers can be tested against str..." alt="" coords="7,95,202,136"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1VirtualReadBuffer.html" title="Interface to read individual bytes whilst the implementation can read from an actual source (such as ..." alt="" coords="5,5,204,47"/>
+</map>

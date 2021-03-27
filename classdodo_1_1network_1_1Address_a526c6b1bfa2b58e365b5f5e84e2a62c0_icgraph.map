@@ -1,4 +1,4 @@
 <map id="dodo::network::Address::Address" name="dodo::network::Address::Address">
 <area shape="rect" id="node1" title="Construct an invalid (unspecified) address." alt="" coords="228,5,403,47"/>
-<area shape="rect" id="node2" href="$classdodo_1_1network_1_1Address.html#a64e6eee7360d2a37e92118cd0184485a" title="Get Address information on a host in a AddrInfo struct." alt="" coords="5,5,180,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1Address.html#a7a68ac2e0566d16ddaad9c5484053d12" title="Get Address information on a host in a AddrInfo struct." alt="" coords="5,5,180,47"/>
 </map>

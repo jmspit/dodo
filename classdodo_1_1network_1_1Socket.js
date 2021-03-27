@@ -7,8 +7,8 @@ var classdodo_1_1network_1_1Socket =
     [ "Socket", "classdodo_1_1network_1_1Socket.html#aefc0297755270dc15e7569ba1ddbf65a", null ],
     [ "~Socket", "classdodo_1_1network_1_1Socket.html#a92abd1b798b2cbff1b1e15a5f08fca12", null ],
     [ "accept", "classdodo_1_1network_1_1Socket.html#ab979e58d4d2f53df3535272e239f6c7f", null ],
-    [ "receive", "classdodo_1_1network_1_1Socket.html#aa0739855526df27d6228ffdbaf27ab00", null ],
-    [ "send", "classdodo_1_1network_1_1Socket.html#a85f16f893e7ec99748ccd2c395f07e70", null ],
-    [ "sendTo", "classdodo_1_1network_1_1Socket.html#afa7a5c8ba576a7e776c92cb667030ca6", null ],
+    [ "receive", "classdodo_1_1network_1_1Socket.html#a046bada8b48bf3be135e7f46294a1821", null ],
+    [ "send", "classdodo_1_1network_1_1Socket.html#a1b3efb70d51c57d8c3dd90e316abaf41", null ],
+    [ "sendTo", "classdodo_1_1network_1_1Socket.html#a4563a8c2b30b188ea6ee2dacb5a718e9", null ],
     [ "SocketInvalid", "classdodo_1_1network_1_1Socket.html#ac2752b15808804395017f176b7ddc932", null ]
 ];

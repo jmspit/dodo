@@ -1,0 +1,5 @@
+<map id="dodo::network::VirtualReadBuffer" name="dodo::network::VirtualReadBuffer">
+<area shape="rect" id="node1" title="Interface to read individual bytes whilst the implementation can read from an actual source (such as ..." alt="" coords="5,95,204,136"/>
+<area shape="rect" id="node2" title=" " alt="" coords="27,5,94,32"/>
+<area shape="rect" id="node3" title=" " alt="" coords="119,5,181,32"/>
+</map>

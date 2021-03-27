@@ -6,5 +6,5 @@
 <area shape="rect" id="node5" href="$classdodo_1_1common_1_1DataCrypt.html#a874b79bf3ef2b47eb59c7ca625a171ae" title="Encrypt data with a key into a string (so the encrypted data will not contain a 0/zero)." alt="" coords="5,243,199,284"/>
 <area shape="rect" id="node6" href="$classdodo_1_1common_1_1Bytes.html#a0858954ed24aabc5324f4e1bc0203eb1" title="Assign from std::string, not including a NULL terminator (so size will be string.length() )." alt="" coords="275,240,439,281"/>
 <area shape="rect" id="node7" href="$classdodo_1_1common_1_1Bytes.html#a9561fc66b811c9c8201d52cec4614ff8" title="Generate a random set of Octets." alt="" coords="275,305,439,347"/>
-<area shape="rect" id="node8" href="$classdodo_1_1network_1_1TCPConnectionData.html#a6e52e4c29881c59aa2998da37ea58db0" title="Reads and appends data to read_buffer." alt="" coords="247,371,467,412"/>
+<area shape="rect" id="node8" href="$classdodo_1_1network_1_1TCPConnectionData.html#ac389503e4c4ed91877141af96e96d190" title="Reads and appends data to read_buffer." alt="" coords="247,371,467,412"/>
 </map>

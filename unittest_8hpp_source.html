@@ -115,89 +115,93 @@ $(document).ready(function(){initNavTree('unittest_8hpp_source.html',''); initRe
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">using namespace </span>std;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacedodo_1_1common.html">dodo::common</a> {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">   * Unit test assitence class.</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1UnitTest.html">   36</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classdodo_1_1common_1_1UnitTest.html">UnitTest</a> {</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">       * Create a test</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">       * @param name The name of the test.</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">       * @param description The description of the test.</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">       * @param out The ostream to write to.</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;      <a class="code" href="classdodo_1_1common_1_1UnitTest.html">UnitTest</a>( <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;name, <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;description, ostream *out );</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">       * Destructor.</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1UnitTest.html#a6630470dd1d7b49c37e87e7749a3d75b">   50</a></span>&#160;      <span class="keyword">virtual</span> <a class="code" href="classdodo_1_1common_1_1UnitTest.html#a6630470dd1d7b49c37e87e7749a3d75b">~UnitTest</a>() {};</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">       * Run the test.</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">       * @return True if the test passed.</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;      <span class="keywordtype">bool</span> run();</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">       * Virtual to implement the test.</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">       * @return nothing</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;      <span class="keyword">virtual</span> <span class="keywordtype">void</span> doRun() = 0;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">       * Write the subtest result.</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">       * @param name The name of the test.</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">       * @param description The description of the test.</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">       * @param passed True if the test passed.</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">       * @return The value of parameter passed.</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;      <span class="keywordtype">bool</span> writeSubTestResult( <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;name, <span class="keyword">const</span> <span class="keywordtype">string</span>&amp; description, <span class="keywordtype">bool</span> passed );</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">      /** Write the header. */</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;      <span class="keywordtype">void</span> writeUnitTestHeader();</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">      /** Write the summary. */</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;      <span class="keywordtype">void</span> writeUnitTestSummary();</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">      /** The test name. */</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1UnitTest.html#a28be1994fdb8b549bdd5f63b56e8509b">   84</a></span>&#160;      <span class="keywordtype">string</span> <a class="code" href="classdodo_1_1common_1_1UnitTest.html#a28be1994fdb8b549bdd5f63b56e8509b">name_</a>;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">      /** The test description. */</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1UnitTest.html#a804d871679f9d12a244d90bbebf67e9d">   87</a></span>&#160;      <span class="keywordtype">string</span> <a class="code" href="classdodo_1_1common_1_1UnitTest.html#a804d871679f9d12a244d90bbebf67e9d">description_</a>;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">      /** The output destination. */</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1UnitTest.html#accc597701d7b4847d46fcd2e818c9e0e">   90</a></span>&#160;      ostream *<a class="code" href="classdodo_1_1common_1_1UnitTest.html#accc597701d7b4847d46fcd2e818c9e0e">out_</a>;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">      /** The total number of tests. */</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1UnitTest.html#a8be3964d872b42a85dffe3f9cf502d15">   93</a></span>&#160;      <span class="keywordtype">size_t</span> <a class="code" href="classdodo_1_1common_1_1UnitTest.html#a8be3964d872b42a85dffe3f9cf502d15">total_</a>;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">      /** The total number of failed tests. */</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1UnitTest.html#a79cf02fd0cb8a84ce68adc043ff55f29">   96</a></span>&#160;      <span class="keywordtype">size_t</span> <a class="code" href="classdodo_1_1common_1_1UnitTest.html#a79cf02fd0cb8a84ce68adc043ff55f29">failed_</a>;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  };</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacedodo_1_1common.html">dodo::common</a> {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">  /**</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">   * Unit test assitence class.</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1UnitTest.html">   34</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classdodo_1_1common_1_1UnitTest.html">UnitTest</a> {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">       * Create a test</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">       * @param name The name of the test.</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">       * @param description The description of the test.</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">       * @param out The ostream to write to.</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;      <a class="code" href="classdodo_1_1common_1_1UnitTest.html#a66ece80b81602962d7e1bf6fda374316">UnitTest</a>( <span class="keyword">const</span> std::string &amp;name, <span class="keyword">const</span> std::string &amp;description, std::ostream *out );</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">       * Destructor.</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1UnitTest.html#a6630470dd1d7b49c37e87e7749a3d75b">   48</a></span>&#160;      <span class="keyword">virtual</span> <a class="code" href="classdodo_1_1common_1_1UnitTest.html#a6630470dd1d7b49c37e87e7749a3d75b">~UnitTest</a>() {};</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">       * Run the test.</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">       * @return True if the test passed.</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;      <span class="keywordtype">bool</span> <a class="code" href="classdodo_1_1common_1_1UnitTest.html#afcada2a39cb6ae928bc05d52209054b6">run</a>();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">       * Virtual to implement the test.</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">       * @return nothing</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;      <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1common_1_1UnitTest.html#a711a657415ee2a730b867f5deefa36e8">doRun</a>() = 0;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">       * Write the subtest result.</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">       * @param name The name of the test.</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">       * @param description The description of the test.</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">       * @param passed True if the test passed.</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">       * @return The value of parameter passed.</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;      <span class="keywordtype">bool</span> <a class="code" href="classdodo_1_1common_1_1UnitTest.html#a5f09d4ebcc41a1f85d243fce4922810b">writeSubTestResult</a>( <span class="keyword">const</span> std::string &amp;name, <span class="keyword">const</span> std::string&amp; description, <span class="keywordtype">bool</span> passed );</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">      /** Write the header. */</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1common_1_1UnitTest.html#aa549fb7f1349065767c738a1b549adcb">writeUnitTestHeader</a>();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">      /** Write the summary. */</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1common_1_1UnitTest.html#a6c9280cfd598bd21f34c8e6ff7cace65">writeUnitTestSummary</a>();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">      /** The test name. */</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1UnitTest.html#a5a18ca0fd9ec571e2f338ae8c5f9be44">   82</a></span>&#160;      std::string <a class="code" href="classdodo_1_1common_1_1UnitTest.html#a5a18ca0fd9ec571e2f338ae8c5f9be44">name_</a>;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">      /** The test description. */</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1UnitTest.html#ae05b1f07a99cb262ddccf97bc52ed952">   85</a></span>&#160;      std::string <a class="code" href="classdodo_1_1common_1_1UnitTest.html#ae05b1f07a99cb262ddccf97bc52ed952">description_</a>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">      /** The output destination. */</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1UnitTest.html#aadafd8907ad36bb7c07b78a31ef38569">   88</a></span>&#160;      std::ostream *<a class="code" href="classdodo_1_1common_1_1UnitTest.html#aadafd8907ad36bb7c07b78a31ef38569">out_</a>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">      /** The total number of tests. */</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1UnitTest.html#a8be3964d872b42a85dffe3f9cf502d15">   91</a></span>&#160;      <span class="keywordtype">size_t</span> <a class="code" href="classdodo_1_1common_1_1UnitTest.html#a8be3964d872b42a85dffe3f9cf502d15">total_</a>;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">      /** The total number of failed tests. */</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1UnitTest.html#a79cf02fd0cb8a84ce68adc043ff55f29">   94</a></span>&#160;      <span class="keywordtype">size_t</span> <a class="code" href="classdodo_1_1common_1_1UnitTest.html#a79cf02fd0cb8a84ce68adc043ff55f29">failed_</a>;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  };</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;}</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;}</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclassdodo_1_1common_1_1UnitTest_html_a6630470dd1d7b49c37e87e7749a3d75b"><div class="ttname"><a href="classdodo_1_1common_1_1UnitTest.html#a6630470dd1d7b49c37e87e7749a3d75b">dodo::common::UnitTest::~UnitTest</a></div><div class="ttdeci">virtual ~UnitTest()</div><div class="ttdoc">Destructor.</div><div class="ttdef"><b>Definition:</b> <a href="unittest_8hpp_source.html#l00050">unittest.hpp:50</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1UnitTest_html_a804d871679f9d12a244d90bbebf67e9d"><div class="ttname"><a href="classdodo_1_1common_1_1UnitTest.html#a804d871679f9d12a244d90bbebf67e9d">dodo::common::UnitTest::description_</a></div><div class="ttdeci">string description_</div><div class="ttdoc">The test description.</div><div class="ttdef"><b>Definition:</b> <a href="unittest_8hpp_source.html#l00087">unittest.hpp:87</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1UnitTest_html_a79cf02fd0cb8a84ce68adc043ff55f29"><div class="ttname"><a href="classdodo_1_1common_1_1UnitTest.html#a79cf02fd0cb8a84ce68adc043ff55f29">dodo::common::UnitTest::failed_</a></div><div class="ttdeci">size_t failed_</div><div class="ttdoc">The total number of failed tests.</div><div class="ttdef"><b>Definition:</b> <a href="unittest_8hpp_source.html#l00096">unittest.hpp:96</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1UnitTest_html_accc597701d7b4847d46fcd2e818c9e0e"><div class="ttname"><a href="classdodo_1_1common_1_1UnitTest.html#accc597701d7b4847d46fcd2e818c9e0e">dodo::common::UnitTest::out_</a></div><div class="ttdeci">ostream * out_</div><div class="ttdoc">The output destination.</div><div class="ttdef"><b>Definition:</b> <a href="unittest_8hpp_source.html#l00090">unittest.hpp:90</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1UnitTest_html"><div class="ttname"><a href="classdodo_1_1common_1_1UnitTest.html">dodo::common::UnitTest</a></div><div class="ttdoc">Unit test assitence class.</div><div class="ttdef"><b>Definition:</b> <a href="unittest_8hpp_source.html#l00036">unittest.hpp:36</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1UnitTest_html_a6630470dd1d7b49c37e87e7749a3d75b"><div class="ttname"><a href="classdodo_1_1common_1_1UnitTest.html#a6630470dd1d7b49c37e87e7749a3d75b">dodo::common::UnitTest::~UnitTest</a></div><div class="ttdeci">virtual ~UnitTest()</div><div class="ttdoc">Destructor.</div><div class="ttdef"><b>Definition:</b> <a href="unittest_8hpp_source.html#l00048">unittest.hpp:48</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1UnitTest_html_a711a657415ee2a730b867f5deefa36e8"><div class="ttname"><a href="classdodo_1_1common_1_1UnitTest.html#a711a657415ee2a730b867f5deefa36e8">dodo::common::UnitTest::doRun</a></div><div class="ttdeci">virtual void doRun()=0</div><div class="ttdoc">Virtual to implement the test.</div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1UnitTest_html_a5a18ca0fd9ec571e2f338ae8c5f9be44"><div class="ttname"><a href="classdodo_1_1common_1_1UnitTest.html#a5a18ca0fd9ec571e2f338ae8c5f9be44">dodo::common::UnitTest::name_</a></div><div class="ttdeci">std::string name_</div><div class="ttdoc">The test name.</div><div class="ttdef"><b>Definition:</b> <a href="unittest_8hpp_source.html#l00082">unittest.hpp:82</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1UnitTest_html_a79cf02fd0cb8a84ce68adc043ff55f29"><div class="ttname"><a href="classdodo_1_1common_1_1UnitTest.html#a79cf02fd0cb8a84ce68adc043ff55f29">dodo::common::UnitTest::failed_</a></div><div class="ttdeci">size_t failed_</div><div class="ttdoc">The total number of failed tests.</div><div class="ttdef"><b>Definition:</b> <a href="unittest_8hpp_source.html#l00094">unittest.hpp:94</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1UnitTest_html_aa549fb7f1349065767c738a1b549adcb"><div class="ttname"><a href="classdodo_1_1common_1_1UnitTest.html#aa549fb7f1349065767c738a1b549adcb">dodo::common::UnitTest::writeUnitTestHeader</a></div><div class="ttdeci">void writeUnitTestHeader()</div><div class="ttdoc">Write the header.</div><div class="ttdef"><b>Definition:</b> <a href="unittest_8cpp_source.html#l00042">unittest.cpp:42</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1UnitTest_html"><div class="ttname"><a href="classdodo_1_1common_1_1UnitTest.html">dodo::common::UnitTest</a></div><div class="ttdoc">Unit test assitence class.</div><div class="ttdef"><b>Definition:</b> <a href="unittest_8hpp_source.html#l00034">unittest.hpp:34</a></div></div>
 <div class="ttc" id="anamespacedodo_1_1common_html"><div class="ttname"><a href="namespacedodo_1_1common.html">dodo::common</a></div><div class="ttdoc">Common and utility interfaces.</div><div class="ttdef"><b>Definition:</b> <a href="application_8hpp_source.html#l00029">application.hpp:29</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1UnitTest_html_a8be3964d872b42a85dffe3f9cf502d15"><div class="ttname"><a href="classdodo_1_1common_1_1UnitTest.html#a8be3964d872b42a85dffe3f9cf502d15">dodo::common::UnitTest::total_</a></div><div class="ttdeci">size_t total_</div><div class="ttdoc">The total number of tests.</div><div class="ttdef"><b>Definition:</b> <a href="unittest_8hpp_source.html#l00093">unittest.hpp:93</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1UnitTest_html_a28be1994fdb8b549bdd5f63b56e8509b"><div class="ttname"><a href="classdodo_1_1common_1_1UnitTest.html#a28be1994fdb8b549bdd5f63b56e8509b">dodo::common::UnitTest::name_</a></div><div class="ttdeci">string name_</div><div class="ttdoc">The test name.</div><div class="ttdef"><b>Definition:</b> <a href="unittest_8hpp_source.html#l00084">unittest.hpp:84</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1UnitTest_html_a5f09d4ebcc41a1f85d243fce4922810b"><div class="ttname"><a href="classdodo_1_1common_1_1UnitTest.html#a5f09d4ebcc41a1f85d243fce4922810b">dodo::common::UnitTest::writeSubTestResult</a></div><div class="ttdeci">bool writeSubTestResult(const std::string &amp;name, const std::string &amp;description, bool passed)</div><div class="ttdoc">Write the subtest result.</div><div class="ttdef"><b>Definition:</b> <a href="unittest_8cpp_source.html#l00055">unittest.cpp:55</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1UnitTest_html_a8be3964d872b42a85dffe3f9cf502d15"><div class="ttname"><a href="classdodo_1_1common_1_1UnitTest.html#a8be3964d872b42a85dffe3f9cf502d15">dodo::common::UnitTest::total_</a></div><div class="ttdeci">size_t total_</div><div class="ttdoc">The total number of tests.</div><div class="ttdef"><b>Definition:</b> <a href="unittest_8hpp_source.html#l00091">unittest.hpp:91</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1UnitTest_html_ae05b1f07a99cb262ddccf97bc52ed952"><div class="ttname"><a href="classdodo_1_1common_1_1UnitTest.html#ae05b1f07a99cb262ddccf97bc52ed952">dodo::common::UnitTest::description_</a></div><div class="ttdeci">std::string description_</div><div class="ttdoc">The test description.</div><div class="ttdef"><b>Definition:</b> <a href="unittest_8hpp_source.html#l00085">unittest.hpp:85</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1UnitTest_html_a66ece80b81602962d7e1bf6fda374316"><div class="ttname"><a href="classdodo_1_1common_1_1UnitTest.html#a66ece80b81602962d7e1bf6fda374316">dodo::common::UnitTest::UnitTest</a></div><div class="ttdeci">UnitTest(const std::string &amp;name, const std::string &amp;description, std::ostream *out)</div><div class="ttdoc">Create a test.</div><div class="ttdef"><b>Definition:</b> <a href="unittest_8cpp_source.html#l00027">unittest.cpp:27</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1UnitTest_html_a6c9280cfd598bd21f34c8e6ff7cace65"><div class="ttname"><a href="classdodo_1_1common_1_1UnitTest.html#a6c9280cfd598bd21f34c8e6ff7cace65">dodo::common::UnitTest::writeUnitTestSummary</a></div><div class="ttdeci">void writeUnitTestSummary()</div><div class="ttdoc">Write the summary.</div><div class="ttdef"><b>Definition:</b> <a href="unittest_8cpp_source.html#l00049">unittest.cpp:49</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1UnitTest_html_afcada2a39cb6ae928bc05d52209054b6"><div class="ttname"><a href="classdodo_1_1common_1_1UnitTest.html#afcada2a39cb6ae928bc05d52209054b6">dodo::common::UnitTest::run</a></div><div class="ttdeci">bool run()</div><div class="ttdoc">Run the test.</div><div class="ttdef"><b>Definition:</b> <a href="unittest_8cpp_source.html#l00035">unittest.cpp:35</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1UnitTest_html_aadafd8907ad36bb7c07b78a31ef38569"><div class="ttname"><a href="classdodo_1_1common_1_1UnitTest.html#aadafd8907ad36bb7c07b78a31ef38569">dodo::common::UnitTest::out_</a></div><div class="ttdeci">std::ostream * out_</div><div class="ttdoc">The output destination.</div><div class="ttdef"><b>Definition:</b> <a href="unittest_8hpp_source.html#l00088">unittest.hpp:88</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

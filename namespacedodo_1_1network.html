@@ -116,11 +116,35 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1BaseSocket.html">BaseSocket</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface to and common implementation of concrete sockets (<a class="el" href="classdodo_1_1network_1_1Socket.html" title="A Linux socket.">Socket</a>, <a class="el" href="classdodo_1_1network_1_1TLSSocket.html" title="Socket for TLS encrypted traffic between trusted endpoints.">TLSSocket</a>).  <a href="classdodo_1_1network_1_1BaseSocket.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1FileReadBuffer.html">FileReadBuffer</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">File-based <a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html" title="Interface to read individual bytes whilst the implementation can read from an actual source (such as ...">VirtualReadBuffer</a>, conventient for testing purposes as parsers can be tested against file instead of network sources.  <a href="classdodo_1_1network_1_1FileReadBuffer.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1HTTPFragment.html">HTTPFragment</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic HTTP fragment, either a complete (such as <a class="el" href="classdodo_1_1network_1_1HTTPRequest.html" title="HTTPRequest class.">HTTPRequest</a>) or incomplete HTTP fragment (ssuch as a <a class="el" href="classdodo_1_1network_1_1HTTPRequest_1_1HTTPRequestLine.html" title="HTTPRequestLine class.">HTTPRequest::HTTPRequestLine</a>) .  <a href="classdodo_1_1network_1_1HTTPFragment.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1HTTPMessage.html">HTTPMessage</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic <a class="el" href="classdodo_1_1network_1_1HTTPMessage.html" title="Generic HTTPMessage, parent to HTTPRequest and HTTPResponse.">HTTPMessage</a>, parent to <a class="el" href="classdodo_1_1network_1_1HTTPRequest.html" title="HTTPRequest class.">HTTPRequest</a> and <a class="el" href="classdodo_1_1network_1_1HTTPResponse.html" title="HTTPResponse class.">HTTPResponse</a>.  <a href="classdodo_1_1network_1_1HTTPMessage.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1HTTPRequest.html">HTTPRequest</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classdodo_1_1network_1_1HTTPRequest.html" title="HTTPRequest class.">HTTPRequest</a> class.  <a href="classdodo_1_1network_1_1HTTPRequest.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1HTTPResponse.html">HTTPResponse</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classdodo_1_1network_1_1HTTPResponse.html" title="HTTPResponse class.">HTTPResponse</a> class.  <a href="classdodo_1_1network_1_1HTTPResponse.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1HTTPVersion.html">HTTPVersion</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">HHTP version comprising a major and minor number, convertable from and to string as in HTTP requests.  <a href="classdodo_1_1network_1_1HTTPVersion.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1Socket.html">Socket</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Linux socket.  <a href="classdodo_1_1network_1_1Socket.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1SocketParams.html">SocketParams</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classdodo_1_1network_1_1Socket.html" title="A Linux socket.">Socket</a> parameters - the family (domain), socket type and protocol triplet.  <a href="classdodo_1_1network_1_1SocketParams.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1SocketReadBuffer.html">SocketReadBuffer</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classdodo_1_1network_1_1SocketReadBuffer.html" title="SocketReadBuffer is a VirtualReadBuffer that reads from the BaseSocket in chunks internally.">SocketReadBuffer</a> is a <a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html" title="Interface to read individual bytes whilst the implementation can read from an actual source (such as ...">VirtualReadBuffer</a> that reads from the <a class="el" href="classdodo_1_1network_1_1BaseSocket.html" title="Interface to and common implementation of concrete sockets (Socket, TLSSocket).">BaseSocket</a> in chunks internally.  <a href="classdodo_1_1network_1_1SocketReadBuffer.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1StringReadBuffer.html">StringReadBuffer</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">String based <a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html" title="Interface to read individual bytes whilst the implementation can read from an actual source (such as ...">VirtualReadBuffer</a>, conventient for testing purposes as parsers can be tested against strings instead of network sources.  <a href="classdodo_1_1network_1_1StringReadBuffer.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1TCPConnectionData.html">TCPConnectionData</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class to track a connection.  <a href="classdodo_1_1network_1_1TCPConnectionData.html#details">More...</a><br /></td></tr>
@@ -139,6 +163,12 @@ Data Structures</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1TLSSocket.html">TLSSocket</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classdodo_1_1network_1_1Socket.html" title="A Linux socket.">Socket</a> for TLS encrypted traffic between trusted endpoints.  <a href="classdodo_1_1network_1_1TLSSocket.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1URI.html">URI</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uniform Resource Identifier.  <a href="classdodo_1_1network_1_1URI.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html">VirtualReadBuffer</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface to read individual bytes whilst the implementation can read from an actual source (such as a network buffer) in larger chunks, reducing the number of required system calls.  <a href="classdodo_1_1network_1_1VirtualReadBuffer.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1X509Certificate.html">X509Certificate</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">X509 public key certificate (PKC) interface.  <a href="classdodo_1_1network_1_1X509Certificate.html#details">More...</a><br /></td></tr>
@@ -240,7 +270,7 @@ Variables</h2></td></tr>
 
 <p>Close the <a class="el" href="namespacedodo_1_1network.html" title="Interface for network communication.">dodo::network</a> library. </p>
 
-<p class="definition">Definition at line <a class="el" href="network_8hpp_source.html#l00061">61</a> of file <a class="el" href="network_8hpp_source.html">network.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="network_8hpp_source.html#l00063">63</a> of file <a class="el" href="network_8hpp_source.html">network.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="dodo_8hpp_source.html#l00051">dodo::closeLibrary()</a>.</p>
 <div class="dynheader">
@@ -272,7 +302,7 @@ Here is the caller graph for this function:</div>
 
 <p>Initialize the <a class="el" href="namespacedodo_1_1network.html" title="Interface for network communication.">dodo::network</a> library. </p>
 
-<p class="definition">Definition at line <a class="el" href="network_8hpp_source.html#l00046">46</a> of file <a class="el" href="network_8hpp_source.html">network.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="network_8hpp_source.html#l00048">48</a> of file <a class="el" href="network_8hpp_source.html">network.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="dodo_8hpp_source.html#l00041">dodo::initLibrary()</a>.</p>
 <div class="dynheader">
@@ -331,7 +361,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the lvalue </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="tcplistener_8hpp_source.html#l00599">599</a> of file <a class="el" href="tcplistener_8hpp_source.html">tcplistener.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tcplistener_8hpp_source.html#l00596">596</a> of file <a class="el" href="tcplistener_8hpp_source.html">tcplistener.hpp</a>.</p>
 
 </div>
 </div>
@@ -379,7 +409,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The output Puts </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="tcplistener_8hpp_source.html#l00610">610</a> of file <a class="el" href="tcplistener_8hpp_source.html">tcplistener.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tcplistener_8hpp_source.html#l00607">607</a> of file <a class="el" href="tcplistener_8hpp_source.html">tcplistener.hpp</a>.</p>
 
 <p class="reference">References <a class="el" href="classdodo_1_1network_1_1TCPListener.html#aafb35a279611936c5be395154d73c345a03c2e7e41ffc181a4e84080b4710e81e">dodo::network::TCPListener::New</a>, <a class="el" href="classdodo_1_1network_1_1TCPListener.html#aafb35a279611936c5be395154d73c345a6adf97f83acf6453d4a6a4b1070f3754">dodo::network::TCPListener::None</a>, <a class="el" href="classdodo_1_1network_1_1TCPListener.html#aafb35a279611936c5be395154d73c345a7a1a5f3e79fdc91edf2f5ead9d66abb4">dodo::network::TCPListener::Read</a>, and <a class="el" href="classdodo_1_1network_1_1TCPListener.html#aafb35a279611936c5be395154d73c345a9caf4ce8ed6be558372dbc3073271903">dodo::network::TCPListener::Shut</a>.</p>
 
@@ -429,7 +459,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the lvalue </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="tcplistener_8hpp_source.html#l00589">589</a> of file <a class="el" href="tcplistener_8hpp_source.html">tcplistener.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tcplistener_8hpp_source.html#l00586">586</a> of file <a class="el" href="tcplistener_8hpp_source.html">tcplistener.hpp</a>.</p>
 
 </div>
 </div>
@@ -477,7 +507,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the lvalue </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="tcplistener_8hpp_source.html#l00579">579</a> of file <a class="el" href="tcplistener_8hpp_source.html">tcplistener.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tcplistener_8hpp_source.html#l00576">576</a> of file <a class="el" href="tcplistener_8hpp_source.html">tcplistener.hpp</a>.</p>
 
 </div>
 </div>

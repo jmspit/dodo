@@ -9,7 +9,7 @@ var classdodo_1_1network_1_1X509Certificate =
     [ "getSubject", "classdodo_1_1network_1_1X509Certificate.html#ac8d6749c52583997fa48649a78d900c0", null ],
     [ "getSubjectAltNames", "classdodo_1_1network_1_1X509Certificate.html#a134d0ce6af2bb6b77e6c581bcc1063fe", null ],
     [ "loadPEM", "classdodo_1_1network_1_1X509Certificate.html#ad448808837b94fa9b53a26783245b202", null ],
-    [ "verifyIP", "classdodo_1_1network_1_1X509Certificate.html#aa400207f2653906deea0d698406c9055", null ],
-    [ "verifyName", "classdodo_1_1network_1_1X509Certificate.html#a2a5de8c3a91fd5315a75c665f57ac9fa", null ],
-    [ "verifySAN", "classdodo_1_1network_1_1X509Certificate.html#a49509390a6532c56ff8360ef327c335e", null ]
+    [ "verifyIP", "classdodo_1_1network_1_1X509Certificate.html#a1e58ddc599f70f5ec76adf42128852f4", null ],
+    [ "verifyName", "classdodo_1_1network_1_1X509Certificate.html#a137f46353086d8f7633db9b3bd72a3cb", null ],
+    [ "verifySAN", "classdodo_1_1network_1_1X509Certificate.html#a1973b25cc19878e41238f89216053913", null ]
 ];

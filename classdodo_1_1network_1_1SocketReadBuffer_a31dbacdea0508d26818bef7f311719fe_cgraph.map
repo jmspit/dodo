@@ -1,0 +1,4 @@
+<map id="dodo::network::SocketReadBuffer::underflow" name="dodo::network::SocketReadBuffer::underflow">
+<area shape="rect" id="node1" title="If the buffer_ is fully read." alt="" coords="5,5,204,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1BaseSocket.html#a70f6f4d9cfc0bb4a415d02c61002e616" title="Receive bytes from the socket." alt="" coords="252,5,451,47"/>
+</map>

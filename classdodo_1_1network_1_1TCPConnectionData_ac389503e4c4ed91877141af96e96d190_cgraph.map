@@ -1,0 +1,10 @@
+<map id="dodo::network::TCPConnectionData::readBuffer" name="dodo::network::TCPConnectionData::readBuffer">
+<area shape="rect" id="node1" title="Reads and appends data to read_buffer." alt="" coords="5,201,225,243"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1SystemError.html#ab5557441d7c121a06e71f23febbec8fb" title="Get the system error string." alt="" coords="273,5,480,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1common_1_1Bytes.html#a8fec7dac8fec2167934b26ba865ea8eb" title="Return the array." alt="" coords="295,71,459,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1network_1_1BaseSocket.html#ab5864bc9317e07e2957ee5d2ebf13f24" title="Return the socket file descriptor." alt="" coords="277,136,476,177"/>
+<area shape="rect" id="node5" href="$classdodo_1_1common_1_1Bytes.html#afc34ec0de4068cd3ac41fd07668a7cde" title="Return the array size." alt="" coords="295,201,459,243"/>
+<area shape="rect" id="node6" href="$classdodo_1_1common_1_1Bytes.html#a9ceab049876c6791aa7a02c659212f9b" title="hex dump the first n octets of the data." alt="" coords="295,267,459,308"/>
+<area shape="rect" id="node7" href="$classdodo_1_1network_1_1BaseSocket.html#a70f6f4d9cfc0bb4a415d02c61002e616" title="Receive bytes from the socket." alt="" coords="277,332,476,373"/>
+<area shape="rect" id="node8" href="$classdodo_1_1common_1_1Bytes.html#a8e2d9803d7ca78d0cc3f43e8ff610b0b" title="Reserve memory in the Bytes." alt="" coords="295,397,459,439"/>
+</map>

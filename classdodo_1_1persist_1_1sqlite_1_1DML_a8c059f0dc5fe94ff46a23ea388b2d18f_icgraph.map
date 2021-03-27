@@ -3,8 +3,8 @@
 <area shape="rect" id="node2" href="$classdodo_1_1persist_1_1sqlite_1_1DML.html#a8397206c842a03e6d856c0d6a2f92dc0" title="Bind a string value to the bind by name." alt="" coords="13,5,164,47"/>
 <area shape="rect" id="node3" href="$classdodo_1_1persist_1_1KVStore.html#a6955da9cdca9f27a93408e8bc7c204fe" title="Delete the key or return false if the key does not exist." alt="" coords="5,71,172,112"/>
 <area shape="rect" id="node4" href="$classdodo_1_1persist_1_1KVStore.html#a0891482cce9144950f513e8807a5266e" title="Check if the key exists." alt="" coords="5,136,172,177"/>
-<area shape="rect" id="node5" href="$classdodo_1_1persist_1_1KVStore.html#ae5400594ab42ef03cf75d4887193545e" title="Return a list of keys that match the filter." alt="" coords="5,201,172,243"/>
-<area shape="rect" id="node6" href="$classdodo_1_1persist_1_1KVStore.html#a8ab6d5c7192b9117a666910976e7e57b" title="Get MetaData for the key." alt="" coords="5,267,172,308"/>
+<area shape="rect" id="node5" href="$classdodo_1_1persist_1_1KVStore.html#ab78164017c4a8a0c3e00d43f45103d09" title="Return a list of keys that match the filter." alt="" coords="5,201,172,243"/>
+<area shape="rect" id="node6" href="$classdodo_1_1persist_1_1KVStore.html#a019322716786bf0852b502d78cb17e81" title="Get MetaData for the key." alt="" coords="5,267,172,308"/>
 <area shape="rect" id="node7" href="$classdodo_1_1persist_1_1KVStore.html#a42cdd191f2ba7ebefb914ab62698a7e6" title="If the key exists, returns true and sets the value parameter." alt="" coords="5,332,172,373"/>
 <area shape="rect" id="node8" href="$classdodo_1_1persist_1_1KVStore.html#a8578963405b8ce070fe61179a4bd16e7" title="Insert a (key, string) pair." alt="" coords="5,397,172,439"/>
 <area shape="rect" id="node9" href="$classdodo_1_1persist_1_1KVStore.html#ac8ec7ef3eac8a32d5fefcc998c3435cc" title="Set the string value of an existing key." alt="" coords="5,463,172,504"/>

@@ -138,9 +138,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ad448808837b94fa9b53a26783245b202"><td class="memItemLeft" align="right" valign="top">static X509 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1X509Certificate.html#ad448808837b94fa9b53a26783245b202">loadPEM</a> (const std::string file)</td></tr>
 <tr class="memdesc:ad448808837b94fa9b53a26783245b202"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load a public key certificate (aka 'certificate') from a PEM file.  <a href="classdodo_1_1network_1_1X509Certificate.html#ad448808837b94fa9b53a26783245b202">More...</a><br /></td></tr>
 <tr class="separator:ad448808837b94fa9b53a26783245b202"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49509390a6532c56ff8360ef327c335e"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1X509Certificate.html#a49509390a6532c56ff8360ef327c335e">verifySAN</a> (const X509 *cert, const <a class="el" href="structdodo_1_1network_1_1X509Common_1_1SAN.html">SAN</a> &amp;san)</td></tr>
-<tr class="memdesc:a49509390a6532c56ff8360ef327c335e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verify a peer name against this certificate's CN and SubjectAltnames.  <a href="classdodo_1_1network_1_1X509Certificate.html#a49509390a6532c56ff8360ef327c335e">More...</a><br /></td></tr>
-<tr class="separator:a49509390a6532c56ff8360ef327c335e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1973b25cc19878e41238f89216053913"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1X509Certificate.html#a1973b25cc19878e41238f89216053913">verifySAN</a> (const X509 *cert, const <a class="el" href="structdodo_1_1network_1_1X509Common_1_1SAN.html">SAN</a> &amp;san, bool wildcards=false)</td></tr>
+<tr class="memdesc:a1973b25cc19878e41238f89216053913"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verify a peer name against this certificate's CN and SubjectAltnames.  <a href="classdodo_1_1network_1_1X509Certificate.html#a1973b25cc19878e41238f89216053913">More...</a><br /></td></tr>
+<tr class="separator:a1973b25cc19878e41238f89216053913"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_methods_classdodo_1_1network_1_1X509Common"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classdodo_1_1network_1_1X509Common')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classdodo_1_1network_1_1X509Common.html">dodo::network::X509Common</a></td></tr>
 <tr class="memitem:a92822eebbe725884f9617e3f3792be39 inherit pub_static_methods_classdodo_1_1network_1_1X509Common"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classdodo_1_1network_1_1X509Common.html#a072fef8b03e3c6ccd2fa35d95e0556db">X509Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1X509Common.html#a92822eebbe725884f9617e3f3792be39">detectX509Type</a> (const std::string file, std::string &amp;tag)</td></tr>
 <tr class="memdesc:a92822eebbe725884f9617e3f3792be39 inherit pub_static_methods_classdodo_1_1network_1_1X509Common"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detects a X509 document type from a PEM file.  <a href="classdodo_1_1network_1_1X509Common.html#a92822eebbe725884f9617e3f3792be39">More...</a><br /></td></tr>
@@ -160,12 +160,12 @@ Private Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
-<tr class="memitem:aa400207f2653906deea0d698406c9055"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1X509Certificate.html#aa400207f2653906deea0d698406c9055">verifyIP</a> (const std::string peer, const std::string san)</td></tr>
-<tr class="memdesc:aa400207f2653906deea0d698406c9055"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verify a peer IP matches a SAN of type stIP.  <a href="classdodo_1_1network_1_1X509Certificate.html#aa400207f2653906deea0d698406c9055">More...</a><br /></td></tr>
-<tr class="separator:aa400207f2653906deea0d698406c9055"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a5de8c3a91fd5315a75c665f57ac9fa"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1X509Certificate.html#a2a5de8c3a91fd5315a75c665f57ac9fa">verifyName</a> (const std::string peer, const std::string san, bool allowwildcard=false)</td></tr>
-<tr class="memdesc:a2a5de8c3a91fd5315a75c665f57ac9fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verify a peer name matches a SAN.  <a href="classdodo_1_1network_1_1X509Certificate.html#a2a5de8c3a91fd5315a75c665f57ac9fa">More...</a><br /></td></tr>
-<tr class="separator:a2a5de8c3a91fd5315a75c665f57ac9fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e58ddc599f70f5ec76adf42128852f4"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1X509Certificate.html#a1e58ddc599f70f5ec76adf42128852f4">verifyIP</a> (const std::string &amp;peer, const std::string &amp;san)</td></tr>
+<tr class="memdesc:a1e58ddc599f70f5ec76adf42128852f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verify a peer IP matches a SAN of type stIP.  <a href="classdodo_1_1network_1_1X509Certificate.html#a1e58ddc599f70f5ec76adf42128852f4">More...</a><br /></td></tr>
+<tr class="separator:a1e58ddc599f70f5ec76adf42128852f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a137f46353086d8f7633db9b3bd72a3cb"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1X509Certificate.html#a137f46353086d8f7633db9b3bd72a3cb">verifyName</a> (const std::string &amp;peer, const std::string &amp;san, bool wildcards=false)</td></tr>
+<tr class="memdesc:a137f46353086d8f7633db9b3bd72a3cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verify a peer name matches a SAN.  <a href="classdodo_1_1network_1_1X509Certificate.html#a137f46353086d8f7633db9b3bd72a3cb">More...</a><br /></td></tr>
+<tr class="separator:a137f46353086d8f7633db9b3bd72a3cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -521,7 +521,7 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="classdodo_1_1network_1_1X509Certificate_ac8d6749c52583997fa48649a78d900c0_icgraph.png" border="0" usemap="#classdodo_1_1network_1_1X509Certificate_ac8d6749c52583997fa48649a78d900c0_icgraph" alt=""/></div>
 <map name="classdodo_1_1network_1_1X509Certificate_ac8d6749c52583997fa48649a78d900c0_icgraph" id="classdodo_1_1network_1_1X509Certificate_ac8d6749c52583997fa48649a78d900c0_icgraph">
 <area shape="rect" title="Get the certificate subject identity." alt="" coords="276,5,499,47"/>
-<area shape="rect" href="classdodo_1_1network_1_1X509Certificate.html#a49509390a6532c56ff8360ef327c335e" title="Verify a peer name against this certificate&#39;s CN and SubjectAltnames." alt="" coords="5,5,228,47"/>
+<area shape="rect" href="classdodo_1_1network_1_1X509Certificate.html#a1973b25cc19878e41238f89216053913" title="Verify a peer name against this certificate&#39;s CN and SubjectAltnames." alt="" coords="5,5,228,47"/>
 </map>
 </div>
 
@@ -569,7 +569,7 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="classdodo_1_1network_1_1X509Certificate_a134d0ce6af2bb6b77e6c581bcc1063fe_icgraph.png" border="0" usemap="#classdodo_1_1network_1_1X509Certificate_a134d0ce6af2bb6b77e6c581bcc1063fe_icgraph" alt=""/></div>
 <map name="classdodo_1_1network_1_1X509Certificate_a134d0ce6af2bb6b77e6c581bcc1063fe_icgraph" id="classdodo_1_1network_1_1X509Certificate_a134d0ce6af2bb6b77e6c581bcc1063fe_icgraph">
 <area shape="rect" title="Get the SAN (subject alternate name) list for the certificate, which may be empty." alt="" coords="276,5,499,47"/>
-<area shape="rect" href="classdodo_1_1network_1_1X509Certificate.html#a49509390a6532c56ff8360ef327c335e" title="Verify a peer name against this certificate&#39;s CN and SubjectAltnames." alt="" coords="5,5,228,47"/>
+<area shape="rect" href="classdodo_1_1network_1_1X509Certificate.html#a1973b25cc19878e41238f89216053913" title="Verify a peer name against this certificate&#39;s CN and SubjectAltnames." alt="" coords="5,5,228,47"/>
 </map>
 </div>
 
@@ -631,8 +631,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="aa400207f2653906deea0d698406c9055"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa400207f2653906deea0d698406c9055">&#9670;&nbsp;</a></span>verifyIP()</h2>
+<a id="a1e58ddc599f70f5ec76adf42128852f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e58ddc599f70f5ec76adf42128852f4">&#9670;&nbsp;</a></span>verifyIP()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -643,13 +643,13 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">bool dodo::network::X509Certificate::verifyIP </td>
           <td>(</td>
-          <td class="paramtype">const std::string&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>peer</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::string&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>san</em>&#160;</td>
         </tr>
         <tr>
@@ -677,32 +677,21 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00269">269</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="address_8hpp_source.html#l00137">dodo::network::Address::isValid()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="x509cert_8cpp_source.html#l00278">verifySAN()</a>.</p>
+<p class="reference">References <a class="el" href="address_8hpp_source.html#l00134">dodo::network::Address::isValid()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classdodo_1_1network_1_1X509Certificate_aa400207f2653906deea0d698406c9055_cgraph.png" border="0" usemap="#classdodo_1_1network_1_1X509Certificate_aa400207f2653906deea0d698406c9055_cgraph" alt=""/></div>
-<map name="classdodo_1_1network_1_1X509Certificate_aa400207f2653906deea0d698406c9055_cgraph" id="classdodo_1_1network_1_1X509Certificate_aa400207f2653906deea0d698406c9055_cgraph">
+<div class="center"><img src="classdodo_1_1network_1_1X509Certificate_a1e58ddc599f70f5ec76adf42128852f4_cgraph.png" border="0" usemap="#classdodo_1_1network_1_1X509Certificate_a1e58ddc599f70f5ec76adf42128852f4_cgraph" alt=""/></div>
+<map name="classdodo_1_1network_1_1X509Certificate_a1e58ddc599f70f5ec76adf42128852f4_cgraph" id="classdodo_1_1network_1_1X509Certificate_a1e58ddc599f70f5ec76adf42128852f4_cgraph">
 <area shape="rect" title="Verify a peer IP matches a SAN of type stIP." alt="" coords="5,5,228,47"/>
 <area shape="rect" href="classdodo_1_1network_1_1Address.html#a94be0e116979f10dd98c10a05d816a6e" title="True if this Address is valid." alt="" coords="276,5,451,47"/>
 </map>
 </div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classdodo_1_1network_1_1X509Certificate_aa400207f2653906deea0d698406c9055_icgraph.png" border="0" usemap="#classdodo_1_1network_1_1X509Certificate_aa400207f2653906deea0d698406c9055_icgraph" alt=""/></div>
-<map name="classdodo_1_1network_1_1X509Certificate_aa400207f2653906deea0d698406c9055_icgraph" id="classdodo_1_1network_1_1X509Certificate_aa400207f2653906deea0d698406c9055_icgraph">
-<area shape="rect" title="Verify a peer IP matches a SAN of type stIP." alt="" coords="276,5,499,47"/>
-<area shape="rect" href="classdodo_1_1network_1_1X509Certificate.html#a49509390a6532c56ff8360ef327c335e" title="Verify a peer name against this certificate&#39;s CN and SubjectAltnames." alt="" coords="5,5,228,47"/>
-</map>
-</div>
 
 </div>
 </div>
-<a id="a2a5de8c3a91fd5315a75c665f57ac9fa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2a5de8c3a91fd5315a75c665f57ac9fa">&#9670;&nbsp;</a></span>verifyName()</h2>
+<a id="a137f46353086d8f7633db9b3bd72a3cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a137f46353086d8f7633db9b3bd72a3cb">&#9670;&nbsp;</a></span>verifyName()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -713,20 +702,20 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">bool dodo::network::X509Certificate::verifyName </td>
           <td>(</td>
-          <td class="paramtype">const std::string&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>peer</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::string&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>san</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>allowwildcard</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>wildcards</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -746,7 +735,7 @@ Here is the caller graph for this function:</div>
   <table class="params">
     <tr><td class="paramname">peer</td><td>The name of the peer. </td></tr>
     <tr><td class="paramname">san</td><td>The SubjectAltname of the peer. </td></tr>
-    <tr><td class="paramname">allowwildcard</td><td>If true, allow wildcards. </td></tr>
+    <tr><td class="paramname">wildcards</td><td>If true, allow wildcards. </td></tr>
   </table>
   </dd>
 </dl>
@@ -754,21 +743,10 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00248">248</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="x509cert_8cpp_source.html#l00278">verifySAN()</a>.</p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classdodo_1_1network_1_1X509Certificate_a2a5de8c3a91fd5315a75c665f57ac9fa_icgraph.png" border="0" usemap="#classdodo_1_1network_1_1X509Certificate_a2a5de8c3a91fd5315a75c665f57ac9fa_icgraph" alt=""/></div>
-<map name="classdodo_1_1network_1_1X509Certificate_a2a5de8c3a91fd5315a75c665f57ac9fa_icgraph" id="classdodo_1_1network_1_1X509Certificate_a2a5de8c3a91fd5315a75c665f57ac9fa_icgraph">
-<area shape="rect" title="Verify a peer name matches a SAN." alt="" coords="276,5,499,47"/>
-<area shape="rect" href="classdodo_1_1network_1_1X509Certificate.html#a49509390a6532c56ff8360ef327c335e" title="Verify a peer name against this certificate&#39;s CN and SubjectAltnames." alt="" coords="5,5,228,47"/>
-</map>
-</div>
-
 </div>
 </div>
-<a id="a49509390a6532c56ff8360ef327c335e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a49509390a6532c56ff8360ef327c335e">&#9670;&nbsp;</a></span>verifySAN()</h2>
+<a id="a1973b25cc19878e41238f89216053913"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1973b25cc19878e41238f89216053913">&#9670;&nbsp;</a></span>verifySAN()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -786,7 +764,13 @@ Here is the caller graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="structdodo_1_1network_1_1X509Common_1_1SAN.html">SAN</a> &amp;&#160;</td>
-          <td class="paramname"><em>san</em>&#160;</td>
+          <td class="paramname"><em>san</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>wildcards</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -807,6 +791,7 @@ Here is the caller graph for this function:</div>
   <table class="params">
     <tr><td class="paramname">cert</td><td>A pointer to the X509 certificate. </td></tr>
     <tr><td class="paramname">san</td><td>The SAN structure to compare against. </td></tr>
+    <tr><td class="paramname">wildcards</td><td>If true, allow wildcards. </td></tr>
   </table>
   </dd>
 </dl>
@@ -814,28 +799,26 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="x509cert_8cpp_source.html#l00278">278</a> of file <a class="el" href="x509cert_8cpp_source.html">x509cert.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="x509cert_8hpp_source.html#l00119">dodo::network::X509Common::Identity::commonName</a>, <a class="el" href="x509cert_8cpp_source.html#l00182">getSubject()</a>, <a class="el" href="x509cert_8cpp_source.html#l00192">getSubjectAltNames()</a>, <a class="el" href="x509cert_8hpp_source.html#l00079">dodo::network::X509Common::SAN::san_name</a>, <a class="el" href="x509cert_8hpp_source.html#l00074">dodo::network::X509Common::SAN::san_type</a>, <a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba1af3c8cd9ea46d2a701ae919c0a8c5a0">dodo::network::X509Common::stDNS</a>, <a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba2c1a510163b7557581fd8d65c50fce75">dodo::network::X509Common::stEMAIL</a>, <a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689bae756ee54c00082fce60e7f9447e41358">dodo::network::X509Common::stIP</a>, <a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba6509b104c2d2ae4b436e2bab8ad28175">dodo::network::X509Common::stURI</a>, <a class="el" href="x509cert_8cpp_source.html#l00269">verifyIP()</a>, and <a class="el" href="x509cert_8cpp_source.html#l00248">verifyName()</a>.</p>
+<p class="reference">References <a class="el" href="x509cert_8hpp_source.html#l00119">dodo::network::X509Common::Identity::commonName</a>, <a class="el" href="x509cert_8cpp_source.html#l00182">getSubject()</a>, <a class="el" href="x509cert_8cpp_source.html#l00192">getSubjectAltNames()</a>, <a class="el" href="x509cert_8hpp_source.html#l00074">dodo::network::X509Common::SAN::san_type</a>, <a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba1af3c8cd9ea46d2a701ae919c0a8c5a0">dodo::network::X509Common::stDNS</a>, <a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba2c1a510163b7557581fd8d65c50fce75">dodo::network::X509Common::stEMAIL</a>, <a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689bae756ee54c00082fce60e7f9447e41358">dodo::network::X509Common::stIP</a>, and <a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba6509b104c2d2ae4b436e2bab8ad28175">dodo::network::X509Common::stURI</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="tlssocket_8cpp_source.html#l00056">dodo::network::TLSSocket::connect()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classdodo_1_1network_1_1X509Certificate_a49509390a6532c56ff8360ef327c335e_cgraph.png" border="0" usemap="#classdodo_1_1network_1_1X509Certificate_a49509390a6532c56ff8360ef327c335e_cgraph" alt=""/></div>
-<map name="classdodo_1_1network_1_1X509Certificate_a49509390a6532c56ff8360ef327c335e_cgraph" id="classdodo_1_1network_1_1X509Certificate_a49509390a6532c56ff8360ef327c335e_cgraph">
-<area shape="rect" title="Verify a peer name against this certificate&#39;s CN and SubjectAltnames." alt="" coords="5,104,228,145"/>
+<div class="center"><img src="classdodo_1_1network_1_1X509Certificate_a1973b25cc19878e41238f89216053913_cgraph.png" border="0" usemap="#classdodo_1_1network_1_1X509Certificate_a1973b25cc19878e41238f89216053913_cgraph" alt=""/></div>
+<map name="classdodo_1_1network_1_1X509Certificate_a1973b25cc19878e41238f89216053913_cgraph" id="classdodo_1_1network_1_1X509Certificate_a1973b25cc19878e41238f89216053913_cgraph">
+<area shape="rect" title="Verify a peer name against this certificate&#39;s CN and SubjectAltnames." alt="" coords="5,39,228,80"/>
 <area shape="rect" href="classdodo_1_1network_1_1X509Certificate.html#ac8d6749c52583997fa48649a78d900c0" title="Get the certificate subject identity." alt="" coords="276,5,499,47"/>
 <area shape="rect" href="classdodo_1_1network_1_1X509Certificate.html#a134d0ce6af2bb6b77e6c581bcc1063fe" title="Get the SAN (subject alternate name) list for the certificate, which may be empty." alt="" coords="276,71,499,112"/>
-<area shape="rect" href="classdodo_1_1network_1_1X509Certificate.html#aa400207f2653906deea0d698406c9055" title="Verify a peer IP matches a SAN of type stIP." alt="" coords="276,136,499,177"/>
-<area shape="rect" href="classdodo_1_1network_1_1X509Certificate.html#a2a5de8c3a91fd5315a75c665f57ac9fa" title="Verify a peer name matches a SAN." alt="" coords="276,201,499,243"/>
 </map>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classdodo_1_1network_1_1X509Certificate_a49509390a6532c56ff8360ef327c335e_icgraph.png" border="0" usemap="#classdodo_1_1network_1_1X509Certificate_a49509390a6532c56ff8360ef327c335e_icgraph" alt=""/></div>
-<map name="classdodo_1_1network_1_1X509Certificate_a49509390a6532c56ff8360ef327c335e_icgraph" id="classdodo_1_1network_1_1X509Certificate_a49509390a6532c56ff8360ef327c335e_icgraph">
+<div class="center"><img src="classdodo_1_1network_1_1X509Certificate_a1973b25cc19878e41238f89216053913_icgraph.png" border="0" usemap="#classdodo_1_1network_1_1X509Certificate_a1973b25cc19878e41238f89216053913_icgraph" alt=""/></div>
+<map name="classdodo_1_1network_1_1X509Certificate_a1973b25cc19878e41238f89216053913_icgraph" id="classdodo_1_1network_1_1X509Certificate_a1973b25cc19878e41238f89216053913_icgraph">
 <area shape="rect" title="Verify a peer name against this certificate&#39;s CN and SubjectAltnames." alt="" coords="243,5,465,47"/>
-<area shape="rect" href="classdodo_1_1network_1_1TLSSocket.html#a8d461dcb17d488050c8576431670ea4d" title="Connect to the Address." alt="" coords="5,5,195,47"/>
+<area shape="rect" href="classdodo_1_1network_1_1TLSSocket.html#a7b272413dc6806e5456741c0dffb27de" title="Connect to the Address." alt="" coords="5,5,195,47"/>
 </map>
 </div>
 

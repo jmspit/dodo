@@ -2,8 +2,8 @@
 <area shape="rect" id="node1" title="Step the result list, end of list returns false." alt="" coords="252,169,403,211"/>
 <area shape="rect" id="node2" href="$classdodo_1_1persist_1_1KVStore.html#ac234ee7acdce103149fe6eb9f98f6a55" title="Create the SQLite schema." alt="" coords="21,5,188,47"/>
 <area shape="rect" id="node3" href="$classdodo_1_1persist_1_1KVStore.html#a0891482cce9144950f513e8807a5266e" title="Check if the key exists." alt="" coords="21,71,188,112"/>
-<area shape="rect" id="node4" href="$classdodo_1_1persist_1_1KVStore.html#ae5400594ab42ef03cf75d4887193545e" title="Return a list of keys that match the filter." alt="" coords="21,136,188,177"/>
-<area shape="rect" id="node5" href="$classdodo_1_1persist_1_1KVStore.html#a8ab6d5c7192b9117a666910976e7e57b" title="Get MetaData for the key." alt="" coords="21,201,188,243"/>
-<area shape="rect" id="node6" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#a872f275b261bf66390ea023e08e1468b" title="get the current user_version pragma" alt="" coords="5,267,204,308"/>
+<area shape="rect" id="node4" href="$classdodo_1_1persist_1_1KVStore.html#ab78164017c4a8a0c3e00d43f45103d09" title="Return a list of keys that match the filter." alt="" coords="21,136,188,177"/>
+<area shape="rect" id="node5" href="$classdodo_1_1persist_1_1KVStore.html#a019322716786bf0852b502d78cb17e81" title="Get MetaData for the key." alt="" coords="21,201,188,243"/>
+<area shape="rect" id="node6" href="$classdodo_1_1persist_1_1sqlite_1_1Database.html#a872f275b261bf66390ea023e08e1468b" title="get the current user_version pragma (a user defined database schema version)" alt="" coords="5,267,204,308"/>
 <area shape="rect" id="node7" href="$classdodo_1_1persist_1_1KVStore.html#a42cdd191f2ba7ebefb914ab62698a7e6" title="If the key exists, returns true and sets the value parameter." alt="" coords="21,332,188,373"/>
 </map>

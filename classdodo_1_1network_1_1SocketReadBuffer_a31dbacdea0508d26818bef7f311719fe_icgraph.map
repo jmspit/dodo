@@ -1,0 +1,4 @@
+<map id="dodo::network::SocketReadBuffer::underflow" name="dodo::network::SocketReadBuffer::underflow">
+<area shape="rect" id="node1" title="If the buffer_ is fully read." alt="" coords="252,5,451,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1SocketReadBuffer.html#aa503d85f1b2fc9f2248b9022ba4e063b" title="Move to the next char from the VirtualReadBuffer." alt="" coords="5,5,204,47"/>
+</map>

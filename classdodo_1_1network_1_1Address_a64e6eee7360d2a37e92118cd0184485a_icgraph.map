@@ -1,4 +1,0 @@
-<map id="dodo::network::Address::getHostAddrInfo" name="dodo::network::Address::getHostAddrInfo">
-<area shape="rect" id="node1" title="Get Address information on a host in a AddrInfo struct." alt="" coords="228,5,403,47"/>
-<area shape="rect" id="node2" href="$classdodo_1_1network_1_1Address.html#a1a016464e617beef4c8f87643a869809" title="Return the first hit on SocketParams in address and canonicalname." alt="" coords="5,5,180,47"/>
-</map>

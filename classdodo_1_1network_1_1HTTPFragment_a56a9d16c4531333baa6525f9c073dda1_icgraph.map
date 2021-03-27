@@ -1,0 +1,4 @@
+<map id="dodo::network::HTTPFragment::getParseResultAsString" name="dodo::network::HTTPFragment::getParseResultAsString">
+<area shape="rect" id="node1" title="Return the string description of a ParseError." alt="" coords="272,5,491,47"/>
+<area shape="rect" id="node2" href="$structdodo_1_1network_1_1HTTPFragment_1_1ParseResult.html#a8c2e8b711fb76238ef78e250a3e68d05" title="Return the ParseResult as a human readable string." alt="" coords="5,5,224,47"/>
+</map>

@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['w_5f_1589',['w_',['../structdodo_1_1common_1_1Puts_1_1setw.html#a566767de9b339a19c0d621f8a0b1abbe',1,'dodo::common::Puts::setw']]],
-  ['warn_5fqueue_5ftime_5f_1590',['warn_queue_time_',['../classdodo_1_1network_1_1TCPListener.html#a4c32a9174814656611f5e2ec08e882c2',1,'dodo::network::TCPListener']]],
-  ['work_5fq_5fsz_5f_1591',['work_q_sz_',['../classdodo_1_1network_1_1TCPListener.html#a4a426fe930159c37c24fa1cc1b550738',1,'dodo::network::TCPListener']]],
-  ['workload_5f_1592',['workload_',['../classdodo_1_1network_1_1TCPListener.html#af1a409c85f83b23e441ecd4163d25fa5',1,'dodo::network::TCPListener']]]
+  ['version_5f_1846',['version_',['../classdodo_1_1network_1_1HTTPResponse_1_1HTTPResponseLine.html#a48dd2386094c7c4c2cfa11a7ae6ca429',1,'dodo::network::HTTPResponse::HTTPResponseLine::version_()'],['../classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect.html#a4d8f1a851cf7ad55fcdc0e76ab5d0db6',1,'dodo::network::protocol::stomp::Connect::version_()'],['../classdodo_1_1network_1_1protocol_1_1stomp_1_1Connected.html#a0d562c38c5c41bc2885993ab8e0ca058',1,'dodo::network::protocol::stomp::Connected::version_()']]]
 ];

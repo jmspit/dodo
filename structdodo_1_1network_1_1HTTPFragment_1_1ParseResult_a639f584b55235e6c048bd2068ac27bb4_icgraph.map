@@ -1,0 +1,17 @@
+<map id="dodo::network::HTTPFragment::ParseResult::setSystemError" name="dodo::network::HTTPFragment::ParseResult::setSystemError">
+<area shape="rect" id="node1" title="Set the systemError." alt="" coords="1329,366,1548,408"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1HTTPMessage.html#a402378efbfe6f4f5063e84d879c748c3" title="Consume a CR LF sequence only when it is there." alt="" coords="801,510,1016,552"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1HTTPMessage.html#aca8849f32213673009ae3e45a117b44b" title="Parse a chunked body (transfer&#45;encoding: chunked) and resturn it as a single string." alt="" coords="536,401,751,442"/>
+<area shape="rect" id="node4" href="$classdodo_1_1network_1_1HTTPMessage.html#ac262c6dcd837dd15c9cec040495e4c8d" title="Parse a body and resturn it as a single string." alt="" coords="273,296,488,337"/>
+<area shape="rect" id="node5" href="$classdodo_1_1network_1_1HTTPRequest.html#aee8f0b384834f83219ef7623efd52349" title="Read the HTTPRequest from the socket." alt="" coords="10,116,221,157"/>
+<area shape="rect" id="node6" href="$classdodo_1_1network_1_1HTTPResponse.html#a9c75167f9a4e4ea89cb56dedb84ff660" title="Read a complete HTTPFragment from a VirtualReadBuffer." alt="" coords="5,432,225,473"/>
+<area shape="rect" id="node7" href="$classdodo_1_1network_1_1HTTPVersion.html#a74ddbf58c27bed90dbb036f4720f2b03" title="Construct from current position in the VirtualReadBuffer &#39;HTTP/major_.minor_&#39;." alt="" coords="1071,740,1277,781"/>
+<area shape="rect" id="node8" href="$classdodo_1_1network_1_1HTTPRequest_1_1HTTPRequestLine.html#a3ced9e5133ad9c34897e3d0de0c1bc42" title="Parses a HTTPMessage." alt="" coords="538,66,749,108"/>
+<area shape="rect" id="node9" href="$classdodo_1_1network_1_1HTTPResponse_1_1HTTPResponseLine.html#a088ccff3044b9aa0daa67dec1cba938f" title="Read a complete HTTPFragment from a VirtualReadBuffer." alt="" coords="799,628,1019,669"/>
+<area shape="rect" id="node10" href="$classdodo_1_1network_1_1HTTPMessage.html#a5be702bede417e80d58bf5609722d545" title="Parse a hexadecimal chunk size (a hex value followed by CR LF)." alt="" coords="801,342,1016,384"/>
+<area shape="rect" id="node11" href="$classdodo_1_1network_1_1HTTPMessage.html#a27887eb101276cbcd4d7ecc06c2a54df" title="Consume a CR LF sequence." alt="" coords="1067,396,1281,437"/>
+<area shape="rect" id="node12" href="$classdodo_1_1network_1_1HTTPMessage.html#ab63709a6c8c52592f94ef2f74981b48d" title="Parse a header field value." alt="" coords="1067,228,1281,269"/>
+<area shape="rect" id="node13" href="$classdodo_1_1network_1_1HTTPMessage.html#a18969fff1d601470ff4a9d5c3c50bfc4" title="Parse a header section and update headers_." alt="" coords="801,169,1016,210"/>
+<area shape="rect" id="node14" href="$classdodo_1_1network_1_1HTTPMessage.html#a1c7142f711bbcf970616ae894c8b3172" title="Parse a token (such as a header field name)." alt="" coords="1067,110,1281,152"/>
+<area shape="rect" id="node15" href="$classdodo_1_1network_1_1HTTPMessage.html#a5243e71ad91ebefbc9698873c4f890c9" title="Parse an unsigned integer." alt="" coords="1067,622,1281,664"/>
+</map>

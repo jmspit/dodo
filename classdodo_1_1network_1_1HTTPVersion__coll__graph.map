@@ -1,0 +1,5 @@
+<map id="dodo::network::HTTPVersion" name="dodo::network::HTTPVersion">
+<area shape="rect" id="node1" title="HHTP version comprising a major and minor number, convertable from and to string as in HTTP requests." alt="" coords="88,109,293,136"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1HTTPFragment.html" title="Generic HTTP fragment, either a complete (such as HTTPRequest) or incomplete HTTP fragment (ssuch as ..." alt="" coords="5,5,224,32"/>
+<area shape="rect" id="node3" title=" " alt="" coords="249,5,287,32"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="dodo::network::HTTPResponse::parse" name="dodo::network::HTTPResponse::parse">
+<area shape="rect" id="node1" title="Read a complete HTTPFragment from a VirtualReadBuffer." alt="" coords="5,175,225,216"/>
+<area shape="rect" id="node2" href="$structdodo_1_1network_1_1HTTPFragment_1_1ParseResult.html#a8d4c50d920bc06197a7d1d70e442a2fc" title="Test if systemError == common::SystemError::ecEAGAIN" alt="" coords="541,5,760,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1VirtualReadBuffer.html#a3783344680f3919689860179a78819f0" title="Get the current char from VirtualReadBuffer." alt="" coords="551,117,750,159"/>
+<area shape="rect" id="node4" href="$classdodo_1_1network_1_1VirtualReadBuffer.html#ac05023730c45272074424d02057df384" title="Move to the next char from the VirtualReadBuffer." alt="" coords="551,183,750,224"/>
+<area shape="rect" id="node5" href="$structdodo_1_1network_1_1HTTPFragment_1_1ParseResult.html#a5a5e5df7a5d1f02f3739358b96acd8dc" title="Test if parseError == peOk &amp;&amp; systemError == common::SystemError::ecOK." alt="" coords="541,248,760,289"/>
+<area shape="rect" id="node6" href="$classdodo_1_1network_1_1HTTPResponse_1_1HTTPResponseLine.html#a088ccff3044b9aa0daa67dec1cba938f" title="Read a complete HTTPFragment from a VirtualReadBuffer." alt="" coords="273,272,493,313"/>
+<area shape="rect" id="node7" href="$structdodo_1_1network_1_1HTTPFragment_1_1ParseResult.html#a639f584b55235e6c048bd2068ac27bb4" title="Set the systemError." alt="" coords="541,313,760,355"/>
+<area shape="rect" id="node8" href="$classdodo_1_1network_1_1HTTPMessage.html#ac262c6dcd837dd15c9cec040495e4c8d" title="Parse a body and resturn it as a single string." alt="" coords="276,207,491,248"/>
+<area shape="rect" id="node9" href="$classdodo_1_1network_1_1HTTPMessage.html#a18969fff1d601470ff4a9d5c3c50bfc4" title="Parse a header section and update headers_." alt="" coords="276,141,491,183"/>
+</map>

@@ -136,7 +136,7 @@ Private Attributes</h2></td></tr>
 <dd>
 std::mutex </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="mutex_8hpp_source.html#l00041">41</a> of file <a class="el" href="mutex_8hpp_source.html">mutex.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mutex_8hpp_source.html#l00039">39</a> of file <a class="el" href="mutex_8hpp_source.html">mutex.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a086174bb18d6f84db1483d07fedbec20"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a086174bb18d6f84db1483d07fedbec20">&#9670;&nbsp;</a></span>Mutex()</h2>
@@ -163,7 +163,7 @@ std::mutex </dd></dl>
 
 <p>Construct a <a class="el" href="classdodo_1_1threads_1_1Mutex.html" title="A Mutex to synchronize access to resources between threads.">Mutex</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="mutex_8hpp_source.html#l00047">47</a> of file <a class="el" href="mutex_8hpp_source.html">mutex.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mutex_8hpp_source.html#l00045">45</a> of file <a class="el" href="mutex_8hpp_source.html">mutex.hpp</a>.</p>
 
 </div>
 </div>
@@ -192,7 +192,7 @@ std::mutex </dd></dl>
 
 <p>Destruct a <a class="el" href="classdodo_1_1threads_1_1Mutex.html" title="A Mutex to synchronize access to resources between threads.">Mutex</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="mutex_8hpp_source.html#l00052">52</a> of file <a class="el" href="mutex_8hpp_source.html">mutex.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mutex_8hpp_source.html#l00050">50</a> of file <a class="el" href="mutex_8hpp_source.html">mutex.hpp</a>.</p>
 
 </div>
 </div>
@@ -223,7 +223,20 @@ std::mutex </dd></dl>
 <p>Waits for a <a class="el" href="classdodo_1_1threads_1_1Mutex.html" title="A Mutex to synchronize access to resources between threads.">Mutex</a> and locks it (atomically). </p>
 <p>You must not call lock if the lock is already held by the calling thread, that is a deadlock. </p><dl class="section see"><dt>See also</dt><dd>std::mutex::lock() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="mutex_8hpp_source.html#l00059">59</a> of file <a class="el" href="mutex_8hpp_source.html">mutex.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mutex_8hpp_source.html#l00057">57</a> of file <a class="el" href="mutex_8hpp_source.html">mutex.hpp</a>.</p>
+
+<p class="reference">References <a class="el" href="mutex_8hpp_source.html#l00073">mutex_</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="mutex_8hpp_source.html#l00106">dodo::threads::Mutexer::Mutexer()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classdodo_1_1threads_1_1Mutex_a0b4a13aa7f033803936f6c11a18a4d75_icgraph.png" border="0" usemap="#classdodo_1_1threads_1_1Mutex_a0b4a13aa7f033803936f6c11a18a4d75_icgraph" alt=""/></div>
+<map name="classdodo_1_1threads_1_1Mutex_a0b4a13aa7f033803936f6c11a18a4d75_icgraph" id="classdodo_1_1threads_1_1Mutex_a0b4a13aa7f033803936f6c11a18a4d75_icgraph">
+<area shape="rect" title="Waits for a Mutex and locks it (atomically)." alt="" coords="225,5,385,47"/>
+<area shape="rect" href="classdodo_1_1threads_1_1Mutexer.html#a9071d9d9165e0801c1f47265fe7b6110" title="Constructor." alt="" coords="5,5,177,47"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -254,7 +267,9 @@ std::mutex </dd></dl>
 <p>If the <a class="el" href="classdodo_1_1threads_1_1Mutex.html" title="A Mutex to synchronize access to resources between threads.">Mutex</a> is locked, return false. You must not call lock if the lock is alread held by the calling thread, that is a deadlock. <a class="el" href="classdodo_1_1threads_1_1Mutex.html" title="A Mutex to synchronize access to resources between threads.">Mutex</a> from the same thread twice - that is a deadlock. </p><dl class="section return"><dt>Returns</dt><dd>true if the <a class="el" href="classdodo_1_1threads_1_1Mutex.html" title="A Mutex to synchronize access to resources between threads.">Mutex</a> was locked. false if the <a class="el" href="classdodo_1_1threads_1_1Mutex.html" title="A Mutex to synchronize access to resources between threads.">Mutex</a> was already locked. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>std::mutex::try_lock() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="mutex_8hpp_source.html#l00068">68</a> of file <a class="el" href="mutex_8hpp_source.html">mutex.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mutex_8hpp_source.html#l00066">66</a> of file <a class="el" href="mutex_8hpp_source.html">mutex.hpp</a>.</p>
+
+<p class="reference">References <a class="el" href="mutex_8hpp_source.html#l00073">mutex_</a>.</p>
 
 </div>
 </div>
@@ -284,7 +299,20 @@ std::mutex </dd></dl>
 <p>Unlocks the <a class="el" href="classdodo_1_1threads_1_1Mutex.html" title="A Mutex to synchronize access to resources between threads.">Mutex</a>. </p>
 <p>Calling unLOck whilst the calling thread is not holding the lock causes undefined behavior in the <a class="el" href="classdodo_1_1threads_1_1Mutex.html" title="A Mutex to synchronize access to resources between threads.">Mutex</a>. </p><dl class="section see"><dt>See also</dt><dd>std::mutex::unlock() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="mutex_8hpp_source.html#l00075">75</a> of file <a class="el" href="mutex_8hpp_source.html">mutex.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mutex_8hpp_source.html#l00073">73</a> of file <a class="el" href="mutex_8hpp_source.html">mutex.hpp</a>.</p>
+
+<p class="reference">References <a class="el" href="mutex_8hpp_source.html#l00073">mutex_</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="mutex_8hpp_source.html#l00112">dodo::threads::Mutexer::~Mutexer()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classdodo_1_1threads_1_1Mutex_ab2e479d6f0271aaab08987a5316defe2_icgraph.png" border="0" usemap="#classdodo_1_1threads_1_1Mutex_ab2e479d6f0271aaab08987a5316defe2_icgraph" alt=""/></div>
+<map name="classdodo_1_1threads_1_1Mutex_ab2e479d6f0271aaab08987a5316defe2_icgraph" id="classdodo_1_1threads_1_1Mutex_ab2e479d6f0271aaab08987a5316defe2_icgraph">
+<area shape="rect" title="Unlocks the Mutex." alt="" coords="225,5,385,47"/>
+<area shape="rect" href="classdodo_1_1threads_1_1Mutexer.html#afbef565176acd857f930c3c1c32c9e71" title="Destructor." alt="" coords="5,5,177,47"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -311,7 +339,9 @@ std::mutex </dd></dl>
 
 <p>the internal std::mutex </p>
 
-<p class="definition">Definition at line <a class="el" href="mutex_8hpp_source.html#l00075">75</a> of file <a class="el" href="mutex_8hpp_source.html">mutex.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mutex_8hpp_source.html#l00073">73</a> of file <a class="el" href="mutex_8hpp_source.html">mutex.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="mutex_8hpp_source.html#l00057">lock()</a>, <a class="el" href="mutex_8hpp_source.html#l00066">tryLock()</a>, and <a class="el" href="mutex_8hpp_source.html#l00073">unLock()</a>.</p>
 
 </div>
 </div>

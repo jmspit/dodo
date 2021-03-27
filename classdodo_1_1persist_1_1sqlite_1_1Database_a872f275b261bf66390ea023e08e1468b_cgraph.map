@@ -1,5 +1,5 @@
 <map id="dodo::persist::sqlite::Database::getUserVersion" name="dodo::persist::sqlite::Database::getUserVersion">
-<area shape="rect" id="node1" title="get the current user_version pragma" alt="" coords="5,71,204,112"/>
+<area shape="rect" id="node1" title="get the current user_version pragma (a user defined database schema version)" alt="" coords="5,71,204,112"/>
 <area shape="rect" id="node2" href="$classdodo_1_1persist_1_1sqlite_1_1Query.html#a6881888da0c21ca4524f9a0dfac3519f" title="Get int value from select list." alt="" coords="255,5,405,47"/>
 <area shape="rect" id="node3" href="$classdodo_1_1persist_1_1sqlite_1_1Statement.html#a9a126dc9004edff369e6c9ea98d9dd10" title="Prepare a SQL statement." alt="" coords="252,71,408,112"/>
 <area shape="rect" id="node4" href="$classdodo_1_1persist_1_1sqlite_1_1Query.html#a58fca8cb1c7fbecda5d762a60d060aa0" title="Step the result list, end of list returns false." alt="" coords="255,136,405,177"/>

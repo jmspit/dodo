@@ -1,0 +1,4 @@
+<map id="dodo::network::SocketReadBuffer::next" name="dodo::network::SocketReadBuffer::next">
+<area shape="rect" id="node1" title="Move to the next char from the VirtualReadBuffer." alt="" coords="5,5,204,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1SocketReadBuffer.html#a31dbacdea0508d26818bef7f311719fe" title="If the buffer_ is fully read." alt="" coords="252,5,451,47"/>
+</map>

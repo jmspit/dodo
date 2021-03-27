@@ -1,0 +1,5 @@
+<map id="dodo::network::FileReadBuffer::underflow" name="dodo::network::FileReadBuffer::underflow">
+<area shape="rect" id="node1" title="If the buffer_ underflows, the buffer_ must be reset refilledwith new data from the source." alt="" coords="272,39,491,80"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1FileReadBuffer.html#adc451ee211e4836cb571cd5496349ea3" title="Construct a FileReadBuffer." alt="" coords="5,5,224,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1FileReadBuffer.html#a17824bdc60ce7dd705bd2ebc025c8f80" title="Move to the next char from the VirtualReadBuffer." alt="" coords="5,71,224,112"/>
+</map>

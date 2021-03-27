@@ -1,0 +1,4 @@
+<map id="dodo::network::HTTPResponse::HTTPResponseLine" name="dodo::network::HTTPResponse::HTTPResponseLine">
+<area shape="rect" id="node1" title="A HTTP response line." alt="" coords="5,80,225,121"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1HTTPFragment.html" title="Generic HTTP fragment, either a complete (such as HTTPRequest) or incomplete HTTP fragment (ssuch as ..." alt="" coords="6,5,225,32"/>
+</map>

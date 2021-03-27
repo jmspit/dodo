@@ -1,0 +1,9 @@
+<map id="dodo::network::URI::parse" name="dodo::network::URI::parse">
+<area shape="rect" id="node1" title="Parse the string as an URI." alt="" coords="5,159,152,200"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1URI.html#adecb27ea697435323a0a07d54aa4067b" title="Reste all data to empty strings." alt="" coords="226,5,373,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1URI.html#ae645fc0076c8d04eb05c5fe0f2cc6d12" title="Check if c is a valid Path char." alt="" coords="226,71,373,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1network_1_1URI.html#a5f25dea3b20ce06d8cb703a25767eed7" title="Check if c is a valid UserInfo or host char." alt="" coords="447,129,629,171"/>
+<area shape="rect" id="node5" href="$classdodo_1_1network_1_1URI.html#a8a1a6a12609896281d07235f249684ae" title="Check if c is a valid Fragment char." alt="" coords="200,188,399,229"/>
+<area shape="rect" id="node6" href="$classdodo_1_1network_1_1URI.html#aae844a34db30d9aaa7b8d14af87c3304" title="Check if c is a valid Scheme char." alt="" coords="225,253,374,295"/>
+<area shape="rect" id="node7" href="$classdodo_1_1network_1_1URI.html#a2e0d7a254007b273bb9d7b8dbebabe3c" title="Check if c is a valid TCP6 address char." alt="" coords="226,319,373,360"/>
+</map>

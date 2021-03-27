@@ -1,0 +1,14 @@
+<map id="dodo::network::BaseSocket::send" name="dodo::network::BaseSocket::send">
+<area shape="rect" id="node1" title="Send bytes on the socket." alt="" coords="511,325,709,367"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1BaseSocket.html#a6f545e2f02183d5411b2dc3a1122cc76" title="Send an int16_t." alt="" coords="258,5,457,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1BaseSocket.html#a7112d7ca8dd70ab09d54b6490f117f0b" title="Send an int32_t." alt="" coords="258,71,457,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1network_1_1BaseSocket.html#a7d111d3a2daa216d6e57e10db854bd86" title="Send an int64_t." alt="" coords="258,136,457,177"/>
+<area shape="rect" id="node5" href="$classdodo_1_1network_1_1BaseSocket.html#acbb8ad1f5370205d7b3e0161876860af" title="Send an int8_t." alt="" coords="258,201,457,243"/>
+<area shape="rect" id="node6" href="$classdodo_1_1network_1_1BaseSocket.html#a112ae52456db005aa76846ae3b20e26f" title="Sends the std::string terminated by a &#39; &#39;." alt="" coords="258,267,457,308"/>
+<area shape="rect" id="node7" href="$classdodo_1_1network_1_1BaseSocket.html#ae4a25a1b2dce9b7e5d6e11edca749b65" title="Sends the std::string as understood by receiveString()." alt="" coords="5,420,204,461"/>
+<area shape="rect" id="node8" href="$classdodo_1_1network_1_1BaseSocket.html#ac4391cb30bbdfd860ca3ef0f40a8721d" title="Send an uint16_t." alt="" coords="258,384,457,425"/>
+<area shape="rect" id="node9" href="$classdodo_1_1network_1_1BaseSocket.html#a274d427a7d1b2b51e6724f81c0b71369" title="Send an uint32_t." alt="" coords="258,449,457,491"/>
+<area shape="rect" id="node10" href="$classdodo_1_1network_1_1BaseSocket.html#ae4b0cef5aab3de3e016124a2ee70e966" title="Send an sendUInt64." alt="" coords="258,515,457,556"/>
+<area shape="rect" id="node11" href="$classdodo_1_1network_1_1BaseSocket.html#a71258ae235a6bd291365e4e0a6035c28" title="Send an uint8_t." alt="" coords="258,580,457,621"/>
+<area shape="rect" id="node12" href="$classdodo_1_1network_1_1HTTPRequest.html#a0e892eb35021a3ee7795a56ee6bfc402" title="Write the HTTPRequest to the socket." alt="" coords="252,645,463,687"/>
+</map>

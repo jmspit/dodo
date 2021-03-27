@@ -1,0 +1,6 @@
+<map id="dodo::network::HTTPResponse::HTTPResponseLine" name="dodo::network::HTTPResponse::HTTPResponseLine">
+<area shape="rect" id="node1" title="A HTTP response line." alt="" coords="129,171,349,212"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1HTTPFragment.html" title="Generic HTTP fragment, either a complete (such as HTTPRequest) or incomplete HTTP fragment (ssuch as ..." alt="" coords="5,5,224,32"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1HTTPVersion.html" title="HHTP version comprising a major and minor number, convertable from and to string as in HTTP requests." alt="" coords="136,81,341,108"/>
+<area shape="rect" id="node4" title=" " alt="" coords="366,81,455,108"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="dodo::network::HTTPRequest::asString" name="dodo::network::HTTPRequest::asString">
+<area shape="rect" id="node1" title="Return the HTTPRequest as a string." alt="" coords="264,5,475,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1HTTPRequest.html#a0e892eb35021a3ee7795a56ee6bfc402" title="Write the HTTPRequest to the socket." alt="" coords="5,5,216,47"/>
+</map>

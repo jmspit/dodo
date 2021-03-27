@@ -1,4 +1,0 @@
-<map id="dodo::network::BaseSocket::sendUInt64" name="dodo::network::BaseSocket::sendUInt64">
-<area shape="rect" id="node1" title="Send an sendUInt64." alt="" coords="252,5,451,47"/>
-<area shape="rect" id="node2" href="$classdodo_1_1network_1_1BaseSocket.html#a42390d41ef7b234543c5c50bb4b9cf1b" title="Sends the std::string as understood by receiveString()." alt="" coords="5,5,204,47"/>
-</map>

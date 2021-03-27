@@ -31,6 +31,16 @@ var hierarchy =
     [ "dodo::common::UnitTest", "classdodo_1_1common_1_1UnitTest.html", null ],
     [ "dodo::network::AddrInfo", "structdodo_1_1network_1_1AddrInfo.html", null ],
     [ "dodo::network::AddrInfoItem", "structdodo_1_1network_1_1AddrInfoItem.html", null ],
+    [ "dodo::network::HTTPFragment", "classdodo_1_1network_1_1HTTPFragment.html", [
+      [ "dodo::network::HTTPMessage", "classdodo_1_1network_1_1HTTPMessage.html", [
+        [ "dodo::network::HTTPRequest", "classdodo_1_1network_1_1HTTPRequest.html", null ],
+        [ "dodo::network::HTTPResponse", "classdodo_1_1network_1_1HTTPResponse.html", null ]
+      ] ],
+      [ "dodo::network::HTTPRequest::HTTPRequestLine", "classdodo_1_1network_1_1HTTPRequest_1_1HTTPRequestLine.html", null ],
+      [ "dodo::network::HTTPResponse::HTTPResponseLine", "classdodo_1_1network_1_1HTTPResponse_1_1HTTPResponseLine.html", null ],
+      [ "dodo::network::HTTPVersion", "classdodo_1_1network_1_1HTTPVersion.html", null ]
+    ] ],
+    [ "dodo::network::HTTPFragment::ParseResult", "structdodo_1_1network_1_1HTTPFragment_1_1ParseResult.html", null ],
     [ "dodo::network::protocol::stomp::Frame", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html", [
       [ "dodo::network::protocol::stomp::Connect", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect.html", null ],
       [ "dodo::network::protocol::stomp::Connected", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Connected.html", null ]
@@ -40,6 +50,12 @@ var hierarchy =
     [ "dodo::network::TCPListener::Params", "structdodo_1_1network_1_1TCPListener_1_1Params.html", null ],
     [ "dodo::network::TCPListener::SocketWork", "structdodo_1_1network_1_1TCPListener_1_1SocketWork.html", null ],
     [ "dodo::network::TCPListener::Stats", "structdodo_1_1network_1_1TCPListener_1_1Stats.html", null ],
+    [ "dodo::network::URI", "classdodo_1_1network_1_1URI.html", null ],
+    [ "dodo::network::VirtualReadBuffer", "classdodo_1_1network_1_1VirtualReadBuffer.html", [
+      [ "dodo::network::FileReadBuffer", "classdodo_1_1network_1_1FileReadBuffer.html", null ],
+      [ "dodo::network::SocketReadBuffer", "classdodo_1_1network_1_1SocketReadBuffer.html", null ],
+      [ "dodo::network::StringReadBuffer", "classdodo_1_1network_1_1StringReadBuffer.html", null ]
+    ] ],
     [ "dodo::network::X509Common", "classdodo_1_1network_1_1X509Common.html", [
       [ "dodo::network::X509Certificate", "classdodo_1_1network_1_1X509Certificate.html", null ],
       [ "dodo::network::X509CertificateSigningRequest", "classdodo_1_1network_1_1X509CertificateSigningRequest.html", null ]

@@ -1,0 +1,5 @@
+<map id="dodo::common::SystemError::asString" name="dodo::common::SystemError::asString">
+<area shape="rect" id="node1" title="Get the system error string." alt="" coords="273,39,480,80"/>
+<area shape="rect" id="node2" href="$structdodo_1_1network_1_1HTTPFragment_1_1ParseResult.html#a8c2e8b711fb76238ef78e250a3e68d05" title="Return the ParseResult as a human readable string." alt="" coords="6,5,225,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1TCPConnectionData.html#ac389503e4c4ed91877141af96e96d190" title="Reads and appends data to read_buffer." alt="" coords="5,71,225,112"/>
+</map>

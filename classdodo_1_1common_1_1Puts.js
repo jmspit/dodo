@@ -9,10 +9,10 @@ var classdodo_1_1common_1_1Puts =
     [ "setprecision", "structdodo_1_1common_1_1Puts_1_1setprecision.html", "structdodo_1_1common_1_1Puts_1_1setprecision" ],
     [ "setw", "structdodo_1_1common_1_1Puts_1_1setw.html", "structdodo_1_1common_1_1Puts_1_1setw" ],
     [ "Puts", "classdodo_1_1common_1_1Puts.html#aa32a9c774e80bfc2cddf7fe0912b80ff", null ],
-    [ "operator string", "classdodo_1_1common_1_1Puts.html#a65c2638bc2df06d324358b7385884691", null ],
+    [ "operator std::string", "classdodo_1_1common_1_1Puts.html#a95acecb333788d485aeae692357a1ef6", null ],
     [ "operator<<", "classdodo_1_1common_1_1Puts.html#a28c13bbe93a52360bea41e8fae923507", null ],
     [ "operator<<", "classdodo_1_1common_1_1Puts.html#a5374754d859ee373a13811c26fac0299", null ],
-    [ "operator<<", "classdodo_1_1common_1_1Puts.html#a00cfb816a88b4d62a13e6a5a3af2b706", null ],
+    [ "operator<<", "classdodo_1_1common_1_1Puts.html#a0cb16b58a0236419a50b939f6ece8d1a", null ],
     [ "operator<<", "classdodo_1_1common_1_1Puts.html#a71958e1bab9605e256f6d11e56491ca1", null ],
     [ "operator<<", "classdodo_1_1common_1_1Puts.html#a11f675a94dbb0e4f9a13ca2d622f92ff", null ],
     [ "operator<<", "classdodo_1_1common_1_1Puts.html#a566d909e498b31e292908a5d3574aff0", null ],
@@ -31,5 +31,5 @@ var classdodo_1_1common_1_1Puts =
     [ "operator<<", "classdodo_1_1common_1_1Puts.html#a09cc6d4d8a162ff4268b9ce29b7c3e90", null ],
     [ "operator<<", "classdodo_1_1common_1_1Puts.html#a5c147230181d80177473d27aa5b79700", null ],
     [ "operator<<", "classdodo_1_1common_1_1Puts.html#a0858c1061cf5717863a89e49e8e50469", null ],
-    [ "ss_", "classdodo_1_1common_1_1Puts.html#a5585d801f16aaf211c918e97cd48d8b0", null ]
+    [ "ss_", "classdodo_1_1common_1_1Puts.html#ade3bea31887285cc193d28a3f94a8815", null ]
 ];

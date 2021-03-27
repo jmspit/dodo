@@ -132,7 +132,7 @@ Private Attributes</h2></td></tr>
 <div class="line">}</div>
 </div><!-- fragment --> <dl class="section see"><dt>See also</dt><dd><a class="el" href="classdodo_1_1threads_1_1Mutex.html" title="A Mutex to synchronize access to resources between threads.">Mutex</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="mutex_8hpp_source.html#l00102">102</a> of file <a class="el" href="mutex_8hpp_source.html">mutex.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mutex_8hpp_source.html#l00100">100</a> of file <a class="el" href="mutex_8hpp_source.html">mutex.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a9071d9d9165e0801c1f47265fe7b6110"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9071d9d9165e0801c1f47265fe7b6110">&#9670;&nbsp;</a></span>Mutexer()</h2>
@@ -166,7 +166,18 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="mutex_8hpp_source.html#l00108">108</a> of file <a class="el" href="mutex_8hpp_source.html">mutex.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mutex_8hpp_source.html#l00106">106</a> of file <a class="el" href="mutex_8hpp_source.html">mutex.hpp</a>.</p>
+
+<p class="reference">References <a class="el" href="mutex_8hpp_source.html#l00057">dodo::threads::Mutex::lock()</a>, and <a class="el" href="mutex_8hpp_source.html#l00112">mutex_</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classdodo_1_1threads_1_1Mutexer_a9071d9d9165e0801c1f47265fe7b6110_cgraph.png" border="0" usemap="#classdodo_1_1threads_1_1Mutexer_a9071d9d9165e0801c1f47265fe7b6110_cgraph" alt=""/></div>
+<map name="classdodo_1_1threads_1_1Mutexer_a9071d9d9165e0801c1f47265fe7b6110_cgraph" id="classdodo_1_1threads_1_1Mutexer_a9071d9d9165e0801c1f47265fe7b6110_cgraph">
+<area shape="rect" title="Constructor." alt="" coords="5,5,177,47"/>
+<area shape="rect" href="classdodo_1_1threads_1_1Mutex.html#a0b4a13aa7f033803936f6c11a18a4d75" title="Waits for a Mutex and locks it (atomically)." alt="" coords="225,5,385,47"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -196,7 +207,18 @@ Private Attributes</h2></td></tr>
 <p>Destructor. </p>
 <p>Unlocks the guarded mutex. </p>
 
-<p class="definition">Definition at line <a class="el" href="mutex_8hpp_source.html#l00114">114</a> of file <a class="el" href="mutex_8hpp_source.html">mutex.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mutex_8hpp_source.html#l00112">112</a> of file <a class="el" href="mutex_8hpp_source.html">mutex.hpp</a>.</p>
+
+<p class="reference">References <a class="el" href="mutex_8hpp_source.html#l00112">mutex_</a>, and <a class="el" href="mutex_8hpp_source.html#l00073">dodo::threads::Mutex::unLock()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classdodo_1_1threads_1_1Mutexer_afbef565176acd857f930c3c1c32c9e71_cgraph.png" border="0" usemap="#classdodo_1_1threads_1_1Mutexer_afbef565176acd857f930c3c1c32c9e71_cgraph" alt=""/></div>
+<map name="classdodo_1_1threads_1_1Mutexer_afbef565176acd857f930c3c1c32c9e71_cgraph" id="classdodo_1_1threads_1_1Mutexer_afbef565176acd857f930c3c1c32c9e71_cgraph">
+<area shape="rect" title="Destructor." alt="" coords="5,5,177,47"/>
+<area shape="rect" href="classdodo_1_1threads_1_1Mutex.html#ab2e479d6f0271aaab08987a5316defe2" title="Unlocks the Mutex." alt="" coords="225,5,385,47"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -223,7 +245,9 @@ Private Attributes</h2></td></tr>
 
 <p>Reference to the guarded mutex. </p>
 
-<p class="definition">Definition at line <a class="el" href="mutex_8hpp_source.html#l00114">114</a> of file <a class="el" href="mutex_8hpp_source.html">mutex.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mutex_8hpp_source.html#l00112">112</a> of file <a class="el" href="mutex_8hpp_source.html">mutex.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="mutex_8hpp_source.html#l00106">Mutexer()</a>, and <a class="el" href="mutex_8hpp_source.html#l00112">~Mutexer()</a>.</p>
 
 </div>
 </div>
@@ -232,7 +256,7 @@ Private Attributes</h2></td></tr>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclassdodo_1_1threads_1_1Mutexer_html_a9071d9d9165e0801c1f47265fe7b6110"><div class="ttname"><a href="classdodo_1_1threads_1_1Mutexer.html#a9071d9d9165e0801c1f47265fe7b6110">dodo::threads::Mutexer::Mutexer</a></div><div class="ttdeci">Mutexer(Mutex &amp;mutex)</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00108">mutex.hpp:108</a></div></div>
+<div class="ttc" id="aclassdodo_1_1threads_1_1Mutexer_html_a9071d9d9165e0801c1f47265fe7b6110"><div class="ttname"><a href="classdodo_1_1threads_1_1Mutexer.html#a9071d9d9165e0801c1f47265fe7b6110">dodo::threads::Mutexer::Mutexer</a></div><div class="ttdeci">Mutexer(Mutex &amp;mutex)</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00106">mutex.hpp:106</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

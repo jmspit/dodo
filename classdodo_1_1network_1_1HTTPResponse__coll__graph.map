@@ -1,0 +1,5 @@
+<map id="dodo::network::HTTPResponse" name="dodo::network::HTTPResponse">
+<area shape="rect" id="node1" title="HTTPResponse class." alt="" coords="123,109,343,136"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1HTTPMessage.html" title="Generic HTTPMessage, parent to HTTPRequest and HTTPResponse." alt="" coords="5,13,220,39"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1HTTPResponse_1_1HTTPResponseLine.html" title="A HTTP response line." alt="" coords="244,5,464,47"/>
+</map>

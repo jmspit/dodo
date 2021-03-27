@@ -81,9 +81,9 @@ var NAVTREE =
       [ "Data Fields", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
-        [ "Variables", "functions_vars.html", null ],
+        [ "Variables", "functions_vars.html", "functions_vars" ],
         [ "Enumerations", "functions_enum.html", null ],
-        [ "Enumerator", "functions_eval.html", null ],
+        [ "Enumerator", "functions_eval.html", "functions_eval" ],
         [ "Related Functions", "functions_rela.html", null ]
       ] ]
     ] ],
@@ -100,11 +100,13 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "address_8cpp.html",
-"classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a17976d8054030335d7cb2ecfdb797a70",
-"classdodo_1_1network_1_1BaseSocket.html#acdbbba0a78559c47d26a5b29c5b9bb3c",
-"classdodo_1_1network_1_1TLSSocket.html#ab2b6dc1da0129c1c48a2789df6810ae3",
-"config_8hpp.html",
-"structdodo_1_1network_1_1TCPListener_1_1SocketWork.html"
+"classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a17b1cc2053f064c061d578991d57f1c1",
+"classdodo_1_1network_1_1BaseSocket.html#acdeb9609725d891686f794a91662470f",
+"classdodo_1_1network_1_1SocketParams.html#a9086112cb9386bc24f201c83c1f57492",
+"classdodo_1_1network_1_1URI.html#a0e0e4457dcf4532628336bcec8ea1442a790133dc373002366dc3091007c13adc",
+"classdodo_1_1threads_1_1Mutexer.html#a9071d9d9165e0801c1f47265fe7b6110",
+"namespacedodo_1_1common.html",
+"util_8hpp.html#abaf2092ba0080fda10bb594f9d84effc"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

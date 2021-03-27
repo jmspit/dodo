@@ -1,5 +1,6 @@
 <map id="dodo::network::BaseSocket::getBlocking" name="dodo::network::BaseSocket::getBlocking">
-<area shape="rect" id="node1" title="Rerurn true if the socket is operating in blocking mode." alt="" coords="252,39,451,80"/>
-<area shape="rect" id="node2" href="$classdodo_1_1network_1_1BaseSocket.html#a1ee6afb5cb22c067b7725029c477ed4b" title="Receive a std::string as sent by sendString( const std::string&amp; )." alt="" coords="5,5,204,47"/>
-<area shape="rect" id="node3" href="$classdodo_1_1network_1_1BaseSocket.html#a42390d41ef7b234543c5c50bb4b9cf1b" title="Sends the std::string as understood by receiveString()." alt="" coords="5,71,204,112"/>
+<area shape="rect" id="node1" title="Rerurn true if the socket is operating in blocking mode." alt="" coords="252,71,451,112"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1BaseSocket.html#a4b47a4de98730b22c80823edcf81eddb" title="Receive a std::string as sent by sendString( const std::string&amp; )." alt="" coords="5,5,204,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1BaseSocket.html#ae4a25a1b2dce9b7e5d6e11edca749b65" title="Sends the std::string as understood by receiveString()." alt="" coords="5,71,204,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1network_1_1SocketReadBuffer.html#ab451ba4c899956b4c86c73a4d1c23864" title="Construct a SocketReadBuffer." alt="" coords="5,136,204,177"/>
 </map>

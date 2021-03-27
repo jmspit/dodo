@@ -1,0 +1,6 @@
+<map id="dodo::network::BaseSocket::sendString" name="dodo::network::BaseSocket::sendString">
+<area shape="rect" id="node1" title="Sends the std::string as understood by receiveString()." alt="" coords="5,64,204,105"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1BaseSocket.html#a3254f7ede2297ecbaad8234eb8048de4" title="Rerurn true if the socket is operating in blocking mode." alt="" coords="252,5,451,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1BaseSocket.html#a5400d3aef38ae1009e7c6c6c200e5228" title="Send bytes on the socket." alt="" coords="499,93,697,135"/>
+<area shape="rect" id="node4" href="$classdodo_1_1network_1_1BaseSocket.html#ae4b0cef5aab3de3e016124a2ee70e966" title="Send an sendUInt64." alt="" coords="252,123,451,164"/>
+</map>

@@ -1,0 +1,15 @@
+<map id="dodo::network::BaseSocket::receive" name="dodo::network::BaseSocket::receive">
+<area shape="rect" id="node1" title="Receive bytes from the socket." alt="" coords="520,361,719,403"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1TCPConnectionData.html#ac389503e4c4ed91877141af96e96d190" title="Reads and appends data to read_buffer." alt="" coords="252,5,472,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1BaseSocket.html#a74a677df86d8a0950083232aa938409d" title="receive an int16_t" alt="" coords="263,71,461,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1network_1_1BaseSocket.html#acdeb9609725d891686f794a91662470f" title="receive an int32_t" alt="" coords="263,136,461,177"/>
+<area shape="rect" id="node5" href="$classdodo_1_1network_1_1BaseSocket.html#ab81f21fe60cc0deade8f8f366a40b655" title="receive an int64_t" alt="" coords="263,201,461,243"/>
+<area shape="rect" id="node6" href="$classdodo_1_1network_1_1BaseSocket.html#a646d7aa93434bb73d68bc66316f614c6" title="receive an int8_t" alt="" coords="263,267,461,308"/>
+<area shape="rect" id="node7" href="$classdodo_1_1network_1_1BaseSocket.html#afc21ccb9977f0f7ae17ae6eddacbb3f6" title="receive a stream of characters until a &#39; &#39; is read (consumed from the socket read buffer but not adde..." alt="" coords="263,332,461,373"/>
+<area shape="rect" id="node8" href="$classdodo_1_1network_1_1BaseSocket.html#a4b47a4de98730b22c80823edcf81eddb" title="Receive a std::string as sent by sendString( const std::string&amp; )." alt="" coords="5,485,204,527"/>
+<area shape="rect" id="node9" href="$classdodo_1_1network_1_1BaseSocket.html#a2a1911d29574dacfc03a1e742077e1f3" title="receive an uint16_t" alt="" coords="263,449,461,491"/>
+<area shape="rect" id="node10" href="$classdodo_1_1network_1_1BaseSocket.html#ac4c7fe0f77b91e27cc941ae6059cc090" title="receive an uint32_t" alt="" coords="263,515,461,556"/>
+<area shape="rect" id="node11" href="$classdodo_1_1network_1_1BaseSocket.html#aace6bc591940b3be005a8f8896b25ed9" title="receive an uint64_t" alt="" coords="263,580,461,621"/>
+<area shape="rect" id="node12" href="$classdodo_1_1network_1_1BaseSocket.html#a449001103e626cef05f14983d3350da2" title="receive an uint8_t" alt="" coords="263,645,461,687"/>
+<area shape="rect" id="node13" href="$classdodo_1_1network_1_1SocketReadBuffer.html#a31dbacdea0508d26818bef7f311719fe" title="If the buffer_ is fully read." alt="" coords="263,711,461,752"/>
+</map>

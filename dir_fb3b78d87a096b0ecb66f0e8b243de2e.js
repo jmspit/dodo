@@ -4,9 +4,11 @@ var dir_fb3b78d87a096b0ecb66f0e8b243de2e =
     [ "address.cpp", "address_8cpp.html", null ],
     [ "basesocket.cpp", "basesocket_8cpp.html", null ],
     [ "socket.cpp", "socket_8cpp.html", null ],
+    [ "socketreadbuffer.cpp", "socketreadbuffer_8cpp_source.html", null ],
     [ "tcplistener.cpp", "tcplistener_8cpp.html", "tcplistener_8cpp" ],
     [ "tcpserver.cpp", "tcpserver_8cpp.html", null ],
     [ "tlscontext.cpp", "tlscontext_8cpp.html", null ],
     [ "tlssocket.cpp", "tlssocket_8cpp.html", null ],
+    [ "uri.cpp", "uri_8cpp.html", null ],
     [ "x509cert.cpp", "x509cert_8cpp.html", null ]
 ];

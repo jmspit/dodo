@@ -38,7 +38,7 @@ var classdodo_1_1network_1_1TCPListener =
     [ "TCPServer", "classdodo_1_1network_1_1TCPListener.html#ae4cfdb1814d91a8d28dadb49adda68f0", null ],
     [ "backlog_", "classdodo_1_1network_1_1TCPListener.html#a73cf4f68052262edb62e7efff7103c16", null ],
     [ "clientmutex_", "classdodo_1_1network_1_1TCPListener.html#afeb0effcba050f6cb49646ce539a4014", null ],
-    [ "clients_", "classdodo_1_1network_1_1TCPListener.html#a2ae565ecd62006532b114c66ea384a04", null ],
+    [ "clients_", "classdodo_1_1network_1_1TCPListener.html#a2aab8e40c0dfc9bac8dd8edb61e05052", null ],
     [ "cv_signal_", "classdodo_1_1network_1_1TCPListener.html#a490f0076936e4ca0bc822620fad318ff", null ],
     [ "epoll_fd_", "classdodo_1_1network_1_1TCPListener.html#a3320314f0dd817d595d5aea8e5f816ea", null ],
     [ "event_maxconnections_reached_", "classdodo_1_1network_1_1TCPListener.html#a7a7d5d73458257694e3d65167edd2982", null ],
@@ -61,5 +61,5 @@ var classdodo_1_1network_1_1TCPListener =
     [ "stop_server_", "classdodo_1_1network_1_1TCPListener.html#a286611bdd67b57607c22c68dd980326c", null ],
     [ "warn_queue_time_", "classdodo_1_1network_1_1TCPListener.html#a4c32a9174814656611f5e2ec08e882c2", null ],
     [ "work_q_sz_", "classdodo_1_1network_1_1TCPListener.html#a4a426fe930159c37c24fa1cc1b550738", null ],
-    [ "workload_", "classdodo_1_1network_1_1TCPListener.html#af1a409c85f83b23e441ecd4163d25fa5", null ]
+    [ "workload_", "classdodo_1_1network_1_1TCPListener.html#a5999c94b785439d2bfb320aee5f7525e", null ]
 ];

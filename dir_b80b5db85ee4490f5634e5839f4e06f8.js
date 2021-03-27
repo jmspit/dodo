@@ -16,6 +16,12 @@ var dir_b80b5db85ee4490f5634e5839f4e06f8 =
     [ "socketparams.hpp", "socketparams_8hpp.html", [
       [ "SocketParams", "classdodo_1_1network_1_1SocketParams.html", "classdodo_1_1network_1_1SocketParams" ]
     ] ],
+    [ "socketreadbuffer.hpp", "socketreadbuffer_8hpp.html", [
+      [ "FileReadBuffer", "classdodo_1_1network_1_1FileReadBuffer.html", "classdodo_1_1network_1_1FileReadBuffer" ],
+      [ "SocketReadBuffer", "classdodo_1_1network_1_1SocketReadBuffer.html", "classdodo_1_1network_1_1SocketReadBuffer" ],
+      [ "StringReadBuffer", "classdodo_1_1network_1_1StringReadBuffer.html", "classdodo_1_1network_1_1StringReadBuffer" ],
+      [ "VirtualReadBuffer", "classdodo_1_1network_1_1VirtualReadBuffer.html", "classdodo_1_1network_1_1VirtualReadBuffer" ]
+    ] ],
     [ "tcplistener.hpp", "tcplistener_8hpp.html", "tcplistener_8hpp" ],
     [ "tcpserver.hpp", "tcpserver_8hpp.html", [
       [ "TCPServer", "classdodo_1_1network_1_1TCPServer.html", "classdodo_1_1network_1_1TCPServer" ]
@@ -25,6 +31,9 @@ var dir_b80b5db85ee4490f5634e5839f4e06f8 =
     ] ],
     [ "tlssocket.hpp", "tlssocket_8hpp.html", [
       [ "TLSSocket", "classdodo_1_1network_1_1TLSSocket.html", "classdodo_1_1network_1_1TLSSocket" ]
+    ] ],
+    [ "uri.hpp", "uri_8hpp.html", [
+      [ "URI", "classdodo_1_1network_1_1URI.html", "classdodo_1_1network_1_1URI" ]
     ] ],
     [ "x509cert.hpp", "x509cert_8hpp.html", [
       [ "X509Certificate", "classdodo_1_1network_1_1X509Certificate.html", "classdodo_1_1network_1_1X509Certificate" ],

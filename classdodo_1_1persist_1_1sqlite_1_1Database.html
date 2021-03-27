@@ -108,7 +108,7 @@ Collaboration diagram for dodo::persist::sqlite::Database:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a98a4ae300d471099d8dce26318fdafef"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#a98a4ae300d471099d8dce26318fdafef">Database</a> (const std::string &amp;filename, WaitHandler handler=0)</td></tr>
+<tr class="memitem:a98a4ae300d471099d8dce26318fdafef"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#a98a4ae300d471099d8dce26318fdafef">Database</a> (const std::string &amp;filename, <a class="el" href="namespacedodo_1_1persist_1_1sqlite.html#a7f655560ecd8c20644da1a46f05e151e">WaitHandler</a> handler=0)</td></tr>
 <tr class="memdesc:a98a4ae300d471099d8dce26318fdafef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with explicit wait handler.  <a href="classdodo_1_1persist_1_1sqlite_1_1Database.html#a98a4ae300d471099d8dce26318fdafef">More...</a><br /></td></tr>
 <tr class="separator:a98a4ae300d471099d8dce26318fdafef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c748039b7f81e46c2a71f46d51781c4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#a9c748039b7f81e46c2a71f46d51781c4">~Database</a> ()</td></tr>
@@ -154,7 +154,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a2a4785f23386c4d37af35cd2159efa2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the database filename.  <a href="classdodo_1_1persist_1_1sqlite_1_1Database.html#a2a4785f23386c4d37af35cd2159efa2f">More...</a><br /></td></tr>
 <tr class="separator:a2a4785f23386c4d37af35cd2159efa2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a872f275b261bf66390ea023e08e1468b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#a872f275b261bf66390ea023e08e1468b">getUserVersion</a> () const</td></tr>
-<tr class="memdesc:a872f275b261bf66390ea023e08e1468b"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the current user_version pragma  <a href="classdodo_1_1persist_1_1sqlite_1_1Database.html#a872f275b261bf66390ea023e08e1468b">More...</a><br /></td></tr>
+<tr class="memdesc:a872f275b261bf66390ea023e08e1468b"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the current user_version pragma (a user defined database schema version)  <a href="classdodo_1_1persist_1_1sqlite_1_1Database.html#a872f275b261bf66390ea023e08e1468b">More...</a><br /></td></tr>
 <tr class="separator:a872f275b261bf66390ea023e08e1468b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23109dfdaeb4ff98576259856093ecf2"><td class="memItemLeft" align="right" valign="top">int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#a23109dfdaeb4ff98576259856093ecf2">lastInsertRowid</a> () const</td></tr>
 <tr class="memdesc:a23109dfdaeb4ff98576259856093ecf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the rowid of the last inserted row.  <a href="classdodo_1_1persist_1_1sqlite_1_1Database.html#a23109dfdaeb4ff98576259856093ecf2">More...</a><br /></td></tr>
@@ -184,7 +184,7 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:ab415716f503d216364938d3ce9b28b6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get memory in use by the SQLite library.  <a href="classdodo_1_1persist_1_1sqlite_1_1Database.html#ab415716f503d216364938d3ce9b28b6c">More...</a><br /></td></tr>
 <tr class="separator:ab415716f503d216364938d3ce9b28b6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e3b5a5acf477306ba50248cf776120d"><td class="memItemLeft" align="right" valign="top">static int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#a1e3b5a5acf477306ba50248cf776120d">softHeapLimit</a> (int64_t limit)</td></tr>
-<tr class="memdesc:a1e3b5a5acf477306ba50248cf776120d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the SQLite soft heap limti.  <a href="classdodo_1_1persist_1_1sqlite_1_1Database.html#a1e3b5a5acf477306ba50248cf776120d">More...</a><br /></td></tr>
+<tr class="memdesc:a1e3b5a5acf477306ba50248cf776120d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the SQLite soft heap limit - ask SQLite to strive to limit its memory use (caching).  <a href="classdodo_1_1persist_1_1sqlite_1_1Database.html#a1e3b5a5acf477306ba50248cf776120d">More...</a><br /></td></tr>
 <tr class="separator:a1e3b5a5acf477306ba50248cf776120d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
@@ -201,7 +201,7 @@ Protected Attributes</h2></td></tr>
 <li>ceil(double x) gives the nearest integer upwards </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8hpp_source.html#l00049">49</a> of file <a class="el" href="sqlite_8hpp_source.html">sqlite.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8hpp_source.html#l00052">52</a> of file <a class="el" href="sqlite_8hpp_source.html">sqlite.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a98a4ae300d471099d8dce26318fdafef"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a98a4ae300d471099d8dce26318fdafef">&#9670;&nbsp;</a></span>Database()</h2>
@@ -218,7 +218,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">WaitHandler&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacedodo_1_1persist_1_1sqlite.html#a7f655560ecd8c20644da1a46f05e151e">WaitHandler</a>&#160;</td>
           <td class="paramname"><em>handler</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
@@ -238,9 +238,9 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00120">120</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00107">107</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00191">database_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00204">database_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
 </div>
 </div>
@@ -261,9 +261,9 @@ Protected Attributes</h2></td></tr>
 
 <p>Destructor. </p>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00183">183</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00170">170</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00191">database_</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00204">database_</a>.</p>
 
 </div>
 </div>
@@ -286,9 +286,9 @@ Protected Attributes</h2></td></tr>
 <p>Begin an exclusive transaction. </p>
 <dl class="section see"><dt>See also</dt><dd><a href="https://sqlite.org/lang_transaction.html">https://sqlite.org/lang_transaction.html</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00228">228</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00215">215</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00378">dodo::persist::sqlite::DDL::execute()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00346">dodo::persist::sqlite::Statement::prepare()</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00365">dodo::persist::sqlite::DDL::execute()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00333">dodo::persist::sqlite::Statement::prepare()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -320,9 +320,9 @@ Here is the call graph for this function:</div>
 <p>Begin an immediate transaction. </p>
 <dl class="section see"><dt>See also</dt><dd><a href="https://sqlite.org/lang_transaction.html">https://sqlite.org/lang_transaction.html</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00220">220</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00207">207</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00378">dodo::persist::sqlite::DDL::execute()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00346">dodo::persist::sqlite::Statement::prepare()</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00365">dodo::persist::sqlite::DDL::execute()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00333">dodo::persist::sqlite::Statement::prepare()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -354,9 +354,9 @@ Here is the call graph for this function:</div>
 <p>Begin a transaction. </p>
 <dl class="section see"><dt>See also</dt><dd><a href="https://sqlite.org/lang_transaction.html">https://sqlite.org/lang_transaction.html</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00212">212</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00199">199</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00378">dodo::persist::sqlite::DDL::execute()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00346">dodo::persist::sqlite::Statement::prepare()</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00365">dodo::persist::sqlite::DDL::execute()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00333">dodo::persist::sqlite::Statement::prepare()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -387,9 +387,9 @@ Here is the call graph for this function:</div>
 
 <p>Issue a full checpoint. </p>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00284">284</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00271">271</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00191">database_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00204">database_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00064">dodo::persist::KVStore::checkpoint()</a>.</p>
 <div class="dynheader">
@@ -421,9 +421,9 @@ Here is the caller graph for this function:</div>
 
 <p>Issue a passive checpoint. </p>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00293">293</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00280">280</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00191">database_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00204">database_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
 </div>
 </div>
@@ -444,9 +444,9 @@ Here is the caller graph for this function:</div>
 
 <p>Issue a (WAL) truncate checpoint. </p>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00302">302</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00289">289</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00191">database_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00204">database_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
 </div>
 </div>
@@ -467,9 +467,9 @@ Here is the caller graph for this function:</div>
 
 <p>Commit a transaction. </p>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00236">236</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00223">223</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00378">dodo::persist::sqlite::DDL::execute()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00346">dodo::persist::sqlite::Statement::prepare()</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00365">dodo::persist::sqlite::DDL::execute()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00333">dodo::persist::sqlite::Statement::prepare()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00068">dodo::persist::KVStore::commitTransaction()</a>.</p>
 <div class="dynheader">
@@ -519,9 +519,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section see"><dt>See also</dt><dd>release, <a class="el" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#ab2a84d4406a0917a6f99b64cac008441" title="Rollback a transaction.">rollback</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00252">252</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00239">239</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00378">dodo::persist::sqlite::DDL::execute()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00346">dodo::persist::sqlite::Statement::prepare()</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00365">dodo::persist::sqlite::DDL::execute()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00333">dodo::persist::sqlite::Statement::prepare()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -552,9 +552,9 @@ Here is the call graph for this function:</div>
 
 <p>Disable foreign key constraints. </p>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00196">196</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00183">183</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00191">database_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00204">database_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
 </div>
 </div>
@@ -575,9 +575,9 @@ Here is the call graph for this function:</div>
 
 <p>Enable foreign key constraints. </p>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00188">188</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00175">175</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00191">database_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00204">database_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
 </div>
 </div>
@@ -598,9 +598,9 @@ Here is the call graph for this function:</div>
 
 <p>Enable triggers. </p>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00204">204</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00191">191</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00191">database_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00204">database_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
 </div>
 </div>
@@ -630,11 +630,11 @@ Here is the call graph for this function:</div>
 <p>Return database handle. </p>
 <dl class="section return"><dt>Returns</dt><dd>the sqlite3 database handle. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8hpp_source.html#l00124">124</a> of file <a class="el" href="sqlite_8hpp_source.html">sqlite.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8hpp_source.html#l00128">128</a> of file <a class="el" href="sqlite_8hpp_source.html">sqlite.hpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00191">database_</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00204">database_</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sqlite_8cpp_source.html#l00337">dodo::persist::sqlite::Statement::Statement()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sqlite_8cpp_source.html#l00324">dodo::persist::sqlite::Statement::Statement()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -671,10 +671,11 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Return the database filename. </p>
+<dl class="section return"><dt>Returns</dt><dd>The file name. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8hpp_source.html#l00118">118</a> of file <a class="el" href="sqlite_8hpp_source.html">sqlite.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8hpp_source.html#l00122">122</a> of file <a class="el" href="sqlite_8hpp_source.html">sqlite.hpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00191">database_</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00204">database_</a>.</p>
 
 </div>
 </div>
@@ -693,17 +694,18 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>get the current user_version pragma </p>
+<p>get the current user_version pragma (a user defined database schema version) </p>
+<dl class="section return"><dt>Returns</dt><dd>The user version. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00323">323</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00310">310</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00191">database_</a>, <a class="el" href="sqlite_8cpp_source.html#l00481">dodo::persist::sqlite::Query::getInt()</a>, <a class="el" href="sqlite_8cpp_source.html#l00346">dodo::persist::sqlite::Statement::prepare()</a>, <a class="el" href="sqlite_8cpp_source.html#l00465">dodo::persist::sqlite::Query::step()</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00204">database_</a>, <a class="el" href="sqlite_8cpp_source.html#l00468">dodo::persist::sqlite::Query::getInt()</a>, <a class="el" href="sqlite_8cpp_source.html#l00333">dodo::persist::sqlite::Statement::prepare()</a>, <a class="el" href="sqlite_8cpp_source.html#l00452">dodo::persist::sqlite::Query::step()</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classdodo_1_1persist_1_1sqlite_1_1Database_a872f275b261bf66390ea023e08e1468b_cgraph.png" border="0" usemap="#classdodo_1_1persist_1_1sqlite_1_1Database_a872f275b261bf66390ea023e08e1468b_cgraph" alt=""/></div>
 <map name="classdodo_1_1persist_1_1sqlite_1_1Database_a872f275b261bf66390ea023e08e1468b_cgraph" id="classdodo_1_1persist_1_1sqlite_1_1Database_a872f275b261bf66390ea023e08e1468b_cgraph">
-<area shape="rect" title="get the current user_version pragma" alt="" coords="5,71,204,112"/>
+<area shape="rect" title="get the current user_version pragma (a user defined database schema version)" alt="" coords="5,71,204,112"/>
 <area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Query.html#a6881888da0c21ca4524f9a0dfac3519f" title="Get int value from select list." alt="" coords="255,5,405,47"/>
 <area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Statement.html#a9a126dc9004edff369e6c9ea98d9dd10" title="Prepare a SQL statement." alt="" coords="252,71,408,112"/>
 <area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Query.html#a58fca8cb1c7fbecda5d762a60d060aa0" title="Step the result list, end of list returns false." alt="" coords="255,136,405,177"/>
@@ -728,10 +730,11 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Get the rowid of the last inserted row. </p>
+<dl class="section return"><dt>Returns</dt><dd>The last rowid </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00276">276</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00263">263</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00191">database_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00204">database_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
 </div>
 </div>
@@ -759,8 +762,9 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Get memory highwater by the SQLite library. </p>
+<dl class="section return"><dt>Returns</dt><dd>The max memory ever used. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8hpp_source.html#l00146">146</a> of file <a class="el" href="sqlite_8hpp_source.html">sqlite.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8hpp_source.html#l00154">154</a> of file <a class="el" href="sqlite_8hpp_source.html">sqlite.hpp</a>.</p>
 
 </div>
 </div>
@@ -788,8 +792,9 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Get memory in use by the SQLite library. </p>
+<dl class="section return"><dt>Returns</dt><dd>the amount of memory used. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8hpp_source.html#l00139">139</a> of file <a class="el" href="sqlite_8hpp_source.html">sqlite.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8hpp_source.html#l00146">146</a> of file <a class="el" href="sqlite_8hpp_source.html">sqlite.hpp</a>.</p>
 
 </div>
 </div>
@@ -810,9 +815,9 @@ Here is the call graph for this function:</div>
 
 <p>Have SQLite attempt to release a much memory as possible. </p>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00333">333</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00320">320</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00191">database_</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8hpp_source.html#l00204">database_</a>.</p>
 
 </div>
 </div>
@@ -840,9 +845,9 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00260">260</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00247">247</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00378">dodo::persist::sqlite::DDL::execute()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00346">dodo::persist::sqlite::Statement::prepare()</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00365">dodo::persist::sqlite::DDL::execute()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00333">dodo::persist::sqlite::Statement::prepare()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -873,9 +878,9 @@ Here is the call graph for this function:</div>
 
 <p>Rollback a transaction. </p>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00244">244</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00231">231</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00378">dodo::persist::sqlite::DDL::execute()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00346">dodo::persist::sqlite::Statement::prepare()</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00365">dodo::persist::sqlite::DDL::execute()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00333">dodo::persist::sqlite::Statement::prepare()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00256">dodo::persist::KVStore::rollbackTransaction()</a>.</p>
 <div class="dynheader">
@@ -924,9 +929,9 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00268">268</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00255">255</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00378">dodo::persist::sqlite::DDL::execute()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00346">dodo::persist::sqlite::Statement::prepare()</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00365">dodo::persist::sqlite::DDL::execute()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00333">dodo::persist::sqlite::Statement::prepare()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -957,10 +962,16 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>set the user_version pragma </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">version</td><td>The user version to set. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00315">315</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8cpp_source.html#l00302">302</a> of file <a class="el" href="sqlite_8cpp_source.html">sqlite.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00378">dodo::persist::sqlite::DDL::execute()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00346">dodo::persist::sqlite::Statement::prepare()</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00365">dodo::persist::sqlite::DDL::execute()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00333">dodo::persist::sqlite::Statement::prepare()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -998,9 +1009,17 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Get the SQLite soft heap limti. </p>
+<p>Set the SQLite soft heap limit - ask SQLite to strive to limit its memory use (caching). </p>
+<p>A value of 0 disables the limit. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">limit</td><td>The limit to set. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The previous soft heap limit. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a href="https://www.sqlite.org/c3ref/hard_heap_limit64.html">https://www.sqlite.org/c3ref/hard_heap_limit64.html</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8hpp_source.html#l00185">185</a> of file <a class="el" href="sqlite_8hpp_source.html">sqlite.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8hpp_source.html#l00198">198</a> of file <a class="el" href="sqlite_8hpp_source.html">sqlite.hpp</a>.</p>
 
 </div>
 </div>
@@ -1027,9 +1046,9 @@ Here is the call graph for this function:</div>
 
 <p>The SQLite database handle. </p>
 
-<p class="definition">Definition at line <a class="el" href="sqlite_8hpp_source.html#l00191">191</a> of file <a class="el" href="sqlite_8hpp_source.html">sqlite.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sqlite_8hpp_source.html#l00204">204</a> of file <a class="el" href="sqlite_8hpp_source.html">sqlite.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sqlite_8cpp_source.html#l00284">checkPointFull()</a>, <a class="el" href="sqlite_8cpp_source.html#l00293">checkPointPassive()</a>, <a class="el" href="sqlite_8cpp_source.html#l00302">checkPointTruncate()</a>, <a class="el" href="sqlite_8cpp_source.html#l00120">Database()</a>, <a class="el" href="sqlite_8cpp_source.html#l00196">disableForeignKeys()</a>, <a class="el" href="sqlite_8cpp_source.html#l00188">enableForeignKeys()</a>, <a class="el" href="sqlite_8cpp_source.html#l00204">enableTriggers()</a>, <a class="el" href="sqlite_8hpp_source.html#l00124">getDB()</a>, <a class="el" href="sqlite_8hpp_source.html#l00118">getFileName()</a>, <a class="el" href="sqlite_8cpp_source.html#l00323">getUserVersion()</a>, <a class="el" href="sqlite_8cpp_source.html#l00276">lastInsertRowid()</a>, <a class="el" href="sqlite_8cpp_source.html#l00333">releaseMemory()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00183">~Database()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sqlite_8cpp_source.html#l00271">checkPointFull()</a>, <a class="el" href="sqlite_8cpp_source.html#l00280">checkPointPassive()</a>, <a class="el" href="sqlite_8cpp_source.html#l00289">checkPointTruncate()</a>, <a class="el" href="sqlite_8cpp_source.html#l00107">Database()</a>, <a class="el" href="sqlite_8cpp_source.html#l00183">disableForeignKeys()</a>, <a class="el" href="sqlite_8cpp_source.html#l00175">enableForeignKeys()</a>, <a class="el" href="sqlite_8cpp_source.html#l00191">enableTriggers()</a>, <a class="el" href="sqlite_8hpp_source.html#l00128">getDB()</a>, <a class="el" href="sqlite_8hpp_source.html#l00122">getFileName()</a>, <a class="el" href="sqlite_8cpp_source.html#l00310">getUserVersion()</a>, <a class="el" href="sqlite_8cpp_source.html#l00263">lastInsertRowid()</a>, <a class="el" href="sqlite_8cpp_source.html#l00320">releaseMemory()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00170">~Database()</a>.</p>
 
 </div>
 </div>

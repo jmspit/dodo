@@ -1,6 +1,6 @@
 <map id="dodo::initLibrary" name="dodo::initLibrary">
 <area shape="rect" id="node1" title="Initialize the dodo library." alt="" coords="5,56,133,83"/>
 <area shape="rect" id="node2" href="$namespacedodo_1_1threads.html#addb77563c34aab0779a9ea0996f64105" title="Initialize the dodo::threads library." alt="" coords="185,5,371,32"/>
-<area shape="rect" id="node3" href="$namespacedodo_1_1network.html#a2eaa78863f34cbca454aba7149127345" title="Initialize the dodo::network library." alt="" coords="183,56,373,83"/>
-<area shape="rect" id="node4" href="$namespacedodo_1_1common.html#a8d800522d84309481a1d76477e19874c" title="Initialize the common library." alt="" coords="181,107,375,133"/>
+<area shape="rect" id="node3" href="$namespacedodo_1_1common.html#a8d800522d84309481a1d76477e19874c" title="Initialize the common library." alt="" coords="181,56,375,83"/>
+<area shape="rect" id="node4" href="$namespacedodo_1_1network.html#a2eaa78863f34cbca454aba7149127345" title="Initialize the dodo::network library." alt="" coords="183,107,373,133"/>
 </map>

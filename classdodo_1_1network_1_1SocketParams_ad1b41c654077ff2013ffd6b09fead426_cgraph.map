@@ -1,0 +1,6 @@
+<map id="dodo::network::SocketParams::asString" name="dodo::network::SocketParams::asString">
+<area shape="rect" id="node1" title="Return the parameters as a string." alt="" coords="5,71,220,112"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1SocketParams.html#a5028a26b7a1d33f027d602ebd2b26e2a" title="Return the AddressFamily name as a string." alt="" coords="268,5,483,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1SocketParams.html#a415b68a58649e7df31c7517bb7cc05c7" title="Return the ProtocolNumber name as a string." alt="" coords="268,71,483,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1network_1_1SocketParams.html#a49ed3481e5f275107fcdd48a99286b37" title="Return the SocketType name as a string." alt="" coords="268,136,483,177"/>
+</map>

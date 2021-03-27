@@ -114,72 +114,76 @@ $(document).ready(function(){initNavTree('network_8hpp_source.html',''); initRes
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="address_8hpp.html">network/address.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="basesocket_8hpp.html">network/basesocket.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="stomp_8hpp.html">network/protocol/stomp.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="socket_8hpp.html">network/socket.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="tcplistener_8hpp.html">network/tcplistener.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="tcpserver_8hpp.html">network/tcpserver.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="tlscontext_8hpp.html">network/tlscontext.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="tlssocket_8hpp.html">network/tlssocket.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="x509cert_8hpp.html">network/x509cert.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacedodo.html">dodo</a> {</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">   * Interface for network communication. See @ref developer_networking for details.</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <span class="keyword">namespace </span>network {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">    /**</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">     * Initialize the dodo::network library.</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="namespacedodo_1_1network.html#a2eaa78863f34cbca454aba7149127345">   46</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacedodo_1_1network.html#a2eaa78863f34cbca454aba7149127345">initLibrary</a>() {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;      OPENSSL_init_crypto( 0, <span class="keyword">nullptr</span> );</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;      OPENSSL_init_ssl( 0, <span class="keyword">nullptr</span> );</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;      <span class="comment">//SSL_load_error_strings();</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;      <span class="comment">//SSL_library_init();</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;      <span class="comment">//OpenSSL_add_all_algorithms();</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;      <span class="comment">//OPENSSL_cpuid_setup();</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;      <span class="comment">//OpenSSL_add_all_ciphers();</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;      <span class="comment">//OpenSSL_add_all_digests();</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">    /**</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">     * Close the dodo::network library.</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="namespacedodo_1_1network.html#a70a267789382b482108ef092b5fefc3b">   61</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacedodo_1_1network.html#a70a267789382b482108ef092b5fefc3b">closeLibrary</a>() {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;      <span class="comment">//ERR_free_strings();</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;      OPENSSL_cleanup();</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">    /**</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">     * Application layer protocols.</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="namespacedodo_1_1network_1_1protocol.html">   69</a></span>&#160;    <span class="keyword">namespace </span>protocol {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">       * The STOMP 1.2 protocol (earlier versions not supported).</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="namespacedodo_1_1network_1_1protocol_1_1stomp.html">   74</a></span>&#160;      <span class="keyword">namespace </span>stomp {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;      }</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;  }</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="http_8hpp.html">network/protocol/http/http.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="stomp_8hpp.html">network/protocol/stomp/stomp.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="socket_8hpp.html">network/socket.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="tcplistener_8hpp.html">network/tcplistener.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="tcpserver_8hpp.html">network/tcpserver.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="tlscontext_8hpp.html">network/tlscontext.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="tlssocket_8hpp.html">network/tlssocket.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="uri_8hpp.html">network/uri.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="x509cert_8hpp.html">network/x509cert.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacedodo.html">dodo</a> {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">  /**</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">   * Interface for network communication. See @ref developer_networking for details.</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <span class="keyword">namespace </span>network {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">    /**</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">     * Initialize the dodo::network library.</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="namespacedodo_1_1network.html#a2eaa78863f34cbca454aba7149127345">   48</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacedodo_1_1network.html#a2eaa78863f34cbca454aba7149127345">initLibrary</a>() {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;      OPENSSL_init_crypto( 0, <span class="keyword">nullptr</span> );</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;      OPENSSL_init_ssl( 0, <span class="keyword">nullptr</span> );</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;      <span class="comment">//SSL_load_error_strings();</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;      <span class="comment">//SSL_library_init();</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;      <span class="comment">//OpenSSL_add_all_algorithms();</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;      <span class="comment">//OPENSSL_cpuid_setup();</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;      <span class="comment">//OpenSSL_add_all_ciphers();</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;      <span class="comment">//OpenSSL_add_all_digests();</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">    /**</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">     * Close the dodo::network library.</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="namespacedodo_1_1network.html#a70a267789382b482108ef092b5fefc3b">   63</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacedodo_1_1network.html#a70a267789382b482108ef092b5fefc3b">closeLibrary</a>() {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;      <span class="comment">//ERR_free_strings();</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;      OPENSSL_cleanup();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">    /**</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">     * Application layer protocols.</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="namespacedodo_1_1network_1_1protocol.html">   71</a></span>&#160;    <span class="keyword">namespace </span>protocol {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">       * The STOMP 1.2 protocol (earlier versions not supported).</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="namespacedodo_1_1network_1_1protocol_1_1stomp.html">   76</a></span>&#160;      <span class="keyword">namespace </span>stomp {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;      }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;}</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  }</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="atlscontext_8hpp_html"><div class="ttname"><a href="tlscontext_8hpp.html">tlscontext.hpp</a></div></div>
 <div class="ttc" id="astomp_8hpp_html"><div class="ttname"><a href="stomp_8hpp.html">stomp.hpp</a></div></div>
-<div class="ttc" id="anamespacedodo_1_1network_html_a2eaa78863f34cbca454aba7149127345"><div class="ttname"><a href="namespacedodo_1_1network.html#a2eaa78863f34cbca454aba7149127345">dodo::network::initLibrary</a></div><div class="ttdeci">void initLibrary()</div><div class="ttdoc">Initialize the dodo::network library.</div><div class="ttdef"><b>Definition:</b> <a href="network_8hpp_source.html#l00046">network.hpp:46</a></div></div>
-<div class="ttc" id="anamespacedodo_1_1network_html_a70a267789382b482108ef092b5fefc3b"><div class="ttname"><a href="namespacedodo_1_1network.html#a70a267789382b482108ef092b5fefc3b">dodo::network::closeLibrary</a></div><div class="ttdeci">void closeLibrary()</div><div class="ttdoc">Close the dodo::network library.</div><div class="ttdef"><b>Definition:</b> <a href="network_8hpp_source.html#l00061">network.hpp:61</a></div></div>
+<div class="ttc" id="anamespacedodo_1_1network_html_a2eaa78863f34cbca454aba7149127345"><div class="ttname"><a href="namespacedodo_1_1network.html#a2eaa78863f34cbca454aba7149127345">dodo::network::initLibrary</a></div><div class="ttdeci">void initLibrary()</div><div class="ttdoc">Initialize the dodo::network library.</div><div class="ttdef"><b>Definition:</b> <a href="network_8hpp_source.html#l00048">network.hpp:48</a></div></div>
+<div class="ttc" id="anamespacedodo_1_1network_html_a70a267789382b482108ef092b5fefc3b"><div class="ttname"><a href="namespacedodo_1_1network.html#a70a267789382b482108ef092b5fefc3b">dodo::network::closeLibrary</a></div><div class="ttdeci">void closeLibrary()</div><div class="ttdoc">Close the dodo::network library.</div><div class="ttdef"><b>Definition:</b> <a href="network_8hpp_source.html#l00063">network.hpp:63</a></div></div>
 <div class="ttc" id="atlssocket_8hpp_html"><div class="ttname"><a href="tlssocket_8hpp.html">tlssocket.hpp</a></div></div>
 <div class="ttc" id="anamespacedodo_html"><div class="ttname"><a href="namespacedodo.html">dodo</a></div><div class="ttdoc">A C++ platform interface to lean Linux services tailored for containerized deployment.</div><div class="ttdef"><b>Definition:</b> <a href="application_8hpp_source.html#l00029">application.hpp:29</a></div></div>
 <div class="ttc" id="aaddress_8hpp_html"><div class="ttname"><a href="address_8hpp.html">address.hpp</a></div></div>
+<div class="ttc" id="ahttp_8hpp_html"><div class="ttname"><a href="http_8hpp.html">http.hpp</a></div></div>
 <div class="ttc" id="asocket_8hpp_html"><div class="ttname"><a href="socket_8hpp.html">socket.hpp</a></div></div>
 <div class="ttc" id="ax509cert_8hpp_html"><div class="ttname"><a href="x509cert_8hpp.html">x509cert.hpp</a></div></div>
+<div class="ttc" id="auri_8hpp_html"><div class="ttname"><a href="uri_8hpp.html">uri.hpp</a></div></div>
 <div class="ttc" id="atcpserver_8hpp_html"><div class="ttname"><a href="tcpserver_8hpp.html">tcpserver.hpp</a></div></div>
 <div class="ttc" id="atcplistener_8hpp_html"><div class="ttname"><a href="tcplistener_8hpp.html">tcplistener.hpp</a></div></div>
 <div class="ttc" id="abasesocket_8hpp_html"><div class="ttname"><a href="basesocket_8hpp.html">basesocket.hpp</a></div></div>

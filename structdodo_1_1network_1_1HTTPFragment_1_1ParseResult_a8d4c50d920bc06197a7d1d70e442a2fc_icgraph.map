@@ -1,0 +1,7 @@
+<map id="dodo::network::HTTPFragment::ParseResult::eof" name="dodo::network::HTTPFragment::ParseResult::eof">
+<area shape="rect" id="node1" title="Test if systemError == common::SystemError::ecEAGAIN" alt="" coords="536,68,755,109"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1HTTPRequest.html#aee8f0b384834f83219ef7623efd52349" title="Read the HTTPRequest from the socket." alt="" coords="10,5,221,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1HTTPResponse.html#a9c75167f9a4e4ea89cb56dedb84ff660" title="Read a complete HTTPFragment from a VirtualReadBuffer." alt="" coords="5,100,225,141"/>
+<area shape="rect" id="node4" href="$classdodo_1_1network_1_1HTTPMessage.html#aca8849f32213673009ae3e45a117b44b" title="Parse a chunked body (transfer&#45;encoding: chunked) and resturn it as a single string." alt="" coords="273,100,488,141"/>
+<area shape="rect" id="node5" href="$classdodo_1_1network_1_1HTTPMessage.html#a18969fff1d601470ff4a9d5c3c50bfc4" title="Parse a header section and update headers_." alt="" coords="273,35,488,76"/>
+</map>

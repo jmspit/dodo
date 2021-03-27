@@ -1,0 +1,4 @@
+<map id="dodo::threads::Mutex::lock" name="dodo::threads::Mutex::lock">
+<area shape="rect" id="node1" title="Waits for a Mutex and locks it (atomically)." alt="" coords="225,5,385,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1threads_1_1Mutexer.html#a9071d9d9165e0801c1f47265fe7b6110" title="Constructor." alt="" coords="5,5,177,47"/>
+</map>

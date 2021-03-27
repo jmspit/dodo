@@ -1,0 +1,4 @@
+<map id="dodo::network::HTTPRequest::methodFromString" name="dodo::network::HTTPRequest::methodFromString">
+<area shape="rect" id="node1" title="Translate an uppercase string (&#39;GET&#39;, &quot;POST&#39;, ..) into a Method enum." alt="" coords="264,5,475,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1HTTPRequest_1_1HTTPRequestLine.html#a3ced9e5133ad9c34897e3d0de0c1bc42" title="Parses a HTTPMessage." alt="" coords="5,5,216,47"/>
+</map>

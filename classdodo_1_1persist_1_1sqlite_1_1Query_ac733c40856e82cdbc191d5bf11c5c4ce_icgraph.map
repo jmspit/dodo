@@ -1,4 +1,4 @@
 <map id="dodo::persist::sqlite::Query::getDataType" name="dodo::persist::sqlite::Query::getDataType">
 <area shape="rect" id="node1" title="Get the dataype of a select list column." alt="" coords="220,5,379,47"/>
-<area shape="rect" id="node2" href="$classdodo_1_1persist_1_1KVStore.html#a8ab6d5c7192b9117a666910976e7e57b" title="Get MetaData for the key." alt="" coords="5,5,172,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1persist_1_1KVStore.html#a019322716786bf0852b502d78cb17e81" title="Get MetaData for the key." alt="" coords="5,5,172,47"/>
 </map>

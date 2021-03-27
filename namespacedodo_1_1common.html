@@ -974,7 +974,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="util_8hpp_source.html#l00126">126</a> of file <a class="el" href="util_8hpp_source.html">util.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="tcpserver_8cpp_source.html#l00185">dodo::network::TCPServer::getIdleSeconds()</a>, <a class="el" href="thread_8cpp_source.html#l00153">dodo::threads::Thread::getRunTime()</a>, <a class="el" href="thread_8cpp_source.html#l00157">dodo::threads::Thread::getSnapDiffTime()</a>, <a class="el" href="tcplistener_8cpp_source.html#l00511">dodo::network::TCPListener::logStats()</a>, and <a class="el" href="tcpserver_8cpp_source.html#l00046">dodo::network::TCPServer::run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tcpserver_8cpp_source.html#l00183">dodo::network::TCPServer::getIdleSeconds()</a>, <a class="el" href="thread_8cpp_source.html#l00156">dodo::threads::Thread::getRunTime()</a>, <a class="el" href="thread_8cpp_source.html#l00160">dodo::threads::Thread::getSnapDiffTime()</a>, <a class="el" href="tcplistener_8cpp_source.html#l00511">dodo::network::TCPListener::logStats()</a>, and <a class="el" href="tcpserver_8cpp_source.html#l00044">dodo::network::TCPServer::run()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1038,7 +1038,7 @@ Here is the caller graph for this function:</div>
 <map name="namespacedodo_1_1common_a92751bfc7a44e638a4d3efa4ab2c6300_icgraph" id="namespacedodo_1_1common_a92751bfc7a44e638a4d3efa4ab2c6300_icgraph">
 <area shape="rect" title="Get all OpenSSL errors as a single string, and clear their error state." alt="" coords="276,470,485,497"/>
 <area shape="rect" href="classdodo_1_1network_1_1TLSSocket.html#a37b427a43fce53f5b6473aea8844b468" title="Accept a connection." alt="" coords="22,5,211,47"/>
-<area shape="rect" href="classdodo_1_1network_1_1TLSSocket.html#a8d461dcb17d488050c8576431670ea4d" title="Connect to the Address." alt="" coords="22,71,211,112"/>
+<area shape="rect" href="classdodo_1_1network_1_1TLSSocket.html#a7b272413dc6806e5456741c0dffb27de" title="Connect to the Address." alt="" coords="22,71,211,112"/>
 <area shape="rect" href="classdodo_1_1common_1_1DataCrypt.html#aabf6cb0911efd72d438bc3fcb51a0db6" title="Decrypt data with a key." alt="" coords="20,136,213,177"/>
 <area shape="rect" href="classdodo_1_1common_1_1DataCrypt.html#a874b79bf3ef2b47eb59c7ca625a171ae" title="Encrypt data with a key into a string (so the encrypted data will not contain a 0/zero)." alt="" coords="20,201,213,243"/>
 <area shape="rect" href="classdodo_1_1network_1_1X509CertificateSigningRequest.html#ab52332e3ec015e019327edf3678ad06b" title="Get the certificate fingerprint (a hash on the public key modulus) in string format,..." alt="" coords="5,267,228,308"/>
@@ -1047,8 +1047,8 @@ Here is the caller graph for this function:</div>
 <area shape="rect" href="classdodo_1_1network_1_1X509Certificate.html#ad448808837b94fa9b53a26783245b202" title="Load a public key certificate (aka &#39;certificate&#39;) from a PEM file." alt="" coords="5,463,228,504"/>
 <area shape="rect" href="classdodo_1_1network_1_1TLSContext.html#a8ba59bffeb41e4f79342ba5c2bdd05d0" title="Load a certificate and the corresponding private key for an identity." alt="" coords="18,528,215,569"/>
 <area shape="rect" href="classdodo_1_1network_1_1TLSContext.html#aa77451d1c3a087066dad53d8a38120a4" title="Loads a private key, matching certificate and optional CA certificates (eg a truststore) from a PKCS1..." alt="" coords="18,593,215,635"/>
-<area shape="rect" href="classdodo_1_1network_1_1TLSSocket.html#a5853a4c518bf6b4b758ba35a70b735ca" title="Receive data." alt="" coords="22,659,211,700"/>
-<area shape="rect" href="classdodo_1_1network_1_1TLSSocket.html#ac9f3d4a7b4bb653edaff562c1a7d6e8f" title="Send data." alt="" coords="22,724,211,765"/>
+<area shape="rect" href="classdodo_1_1network_1_1TLSSocket.html#a4c792bb0ab2f6eec2f054137b193db2c" title="Receive data." alt="" coords="22,659,211,700"/>
+<area shape="rect" href="classdodo_1_1network_1_1TLSSocket.html#a3cf5aef2f9e4f776913fa3f7b0fddebc" title="Send data." alt="" coords="22,724,211,765"/>
 <area shape="rect" href="classdodo_1_1network_1_1TLSContext.html#ad6c2745f177eaa16b629e64fe213b766" title="Trust all certificates in the specified directory." alt="" coords="18,789,215,831"/>
 <area shape="rect" href="classdodo_1_1network_1_1TLSContext.html#a08adf6aaeb179052ccbf59cfe167314a" title="Construct a TLS context." alt="" coords="18,855,215,896"/>
 <area shape="rect" href="classdodo_1_1network_1_1TLSSocket.html#aac4a213e093099709584ba4c8179c0da" title="Construct from scratch." alt="" coords="22,920,211,961"/>
@@ -1500,17 +1500,6 @@ template&lt;typename T &gt; </div>
 
 <p>Instantiate template YAML_assign_by_key for uint16_t. </p>
 <dl class="section return"><dt>Returns</dt><dd>the value as a uint16_t </dd></dl>
-
-<p class="reference">Referenced by <a class="el" href="tcplistener_8cpp_source.html#l00215">dodo::network::TCPListener::TCPListener()</a>.</p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="namespacedodo_1_1common_ad5988fa891616001f12aaff871f327c1_icgraph.png" border="0" usemap="#namespacedodo_1_1common_ad5988fa891616001f12aaff871f327c1_icgraph" alt=""/></div>
-<map name="namespacedodo_1_1common_ad5988fa891616001f12aaff871f327c1_icgraph" id="namespacedodo_1_1common_ad5988fa891616001f12aaff871f327c1_icgraph">
-<area shape="rect" title="Instantiate template YAML_assign_by_key for uint16_t." alt="" coords="252,5,459,47"/>
-<area shape="rect" href="classdodo_1_1network_1_1TCPListener.html#a0c062bf6dbee59293759493a69ecb97d" title="Constructor, read Address and params from the YAML::Node." alt="" coords="5,5,204,47"/>
-</map>
-</div>
 
 </div>
 </div>

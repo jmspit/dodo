@@ -1,4 +1,4 @@
 <map id="dodo::network::Address::init" name="dodo::network::Address::init">
 <area shape="rect" id="node1" title="Initialize the internals." alt="" coords="228,5,403,47"/>
-<area shape="rect" id="node2" href="$classdodo_1_1network_1_1Address.html#a2658e7263385423a07459e268ad71959" title="Construct from ip, do not set port (only a listening socket needs a port preset)." alt="" coords="5,5,180,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1Address.html#afef62923c849c657fa1b5631b4d45090" title="Construct from ip, do not set port (only a listening socket needs a port preset)." alt="" coords="5,5,180,47"/>
 </map>

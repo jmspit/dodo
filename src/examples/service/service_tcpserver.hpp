@@ -9,7 +9,7 @@ using namespace dodo::common;
 
 class Server : public TCPServer {
   public:
-    Server(TCPListener &listener) : TCPServer(listener) {}
+    explicit Server(TCPListener &listener) : TCPServer(listener) {}
 
     virtual TCPServer* addServer() { return new Server( listener_ ); }
 

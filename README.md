@@ -54,7 +54,7 @@ The source code is documented for Doxygen and [automatically generated to github
 
 ## Maintaining the dodo framework
 
-See the [maintainer manual](@ref maintainer) for an overview.
+See the [maintainer manual](MAINTAINER.md) for an overview.
 
 ## Build
 

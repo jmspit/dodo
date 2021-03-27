@@ -32,10 +32,13 @@ namespace dodo::threads {
 
   void* Thread::thread_method( void* context ) {
     Thread* t = ((Thread*)context);
-    t->tid_ = static_cast<pid_t>(syscall(SYS_gettid));
-    gettimeofday( &t->start_time_, NULL );
-    t->snapRUsage();
-    if ( t ) t->run();
+    if ( t ) {
+      t->tid_ = static_cast<pid_t>(syscall(SYS_gettid));
+      gettimeofday( &t->start_time_, NULL );
+      t->snapRUsage();
+      t->run();
+      return static_cast<void*>(t);
+    }
     return 0;
   }
 

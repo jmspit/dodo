@@ -122,7 +122,7 @@ bool BytesTest::test6() {
 int main() {
   int error = 0;
   try {
-    initLibrary();
+    dodo::initLibrary();
     BytesTest test( "common::BytesTest tests", "Testing BytesTest class", &cout );
     error = ( test.run() == false );
   }
@@ -130,6 +130,6 @@ int main() {
     cerr << e.what() << endl;
     error = 2;
   }
-  closeLibrary();
+  dodo::closeLibrary();
   return error;
 }

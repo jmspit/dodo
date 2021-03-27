@@ -1,0 +1,14 @@
+GET /index.html HTTP/1.1
+Host: www.knmi.nl
+User-Agent: curl/7.74.0
+Accept: */*
+Transfer-Encoding: chunked
+
+4
+aaaa
+8
+bbbbbbbb
+A
+cccccccccc
+0
+

@@ -90,5 +90,6 @@ int main() {
   catch ( const runtime_error  &e ) {
     cerr << e.what() << endl;
   }
+  std::remove( "kvstore.db" );
   return 0;
 }

@@ -46,9 +46,6 @@ namespace dodo {
 
   namespace network {
 
-    using namespace std;
-    using namespace common;
-
     class TCPServer;
     class TCPListenerTimer;
 
@@ -74,7 +71,7 @@ namespace dodo {
          * @param received The number of bytes received.
          * @return The number of bytes read.
          */
-        SystemError readBuffer( BaseSocket* socket, ssize_t &received );
+        common::SystemError readBuffer( BaseSocket* socket, ssize_t &received );
 
         /**
          * Clears the read_buffer.
@@ -468,7 +465,7 @@ namespace dodo {
          * Map of file descriptors to SocketWork for all connected clients. The work is either in progress or last
          * completed state.
          */
-        map<int,SocketWork> clients_;
+        std::map<int,SocketWork> clients_;
 
         /**
          * List of TCPServers.
@@ -478,7 +475,7 @@ namespace dodo {
         /**
          * Queue of sockets with work for TCPServer instances.
          */
-        deque<SocketWork*> workload_;
+        std::deque<SocketWork*> workload_;
 
         /**
          * The number of queued work items.

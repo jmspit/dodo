@@ -32,8 +32,6 @@
 
 namespace dodo::network {
 
-  //using namespace std;
-
   /**
    * Socket for TLS encrypted traffic between trusted endpoints.
    *
@@ -76,7 +74,7 @@ namespace dodo::network {
        * @param more If true, do not force a send buffer flush, more data will follow
        * @return The SystemError code.
        */
-      virtual SystemError send( const void* buf, ssize_t len, bool more = false );
+      virtual common::SystemError send( const void* buf, ssize_t len, bool more = false );
 
       /**
        * Receive data
@@ -85,7 +83,7 @@ namespace dodo::network {
        * @param received Actual received bytes
        * @return The SystemError code.
        */
-      virtual SystemError receive( void* buf, ssize_t request, ssize_t &received );
+      virtual common::SystemError receive( void* buf, ssize_t request, ssize_t &received );
 
       /**
        * Accept a connection.
@@ -99,7 +97,7 @@ namespace dodo::network {
        * @param address The address to connect to.
        * @return The SystemError code.
        */
-      virtual SystemError connect( const Address &address );
+      virtual common::SystemError connect( const Address &address );
 
       /**
        * Get the peer's certificate.
@@ -142,7 +140,7 @@ namespace dodo::network {
        * SystemError::ecOK.
        * @return the TLS (SSL) protocol version.
        */
-      string getTLSProtocolVersionString() const {
+      std::string getTLSProtocolVersionString() const {
         if ( ssl_ ) return SSL_get_version( ssl_ ); else return "?";
       }
 
@@ -151,7 +149,7 @@ namespace dodo::network {
        * SystemError::ecOK.
        * @return the TLS (SSL) protocol version.
        */
-      string getTLSCurrentCipherName() const {
+      std::string getTLSCurrentCipherName() const {
         if ( ssl_ ) return SSL_get_cipher_name( ssl_ ); else return "?";
       }
 

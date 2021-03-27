@@ -339,9 +339,10 @@ namespace dodo::network {
        *
        * @param cert A pointer to the X509 certificate.
        * @param san The SAN structure to compare against.
+       * @param wildcards If true, allow wildcards.
        * @return true if the name matches.
        */
-      static bool verifySAN( const X509 *cert, const SAN &san );
+      static bool verifySAN( const X509 *cert, const SAN &san, bool wildcards = false );
 
     private:
 
@@ -349,10 +350,10 @@ namespace dodo::network {
        * Verify a peer name matches a SAN.
        * @param peer The name of the peer.
        * @param san The SubjectAltname of the peer.
-       * @param allowwildcard If true, allow wildcards.
+       * @param wildcards If true, allow wildcards.
        * @return true when the name matches.
        */
-      static bool verifyName( const std::string peer, const std::string san, bool allowwildcard = false );
+      static bool verifyName( const std::string &peer, const std::string &san, bool wildcards = false );
 
       /**
        * Verify a peer IP matches a SAN of type stIP. The strings are converted to IP addresses, both must be valid IP
@@ -361,7 +362,7 @@ namespace dodo::network {
        * @param san The ipv4 or ipv6 SubjectAltname of the peer (as a string).
        * @return true when the IP matches.
        */
-      static bool verifyIP( const std::string peer, const std::string san );
+      static bool verifyIP( const std::string &peer, const std::string &san );
 
       /** Never construct, interface class. */
       X509Certificate() = delete;

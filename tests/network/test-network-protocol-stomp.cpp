@@ -7,7 +7,7 @@ using namespace std;
 int main() {
   int error = 0;
   try {
-    initLibrary();
+    dodo::initLibrary();
 
     network::protocol::stomp::Connect c;
     c.setHost( "stomp.github.org" );
@@ -24,6 +24,6 @@ int main() {
     cerr << e.what() << endl;
     error = 2;
   }
-  closeLibrary();
+  dodo::closeLibrary();
   return error;
 }

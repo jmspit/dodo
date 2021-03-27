@@ -8,7 +8,7 @@ using namespace dodo;
 
 class AddressTest : public common::UnitTest {
   public:
-    AddressTest( const string &name, const string &description, ostream *out ) :
+    AddressTest( const std::string &name, const std::string &description, std::ostream *out ) :
       UnitTest( name, description, out ) {};
   protected:
     virtual void doRun();
@@ -80,7 +80,7 @@ bool AddressTest::test3() {
 
 bool AddressTest::test4() {
   network::Address address;
-  string sadres = "127.0.0.1";
+  std::string sadres = "127.0.0.1";
   address = sadres;
   return writeSubTestResult( "test assign string to Address",
                              common::Puts() << "test assign " << address.asString() << " to Address",
@@ -91,7 +91,7 @@ bool AddressTest::test4() {
 
 bool AddressTest::test5() {
   network::Address address;
-  string sadres = "::1";
+  std::string sadres = "::1";
   address = sadres;
   return writeSubTestResult( "test assign string to Address",
                              common::Puts() << "test assign " << sadres << " to Address",
@@ -122,6 +122,6 @@ bool AddressTest::test7() {
 
 
 int main() {
-  AddressTest test( "network::Address tests", "Testing Adress class", &cout );
+  AddressTest test( "network::Address tests", "Testing Adress class", &std::cout );
   return test.run() == false;
 }

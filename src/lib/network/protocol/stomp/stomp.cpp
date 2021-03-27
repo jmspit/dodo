@@ -20,7 +20,7 @@
  * Implements the dodo::network::stomp classes.
  */
 
-#include "network/protocol/stomp.hpp"
+#include "network/protocol/stomp/stomp.hpp"
 #include "common/bytes.hpp"
 #include "common/puts.hpp"
 

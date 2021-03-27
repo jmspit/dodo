@@ -33,8 +33,6 @@
 
 namespace dodo::common {
 
-  using namespace std;
-
     /**
      * Linux system error primitive to provide a consistent interface to
      * Linux error codes. The [[nodiscard]] attribute causes the compiler to issue a warning in case
@@ -315,8 +313,8 @@ namespace dodo::common {
          * Get the system error string.
          * @return The system error string.
          */
-        string asString() const {
-          stringstream ss;
+        std::string asString() const {
+          std::stringstream ss;
           if ( errorcode_ > 0 ) {
             if ( errorcode_ >= ecLIBRARY_FIRST )
               ss << libstrerror( errorcode_ );
@@ -336,7 +334,7 @@ namespace dodo::common {
          * @param error The SystemError to translate.
          * @return The error string.
          */
-        static string libstrerror( SystemError error ) {
+        static std::string libstrerror( SystemError error ) {
           switch ( error ) {
             case SystemError::ecSSL_ERROR_PEERVERIFICATION:
               return "The peer certificate CN or SubjectAltNames do not match";

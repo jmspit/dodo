@@ -83,7 +83,7 @@ namespace dodo::network {
        * @param address The address to connect to.
        * @return The SystemError
        */
-      virtual SystemError connect( const Address &address );
+      virtual common::SystemError connect( const Address &address );
 
       /**
        * Closes the socket, causing the connection, if it exists, to be terminated.
@@ -98,7 +98,7 @@ namespace dodo::network {
        * @param more Set to true if more is to come (increases packet filling efficiency when accurate).
        * @return The SystemError.
        */
-      virtual SystemError send( const void* buf, ssize_t len, bool more = false ) = 0;
+      virtual common::SystemError send( const void* buf, ssize_t len, bool more = false ) = 0;
 
       /**
        * Receive bytes from the socket.
@@ -107,7 +107,7 @@ namespace dodo::network {
        * @param received The number of bytes received
        * @return The SystemError.
        */
-      virtual SystemError receive( void* buf, ssize_t request, ssize_t &received ) = 0;
+      virtual common::SystemError receive( void* buf, ssize_t request, ssize_t &received ) = 0;
 
       /**
        * Rerurn true if the socket is operating in blocking mode.
@@ -307,7 +307,7 @@ namespace dodo::network {
        *
        * or one of the common::SystemError returned by bind( const Address &address ).
        */
-      SystemError listen( const Address &address, int backlog );
+      common::SystemError listen( const Address &address, int backlog );
 
       /**
        * Bind the socket to the Address.
@@ -319,7 +319,7 @@ namespace dodo::network {
        *   - SystemError::ecEINVAL
        *   - SystemError::ecENOTSOCK
        */
-      SystemError bind( const Address &address );
+      common::SystemError bind( const Address &address );
 
       /**
        * Accepts a connection request and return a pointer to a new Socket for the new connection, the caller will
@@ -335,7 +335,7 @@ namespace dodo::network {
        * @return Same as send( const void* buf, ssize_t len )
        * @see receiveUInt8( uint8_t& )
        */
-      SystemError sendUInt8( uint8_t value, bool more = false );
+      common::SystemError sendUInt8( uint8_t value, bool more = false );
 
       /**
        * receive an uint8_t
@@ -343,7 +343,7 @@ namespace dodo::network {
        * @return Same as receive( void* buf, ssize_t request, ssize_t &received )
        * @see sendUInt8( uint8_t )
        */
-      SystemError receiveUInt8( uint8_t &value );
+      common::SystemError receiveUInt8( uint8_t &value );
 
       /**
        * Send an uint16_t.
@@ -352,7 +352,7 @@ namespace dodo::network {
        * @return Same as send( const void* buf, ssize_t len )
        * @see receiveUInt16( uint16_t& )
        */
-      SystemError sendUInt16( uint16_t value, bool more = false );
+      common::SystemError sendUInt16( uint16_t value, bool more = false );
 
       /**
        * receive an uint16_t
@@ -360,7 +360,7 @@ namespace dodo::network {
        * @return Same as receive( void* buf, ssize_t request, ssize_t &received )
        * @see sendUInt16( uint16_t )
        */
-      SystemError receiveUInt16( uint16_t &value );
+      common::SystemError receiveUInt16( uint16_t &value );
 
       /**
        * Send an uint32_t.
@@ -369,7 +369,7 @@ namespace dodo::network {
        * @return Same as send( const void* buf, ssize_t len )
        * @see receiveUInt32( uint32_t& )
        */
-      SystemError sendUInt32( uint32_t value, bool more = false );
+      common::SystemError sendUInt32( uint32_t value, bool more = false );
 
       /**
        * receive an uint32_t
@@ -377,7 +377,7 @@ namespace dodo::network {
        * @return Same as receive( void* buf, ssize_t request, ssize_t &received )
        * @see sendUInt32( uint32_t )
        */
-      SystemError receiveUInt32( uint32_t &value );
+      common::SystemError receiveUInt32( uint32_t &value );
 
       /**
        * Send an sendUInt64.
@@ -386,7 +386,7 @@ namespace dodo::network {
        * @return Same as send( const void* buf, ssize_t len )
        * @see receiveUInt64( uint64_t& )
        */
-      SystemError sendUInt64( uint64_t value, bool more = false );
+      common::SystemError sendUInt64( uint64_t value, bool more = false );
 
       /**
        * receive an uint64_t
@@ -394,7 +394,7 @@ namespace dodo::network {
        * @return Same as receive( void* buf, ssize_t request, ssize_t &received )
        * @see sendUInt64( uint64_t )*
        */
-      SystemError receiveUInt64( uint64_t &value );
+      common::SystemError receiveUInt64( uint64_t &value );
 
       /**
        * Send an int8_t.
@@ -403,7 +403,7 @@ namespace dodo::network {
        * @return Same as send( const void* buf, ssize_t len )
        * @see receiveInt8( int8_t& )
        */
-      SystemError sendInt8( int8_t value, bool more = false );
+      common::SystemError sendInt8( int8_t value, bool more = false );
 
       /**
        * receive an int8_t
@@ -411,7 +411,7 @@ namespace dodo::network {
        * @return Same as receive( void* buf, ssize_t request, ssize_t &received )
        * @see sendInt8( int8_t )*
        */
-      SystemError receiveInt8( int8_t &value );
+      common::SystemError receiveInt8( int8_t &value );
 
       /**
        * Send an int16_t.
@@ -420,7 +420,7 @@ namespace dodo::network {
        * @return Same as send( const void* buf, ssize_t len )
        * @see receiveInt16( int16_t& )
        */
-      SystemError sendInt16( int16_t value, bool more = false );
+      common::SystemError sendInt16( int16_t value, bool more = false );
 
       /**
        * receive an int16_t
@@ -428,7 +428,7 @@ namespace dodo::network {
        * @return Same as receive( void* buf, ssize_t request, ssize_t &received )
        * @see sendInt16( int16_t )*
        */
-      SystemError receiveInt16( int16_t &value );
+      common::SystemError receiveInt16( int16_t &value );
 
       /**
        * Send an int32_t.
@@ -437,7 +437,7 @@ namespace dodo::network {
        * @return Same as send( const void* buf, ssize_t len )
        * @see receiveInt32( int32_t& )
        */
-      SystemError sendInt32( int32_t value, bool more = false );
+      common::SystemError sendInt32( int32_t value, bool more = false );
 
       /**
        * receive an int32_t
@@ -445,7 +445,7 @@ namespace dodo::network {
        * @return Same as receive( void* buf, ssize_t request, ssize_t &received )
        * @see sendInt32( int32_t )*
        */
-      SystemError receiveInt32( int32_t &value );
+      common::SystemError receiveInt32( int32_t &value );
 
       /**
        * Send an int64_t.
@@ -454,7 +454,7 @@ namespace dodo::network {
        * @return Same as send( const void* buf, ssize_t len )
        * @see receiveInt64( int64_t& )
        */
-      SystemError sendInt64( int64_t value, bool more = false );
+      common::SystemError sendInt64( int64_t value, bool more = false );
 
       /**
        * receive an int64_t
@@ -462,7 +462,7 @@ namespace dodo::network {
        * @return Same as receive( void* buf, ssize_t request, ssize_t &received )
        * @see sendInt64( int64_t )*
        */
-      SystemError receiveInt64( int64_t &value );
+      common::SystemError receiveInt64( int64_t &value );
 
       /**
        * Sends the std::string as understood by receiveString(). The send prefixes the string length in an uint64_t,
@@ -471,14 +471,14 @@ namespace dodo::network {
        * @param more If true, the caller indicates that more data will follow.
        * @return Same as send( const void* buf, ssize_t len )
        */
-      SystemError sendString( const std::string &s, bool more = false );
+      common::SystemError sendString( const std::string &s, bool more = false );
 
       /**
        * Receive a std::string as sent by sendString( const std::string& ).
        * @param s The string to receive into.
        * @return Same as receive( void* buf, ssize_t request, ssize_t &received )
        */
-      SystemError receiveString( string &s );
+      common::SystemError receiveString( std::string &s );
 
       /**
        * Sends the std::string terminated by a '\n'.
@@ -486,7 +486,7 @@ namespace dodo::network {
        * @param more If true, the caller indicates that more data will follow.
        * @return Same as send( const void* buf, ssize_t len )
        */
-      SystemError sendLine( const std::string &s, bool more );
+      common::SystemError sendLine( const std::string &s, bool more );
 
       /**
        * receive a stream of characters until a '\n' is read (consumed from the socket read buffer but not
@@ -494,7 +494,7 @@ namespace dodo::network {
        * @param s receives the read string.
        * @return The SystemError.
        */
-      SystemError receiveLine( string &s );
+      common::SystemError receiveLine( std::string &s );
 
     protected:
 

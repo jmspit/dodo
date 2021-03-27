@@ -7,7 +7,7 @@ using namespace dodo;
 
 class SystemErrorTest : public common::UnitTest {
   public:
-    SystemErrorTest( const string &name, const string &description, ostream *out ) :
+    SystemErrorTest( const std::string &name, const std::string &description, std::ostream *out ) :
       UnitTest( name, description, out ) {};
   protected:
     virtual void doRun();
@@ -48,6 +48,6 @@ bool SystemErrorTest::test3() {
 }
 
 int main() {
-  SystemErrorTest test( "common::SystemError tests", "Testing SystemError class", &cout );
+  SystemErrorTest test( "common::SystemError tests", "Testing SystemError class", &std::cout );
   return test.run() == false;
 }

@@ -44,13 +44,17 @@ set( ${LIB_DODO}_objects
   src/lib/network/tlscontext.cpp
   src/lib/network/tlssocket.cpp
   src/lib/network/protocol/http/http.cpp
+  src/lib/network/protocol/http/httpfragment.cpp
+  src/lib/network/protocol/http/httpmessage.cpp
+  src/lib/network/protocol/http/httprequest.cpp
+  src/lib/network/protocol/http/httpresponse.cpp
+  src/lib/network/protocol/http/httpversion.cpp
   src/lib/network/protocol/stomp/stomp.cpp
   src/lib/network/uri.cpp
   src/lib/persist/kvstore/kvstore.cpp
   src/lib/persist/sqlite/sqlite.cpp
   src/lib/threads/mutex.cpp
   src/lib/threads/thread.cpp
-  src/ext/crc32/Crc32.cpp
 )
 
 
@@ -121,3 +125,12 @@ if (DOXYGEN_FOUND)
 else (DOXYGEN_FOUND)
   message("Doxygen need to be installed to generate the doxygen documentation")
 endif (DOXYGEN_FOUND)
+
+add_custom_target(
+        cppcheck
+        COMMAND cppcheck
+        --enable=warning,performance,portability,information,missingInclude
+        --std=c++17
+        --verbose
+        ${CMAKE_CURRENT_SOURCE_DIR}/src
+)

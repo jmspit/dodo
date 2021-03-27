@@ -7,7 +7,7 @@ using namespace std;
 
 class MyApp : public common::Application {
   public:
-    MyApp( const StartParameters &param ) : common::Application( param ) {}
+    explicit MyApp( const StartParameters &param ) : common::Application( param ) {}
     virtual int run() {
       while ( !hasStopRequest() ) {
         cout << "Hello world!" << endl;

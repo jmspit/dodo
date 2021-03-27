@@ -29,8 +29,6 @@
 
 namespace dodo::network {
 
-  using namespace std;
-
   /**
    * Socket parameters - the family (domain), socket type and protocol triplet.
    */
@@ -183,8 +181,8 @@ namespace dodo::network {
        * Return the parameters as a string.
        * @return The string.
        */
-      string asString() const {
-        stringstream ss;
+      std::string asString() const {
+        std::stringstream ss;
         ss << familyString( family_ ) << " ";
         ss << socketTypeString( sockettype_ ) << " ";
         ss << protocolString( protocol_ );
@@ -197,8 +195,8 @@ namespace dodo::network {
        * @param family The AddressFamily to convert.
        * @return The string.
        */
-      static string familyString( AddressFamily family ) {
-        stringstream ss;
+      static std::string familyString( AddressFamily family ) {
+        std::stringstream ss;
         switch ( family ) {
           case AF_LOCAL     : ss << "AF_LOCAL"; break;
           case AF_INET      : ss << "AF_INET"; break;
@@ -222,8 +220,8 @@ namespace dodo::network {
        * @param sockettype The SocketType to convert.
        * @return The string.
        */
-      static string socketTypeString( SocketType sockettype ) {
-        stringstream ss;
+      static std::string socketTypeString( SocketType sockettype ) {
+        std::stringstream ss;
         switch ( sockettype ) {
           case SOCK_STREAM    : ss << "SOCK_STREAM"; break;
           case SOCK_DGRAM     : ss << "SOCK_DGRAM"; break;
@@ -242,8 +240,8 @@ namespace dodo::network {
        * @param protocol The ProtocolNumber to convert.
        * @return The string.
        */
-      static string protocolString( ProtocolNumber protocol ) {
-        stringstream ss;
+      static std::string protocolString( ProtocolNumber protocol ) {
+        std::stringstream ss;
         switch ( protocol ) {
           case pnHOPOPT      : ss << "HOPOPT"; break;
           case pnICMP        : ss << "ICMP"; break;

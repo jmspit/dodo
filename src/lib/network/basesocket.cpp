@@ -44,28 +44,28 @@ namespace dodo::network {
   }
 
   std::string BaseSocket::debugDetail() const {
-    stringstream ss;
+    std::stringstream ss;
     ss << "socketfd=" << socket_;
     return ss.str();
   }
 
-  SystemError BaseSocket::connect( const Address &address ) {
+  common::SystemError BaseSocket::connect( const Address &address ) {
     auto rc = ::connect( socket_, (const sockaddr*)address.getAddress(), sizeof(sockaddr_storage) );
     if ( rc < 0 ) {
       switch ( errno ) {
-        case SystemError::ecEACCES :
-        case SystemError::ecEADDRINUSE :
-        case SystemError::ecEADDRNOTAVAIL :
-        case SystemError::ecEALREADY :
-        case SystemError::ecECONNREFUSED :
-        case SystemError::ecEINPROGRESS :
-        case SystemError::ecEISCONN :
-        case SystemError::ecENETUNREACH :
-        case SystemError::ecETIMEDOUT :
+        case common::SystemError::ecEACCES :
+        case common::SystemError::ecEADDRINUSE :
+        case common::SystemError::ecEADDRNOTAVAIL :
+        case common::SystemError::ecEALREADY :
+        case common::SystemError::ecECONNREFUSED :
+        case common::SystemError::ecEINPROGRESS :
+        case common::SystemError::ecEISCONN :
+        case common::SystemError::ecENETUNREACH :
+        case common::SystemError::ecETIMEDOUT :
           return errno;
         default: throw_SystemExceptionObject( "socket connect failed", errno, this );
       };
-    } else return SystemError::ecOK;
+    } else return common::SystemError::ecOK;
   }
 
   void BaseSocket::close() {
@@ -77,43 +77,39 @@ namespace dodo::network {
   }
 
   BaseSocket& BaseSocket::operator=( int socket ) {
-    if ( socket_ != socket ) {
-      socket_ = socket;
-    }
+    socket_ = socket;
     return *this;
   }
 
   BaseSocket& BaseSocket::operator=( const BaseSocket& socket ) {
-    if ( socket_ != socket.socket_ ) {
-      socket_ = socket.socket_;
-    }
+    socket_ = socket.socket_;
     return *this;
   }
 
-  SystemError BaseSocket::listen( const Address &address, int backlog ) {
-    SystemError error = bind( address );
-    if ( error == SystemError::ecOK ) {
+  common::SystemError BaseSocket::listen( const Address &address, int backlog ) {
+    common::SystemError error = bind( address );
+    if ( error == common::SystemError::ecOK ) {
       int rc = ::listen( socket_, backlog );
       if ( rc < 0 ) {
         switch ( errno ) {
-          case SystemError::ecEADDRINUSE:
+          case common::SystemError::ecEADDRINUSE:
             return errno;
         }
         throw_SystemExceptionObject( "Socket::listen failed on " << address.asString(), errno, this );
-      } else return SystemError::ecOK;
+      } else return common::SystemError::ecOK;
     } else return error;
   }
 
-  SystemError BaseSocket::bind( const Address &address ) {
+  common::SystemError BaseSocket::bind( const Address &address ) {
     int rc = ::bind( socket_, (const sockaddr*)&(address.addr_), sizeof(address.addr_) );
     if ( rc < 0 ) {
       switch ( errno ) {
-        case SystemError::ecEACCES:
-        case SystemError::ecEADDRINUSE:
+        case common::SystemError::ecEACCES:
+        case common::SystemError::ecEADDRINUSE:
           return errno;
       }
       throw_SystemExceptionObject( "Socket::bind failed on address " << address.asString(), errno, this );
-    } else return SystemError::ecOK;
+    } else return common::SystemError::ecOK;
   }
 
   void BaseSocket::setTCPNoDelay( bool set ) {
@@ -282,192 +278,192 @@ namespace dodo::network {
     return Address(addr);
   }
 
-  SystemError BaseSocket::sendUInt8( uint8_t value, bool more ) {
+  common::SystemError BaseSocket::sendUInt8( uint8_t value, bool more ) {
     uint8_t nwbo = value;
     return send( &nwbo, sizeof(nwbo) );
   }
 
-  SystemError BaseSocket::receiveUInt8( uint8_t& value ) {
+  common::SystemError BaseSocket::receiveUInt8( uint8_t& value ) {
     uint8_t t = 0;
     ssize_t request = sizeof(t);
     ssize_t received = 0;
     ssize_t total = 0;
-    SystemError error;
+    common::SystemError error;
     do {
       error = receive( &t, request, received );
       total += received;
-    } while ( error == SystemError::ecOK && total < request );
-    if ( error == SystemError::ecOK ) {
+    } while ( error == common::SystemError::ecOK && total < request );
+    if ( error == common::SystemError::ecOK ) {
       value = t;
     } else value = 0;
     return error;
   }
 
-  SystemError BaseSocket::sendUInt16( uint16_t value, bool more ) {
+  common::SystemError BaseSocket::sendUInt16( uint16_t value, bool more ) {
     uint16_t nwbo = htons( value );
     return send( &nwbo, sizeof(nwbo) );
   }
 
-  SystemError BaseSocket::receiveUInt16( uint16_t& value ) {
+  common::SystemError BaseSocket::receiveUInt16( uint16_t& value ) {
     uint16_t t = 0;
     ssize_t request = sizeof(t);
     ssize_t received = 0;
     ssize_t total = 0;
-    SystemError error;
+    common::SystemError error;
     do {
       error = receive( &t, request, received );
       total += received;
-    } while ( error ==  SystemError::ecOK && total < request );
-    if ( error == SystemError::ecOK ) {
+    } while ( error ==  common::SystemError::ecOK && total < request );
+    if ( error == common::SystemError::ecOK ) {
       value = ntohs(t);
     } else value = 0;
     return error;
   }
 
-  SystemError BaseSocket::sendInt8( int8_t value, bool more ) {
+  common::SystemError BaseSocket::sendInt8( int8_t value, bool more ) {
     int8_t nwbo = value;
     return send( &nwbo, sizeof(nwbo), more );
   }
 
-  SystemError BaseSocket::receiveInt8( int8_t& value ) {
+  common::SystemError BaseSocket::receiveInt8( int8_t& value ) {
     int8_t t = 0;
     ssize_t request = sizeof(t);
     ssize_t received = 0;
     ssize_t total = 0;
-    SystemError error;
+    common::SystemError error;
     do {
       error = receive( &t, request, received );
       total += received;
-    } while ( error == SystemError::ecOK && total < request );
-    if ( error == SystemError::ecOK ) {
+    } while ( error == common::SystemError::ecOK && total < request );
+    if ( error == common::SystemError::ecOK ) {
       value = t;
     } else value = 0;
     return error;
   }
 
-  SystemError BaseSocket::sendInt16( int16_t value, bool more ) {
+  common::SystemError BaseSocket::sendInt16( int16_t value, bool more ) {
     int16_t nwbo = htons( value );
     return send( &nwbo, sizeof(nwbo), more );
   }
 
-  SystemError BaseSocket::receiveInt16( int16_t& value ) {
+  common::SystemError BaseSocket::receiveInt16( int16_t& value ) {
     int16_t t = 0;
     ssize_t request = sizeof(t);
     ssize_t received = 0;
     ssize_t total = 0;
-    SystemError error;
+    common::SystemError error;
     do {
       error = receive( &t, request, received );
       total += received;
-    } while ( error == SystemError::ecOK && total < request );
-    if ( error == SystemError::ecOK ) {
+    } while ( error == common::SystemError::ecOK && total < request );
+    if ( error == common::SystemError::ecOK ) {
       value = ntohs(t);
     } else value = 0;
     return error;
   }
 
-  SystemError BaseSocket::sendUInt32( uint32_t value, bool more )  {
+  common::SystemError BaseSocket::sendUInt32( uint32_t value, bool more )  {
     uint32_t nwbo = htonl( value );
     return send( &nwbo, sizeof(nwbo), more );
   }
 
-  SystemError BaseSocket::receiveUInt32( uint32_t &value ) {
+  common::SystemError BaseSocket::receiveUInt32( uint32_t &value ) {
     uint32_t t = 0;
     ssize_t request = sizeof(t);
     ssize_t received = 0;
     ssize_t total = 0;
-    SystemError error;
+    common::SystemError error;
     do {
       error = receive( &t, request, received );
       total += received;
-    } while ( error == SystemError::ecOK && total < request );
-    if ( error == SystemError::ecOK ) {
+    } while ( error == common::SystemError::ecOK && total < request );
+    if ( error == common::SystemError::ecOK ) {
       value = ntohl(t);
     } else value = 0;
     return error;
   }
 
-  SystemError BaseSocket::sendInt32( int32_t value, bool more )  {
+  common::SystemError BaseSocket::sendInt32( int32_t value, bool more )  {
     int32_t nwbo = htonl( value );
     return send( &nwbo, sizeof(nwbo), more );
   }
 
-  SystemError BaseSocket::receiveInt32( int32_t &value ) {
+  common::SystemError BaseSocket::receiveInt32( int32_t &value ) {
     int32_t t = 0;
     ssize_t request = sizeof(t);
     ssize_t received = 0;
     ssize_t total = 0;
-    SystemError error;
+    common::SystemError error;
     do {
       error = receive( &t, request, received );
       total += received;
-    } while ( error == SystemError::ecOK && total < request );
-    if ( error == SystemError::ecOK ) {
+    } while ( error == common::SystemError::ecOK && total < request );
+    if ( error == common::SystemError::ecOK ) {
       value = ntohl(t);
     } else value = 0;
     return error;
   }
 
-  SystemError BaseSocket::sendUInt64( uint64_t value, bool more ) {
+  common::SystemError BaseSocket::sendUInt64( uint64_t value, bool more ) {
     uint64_t nwbo = htobe64( value );
     return send( &nwbo, sizeof(nwbo), more );
   }
 
-  SystemError BaseSocket::receiveUInt64( uint64_t &value ) {
+  common::SystemError BaseSocket::receiveUInt64( uint64_t &value ) {
     uint64_t t = 0;
     ssize_t request = sizeof(t);
     ssize_t received = 0;
     ssize_t total = 0;
-    SystemError error;
+    common::SystemError error;
     do {
       error = receive( &t, request, received );
       total += received;
-    } while ( error == SystemError::ecOK && total < request );
-    if ( error == SystemError::ecOK ) {
+    } while ( error == common::SystemError::ecOK && total < request );
+    if ( error == common::SystemError::ecOK ) {
       value = be64toh( t );
     } else value = 0;
     return error;
   }
 
-  SystemError BaseSocket::sendInt64( int64_t value, bool more ) {
+  common::SystemError BaseSocket::sendInt64( int64_t value, bool more ) {
     int64_t nwbo = htobe64( value );
     return send( &nwbo, sizeof(nwbo), more );
   }
 
-  SystemError BaseSocket::receiveInt64( int64_t &value ) {
+  common::SystemError BaseSocket::receiveInt64( int64_t &value ) {
     int64_t t = 0;
     ssize_t request = sizeof(t);
     ssize_t received = 0;
     ssize_t total = 0;
-    SystemError error;
+    common::SystemError error;
     do {
       error = receive( &t, request, received );
       total += received;
-    } while ( error == SystemError::ecOK && total < request );
-    if ( error == SystemError::ecOK ) {
+    } while ( error == common::SystemError::ecOK && total < request );
+    if ( error == common::SystemError::ecOK ) {
       value = be64toh( t );
     } else value = 0;
     return error;
   }
 
-  SystemError BaseSocket::sendString( const std::string &s, bool more ) {
+  common::SystemError BaseSocket::sendString( const std::string &s, bool more ) {
     if ( getBlocking() ) {
-      SystemError error;
+      common::SystemError error;
       error = sendUInt64( s.size(), true );
-      if ( error != SystemError::ecOK ) return error;
+      if ( error != common::SystemError::ecOK ) return error;
       error = send( s.c_str(), s.size(), more );
       return error;
     } else throw_Exception( "sendString used on a non-blocking socket" );
   }
 
-  SystemError BaseSocket::receiveString( string &s ) {
+  common::SystemError BaseSocket::receiveString( std::string &s ) {
     s = "";
-    SystemError error;
+    common::SystemError error;
     if ( getBlocking() ) {
-      char buf[getReceiveBufSize()+1];
       uint64_t stringsize = 0;
       error = receiveUInt64( stringsize );
-      if (  error == SystemError::ecOK ) {
+      if (  error == common::SystemError::ecOK ) {
+        char buf[getReceiveBufSize()+1];
         ssize_t received = 0;
         uint64_t total = 0;
         do {
@@ -475,31 +471,30 @@ namespace dodo::network {
           total += received;
           buf[received] = 0;
           s += buf;
-        } while ( error == SystemError::ecOK && total < stringsize );
+        } while ( error == common::SystemError::ecOK && total < stringsize );
         return error;
       } else return error;
     } else throw_ExceptionObject( "receiveString used on a non-blocking socket", this );
   }
 
-  SystemError BaseSocket::sendLine( const std::string &s, bool more ) {
-    SystemError error;
+  common::SystemError BaseSocket::sendLine( const std::string &s, bool more ) {
+    common::SystemError error;
     std::stringstream ss;
     ss << s << '\n';
     error = send( ss.str().c_str(), ss.str().length(), more );
     return error;
   }
 
-  SystemError BaseSocket::receiveLine( string &s ) {
-    SystemError error = SystemError::ecOK;
+  common::SystemError BaseSocket::receiveLine( std::string &s ) {
     char c = 0;
     ssize_t received = 0;
     std::stringstream ss;
-    error = receive( &c, 1, received );
-    while ( error == SystemError::ecOK && received == 1 && c != '\n' ) {
+    common::SystemError error = receive( &c, 1, received );
+    while ( error == common::SystemError::ecOK && received == 1 && c != '\n' ) {
       if ( c != '\r' ) ss << c;
       error = receive( &c, 1, received );
     }
-    if ( error == SystemError::ecOK ) s = ss.str(); else s = "";
+    if ( error == common::SystemError::ecOK ) s = ss.str(); else s = "";
     return error;
   }
 

@@ -36,39 +36,30 @@ namespace dodo::persist {
   namespace sqlite {
 
     static void sqlite_ext_pow(sqlite3_context *context, int argc, sqlite3_value **argv) {
-      double r1 = 0.0;
-      double r2 = 0.0;
-      double val;
-
       assert( argc==2 );
-
-      if( sqlite3_value_type(argv[0]) == SQLITE_NULL || sqlite3_value_type(argv[1]) == SQLITE_NULL ){
+      if( sqlite3_value_type(argv[0]) == SQLITE_NULL || sqlite3_value_type(argv[1]) == SQLITE_NULL ) {
         sqlite3_result_null(context);
       } else {
-        r1 = sqlite3_value_double(argv[0]);
-        r2 = sqlite3_value_double(argv[1]);
         errno = 0;
-        val = pow(r1,r2);
+        double r1 = sqlite3_value_double(argv[0]);
+        double r2 = sqlite3_value_double(argv[1]);
+        double val = pow(r1,r2);
         if (errno == 0) {
-          sqlite3_result_double(context, val);
+          sqlite3_result_double( context, val );
         } else {
-          sqlite3_result_error(context, strerror(errno), errno);
+          sqlite3_result_error( context, strerror(errno), errno );
         }
       }
     }
 
     static void sqlite_ext_log2(sqlite3_context *context, int argc, sqlite3_value **argv) {
-      double r1 = 0.0;
-      double val;
-
       assert( argc==1 );
-
       if( sqlite3_value_type(argv[0]) == SQLITE_NULL ){
         sqlite3_result_null(context);
       } else {
-        r1 = sqlite3_value_double(argv[0]);
         errno = 0;
-        val = log2(r1);
+        double r1 = sqlite3_value_double(argv[0]);
+        double val = log2(r1);
         if (errno == 0) {
           sqlite3_result_double(context, val);
         } else {
@@ -78,17 +69,14 @@ namespace dodo::persist {
     }
 
     static void sqlite_ext_ceil(sqlite3_context *context, int argc, sqlite3_value **argv) {
-      double r1 = 0.0;
-      double val;
-
       assert( argc==1 );
 
       if( sqlite3_value_type(argv[0]) == SQLITE_NULL ){
         sqlite3_result_null(context);
       } else {
-        r1 = sqlite3_value_double(argv[0]);
         errno = 0;
-        val = ceil(r1);
+        double r1 = sqlite3_value_double(argv[0]);
+        double val = ceil(r1);
         if (errno == 0) {
           sqlite3_result_double(context, val);
         } else {
@@ -98,14 +86,13 @@ namespace dodo::persist {
     }
 
     static void sqlite_ext_floor(sqlite3_context *context, int argc, sqlite3_value **argv) {
-      double r1 = 0.0;
-      double val;
-
       assert( argc==1 );
 
       if( sqlite3_value_type(argv[0]) == SQLITE_NULL ){
         sqlite3_result_null(context);
       } else {
+        double r1 = 0.0;
+        double val;
         r1 = sqlite3_value_double(argv[0]);
         errno = 0;
         val = floor(r1);

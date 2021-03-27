@@ -30,8 +30,6 @@
 
 namespace dodo::common {
 
-  using namespace std;
-
   /**
    * Helper class to write strings in stream format, eg
    * \code
@@ -129,7 +127,7 @@ namespace dodo::common {
        * @param s The string.
        * @return This Puts.
        */
-      const Puts& operator<<( const string& s ) const {
+      const Puts& operator<<( const std::string& s ) const {
         ss_ << s;
         return *this;
       }
@@ -332,13 +330,13 @@ namespace dodo::common {
        * Implicit Puts conversion to string for the compiler
        * @return The string build in stringstream ss_.
        */
-      operator string() const { return ss_.str(); };
+      operator std::string() const { return ss_.str(); };
 
     private:
       /**
        * Use a stringstream internally.
        */
-      mutable stringstream ss_;
+      mutable std::stringstream ss_;
 
   };
 

@@ -8,7 +8,8 @@ using namespace std;
 
 class MyApp : public Application {
   public:
-    MyApp( const StartParameters &param ) : Application( param ) {
+    explicit MyApp( const StartParameters &param ) : Application( param ) {
+      listener_ = nullptr;
     }
 
     virtual ~MyApp() {

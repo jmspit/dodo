@@ -27,8 +27,6 @@
 
 namespace dodo {
 
-  using namespace common;
-
   namespace network {
 
     /**
@@ -60,7 +58,7 @@ namespace dodo {
          * if there is no more data (received within the prevailing timeout).
          * @return SystemError::ecOK and c is valid, or an SystemError.
          */
-        virtual SystemError next() = 0 ;
+        virtual common::SystemError next() = 0 ;
 
       protected:
 
@@ -68,7 +66,7 @@ namespace dodo {
          * If the buffer_ underflows, the buffer_ must be reset refilledwith new data from the source.
          * @return Systemerror::ecOK on succes.
          */
-        virtual SystemError underflow() = 0;
+        virtual common::SystemError underflow() = 0;
 
         /**
          * The buffer.
@@ -104,7 +102,7 @@ namespace dodo {
 
         virtual char get() const;
 
-        virtual SystemError next();
+        virtual common::SystemError next();
 
       protected:
 
@@ -112,7 +110,7 @@ namespace dodo {
          * If the buffer_ is fully read. eset and read new data from the socket.
          * @return Systemerror::ecOK on succes.
          */
-        virtual SystemError underflow();
+        virtual common::SystemError underflow();
 
         /**
          * The associated network::BaseSocket*.
@@ -149,11 +147,11 @@ namespace dodo {
 
         virtual char get() const;
 
-        virtual SystemError next();
+        virtual common::SystemError next();
 
       protected:
 
-        virtual SystemError underflow();
+        virtual common::SystemError underflow();
 
         /** The file handle. */
         FILE *file_;
@@ -186,11 +184,11 @@ namespace dodo {
 
         virtual char get() const { return data_.at(idx_); }
 
-        virtual SystemError next() { if ( idx_ >= data_.length() -1  ) return common::SystemError::ecEAGAIN; else { idx_++; return common::SystemError::ecOK; } };
+        virtual common::SystemError next() { if ( idx_ >= data_.length() -1  ) return common::SystemError::ecEAGAIN; else { idx_++; return common::SystemError::ecOK; } };
 
       protected:
 
-        virtual SystemError underflow() { return common::SystemError::ecOK; };
+        virtual common::SystemError underflow() { return common::SystemError::ecOK; };
 
         std::string data_;
 

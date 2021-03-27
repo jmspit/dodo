@@ -26,8 +26,6 @@
 
 namespace dodo {
 
-  using namespace common;
-
   namespace network {
 
     SocketReadBuffer::SocketReadBuffer( BaseSocket* socket, size_t bufsize ) {
@@ -43,11 +41,11 @@ namespace dodo {
       delete buffer_;
     }
 
-    SystemError SocketReadBuffer::underflow() {
-      SystemError error = SystemError::ecOK;
+    common::SystemError SocketReadBuffer::underflow() {
+      common::SystemError error = common::SystemError::ecOK;
       if ( idx_ >= received_ ) {
         error = socket_->receive( buffer_, bufsize_, received_ );
-        if ( error == SystemError::ecOK ) idx_ = 0;
+        if ( error == common::SystemError::ecOK ) idx_ = 0;
       }
       return error;
     }
@@ -56,7 +54,7 @@ namespace dodo {
       return buffer_[idx_];
     }
 
-    SystemError SocketReadBuffer::next() {
+    common::SystemError SocketReadBuffer::next() {
       idx_++;
       return underflow();
     }
@@ -68,8 +66,8 @@ namespace dodo {
       file_ = fopen( filename.c_str(), "r");
       if ( !file_  ) throw_SystemException( common::Puts() << "file '" << filename << "' cannot be opened (", errno );
       buffer_ = new char [bufsize_];
-      SystemError error = underflow();
-      if ( error != SystemError::ecOK  ) throw_SystemException( common::Puts() << "file '" << filename << "' cannot be opened", errno );
+      common::SystemError error = underflow();
+      if ( error != common::SystemError::ecOK  ) throw_SystemException( common::Puts() << "file '" << filename << "' cannot be opened", errno );
     }
 
     FileReadBuffer::~FileReadBuffer() {
@@ -77,12 +75,12 @@ namespace dodo {
       delete[] buffer_;
     }
 
-    SystemError FileReadBuffer::underflow() {
-      SystemError error = SystemError::ecOK;
+    common::SystemError FileReadBuffer::underflow() {
+      common::SystemError error = common::SystemError::ecOK;
       if ( idx_ >= read_ ) {
         read_ = fread( buffer_, 1, bufsize_, file_ );
         idx_ = 0;
-        if ( read_ == 0 ) error = SystemError::ecEAGAIN;
+        if ( read_ == 0 ) error = common::SystemError::ecEAGAIN;
       }
       return error;
     }
@@ -92,7 +90,7 @@ namespace dodo {
       return buffer_[idx_];
     }
 
-    SystemError FileReadBuffer::next() {
+    common::SystemError FileReadBuffer::next() {
       idx_++;
       return underflow();
     }

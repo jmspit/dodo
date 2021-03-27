@@ -268,31 +268,31 @@ namespace dodo::common {
    * Macro to log Fatal.
    * @param what The info to log. As the argument is fed to a dodo::common::Puts() it can be a << pipe-lined expression.
    */
-  #define log_Fatal( what ) Logger::getLogger()->fatal( dodo::common::Puts() << what )
+  #define log_Fatal( what ) common::Logger::getLogger()->fatal( dodo::common::Puts() << what )
 
   /**
    * Macro to log Error.
    * @param what The info to log. As the argument is fed to a dodo::common::Puts() it can be a << pipe-lined expression.
    */
-  #define log_Error( what ) Logger::getLogger()->error( dodo::common::Puts() << what )
+  #define log_Error( what ) common::Logger::getLogger()->error( dodo::common::Puts() << what )
 
   /**
    * Macro to log Warning.
    * @param what The info to log. As the argument is fed to a dodo::common::Puts() it can be a << pipe-lined expression.
    */
-  #define log_Warning( what ) Logger::getLogger()->warning( dodo::common::Puts() << what )
+  #define log_Warning( what ) common::Logger::getLogger()->warning( dodo::common::Puts() << what )
 
   /**
    * Macro to log Info.
    * @param what The info to log. As the argument is fed to a dodo::common::Puts() it can be a << pipe-lined expression.
    */
-  #define log_Info( what ) Logger::getLogger()->info( dodo::common::Puts() << what )
+  #define log_Info( what ) common::Logger::getLogger()->info( dodo::common::Puts() << what )
 
   /**
    * Macro to log Statistics.
    * @param what The info to log. As the argument is fed to a dodo::common::Puts() it can be a << pipe-lined expression.
    */
-  #define log_Statistics( what ) Logger::getLogger()->statistics( dodo::common::Puts() << what )
+  #define log_Statistics( what ) common::Logger::getLogger()->statistics( dodo::common::Puts() << what )
 
   /**
    * Macro to log Debug.

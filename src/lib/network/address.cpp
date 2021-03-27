@@ -32,12 +32,12 @@
 
 namespace dodo::network {
 
-  Address::Address( const string &address  ) {
+  Address::Address( const std::string &address  ) {
     init();
     *this = address;
   }
 
-  Address::Address( const string &ip, uint16_t port ) {
+  Address::Address( const std::string &ip, uint16_t port ) {
     init();
     *this = ip;
     setPort( port );
@@ -63,7 +63,7 @@ namespace dodo::network {
     addr_.ss_family = AF_UNSPEC;
   }
 
-  Address& Address::operator=( const string& address ) {
+  Address& Address::operator=( const std::string& address ) {
     auto rc = inet_pton( AF_INET, address.c_str(), &asIPv4Address()->sin_addr );
     if ( rc != 1 ) {
       rc = inet_pton( AF_INET6, address.c_str(), &asIPv6Address()->sin6_addr );
@@ -104,9 +104,9 @@ namespace dodo::network {
   }
 
 
-  string Address::asString( bool withport )  const {
+  std::string Address::asString( bool withport )  const {
     char ip_[INET6_ADDRSTRLEN];
-    stringstream ss;
+    std::stringstream ss;
     if ( addr_.ss_family == AF_INET ) {
       if ( !inet_ntop( AF_INET, &asIPv4Address()->sin_addr, ip_, sizeof(ip_) ) )
         throw_SystemExceptionObject( "inet_ntop failed", errno, this );
@@ -141,17 +141,17 @@ namespace dodo::network {
     }
   }
 
-  SystemError Address::getHostAddrInfo( const std::string &hostname, AddrInfo& info ) {
+  common::SystemError Address::getHostAddrInfo( const std::string &hostname, AddrInfo& info ) {
     struct addrinfo *ainfo = 0;
     struct addrinfo ahints;
     memset( &ahints, 0, sizeof(ahints) );
     ahints.ai_family = AF_UNSPEC;
     ahints.ai_flags = AI_CANONNAME | AI_CANONIDN | AI_ADDRCONFIG;
-    SystemError rc = getaddrinfo( hostname.c_str(),
-                                  0,
-                                  &ahints,
-                                  &ainfo );
-    if ( rc == SystemError::ecOK ) {
+    common::SystemError rc = getaddrinfo( hostname.c_str(),
+                                           0,
+                                           &ahints,
+                                           &ainfo );
+    if ( rc == common::SystemError::ecOK ) {
       struct addrinfo *rp = 0;
       for ( rp = ainfo; rp != NULL; rp = rp->ai_next ) {
         AddrInfoItem item;
@@ -163,9 +163,9 @@ namespace dodo::network {
         info.items.push_back( item );
       }
       if ( ainfo ) freeaddrinfo( ainfo );
-    } else if ( rc == SystemError::ecEAI_ADDRFAMILY ||
-                rc == SystemError::ecEAI_NODATA ||
-                rc == SystemError::ecEAI_NONAME ) {
+    } else if ( rc == common::SystemError::ecEAI_ADDRFAMILY ||
+                rc == common::SystemError::ecEAI_NODATA ||
+                rc == common::SystemError::ecEAI_NONAME ) {
       if ( ainfo ) freeaddrinfo( ainfo );
     } else {
       freeaddrinfo( ainfo );
@@ -174,13 +174,13 @@ namespace dodo::network {
     return rc;
   }
 
-  SystemError Address::getHostAddrInfo( const std::string &hostname, SocketParams &params, Address &address, string &canonicalname ) {
+  common::SystemError Address::getHostAddrInfo( const std::string &hostname, SocketParams &params, Address &address, std::string &canonicalname ) {
     address = Address();
     canonicalname = "";
     AddrInfo info;
-    SystemError error = getHostAddrInfo( hostname, info );
-    if ( error == SystemError::ecOK ) {
-      if ( info.items.size() < 1 ) return SystemError::ecEAI_NODATA;
+    common::SystemError error = getHostAddrInfo( hostname, info );
+    if ( error == common::SystemError::ecOK ) {
+      if ( info.items.size() < 1 ) return common::SystemError::ecEAI_NODATA;
       for ( auto item : info.items ) {
         if ( item.params.getAddressFamily() == params.getAddressFamily() || params.getAddressFamily() == SocketParams::afUNSPEC ) {
           if ( item.params.getSocketType() == params.getSocketType() ) {
@@ -188,16 +188,16 @@ namespace dodo::network {
               canonicalname = info.canonicalname;
               address = item.address;
               params.setAddressFamily( address.getAddressFamily() );
-              return SystemError::ecOK;
+              return common::SystemError::ecOK;
             }
           }
         }
       }
-      return SystemError::ecEAI_NODATA;
+      return common::SystemError::ecEAI_NODATA;
     } else return error;
   }
 
-  SystemError Address::getNameInfo( std::string &hostname ) const {
+  common::SystemError Address::getNameInfo( std::string &hostname ) const {
     char hbuf[NI_MAXHOST];
     auto error = getnameinfo( (const sockaddr*) &addr_,
                               sizeof(addr_),
@@ -206,12 +206,12 @@ namespace dodo::network {
                               NULL,
                               0,
                               NI_NAMEREQD );
-    if ( error == SystemError::ecEAI_SYSTEM ) error = errno;
+    if ( error == common::SystemError::ecEAI_SYSTEM ) error = errno;
     if ( !error ) hostname = hbuf; else hostname = "";
     return error;
   }
 
-  SystemError Address::getNameInfo( std::string &hostname, std::string &service ) const {
+  common::SystemError Address::getNameInfo( std::string &hostname, std::string &service ) const {
     char hbuf[NI_MAXHOST];
     char sbuf[NI_MAXSERV];
     auto error = getnameinfo( (const sockaddr*) &addr_,
@@ -221,12 +221,12 @@ namespace dodo::network {
                               sbuf,
                               sizeof(sbuf),
                               NI_NAMEREQD );
-    if ( error == SystemError::ecEAI_SYSTEM ) error = errno;
+    if ( error == common::SystemError::ecEAI_SYSTEM ) error = errno;
     if ( !error ) hostname = hbuf; else hostname = "";
     return error;
   }
 
-  SystemError Address::getNameInfo( std::string &hostname, uint16_t &port ) const {
+  common::SystemError Address::getNameInfo( std::string &hostname, uint16_t &port ) const {
     char hbuf[NI_MAXHOST];
     char sbuf[NI_MAXSERV];
     auto error = getnameinfo( (const sockaddr*) &addr_,
@@ -236,7 +236,7 @@ namespace dodo::network {
                               sbuf,
                               sizeof(sbuf),
                               NI_NAMEREQD | NI_NUMERICSERV );
-    if ( error == SystemError::ecEAI_SYSTEM ) error = errno;
+    if ( error == common::SystemError::ecEAI_SYSTEM ) error = errno;
     if ( !error ) {
       hostname = hbuf;
       errno = 0;

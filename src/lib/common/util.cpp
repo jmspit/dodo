@@ -263,13 +263,13 @@ namespace dodo::common {
     struct tm utc;
     gmtime_r( &tv.tv_sec, &utc );
     std::stringstream ss;
-    ss << setfill('0') << setw(4) << utc.tm_year + 1900 << "-";
-    ss << setfill('0') << setw(2) << utc.tm_mon+1 << "-";
-    ss << setfill('0') << setw(2) << utc.tm_mday << "T";
-    ss << setfill('0') << setw(2) << utc.tm_hour << ":";
-    ss << setfill('0') << setw(2) << utc.tm_min << ":";
-    ss << setfill('0') << setw(2) << utc.tm_sec << ".";
-    ss << setfill('0') << setw(6) << tv.tv_usec << "Z";
+    ss << std::setfill('0') << std::setw(4) << utc.tm_year + 1900 << "-";
+    ss << std::setfill('0') << std::setw(2) << utc.tm_mon+1 << "-";
+    ss << std::setfill('0') << std::setw(2) << utc.tm_mday << "T";
+    ss << std::setfill('0') << std::setw(2) << utc.tm_hour << ":";
+    ss << std::setfill('0') << std::setw(2) << utc.tm_min << ":";
+    ss << std::setfill('0') << std::setw(2) << utc.tm_sec << ".";
+    ss << std::setfill('0') << std::setw(6) << tv.tv_usec << "Z";
     return ss.str();
   }
 

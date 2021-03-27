@@ -33,8 +33,6 @@ namespace dodo {
 
   namespace network {
 
-    using namespace std;
-
     TCPServer::TCPServer( TCPListener &listener ) :
       listener_(listener),
       request_stop_(false),
@@ -75,9 +73,9 @@ namespace dodo {
                 if ( sockmap->state & TCPListener::SockState::New ) {
                   log_Debug( "TCPServer::run ssNew " <<
                              sockmap->socket->debugString() << " state " << sockmap->state );
-                  bool ok = false;
                   state_ = ssHandshake;
                   try {
+                    bool ok = false;
                     ssize_t received = 0;
                     ssize_t sent = 0;
                     ok = handShake( sockmap->socket, received, sent );
@@ -103,22 +101,22 @@ namespace dodo {
                 if ( sockmap->state & TCPListener::SockState::Read ) {
                   log_Debug( "TCPServer::run ssRead " <<
                              sockmap->socket->debugString() << " state " << sockmap->state );
-                  bool ok = false;
                   state_ = ssReadSocket;
                   try {
+                    bool ok = false;
                     ssize_t received = 0;
                     ssize_t sent = 0;
 
-                    SystemError error = sockmap->data->readBuffer( sockmap->socket, received );
-                    ok = (error == SystemError::ecOK);
+                    common::SystemError error = sockmap->data->readBuffer( sockmap->socket, received );
+                    ok = (error == common::SystemError::ecOK);
                     error = readSocket( *sockmap, sent );
-                    ok = ok && ( error == SystemError::ecOK || error == SystemError::ecEAGAIN );
+                    ok = ok && ( error == common::SystemError::ecOK || error == common::SystemError::ecEAGAIN );
                     listener_.addReceivedSentBytes( received, sent );
                     state_ = ssReadSocketDone;
                     completion_state |= TCPListener::SockState::Read;
                     if ( !ok ) {
                       completion_state |= TCPListener::SockState::Shut;
-                      if ( error != SystemError::ecECONNABORTED ) {
+                      if ( error != common::SystemError::ecECONNABORTED ) {
                         log_Error( "TCPServer::run readSocket failure socket " <<
                                    sockmap->socket->getFD() << " client " <<
                                    sockmap->socket->getPeerAddress().asString(true) );
@@ -185,7 +183,7 @@ namespace dodo {
     double TCPServer::getIdleSeconds() {
       struct timeval tv;
       gettimeofday( &tv, 0 );
-      return getSecondDiff( last_active_, tv );
+      return common::getSecondDiff( last_active_, tv );
     }
 
   }

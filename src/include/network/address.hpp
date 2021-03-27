@@ -36,9 +36,6 @@
 
 namespace dodo::network {
 
-  using namespace common;
-  using namespace std;
-
   struct AddrInfo;
 
   /**
@@ -103,13 +100,13 @@ namespace dodo::network {
        * @param ip The string representation of the ip, either ipv4 or ipv6.
        * @param port The port number (only specified for listen addresses).
        */
-      Address( const string &ip, uint16_t port );
+      Address( const std::string &ip, uint16_t port );
 
       /**
        * Construct from ip, do not set port (only a listening socket needs a port preset).
        * @param ip The string representation of the ip, either ipv4 or ipv6.
        */
-      Address( const string &ip );
+      Address( const std::string &ip );
 
       /**
        * Construct from sockaddr_storage.
@@ -141,7 +138,7 @@ namespace dodo::network {
        * @param withport If true, append ':' + port number.
        * @return string representation of this Address.
        */
-      string asString( bool withport = false ) const;
+      std::string asString( bool withport = false ) const;
 
       /**
        * Return the port number.
@@ -172,7 +169,7 @@ namespace dodo::network {
        * @param address The address to assign in string form.
        * @return This Address.
        */
-      Address& operator=( const string& address );
+      Address& operator=( const std::string& address );
 
       /**
        * Assign (copy) from Address.
@@ -209,7 +206,7 @@ namespace dodo::network {
        * @param info The AddrInfo structure to fill.
        * @return SystemError::ecOK if the lookup resulted in at least one address.
        */
-      static SystemError getHostAddrInfo( const std::string &hostname, AddrInfo& info );
+      static common::SystemError getHostAddrInfo( const std::string &hostname, AddrInfo& info );
 
       /**
        * Return the first hit on SocketParams in address and canonicalname.
@@ -226,10 +223,10 @@ namespace dodo::network {
        * @param canonicalname The canonicalname of hostname (set to "" when this call returns an error).
        * @return SystemError::ecOK if the lookup resulted in an address.
        */
-      static SystemError getHostAddrInfo( const std::string &hostname,
-                                          SocketParams &params,
-                                          Address &address,
-                                          std::string &canonicalname );
+      static common::SystemError getHostAddrInfo( const std::string &hostname,
+                                                  SocketParams &params,
+                                                  Address &address,
+                                                  std::string &canonicalname );
 
       /**
        * Do a reverse DNS lookup on this Address and return in hostname.
@@ -247,7 +244,7 @@ namespace dodo::network {
        * @param hostname The string to receive the hostname.
        * @return The error or SystemError::ecOK on success.
        */
-      SystemError getNameInfo( std::string &hostname ) const;
+      common::SystemError getNameInfo( std::string &hostname ) const;
 
       /**
        * Do a reverse DNS lookup on this Address and its port, and return in hostname and service.
@@ -256,7 +253,7 @@ namespace dodo::network {
        * @return The error or SystemError::ecOK on success.
        * @see getNameInfo() for a full list of possible errors returned.
        */
-      SystemError getNameInfo( std::string &hostname, std::string &service ) const;
+      common::SystemError getNameInfo( std::string &hostname, std::string &service ) const;
 
       /**
        * Do a reverse DNS lookup on this Address and its port, and return in hostname and port.
@@ -265,7 +262,7 @@ namespace dodo::network {
        * @return The error or SystemError::ecOK on success.
        * @see getNameInfo() for a full list of possible errors returned.
        */
-      SystemError getNameInfo( std::string &hostname, uint16_t &port ) const;
+      common::SystemError getNameInfo( std::string &hostname, uint16_t &port ) const;
 
     private:
 
@@ -325,8 +322,8 @@ namespace dodo::network {
      * String representation.
      * @return The string.
      */
-    string asString() {
-      stringstream ss;
+    std::string asString() {
+      std::stringstream ss;
       ss << address.asString() << " " << params.asString();
       return ss.str();
     };
@@ -350,12 +347,12 @@ namespace dodo::network {
     /**
      * The canonical name for a host.
      */
-    string canonicalname;
+    std::string canonicalname;
 
     /**
      * AddrInfoItem list for the host.
      */
-    list<AddrInfoItem> items;
+    std::list<AddrInfoItem> items;
   };
 
 };

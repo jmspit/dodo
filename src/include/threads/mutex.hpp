@@ -28,8 +28,6 @@
 
 namespace dodo::threads {
 
-  using namespace std;
-
   /**
    * A Mutex to synchronize access to resources between threads.
    *

@@ -24,7 +24,7 @@
 
 namespace dodo::common {
 
-  UnitTest::UnitTest( const string& name, const string& description, ostream *out ) :
+  UnitTest::UnitTest( const std::string& name, const std::string& description, std::ostream *out ) :
     name_(name),
     description_(description),
     out_(out),
@@ -40,25 +40,25 @@ namespace dodo::common {
   }
 
   void UnitTest::writeUnitTestHeader() {
-    *out_ << string( 80, '=' ) << endl;
-    *out_ << name_ << " - " << description_ << endl;
-    *out_ << string( 80, '=' ) << endl;
-    *out_ << endl;
+    *out_ << std::string( 80, '=' ) << std::endl;
+    *out_ << name_ << " - " << description_ << std::endl;
+    *out_ << std::string( 80, '=' ) << std::endl;
+    *out_ << std::endl;
   }
 
   void UnitTest::writeUnitTestSummary() {
-    *out_ << string( 80, '+' ) << endl;
-    *out_ << failed_ << " failed out of " << total_ << " tests." << endl;
-    *out_ << endl;
+    *out_ << std::string( 80, '+' ) << std::endl;
+    *out_ << failed_ << " failed out of " << total_ << " tests." << std::endl;
+    *out_ << std::endl;
   }
 
-  bool UnitTest::writeSubTestResult( const string &name, const string& description, bool passed ) {
+  bool UnitTest::writeSubTestResult( const std::string &name, const std::string& description, bool passed ) {
     total_++;
     if ( !passed ) failed_++;
-    *out_ << string( 80, '-' ) << endl;
-    *out_ << name << " - " << description << " : " << (passed?"passed":"failure") << endl;
-    *out_ << string( 80, '-' ) << endl;
-    *out_ << endl;
+    *out_ << std::string( 80, '-' ) << std::endl;
+    *out_ << name << " - " << description << " : " << (passed?"passed":"failure") << std::endl;
+    *out_ << std::string( 80, '-' ) << std::endl;
+    *out_ << std::endl;
     return passed;
   }
 

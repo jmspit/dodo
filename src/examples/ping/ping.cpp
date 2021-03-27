@@ -239,7 +239,7 @@ void ping( const network::AddrInfoItem &item, ping_stats &stats ) {
   socket.setReceiveBufSize( PING_PKT_S + 100 );
 
   initPacket( &pckt );
-  double elapsed = 0.0;
+  double elapsed;
   while ( msg_count < options.ping_count && !request_stop ) {
     nextPacket( &pckt, msg_count++ );
 

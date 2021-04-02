@@ -137,21 +137,21 @@ namespace dodo {
 
 
     TCPListener::Params::Params( const YAML::Node &node ) {
-      minservers              = common::YAML_assign_by_key_with_default<size_t>( node, yaml_minservers, 2 );
-      maxservers              = common::YAML_assign_by_key_with_default<size_t>( node, yaml_maxservers, 16 );
-      maxconnections          = common::YAML_assign_by_key_with_default<size_t>( node, yaml_maxconnections, 500 );
-      maxqdepth               = common::YAML_assign_by_key_with_default<size_t>( node, yaml_maxqdepth, 256 );
-      sendbufsz               = common::YAML_assign_by_key_with_default<socklen_t>( node, yaml_sendbufsz, 16384 );
-      recvbufsz               = common::YAML_assign_by_key_with_default<socklen_t>( node, yaml_recvbufsz, 32768 );
-      server_idle_ttl_s       = common::YAML_assign_by_key_with_default<double>( node, yaml_server_idle_ttl_s, 300 );
-      pollbatch               = common::YAML_assign_by_key_with_default<int>( node, yaml_pollbatch, 128 );
-      listener_sleep_ms       = common::YAML_assign_by_key_with_default<int>( node, yaml_listener_sleep_ms, 200 );
-      throttle_sleep_us       = common::YAML_assign_by_key_with_default<size_t>( node, yaml_throttle_sleep_us, 4000 );
-      cycle_max_throttles     = common::YAML_assign_by_key_with_default<size_t>( node, yaml_cycle_max_throttles, 40 );
-      stat_trc_interval_s     = common::YAML_assign_by_key_with_default<time_t>( node, yaml_stat_trc_interval_s, 300 );
-      send_timeout_seconds    = common::YAML_assign_by_key_with_default<int>( node, yaml_send_timeout_seconds, 0 );
-      receive_timeout_seconds = common::YAML_assign_by_key_with_default<int>( node, yaml_receive_timeout_seconds, 0 );
-      tcp_keep_alive          = common::YAML_assign_by_key_with_default<bool>( node, yaml_tcp_keep_alive, true );
+      minservers              = common::YAML_read_key_default<size_t>( node, yaml_minservers, 2 );
+      maxservers              = common::YAML_read_key_default<size_t>( node, yaml_maxservers, 16 );
+      maxconnections          = common::YAML_read_key_default<size_t>( node, yaml_maxconnections, 500 );
+      maxqdepth               = common::YAML_read_key_default<size_t>( node, yaml_maxqdepth, 256 );
+      sendbufsz               = common::YAML_read_key_default<socklen_t>( node, yaml_sendbufsz, 16384 );
+      recvbufsz               = common::YAML_read_key_default<socklen_t>( node, yaml_recvbufsz, 32768 );
+      server_idle_ttl_s       = common::YAML_read_key_default<double>( node, yaml_server_idle_ttl_s, 300 );
+      pollbatch               = common::YAML_read_key_default<int>( node, yaml_pollbatch, 128 );
+      listener_sleep_ms       = common::YAML_read_key_default<int>( node, yaml_listener_sleep_ms, 200 );
+      throttle_sleep_us       = common::YAML_read_key_default<size_t>( node, yaml_throttle_sleep_us, 4000 );
+      cycle_max_throttles     = common::YAML_read_key_default<size_t>( node, yaml_cycle_max_throttles, 40 );
+      stat_trc_interval_s     = common::YAML_read_key_default<time_t>( node, yaml_stat_trc_interval_s, 300 );
+      send_timeout_seconds    = common::YAML_read_key_default<int>( node, yaml_send_timeout_seconds, 0 );
+      receive_timeout_seconds = common::YAML_read_key_default<int>( node, yaml_receive_timeout_seconds, 0 );
+      tcp_keep_alive          = common::YAML_read_key_default<bool>( node, yaml_tcp_keep_alive, true );
     }
 
     TCPListener::TCPListener( const Address& address, const Params &params ) :
@@ -214,8 +214,8 @@ namespace dodo {
 
     TCPListener::TCPListener( const YAML::Node &yaml ) {
       Params params( yaml );
-      std::string saddr = common::YAML_assign_by_key<std::string>( yaml, "listen-address" );
-      uint16_t port = common::YAML_assign_by_key<std::uint16_t>( yaml, "listen-port" );
+      std::string saddr = common::YAML_read_key<std::string>( yaml, "listen-address" );
+      uint16_t port = common::YAML_read_key<std::uint16_t>( yaml, "listen-port" );
       Address addr( saddr, port );
       if ( !addr.isValid() ) throw_Exception( "invalid listen address " << saddr << ":" << port );
       construct( addr, params );

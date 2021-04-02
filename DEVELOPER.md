@@ -1,4 +1,4 @@
-# Developer Manual {#developer}
+# Developer manual
 
 [TOC]
 

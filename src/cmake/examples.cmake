@@ -57,3 +57,9 @@ set( ${EXAMPLE_FINGER}_objects  src/examples/${EXAMPLE_FINGER}/${EXAMPLE_FINGER}
 add_executable(${EXAMPLE_FINGER} ${${EXAMPLE_FINGER}_objects} )
 target_link_libraries( ${EXAMPLE_FINGER} ${LIB_DODO} )
 install( TARGETS ${EXAMPLE_FINGER} RUNTIME DESTINATION bin )
+
+set( EXAMPLE_HTTP_CLIENT  "http-client" )
+set( ${EXAMPLE_HTTP_CLIENT}_objects  src/examples/${EXAMPLE_HTTP_CLIENT}/${EXAMPLE_HTTP_CLIENT}.cpp )
+add_executable(${EXAMPLE_HTTP_CLIENT} ${${EXAMPLE_HTTP_CLIENT}_objects} )
+target_link_libraries( ${EXAMPLE_HTTP_CLIENT} ${LIB_DODO} )
+install( TARGETS ${EXAMPLE_HTTP_CLIENT} RUNTIME DESTINATION bin )

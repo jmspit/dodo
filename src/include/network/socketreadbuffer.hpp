@@ -44,7 +44,7 @@ namespace dodo {
     class VirtualReadBuffer {
       public:
 
-        VirtualReadBuffer() : buffer_(NULL), bufsize_(0) {};
+        VirtualReadBuffer() : buffer_(NULL), bufsize_(0), underflows_(0) {};
 
         /**
          * Get the current char from VirtualReadBuffer.
@@ -60,13 +60,15 @@ namespace dodo {
          */
         virtual common::SystemError next() = 0 ;
 
-      protected:
-
         /**
          * If the buffer_ underflows, the buffer_ must be reset refilledwith new data from the source.
          * @return Systemerror::ecOK on succes.
          */
         virtual common::SystemError underflow() = 0;
+
+        size_t getUnderflowCount() const { return underflows_; }
+
+      protected:
 
         /**
          * The buffer.
@@ -78,6 +80,9 @@ namespace dodo {
          * The size of buffer_.
          */
         ssize_t bufsize_;
+
+        size_t underflows_;
+
     };
 
     /**
@@ -104,13 +109,13 @@ namespace dodo {
 
         virtual common::SystemError next();
 
-      protected:
-
         /**
          * If the buffer_ is fully read. eset and read new data from the socket.
          * @return Systemerror::ecOK on succes.
          */
         virtual common::SystemError underflow();
+
+      protected:
 
         /**
          * The associated network::BaseSocket*.
@@ -149,9 +154,9 @@ namespace dodo {
 
         virtual common::SystemError next();
 
-      protected:
-
         virtual common::SystemError underflow();
+
+      protected:
 
         /** The file handle. */
         FILE *file_;

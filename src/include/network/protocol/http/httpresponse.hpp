@@ -30,7 +30,7 @@
 
 namespace dodo {
 
-  namespace network {
+  namespace network::protocol::http {
 
     /**
      * HTTPResponse class. Contains
@@ -204,16 +204,17 @@ namespace dodo {
 
         virtual ParseResult parse( VirtualReadBuffer& buffer );
 
+        virtual ParseResult parseBody( VirtualReadBuffer &data );
+
+        virtual common::SystemError send( BaseSocket* socket );
+
+        bool hasBody() const;
+
         /**
          * Return the HTTPResponse as a string.
          * @return the HTTP response as a string.
          */
         virtual std::string asString() const;
-
-        /**
-         * Write the HTTPRequest to the socket.
-         */
-        void send( BaseSocket* socket );
 
         /**
          * Return the (upper case) string representation of the http error code.

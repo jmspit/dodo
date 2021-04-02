@@ -34,6 +34,7 @@ namespace dodo::network {
                         const X509Common::SAN& peer_name ) :
 
                         BaseSocket( socket ), tlscontext_(tlscontext), peer_name_(peer_name) {
+    ssl_ = nullptr;
   }
 
   TLSSocket::TLSSocket( bool blocking,
@@ -50,13 +51,18 @@ namespace dodo::network {
   }
 
   TLSSocket::~TLSSocket() {
-    SSL_free( ssl_ );
+    if (ssl_ ) SSL_free( ssl_ );
   }
 
   common::SystemError TLSSocket::connect( const Address &address ) {
     common::SystemError error = BaseSocket::connect( address );
     if ( error == common::SystemError::ecOK ) {
-      auto rc = SSL_connect( ssl_ );
+      auto rc = SSL_set_fd( ssl_, socket_ );
+      if ( rc != 1 ) {
+        auto ssl_error_code = SSL_get_error( ssl_, rc );
+        throw_Exception( ssl_error_code << " " << common::getSSLErrors( '\n' )  );
+      }
+      rc = SSL_connect( ssl_ );
       if ( rc != 1 ) {
         auto ssl_error_code = SSL_get_error( ssl_, rc );
         switch ( ssl_error_code ) {
@@ -72,7 +78,7 @@ namespace dodo::network {
         }
       }
       if ( tlscontext_.getPeerVerification() == TLSContext::PeerVerification::pvVerifyFQDN )  {
-        if ( X509Certificate::verifySAN( getPeerCertificate(), { network::X509Common::SANType::stDNS, peer_name_.san_name } ) ) {
+        if ( X509Certificate::verifySAN( getPeerCertificate(), { network::X509Common::SANType::stDNS, peer_name_.san_name }, tlscontext_.isAllowSANWildcards() ) ) {
           return common::SystemError::ecOK;
         } else return common::SystemError::ecSSL_ERROR_PEERVERIFICATION;
       } else return common::SystemError::ecOK;
@@ -118,7 +124,8 @@ namespace dodo::network {
     received = 0;
     auto rc = SSL_read( ssl_, buf, (int)request );
     if ( rc <= 0 ) {
-      switch ( SSL_get_error( ssl_, (int)received ) ) {
+      auto sge = SSL_get_error( ssl_, (int)rc );
+      switch ( sge ) {
         case SSL_ERROR_NONE :             return common::SystemError::ecSSL_ERROR_NONE;
         case SSL_ERROR_ZERO_RETURN :      return common::SystemError::ecSSL_ERROR_ZERO_RETURN;
         case SSL_ERROR_WANT_READ :        return common::SystemError::ecSSL_ERROR_WANT_READ;
@@ -126,8 +133,9 @@ namespace dodo::network {
         case SSL_ERROR_WANT_CONNECT :     return common::SystemError::ecSSL_ERROR_WANT_CONNECT;
         case SSL_ERROR_WANT_ACCEPT :      return common::SystemError::ecSSL_ERROR_WANT_ACCEPT;
         case SSL_ERROR_WANT_X509_LOOKUP : return common::SystemError::ecSSL_ERROR_WANT_X509_LOOKUP;
+        case SSL_ERROR_SYSCALL:           return common::SystemError::ecSSL_ERROR_SYSCALL;
         case SSL_ERROR_SSL :
-        default: throw_Exception( common::getSSLErrors( '\n' )  );
+        default: throw_Exception( "rc=" << rc << " SSL_get_error=" << sge << " " << common::getSSLErrors( '\n' )  );
       }
     } else received = rc;
     return common::SystemError::ecOK;

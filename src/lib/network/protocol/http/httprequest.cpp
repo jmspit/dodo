@@ -27,7 +27,7 @@
 
 namespace dodo {
 
-  namespace network {
+  namespace network::protocol::http {
 
     std::string HTTPRequest::methodAsString( Method method ) {
       switch ( method ) {
@@ -90,10 +90,25 @@ namespace dodo {
         ss << header.first << ": " << header.second << HTTPMessage::charCR << HTTPMessage::charLF;
       }
       ss << HTTPMessage::charCR << HTTPMessage::charLF;
-      if ( methodAllowsBody(request_line_.getMethod()) && body_.size() > 0 ) {
-        ss << body_;
+      if ( methodAllowsBody(request_line_.getMethod()) && body_.getSize() > 0 ) {
+        ss << body_.asString();
       }
       return ss.str();
+    }
+
+    common::SystemError HTTPRequest::send( BaseSocket* socket ) {
+      std::stringstream ss;
+      ss << request_line_.asString();
+      for ( auto header : headers_ ) {
+        ss << header.first << ": " << header.second << HTTPMessage::charCR << HTTPMessage::charLF;
+      }
+      ss << HTTPMessage::charCR << HTTPMessage::charLF;
+      common::SystemError rc = socket->send( ss.str().c_str(), ss.str().length() );
+      if ( !rc.ok() ) return rc;
+      if ( methodAllowsBody(request_line_.getMethod()) && body_.getSize() > 0 ) {
+        rc = socket->send( body_.getArray(), body_.getSize(), false );
+      }
+      return rc;
     }
 
     HTTPMessage::ParseResult HTTPRequest::parse( VirtualReadBuffer &data ) {
@@ -117,6 +132,29 @@ namespace dodo {
             else return parseResult;
           } else return { peOk, common::SystemError::ecOK };
         }
+      }
+      return parseResult;
+    }
+
+    HTTPMessage::ParseResult HTTPRequest::parseBody( VirtualReadBuffer &data ) {
+      ParseResult parseResult;
+      size_t content_length;
+      if ( getHeaderValue( "content-length", content_length ) ) {
+        for ( size_t i = 0; i < content_length; i++ ) {
+          body_.append( data.get() );
+          if ( i < content_length -1 ) {
+            parseResult.setSystemError( data.next() );
+            if ( ! parseResult.ok() ) return parseResult;
+          }
+        }
+      } else {
+        std::string transfer_encoding;
+        if ( getHeaderValue( "transfer-encoding", transfer_encoding ) ) {
+          if ( transfer_encoding == "chunked" ) {
+            parseResult = parseChunkedBody( data );
+            if ( ! parseResult.ok() ) return parseResult;
+          } else return { peInvalidTransferEncoding, common::SystemError::ecOK };
+        } else return { peUnexpectedBody , common::SystemError::ecOK };
       }
       return parseResult;
     }

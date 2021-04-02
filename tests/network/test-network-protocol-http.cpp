@@ -6,9 +6,9 @@ using namespace std;
 
 bool test1() {
   std::cout << "parse HTTPVersion ... " << std::endl;
-  network::HTTPVersion version;
+  network::protocol::http::HTTPVersion version;
   network::StringReadBuffer sbuf( "HTTP/1.2\r\n" );
-  network::HTTPFragment::ParseResult result = version.parse( sbuf );
+  network::protocol::http::HTTPFragment::ParseResult result = version.parse( sbuf );
   if ( !result.ok() ) {
     std::cout << "parse failed " << result.asString() << std::endl;
     return false;
@@ -24,9 +24,9 @@ bool test1() {
 
 bool test2() {
   std::cout << "parse HTTPRequestLine ... " << std::endl;
-  network::HTTPRequest::HTTPRequestLine line;
+  network::protocol::http::HTTPRequest::HTTPRequestLine line;
   network::StringReadBuffer sbuf( "GET / HTTP/1.1\r\n\n" );
-  network::HTTPFragment::ParseResult result = line.parse( sbuf );
+  network::protocol::http::HTTPFragment::ParseResult result = line.parse( sbuf );
   if ( line.getHTTPVersion().getMajor()!= 1 || line.getHTTPVersion().getMinor() != 1  ) {
     std::cout << "error HTTP VERSION does not match major=" << line.getHTTPVersion().getMajor()
               << " minor=" << line.getHTTPVersion().getMinor() << std::endl;
@@ -50,10 +50,10 @@ bool test2() {
 
 bool test3() {
   std::cout << "parse HTTPRequest ... " << std::endl;
-  network::HTTPRequest request;
+  network::protocol::http::HTTPRequest request;
   network::StringReadBuffer sbuf( "GET /index.html HTTP/1.1\r\nHost: www.knmi.nl\r\nUser-Agent: curl/7.74.0\r\nAccept: */*\r\n\r\n" );
 
-  network::HTTPFragment::ParseResult result = request.parse( sbuf );
+  network::protocol::http::HTTPFragment::ParseResult result = request.parse( sbuf );
   if ( !result.ok() ) {
     std::cout << "parse failed " << result.asString() << std::endl;
     return false;
@@ -82,9 +82,9 @@ bool test3() {
 
 bool test4() {
   std::cout << "parse HTTPRequest with body (content-length) ... " << std::endl;
-  network::HTTPRequest request;
+  network::protocol::http::HTTPRequest request;
   network::FileReadBuffer sbuf( BuildEnv::getSourceDirectory() + "/../tests/network/http/get-body.http" );
-  network::HTTPFragment::ParseResult result = request.parse( sbuf );
+  network::protocol::http::HTTPFragment::ParseResult result = request.parse( sbuf );
   if ( !result.ok() ) {
     std::cout << "parse failed " << result.asString() << std::endl;
     return false;
@@ -107,7 +107,7 @@ bool test4() {
     std::cout << "URI parse failure" << std::endl;
     return false;
   }
-  if ( request.getBody() != "0123456789" ) {
+  if ( request.getBody().asString() != "0123456789" ) {
     std::cout << "body parse failure" << std::endl;
     return false;
   }
@@ -119,9 +119,9 @@ bool test4() {
 
 bool test5() {
   std::cout << "parse HTTPRequest with body (chunked) ... " << std::endl;
-  network::HTTPRequest request;
+  network::protocol::http::HTTPRequest request;
   network::FileReadBuffer sbuf( BuildEnv::getSourceDirectory() + "/../tests/network/http/get-body-chunked.http" );
-  network::HTTPFragment::ParseResult result = request.parse( sbuf );
+  network::protocol::http::HTTPFragment::ParseResult result = request.parse( sbuf );
   if ( !result.ok() ) {
     std::cout << "parse failed " << result.asString() << std::endl;
     return false;
@@ -144,8 +144,8 @@ bool test5() {
     std::cout << "URI parse failure" << std::endl;
     return false;
   }
-  if ( request.getBody() != "aaaabbbbbbbbcccccccccc" ) {
-    std::cout << "body parse failure (" << request.getBody() << ")" << std::endl;
+  if ( request.getBody().asString() != "aaaabbbbbbbbcccccccccc" ) {
+    std::cout << "body parse failure (" << request.getBody().asString() << ")" << std::endl;
     return false;
   }
 
@@ -156,9 +156,9 @@ bool test5() {
 
 bool test6() {
   std::cout << "parse HTTPResponseLine ... " << std::endl;
-  network::HTTPResponse::HTTPResponseLine line;
+  network::protocol::http::HTTPResponse::HTTPResponseLine line;
   network::StringReadBuffer sbuf( "HTTP/1.1 200 OK\r\n\n" );
-  network::HTTPFragment::ParseResult result = line.parse( sbuf );
+  network::protocol::http::HTTPFragment::ParseResult result = line.parse( sbuf );
   if ( line.getHTTPVersion().getMajor()!= 1 || line.getHTTPVersion().getMinor() != 1  ) {
     std::cout << "error HTTP VERSION does not match major=" << line.getHTTPVersion().getMajor()
               << " minor=" << line.getHTTPVersion().getMinor() << std::endl;
@@ -178,9 +178,9 @@ bool test6() {
 
 bool test7() {
   std::cout << "parse HTTPResponse with body (content-length) ... " << std::endl;
-  network::HTTPResponse response;
+  network::protocol::http::HTTPResponse response;
   network::FileReadBuffer sbuf( BuildEnv::getSourceDirectory() + "/../tests/network/http/response-body.http" );
-  network::HTTPFragment::ParseResult result = response.parse( sbuf );
+  network::protocol::http::HTTPFragment::ParseResult result = response.parse( sbuf );
   if ( !result.ok() ) {
     std::cout << "parse failed " << result.asString() << std::endl;
     return false;
@@ -199,8 +199,8 @@ bool test7() {
     std::cout << "HTTPCode parse failure" << std::endl;
     return false;
   }
-  if ( response.getBody() != "All is well" ) {
-    std::cout << "body parse failure (" << response.getBody() << ")" << std::endl;
+  if ( response.getBody().asString() != "All is well" ) {
+    std::cout << "body parse failure (" << response.getBody().asString() << ")" << std::endl;
     return false;
   }
 

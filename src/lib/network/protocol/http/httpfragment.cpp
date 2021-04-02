@@ -32,7 +32,7 @@
 
 namespace dodo {
 
-  namespace network {
+  namespace network::protocol::http {
 
     std::string HTTPFragment::getParseResultAsString( ParseError error ) {
       switch ( error ) {

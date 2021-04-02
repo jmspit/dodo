@@ -35,6 +35,13 @@ namespace dodo::persist {
 
   namespace sqlite {
 
+    /**
+     * Power function extension for SQLite
+     * @param context SQLite context.
+     * @param argc The number of arguments to this function.
+     * @param argv The arguments to this funcxtion.
+     * @return void
+     */
     static void sqlite_ext_pow(sqlite3_context *context, int argc, sqlite3_value **argv) {
       assert( argc==2 );
       if( sqlite3_value_type(argv[0]) == SQLITE_NULL || sqlite3_value_type(argv[1]) == SQLITE_NULL ) {
@@ -52,6 +59,13 @@ namespace dodo::persist {
       }
     }
 
+    /**
+     * Base 2 logarithm extension for SQLite
+     * @param context SQLite context.
+     * @param argc The number of arguments to this function.
+     * @param argv The arguments to this funcxtion.
+     * @return void
+     */
     static void sqlite_ext_log2(sqlite3_context *context, int argc, sqlite3_value **argv) {
       assert( argc==1 );
       if( sqlite3_value_type(argv[0]) == SQLITE_NULL ){
@@ -68,6 +82,13 @@ namespace dodo::persist {
       }
     }
 
+    /**
+     * Ceiling function extension for SQLite
+     * @param context SQLite context.
+     * @param argc The number of arguments to this function.
+     * @param argv The arguments to this funcxtion.
+     * @return void
+     */
     static void sqlite_ext_ceil(sqlite3_context *context, int argc, sqlite3_value **argv) {
       assert( argc==1 );
 
@@ -85,6 +106,13 @@ namespace dodo::persist {
       }
     }
 
+    /**
+     * Floor function extension for SQLite
+     * @param context SQLite context.
+     * @param argc The number of arguments to this function.
+     * @param argv The arguments to this funcxtion.
+     * @return void
+     */
     static void sqlite_ext_floor(sqlite3_context *context, int argc, sqlite3_value **argv) {
       assert( argc==1 );
 

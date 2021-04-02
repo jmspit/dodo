@@ -27,7 +27,7 @@
 
 namespace dodo {
 
-  namespace network {
+  namespace network::protocol::http {
 
     HTTPMessage::ParseResult HTTPResponse::parse( VirtualReadBuffer &data ) {
       ParseResult parseResult = response_line_.parse( data );
@@ -43,15 +43,29 @@ namespace dodo {
           parseResult = parseHeaders( data );
           if ( !parseResult.ok() ) return parseResult;
           if ( data.get() == charLF ) {
-            parseResult.setSystemError( data.next() );
-            if ( parseResult.ok() ) {
-              return parseBody( data );
-            } else if ( parseResult.eof() ) return { peOk, common::SystemError::ecOK };
-            else return parseResult;
+            if ( hasBody() ) {
+              parseResult.setSystemError( data.next() );
+              if ( parseResult.ok() ) {
+                return parseBody( data );
+              } else if ( parseResult.eof() ) return { peOk, common::SystemError::ecOK };
+            } return { peOk, common::SystemError::ecOK };
           } else return { peOk, common::SystemError::ecOK };
         }
       }
       return parseResult;
+    }
+
+    bool HTTPResponse::hasBody() const {
+      bool result = false;
+      unsigned long content_length = 0;
+      if ( getHeaderValue( "content-length", content_length ) ) {
+        if ( content_length > 0 ) return true;
+      }
+      std::string transfer_encoding;
+      std::string connection;
+      if ( getHeaderValue( "transfer-encoding", transfer_encoding ) ) if ( transfer_encoding == "chunked" ) return true;
+      if ( getHeaderValue( "connection", connection ) ) if ( connection == "close" ) return true;
+      return result;
     }
 
     std::string HTTPResponse::asString() const {
@@ -61,10 +75,25 @@ namespace dodo {
         ss << header.first << ": " << header.second << HTTPMessage::charCR << HTTPMessage::charLF;
       }
       ss << HTTPMessage::charCR << HTTPMessage::charLF;
-      if ( body_.size() > 0 ) {
-        ss << body_;
+      if ( body_.getSize() > 0 ) {
+        ss << body_.asString();
       }
       return ss.str();
+    }
+
+    common::SystemError HTTPResponse::send( BaseSocket* socket ) {
+      std::stringstream ss;
+      ss << response_line_.asString();
+      for ( auto header : headers_ ) {
+        ss << header.first << ": " << header.second << HTTPMessage::charCR << HTTPMessage::charLF;
+      }
+      ss << HTTPMessage::charCR << HTTPMessage::charLF;
+      common::SystemError rc = socket->send( ss.str().c_str(), ss.str().length() );
+      if ( !rc.ok() ) return rc;
+      if ( body_.getSize() > 0 ) {
+        rc = socket->send( body_.getArray(), body_.getSize(), false );
+      }
+      return rc;
     }
 
     std::string HTTPResponse::HTTPResponseLine::asString() const {
@@ -106,6 +135,39 @@ namespace dodo {
             parseResult.setSystemError( data.next() );
             if ( parseResult.ok() ) return parseResult;
           }
+        }
+      }
+      return parseResult;
+    }
+
+    HTTPMessage::ParseResult HTTPResponse::parseBody( VirtualReadBuffer &data ) {
+      ParseResult parseResult;
+      size_t content_length;
+      if ( getHeaderValue( "content-length", content_length ) ) {
+        for ( size_t i = 0; i < content_length; i++ ) {
+          body_.append( data.get() );
+          if ( i < content_length -1 ) {
+            parseResult.setSystemError( data.next() );
+            if ( ! parseResult.ok() ) return parseResult;
+          }
+        }
+      } else {
+        std::string transfer_encoding;
+        std::string connection_close;
+        if ( getHeaderValue( "transfer-encoding", transfer_encoding ) ) {
+          if ( transfer_encoding == "chunked" ) {
+            parseResult = parseChunkedBody( data );
+            if ( ! parseResult.ok() ) return parseResult;
+          } else return { peInvalidTransferEncoding, common::SystemError::ecOK };
+        } else if ( getHeaderValue( "connection", connection_close ) ) {
+          if ( connection_close == "close" ) {
+            // read anything we can get and ignore all errors
+            while ( parseResult.ok() ) {
+              body_.append( data.get() );
+              parseResult.setSystemError( data.next() );
+            }
+            return { peOk, common::SystemError::ecOK };
+          } else return { peUnexpectedBody, common::SystemError::ecOK };
         }
       }
       return parseResult;

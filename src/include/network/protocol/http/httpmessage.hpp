@@ -24,12 +24,13 @@
 #ifndef dodo_network_protocol_http_httpmessage_hpp
 #define dodo_network_protocol_http_httpmessage_hpp
 
+#include <common/bytes.hpp>
 #include <network/protocol/http/httpfragment.hpp>
 #include <string>
 
 namespace dodo {
 
-  namespace network {
+  namespace network::protocol::http {
 
     /**
      * Generic HTTPMessage, parent to HTTPRequest and HTTPResponse.
@@ -96,6 +97,8 @@ namespace dodo {
          */
         const std::map<std::string,std::string>& getHeaders() const { return headers_; };
 
+        bool hasHeader( const std::string &header ) const { return headers_.find(header) != headers_.end(); }
+
         /**
          * Clear all headers.
          */
@@ -122,13 +125,15 @@ namespace dodo {
          * Return the HTTTMessage body.
          * @return The HTTPMessage body.
          */
-        const std::string& getBody() const { return body_; };
+        const common::Bytes& getBody() const { return body_; };
 
         /**
          * Set the body.
          * @param body The body to set.
          */
         void setBody( const std::string& body );
+
+        virtual common::SystemError send( BaseSocket* socket ) = 0;
 
 
       protected:
@@ -216,7 +221,7 @@ namespace dodo {
          * @param data The VirtualReadBuffer to read from.
          * @return The ParseError.
          */
-        ParseResult parseBody( VirtualReadBuffer &data );
+        virtual ParseResult parseBody( VirtualReadBuffer &data ) = 0;
 
         /**
          * Return true if the char is a separator.
@@ -249,7 +254,7 @@ namespace dodo {
         /**
          * The message body (if any).
          */
-        std::string body_;
+        common::Bytes body_;
 
     };
 

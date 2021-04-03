@@ -141,11 +141,4 @@ namespace dodo::network {
     return common::SystemError::ecOK;
   }
 
-  TLSSocket& TLSSocket::operator=( const TLSSocket& socket ) {
-    socket_ = socket.socket_;
-    ssl_ = socket.ssl_;
-    tlscontext_ = socket.tlscontext_;
-    return *this;
-  }
-
 }

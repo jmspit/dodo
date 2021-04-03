@@ -76,12 +76,6 @@ namespace dodo::network {
       Socket( bool blocking ) : BaseSocket( blocking ) {};
 
       /**
-       * Construct a copy of another Socket.
-       * @param socket The other socket.
-       */
-      Socket( const Socket& socket );
-
-      /**
        * Destructs this Socket, but does not call close().
        */
       virtual ~Socket() {};

@@ -120,13 +120,6 @@ namespace dodo::network {
       bool operator<(const TLSSocket& socket ) const { return this->socket_ < socket.socket_; };
 
       /**
-       * Assign from Socket.
-       * @param socket The Socket to assign/copy to this Socket.
-       * @return this TLSSocket.
-       */
-      TLSSocket& operator=( const TLSSocket& socket );
-
-      /**
        * return the negotiated TLS (SSL) protocol version. This is only meaningfull after a connect returned
        * SystemError::ecOK.
        * @return the TLS (SSL) protocol version.

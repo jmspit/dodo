@@ -89,8 +89,17 @@ namespace dodo::network {
       };
 
       /**
-       * Construct a TLS context.
-       * @param peerverficiation The PeerVerification method to use.
+       * Construct a TLS context. Use depends on the context being either server or client side, see TLSContext::PeerVerification.
+       *
+       * Example for a server-side setup enforcing at least TLS1.3, requiring the peer to present a trusted certificate (pvVerifyPeer).
+       * ```C
+       * TLSContext tlscontext( PeerVerification::pvVerifyPeer,
+      *                         TLSContext::TLSVersion::tls1_3,
+                                false,                           // server-side does not need SNI
+                                false );                         // server-side does not do SAN matching
+         tlscontext.loadPEMIdentity( "server.crt", "server.key", "passphrase" );
+       * ```
+       * @param peerverficiation The TLSContext::PeerVerification method to use.
        * @param tlsversion The TLS version to use. Use of default is less future code hassle.
        * @param enableSNI Enable the Server Name Indication extension. Note that this exposes the target hostname
        * @param allowSANWildcards Allow SAN wildcard matching under pvVerifyFQDN
@@ -181,6 +190,10 @@ namespace dodo::network {
        */
       bool isSNIEnabled() const { return enable_sni_; }
 
+      /**
+       * If true, TLS will allow SAN wildcard matching.
+       * @return True if wildcard matching on the SAN is allowed.
+       */
       bool isAllowSANWildcards() const { return allow_san_wildcards_; }
 
     private:

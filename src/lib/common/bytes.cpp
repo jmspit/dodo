@@ -99,6 +99,7 @@ namespace dodo::common {
     std::stringstream ss;
     for ( size_t i = 0; i < size_; i++ ) {
       if ( array_[i] != 0 ) ss << array_[i];
+      else if ( i != size_ -1 ) throw_Exception( "Bytes contain an intermediate zero - string convesrion failed" );
     }
     return ss.str();
   }

@@ -47,10 +47,12 @@ namespace dodo::network {
 
   TLSContext::TLSContext( const TLSContext::PeerVerification& peerverficiation,
                           const TLSVersion& tlsversion,
-                          bool  enableSNI ) {
+                          bool  enableSNI,
+                          bool allowSANWildcards ) {
     tlsversion_ = tlsversion;
     peerverficiation_ = peerverficiation;
     enable_sni_ = enableSNI;
+    allow_san_wildcards_ = allowSANWildcards;
     passphrase_ = "";
     tlsctx_ = nullptr;
     long rc = 0;

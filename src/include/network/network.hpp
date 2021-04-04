@@ -71,6 +71,12 @@ namespace dodo {
     namespace protocol {
 
       /**
+       * The HTTP 1.1 protocol
+       */
+      namespace http {
+      }
+
+      /**
        * The STOMP 1.2 protocol (earlier versions not supported).
        */
       namespace stomp {

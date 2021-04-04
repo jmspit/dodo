@@ -15,19 +15,30 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 /**
- * @file http.hpp
- * Defines the dodo::network::HTTPMessage, dodo::network::HTTPRequest amd dodo::network::HTTPResponse classes.
+ * @file fifoqueue.hpp
+ * Defines the FIFOQueue class.
  */
 
-#ifndef dodo_network_protocol_http_hpp
-#define dodo_network_protocol_http_hpp
+#ifndef dodo_kvstore_hpp
+#define dodo_kvstore_hpp
 
-#include <network/protocol/http/httpfragment.hpp>
-#include <network/protocol/http/httpmessage.hpp>
-#include <network/protocol/http/httprequest.hpp>
-#include <network/protocol/http/httpresponse.hpp>
-#include <network/protocol/http/httpversion.hpp>
+#include <filesystem>
+#include <sqlite3.h>
+
+/**
+ * First-In-First-Out queue backed by SQLite3.
+ */
+class FIFOQueue {
+
+  public:
+    FIFOQueue( const std::filesystem::path &path );
+    ~FIFOQueue();
+
+    void produce();
+
+    void consume();
+
+};
 
 #endif

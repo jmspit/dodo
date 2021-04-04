@@ -29,7 +29,9 @@
 
 namespace dodo {
 
-  namespace network {
+  namespace network::protocol::http {
+
+
 
     /**
      * Generic HTTP fragment, either a complete (such as HTTPRequest) or incomplete

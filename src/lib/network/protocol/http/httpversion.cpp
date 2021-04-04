@@ -27,7 +27,7 @@
 
 namespace dodo {
 
-  namespace network {
+  namespace network::protocol::http {
 
     HTTPFragment::ParseResult HTTPVersion::parse( VirtualReadBuffer& buffer ) {
       ParseResult parseResult;

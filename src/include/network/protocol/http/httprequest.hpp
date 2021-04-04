@@ -30,12 +30,14 @@
 
 namespace dodo {
 
-  namespace network {
+  namespace network::protocol::http {
 
     /**
-     * HTTPRequest class. Contains
+     * HTTPRequest class represents a HTTP request. A HTTPRequest contains
      * - A HTTPRequestLine
-     * - An optional body
+     * - An optional body of type common::Bytes.
+     *
+     * @include examples/http-client/http-client.cpp
      */
     class HTTPRequest : public HTTPMessage {
       public:
@@ -148,6 +150,10 @@ namespace dodo {
          * @return The ParseResult.
          */
         virtual ParseResult parse( VirtualReadBuffer& data );
+
+        virtual ParseResult parseBody( VirtualReadBuffer &data );
+
+        virtual common::SystemError send( BaseSocket* socket );
 
         /**
          * Write the HTTPRequest to the socket.

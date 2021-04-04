@@ -29,7 +29,7 @@
 
 namespace dodo {
 
-  namespace network {
+  namespace network::protocol::http {
 
     /**
      * HHTP version comprising a major and minor number,

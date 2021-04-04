@@ -17,7 +17,7 @@
 
 
 /**
- * @file httpmessxage.cpp
+ * @file httpmessage.cpp
  * Implements the dodo::network::protocolo::http::HTTPMessage class.
  */
 
@@ -27,7 +27,7 @@
 
 namespace dodo {
 
-  namespace network {
+  namespace network::protocol::http {
 
     const char HTTPMessage::charCR = char(13);
     const char HTTPMessage::charLF = char(10);
@@ -229,7 +229,7 @@ namespace dodo {
         if ( parseResult.ok() ) {
           if ( chunk_size == 0 ) break;
           for ( size_t i = 0; i < chunk_size; i++ ) {
-            body_ += data.get();
+            body_.append( data.get() );
             parseResult.setSystemError( data.next() );
             if ( ! parseResult.ok() ) return parseResult;
           }
@@ -238,31 +238,7 @@ namespace dodo {
         } else return parseResult;
       }
       if ( chunk_size != 0 ) return { peInvalidLastChunk, common::SystemError::ecOK };
-      parseResult = eatCRLF( data );
-      if ( parseResult.eof() ) return { peOk, common::SystemError::ecOK }; else return { peInvalidLastChunk, common::SystemError::ecOK };
-    }
-
-    HTTPMessage::ParseResult HTTPMessage::parseBody( VirtualReadBuffer &data ) {
-      ParseResult parseResult;
-      size_t content_length;
-      if ( getHeaderValue( "content-length", content_length ) ) {
-        for ( size_t i = 0; i < content_length; i++ ) {
-          body_ += data.get();
-          if ( i < content_length -1 ) {
-            parseResult.setSystemError( data.next() );
-            if ( ! parseResult.ok() ) return parseResult;
-          }
-        }
-      } else {
-        std::string transfer_encoding;
-        if ( getHeaderValue( "transfer-encoding", transfer_encoding ) ) {
-          if ( transfer_encoding == "chunked" ) {
-            parseResult = parseChunkedBody( data );
-            if ( ! parseResult.ok() ) return parseResult;
-          } else return { peInvalidTransferEncoding, common::SystemError::ecOK };
-        } else return { peUnexpectedBody , common::SystemError::ecOK };
-      }
-      return parseResult;
+      if ( parseResult.eof() ) return { peOk, common::SystemError::ecOK }; else return parseResult;
     }
 
     void HTTPMessage::replaceHeader( const std::string &key, const std::string &value ) {
@@ -271,7 +247,7 @@ namespace dodo {
 
     void HTTPMessage::setBody( const std::string& body ) {
       body_ = body;
-      replaceHeader( "content-length", common::Puts() << common::Puts::fixed() << body_.size() );
+      replaceHeader( "content-length", common::Puts() << common::Puts::fixed() << body_.getSize() );
     }
 
   }

@@ -44,6 +44,7 @@ namespace dodo {
     common::SystemError SocketReadBuffer::underflow() {
       common::SystemError error = common::SystemError::ecOK;
       if ( idx_ >= received_ ) {
+        underflows_++;
         error = socket_->receive( buffer_, bufsize_, received_ );
         if ( error == common::SystemError::ecOK ) idx_ = 0;
       }
@@ -78,6 +79,7 @@ namespace dodo {
     common::SystemError FileReadBuffer::underflow() {
       common::SystemError error = common::SystemError::ecOK;
       if ( idx_ >= read_ ) {
+        underflows_++;
         read_ = fread( buffer_, 1, bufsize_, file_ );
         idx_ = 0;
         if ( read_ == 0 ) error = common::SystemError::ecEAGAIN;

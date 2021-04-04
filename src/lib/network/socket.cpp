@@ -95,10 +95,6 @@ namespace dodo::network {
     }
   }
 
-  Socket::Socket( const Socket& socket ) {
-    socket_ = socket.getFD();
-  }
-
   Socket* Socket::accept() {
     Socket* ret = new Socket();
     *ret = Socket::SocketInvalid;

@@ -4,24 +4,29 @@
 
 # Introduction
 
-Framework to create services with C++ efficiency for deployment in Docker containers.
+Framework to create C++ services for deployment in Docker containers. The framework strives to
 
-- Target is GNU/Linux exclusively.
-- The Application class handles red tape
-  - Runtime configuration through yaml file
-  - Logging to one or more destinations, console, (rotating) files, syslog.
-  - Handling signals (to the container entrypoint, including stop requests)
-- Frameworks for typical demands such as
-  - Network and TLS network sockets
-  - TCP servers both with and without TLS support.
-  - HTTP servers both with and without TLS support.
-  - REST servers both with and without TLS support.
-  - Persistent Key-Value store based on SQLLite.
-- Framework classes can be initialized against YAML nodes that define the runtime configuration, a YAML node which may be in the same file that defines the Application as well as other classes.
+  - Target is GNU/Linux exclusively.
+  - Use STL primitives such as std::string for every 'string type' such as a host or file name.
+  - Application class handles red tape
+    - Runtime configuration through yaml file(s).
+    - Logging to one or more destinations, console, (rotating) files, syslog.
+    - Handling signals (to the container entrypoint, including stop requests)
+  - Frameworks for additional demands such as
+    - Encryption
+    - Network and TLS network sockets
+    - TCP servers
+    - HTTP servers
+    - REST servers
+    - Database abstractions
+      -  PostgreSQL
+      -  MongoDB
+      -  SQLite
+    - Persistent Key-Value store, FIFO and priority queues (based on SQLite)
 
 # Using dodo
 
-Include all headers by including dodo.hpp. Before using any of the dodo functionality, call dodo::initLibrary(). Call dodo::closeLibrary() to clean up before program termination.
+Include all dodo headers by including dodo.hpp. Before using any of the dodo functionality, call dodo::initLibrary(). Call dodo::closeLibrary() to clean up before program termination.
 
 ```C
 #include <dodo.hpp>
@@ -35,7 +40,7 @@ int main( int argc, char* argv[] ) {
     network::Address localhost = "127.0.0.1";
     ...
   }
-  catch ( std::exception ) {
+  catch ( const std::exception &e ) {
     cerr << e.what() << endl;
     return_code = 1;
   }

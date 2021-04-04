@@ -15,6 +15,7 @@ class DataCryptTest : public common::UnitTest {
     bool test1();
     bool test2();
     bool test3();
+    bool test4();
 
     bool verifyEncryption( dodo::common::DataCrypt::Cipher cipher, const std::string &key, const std::string &test );
 
@@ -24,6 +25,7 @@ void DataCryptTest::doRun() {
   test1();
   test2();
   test3();
+  test4();
 }
 
 bool DataCryptTest::verifyEncryption( dodo::common::DataCrypt::Cipher cipher, const std::string &key, const std::string &test ) {
@@ -68,7 +70,17 @@ bool DataCryptTest::test3() {
   std::string key = "sekreet";
   dodo::common::Bytes dest;
   rc = dodo::common::DataCrypt::decrypt( key, test, dest );
-  return writeSubTestResult( "en/decryption", "test detection of decryption failure", rc == 2 );
+  return writeSubTestResult( "en/decryption", "test detection of decryption failure (invalid key)", rc == 2 );
+}
+
+bool DataCryptTest::test4() {
+  int rc = 0;
+  // the test string has valid format but we damage the key
+  std::string test = "[cipher:EVP_aes_128_gcm,data:y0aXKeVMglWTOJ8c817EkLTiGJ9HdvplZsI8VW2nBZLdB9yiMVo=,iv:rMp6eCmQpZdCRHbr0OLEDQ==,tag:HwkCKBF1MS5NTz6VLDg67w==]";
+  std::string key = "secret";
+  dodo::common::Bytes dest;
+  rc = dodo::common::DataCrypt::decrypt( key, test, dest );
+  return writeSubTestResult( "en/decryption", "test detection of decryption failure (invalid format)", rc == 1 );
 }
 
 int main() {

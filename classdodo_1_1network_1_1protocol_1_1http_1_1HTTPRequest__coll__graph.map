@@ -1,0 +1,5 @@
+<map id="dodo::network::protocol::http::HTTPRequest" name="dodo::network::protocol::http::HTTPRequest">
+<area shape="rect" id="node1" title="HTTPRequest class represents a HTTP request." alt="" coords="419,39,595,80"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html" title="Generic HTTPMessage, parent to HTTPRequest and HTTPResponse." alt="" coords="54,5,230,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_1_1HTTPRequestLine.html" title="HTTPRequestLine class." alt="" coords="5,71,279,112"/>
+</map>

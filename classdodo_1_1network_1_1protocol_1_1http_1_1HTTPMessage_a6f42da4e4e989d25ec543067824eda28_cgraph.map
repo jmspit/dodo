@@ -1,0 +1,5 @@
+<map id="dodo::network::protocol::http::HTTPMessage::setBody" name="dodo::network::protocol::http::HTTPMessage::setBody">
+<area shape="rect" id="node1" title="Set the body." alt="" coords="5,43,223,84"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1Bytes.html#afc34ec0de4068cd3ac41fd07668a7cde" title="Return the array size." alt="" coords="295,5,459,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#aae8e7ba5fbe23dd1a4016f1fdaaf6fb6" title="Replace the value of a header." alt="" coords="271,71,483,127"/>
+</map>

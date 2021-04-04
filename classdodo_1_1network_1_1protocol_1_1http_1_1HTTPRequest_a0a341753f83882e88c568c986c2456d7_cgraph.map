@@ -1,0 +1,5 @@
+<map id="dodo::network::protocol::http::HTTPRequest::write" name="dodo::network::protocol::http::HTTPRequest::write">
+<area shape="rect" id="node1" title="Write the HTTPRequest to the socket." alt="" coords="5,39,197,80"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#ae342f35428abf1a32cfc485f8e6bc254" title="Return the HTTPRequest as a string." alt="" coords="245,5,457,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1BaseSocket.html#a5400d3aef38ae1009e7c6c6c200e5228" title="Send bytes on the socket." alt="" coords="252,71,451,112"/>
+</map>

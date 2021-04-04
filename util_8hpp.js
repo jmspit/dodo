@@ -19,6 +19,6 @@ var util_8hpp =
     [ "getSSLErrors", "util_8hpp.html#a92751bfc7a44e638a4d3efa4ab2c6300", null ],
     [ "split", "util_8hpp.html#ab430cedf7afb6475afbf38518151e769", null ],
     [ "writeSSLErrors", "util_8hpp.html#a9cc37cf2f454ae7e459bdfb9234c2b1e", null ],
-    [ "YAML_assign_by_key", "util_8hpp.html#a659c33bdf521da1301329ec275d26c9c", null ],
-    [ "YAML_assign_by_key_with_default", "util_8hpp.html#aacc126d0982da0aecb627579f0066424", null ]
+    [ "YAML_read_key", "util_8hpp.html#ad840a576d0fd215dd410c9194ef6af93", null ],
+    [ "YAML_read_key_default", "util_8hpp.html#ac0f3fcbd56606c97c796312eb469d199", null ]
 ];

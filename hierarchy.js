@@ -31,16 +31,16 @@ var hierarchy =
     [ "dodo::common::UnitTest", "classdodo_1_1common_1_1UnitTest.html", null ],
     [ "dodo::network::AddrInfo", "structdodo_1_1network_1_1AddrInfo.html", null ],
     [ "dodo::network::AddrInfoItem", "structdodo_1_1network_1_1AddrInfoItem.html", null ],
-    [ "dodo::network::HTTPFragment", "classdodo_1_1network_1_1HTTPFragment.html", [
-      [ "dodo::network::HTTPMessage", "classdodo_1_1network_1_1HTTPMessage.html", [
-        [ "dodo::network::HTTPRequest", "classdodo_1_1network_1_1HTTPRequest.html", null ],
-        [ "dodo::network::HTTPResponse", "classdodo_1_1network_1_1HTTPResponse.html", null ]
+    [ "dodo::network::protocol::http::HTTPFragment", "classdodo_1_1network_1_1protocol_1_1http_1_1HTTPFragment.html", [
+      [ "dodo::network::protocol::http::HTTPMessage", "classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html", [
+        [ "dodo::network::protocol::http::HTTPRequest", "classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html", null ],
+        [ "dodo::network::protocol::http::HTTPResponse", "classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse.html", null ]
       ] ],
-      [ "dodo::network::HTTPRequest::HTTPRequestLine", "classdodo_1_1network_1_1HTTPRequest_1_1HTTPRequestLine.html", null ],
-      [ "dodo::network::HTTPResponse::HTTPResponseLine", "classdodo_1_1network_1_1HTTPResponse_1_1HTTPResponseLine.html", null ],
-      [ "dodo::network::HTTPVersion", "classdodo_1_1network_1_1HTTPVersion.html", null ]
+      [ "dodo::network::protocol::http::HTTPRequest::HTTPRequestLine", "classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_1_1HTTPRequestLine.html", null ],
+      [ "dodo::network::protocol::http::HTTPResponse::HTTPResponseLine", "classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse_1_1HTTPResponseLine.html", null ],
+      [ "dodo::network::protocol::http::HTTPVersion", "classdodo_1_1network_1_1protocol_1_1http_1_1HTTPVersion.html", null ]
     ] ],
-    [ "dodo::network::HTTPFragment::ParseResult", "structdodo_1_1network_1_1HTTPFragment_1_1ParseResult.html", null ],
+    [ "dodo::network::protocol::http::HTTPFragment::ParseResult", "structdodo_1_1network_1_1protocol_1_1http_1_1HTTPFragment_1_1ParseResult.html", null ],
     [ "dodo::network::protocol::stomp::Frame", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html", [
       [ "dodo::network::protocol::stomp::Connect", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect.html", null ],
       [ "dodo::network::protocol::stomp::Connected", "classdodo_1_1network_1_1protocol_1_1stomp_1_1Connected.html", null ]
@@ -78,6 +78,7 @@ var hierarchy =
       [ "dodo::network::TCPListenerTimer", "classdodo_1_1network_1_1TCPListenerTimer.html", null ],
       [ "dodo::network::TCPServer", "classdodo_1_1network_1_1TCPServer.html", null ]
     ] ],
+    [ "FIFOQueue", "classFIFOQueue.html", null ],
     [ "std::exception", null, [
       [ "std::runtime_error", null, [
         [ "dodo::common::Exception", "classdodo_1_1common_1_1Exception.html", [

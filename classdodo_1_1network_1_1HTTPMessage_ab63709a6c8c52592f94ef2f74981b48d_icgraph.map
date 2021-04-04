@@ -1,4 +1,0 @@
-<map id="dodo::network::HTTPMessage::parseFieldValue" name="dodo::network::HTTPMessage::parseFieldValue">
-<area shape="rect" id="node1" title="Parse a header field value." alt="" coords="268,5,483,47"/>
-<area shape="rect" id="node2" href="$classdodo_1_1network_1_1HTTPMessage.html#a18969fff1d601470ff4a9d5c3c50bfc4" title="Parse a header section and update headers_." alt="" coords="5,5,220,47"/>
-</map>

@@ -1,4 +1,0 @@
-<map id="dodo::network::HTTPMessage::eatCRLF" name="dodo::network::HTTPMessage::eatCRLF">
-<area shape="rect" id="node1" title="Consume a CR LF sequence only when it is there." alt="" coords="268,5,483,47"/>
-<area shape="rect" id="node2" href="$classdodo_1_1network_1_1HTTPMessage.html#aca8849f32213673009ae3e45a117b44b" title="Parse a chunked body (transfer&#45;encoding: chunked) and resturn it as a single string." alt="" coords="5,5,220,47"/>
-</map>

@@ -1,0 +1,4 @@
+<map id="dodo::network::protocol::http::HTTPRequest::methodAsString" name="dodo::network::protocol::http::HTTPRequest::methodAsString">
+<area shape="rect" id="node1" title="Translate a Method enum to a human readable string." alt="" coords="300,5,525,61"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_1_1HTTPRequestLine.html#aa2c87d12fe2d422c960655d06593f2ef" title="Convert the HTTPRequestLine to a HTTP string." alt="" coords="5,5,252,61"/>
+</map>

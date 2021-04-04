@@ -1,4 +1,0 @@
-<map id="dodo::network::Socket::Socket" name="dodo::network::Socket::Socket">
-<area shape="rect" id="node1" title="Construct a copy of another Socket." alt="" coords="5,5,172,47"/>
-<area shape="rect" id="node2" href="$classdodo_1_1network_1_1BaseSocket.html#ab5864bc9317e07e2957ee5d2ebf13f24" title="Return the socket file descriptor." alt="" coords="220,5,419,47"/>
-</map>

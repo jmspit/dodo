@@ -1,6 +1,9 @@
 <map id="dodo::common::Bytes::append" name="dodo::common::Bytes::append">
-<area shape="rect" id="node1" title="Append another Bytes." alt="" coords="252,71,416,112"/>
-<area shape="rect" id="node2" href="$classdodo_1_1common_1_1DataCrypt.html#aabf6cb0911efd72d438bc3fcb51a0db6" title="Decrypt data with a key." alt="" coords="8,5,201,47"/>
-<area shape="rect" id="node3" href="$classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect.html#a10628a4af5146ba43c08ebb418a7da2d" title="Generate a STOMP (CONNECT) frame." alt="" coords="5,71,204,112"/>
-<area shape="rect" id="node4" href="$classdodo_1_1persist_1_1sqlite_1_1Query.html#a55c48b68657b3a66ac7a39643dd5f271" title="Get Bytes value from select list." alt="" coords="29,136,180,177"/>
+<area shape="rect" id="node1" title="Append another Bytes." alt="" coords="619,165,783,207"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1DataCrypt.html#aabf6cb0911efd72d438bc3fcb51a0db6" title="Decrypt data with a key." alt="" coords="329,5,523,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect.html#a10628a4af5146ba43c08ebb418a7da2d" title="Generate a STOMP (CONNECT) frame." alt="" coords="327,71,525,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1persist_1_1sqlite_1_1Query.html#a55c48b68657b3a66ac7a39643dd5f271" title="Get Bytes value from select list." alt="" coords="351,136,501,177"/>
+<area shape="rect" id="node5" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#a34e85973e9ecd39d54488ac96dafd188" title="Parse a body and resturn it as a single string." alt="" coords="5,207,233,248"/>
+<area shape="rect" id="node6" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse.html#a8b41b4906800963e376d9ed51b274757" title="Parse a body and resturn it as a single string." alt="" coords="31,283,207,339"/>
+<area shape="rect" id="node7" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#a38a6c4e805715a3fe45699830249f3fb" title="Parse a chunked body (transfer&#45;encoding: chunked) and resturn it as a single string." alt="" coords="281,253,571,295"/>
 </map>

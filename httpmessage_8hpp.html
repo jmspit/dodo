@@ -90,16 +90,18 @@ $(document).ready(function(){initNavTree('httpmessage_8hpp.html',''); initResiza
 <div class="title">httpmessage.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="httpfragment_8hpp_source.html">network/protocol/http/httpfragment.hpp</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="bytes_8hpp_source.html">common/bytes.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="httpfragment_8hpp_source.html">network/protocol/http/httpfragment.hpp</a>&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for httpmessage.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="httpmessage_8hpp__incl.png" border="0" usemap="#src_2include_2network_2protocol_2http_2httpmessage_8hpp" alt=""/></div>
 <map name="src_2include_2network_2protocol_2http_2httpmessage_8hpp" id="src_2include_2network_2protocol_2http_2httpmessage_8hpp">
-<area shape="rect" title=" " alt="" coords="32,5,259,47"/>
-<area shape="rect" href="httpfragment_8hpp.html" title=" " alt="" coords="5,95,168,136"/>
-<area shape="rect" title=" " alt="" coords="116,184,175,211"/>
+<area shape="rect" title=" " alt="" coords="76,5,303,47"/>
+<area shape="rect" href="bytes_8hpp.html" title=" " alt="" coords="5,102,152,129"/>
+<area shape="rect" title=" " alt="" coords="160,184,219,211"/>
+<area shape="rect" href="httpfragment_8hpp.html" title=" " alt="" coords="227,95,389,136"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -111,7 +113,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <area shape="rect" href="http_8hpp.html" title=" " alt="" coords="50,184,217,225"/>
 <area shape="rect" href="httprequest_8hpp.html" title=" " alt="" coords="25,95,241,136"/>
 <area shape="rect" href="httpresponse_8hpp.html" title=" " alt="" coords="265,95,492,136"/>
-<area shape="rect" href="httpmessage_8cpp_source.html" title=" " alt="" coords="517,95,691,136"/>
+<area shape="rect" href="httpmessage_8cpp.html" title=" " alt="" coords="517,95,691,136"/>
 </map>
 </div>
 </div>
@@ -119,8 +121,8 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1HTTPMessage.html">dodo::network::HTTPMessage</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic <a class="el" href="classdodo_1_1network_1_1HTTPMessage.html" title="Generic HTTPMessage, parent to HTTPRequest and HTTPResponse.">HTTPMessage</a>, parent to <a class="el" href="classdodo_1_1network_1_1HTTPRequest.html" title="HTTPRequest class.">HTTPRequest</a> and <a class="el" href="classdodo_1_1network_1_1HTTPResponse.html" title="HTTPResponse class.">HTTPResponse</a>.  <a href="classdodo_1_1network_1_1HTTPMessage.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html">dodo::network::protocol::http::HTTPMessage</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic <a class="el" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html" title="Generic HTTPMessage, parent to HTTPRequest and HTTPResponse.">HTTPMessage</a>, parent to <a class="el" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html" title="HTTPRequest class represents a HTTP request.">HTTPRequest</a> and <a class="el" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse.html" title="HTTPResponse class.">HTTPResponse</a>.  <a href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
@@ -131,9 +133,15 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespacedodo_1_1network"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedodo_1_1network.html">dodo::network</a></td></tr>
 <tr class="memdesc:namespacedodo_1_1network"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface for network communication. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacedodo_1_1network_1_1protocol"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedodo_1_1network_1_1protocol.html">dodo::network::protocol</a></td></tr>
+<tr class="memdesc:namespacedodo_1_1network_1_1protocol"><td class="mdescLeft">&#160;</td><td class="mdescRight">Application layer protocols. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacedodo_1_1network_1_1protocol_1_1http"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedodo_1_1network_1_1protocol_1_1http.html">dodo::network::protocol::http</a></td></tr>
+<tr class="memdesc:namespacedodo_1_1network_1_1protocol_1_1http"><td class="mdescLeft">&#160;</td><td class="mdescRight">The HTTP 1.1 protocol. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Defines the dodo::network::protocol::http::HTTPMessage class. </p>
+<div class="textblock"><p>Defines the <a class="el" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html" title="Generic HTTPMessage, parent to HTTPRequest and HTTPResponse.">dodo::network::protocol::http::HTTPMessage</a> class. </p>
 
 <p class="definition">Definition in file <a class="el" href="httpmessage_8hpp_source.html">httpmessage.hpp</a>.</p>
 </div></div><!-- contents -->

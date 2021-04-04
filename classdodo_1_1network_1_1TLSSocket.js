@@ -10,7 +10,6 @@ var classdodo_1_1network_1_1TLSSocket =
     [ "getTLSProtocolVersion", "classdodo_1_1network_1_1TLSSocket.html#a2bc5c75e3999a7772d64f189ef0b3c48", null ],
     [ "getTLSProtocolVersionString", "classdodo_1_1network_1_1TLSSocket.html#a272e001a4fc9ada2f2085120e2c76dc4", null ],
     [ "operator<", "classdodo_1_1network_1_1TLSSocket.html#afcffd2dace26644a73d55d1dc152fb54", null ],
-    [ "operator=", "classdodo_1_1network_1_1TLSSocket.html#a44b29bfc4d483031076182d285eed2fe", null ],
     [ "operator==", "classdodo_1_1network_1_1TLSSocket.html#a64e7586c8e56662b9d7a1c98aa34be46", null ],
     [ "receive", "classdodo_1_1network_1_1TLSSocket.html#a4c792bb0ab2f6eec2f054137b193db2c", null ],
     [ "send", "classdodo_1_1network_1_1TLSSocket.html#a3cf5aef2f9e4f776913fa3f7b0fddebc", null ],

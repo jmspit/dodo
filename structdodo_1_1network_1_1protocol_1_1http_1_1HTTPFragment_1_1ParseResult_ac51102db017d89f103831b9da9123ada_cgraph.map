@@ -1,0 +1,5 @@
+<map id="dodo::network::protocol::http::HTTPFragment::ParseResult::asString" name="dodo::network::protocol::http::HTTPFragment::ParseResult::asString">
+<area shape="rect" id="node1" title="Return the ParseResult as a human readable string." alt="" coords="5,35,181,91"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1SystemError.html#ab5557441d7c121a06e71f23febbec8fb" title="Get the system error string." alt="" coords="229,5,436,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPFragment.html#aac5fa7299c30e10814d4eeaac9b88ee9" title="Return the string description of a ParseError." alt="" coords="245,71,421,127"/>
+</map>

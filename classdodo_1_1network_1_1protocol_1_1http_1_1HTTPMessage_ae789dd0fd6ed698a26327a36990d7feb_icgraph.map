@@ -1,0 +1,6 @@
+<map id="dodo::network::protocol::http::HTTPMessage::eatSpace" name="dodo::network::protocol::http::HTTPMessage::eatSpace">
+<area shape="rect" id="node1" title="Call buffer.next() as long as buffer.get() is whitespace ( charSP or charHT)." alt="" coords="308,93,532,134"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_1_1HTTPRequestLine.html#a945a970c1f346c1dfca6e79c4f74d420" title="Parses a HTTPMessage." alt="" coords="9,5,256,61"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse_1_1HTTPResponseLine.html#a96f9b25a00f476dd42c45de8fe5a2895" title="Read a complete HTTPFragment from a VirtualReadBuffer." alt="" coords="37,85,228,141"/>
+<area shape="rect" id="node4" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#a9a0d271a843a5809aa5d4eb688e829fa" title="Parse a header section and update headers_." alt="" coords="5,166,260,207"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="dodo::common::Bytes::asString" name="dodo::common::Bytes::asString">
+<area shape="rect" id="node1" title="Cast to a std::string." alt="" coords="265,43,429,84"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#ae342f35428abf1a32cfc485f8e6bc254" title="Return the HTTPRequest as a string." alt="" coords="5,5,217,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse.html#af4435e3f9a08fc15fe908d203d6a28ce" title="Return the HTTPResponse as a string." alt="" coords="23,71,199,127"/>
+</map>

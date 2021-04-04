@@ -1,4 +1,0 @@
-<map id="dodo::network::HTTPResponse::HTTPResponseLine::parse" name="dodo::network::HTTPResponse::HTTPResponseLine::parse">
-<area shape="rect" id="node1" title="Read a complete HTTPFragment from a VirtualReadBuffer." alt="" coords="273,5,493,47"/>
-<area shape="rect" id="node2" href="$classdodo_1_1network_1_1HTTPResponse.html#a9c75167f9a4e4ea89cb56dedb84ff660" title="Read a complete HTTPFragment from a VirtualReadBuffer." alt="" coords="5,5,225,47"/>
-</map>

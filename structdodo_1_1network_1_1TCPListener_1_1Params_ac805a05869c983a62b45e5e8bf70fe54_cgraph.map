@@ -1,7 +1,7 @@
 <map id="dodo::network::TCPListener::Params::Params" name="dodo::network::TCPListener::Params::Params">
-<area shape="rect" id="node1" title="Construct from a YAML::Node." alt="" coords="5,133,204,174"/>
-<area shape="rect" id="node2" href="$namespacedodo_1_1common.html#ad21a8c9f75e360b7b91a2d5435f8a38a" title="Instantiate template YAML_assign_by_key for bool." alt="" coords="252,5,415,61"/>
-<area shape="rect" id="node3" href="$namespacedodo_1_1common.html#a104d4e51bb4e4af13d38d6e7b2c33a16" title="Instantiate template YAML_assign_by_key for double." alt="" coords="252,85,415,141"/>
-<area shape="rect" id="node4" href="$namespacedodo_1_1common.html#a20bba81253b4462f26e717d4fc5bef44" title="Instantiate template YAML_assign_by_key for int." alt="" coords="252,165,415,221"/>
-<area shape="rect" id="node5" href="$namespacedodo_1_1common.html#a51f4d72f1a4420b62f358af717646092" title="Instantiate template YAML_assign_by_key for size_t." alt="" coords="252,245,415,301"/>
+<area shape="rect" id="node1" title="Construct from a YAML::Node." alt="" coords="5,104,204,145"/>
+<area shape="rect" id="node2" href="$namespacedodo_1_1common.html#a30ad7626d0f07744c8216b20b0d9628e" title="Instantiate template YAML_read_key for bool." alt="" coords="260,5,459,47"/>
+<area shape="rect" id="node3" href="$namespacedodo_1_1common.html#a0be07c4e844d6c2d6fcccb6dd7243bac" title="Instantiate template YAML_read_key for double." alt="" coords="252,71,467,112"/>
+<area shape="rect" id="node4" href="$namespacedodo_1_1common.html#a0424be67793b5cae6f9af38c6f10f337" title="Instantiate template YAML_read_key for int." alt="" coords="265,136,453,177"/>
+<area shape="rect" id="node5" href="$namespacedodo_1_1common.html#a13d31e07354907e68f6e82773bd52044" title="Instantiate template YAML_read_key for size_t." alt="" coords="255,201,464,243"/>
 </map>

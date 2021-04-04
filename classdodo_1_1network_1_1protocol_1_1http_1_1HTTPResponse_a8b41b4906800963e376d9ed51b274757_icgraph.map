@@ -1,0 +1,4 @@
+<map id="dodo::network::protocol::http::HTTPResponse::parseBody" name="dodo::network::protocol::http::HTTPResponse::parseBody">
+<area shape="rect" id="node1" title="Parse a body and resturn it as a single string." alt="" coords="259,5,435,61"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse.html#aee8714ea6f24935b7a1fb1e9f2aadc73" title="Read a complete HTTPFragment from a VirtualReadBuffer." alt="" coords="5,13,211,54"/>
+</map>

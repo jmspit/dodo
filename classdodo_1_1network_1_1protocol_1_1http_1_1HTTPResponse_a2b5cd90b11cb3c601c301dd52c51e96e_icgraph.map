@@ -1,0 +1,4 @@
+<map id="dodo::network::protocol::http::HTTPResponse::HTTPCodeAsString" name="dodo::network::protocol::http::HTTPResponse::HTTPCodeAsString">
+<area shape="rect" id="node1" title="Return the (upper case) string representation of the http error code." alt="" coords="260,5,436,61"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse_1_1HTTPResponseLine.html#a3a7154953563a33216a293c689c92274" title="Convert the HTTPResponseLine to a HTTP string." alt="" coords="5,5,212,61"/>
+</map>

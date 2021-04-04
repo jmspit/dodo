@@ -1,0 +1,5 @@
+<map id="dodo::network::protocol::http::HTTPMessage::eatSpace" name="dodo::network::protocol::http::HTTPMessage::eatSpace">
+<area shape="rect" id="node1" title="Call buffer.next() as long as buffer.get() is whitespace ( charSP or charHT)." alt="" coords="5,39,229,80"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1VirtualReadBuffer.html#a3783344680f3919689860179a78819f0" title="Get the current char from VirtualReadBuffer." alt="" coords="277,5,476,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1VirtualReadBuffer.html#ac05023730c45272074424d02057df384" title="Move to the next char from the VirtualReadBuffer." alt="" coords="277,71,476,112"/>
+</map>

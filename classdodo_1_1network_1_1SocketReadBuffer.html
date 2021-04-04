@@ -85,7 +85,6 @@ $(document).ready(function(){initNavTree('classdodo_1_1network_1_1SocketReadBuff
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a>  </div>
   <div class="headertitle">
 <div class="title">dodo::network::SocketReadBuffer Class Reference</div>  </div>
@@ -131,12 +130,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa503d85f1b2fc9f2248b9022ba4e063b"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classdodo_1_1common_1_1SystemError.html">common::SystemError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1SocketReadBuffer.html#aa503d85f1b2fc9f2248b9022ba4e063b">next</a> ()</td></tr>
 <tr class="memdesc:aa503d85f1b2fc9f2248b9022ba4e063b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move to the next char from the <a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html" title="Interface to read individual bytes whilst the implementation can read from an actual source (such as ...">VirtualReadBuffer</a>.  <a href="classdodo_1_1network_1_1SocketReadBuffer.html#aa503d85f1b2fc9f2248b9022ba4e063b">More...</a><br /></td></tr>
 <tr class="separator:aa503d85f1b2fc9f2248b9022ba4e063b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
-Protected Member Functions</h2></td></tr>
 <tr class="memitem:a31dbacdea0508d26818bef7f311719fe"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classdodo_1_1common_1_1SystemError.html">common::SystemError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1SocketReadBuffer.html#a31dbacdea0508d26818bef7f311719fe">underflow</a> ()</td></tr>
 <tr class="memdesc:a31dbacdea0508d26818bef7f311719fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the buffer_ is fully read.  <a href="classdodo_1_1network_1_1SocketReadBuffer.html#a31dbacdea0508d26818bef7f311719fe">More...</a><br /></td></tr>
 <tr class="separator:a31dbacdea0508d26818bef7f311719fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classdodo_1_1network_1_1VirtualReadBuffer"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classdodo_1_1network_1_1VirtualReadBuffer')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html">dodo::network::VirtualReadBuffer</a></td></tr>
+<tr class="memitem:a3880d2f74f5f3882383eb660a83e809d inherit pub_methods_classdodo_1_1network_1_1VirtualReadBuffer"><td class="memItemLeft" align="right" valign="top"><a id="a3880d2f74f5f3882383eb660a83e809d"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>getUnderflowCount</b> () const</td></tr>
+<tr class="separator:a3880d2f74f5f3882383eb660a83e809d inherit pub_methods_classdodo_1_1network_1_1VirtualReadBuffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -156,12 +156,15 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:ab6ae5bb02a761b7b91e9db187988b60d inherit pro_attribs_classdodo_1_1network_1_1VirtualReadBuffer"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html#ab6ae5bb02a761b7b91e9db187988b60d">bufsize_</a></td></tr>
 <tr class="memdesc:ab6ae5bb02a761b7b91e9db187988b60d inherit pro_attribs_classdodo_1_1network_1_1VirtualReadBuffer"><td class="mdescLeft">&#160;</td><td class="mdescRight">The size of buffer_.  <a href="classdodo_1_1network_1_1VirtualReadBuffer.html#ab6ae5bb02a761b7b91e9db187988b60d">More...</a><br /></td></tr>
 <tr class="separator:ab6ae5bb02a761b7b91e9db187988b60d inherit pro_attribs_classdodo_1_1network_1_1VirtualReadBuffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4c78afea17b6110dd61c0c38b5c2178 inherit pro_attribs_classdodo_1_1network_1_1VirtualReadBuffer"><td class="memItemLeft" align="right" valign="top"><a id="aa4c78afea17b6110dd61c0c38b5c2178"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>underflows_</b></td></tr>
+<tr class="separator:aa4c78afea17b6110dd61c0c38b5c2178 inherit pro_attribs_classdodo_1_1network_1_1VirtualReadBuffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classdodo_1_1network_1_1SocketReadBuffer.html" title="SocketReadBuffer is a VirtualReadBuffer that reads from the BaseSocket in chunks internally.">SocketReadBuffer</a> is a <a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html" title="Interface to read individual bytes whilst the implementation can read from an actual source (such as ...">VirtualReadBuffer</a> that reads from the <a class="el" href="classdodo_1_1network_1_1BaseSocket.html" title="Interface to and common implementation of concrete sockets (Socket, TLSSocket).">BaseSocket</a> in chunks internally. </p>
 <p>Note that the <a class="el" href="classdodo_1_1network_1_1BaseSocket.html" title="Interface to and common implementation of concrete sockets (Socket, TLSSocket).">BaseSocket</a> should be in blocking mode. </p>
 
-<p class="definition">Definition at line <a class="el" href="socketreadbuffer_8hpp_source.html#l00087">87</a> of file <a class="el" href="socketreadbuffer_8hpp_source.html">socketreadbuffer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="socketreadbuffer_8hpp_source.html#l00092">92</a> of file <a class="el" href="socketreadbuffer_8hpp_source.html">socketreadbuffer.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab451ba4c899956b4c86c73a4d1c23864"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab451ba4c899956b4c86c73a4d1c23864">&#9670;&nbsp;</a></span>SocketReadBuffer()</h2>
@@ -208,7 +211,7 @@ Protected Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="socketreadbuffer_8cpp_source.html#l00031">31</a> of file <a class="el" href="socketreadbuffer_8cpp_source.html">socketreadbuffer.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="socketreadbuffer_8hpp_source.html#l00075">dodo::network::VirtualReadBuffer::buffer_</a>, <a class="el" href="socketreadbuffer_8hpp_source.html#l00080">dodo::network::VirtualReadBuffer::bufsize_</a>, <a class="el" href="basesocket_8cpp_source.html#l00125">dodo::network::BaseSocket::getBlocking()</a>, <a class="el" href="socketreadbuffer_8hpp_source.html#l00123">idx_</a>, <a class="el" href="socketreadbuffer_8hpp_source.html#l00128">received_</a>, <a class="el" href="socketreadbuffer_8hpp_source.html#l00118">socket_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="socketreadbuffer_8hpp_source.html#l00077">dodo::network::VirtualReadBuffer::buffer_</a>, <a class="el" href="socketreadbuffer_8hpp_source.html#l00082">dodo::network::VirtualReadBuffer::bufsize_</a>, <a class="el" href="basesocket_8cpp_source.html#l00125">dodo::network::BaseSocket::getBlocking()</a>, <a class="el" href="socketreadbuffer_8hpp_source.html#l00128">idx_</a>, <a class="el" href="socketreadbuffer_8hpp_source.html#l00133">received_</a>, <a class="el" href="socketreadbuffer_8hpp_source.html#l00123">socket_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -249,7 +252,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="socketreadbuffer_8cpp_source.html#l00040">40</a> of file <a class="el" href="socketreadbuffer_8cpp_source.html">socketreadbuffer.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="socketreadbuffer_8hpp_source.html#l00075">dodo::network::VirtualReadBuffer::buffer_</a>.</p>
+<p class="reference">References <a class="el" href="socketreadbuffer_8hpp_source.html#l00077">dodo::network::VirtualReadBuffer::buffer_</a>.</p>
 
 </div>
 </div>
@@ -283,9 +286,9 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html#a3783344680f3919689860179a78819f0">dodo::network::VirtualReadBuffer</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="socketreadbuffer_8cpp_source.html#l00053">53</a> of file <a class="el" href="socketreadbuffer_8cpp_source.html">socketreadbuffer.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="socketreadbuffer_8cpp_source.html#l00054">54</a> of file <a class="el" href="socketreadbuffer_8cpp_source.html">socketreadbuffer.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="socketreadbuffer_8hpp_source.html#l00075">dodo::network::VirtualReadBuffer::buffer_</a>, and <a class="el" href="socketreadbuffer_8hpp_source.html#l00123">idx_</a>.</p>
+<p class="reference">References <a class="el" href="socketreadbuffer_8hpp_source.html#l00077">dodo::network::VirtualReadBuffer::buffer_</a>, and <a class="el" href="socketreadbuffer_8hpp_source.html#l00128">idx_</a>.</p>
 
 </div>
 </div>
@@ -317,9 +320,9 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html#ac05023730c45272074424d02057df384">dodo::network::VirtualReadBuffer</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="socketreadbuffer_8cpp_source.html#l00057">57</a> of file <a class="el" href="socketreadbuffer_8cpp_source.html">socketreadbuffer.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="socketreadbuffer_8cpp_source.html#l00058">58</a> of file <a class="el" href="socketreadbuffer_8cpp_source.html">socketreadbuffer.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="socketreadbuffer_8hpp_source.html#l00123">idx_</a>, and <a class="el" href="socketreadbuffer_8cpp_source.html#l00044">underflow()</a>.</p>
+<p class="reference">References <a class="el" href="socketreadbuffer_8hpp_source.html#l00128">idx_</a>, and <a class="el" href="socketreadbuffer_8cpp_source.html#l00044">underflow()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -350,7 +353,7 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -362,9 +365,9 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="socketreadbuffer_8cpp_source.html#l00044">44</a> of file <a class="el" href="socketreadbuffer_8cpp_source.html">socketreadbuffer.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="socketreadbuffer_8hpp_source.html#l00075">dodo::network::VirtualReadBuffer::buffer_</a>, <a class="el" href="socketreadbuffer_8hpp_source.html#l00080">dodo::network::VirtualReadBuffer::bufsize_</a>, <a class="el" href="systemerror_8hpp_source.html#l00060">dodo::common::SystemError::ecOK</a>, <a class="el" href="socketreadbuffer_8hpp_source.html#l00123">idx_</a>, <a class="el" href="classdodo_1_1network_1_1BaseSocket.html#a70f6f4d9cfc0bb4a415d02c61002e616">dodo::network::BaseSocket::receive()</a>, <a class="el" href="socketreadbuffer_8hpp_source.html#l00128">received_</a>, and <a class="el" href="socketreadbuffer_8hpp_source.html#l00118">socket_</a>.</p>
+<p class="reference">References <a class="el" href="socketreadbuffer_8hpp_source.html#l00077">dodo::network::VirtualReadBuffer::buffer_</a>, <a class="el" href="socketreadbuffer_8hpp_source.html#l00082">dodo::network::VirtualReadBuffer::bufsize_</a>, <a class="el" href="systemerror_8hpp_source.html#l00060">dodo::common::SystemError::ecOK</a>, <a class="el" href="socketreadbuffer_8hpp_source.html#l00128">idx_</a>, <a class="el" href="classdodo_1_1network_1_1BaseSocket.html#a70f6f4d9cfc0bb4a415d02c61002e616">dodo::network::BaseSocket::receive()</a>, <a class="el" href="socketreadbuffer_8hpp_source.html#l00133">received_</a>, and <a class="el" href="socketreadbuffer_8hpp_source.html#l00123">socket_</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="socketreadbuffer_8cpp_source.html#l00057">next()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="socketreadbuffer_8cpp_source.html#l00058">next()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -409,9 +412,9 @@ Here is the caller graph for this function:</div>
 
 <p>The current index of get(char &amp;c) in buffer_. </p>
 
-<p class="definition">Definition at line <a class="el" href="socketreadbuffer_8hpp_source.html#l00123">123</a> of file <a class="el" href="socketreadbuffer_8hpp_source.html">socketreadbuffer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="socketreadbuffer_8hpp_source.html#l00128">128</a> of file <a class="el" href="socketreadbuffer_8hpp_source.html">socketreadbuffer.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="socketreadbuffer_8cpp_source.html#l00053">get()</a>, <a class="el" href="socketreadbuffer_8cpp_source.html#l00057">next()</a>, <a class="el" href="socketreadbuffer_8cpp_source.html#l00031">SocketReadBuffer()</a>, and <a class="el" href="socketreadbuffer_8cpp_source.html#l00044">underflow()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="socketreadbuffer_8cpp_source.html#l00054">get()</a>, <a class="el" href="socketreadbuffer_8cpp_source.html#l00058">next()</a>, <a class="el" href="socketreadbuffer_8cpp_source.html#l00031">SocketReadBuffer()</a>, and <a class="el" href="socketreadbuffer_8cpp_source.html#l00044">underflow()</a>.</p>
 
 </div>
 </div>
@@ -437,7 +440,7 @@ Here is the caller graph for this function:</div>
 
 <p>The number of chars received in the last <a class="el" href="classdodo_1_1network_1_1SocketReadBuffer.html#a31dbacdea0508d26818bef7f311719fe" title="If the buffer_ is fully read.">underflow()</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="socketreadbuffer_8hpp_source.html#l00128">128</a> of file <a class="el" href="socketreadbuffer_8hpp_source.html">socketreadbuffer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="socketreadbuffer_8hpp_source.html#l00133">133</a> of file <a class="el" href="socketreadbuffer_8hpp_source.html">socketreadbuffer.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="socketreadbuffer_8cpp_source.html#l00031">SocketReadBuffer()</a>, and <a class="el" href="socketreadbuffer_8cpp_source.html#l00044">underflow()</a>.</p>
 
@@ -465,7 +468,7 @@ Here is the caller graph for this function:</div>
 
 <p>The associated <a class="el" href="classdodo_1_1network_1_1BaseSocket.html" title="Interface to and common implementation of concrete sockets (Socket, TLSSocket).">network::BaseSocket</a>*. </p>
 
-<p class="definition">Definition at line <a class="el" href="socketreadbuffer_8hpp_source.html#l00118">118</a> of file <a class="el" href="socketreadbuffer_8hpp_source.html">socketreadbuffer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="socketreadbuffer_8hpp_source.html#l00123">123</a> of file <a class="el" href="socketreadbuffer_8hpp_source.html">socketreadbuffer.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="socketreadbuffer_8cpp_source.html#l00031">SocketReadBuffer()</a>, and <a class="el" href="socketreadbuffer_8cpp_source.html#l00044">underflow()</a>.</p>
 

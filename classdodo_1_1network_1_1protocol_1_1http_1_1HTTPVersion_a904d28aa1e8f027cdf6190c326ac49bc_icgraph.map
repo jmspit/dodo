@@ -1,0 +1,5 @@
+<map id="dodo::network::protocol::http::HTTPVersion::asString" name="dodo::network::protocol::http::HTTPVersion::asString">
+<area shape="rect" id="node1" title="Convert to string as &#39;HTTP/major_.minor_&#39;." alt="" coords="300,53,507,94"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_1_1HTTPRequestLine.html#aa2c87d12fe2d422c960655d06593f2ef" title="Convert the HTTPRequestLine to a HTTP string." alt="" coords="5,5,252,61"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse_1_1HTTPResponseLine.html#a3a7154953563a33216a293c689c92274" title="Convert the HTTPResponseLine to a HTTP string." alt="" coords="25,85,232,141"/>
+</map>

@@ -1,4 +1,0 @@
-<map id="dodo::network::HTTPMessage::getHeaderValue" name="dodo::network::HTTPMessage::getHeaderValue">
-<area shape="rect" id="node1" title="Get a header value as a string into value." alt="" coords="268,5,483,47"/>
-<area shape="rect" id="node2" href="$classdodo_1_1network_1_1HTTPMessage.html#ac262c6dcd837dd15c9cec040495e4c8d" title="Parse a body and resturn it as a single string." alt="" coords="5,5,220,47"/>
-</map>

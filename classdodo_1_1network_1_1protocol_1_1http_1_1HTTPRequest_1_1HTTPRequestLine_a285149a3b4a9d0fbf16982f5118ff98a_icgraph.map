@@ -1,0 +1,4 @@
+<map id="dodo::network::protocol::http::HTTPRequest::HTTPRequestLine::getMethod" name="dodo::network::protocol::http::HTTPRequest::HTTPRequestLine::getMethod">
+<area shape="rect" id="node1" title="Get the HTTPRequest::Method." alt="" coords="265,5,512,61"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#ae342f35428abf1a32cfc485f8e6bc254" title="Return the HTTPRequest as a string." alt="" coords="5,13,217,54"/>
+</map>

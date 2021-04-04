@@ -426,7 +426,7 @@ Here is the call graph for this function:</div>
 
 <p class="reference">References <a class="el" href="bytes_8hpp_source.html#l00207">array_</a>, <a class="el" href="bytes_8cpp_source.html#l00033">reserve()</a>, and <a class="el" href="bytes_8hpp_source.html#l00212">size_</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="datacrypt_8cpp_source.html#l00129">dodo::common::DataCrypt::decrypt()</a>, <a class="el" href="stomp_8cpp_source.html#l00068">dodo::network::protocol::stomp::Connect::generate()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00485">dodo::persist::sqlite::Query::getBytes()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="datacrypt_8cpp_source.html#l00129">dodo::common::DataCrypt::decrypt()</a>, <a class="el" href="stomp_8cpp_source.html#l00068">dodo::network::protocol::stomp::Connect::generate()</a>, <a class="el" href="sqlite_8cpp_source.html#l00513">dodo::persist::sqlite::Query::getBytes()</a>, <a class="el" href="httprequest_8cpp_source.html#l00139">dodo::network::protocol::http::HTTPRequest::parseBody()</a>, <a class="el" href="httpresponse_8cpp_source.html#l00143">dodo::network::protocol::http::HTTPResponse::parseBody()</a>, and <a class="el" href="httpmessage_8cpp_source.html#l00224">dodo::network::protocol::http::HTTPMessage::parseChunkedBody()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -441,10 +441,13 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classdodo_1_1common_1_1Bytes_ac3fbc9077e4765ac5c2c90c9dae12678_icgraph.png" border="0" usemap="#classdodo_1_1common_1_1Bytes_ac3fbc9077e4765ac5c2c90c9dae12678_icgraph" alt=""/></div>
 <map name="classdodo_1_1common_1_1Bytes_ac3fbc9077e4765ac5c2c90c9dae12678_icgraph" id="classdodo_1_1common_1_1Bytes_ac3fbc9077e4765ac5c2c90c9dae12678_icgraph">
-<area shape="rect" title="Append another Bytes." alt="" coords="252,71,416,112"/>
-<area shape="rect" href="classdodo_1_1common_1_1DataCrypt.html#aabf6cb0911efd72d438bc3fcb51a0db6" title="Decrypt data with a key." alt="" coords="8,5,201,47"/>
-<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect.html#a10628a4af5146ba43c08ebb418a7da2d" title="Generate a STOMP (CONNECT) frame." alt="" coords="5,71,204,112"/>
-<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Query.html#a55c48b68657b3a66ac7a39643dd5f271" title="Get Bytes value from select list." alt="" coords="29,136,180,177"/>
+<area shape="rect" title="Append another Bytes." alt="" coords="619,165,783,207"/>
+<area shape="rect" href="classdodo_1_1common_1_1DataCrypt.html#aabf6cb0911efd72d438bc3fcb51a0db6" title="Decrypt data with a key." alt="" coords="329,5,523,47"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect.html#a10628a4af5146ba43c08ebb418a7da2d" title="Generate a STOMP (CONNECT) frame." alt="" coords="327,71,525,112"/>
+<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1Query.html#a55c48b68657b3a66ac7a39643dd5f271" title="Get Bytes value from select list." alt="" coords="351,136,501,177"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#a34e85973e9ecd39d54488ac96dafd188" title="Parse a body and resturn it as a single string." alt="" coords="5,207,233,248"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse.html#a8b41b4906800963e376d9ed51b274757" title="Parse a body and resturn it as a single string." alt="" coords="31,283,207,339"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#a38a6c4e805715a3fe45699830249f3fb" title="Parse a chunked body (transfer&#45;encoding: chunked) and resturn it as a single string." alt="" coords="281,253,571,295"/>
 </map>
 </div>
 
@@ -611,6 +614,18 @@ Here is the call graph for this function:</div>
 
 <p class="reference">References <a class="el" href="bytes_8hpp_source.html#l00207">array_</a>, and <a class="el" href="bytes_8hpp_source.html#l00212">size_</a>.</p>
 
+<p class="reference">Referenced by <a class="el" href="httprequest_8cpp_source.html#l00086">dodo::network::protocol::http::HTTPRequest::asString()</a>, and <a class="el" href="httpresponse_8cpp_source.html#l00071">dodo::network::protocol::http::HTTPResponse::asString()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classdodo_1_1common_1_1Bytes_a00fbc016ab1e4b6ff2264d05f610533c_icgraph.png" border="0" usemap="#classdodo_1_1common_1_1Bytes_a00fbc016ab1e4b6ff2264d05f610533c_icgraph" alt=""/></div>
+<map name="classdodo_1_1common_1_1Bytes_a00fbc016ab1e4b6ff2264d05f610533c_icgraph" id="classdodo_1_1common_1_1Bytes_a00fbc016ab1e4b6ff2264d05f610533c_icgraph">
+<area shape="rect" title="Cast to a std::string." alt="" coords="265,43,429,84"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#ae342f35428abf1a32cfc485f8e6bc254" title="Return the HTTPRequest as a string." alt="" coords="5,5,217,47"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse.html#af4435e3f9a08fc15fe908d203d6a28ce" title="Return the HTTPResponse as a string." alt="" coords="23,71,199,127"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a3e8b44dbed204996932dae1ae9e51758"></a>
@@ -720,7 +735,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="bytes_8hpp_source.html#l00217">allocated_size</a>, <a class="el" href="bytes_8hpp_source.html#l00207">array_</a>, and <a class="el" href="bytes_8hpp_source.html#l00212">size_</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="stomp_8cpp_source.html#l00068">dodo::network::protocol::stomp::Connect::generate()</a>, <a class="el" href="sqlite_8cpp_source.html#l00485">dodo::persist::sqlite::Query::getBytes()</a>, and <a class="el" href="bytes_8hpp_source.html#l00074">~Bytes()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="stomp_8cpp_source.html#l00068">dodo::network::protocol::stomp::Connect::generate()</a>, <a class="el" href="sqlite_8cpp_source.html#l00513">dodo::persist::sqlite::Query::getBytes()</a>, and <a class="el" href="bytes_8hpp_source.html#l00074">~Bytes()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -765,7 +780,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="bytes_8hpp_source.html#l00207">array_</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sqlite_8cpp_source.html#l00415">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="datacrypt_8cpp_source.html#l00129">dodo::common::DataCrypt::decrypt()</a>, <a class="el" href="datacrypt_8cpp_source.html#l00033">dodo::common::DataCrypt::encrypt()</a>, and <a class="el" href="tcplistener_8cpp_source.html#l00038">dodo::network::TCPConnectionData::readBuffer()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sqlite_8cpp_source.html#l00443">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="datacrypt_8cpp_source.html#l00129">dodo::common::DataCrypt::decrypt()</a>, <a class="el" href="datacrypt_8cpp_source.html#l00033">dodo::common::DataCrypt::encrypt()</a>, and <a class="el" href="tcplistener_8cpp_source.html#l00038">dodo::network::TCPConnectionData::readBuffer()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -861,18 +876,21 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="bytes_8hpp_source.html#l00212">size_</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sqlite_8cpp_source.html#l00415">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="datacrypt_8cpp_source.html#l00129">dodo::common::DataCrypt::decrypt()</a>, <a class="el" href="datacrypt_8cpp_source.html#l00033">dodo::common::DataCrypt::encrypt()</a>, <a class="el" href="tcplistener_8cpp_source.html#l00038">dodo::network::TCPConnectionData::readBuffer()</a>, and <a class="el" href="stomp_8cpp_source.html#l00032">dodo::network::protocol::stomp::Frame::readCommand()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="httprequest_8cpp_source.html#l00086">dodo::network::protocol::http::HTTPRequest::asString()</a>, <a class="el" href="httpresponse_8cpp_source.html#l00071">dodo::network::protocol::http::HTTPResponse::asString()</a>, <a class="el" href="sqlite_8cpp_source.html#l00443">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="datacrypt_8cpp_source.html#l00129">dodo::common::DataCrypt::decrypt()</a>, <a class="el" href="datacrypt_8cpp_source.html#l00033">dodo::common::DataCrypt::encrypt()</a>, <a class="el" href="tcplistener_8cpp_source.html#l00038">dodo::network::TCPConnectionData::readBuffer()</a>, <a class="el" href="stomp_8cpp_source.html#l00032">dodo::network::protocol::stomp::Frame::readCommand()</a>, and <a class="el" href="httpmessage_8cpp_source.html#l00248">dodo::network::protocol::http::HTTPMessage::setBody()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classdodo_1_1common_1_1Bytes_afc34ec0de4068cd3ac41fd07668a7cde_icgraph.png" border="0" usemap="#classdodo_1_1common_1_1Bytes_afc34ec0de4068cd3ac41fd07668a7cde_icgraph" alt=""/></div>
 <map name="classdodo_1_1common_1_1Bytes_afc34ec0de4068cd3ac41fd07668a7cde_icgraph" id="classdodo_1_1common_1_1Bytes_afc34ec0de4068cd3ac41fd07668a7cde_icgraph">
-<area shape="rect" title="Return the array size." alt="" coords="277,136,441,177"/>
-<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1DML.html#a331a1a7d36fc4b7ad4be7b3b703871b9" title="Bind an Bytes value to the bind at position." alt="" coords="42,5,193,47"/>
-<area shape="rect" href="classdodo_1_1common_1_1DataCrypt.html#aabf6cb0911efd72d438bc3fcb51a0db6" title="Decrypt data with a key." alt="" coords="21,71,214,112"/>
-<area shape="rect" href="classdodo_1_1common_1_1DataCrypt.html#a874b79bf3ef2b47eb59c7ca625a171ae" title="Encrypt data with a key into a string (so the encrypted data will not contain a 0/zero)." alt="" coords="21,136,214,177"/>
-<area shape="rect" href="classdodo_1_1network_1_1TCPConnectionData.html#ac389503e4c4ed91877141af96e96d190" title="Reads and appends data to read_buffer." alt="" coords="7,201,227,243"/>
-<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html#a6df8cf0e47803d8308374c5f277814aa" title="Read a command from a frame." alt="" coords="5,267,229,308"/>
+<area shape="rect" title="Return the array size." alt="" coords="277,251,441,292"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#ae342f35428abf1a32cfc485f8e6bc254" title="Return the HTTPRequest as a string." alt="" coords="11,5,223,47"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse.html#af4435e3f9a08fc15fe908d203d6a28ce" title="Return the HTTPResponse as a string." alt="" coords="29,71,205,127"/>
+<area shape="rect" href="classdodo_1_1persist_1_1sqlite_1_1DML.html#a331a1a7d36fc4b7ad4be7b3b703871b9" title="Bind an Bytes value to the bind at position." alt="" coords="42,152,193,193"/>
+<area shape="rect" href="classdodo_1_1common_1_1DataCrypt.html#aabf6cb0911efd72d438bc3fcb51a0db6" title="Decrypt data with a key." alt="" coords="21,217,214,259"/>
+<area shape="rect" href="classdodo_1_1common_1_1DataCrypt.html#a874b79bf3ef2b47eb59c7ca625a171ae" title="Encrypt data with a key into a string (so the encrypted data will not contain a 0/zero)." alt="" coords="21,283,214,324"/>
+<area shape="rect" href="classdodo_1_1network_1_1TCPConnectionData.html#ac389503e4c4ed91877141af96e96d190" title="Reads and appends data to read_buffer." alt="" coords="7,348,227,389"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html#a6df8cf0e47803d8308374c5f277814aa" title="Read a command from a frame." alt="" coords="5,413,229,455"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#a6f42da4e4e989d25ec543067824eda28" title="Set the body." alt="" coords="9,479,226,520"/>
 </map>
 </div>
 

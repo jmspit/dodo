@@ -1,0 +1,6 @@
+<map id="dodo::network::protocol::http::HTTPResponse::asString" name="dodo::network::protocol::http::HTTPResponse::asString">
+<area shape="rect" id="node1" title="Return the HTTPResponse as a string." alt="" coords="5,71,181,127"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1Bytes.html#a00fbc016ab1e4b6ff2264d05f610533c" title="Cast to a std::string." alt="" coords="251,5,415,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse_1_1HTTPResponseLine.html#a3a7154953563a33216a293c689c92274" title="Convert the HTTPResponseLine to a HTTP string." alt="" coords="229,71,436,127"/>
+<area shape="rect" id="node4" href="$classdodo_1_1common_1_1Bytes.html#afc34ec0de4068cd3ac41fd07668a7cde" title="Return the array size." alt="" coords="251,152,415,193"/>
+</map>

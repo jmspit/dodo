@@ -1,0 +1,4 @@
+<map id="dodo::network::protocol::http::HTTPRequest::parseBody" name="dodo::network::protocol::http::HTTPRequest::parseBody">
+<area shape="rect" id="node1" title="Parse a body and resturn it as a single string." alt="" coords="248,5,476,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#a7dcc012005ecf48a49e93ade07f0740d" title="Read the HTTPRequest from the socket." alt="" coords="5,5,200,47"/>
+</map>

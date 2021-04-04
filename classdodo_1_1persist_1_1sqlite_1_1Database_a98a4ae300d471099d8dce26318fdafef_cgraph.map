@@ -1,0 +1,7 @@
+<map id="dodo::persist::sqlite::Database::Database" name="dodo::persist::sqlite::Database::Database">
+<area shape="rect" id="node1" title="Constructor with explicit wait handler." alt="" coords="5,104,168,145"/>
+<area shape="rect" id="node2" href="$namespacedodo_1_1persist_1_1sqlite.html#a52bee0730096ffc5dd77998a8d9aa9c9" title="Ceiling function extension for SQLite." alt="" coords="216,5,367,47"/>
+<area shape="rect" id="node3" href="$namespacedodo_1_1persist_1_1sqlite.html#a8c9703d7f739f5fa9299fb1e27d81c3c" title="Floor function extension for SQLite." alt="" coords="216,71,367,112"/>
+<area shape="rect" id="node4" href="$namespacedodo_1_1persist_1_1sqlite.html#a27c149a7a5d75ff3b2ee25e7341c59a8" title="Base 2 logarithm extension for SQLite." alt="" coords="216,136,367,177"/>
+<area shape="rect" id="node5" href="$namespacedodo_1_1persist_1_1sqlite.html#ab05697ad1b8b8d40077abc84cf7cd4d8" title="Power function extension for SQLite." alt="" coords="216,201,367,243"/>
+</map>

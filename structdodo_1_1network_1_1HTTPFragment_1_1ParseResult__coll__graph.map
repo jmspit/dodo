@@ -1,5 +1,0 @@
-<map id="dodo::network::HTTPFragment::ParseResult" name="dodo::network::HTTPFragment::ParseResult">
-<area shape="rect" id="node1" title="Used to convey parsing succces." alt="" coords="85,95,303,136"/>
-<area shape="rect" id="node2" href="$classdodo_1_1common_1_1SystemError.html" title="Linux system error primitive to provide a consistent interface to Linux error codes." alt="" coords="5,5,212,32"/>
-<area shape="rect" id="node3" title=" " alt="" coords="237,5,325,32"/>
-</map>

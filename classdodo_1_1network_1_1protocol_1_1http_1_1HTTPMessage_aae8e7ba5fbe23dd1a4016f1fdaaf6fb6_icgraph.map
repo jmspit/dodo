@@ -1,0 +1,4 @@
+<map id="dodo::network::protocol::http::HTTPMessage::replaceHeader" name="dodo::network::protocol::http::HTTPMessage::replaceHeader">
+<area shape="rect" id="node1" title="Replace the value of a header." alt="" coords="271,5,483,61"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#a6f42da4e4e989d25ec543067824eda28" title="Set the body." alt="" coords="5,13,223,54"/>
+</map>

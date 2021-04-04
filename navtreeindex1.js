@@ -1,5 +1,14 @@
 var NAVTREEINDEX1 =
 {
+"classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a0cf41f6752646be26ec44d2558cdb222":[5,0,0,0,9,0,97],
+"classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a0db2d0a7903ab4a853dd3785367c24a3":[5,0,0,0,9,0,84],
+"classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a0e866cb7d7af240372255b7503070267":[5,0,0,0,9,0,103],
+"classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a0eb7386d1cd7d14616db4f544702ac3b":[5,0,0,0,9,0,72],
+"classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a1478ffeed9082f9d3aa65eabe70732ba":[5,0,0,0,9,0,90],
+"classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a15c8b1827769a3324a4a2a835c443604":[5,0,0,0,9,0,13],
+"classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a168a81f5b9350d21d31ba966c7e97f21":[5,0,0,0,9,0,64],
+"classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a169562dee7772147bb4706334e4ec14d":[5,0,0,0,9,0,22],
+"classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a17976d8054030335d7cb2ecfdb797a70":[5,0,0,0,9,0,156],
 "classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a17b1cc2053f064c061d578991d57f1c1":[5,0,0,0,9,0,122],
 "classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a19ab59d95f8f3379c9b8c13e4a4ec1b5":[5,0,0,0,9,0,135],
 "classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a1a79e407b065be7cbb8de091b327cd6d":[5,0,0,0,9,0,24],
@@ -148,12 +157,9 @@ var NAVTREEINDEX1 =
 "classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22afb59f15ab9f5b98fc3bd351d4ef591f9":[5,0,0,0,9,0,107],
 "classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22afc0022896047897aeed229f04d16c2ec":[5,0,0,0,9,0,88],
 "classdodo_1_1common_1_1SystemError.html#ab5557441d7c121a06e71f23febbec8fb":[5,0,0,0,9,4],
-"classdodo_1_1common_1_1SystemError.html#abef7ec0fc5f19e181749cdfa58b26d10":[5,0,0,0,9,7],
-"classdodo_1_1common_1_1SystemError.html#ac6ef2a20436c9f751e70ae9b2f50c713":[5,0,0,0,9,11],
-"classdodo_1_1common_1_1SystemError.html#acaaddb26a3b2e826c8975654e25ddcf6":[5,0,0,0,9,14],
-"classdodo_1_1common_1_1SystemError.html#add8e3bf045cfc571d287b0c40010605d":[5,0,0,0,9,13],
-"classdodo_1_1common_1_1SystemError.html#af35bde4f71640ac8aba2a2607cf7f669":[5,0,0,0,9,9],
-"classdodo_1_1common_1_1SystemError.html#af7aa6ddb08b27353d444a725369030e1":[5,0,0,0,9,6],
+"classdodo_1_1common_1_1SystemError.html#ac6ef2a20436c9f751e70ae9b2f50c713":[5,0,0,0,9,12],
+"classdodo_1_1common_1_1SystemError.html#aefa680b385170eb4e7453ab14e3efe5c":[5,0,0,0,9,9],
+"classdodo_1_1common_1_1SystemError.html#af7aa6ddb08b27353d444a725369030e1":[5,0,0,0,9,7],
 "classdodo_1_1common_1_1SystemError.html#af96a16e65ebe94f216ff647340bbf550":[5,0,0,0,9,5],
 "classdodo_1_1common_1_1SystemException.html":[5,0,0,0,10],
 "classdodo_1_1common_1_1SystemException.html#a0d8994aacb2e7d6850423356f79333d0":[5,0,0,0,10,0],
@@ -243,11 +249,5 @@ var NAVTREEINDEX1 =
 "classdodo_1_1network_1_1BaseSocket.html#aa1e1c0ca02f099118b6f8a1ce4976128":[5,0,0,1,4,18],
 "classdodo_1_1network_1_1BaseSocket.html#aace6bc591940b3be005a8f8896b25ed9":[5,0,0,1,4,35],
 "classdodo_1_1network_1_1BaseSocket.html#aae2d6a3aa6f8ed977c2ebee00843aafa":[5,0,0,1,4,8],
-"classdodo_1_1network_1_1BaseSocket.html#ab5864bc9317e07e2957ee5d2ebf13f24":[5,0,0,1,4,12],
-"classdodo_1_1network_1_1BaseSocket.html#ab81f21fe60cc0deade8f8f366a40b655":[5,0,0,1,4,29],
-"classdodo_1_1network_1_1BaseSocket.html#ac4391cb30bbdfd860ca3ef0f40a8721d":[5,0,0,1,4,44],
-"classdodo_1_1network_1_1BaseSocket.html#ac4c7fe0f77b91e27cc941ae6059cc090":[5,0,0,1,4,34],
-"classdodo_1_1network_1_1BaseSocket.html#ac58a005f807e2e21953ce6a8ecd4eba6":[5,0,0,1,4,7],
-"classdodo_1_1network_1_1BaseSocket.html#acbb8ad1f5370205d7b3e0161876860af":[5,0,0,1,4,41],
-"classdodo_1_1network_1_1BaseSocket.html#acc6b937fefd5a0b5859043c3a6abc623":[5,0,0,1,4,14]
+"classdodo_1_1network_1_1BaseSocket.html#ab5864bc9317e07e2957ee5d2ebf13f24":[5,0,0,1,4,12]
 };

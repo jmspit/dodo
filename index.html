@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>dodo: DODO - C++ framework for Docker containers</title>
+<title>dodo: Main Page</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -84,25 +84,42 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">DODO - C++ framework for Docker containers </div>  </div>
+<div class="title">dodo Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md1"></a>
-About</h1>
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#autotoc_md0">DODO - C++ framework for Docker applications</a><ul><li class="level2"><a href="#autotoc_md1">About</a><ul><li class="level3"><a href="#autotoc_md2">A skeleton for services</a></li>
+<li class="level3"><a href="#autotoc_md3">High level APIs to common functionality</a></li>
+</ul>
+</li>
+<li class="level2"><a href="#autotoc_md4">Dependencies</a></li>
+<li class="level2"><a href="#autotoc_md5">Using the dodo framework</a></li>
+<li class="level2"><a href="#autotoc_md6">Maintaining the dodo framework</a></li>
+<li class="level2"><a href="#autotoc_md7">Build</a></li>
+<li class="level2"><a href="#autotoc_md8">Docker</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="textblock"><p><a href="https://bitbucket.org/lbesson/ansi-colors"><object type="image/svg+xml" data="https://img.shields.io/badge/Under%20construction-yes-red.svg" style="pointer-events: none;">Maintenance</object></a></p>
+<h1><a class="anchor" id="autotoc_md0"></a>
+DODO - C++ framework for Docker applications</h1>
+<h2><a class="anchor" id="autotoc_md1"></a>
+About</h2>
 <p>Dodo is a C++ framework to GNU/Linux development and aims to integrate seamlessly with Docker containers and k8s (<a href="https://kubernetes.io/">kubernetes</a>). Capable by itself, projects can obviously add other dependenices to realize any type of service at C++ speed and resource requirements. </p>
-<h2><a class="anchor" id="autotoc_md2"></a>
-A skeleton for services</h2>
-<p>The <code><a class="el" href="classdodo_1_1common_1_1Application.html" title="Red tape wrapper class for applications, from command line to services.">dodo::common::Application</a></code> reads its run-time configuration from a YAML file, typically presented to the container as a <a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/">ConfigMap</a>. Many classes in the framework can be iniltialized (constructed) by passing a YAML node as parameter, so things are up and running quickly ready for deeper implementation - that continues on the same YAML paradigm, so that the entire deployment configuration is specified in a single (or more if desired) YAML file.</p>
-<p>Additionally, the <code><a class="el" href="classdodo_1_1common_1_1Application.html" title="Red tape wrapper class for applications, from command line to services.">dodo::common::Application</a></code> implicitly installs signal handlers that are triggered on Docker stop requests, so that the container can shut down cleanly and quickly when requested.</p>
+<h3><a class="anchor" id="autotoc_md2"></a>
+A skeleton for services</h3>
+<p>The <code><a class="el" href="classdodo_1_1common_1_1Application.html" title="Red tape wrapper class for applications, from command line to services.">dodo::common::Application</a></code> reads its run-time configuration from a YAML file, typically presented to the container as a <a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/">ConfigMap</a>. Framework objects can be iniltialized (constructed) with a YAML document fragment, so the application can retrieve its runtime configuration from a single source.</p>
+<p>An <code><a class="el" href="classdodo_1_1common_1_1Application.html" title="Red tape wrapper class for applications, from command line to services.">dodo::common::Application</a></code> instance implicitly installs signal handlers that are triggered on Docker stop requests, so that the container can shut down cleanly and quickly when requested.</p>
 <p>Logging (<code><a class="el" href="classdodo_1_1common_1_1Logger.html" title="A Logger interface.">dodo::common::Logger</a></code>) can be configured to write to one or more of these targets:</p>
 <ul>
 <li>A directory with a configured trail (size, history) of log files.</li>
 <li>A syslog call to <a href="https://www.rsyslog.com/">rsyslog</a>.</li>
 <li>Console aka standard out of the container entrypoint.</li>
 </ul>
-<p>Docker healthchecks that run an in-container command (aka native healthchecks, such as say <code>pidof myservice</code>) are pretty costly, especially if the healthchecks need to be frequent or there are a lot of pods to healthcheck. The <a class="el" href="classdodo_1_1common_1_1Application.html" title="Red tape wrapper class for applications, from command line to services.">dodo::common::Application</a> class can be instructed to setup a healthceck listener (dodo::common::Application::HealthChecker) that can be network-probed by the Docker host, which is much more efficient. This HealthChecker can be declared sick or healthy by the code at runtime. </p>
-<h2><a class="anchor" id="autotoc_md3"></a>
-High level APIs to common functionality</h2>
+<p>Docker healthchecks that run an in-container command (such as <code>pidof myservice</code>) are expensive on CPU, especially if the healthchecks need to be frequent or there are a lot of pods. The <a class="el" href="classdodo_1_1common_1_1Application.html" title="Red tape wrapper class for applications, from command line to services.">dodo::common::Application</a> class can be instructed to setup a tiny healthceck listener (dodo::common::Application::HealthChecker) that responds to network-probed by the Docker host, which is much more efficient. This HealthChecker can be declared sick or healthy by application code as well. </p>
+<h3><a class="anchor" id="autotoc_md3"></a>
+High level APIs to common functionality</h3>
 <p>Most services will require at least some of the functionality dodo provides as high-level C++ abstractions without compromising low-level C/Linux performance.</p>
 <ul>
 <li>Binary data as the <code><a class="el" href="classdodo_1_1common_1_1Bytes.html" title="An array of Octets with size elements.">dodo::common::Bytes</a></code> datatype used by a variety of the other interfaces.</li>
@@ -110,12 +127,12 @@ High level APIs to common functionality</h2>
 <li>Transparent ipv4 and ipv6 Address classes, name resolution.</li>
 <li>TCPSocket (insecure) and TLSSocket classes (encryption and trust).</li>
 <li>TCPServer and TLSServer classes ready for subclassing a custom protocol.</li>
-<li>Protocols:<ul>
+<li>Standard protocols:<ul>
 <li>HTTP</li>
 <li>STOMP</li>
 </ul>
 </li>
-<li>HTTP(S)Server and HTTP(S)Client to do HTTP server and client.</li>
+<li>HTTP(S)Server and HTTP(S)Client handling HTTP server and client red tape.</li>
 <li>REST(S)Listener as a specialization of HTTP(S)Server where a YAML section specifies the REST API.</li>
 <li>C++ APIs to persistency solutions:<ul>
 <li>SQLite relational database</li>
@@ -130,8 +147,8 @@ High level APIs to common functionality</h2>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md4"></a>
-Dependencies</h1>
+<h2><a class="anchor" id="autotoc_md4"></a>
+Dependencies</h2>
 <ul>
 <li><a href="https://www.openssl.org/">OpenSSL</a> For TLS, hashing and encryption.</li>
 <li><a href="https://sqlite.org/index.html">SQLite</a> Persistent storage.</li>
@@ -139,15 +156,15 @@ Dependencies</h1>
 <li>[rapidjson]() Read and write JSON.</li>
 <li><a href="https://github.com/stbrumme/crc32">crc32</a> CRC32 verfication codes (dependency included in the source tree).</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md5"></a>
-Using the dodo framework</h1>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Using the dodo framework</h2>
 <p>See the developer manual for an overview.</p>
 <p>The source code is documented for Doxygen and <a href="https://jmspit.github.io/dodo/">automatically generated to github pages</a>.</p>
-<h1><a class="anchor" id="autotoc_md6"></a>
-Maintaining the dodo framework</h1>
+<h2><a class="anchor" id="autotoc_md6"></a>
+Maintaining the dodo framework</h2>
 <p>See the maintainer manual for an overview.</p>
-<h1><a class="anchor" id="autotoc_md7"></a>
-Build</h1>
+<h2><a class="anchor" id="autotoc_md7"></a>
+Build</h2>
 <div class="fragment"><div class="line">git clone https://github.com/jmspit/dodo.git</div>
 <div class="line">cd dodo &amp;&amp; \</div>
 <div class="line">   mkdir build &amp;&amp; \</div>
@@ -157,8 +174,8 @@ Build</h1>
 <div class="line">   cmake --install .</div>
 </div><!-- fragment --><p>If installed to a location outside the library paths the link-loader searches, set the <code>LD_LIBRARY_PATH</code> to <code>&lt;CMAKE_INSTALL_PREFIX&gt;/lib</code>.</p>
 <p>To generate Doxygen API documentation, <code>make doc</code> will generate doxygen documentation in the build/doxygen/html directory, which contains an index.html.</p>
-<h1><a class="anchor" id="autotoc_md8"></a>
-Docker</h1>
+<h2><a class="anchor" id="autotoc_md8"></a>
+Docker</h2>
 <p>A multistage build example (src/examples/docker/minideb/Dockerfile).</p>
 <div class="fragment"><div class="line">FROM bitnami/minideb:latest AS builder</div>
 <div class="line"> </div>

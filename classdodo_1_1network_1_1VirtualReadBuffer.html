@@ -85,7 +85,6 @@ $(document).ready(function(){initNavTree('classdodo_1_1network_1_1VirtualReadBuf
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a>  </div>
   <div class="headertitle">
 <div class="title">dodo::network::VirtualReadBuffer Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
@@ -112,9 +111,10 @@ Collaboration diagram for dodo::network::VirtualReadBuffer:</div>
 <div class="dyncontent">
 <div class="center"><img src="classdodo_1_1network_1_1VirtualReadBuffer__coll__graph.png" border="0" usemap="#dodo_1_1network_1_1VirtualReadBuffer_coll__map" alt="Collaboration graph"/></div>
 <map name="dodo_1_1network_1_1VirtualReadBuffer_coll__map" id="dodo_1_1network_1_1VirtualReadBuffer_coll__map">
-<area shape="rect" title="Interface to read individual bytes whilst the implementation can read from an actual source (such as ..." alt="" coords="5,95,204,136"/>
-<area shape="rect" title=" " alt="" coords="27,5,94,32"/>
-<area shape="rect" title=" " alt="" coords="119,5,181,32"/>
+<area shape="rect" title="Interface to read individual bytes whilst the implementation can read from an actual source (such as ..." alt="" coords="49,95,248,136"/>
+<area shape="rect" title=" " alt="" coords="5,5,65,32"/>
+<area shape="rect" title=" " alt="" coords="115,5,182,32"/>
+<area shape="rect" title=" " alt="" coords="207,5,269,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -123,12 +123,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3783344680f3919689860179a78819f0"><td class="memItemLeft" align="right" valign="top">virtual char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html#a3783344680f3919689860179a78819f0">get</a> () const =0</td></tr>
 <tr class="memdesc:a3783344680f3919689860179a78819f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current char from <a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html" title="Interface to read individual bytes whilst the implementation can read from an actual source (such as ...">VirtualReadBuffer</a>.  <a href="classdodo_1_1network_1_1VirtualReadBuffer.html#a3783344680f3919689860179a78819f0">More...</a><br /></td></tr>
 <tr class="separator:a3783344680f3919689860179a78819f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3880d2f74f5f3882383eb660a83e809d"><td class="memItemLeft" align="right" valign="top"><a id="a3880d2f74f5f3882383eb660a83e809d"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>getUnderflowCount</b> () const</td></tr>
+<tr class="separator:a3880d2f74f5f3882383eb660a83e809d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac05023730c45272074424d02057df384"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classdodo_1_1common_1_1SystemError.html">common::SystemError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html#ac05023730c45272074424d02057df384">next</a> ()=0</td></tr>
 <tr class="memdesc:ac05023730c45272074424d02057df384"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move to the next char from the <a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html" title="Interface to read individual bytes whilst the implementation can read from an actual source (such as ...">VirtualReadBuffer</a>.  <a href="classdodo_1_1network_1_1VirtualReadBuffer.html#ac05023730c45272074424d02057df384">More...</a><br /></td></tr>
 <tr class="separator:ac05023730c45272074424d02057df384"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
-Protected Member Functions</h2></td></tr>
 <tr class="memitem:a1df81946ae41e23287c4f261540ee6eb"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classdodo_1_1common_1_1SystemError.html">common::SystemError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html#a1df81946ae41e23287c4f261540ee6eb">underflow</a> ()=0</td></tr>
 <tr class="memdesc:a1df81946ae41e23287c4f261540ee6eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the buffer_ underflows, the buffer_ must be reset refilledwith new data from the source.  <a href="classdodo_1_1network_1_1VirtualReadBuffer.html#a1df81946ae41e23287c4f261540ee6eb">More...</a><br /></td></tr>
 <tr class="separator:a1df81946ae41e23287c4f261540ee6eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,6 +141,9 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:ab6ae5bb02a761b7b91e9db187988b60d"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html#ab6ae5bb02a761b7b91e9db187988b60d">bufsize_</a></td></tr>
 <tr class="memdesc:ab6ae5bb02a761b7b91e9db187988b60d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The size of buffer_.  <a href="classdodo_1_1network_1_1VirtualReadBuffer.html#ab6ae5bb02a761b7b91e9db187988b60d">More...</a><br /></td></tr>
 <tr class="separator:ab6ae5bb02a761b7b91e9db187988b60d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4c78afea17b6110dd61c0c38b5c2178"><td class="memItemLeft" align="right" valign="top"><a id="aa4c78afea17b6110dd61c0c38b5c2178"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>underflows_</b></td></tr>
+<tr class="separator:aa4c78afea17b6110dd61c0c38b5c2178"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Interface to read individual bytes whilst the implementation can read from an actual source (such as a network buffer) in larger chunks, reducing the number of required system calls. </p>
@@ -179,28 +182,29 @@ Protected Attributes</h2></td></tr>
 
 <p>Implemented in <a class="el" href="classdodo_1_1network_1_1StringReadBuffer.html#abf4e44c9e9169e022db34c7bd68efe7b">dodo::network::StringReadBuffer</a>, <a class="el" href="classdodo_1_1network_1_1FileReadBuffer.html#aa6a5e771b5caa07c657974ba0b9700cd">dodo::network::FileReadBuffer</a>, and <a class="el" href="classdodo_1_1network_1_1SocketReadBuffer.html#af99d5e271cd78db1f1dba5cfa21233dd">dodo::network::SocketReadBuffer</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="httpmessage_8cpp_source.html#l00046">dodo::network::HTTPMessage::eatCRLF()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00056">dodo::network::HTTPMessage::eatSpace()</a>, <a class="el" href="httpversion_8cpp_source.html#l00032">dodo::network::HTTPVersion::parse()</a>, <a class="el" href="httprequest_8cpp_source.html#l00124">dodo::network::HTTPRequest::HTTPRequestLine::parse()</a>, <a class="el" href="httprequest_8cpp_source.html#l00099">dodo::network::HTTPRequest::parse()</a>, <a class="el" href="httpresponse_8cpp_source.html#l00082">dodo::network::HTTPResponse::HTTPResponseLine::parse()</a>, <a class="el" href="httpresponse_8cpp_source.html#l00032">dodo::network::HTTPResponse::parse()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00245">dodo::network::HTTPMessage::parseBody()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00224">dodo::network::HTTPMessage::parseChunkedBody()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00125">dodo::network::HTTPMessage::parseChunkHex()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00115">dodo::network::HTTPMessage::parseCRLF()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00141">dodo::network::HTTPMessage::parseFieldValue()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00083">dodo::network::HTTPMessage::parseHeaders()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00196">dodo::network::HTTPMessage::parseToken()</a>, and <a class="el" href="httpmessage_8cpp_source.html#l00211">dodo::network::HTTPMessage::parseUInt()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="httpmessage_8cpp_source.html#l00046">dodo::network::protocol::http::HTTPMessage::eatCRLF()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00056">dodo::network::protocol::http::HTTPMessage::eatSpace()</a>, <a class="el" href="httpversion_8cpp_source.html#l00032">dodo::network::protocol::http::HTTPVersion::parse()</a>, <a class="el" href="httprequest_8cpp_source.html#l00162">dodo::network::protocol::http::HTTPRequest::HTTPRequestLine::parse()</a>, <a class="el" href="httprequest_8cpp_source.html#l00114">dodo::network::protocol::http::HTTPRequest::parse()</a>, <a class="el" href="httpresponse_8cpp_source.html#l00111">dodo::network::protocol::http::HTTPResponse::HTTPResponseLine::parse()</a>, <a class="el" href="httpresponse_8cpp_source.html#l00032">dodo::network::protocol::http::HTTPResponse::parse()</a>, <a class="el" href="httprequest_8cpp_source.html#l00139">dodo::network::protocol::http::HTTPRequest::parseBody()</a>, <a class="el" href="httpresponse_8cpp_source.html#l00143">dodo::network::protocol::http::HTTPResponse::parseBody()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00224">dodo::network::protocol::http::HTTPMessage::parseChunkedBody()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00125">dodo::network::protocol::http::HTTPMessage::parseChunkHex()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00115">dodo::network::protocol::http::HTTPMessage::parseCRLF()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00141">dodo::network::protocol::http::HTTPMessage::parseFieldValue()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00083">dodo::network::protocol::http::HTTPMessage::parseHeaders()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00196">dodo::network::protocol::http::HTTPMessage::parseToken()</a>, and <a class="el" href="httpmessage_8cpp_source.html#l00211">dodo::network::protocol::http::HTTPMessage::parseUInt()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classdodo_1_1network_1_1VirtualReadBuffer_a3783344680f3919689860179a78819f0_icgraph.png" border="0" usemap="#classdodo_1_1network_1_1VirtualReadBuffer_a3783344680f3919689860179a78819f0_icgraph" alt=""/></div>
 <map name="classdodo_1_1network_1_1VirtualReadBuffer_a3783344680f3919689860179a78819f0_icgraph" id="classdodo_1_1network_1_1VirtualReadBuffer_a3783344680f3919689860179a78819f0_icgraph">
-<area shape="rect" title="Get the current char from VirtualReadBuffer." alt="" coords="1329,378,1528,419"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPMessage.html#a402378efbfe6f4f5063e84d879c748c3" title="Consume a CR LF sequence only when it is there." alt="" coords="801,159,1016,201"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPMessage.html#aca8849f32213673009ae3e45a117b44b" title="Parse a chunked body (transfer&#45;encoding: chunked) and resturn it as a single string." alt="" coords="536,225,751,266"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPMessage.html#ac262c6dcd837dd15c9cec040495e4c8d" title="Parse a body and resturn it as a single string." alt="" coords="273,239,488,281"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPRequest.html#aee8f0b384834f83219ef7623efd52349" title="Read the HTTPRequest from the socket." alt="" coords="10,277,221,318"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPResponse.html#a9c75167f9a4e4ea89cb56dedb84ff660" title="Read a complete HTTPFragment from a VirtualReadBuffer." alt="" coords="5,558,225,599"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPMessage.html#a279661a1d1d445e9c9a3d8a509a7c052" title="Call buffer.next() as long as buffer.get() is whitespace ( charSP or charHT)." alt="" coords="1067,378,1281,419"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPRequest_1_1HTTPRequestLine.html#a3ced9e5133ad9c34897e3d0de0c1bc42" title="Parses a HTTPMessage." alt="" coords="803,342,1014,383"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPResponse_1_1HTTPResponseLine.html#a088ccff3044b9aa0daa67dec1cba938f" title="Read a complete HTTPFragment from a VirtualReadBuffer." alt="" coords="799,678,1019,719"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPMessage.html#a18969fff1d601470ff4a9d5c3c50bfc4" title="Parse a header section and update headers_." alt="" coords="801,466,1016,507"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPVersion.html#a74ddbf58c27bed90dbb036f4720f2b03" title="Construct from current position in the VirtualReadBuffer &#39;HTTP/major_.minor_&#39;." alt="" coords="1071,794,1277,835"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPMessage.html#a5be702bede417e80d58bf5609722d545" title="Parse a hexadecimal chunk size (a hex value followed by CR LF)." alt="" coords="801,225,1016,266"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPMessage.html#a27887eb101276cbcd4d7ecc06c2a54df" title="Consume a CR LF sequence." alt="" coords="1067,261,1281,302"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPMessage.html#ab63709a6c8c52592f94ef2f74981b48d" title="Parse a header field value." alt="" coords="1067,495,1281,537"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPMessage.html#a1c7142f711bbcf970616ae894c8b3172" title="Parse a token (such as a header field name)." alt="" coords="1067,561,1281,602"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPMessage.html#a5243e71ad91ebefbc9698873c4f890c9" title="Parse an unsigned integer." alt="" coords="1067,729,1281,770"/>
+<area shape="rect" title="Get the current char from VirtualReadBuffer." alt="" coords="1501,437,1700,479"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#abaeeb8b9f0fc188c4cc477cfe5a8be79" title="Consume a CR LF sequence only when it is there." alt="" coords="1211,5,1429,47"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#ae789dd0fd6ed698a26327a36990d7feb" title="Call buffer.next() as long as buffer.get() is whitespace ( charSP or charHT)." alt="" coords="1208,225,1432,267"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_1_1HTTPRequestLine.html#a945a970c1f346c1dfca6e79c4f74d420" title="Parses a HTTPMessage." alt="" coords="882,122,1129,178"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#a7dcc012005ecf48a49e93ade07f0740d" title="Read the HTTPRequest from the socket." alt="" coords="11,155,205,196"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse_1_1HTTPResponseLine.html#a96f9b25a00f476dd42c45de8fe5a2895" title="Read a complete HTTPFragment from a VirtualReadBuffer." alt="" coords="910,285,1101,341"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse.html#aee8714ea6f24935b7a1fb1e9f2aadc73" title="Read a complete HTTPFragment from a VirtualReadBuffer." alt="" coords="5,613,211,655"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#a9a0d271a843a5809aa5d4eb688e829fa" title="Parse a header section and update headers_." alt="" coords="878,437,1133,479"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPVersion.html#ae45c033b2d9678c70f258f41d5166718" title="Construct from current position in the VirtualReadBuffer &#39;HTTP/major_.minor_&#39;." alt="" coords="1225,861,1415,903"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#a34e85973e9ecd39d54488ac96dafd188" title="Parse a body and resturn it as a single string." alt="" coords="259,239,487,280"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse.html#a8b41b4906800963e376d9ed51b274757" title="Parse a body and resturn it as a single string." alt="" coords="285,621,461,677"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#a38a6c4e805715a3fe45699830249f3fb" title="Parse a chunked body (transfer&#45;encoding: chunked) and resturn it as a single string." alt="" coords="535,628,824,669"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#a4f5f63ba2830cfed78455a2e26f85088" title="Parse a hexadecimal chunk size (a hex value followed by CR LF)." alt="" coords="872,643,1139,684"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#acdec28c44054004475a6367acd0a6602" title="Consume a CR LF sequence." alt="" coords="1203,693,1437,735"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#a09b4ef8979bc94547c858cc600bd1baa" title="Parse a header field value." alt="" coords="1187,525,1453,567"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#a40bf1c5c81581cdf8f44bae0eaa636d9" title="Parse a token (such as a header field name)." alt="" coords="1201,408,1439,449"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#a18fe8b7ca856d24a5580ffa82fb30c45" title="Parse an unsigned integer." alt="" coords="1207,291,1433,332"/>
 </map>
 </div>
 
@@ -234,28 +238,29 @@ Here is the caller graph for this function:</div>
 
 <p>Implemented in <a class="el" href="classdodo_1_1network_1_1StringReadBuffer.html#aeba48520f8a2d6e84c057faceda56e57">dodo::network::StringReadBuffer</a>, <a class="el" href="classdodo_1_1network_1_1FileReadBuffer.html#a17824bdc60ce7dd705bd2ebc025c8f80">dodo::network::FileReadBuffer</a>, and <a class="el" href="classdodo_1_1network_1_1SocketReadBuffer.html#aa503d85f1b2fc9f2248b9022ba4e063b">dodo::network::SocketReadBuffer</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="httpmessage_8cpp_source.html#l00046">dodo::network::HTTPMessage::eatCRLF()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00056">dodo::network::HTTPMessage::eatSpace()</a>, <a class="el" href="httpversion_8cpp_source.html#l00032">dodo::network::HTTPVersion::parse()</a>, <a class="el" href="httprequest_8cpp_source.html#l00124">dodo::network::HTTPRequest::HTTPRequestLine::parse()</a>, <a class="el" href="httprequest_8cpp_source.html#l00099">dodo::network::HTTPRequest::parse()</a>, <a class="el" href="httpresponse_8cpp_source.html#l00082">dodo::network::HTTPResponse::HTTPResponseLine::parse()</a>, <a class="el" href="httpresponse_8cpp_source.html#l00032">dodo::network::HTTPResponse::parse()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00245">dodo::network::HTTPMessage::parseBody()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00224">dodo::network::HTTPMessage::parseChunkedBody()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00125">dodo::network::HTTPMessage::parseChunkHex()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00115">dodo::network::HTTPMessage::parseCRLF()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00141">dodo::network::HTTPMessage::parseFieldValue()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00083">dodo::network::HTTPMessage::parseHeaders()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00196">dodo::network::HTTPMessage::parseToken()</a>, and <a class="el" href="httpmessage_8cpp_source.html#l00211">dodo::network::HTTPMessage::parseUInt()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="httpmessage_8cpp_source.html#l00046">dodo::network::protocol::http::HTTPMessage::eatCRLF()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00056">dodo::network::protocol::http::HTTPMessage::eatSpace()</a>, <a class="el" href="httpversion_8cpp_source.html#l00032">dodo::network::protocol::http::HTTPVersion::parse()</a>, <a class="el" href="httprequest_8cpp_source.html#l00162">dodo::network::protocol::http::HTTPRequest::HTTPRequestLine::parse()</a>, <a class="el" href="httprequest_8cpp_source.html#l00114">dodo::network::protocol::http::HTTPRequest::parse()</a>, <a class="el" href="httpresponse_8cpp_source.html#l00111">dodo::network::protocol::http::HTTPResponse::HTTPResponseLine::parse()</a>, <a class="el" href="httpresponse_8cpp_source.html#l00032">dodo::network::protocol::http::HTTPResponse::parse()</a>, <a class="el" href="httprequest_8cpp_source.html#l00139">dodo::network::protocol::http::HTTPRequest::parseBody()</a>, <a class="el" href="httpresponse_8cpp_source.html#l00143">dodo::network::protocol::http::HTTPResponse::parseBody()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00224">dodo::network::protocol::http::HTTPMessage::parseChunkedBody()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00125">dodo::network::protocol::http::HTTPMessage::parseChunkHex()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00115">dodo::network::protocol::http::HTTPMessage::parseCRLF()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00141">dodo::network::protocol::http::HTTPMessage::parseFieldValue()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00083">dodo::network::protocol::http::HTTPMessage::parseHeaders()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00196">dodo::network::protocol::http::HTTPMessage::parseToken()</a>, and <a class="el" href="httpmessage_8cpp_source.html#l00211">dodo::network::protocol::http::HTTPMessage::parseUInt()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classdodo_1_1network_1_1VirtualReadBuffer_ac05023730c45272074424d02057df384_icgraph.png" border="0" usemap="#classdodo_1_1network_1_1VirtualReadBuffer_ac05023730c45272074424d02057df384_icgraph" alt=""/></div>
 <map name="classdodo_1_1network_1_1VirtualReadBuffer_ac05023730c45272074424d02057df384_icgraph" id="classdodo_1_1network_1_1VirtualReadBuffer_ac05023730c45272074424d02057df384_icgraph">
-<area shape="rect" title="Move to the next char from the VirtualReadBuffer." alt="" coords="1329,378,1528,419"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPMessage.html#a402378efbfe6f4f5063e84d879c748c3" title="Consume a CR LF sequence only when it is there." alt="" coords="801,159,1016,201"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPMessage.html#aca8849f32213673009ae3e45a117b44b" title="Parse a chunked body (transfer&#45;encoding: chunked) and resturn it as a single string." alt="" coords="536,225,751,266"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPMessage.html#ac262c6dcd837dd15c9cec040495e4c8d" title="Parse a body and resturn it as a single string." alt="" coords="273,239,488,281"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPRequest.html#aee8f0b384834f83219ef7623efd52349" title="Read the HTTPRequest from the socket." alt="" coords="10,277,221,318"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPResponse.html#a9c75167f9a4e4ea89cb56dedb84ff660" title="Read a complete HTTPFragment from a VirtualReadBuffer." alt="" coords="5,558,225,599"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPMessage.html#a279661a1d1d445e9c9a3d8a509a7c052" title="Call buffer.next() as long as buffer.get() is whitespace ( charSP or charHT)." alt="" coords="1067,378,1281,419"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPRequest_1_1HTTPRequestLine.html#a3ced9e5133ad9c34897e3d0de0c1bc42" title="Parses a HTTPMessage." alt="" coords="803,342,1014,383"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPResponse_1_1HTTPResponseLine.html#a088ccff3044b9aa0daa67dec1cba938f" title="Read a complete HTTPFragment from a VirtualReadBuffer." alt="" coords="799,678,1019,719"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPMessage.html#a18969fff1d601470ff4a9d5c3c50bfc4" title="Parse a header section and update headers_." alt="" coords="801,466,1016,507"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPVersion.html#a74ddbf58c27bed90dbb036f4720f2b03" title="Construct from current position in the VirtualReadBuffer &#39;HTTP/major_.minor_&#39;." alt="" coords="1071,794,1277,835"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPMessage.html#a5be702bede417e80d58bf5609722d545" title="Parse a hexadecimal chunk size (a hex value followed by CR LF)." alt="" coords="801,225,1016,266"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPMessage.html#a27887eb101276cbcd4d7ecc06c2a54df" title="Consume a CR LF sequence." alt="" coords="1067,261,1281,302"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPMessage.html#ab63709a6c8c52592f94ef2f74981b48d" title="Parse a header field value." alt="" coords="1067,495,1281,537"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPMessage.html#a1c7142f711bbcf970616ae894c8b3172" title="Parse a token (such as a header field name)." alt="" coords="1067,561,1281,602"/>
-<area shape="rect" href="classdodo_1_1network_1_1HTTPMessage.html#a5243e71ad91ebefbc9698873c4f890c9" title="Parse an unsigned integer." alt="" coords="1067,729,1281,770"/>
+<area shape="rect" title="Move to the next char from the VirtualReadBuffer." alt="" coords="1501,437,1700,479"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#abaeeb8b9f0fc188c4cc477cfe5a8be79" title="Consume a CR LF sequence only when it is there." alt="" coords="1211,5,1429,47"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#ae789dd0fd6ed698a26327a36990d7feb" title="Call buffer.next() as long as buffer.get() is whitespace ( charSP or charHT)." alt="" coords="1208,225,1432,267"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_1_1HTTPRequestLine.html#a945a970c1f346c1dfca6e79c4f74d420" title="Parses a HTTPMessage." alt="" coords="882,122,1129,178"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#a7dcc012005ecf48a49e93ade07f0740d" title="Read the HTTPRequest from the socket." alt="" coords="11,155,205,196"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse_1_1HTTPResponseLine.html#a96f9b25a00f476dd42c45de8fe5a2895" title="Read a complete HTTPFragment from a VirtualReadBuffer." alt="" coords="910,285,1101,341"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse.html#aee8714ea6f24935b7a1fb1e9f2aadc73" title="Read a complete HTTPFragment from a VirtualReadBuffer." alt="" coords="5,613,211,655"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#a9a0d271a843a5809aa5d4eb688e829fa" title="Parse a header section and update headers_." alt="" coords="878,437,1133,479"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPVersion.html#ae45c033b2d9678c70f258f41d5166718" title="Construct from current position in the VirtualReadBuffer &#39;HTTP/major_.minor_&#39;." alt="" coords="1225,861,1415,903"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#a34e85973e9ecd39d54488ac96dafd188" title="Parse a body and resturn it as a single string." alt="" coords="259,239,487,280"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse.html#a8b41b4906800963e376d9ed51b274757" title="Parse a body and resturn it as a single string." alt="" coords="285,621,461,677"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#a38a6c4e805715a3fe45699830249f3fb" title="Parse a chunked body (transfer&#45;encoding: chunked) and resturn it as a single string." alt="" coords="535,628,824,669"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#a4f5f63ba2830cfed78455a2e26f85088" title="Parse a hexadecimal chunk size (a hex value followed by CR LF)." alt="" coords="872,643,1139,684"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#acdec28c44054004475a6367acd0a6602" title="Consume a CR LF sequence." alt="" coords="1203,693,1437,735"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#a09b4ef8979bc94547c858cc600bd1baa" title="Parse a header field value." alt="" coords="1187,525,1453,567"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#a40bf1c5c81581cdf8f44bae0eaa636d9" title="Parse a token (such as a header field name)." alt="" coords="1201,408,1439,449"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#a18fe8b7ca856d24a5580ffa82fb30c45" title="Parse an unsigned integer." alt="" coords="1207,291,1433,332"/>
 </map>
 </div>
 
@@ -279,7 +284,7 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -315,9 +320,9 @@ Here is the caller graph for this function:</div>
 <p>The buffer. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html#ab6ae5bb02a761b7b91e9db187988b60d" title="The size of buffer_.">bufsize_</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="socketreadbuffer_8hpp_source.html#l00075">75</a> of file <a class="el" href="socketreadbuffer_8hpp_source.html">socketreadbuffer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="socketreadbuffer_8hpp_source.html#l00077">77</a> of file <a class="el" href="socketreadbuffer_8hpp_source.html">socketreadbuffer.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="socketreadbuffer_8cpp_source.html#l00062">dodo::network::FileReadBuffer::FileReadBuffer()</a>, <a class="el" href="socketreadbuffer_8cpp_source.html#l00053">dodo::network::SocketReadBuffer::get()</a>, <a class="el" href="socketreadbuffer_8cpp_source.html#l00089">dodo::network::FileReadBuffer::get()</a>, <a class="el" href="socketreadbuffer_8cpp_source.html#l00031">dodo::network::SocketReadBuffer::SocketReadBuffer()</a>, <a class="el" href="socketreadbuffer_8cpp_source.html#l00044">dodo::network::SocketReadBuffer::underflow()</a>, <a class="el" href="socketreadbuffer_8cpp_source.html#l00078">dodo::network::FileReadBuffer::underflow()</a>, and <a class="el" href="socketreadbuffer_8cpp_source.html#l00040">dodo::network::SocketReadBuffer::~SocketReadBuffer()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="socketreadbuffer_8cpp_source.html#l00063">dodo::network::FileReadBuffer::FileReadBuffer()</a>, <a class="el" href="socketreadbuffer_8cpp_source.html#l00054">dodo::network::SocketReadBuffer::get()</a>, <a class="el" href="socketreadbuffer_8cpp_source.html#l00091">dodo::network::FileReadBuffer::get()</a>, <a class="el" href="socketreadbuffer_8cpp_source.html#l00031">dodo::network::SocketReadBuffer::SocketReadBuffer()</a>, <a class="el" href="socketreadbuffer_8cpp_source.html#l00044">dodo::network::SocketReadBuffer::underflow()</a>, <a class="el" href="socketreadbuffer_8cpp_source.html#l00079">dodo::network::FileReadBuffer::underflow()</a>, and <a class="el" href="socketreadbuffer_8cpp_source.html#l00040">dodo::network::SocketReadBuffer::~SocketReadBuffer()</a>.</p>
 
 </div>
 </div>
@@ -343,9 +348,9 @@ Here is the caller graph for this function:</div>
 
 <p>The size of buffer_. </p>
 
-<p class="definition">Definition at line <a class="el" href="socketreadbuffer_8hpp_source.html#l00080">80</a> of file <a class="el" href="socketreadbuffer_8hpp_source.html">socketreadbuffer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="socketreadbuffer_8hpp_source.html#l00082">82</a> of file <a class="el" href="socketreadbuffer_8hpp_source.html">socketreadbuffer.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="socketreadbuffer_8cpp_source.html#l00062">dodo::network::FileReadBuffer::FileReadBuffer()</a>, <a class="el" href="socketreadbuffer_8cpp_source.html#l00031">dodo::network::SocketReadBuffer::SocketReadBuffer()</a>, <a class="el" href="socketreadbuffer_8cpp_source.html#l00044">dodo::network::SocketReadBuffer::underflow()</a>, and <a class="el" href="socketreadbuffer_8cpp_source.html#l00078">dodo::network::FileReadBuffer::underflow()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="socketreadbuffer_8cpp_source.html#l00063">dodo::network::FileReadBuffer::FileReadBuffer()</a>, <a class="el" href="socketreadbuffer_8cpp_source.html#l00031">dodo::network::SocketReadBuffer::SocketReadBuffer()</a>, <a class="el" href="socketreadbuffer_8cpp_source.html#l00044">dodo::network::SocketReadBuffer::underflow()</a>, and <a class="el" href="socketreadbuffer_8cpp_source.html#l00079">dodo::network::FileReadBuffer::underflow()</a>.</p>
 
 </div>
 </div>

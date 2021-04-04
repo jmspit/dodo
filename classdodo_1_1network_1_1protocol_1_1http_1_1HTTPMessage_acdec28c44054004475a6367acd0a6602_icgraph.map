@@ -1,0 +1,5 @@
+<map id="dodo::network::protocol::http::HTTPMessage::parseCRLF" name="dodo::network::protocol::http::HTTPMessage::parseCRLF">
+<area shape="rect" id="node1" title="Consume a CR LF sequence." alt="" coords="657,5,891,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#a38a6c4e805715a3fe45699830249f3fb" title="Parse a chunked body (transfer&#45;encoding: chunked) and resturn it as a single string." alt="" coords="5,5,295,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#a4f5f63ba2830cfed78455a2e26f85088" title="Parse a hexadecimal chunk size (a hex value followed by CR LF)." alt="" coords="343,35,609,76"/>
+</map>

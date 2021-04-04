@@ -1,0 +1,4 @@
+<map id="dodo::network::TLSContext::isAllowSANWildcards" name="dodo::network::TLSContext::isAllowSANWildcards">
+<area shape="rect" id="node1" title="If true, TLS will allow SAN wildcard matching." alt="" coords="243,5,440,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1TLSSocket.html#a7b272413dc6806e5456741c0dffb27de" title="Connect to the Address." alt="" coords="5,5,195,47"/>
+</map>

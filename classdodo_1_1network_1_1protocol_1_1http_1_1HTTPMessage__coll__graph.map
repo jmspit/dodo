@@ -1,0 +1,7 @@
+<map id="dodo::network::protocol::http::HTTPMessage" name="dodo::network::protocol::http::HTTPMessage">
+<area shape="rect" id="node1" title="Generic HTTPMessage, parent to HTTPRequest and HTTPResponse." alt="" coords="293,116,469,157"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPFragment.html" title="Generic HTTP fragment, either a complete (such as HTTPRequest) or incomplete HTTP fragment (ssuch as ..." alt="" coords="5,5,181,47"/>
+<area shape="rect" id="node3" title=" " alt="" coords="12,71,175,112"/>
+<area shape="rect" id="node4" title=" " alt="" coords="29,167,158,194"/>
+<area shape="rect" id="node5" href="$classdodo_1_1common_1_1Bytes.html" title="An array of Octets with size elements." alt="" coords="11,218,175,245"/>
+</map>

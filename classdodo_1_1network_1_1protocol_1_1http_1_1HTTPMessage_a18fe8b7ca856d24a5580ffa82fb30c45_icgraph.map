@@ -1,0 +1,4 @@
+<map id="dodo::network::protocol::http::HTTPMessage::parseUInt" name="dodo::network::protocol::http::HTTPMessage::parseUInt">
+<area shape="rect" id="node1" title="Parse an unsigned integer." alt="" coords="244,13,471,54"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse_1_1HTTPResponseLine.html#a96f9b25a00f476dd42c45de8fe5a2895" title="Read a complete HTTPFragment from a VirtualReadBuffer." alt="" coords="5,5,196,61"/>
+</map>

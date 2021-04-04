@@ -1,4 +1,0 @@
-<map id="dodo::network::HTTPMessage::isSP" name="dodo::network::HTTPMessage::isSP">
-<area shape="rect" id="node1" title="Return true if the char is whitespace character (charSP or charHT)" alt="" coords="268,5,483,47"/>
-<area shape="rect" id="node2" href="$classdodo_1_1network_1_1HTTPMessage.html#ab63709a6c8c52592f94ef2f74981b48d" title="Parse a header field value." alt="" coords="5,5,220,47"/>
-</map>

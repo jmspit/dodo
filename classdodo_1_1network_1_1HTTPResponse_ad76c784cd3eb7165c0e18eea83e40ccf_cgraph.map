@@ -1,4 +1,0 @@
-<map id="dodo::network::HTTPResponse::asString" name="dodo::network::HTTPResponse::asString">
-<area shape="rect" id="node1" title="Return the HTTPResponse as a string." alt="" coords="5,5,225,47"/>
-<area shape="rect" id="node2" href="$classdodo_1_1network_1_1HTTPResponse_1_1HTTPResponseLine.html#a767cca2a8803d5432e3bdd0c95c09433" title="Convert the HTTPResponseLine to a HTTP string." alt="" coords="273,5,493,47"/>
-</map>

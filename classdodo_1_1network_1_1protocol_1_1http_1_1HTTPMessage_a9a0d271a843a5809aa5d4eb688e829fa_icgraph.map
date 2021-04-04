@@ -1,0 +1,5 @@
+<map id="dodo::network::protocol::http::HTTPMessage::parseHeaders" name="dodo::network::protocol::http::HTTPMessage::parseHeaders">
+<area shape="rect" id="node1" title="Parse a header section and update headers_." alt="" coords="259,39,513,80"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#a7dcc012005ecf48a49e93ade07f0740d" title="Read the HTTPRequest from the socket." alt="" coords="11,5,205,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse.html#aee8714ea6f24935b7a1fb1e9f2aadc73" title="Read a complete HTTPFragment from a VirtualReadBuffer." alt="" coords="5,71,211,112"/>
+</map>

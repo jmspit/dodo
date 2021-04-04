@@ -149,9 +149,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afcffd2dace26644a73d55d1dc152fb54"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1TLSSocket.html#afcffd2dace26644a73d55d1dc152fb54">operator&lt;</a> (const <a class="el" href="classdodo_1_1network_1_1TLSSocket.html">TLSSocket</a> &amp;socket) const</td></tr>
 <tr class="memdesc:afcffd2dace26644a73d55d1dc152fb54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ordering.  <a href="classdodo_1_1network_1_1TLSSocket.html#afcffd2dace26644a73d55d1dc152fb54">More...</a><br /></td></tr>
 <tr class="separator:afcffd2dace26644a73d55d1dc152fb54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44b29bfc4d483031076182d285eed2fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classdodo_1_1network_1_1TLSSocket.html">TLSSocket</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1TLSSocket.html#a44b29bfc4d483031076182d285eed2fe">operator=</a> (const <a class="el" href="classdodo_1_1network_1_1TLSSocket.html">TLSSocket</a> &amp;socket)</td></tr>
-<tr class="memdesc:a44b29bfc4d483031076182d285eed2fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assign from <a class="el" href="classdodo_1_1network_1_1Socket.html" title="A Linux socket.">Socket</a>.  <a href="classdodo_1_1network_1_1TLSSocket.html#a44b29bfc4d483031076182d285eed2fe">More...</a><br /></td></tr>
-<tr class="separator:a44b29bfc4d483031076182d285eed2fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64e7586c8e56662b9d7a1c98aa34be46"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1TLSSocket.html#a64e7586c8e56662b9d7a1c98aa34be46">operator==</a> (const <a class="el" href="classdodo_1_1network_1_1TLSSocket.html">TLSSocket</a> &amp;socket) const</td></tr>
 <tr class="memdesc:a64e7586c8e56662b9d7a1c98aa34be46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identity.  <a href="classdodo_1_1network_1_1TLSSocket.html#a64e7586c8e56662b9d7a1c98aa34be46">More...</a><br /></td></tr>
 <tr class="separator:a64e7586c8e56662b9d7a1c98aa34be46"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -362,7 +359,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classdodo_1_1network_1_1Socket.html" title="A Linux socket.">Socket</a> for TLS encrypted traffic between trusted endpoints. </p>
-<p><a class="el" href="developer.html#developer_networking">Secure sockets</a> </p>
+<p><a class="el" href="md_DEVELOPER.html#developer_networking">Secure sockets</a> </p>
 
 <p class="definition">Definition at line <a class="el" href="tlssocket_8hpp_source.html#l00040">40</a> of file <a class="el" href="tlssocket_8hpp_source.html">tlssocket.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -410,7 +407,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="tlssocket_8cpp_source.html#l00032">32</a> of file <a class="el" href="tlssocket_8cpp_source.html">tlssocket.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="tlssocket_8cpp_source.html#l00082">accept()</a>.</p>
+<p class="reference">References <a class="el" href="tlssocket_8hpp_source.html#l00154">ssl_</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="tlssocket_8cpp_source.html#l00088">accept()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -472,9 +471,9 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="tlssocket_8cpp_source.html#l00039">39</a> of file <a class="el" href="tlssocket_8cpp_source.html">tlssocket.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlssocket_8cpp_source.html#l00040">40</a> of file <a class="el" href="tlssocket_8cpp_source.html">tlssocket.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="util_8cpp_source.html#l00154">dodo::common::getSSLErrors()</a>, <a class="el" href="tlscontext_8hpp_source.html#l00180">dodo::network::TLSContext::isSNIEnabled()</a>, <a class="el" href="tlssocket_8hpp_source.html#l00171">peer_name_</a>, <a class="el" href="x509cert_8hpp_source.html#l00079">dodo::network::X509Common::SAN::san_name</a>, <a class="el" href="basesocket_8hpp_source.html#l00504">dodo::network::BaseSocket::socket_</a>, <a class="el" href="tlssocket_8hpp_source.html#l00161">ssl_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="util_8cpp_source.html#l00154">dodo::common::getSSLErrors()</a>, <a class="el" href="tlscontext_8hpp_source.html#l00191">dodo::network::TLSContext::isSNIEnabled()</a>, <a class="el" href="tlssocket_8hpp_source.html#l00164">peer_name_</a>, <a class="el" href="x509cert_8hpp_source.html#l00079">dodo::network::X509Common::SAN::san_name</a>, <a class="el" href="basesocket_8hpp_source.html#l00504">dodo::network::BaseSocket::socket_</a>, <a class="el" href="tlssocket_8hpp_source.html#l00154">ssl_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -513,9 +512,9 @@ Here is the call graph for this function:</div>
 
 <p>Destructor. </p>
 
-<p class="definition">Definition at line <a class="el" href="tlssocket_8cpp_source.html#l00052">52</a> of file <a class="el" href="tlssocket_8cpp_source.html">tlssocket.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlssocket_8cpp_source.html#l00053">53</a> of file <a class="el" href="tlssocket_8cpp_source.html">tlssocket.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="tlssocket_8hpp_source.html#l00161">ssl_</a>.</p>
+<p class="reference">References <a class="el" href="tlssocket_8hpp_source.html#l00154">ssl_</a>.</p>
 
 </div>
 </div>
@@ -548,9 +547,9 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classdodo_1_1network_1_1BaseSocket.html#acf3ee5321588185efb19723f84a4727c">dodo::network::BaseSocket</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="tlssocket_8cpp_source.html#l00082">82</a> of file <a class="el" href="tlssocket_8cpp_source.html">tlssocket.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlssocket_8cpp_source.html#l00088">88</a> of file <a class="el" href="tlssocket_8cpp_source.html">tlssocket.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="util_8cpp_source.html#l00154">dodo::common::getSSLErrors()</a>, <a class="el" href="logger_8hpp_source.html#l00277">log_Error</a>, <a class="el" href="tlssocket_8hpp_source.html#l00161">ssl_</a>, <a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba1af3c8cd9ea46d2a701ae919c0a8c5a0">dodo::network::X509Common::stDNS</a>, <a class="el" href="tlssocket_8hpp_source.html#l00166">tlscontext_</a>, and <a class="el" href="tlssocket_8cpp_source.html#l00032">TLSSocket()</a>.</p>
+<p class="reference">References <a class="el" href="util_8cpp_source.html#l00154">dodo::common::getSSLErrors()</a>, <a class="el" href="logger_8hpp_source.html#l00277">log_Error</a>, <a class="el" href="tlssocket_8hpp_source.html#l00154">ssl_</a>, <a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba1af3c8cd9ea46d2a701ae919c0a8c5a0">dodo::network::X509Common::stDNS</a>, <a class="el" href="tlssocket_8hpp_source.html#l00159">tlscontext_</a>, and <a class="el" href="tlssocket_8cpp_source.html#l00032">TLSSocket()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -599,20 +598,21 @@ Here is the call graph for this function:</div>
 
 <p>Reimplemented from <a class="el" href="classdodo_1_1network_1_1BaseSocket.html#ac58a005f807e2e21953ce6a8ecd4eba6">dodo::network::BaseSocket</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="tlssocket_8cpp_source.html#l00056">56</a> of file <a class="el" href="tlssocket_8cpp_source.html">tlssocket.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlssocket_8cpp_source.html#l00057">57</a> of file <a class="el" href="tlssocket_8cpp_source.html">tlssocket.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="basesocket_8cpp_source.html#l00052">dodo::network::BaseSocket::connect()</a>, <a class="el" href="systemerror_8hpp_source.html#l00060">dodo::common::SystemError::ecOK</a>, <a class="el" href="systemerror_8hpp_source.html#l00218">dodo::common::SystemError::ecSSL_ERROR_NONE</a>, <a class="el" href="systemerror_8hpp_source.html#l00229">dodo::common::SystemError::ecSSL_ERROR_PEERVERIFICATION</a>, <a class="el" href="systemerror_8hpp_source.html#l00223">dodo::common::SystemError::ecSSL_ERROR_WANT_ACCEPT</a>, <a class="el" href="systemerror_8hpp_source.html#l00222">dodo::common::SystemError::ecSSL_ERROR_WANT_CONNECT</a>, <a class="el" href="systemerror_8hpp_source.html#l00220">dodo::common::SystemError::ecSSL_ERROR_WANT_READ</a>, <a class="el" href="systemerror_8hpp_source.html#l00221">dodo::common::SystemError::ecSSL_ERROR_WANT_WRITE</a>, <a class="el" href="systemerror_8hpp_source.html#l00224">dodo::common::SystemError::ecSSL_ERROR_WANT_X509_LOOKUP</a>, <a class="el" href="systemerror_8hpp_source.html#l00219">dodo::common::SystemError::ecSSL_ERROR_ZERO_RETURN</a>, <a class="el" href="tlssocket_8cpp_source.html#l00095">getPeerCertificate()</a>, <a class="el" href="tlscontext_8hpp_source.html#l00174">dodo::network::TLSContext::getPeerVerification()</a>, <a class="el" href="util_8cpp_source.html#l00154">dodo::common::getSSLErrors()</a>, <a class="el" href="tlssocket_8hpp_source.html#l00171">peer_name_</a>, <a class="el" href="classdodo_1_1network_1_1TLSContext.html#ac52323d8c8ebb0024a917ab92640ee7dabb1355627929f6d13a5bf081139375d2">dodo::network::TLSContext::pvVerifyFQDN</a>, <a class="el" href="x509cert_8hpp_source.html#l00079">dodo::network::X509Common::SAN::san_name</a>, <a class="el" href="tlssocket_8hpp_source.html#l00161">ssl_</a>, <a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba1af3c8cd9ea46d2a701ae919c0a8c5a0">dodo::network::X509Common::stDNS</a>, <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>, <a class="el" href="tlssocket_8hpp_source.html#l00166">tlscontext_</a>, and <a class="el" href="x509cert_8cpp_source.html#l00278">dodo::network::X509Certificate::verifySAN()</a>.</p>
+<p class="reference">References <a class="el" href="basesocket_8cpp_source.html#l00052">dodo::network::BaseSocket::connect()</a>, <a class="el" href="systemerror_8hpp_source.html#l00060">dodo::common::SystemError::ecOK</a>, <a class="el" href="systemerror_8hpp_source.html#l00218">dodo::common::SystemError::ecSSL_ERROR_NONE</a>, <a class="el" href="systemerror_8hpp_source.html#l00229">dodo::common::SystemError::ecSSL_ERROR_PEERVERIFICATION</a>, <a class="el" href="systemerror_8hpp_source.html#l00223">dodo::common::SystemError::ecSSL_ERROR_WANT_ACCEPT</a>, <a class="el" href="systemerror_8hpp_source.html#l00222">dodo::common::SystemError::ecSSL_ERROR_WANT_CONNECT</a>, <a class="el" href="systemerror_8hpp_source.html#l00220">dodo::common::SystemError::ecSSL_ERROR_WANT_READ</a>, <a class="el" href="systemerror_8hpp_source.html#l00221">dodo::common::SystemError::ecSSL_ERROR_WANT_WRITE</a>, <a class="el" href="systemerror_8hpp_source.html#l00224">dodo::common::SystemError::ecSSL_ERROR_WANT_X509_LOOKUP</a>, <a class="el" href="systemerror_8hpp_source.html#l00219">dodo::common::SystemError::ecSSL_ERROR_ZERO_RETURN</a>, <a class="el" href="tlssocket_8cpp_source.html#l00101">getPeerCertificate()</a>, <a class="el" href="tlscontext_8hpp_source.html#l00185">dodo::network::TLSContext::getPeerVerification()</a>, <a class="el" href="util_8cpp_source.html#l00154">dodo::common::getSSLErrors()</a>, <a class="el" href="tlscontext_8hpp_source.html#l00197">dodo::network::TLSContext::isAllowSANWildcards()</a>, <a class="el" href="tlssocket_8hpp_source.html#l00164">peer_name_</a>, <a class="el" href="classdodo_1_1network_1_1TLSContext.html#ac52323d8c8ebb0024a917ab92640ee7dabb1355627929f6d13a5bf081139375d2">dodo::network::TLSContext::pvVerifyFQDN</a>, <a class="el" href="x509cert_8hpp_source.html#l00079">dodo::network::X509Common::SAN::san_name</a>, <a class="el" href="basesocket_8hpp_source.html#l00504">dodo::network::BaseSocket::socket_</a>, <a class="el" href="tlssocket_8hpp_source.html#l00154">ssl_</a>, <a class="el" href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba1af3c8cd9ea46d2a701ae919c0a8c5a0">dodo::network::X509Common::stDNS</a>, <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>, <a class="el" href="tlssocket_8hpp_source.html#l00159">tlscontext_</a>, and <a class="el" href="x509cert_8cpp_source.html#l00278">dodo::network::X509Certificate::verifySAN()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classdodo_1_1network_1_1TLSSocket_a7b272413dc6806e5456741c0dffb27de_cgraph.png" border="0" usemap="#classdodo_1_1network_1_1TLSSocket_a7b272413dc6806e5456741c0dffb27de_cgraph" alt=""/></div>
 <map name="classdodo_1_1network_1_1TLSSocket_a7b272413dc6806e5456741c0dffb27de_cgraph" id="classdodo_1_1network_1_1TLSSocket_a7b272413dc6806e5456741c0dffb27de_cgraph">
-<area shape="rect" title="Connect to the Address." alt="" coords="5,136,195,177"/>
+<area shape="rect" title="Connect to the Address." alt="" coords="5,165,195,207"/>
 <area shape="rect" href="classdodo_1_1network_1_1BaseSocket.html#ac58a005f807e2e21953ce6a8ecd4eba6" title="Connect to the address." alt="" coords="255,5,453,47"/>
 <area shape="rect" href="classdodo_1_1network_1_1TLSSocket.html#a00669ad61d2b2039a08a46ec397d8298" title="Get the peer&#39;s certificate." alt="" coords="259,71,449,112"/>
 <area shape="rect" href="classdodo_1_1network_1_1TLSContext.html#aa72150a10faa0adc4131c121f3932375" title="Return the getPeerVerification mode." alt="" coords="255,136,453,177"/>
 <area shape="rect" href="namespacedodo_1_1common.html#a92751bfc7a44e638a4d3efa4ab2c6300" title="Get all OpenSSL errors as a single string, and clear their error state." alt="" coords="249,202,459,229"/>
-<area shape="rect" href="classdodo_1_1network_1_1X509Certificate.html#a1973b25cc19878e41238f89216053913" title="Verify a peer name against this certificate&#39;s CN and SubjectAltnames." alt="" coords="243,253,465,295"/>
+<area shape="rect" href="classdodo_1_1network_1_1TLSContext.html#a816312676ce36af0064ad95448d2593e" title="If true, TLS will allow SAN wildcard matching." alt="" coords="255,253,453,295"/>
+<area shape="rect" href="classdodo_1_1network_1_1X509Certificate.html#a1973b25cc19878e41238f89216053913" title="Verify a peer name against this certificate&#39;s CN and SubjectAltnames." alt="" coords="243,319,465,360"/>
 </map>
 </div>
 
@@ -636,11 +636,11 @@ Here is the call graph for this function:</div>
 <p>Get the peer's certificate. </p>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the peer certificate (must not be freed). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="tlssocket_8cpp_source.html#l00095">95</a> of file <a class="el" href="tlssocket_8cpp_source.html">tlssocket.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlssocket_8cpp_source.html#l00101">101</a> of file <a class="el" href="tlssocket_8cpp_source.html">tlssocket.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="tlssocket_8hpp_source.html#l00161">ssl_</a>.</p>
+<p class="reference">References <a class="el" href="tlssocket_8hpp_source.html#l00154">ssl_</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="tlssocket_8cpp_source.html#l00056">connect()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tlssocket_8cpp_source.html#l00057">connect()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -679,9 +679,9 @@ Here is the caller graph for this function:</div>
 <p>Return the negotiated cipher name. </p>
 <p>This is only meaningful after a connect returned SystemError::ecOK. </p><dl class="section return"><dt>Returns</dt><dd>the TLS (SSL) protocol version. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="tlssocket_8hpp_source.html#l00152">152</a> of file <a class="el" href="tlssocket_8hpp_source.html">tlssocket.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlssocket_8hpp_source.html#l00145">145</a> of file <a class="el" href="tlssocket_8hpp_source.html">tlssocket.hpp</a>.</p>
 
-<p class="reference">References <a class="el" href="tlssocket_8hpp_source.html#l00161">ssl_</a>.</p>
+<p class="reference">References <a class="el" href="tlssocket_8hpp_source.html#l00154">ssl_</a>.</p>
 
 </div>
 </div>
@@ -711,9 +711,9 @@ Here is the caller graph for this function:</div>
 <p>return the negotiated TLS (SSL) protocol version. </p>
 <p>This is only meaningfull after a connect returned SystemError::ecOK. </p><dl class="section return"><dt>Returns</dt><dd>the TLS (SSL) protocol version. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="tlssocket_8hpp_source.html#l00134">134</a> of file <a class="el" href="tlssocket_8hpp_source.html">tlssocket.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlssocket_8hpp_source.html#l00127">127</a> of file <a class="el" href="tlssocket_8hpp_source.html">tlssocket.hpp</a>.</p>
 
-<p class="reference">References <a class="el" href="tlssocket_8hpp_source.html#l00161">ssl_</a>.</p>
+<p class="reference">References <a class="el" href="tlssocket_8hpp_source.html#l00154">ssl_</a>.</p>
 
 </div>
 </div>
@@ -743,9 +743,9 @@ Here is the caller graph for this function:</div>
 <p>Return the negotiated TLS (SSL) protocol version. </p>
 <p>This is only meaningful after a connect returned SystemError::ecOK. </p><dl class="section return"><dt>Returns</dt><dd>the TLS (SSL) protocol version. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="tlssocket_8hpp_source.html#l00143">143</a> of file <a class="el" href="tlssocket_8hpp_source.html">tlssocket.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlssocket_8hpp_source.html#l00136">136</a> of file <a class="el" href="tlssocket_8hpp_source.html">tlssocket.hpp</a>.</p>
 
-<p class="reference">References <a class="el" href="tlssocket_8hpp_source.html#l00161">ssl_</a>.</p>
+<p class="reference">References <a class="el" href="tlssocket_8hpp_source.html#l00154">ssl_</a>.</p>
 
 </div>
 </div>
@@ -785,37 +785,6 @@ Here is the caller graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="tlssocket_8hpp_source.html#l00120">120</a> of file <a class="el" href="tlssocket_8hpp_source.html">tlssocket.hpp</a>.</p>
 
 <p class="reference">References <a class="el" href="basesocket_8hpp_source.html#l00504">dodo::network::BaseSocket::socket_</a>.</p>
-
-</div>
-</div>
-<a id="a44b29bfc4d483031076182d285eed2fe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a44b29bfc4d483031076182d285eed2fe">&#9670;&nbsp;</a></span>operator=()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classdodo_1_1network_1_1TLSSocket.html">TLSSocket</a> &amp; dodo::network::TLSSocket::operator= </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classdodo_1_1network_1_1TLSSocket.html">TLSSocket</a> &amp;&#160;</td>
-          <td class="paramname"><em>socket</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Assign from <a class="el" href="classdodo_1_1network_1_1Socket.html" title="A Linux socket.">Socket</a>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">socket</td><td>The <a class="el" href="classdodo_1_1network_1_1Socket.html" title="A Linux socket.">Socket</a> to assign/copy to this <a class="el" href="classdodo_1_1network_1_1Socket.html" title="A Linux socket.">Socket</a>. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>this <a class="el" href="classdodo_1_1network_1_1TLSSocket.html" title="Socket for TLS encrypted traffic between trusted endpoints.">TLSSocket</a>. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="tlssocket_8cpp_source.html#l00136">136</a> of file <a class="el" href="tlssocket_8cpp_source.html">tlssocket.cpp</a>.</p>
-
-<p class="reference">References <a class="el" href="basesocket_8hpp_source.html#l00504">dodo::network::BaseSocket::socket_</a>, <a class="el" href="tlssocket_8hpp_source.html#l00161">ssl_</a>, and <a class="el" href="tlssocket_8hpp_source.html#l00166">tlscontext_</a>.</p>
 
 </div>
 </div>
@@ -911,9 +880,9 @@ Here is the caller graph for this function:</div>
 
 <p>Implements <a class="el" href="classdodo_1_1network_1_1BaseSocket.html#a70f6f4d9cfc0bb4a415d02c61002e616">dodo::network::BaseSocket</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="tlssocket_8cpp_source.html#l00117">117</a> of file <a class="el" href="tlssocket_8cpp_source.html">tlssocket.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlssocket_8cpp_source.html#l00123">123</a> of file <a class="el" href="tlssocket_8cpp_source.html">tlssocket.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="systemerror_8hpp_source.html#l00060">dodo::common::SystemError::ecOK</a>, <a class="el" href="systemerror_8hpp_source.html#l00218">dodo::common::SystemError::ecSSL_ERROR_NONE</a>, <a class="el" href="systemerror_8hpp_source.html#l00223">dodo::common::SystemError::ecSSL_ERROR_WANT_ACCEPT</a>, <a class="el" href="systemerror_8hpp_source.html#l00222">dodo::common::SystemError::ecSSL_ERROR_WANT_CONNECT</a>, <a class="el" href="systemerror_8hpp_source.html#l00220">dodo::common::SystemError::ecSSL_ERROR_WANT_READ</a>, <a class="el" href="systemerror_8hpp_source.html#l00221">dodo::common::SystemError::ecSSL_ERROR_WANT_WRITE</a>, <a class="el" href="systemerror_8hpp_source.html#l00224">dodo::common::SystemError::ecSSL_ERROR_WANT_X509_LOOKUP</a>, <a class="el" href="systemerror_8hpp_source.html#l00219">dodo::common::SystemError::ecSSL_ERROR_ZERO_RETURN</a>, <a class="el" href="util_8cpp_source.html#l00154">dodo::common::getSSLErrors()</a>, <a class="el" href="tlssocket_8hpp_source.html#l00161">ssl_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="systemerror_8hpp_source.html#l00060">dodo::common::SystemError::ecOK</a>, <a class="el" href="systemerror_8hpp_source.html#l00218">dodo::common::SystemError::ecSSL_ERROR_NONE</a>, <a class="el" href="systemerror_8hpp_source.html#l00228">dodo::common::SystemError::ecSSL_ERROR_SYSCALL</a>, <a class="el" href="systemerror_8hpp_source.html#l00223">dodo::common::SystemError::ecSSL_ERROR_WANT_ACCEPT</a>, <a class="el" href="systemerror_8hpp_source.html#l00222">dodo::common::SystemError::ecSSL_ERROR_WANT_CONNECT</a>, <a class="el" href="systemerror_8hpp_source.html#l00220">dodo::common::SystemError::ecSSL_ERROR_WANT_READ</a>, <a class="el" href="systemerror_8hpp_source.html#l00221">dodo::common::SystemError::ecSSL_ERROR_WANT_WRITE</a>, <a class="el" href="systemerror_8hpp_source.html#l00224">dodo::common::SystemError::ecSSL_ERROR_WANT_X509_LOOKUP</a>, <a class="el" href="systemerror_8hpp_source.html#l00219">dodo::common::SystemError::ecSSL_ERROR_ZERO_RETURN</a>, <a class="el" href="util_8cpp_source.html#l00154">dodo::common::getSSLErrors()</a>, <a class="el" href="tlssocket_8hpp_source.html#l00154">ssl_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -979,9 +948,9 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classdodo_1_1network_1_1BaseSocket.html#a5400d3aef38ae1009e7c6c6c200e5228">dodo::network::BaseSocket</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="tlssocket_8cpp_source.html#l00099">99</a> of file <a class="el" href="tlssocket_8cpp_source.html">tlssocket.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlssocket_8cpp_source.html#l00105">105</a> of file <a class="el" href="tlssocket_8cpp_source.html">tlssocket.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="systemerror_8hpp_source.html#l00060">dodo::common::SystemError::ecOK</a>, <a class="el" href="systemerror_8hpp_source.html#l00218">dodo::common::SystemError::ecSSL_ERROR_NONE</a>, <a class="el" href="systemerror_8hpp_source.html#l00223">dodo::common::SystemError::ecSSL_ERROR_WANT_ACCEPT</a>, <a class="el" href="systemerror_8hpp_source.html#l00222">dodo::common::SystemError::ecSSL_ERROR_WANT_CONNECT</a>, <a class="el" href="systemerror_8hpp_source.html#l00220">dodo::common::SystemError::ecSSL_ERROR_WANT_READ</a>, <a class="el" href="systemerror_8hpp_source.html#l00221">dodo::common::SystemError::ecSSL_ERROR_WANT_WRITE</a>, <a class="el" href="systemerror_8hpp_source.html#l00224">dodo::common::SystemError::ecSSL_ERROR_WANT_X509_LOOKUP</a>, <a class="el" href="systemerror_8hpp_source.html#l00219">dodo::common::SystemError::ecSSL_ERROR_ZERO_RETURN</a>, <a class="el" href="util_8cpp_source.html#l00154">dodo::common::getSSLErrors()</a>, <a class="el" href="tlssocket_8hpp_source.html#l00161">ssl_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="systemerror_8hpp_source.html#l00060">dodo::common::SystemError::ecOK</a>, <a class="el" href="systemerror_8hpp_source.html#l00218">dodo::common::SystemError::ecSSL_ERROR_NONE</a>, <a class="el" href="systemerror_8hpp_source.html#l00223">dodo::common::SystemError::ecSSL_ERROR_WANT_ACCEPT</a>, <a class="el" href="systemerror_8hpp_source.html#l00222">dodo::common::SystemError::ecSSL_ERROR_WANT_CONNECT</a>, <a class="el" href="systemerror_8hpp_source.html#l00220">dodo::common::SystemError::ecSSL_ERROR_WANT_READ</a>, <a class="el" href="systemerror_8hpp_source.html#l00221">dodo::common::SystemError::ecSSL_ERROR_WANT_WRITE</a>, <a class="el" href="systemerror_8hpp_source.html#l00224">dodo::common::SystemError::ecSSL_ERROR_WANT_X509_LOOKUP</a>, <a class="el" href="systemerror_8hpp_source.html#l00219">dodo::common::SystemError::ecSSL_ERROR_ZERO_RETURN</a>, <a class="el" href="util_8cpp_source.html#l00154">dodo::common::getSSLErrors()</a>, <a class="el" href="tlssocket_8hpp_source.html#l00154">ssl_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1017,9 +986,9 @@ Here is the call graph for this function:</div>
 
 <p>The peer name connected to, for TLS CN and SubjectAltName matching. </p>
 
-<p class="definition">Definition at line <a class="el" href="tlssocket_8hpp_source.html#l00171">171</a> of file <a class="el" href="tlssocket_8hpp_source.html">tlssocket.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlssocket_8hpp_source.html#l00164">164</a> of file <a class="el" href="tlssocket_8hpp_source.html">tlssocket.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="tlssocket_8cpp_source.html#l00056">connect()</a>, and <a class="el" href="tlssocket_8cpp_source.html#l00039">TLSSocket()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tlssocket_8cpp_source.html#l00057">connect()</a>, and <a class="el" href="tlssocket_8cpp_source.html#l00040">TLSSocket()</a>.</p>
 
 </div>
 </div>
@@ -1045,9 +1014,9 @@ Here is the call graph for this function:</div>
 
 <p>The SSL object. </p>
 
-<p class="definition">Definition at line <a class="el" href="tlssocket_8hpp_source.html#l00161">161</a> of file <a class="el" href="tlssocket_8hpp_source.html">tlssocket.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlssocket_8hpp_source.html#l00154">154</a> of file <a class="el" href="tlssocket_8hpp_source.html">tlssocket.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="tlssocket_8cpp_source.html#l00082">accept()</a>, <a class="el" href="tlssocket_8cpp_source.html#l00056">connect()</a>, <a class="el" href="tlssocket_8cpp_source.html#l00095">getPeerCertificate()</a>, <a class="el" href="tlssocket_8hpp_source.html#l00152">getTLSCurrentCipherName()</a>, <a class="el" href="tlssocket_8hpp_source.html#l00134">getTLSProtocolVersion()</a>, <a class="el" href="tlssocket_8hpp_source.html#l00143">getTLSProtocolVersionString()</a>, <a class="el" href="tlssocket_8cpp_source.html#l00136">operator=()</a>, <a class="el" href="tlssocket_8cpp_source.html#l00117">receive()</a>, <a class="el" href="tlssocket_8cpp_source.html#l00099">send()</a>, <a class="el" href="tlssocket_8cpp_source.html#l00039">TLSSocket()</a>, and <a class="el" href="tlssocket_8cpp_source.html#l00052">~TLSSocket()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tlssocket_8cpp_source.html#l00088">accept()</a>, <a class="el" href="tlssocket_8cpp_source.html#l00057">connect()</a>, <a class="el" href="tlssocket_8cpp_source.html#l00101">getPeerCertificate()</a>, <a class="el" href="tlssocket_8hpp_source.html#l00145">getTLSCurrentCipherName()</a>, <a class="el" href="tlssocket_8hpp_source.html#l00127">getTLSProtocolVersion()</a>, <a class="el" href="tlssocket_8hpp_source.html#l00136">getTLSProtocolVersionString()</a>, <a class="el" href="tlssocket_8cpp_source.html#l00123">receive()</a>, <a class="el" href="tlssocket_8cpp_source.html#l00105">send()</a>, <a class="el" href="tlssocket_8cpp_source.html#l00032">TLSSocket()</a>, and <a class="el" href="tlssocket_8cpp_source.html#l00053">~TLSSocket()</a>.</p>
 
 </div>
 </div>
@@ -1073,9 +1042,9 @@ Here is the call graph for this function:</div>
 
 <p>The <a class="el" href="classdodo_1_1network_1_1TLSContext.html" title="TLS security context.">TLSContext</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="tlssocket_8hpp_source.html#l00166">166</a> of file <a class="el" href="tlssocket_8hpp_source.html">tlssocket.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlssocket_8hpp_source.html#l00159">159</a> of file <a class="el" href="tlssocket_8hpp_source.html">tlssocket.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="tlssocket_8cpp_source.html#l00082">accept()</a>, <a class="el" href="tlssocket_8cpp_source.html#l00056">connect()</a>, and <a class="el" href="tlssocket_8cpp_source.html#l00136">operator=()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tlssocket_8cpp_source.html#l00088">accept()</a>, and <a class="el" href="tlssocket_8cpp_source.html#l00057">connect()</a>.</p>
 
 </div>
 </div>

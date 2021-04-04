@@ -1,6 +1,6 @@
 <map id="dodo::network::FileReadBuffer" name="dodo::network::FileReadBuffer">
-<area shape="rect" id="node1" title="File&#45;based VirtualReadBuffer, conventient for testing purposes as parsers can be tested against file ..." alt="" coords="149,124,367,151"/>
-<area shape="rect" id="node2" href="$classdodo_1_1network_1_1VirtualReadBuffer.html" title="Interface to read individual bytes whilst the implementation can read from an actual source (such as ..." alt="" coords="5,5,204,47"/>
-<area shape="rect" id="node3" title=" " alt="" coords="228,13,288,39"/>
-<area shape="rect" id="node4" title=" " alt="" coords="312,13,372,39"/>
+<area shape="rect" id="node1" title="File&#45;based VirtualReadBuffer, conventient for testing purposes as parsers can be tested against file ..." alt="" coords="69,199,287,225"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1VirtualReadBuffer.html" title="Interface to read individual bytes whilst the implementation can read from an actual source (such as ..." alt="" coords="79,95,277,136"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,5,65,32"/>
+<area shape="rect" id="node4" title=" " alt="" coords="301,102,361,129"/>
 </map>

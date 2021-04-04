@@ -1,4 +1,0 @@
-<map id="dodo::network::HTTPMessage::isCTL" name="dodo::network::HTTPMessage::isCTL">
-<area shape="rect" id="node1" title="Check is the char is a CTL character." alt="" coords="268,5,483,47"/>
-<area shape="rect" id="node2" href="$classdodo_1_1network_1_1HTTPMessage.html#a1c7142f711bbcf970616ae894c8b3172" title="Parse a token (such as a header field name)." alt="" coords="5,5,220,47"/>
-</map>

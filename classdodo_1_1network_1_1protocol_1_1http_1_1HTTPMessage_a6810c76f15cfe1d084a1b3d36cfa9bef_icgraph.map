@@ -1,0 +1,4 @@
+<map id="dodo::network::protocol::http::HTTPMessage::addHeader" name="dodo::network::protocol::http::HTTPMessage::addHeader">
+<area shape="rect" id="node1" title="Add a header to the HTTPMessage." alt="" coords="308,5,543,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#a9a0d271a843a5809aa5d4eb688e829fa" title="Parse a header section and update headers_." alt="" coords="5,5,260,47"/>
+</map>

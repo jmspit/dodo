@@ -1,0 +1,4 @@
+<map id="dodo::network::protocol::http::HTTPFragment::ParseResult::getSystemError" name="dodo::network::protocol::http::HTTPFragment::ParseResult::getSystemError">
+<area shape="rect" id="node1" title="Return the systemError." alt="" coords="244,5,451,61"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPVersion.html#ae45c033b2d9678c70f258f41d5166718" title="Construct from current position in the VirtualReadBuffer &#39;HTTP/major_.minor_&#39;." alt="" coords="5,13,196,54"/>
+</map>

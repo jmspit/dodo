@@ -163,7 +163,7 @@ namespace dodo::common {
       file_params_.file.open( file_params_.active_log, std::ofstream::out | std::ofstream::app );
       file_params_.filesize = getFileSize( file_params_.active_log );
 
-      std::set<string> trail;
+      std::set<std::string> trail;
       std::regex log_regex( "^" + file_params_.active_log + "\\..*" );
       for ( const auto & entry : std::filesystem::directory_iterator( file_params_.directory ) ) {
         if ( std::regex_match( entry.path().string(), log_regex ) ) {

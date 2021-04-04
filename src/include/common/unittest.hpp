@@ -26,8 +26,6 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
-
 namespace dodo::common {
 
   /**
@@ -42,7 +40,7 @@ namespace dodo::common {
        * @param description The description of the test.
        * @param out The ostream to write to.
        */
-      UnitTest( const string &name, const string &description, ostream *out );
+      UnitTest( const std::string &name, const std::string &description, std::ostream *out );
 
       /**
        * Destructor.
@@ -70,7 +68,7 @@ namespace dodo::common {
        * @param passed True if the test passed.
        * @return The value of parameter passed.
        */
-      bool writeSubTestResult( const string &name, const string& description, bool passed );
+      bool writeSubTestResult( const std::string &name, const std::string& description, bool passed );
 
     private:
 
@@ -81,13 +79,13 @@ namespace dodo::common {
       void writeUnitTestSummary();
 
       /** The test name. */
-      string name_;
+      std::string name_;
 
       /** The test description. */
-      string description_;
+      std::string description_;
 
       /** The output destination. */
-      ostream *out_;
+      std::ostream *out_;
 
       /** The total number of tests. */
       size_t total_;

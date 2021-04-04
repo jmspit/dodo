@@ -87,7 +87,7 @@ namespace dodo::common {
     if ( EVP_CIPHER_CTX_ctrl( ctx, EVP_CTRL_GCM_GET_TAG, (int)tag.getSize(), tag.getArray() ) != 1 )
       throw_Exception( "EVP_CIPHER_CTX_ctrl : " << common::getSSLErrors( '\n' ) );
 
-    stringstream ss;
+    std::stringstream ss;
     ss << "ENC[cipher:" << cipher2String( cipher ) << ",";
     ss << "data:" << encrypted.encodeBase64();
     ss << ",iv:" << iv.encodeBase64();

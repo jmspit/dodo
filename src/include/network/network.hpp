@@ -25,12 +25,14 @@
 
 #include "network/address.hpp"
 #include "network/basesocket.hpp"
-#include "network/protocol/stomp.hpp"
+#include "network/protocol/http/http.hpp"
+#include "network/protocol/stomp/stomp.hpp"
 #include "network/socket.hpp"
 #include "network/tcplistener.hpp"
 #include "network/tcpserver.hpp"
 #include "network/tlscontext.hpp"
 #include "network/tlssocket.hpp"
+#include "network/uri.hpp"
 #include "network/x509cert.hpp"
 
 namespace dodo {
@@ -67,6 +69,12 @@ namespace dodo {
      * Application layer protocols.
      */
     namespace protocol {
+
+      /**
+       * The HTTP 1.1 protocol
+       */
+      namespace http {
+      }
 
       /**
        * The STOMP 1.2 protocol (earlier versions not supported).

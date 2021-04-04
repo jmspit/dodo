@@ -33,8 +33,6 @@
 
 namespace dodo::common {
 
-  using namespace std;
-
     /**
      * Linux system error primitive to provide a consistent interface to
      * Linux error codes. The [[nodiscard]] attribute causes the compiler to issue a warning in case
@@ -250,39 +248,44 @@ namespace dodo::common {
         SystemError( int e ) : errorcode_(ErrorCode(e)) {};
 
         /**
+         * Returns true when this->errorcode_  == ecOK
+         */
+        bool ok() const { return this->errorcode_ == ecOK; }
+
+        /**
          * Compare this SystemError to the system error e.
          * @param e The int to compare to.
          * @return true when unequal.
          */
-        bool operator!=( int e ) { return this->errorcode_ != ErrorCode(e); };
+        bool operator!=( int e ) const { return this->errorcode_ != ErrorCode(e); };
 
         /**
          * Compare this SystemError to the ErrorCode e.
          * @param e The ErrorCode to compare to.
          * @return true when unequal.
          */
-        bool operator!=( ErrorCode e ) { return this->errorcode_ != e; };
+        bool operator!=( ErrorCode e ) const { return this->errorcode_ != e; };
 
         /**
          * Compare this SystemError to the SystemError e.
          * @param e The SystemError to compare to.
          * @return true when unequal.
          */
-        bool operator!=( SystemError e ) { return this->errorcode_ != e.errorcode_; };
+        bool operator!=( SystemError e ) const { return this->errorcode_ != e.errorcode_; };
 
         /**
          * Compare this SystemError to the ErrorCode e.
          * @param e The error to compare to.
          * @return true when equal.
          */
-        bool operator==( ErrorCode e ) { return this->errorcode_ == e; };
+        bool operator==( ErrorCode e ) const { return this->errorcode_ == e; };
 
         /**
          * Compare this SystemError to the SystemError e.
          * @param e The SystemError to compare to.
          * @return true when equal.
          */
-        bool operator==( const SystemError& e ) { return this->errorcode_ == e.errorcode_; };
+        bool operator==( const SystemError& e ) const { return this->errorcode_ == e.errorcode_; };
 
         /**
          * Assign system error e.
@@ -315,14 +318,18 @@ namespace dodo::common {
          * Get the system error string.
          * @return The system error string.
          */
-        string asString() const {
-          stringstream ss;
+        std::string asString() const {
+          std::stringstream ss;
           if ( errorcode_ > 0 ) {
             if ( errorcode_ >= ecLIBRARY_FIRST )
               ss << libstrerror( errorcode_ );
             else
               ss << strerror(errorcode_);
-          } else ss << gai_strerror(errorcode_);
+          } else if ( errorcode_ == 0 ) {
+            ss << "Succes";
+          } else {
+            ss << gai_strerror(errorcode_);
+          }
           ss << " (" << errorcode_ << ")";
           return ss.str();
         };
@@ -332,10 +339,12 @@ namespace dodo::common {
          * @param error The SystemError to translate.
          * @return The error string.
          */
-        static string libstrerror( SystemError error ) {
+        static std::string libstrerror( SystemError error ) {
           switch ( error ) {
             case SystemError::ecSSL_ERROR_PEERVERIFICATION:
               return "The peer certificate CN or SubjectAltNames do not match";
+            case SystemError::ecSSL_ERROR_SYSCALL:
+              return "A SSL function encountered a failed syscall";
             case SystemError::ecSSL:
               return "SSL exception thrown";
             default : return common::Puts() << "unknown error" << error;

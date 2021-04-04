@@ -37,6 +37,9 @@ namespace dodo::persist {
    */
   namespace sqlite {
 
+    /**
+     * Prototype for wait/busy handlers.
+     */
     typedef int(*WaitHandler)(void*,int);
 
     /**
@@ -114,6 +117,7 @@ namespace dodo::persist {
 
         /**
          * Return the database filename.
+         * @return The file name.
          */
         std::string getFileName() const { return sqlite3_db_filename( database_, "main" ); };
 
@@ -124,17 +128,20 @@ namespace dodo::persist {
         sqlite3* getDB() const { return database_; };
 
         /**
-         * get the current user_version pragma
+         * get the current user_version pragma (a user defined database schema version)
+         * @return The user version.
          */
         int getUserVersion() const;
 
         /**
          * Get the rowid of the last inserted row.
+         * @return The last rowid
          */
         int64_t lastInsertRowid() const;
 
         /**
          * Get memory in use by the SQLite library.
+         * @return the amount of memory used.
          */
         static int64_t memUsed() {
           return sqlite3_memory_used();
@@ -142,6 +149,7 @@ namespace dodo::persist {
 
         /**
          * Get memory highwater by the SQLite library.
+         * @return The max memory ever used.
          */
         static int64_t memHighWater() {
           return sqlite3_memory_highwater(0);
@@ -176,11 +184,16 @@ namespace dodo::persist {
 
         /**
          * set the user_version pragma
+         * @param version The user version to set.
          */
         void setUserVersion( int version );
 
         /**
-         * Get the SQLite soft heap limti.
+         * Set the SQLite soft heap limit - ask SQLite to strive to limit its memory use (caching).
+         * A value of 0 disables the limit.
+         * @param limit The limit to set.
+         * @return The previous soft heap limit.
+         * @see https://www.sqlite.org/c3ref/hard_heap_limit64.html
          */
         static int64_t softHeapLimit( int64_t limit ) {
           return sqlite3_soft_heap_limit64( limit );
@@ -199,6 +212,7 @@ namespace dodo::persist {
 
         /**
          * Constructor.
+         * @param db The database context of the statement.
          */
         Statement( const Database& db );
 
@@ -247,10 +261,16 @@ namespace dodo::persist {
     class DDL : public Statement {
       public:
 
-        /** Constructor. */
+        /**
+         * Constructor.
+         * @param db Yhe database context.
+         */
         DDL( const Database& db ) : Statement( db ) {};
 
-        /** Destructor. */
+        /**
+         * Destructor.
+         * @param db Yhe database context.
+         */
         virtual ~DDL() {};
 
         /**
@@ -261,6 +281,7 @@ namespace dodo::persist {
 
         /**
          * execute and return result code.
+         * @return the SQLite error code.
          * @see execute
          */
         int execute_r();
@@ -273,7 +294,10 @@ namespace dodo::persist {
     class DML : public Statement {
       public:
 
-        /** Constructor. */
+        /**
+         * Constructor.
+         * @param db Yhe database context.
+         */
         DML( const Database& db );
 
         /** Destructor. */
@@ -375,7 +399,10 @@ namespace dodo::persist {
           dtUnknown = 91,             /**< Used to indicate a DataType that could not be determined */
         };
 
-        /** Constructor. */
+        /**
+         * Constructor.
+         * @param db Yhe database context.
+         */
         Query( const Database& db ) : DML( db ) {};
 
         /** Destructor. */
@@ -396,6 +423,8 @@ namespace dodo::persist {
 
         /**
          * Get the dataype of a select list column.
+         * @param col The column index (start with 0).
+         * @return The Dataype of the select list column.
          */
         DataType getDataType( int col ) const;
 

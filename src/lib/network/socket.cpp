@@ -33,7 +33,7 @@ namespace dodo::network {
 
   Socket Socket::SocketInvalid = Socket();
 
-  SystemError Socket::send( const void* buf, ssize_t len, bool more ) {
+  common::SystemError Socket::send( const void* buf, ssize_t len, bool more ) {
     int flags = MSG_NOSIGNAL;
     if ( more ) flags = flags | MSG_MORE;
     ssize_t left = len;
@@ -47,16 +47,16 @@ namespace dodo::network {
     }
     if ( rc < 0 ) {
       switch ( errno ) {
-        case SystemError::ecEAGAIN :
-        case SystemError::ecECONNRESET :
+        case common::SystemError::ecEAGAIN :
+        case common::SystemError::ecECONNRESET :
           return errno;
         default: throw_SystemExceptionObject( "Socket::send failed", errno, this );
       };
     } else if ( left ) throw_SystemExceptionObject( "Socket::send not all bytes send", errno, this );
-    else return SystemError::ecOK;
+    else return common::SystemError::ecOK;
   }
 
-  SystemError Socket::sendTo( const Address& address, const void* buf, ssize_t len ) {
+  common::SystemError Socket::sendTo( const Address& address, const void* buf, ssize_t len ) {
     int flags = 0;
     ssize_t left = len;
     ssize_t rc = 0;
@@ -69,34 +69,30 @@ namespace dodo::network {
     }
     if ( rc < 0 ) {
       switch ( errno ) {
-        case SystemError::ecEAGAIN :
-        case SystemError::ecECONNRESET :
+        case common::SystemError::ecEAGAIN :
+        case common::SystemError::ecECONNRESET :
           return errno;
         default: throw_SystemExceptionObject( "Socket::send failed", errno, this );
       };
     } else if ( left ) throw_SystemExceptionObject( "Socket::send not all bytes send", errno, this );
-    else return SystemError::ecOK;
+    else return common::SystemError::ecOK;
   }
 
-  SystemError Socket::receive( void* buf, ssize_t request, ssize_t &received ) {
+  common::SystemError Socket::receive( void* buf, ssize_t request, ssize_t &received ) {
     received = 0;
     ssize_t rc = ::recv( socket_, buf, request, 0 );
     if ( rc < 0 ) {
       switch ( errno ) {
-        case SystemError::ecEAGAIN :
-        case SystemError::ecECONNREFUSED :
-        case SystemError::ecENOTCONN :
+        case common::SystemError::ecEAGAIN :
+        case common::SystemError::ecECONNREFUSED :
+        case common::SystemError::ecENOTCONN :
           return errno;
         default: throw_SystemExceptionObject( "Socket::receive failed", errno, this );
       };
     } else {
       received = rc;
-      return SystemError::ecOK;
+      return common::SystemError::ecOK;
     }
-  }
-
-  Socket::Socket( const Socket& socket ) {
-    socket_ = socket.getFD();
   }
 
   Socket* Socket::accept() {

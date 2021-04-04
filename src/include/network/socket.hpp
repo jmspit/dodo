@@ -36,10 +36,6 @@
 
 namespace dodo::network {
 
-  using namespace std;
-  using namespace common;
-
-
   /**
    * A Linux socket.
    * Socket objects refer to, but do not own a particular socket descriptor. The programmer controls closing the socket
@@ -80,12 +76,6 @@ namespace dodo::network {
       Socket( bool blocking ) : BaseSocket( blocking ) {};
 
       /**
-       * Construct a copy of another Socket.
-       * @param socket The other socket.
-       */
-      Socket( const Socket& socket );
-
-      /**
        * Destructs this Socket, but does not call close().
        */
       virtual ~Socket() {};
@@ -101,7 +91,7 @@ namespace dodo::network {
        *   - SystemError::ecECONNRESET : The peer has disconnected during the send.
        * @see sendTo()
        */
-      virtual SystemError send( const void* buf, ssize_t len, bool more = false );
+      virtual common::SystemError send( const void* buf, ssize_t len, bool more = false );
 
       /**
        * Send raw packets to the given Address.
@@ -110,7 +100,7 @@ namespace dodo::network {
        * @param len The number of bytes to send.
        * @return The SystemError.
        */
-      virtual SystemError sendTo( const Address& address, const void* buf, ssize_t len );
+      virtual common::SystemError sendTo( const Address& address, const void* buf, ssize_t len );
 
       /**
        * Receive bytes
@@ -124,7 +114,7 @@ namespace dodo::network {
        *   -  SystemError::ecECONNREFUSED
        * On other errors returned by the internal call to recv, an exception is thrown.
        */
-      virtual SystemError receive( void* buf, ssize_t request, ssize_t &received );
+      virtual common::SystemError receive( void* buf, ssize_t request, ssize_t &received );
 
       /**
        * Accepts a connection request and return a pointer to a new Socket for the new connection, the caller will

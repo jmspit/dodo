@@ -132,7 +132,7 @@ namespace dodo::persist {
     return count == 1;
   }
 
-  void KVStore::filterKeys( std::list<std::string>& keys, const std::string &filter ) {
+  void KVStore::filterKeys( std::list<std::string>& keys, const std::string &filter ) const {
     keys.clear();
     stmt_key_filter_->bind( 1, filter );
     while ( stmt_key_filter_->step() ) {
@@ -141,7 +141,7 @@ namespace dodo::persist {
     stmt_key_filter_->reset();
   }
 
-  KVStore::MetaData KVStore::getMetaData( const std::string &key ) {
+  KVStore::MetaData KVStore::getMetaData( const std::string &key ) const {
     MetaData data;
     stmt_metadata_->bind( 1, key );
     if ( stmt_metadata_->step() ) {

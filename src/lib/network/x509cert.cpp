@@ -209,12 +209,12 @@ namespace dodo::network {
             ip << (int)data[0] << '.' << (int)data[1] << '.' << (int)data[2] << '.' << (int)data[3];
             result.push_back( { static_cast<X509Common::SANType>(generalname->type), ip.str() } );
           } else {
-            const unsigned char *data = ASN1_STRING_get0_data( generalname->d.iPAddress );
+            const unsigned char *ipdata = ASN1_STRING_get0_data( generalname->d.iPAddress );
             int datalen = ASN1_STRING_length( generalname->d.ia5 );
-            const unsigned char *p = data;
+            const unsigned char *p = ipdata;
             std::stringstream ip;
-            for ( int i = 0; i < datalen/2 ; i++ ) {
-              if ( i > 0 ) ip << ":";
+            for ( int j = 0; j < datalen/2 ; j++ ) {
+              if ( j > 0 ) ip << ":";
               ip << std::hex << (int)(p[0] << 8 | p[1]);
               p+=2;
             }
@@ -245,7 +245,7 @@ namespace dodo::network {
     return ss.str();
   }
 
-  bool X509Certificate::verifyName( const std::string peer, const std::string san, bool allowwildcard ) {
+  bool X509Certificate::verifyName( const std::string &peer, const std::string &san, bool allowwildcard ) {
     if ( peer.length() < san.length() ) return false;
     auto itr_peer = peer.rbegin();
     auto itr_san = san.rbegin();
@@ -266,7 +266,7 @@ namespace dodo::network {
     return peer.length() == san.length();
   }
 
-  bool X509Certificate::verifyIP( const std::string peer, const std::string san ) {
+  bool X509Certificate::verifyIP( const std::string &peer, const std::string &san ) {
     network::Address addr_peer = peer;
     network::Address addr_san = san;
     if ( addr_peer.isValid() && addr_san.isValid() && addr_peer == addr_san )
@@ -275,7 +275,7 @@ namespace dodo::network {
       return false;
   }
 
-  bool X509Certificate::verifySAN( const X509 *cert, const SAN &san ) {
+  bool X509Certificate::verifySAN( const X509 *cert, const SAN &san, bool wildcards ) {
     bool verified = false;
     auto cert_sans = getSubjectAltNames( cert );
     X509Common::Identity subject = getSubject( cert );
@@ -284,20 +284,17 @@ namespace dodo::network {
       case SANType::stDNS:
       case SANType::stURI:
       case SANType::stEMAIL:
-        for ( auto s : cert_sans ) {
-          if ( s.san_type == san.san_type && verifyName( san.san_name, s.san_name, true ) ) {
-            verified = true;
-            break;
-          }
-        }
+        verified = std::any_of( cert_sans.cbegin(),
+                                cert_sans.cend(),
+                                [san,wildcards](const SAN &s) -> bool { return s.san_type == san.san_type &&
+                                                                               verifyName( san.san_name, s.san_name, wildcards ); } );
+
         break;
       case SANType::stIP:
-        for ( auto s : cert_sans ) {
-          if ( s.san_type == san.san_type && verifyIP( san.san_name, s.san_name ) ) {
-            verified = true;
-            break;
-          }
-        }
+        verified = std::any_of( cert_sans.cbegin(),
+                                cert_sans.cend(),
+                                [san](const SAN &s) -> bool { return s.san_type == san.san_type &&
+                                                                                   verifyIP( san.san_name, s.san_name ); } );
         break;
     }
     return verified;

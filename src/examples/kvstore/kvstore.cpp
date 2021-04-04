@@ -60,6 +60,7 @@ void updateKeys( persist::KVStore &store ) {
 int main() {
 
   try {
+    dodo::initLibrary();
     persist::KVStore store( "kvstore.db" );
     common::StopWatch sw;
     double time_setup = 0.0;
@@ -90,5 +91,7 @@ int main() {
   catch ( const runtime_error  &e ) {
     cerr << e.what() << endl;
   }
+  std::remove( "kvstore.db" );
+  dodo::closeLibrary();
   return 0;
 }

@@ -34,6 +34,7 @@ namespace dodo::network {
                         const X509Common::SAN& peer_name ) :
 
                         BaseSocket( socket ), tlscontext_(tlscontext), peer_name_(peer_name) {
+    ssl_ = nullptr;
   }
 
   TLSSocket::TLSSocket( bool blocking,
@@ -50,32 +51,37 @@ namespace dodo::network {
   }
 
   TLSSocket::~TLSSocket() {
-    SSL_free( ssl_ );
+    if (ssl_ ) SSL_free( ssl_ );
   }
 
-  SystemError TLSSocket::connect( const Address &address ) {
-    SystemError error = BaseSocket::connect( address );
+  common::SystemError TLSSocket::connect( const Address &address ) {
+    common::SystemError error = BaseSocket::connect( address );
     if ( error == common::SystemError::ecOK ) {
-      auto rc = SSL_connect( ssl_ );
+      auto rc = SSL_set_fd( ssl_, socket_ );
+      if ( rc != 1 ) {
+        auto ssl_error_code = SSL_get_error( ssl_, rc );
+        throw_Exception( ssl_error_code << " " << common::getSSLErrors( '\n' )  );
+      }
+      rc = SSL_connect( ssl_ );
       if ( rc != 1 ) {
         auto ssl_error_code = SSL_get_error( ssl_, rc );
         switch ( ssl_error_code ) {
-          case SSL_ERROR_NONE :             return SystemError::ecSSL_ERROR_NONE;
-          case SSL_ERROR_ZERO_RETURN :      return SystemError::ecSSL_ERROR_ZERO_RETURN;
-          case SSL_ERROR_WANT_READ :        return SystemError::ecSSL_ERROR_WANT_READ;
-          case SSL_ERROR_WANT_WRITE :       return SystemError::ecSSL_ERROR_WANT_WRITE;
-          case SSL_ERROR_WANT_CONNECT :     return SystemError::ecSSL_ERROR_WANT_CONNECT;
-          case SSL_ERROR_WANT_ACCEPT :      return SystemError::ecSSL_ERROR_WANT_ACCEPT;
-          case SSL_ERROR_WANT_X509_LOOKUP : return SystemError::ecSSL_ERROR_WANT_X509_LOOKUP;
+          case SSL_ERROR_NONE :             return common::SystemError::ecSSL_ERROR_NONE;
+          case SSL_ERROR_ZERO_RETURN :      return common::SystemError::ecSSL_ERROR_ZERO_RETURN;
+          case SSL_ERROR_WANT_READ :        return common::SystemError::ecSSL_ERROR_WANT_READ;
+          case SSL_ERROR_WANT_WRITE :       return common::SystemError::ecSSL_ERROR_WANT_WRITE;
+          case SSL_ERROR_WANT_CONNECT :     return common::SystemError::ecSSL_ERROR_WANT_CONNECT;
+          case SSL_ERROR_WANT_ACCEPT :      return common::SystemError::ecSSL_ERROR_WANT_ACCEPT;
+          case SSL_ERROR_WANT_X509_LOOKUP : return common::SystemError::ecSSL_ERROR_WANT_X509_LOOKUP;
           case SSL_ERROR_SSL :
           default: throw_Exception( ssl_error_code << " " << common::getSSLErrors( '\n' )  );
         }
       }
       if ( tlscontext_.getPeerVerification() == TLSContext::PeerVerification::pvVerifyFQDN )  {
-        if ( X509Certificate::verifySAN( getPeerCertificate(), { network::X509Common::SANType::stDNS, peer_name_.san_name } ) ) {
-          return SystemError::ecOK;
-        } else return SystemError::ecSSL_ERROR_PEERVERIFICATION;
-      } else return SystemError::ecOK;
+        if ( X509Certificate::verifySAN( getPeerCertificate(), { network::X509Common::SANType::stDNS, peer_name_.san_name }, tlscontext_.isAllowSANWildcards() ) ) {
+          return common::SystemError::ecOK;
+        } else return common::SystemError::ecSSL_ERROR_PEERVERIFICATION;
+      } else return common::SystemError::ecOK;
     } else return error;
   }
 
@@ -96,48 +102,43 @@ namespace dodo::network {
     return SSL_get_peer_certificate(ssl_);
   }
 
-  SystemError TLSSocket::send( const void* buf, ssize_t len, bool more ) {
+  common::SystemError TLSSocket::send( const void* buf, ssize_t len, bool more ) {
     auto rc = SSL_write( ssl_, buf, (int)len );
     if ( rc <= 0 ) {
       switch ( SSL_get_error( ssl_, rc ) ) {
-        case SSL_ERROR_NONE :             return SystemError::ecSSL_ERROR_NONE;
-        case SSL_ERROR_ZERO_RETURN :      return SystemError::ecSSL_ERROR_ZERO_RETURN;
-        case SSL_ERROR_WANT_READ :        return SystemError::ecSSL_ERROR_WANT_READ;
-        case SSL_ERROR_WANT_WRITE :       return SystemError::ecSSL_ERROR_WANT_WRITE;
-        case SSL_ERROR_WANT_CONNECT :     return SystemError::ecSSL_ERROR_WANT_CONNECT;
-        case SSL_ERROR_WANT_ACCEPT :      return SystemError::ecSSL_ERROR_WANT_ACCEPT;
-        case SSL_ERROR_WANT_X509_LOOKUP : return SystemError::ecSSL_ERROR_WANT_X509_LOOKUP;
+        case SSL_ERROR_NONE :             return common::SystemError::ecSSL_ERROR_NONE;
+        case SSL_ERROR_ZERO_RETURN :      return common::SystemError::ecSSL_ERROR_ZERO_RETURN;
+        case SSL_ERROR_WANT_READ :        return common::SystemError::ecSSL_ERROR_WANT_READ;
+        case SSL_ERROR_WANT_WRITE :       return common::SystemError::ecSSL_ERROR_WANT_WRITE;
+        case SSL_ERROR_WANT_CONNECT :     return common::SystemError::ecSSL_ERROR_WANT_CONNECT;
+        case SSL_ERROR_WANT_ACCEPT :      return common::SystemError::ecSSL_ERROR_WANT_ACCEPT;
+        case SSL_ERROR_WANT_X509_LOOKUP : return common::SystemError::ecSSL_ERROR_WANT_X509_LOOKUP;
         case SSL_ERROR_SSL :
         default: throw_Exception( common::getSSLErrors( '\n' )  );
       }
     }
-    return SystemError::ecOK;
+    return common::SystemError::ecOK;
   }
 
-  SystemError TLSSocket::receive( void* buf, ssize_t request, ssize_t &received ) {
+  common::SystemError TLSSocket::receive( void* buf, ssize_t request, ssize_t &received ) {
     received = 0;
     auto rc = SSL_read( ssl_, buf, (int)request );
     if ( rc <= 0 ) {
-      switch ( SSL_get_error( ssl_, (int)received ) ) {
-        case SSL_ERROR_NONE :             return SystemError::ecSSL_ERROR_NONE;
-        case SSL_ERROR_ZERO_RETURN :      return SystemError::ecSSL_ERROR_ZERO_RETURN;
-        case SSL_ERROR_WANT_READ :        return SystemError::ecSSL_ERROR_WANT_READ;
-        case SSL_ERROR_WANT_WRITE :       return SystemError::ecSSL_ERROR_WANT_WRITE;
-        case SSL_ERROR_WANT_CONNECT :     return SystemError::ecSSL_ERROR_WANT_CONNECT;
-        case SSL_ERROR_WANT_ACCEPT :      return SystemError::ecSSL_ERROR_WANT_ACCEPT;
-        case SSL_ERROR_WANT_X509_LOOKUP : return SystemError::ecSSL_ERROR_WANT_X509_LOOKUP;
+      auto sge = SSL_get_error( ssl_, (int)rc );
+      switch ( sge ) {
+        case SSL_ERROR_NONE :             return common::SystemError::ecSSL_ERROR_NONE;
+        case SSL_ERROR_ZERO_RETURN :      return common::SystemError::ecSSL_ERROR_ZERO_RETURN;
+        case SSL_ERROR_WANT_READ :        return common::SystemError::ecSSL_ERROR_WANT_READ;
+        case SSL_ERROR_WANT_WRITE :       return common::SystemError::ecSSL_ERROR_WANT_WRITE;
+        case SSL_ERROR_WANT_CONNECT :     return common::SystemError::ecSSL_ERROR_WANT_CONNECT;
+        case SSL_ERROR_WANT_ACCEPT :      return common::SystemError::ecSSL_ERROR_WANT_ACCEPT;
+        case SSL_ERROR_WANT_X509_LOOKUP : return common::SystemError::ecSSL_ERROR_WANT_X509_LOOKUP;
+        case SSL_ERROR_SYSCALL:           return common::SystemError::ecSSL_ERROR_SYSCALL;
         case SSL_ERROR_SSL :
-        default: throw_Exception( common::getSSLErrors( '\n' )  );
+        default: throw_Exception( "rc=" << rc << " SSL_get_error=" << sge << " " << common::getSSLErrors( '\n' )  );
       }
     } else received = rc;
-    return SystemError::ecOK;
-  }
-
-  TLSSocket& TLSSocket::operator=( const TLSSocket& socket ) {
-    socket_ = socket.socket_;
-    ssl_ = socket.ssl_;
-    tlscontext_ = socket.tlscontext_;
-    return *this;
+    return common::SystemError::ecOK;
   }
 
 }

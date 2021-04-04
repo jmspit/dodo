@@ -8,7 +8,7 @@ using namespace dodo;
 
 class ExceptionTest : public common::UnitTest {
   public:
-    ExceptionTest( const string &name, const string &description, ostream *out ) :
+    ExceptionTest( const std::string &name, const std::string &description, std::ostream *out ) :
       UnitTest( name, description, out ) {};
   protected:
     virtual void doRun();
@@ -77,11 +77,11 @@ int main() {
   bool ok = true;
   try {
     dodo::initLibrary();
-    ExceptionTest test( "common::Exception tests", "Testing Exception class", &cout );
+    ExceptionTest test( "common::Exception tests", "Testing Exception class", &std::cout );
     return test.run() == false;
   }
   catch ( const std::exception& e ) {
-    cerr << e.what() << endl;
+    std::cerr << e.what() << std::endl;
     error = 2;
   }
   dodo::closeLibrary();

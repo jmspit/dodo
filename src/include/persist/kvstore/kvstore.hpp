@@ -160,22 +160,14 @@ namespace dodo::persist {
        * the filter matches no keys.
        * @param filter The SQL-style case-sensitive filter as in '%match%', 'match%'
        */
-      void filterKeys( std::list<std::string>& keys, const std::string &filter );
-
-      /**
-       * Presumes the key exists, and throws an common::Exception if it does not. Otherwise, return the value
-       * for the key as a double.
-       * @param key
-       * @return The double value for the key.
-       */
-      double getDouble( const std::string &key );
+      void filterKeys( std::list<std::string>& keys, const std::string &filter ) const;
 
       /**
        * Get MetaData for the key.
        * @param key The key.
        * @return the MetaData for the key.
        */
-      MetaData getMetaData( const std::string &key );
+      MetaData getMetaData( const std::string &key ) const;
 
       /**
        * If the key exists, returns true and sets the value parameter.
@@ -184,14 +176,6 @@ namespace dodo::persist {
        * @return False if the key does not exist.
        */
       bool getValue( const std::string &key, std::string &value ) const;
-
-      /**
-       * Presumes the key exists, and throws an common::Exception if it does not. Otherwise, return the value
-       * for the key as a string.
-       * @param key
-       * @return The string value for the key.
-       */
-      std::string getString( const std::string &key );
 
       /**
        * If the key exists, returns true and sets the value parameter.

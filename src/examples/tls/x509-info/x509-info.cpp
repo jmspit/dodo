@@ -3,6 +3,7 @@
 using namespace dodo;
 
 #include <iostream>
+#include <string>
 
 void writeIdentityLine( std::ostream &os, const std::string& caption, const std::string &value ) {
   if ( value.length() > 0 ) os << std::setw(21) << caption << " : " << value << std::endl;

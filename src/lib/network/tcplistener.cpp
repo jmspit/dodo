@@ -33,75 +33,75 @@ namespace dodo {
 
   namespace network {
 
-    using namespace std;
+    using namespace std::literals;
 
-      SystemError TCPConnectionData::readBuffer( BaseSocket* socket, ssize_t &received ) {
-        common::Bytes tmp;
-        tmp.reserve( 4096 );
-        ssize_t recv = 0;
-        received = 0;
-        SystemError error = SystemError::ecOK;
-        do {
-          error = socket->receive( tmp.getArray(), tmp.getSize(), recv );
-          if ( ( error == SystemError::ecOK || error == SystemError::ecEAGAIN ) && recv > 0 ) {
-            log_Debug( "TCPConnectionData::readBuffer socket " << socket->getFD() <<
-                       " received " << recv << " bytes" );
-            log_Trace( "TCPConnectionData::readBuffer socket " << socket->getFD() <<
-                       " received '" << tmp.hexDump( recv ) << "'" );
-            read_buffer.append( tmp, recv );
-            received += recv;
-          } else if ( ! ( error == SystemError::ecOK || error == SystemError::ecEAGAIN ) ) {
-            log_Error( "TCPConnectionData::readBuffer receive error socket " <<
-                       socket->getFD() << " error : '" << error.asString() << " bytes'" );
-            return false;
-          }
-        } while ( recv == 4096 );
-        return error;
-      }
+    common::SystemError TCPConnectionData::readBuffer( BaseSocket* socket, ssize_t &received ) {
+      common::Bytes tmp;
+      tmp.reserve( 4096 );
+      ssize_t recv = 0;
+      received = 0;
+      common::SystemError error;
+      do {
+        error = socket->receive( tmp.getArray(), tmp.getSize(), recv );
+        if ( ( error == common::SystemError::ecOK || error == common::SystemError::ecEAGAIN ) && recv > 0 ) {
+          log_Debug( "TCPConnectionData::readBuffer socket " << socket->getFD() <<
+                      " received " << recv << " bytes" );
+          log_Trace( "TCPConnectionData::readBuffer socket " << socket->getFD() <<
+                      " received '" << tmp.hexDump( recv ) << "'" );
+          read_buffer.append( tmp, recv );
+          received += recv;
+        } else if ( ! ( error == common::SystemError::ecOK || error == common::SystemError::ecEAGAIN ) ) {
+          log_Error( "TCPConnectionData::readBuffer receive error socket " <<
+                      socket->getFD() << " error : '" << error.asString() << " bytes'" );
+          return false;
+        }
+      } while ( recv == 4096 );
+      return error;
+    }
 
-      void TCPConnectionData::clearBuffer() {
-        read_buffer.free();
-      }
+    void TCPConnectionData::clearBuffer() {
+      read_buffer.free();
+    }
 
-      /**
-       * Updates the attribute now_ in the TCPListener at a regular interval to avoid excessive number of calls
-       * to gettimeofday in the TCPListener event loop where time high time precision is of lesser importance.
-       */
-      class TCPListenerTimer : public threads::Thread {
-        public:
-          /**
-           * Constructor, specify the TCPListener to operate on.
-           * @param listener the TCPListener to operate on.
-           */
-          TCPListenerTimer( TCPListener &listener ) : listener_(listener), stopped_(false) {};
+    /**
+     * Updates the attribute now_ in the TCPListener at a regular interval to avoid excessive number of calls
+      * to gettimeofday in the TCPListener event loop where time high time precision is of lesser importance.
+      */
+    class TCPListenerTimer : public threads::Thread {
+      public:
+        /**
+         * Constructor, specify the TCPListener to operate on.
+          * @param listener the TCPListener to operate on.
+          */
+        explicit TCPListenerTimer( TCPListener &listener ) : listener_(listener), stopped_(false) {};
 
-          virtual ~TCPListenerTimer() {
-            stop();
-            wait();
-          }
+        virtual ~TCPListenerTimer() {
+          stop();
+          wait();
+        }
 
-          virtual void run() {
-            while ( !stopped_ ) {
-              {
-                threads::Mutexer lock( listener_.now_mutex_ );
-                gettimeofday( &(listener_.now_), NULL );
-              }
-              std::this_thread::sleep_for( std::chrono::milliseconds( 100 ) );
+        virtual void run() {
+          while ( !stopped_ ) {
+            {
+              threads::Mutexer lock( listener_.now_mutex_ );
+              gettimeofday( &(listener_.now_), NULL );
             }
+            std::this_thread::sleep_for( std::chrono::milliseconds( 100 ) );
           }
+        }
 
-          /**
-           * Stop the timer.
-           */
-          void stop() {
-            stopped_ = true;
-          }
-        protected:
-          /** The associated TCPListener. */
-          TCPListener &listener_;
-          /** True if stop() was called. */
-          bool stopped_;
-      };
+        /**
+         * Stop the timer.
+          */
+        void stop() {
+          stopped_ = true;
+        }
+      protected:
+        /** The associated TCPListener. */
+        TCPListener &listener_;
+        /** True if stop() was called. */
+        bool stopped_;
+    };
 
     /** minservers YAML configuration name */
     const std::string yaml_minservers = "min-servers";
@@ -137,21 +137,21 @@ namespace dodo {
 
 
     TCPListener::Params::Params( const YAML::Node &node ) {
-      minservers              = YAML_assign_by_key_with_default<size_t>( node, yaml_minservers, 2 );
-      maxservers              = YAML_assign_by_key_with_default<size_t>( node, yaml_maxservers, 16 );
-      maxconnections          = YAML_assign_by_key_with_default<size_t>( node, yaml_maxconnections, 500 );
-      maxqdepth               = YAML_assign_by_key_with_default<size_t>( node, yaml_maxqdepth, 256 );
-      sendbufsz               = YAML_assign_by_key_with_default<socklen_t>( node, yaml_sendbufsz, 16384 );
-      recvbufsz               = YAML_assign_by_key_with_default<socklen_t>( node, yaml_recvbufsz, 32768 );
-      server_idle_ttl_s       = YAML_assign_by_key_with_default<double>( node, yaml_server_idle_ttl_s, 300 );
-      pollbatch               = YAML_assign_by_key_with_default<int>( node, yaml_pollbatch, 128 );
-      listener_sleep_ms       = YAML_assign_by_key_with_default<int>( node, yaml_listener_sleep_ms, 200 );
-      throttle_sleep_us       = YAML_assign_by_key_with_default<size_t>( node, yaml_throttle_sleep_us, 4000 );
-      cycle_max_throttles     = YAML_assign_by_key_with_default<size_t>( node, yaml_cycle_max_throttles, 40 );
-      stat_trc_interval_s     = YAML_assign_by_key_with_default<time_t>( node, yaml_stat_trc_interval_s, 300 );
-      send_timeout_seconds    = YAML_assign_by_key_with_default<int>( node, yaml_send_timeout_seconds, 0 );
-      receive_timeout_seconds = YAML_assign_by_key_with_default<int>( node, yaml_receive_timeout_seconds, 0 );
-      tcp_keep_alive          = YAML_assign_by_key_with_default<bool>( node, yaml_tcp_keep_alive, true );
+      minservers              = common::YAML_read_key_default<size_t>( node, yaml_minservers, 2 );
+      maxservers              = common::YAML_read_key_default<size_t>( node, yaml_maxservers, 16 );
+      maxconnections          = common::YAML_read_key_default<size_t>( node, yaml_maxconnections, 500 );
+      maxqdepth               = common::YAML_read_key_default<size_t>( node, yaml_maxqdepth, 256 );
+      sendbufsz               = common::YAML_read_key_default<socklen_t>( node, yaml_sendbufsz, 16384 );
+      recvbufsz               = common::YAML_read_key_default<socklen_t>( node, yaml_recvbufsz, 32768 );
+      server_idle_ttl_s       = common::YAML_read_key_default<double>( node, yaml_server_idle_ttl_s, 300 );
+      pollbatch               = common::YAML_read_key_default<int>( node, yaml_pollbatch, 128 );
+      listener_sleep_ms       = common::YAML_read_key_default<int>( node, yaml_listener_sleep_ms, 200 );
+      throttle_sleep_us       = common::YAML_read_key_default<size_t>( node, yaml_throttle_sleep_us, 4000 );
+      cycle_max_throttles     = common::YAML_read_key_default<size_t>( node, yaml_cycle_max_throttles, 40 );
+      stat_trc_interval_s     = common::YAML_read_key_default<time_t>( node, yaml_stat_trc_interval_s, 300 );
+      send_timeout_seconds    = common::YAML_read_key_default<int>( node, yaml_send_timeout_seconds, 0 );
+      receive_timeout_seconds = common::YAML_read_key_default<int>( node, yaml_receive_timeout_seconds, 0 );
+      tcp_keep_alive          = common::YAML_read_key_default<bool>( node, yaml_tcp_keep_alive, true );
     }
 
     TCPListener::TCPListener( const Address& address, const Params &params ) :
@@ -214,8 +214,8 @@ namespace dodo {
 
     TCPListener::TCPListener( const YAML::Node &yaml ) {
       Params params( yaml );
-      std::string saddr = YAML_assign_by_key<std::string>( yaml, "listen-address" );
-      uint16_t port = YAML_assign_by_key<uint16_t>( yaml, "listen-port" );
+      std::string saddr = common::YAML_read_key<std::string>( yaml, "listen-address" );
+      uint16_t port = common::YAML_read_key<std::uint16_t>( yaml, "listen-port" );
       Address addr( saddr, port );
       if ( !addr.isValid() ) throw_Exception( "invalid listen address " << saddr << ":" << port );
       construct( addr, params );
@@ -237,8 +237,8 @@ namespace dodo {
       struct epoll_event poll_sockets[params_.pollbatch];
       struct epoll_event set_event;
       event_maxconnections_reached_ = 0;
-      int rc = 0;
       try {
+        int rc = 0;
         servers_.push_back(init_server_);
         memset(  poll_sockets, 0, sizeof(poll_sockets) );
         epoll_fd_ = epoll_create1( 0 );
@@ -283,7 +283,7 @@ namespace dodo {
             }
           }
           // wait for activity
-          int rc = epoll_wait( epoll_fd_, poll_sockets, params_.pollbatch, params_.listener_sleep_ms );
+          rc = epoll_wait( epoll_fd_, poll_sockets, params_.pollbatch, params_.listener_sleep_ms );
           if ( rc < 0 && errno != EINTR )
             throw_SystemException( "TCPListener::run: epoll_wait failed", errno );
           else if ( rc > 0 ) {
@@ -359,15 +359,15 @@ namespace dodo {
         } while ( !stop_server_ );
       }
       catch( const dodo::common::Exception &e ) {
-        cout << "dodo::common::Exception" << endl;
+        std::cout << "dodo::common::Exception" << std::endl;
         log_Error( "TCPListener::run dodo::common::Exception " << e.what() );
       }
       catch( const std::exception &e ) {
-        cout << "std::exception" << endl;
+        std::cout << "std::exception" << std::endl;
         log_Error( "TCPListener::run std::exception " << e.what() );
       }
       catch( ... ) {
-        cout << "..." << endl;
+        std::cout << "..." << std::endl;
         log_Error( "TCPListener::run unhandled exception" );
       }
       try {
@@ -524,15 +524,15 @@ namespace dodo {
         log_Statistics( "TCPListener #clients=" <<
                         clients_.size() << " #servers=" << servers_.size() << " #queued=" << work_q_sz_ <<
                         " recv=" << (double)( last_stats_.received - prev_stats_.received ) /
-                          getSecondDiff(prev_stat_time_,stat_time_ ) / 1024.0 <<
+                          common::getSecondDiff(prev_stat_time_,stat_time_ ) / 1024.0 <<
                         "KiB/s sent=" << (double)( last_stats_.sent - prev_stats_.sent ) /
-                          getSecondDiff(prev_stat_time_,stat_time_ ) / 1024.0 <<
+                          common::getSecondDiff(prev_stat_time_,stat_time_ ) / 1024.0 <<
                         "KIB/s conn=" << (double)( last_stats_.connections - prev_stats_.connections ) /
-                          getSecondDiff(prev_stat_time_,stat_time_ ) <<
+                          common::getSecondDiff(prev_stat_time_,stat_time_ ) <<
                         "/s req=" << (double)( last_stats_.requests - prev_stats_.requests ) /
-                          getSecondDiff(prev_stat_time_,stat_time_) <<
+                          common::getSecondDiff(prev_stat_time_,stat_time_) <<
                         "/s throttle=" << (double)( last_stats_.throttles - prev_stats_.throttles ) /
-                          getSecondDiff(prev_stat_time_,stat_time_) << "/s" );
+                          common::getSecondDiff(prev_stat_time_,stat_time_) << "/s" );
         log_Statistics( common::Puts::setprecision(2) <<
                         "TCPListener ucpu=" << getLastUserCPU() <<
                         " scpu=" << getLastSysCPU() <<
@@ -595,7 +595,7 @@ namespace dodo {
                   log_Debug( "TCPListener::run stop idle TCPServer " << common::Puts::hex() <<
                              (*i_server)->getId() << common::Puts::dec() );
               }
-              i_server++;
+              ++i_server;
             }
           } else {
             if ( init_server_->hasStopped() ) {
@@ -609,7 +609,7 @@ namespace dodo {
               log_Debug( "TCPListener::run replaced stopped initial TCPServer " << common::Puts::hex() <<
                          init_server_->getTID() << common::Puts::dec() );
             }
-            i_server++;
+            ++i_server;
           }
         }
       }

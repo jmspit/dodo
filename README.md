@@ -1,12 +1,17 @@
-# DODO - C++ framework for Docker containers
+[![Maintenance](https://img.shields.io/badge/Under%20construction-yes-red.svg)](https://bitbucket.org/lbesson/ansi-colors)
+
+
+[TOC]
+
+# DODO - C++ framework for Docker applications
 ## About
 
 Dodo is a C++ framework to GNU/Linux development and aims to integrate seamlessly with Docker containers and k8s ([kubernetes](https://kubernetes.io/)). Capable by itself, projects can obviously add other dependenices to realize any type of service at C++ speed and resource requirements.
 ### A skeleton for services
 
-The `dodo::common::Application` reads its run-time configuration from a YAML file, typically presented to the container as a [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/). Many classes in the framework can be iniltialized (constructed) by passing a YAML node as parameter, so things are up and running quickly ready for deeper implementation - that continues on the same YAML paradigm, so that the entire deployment configuration is specified in a single (or more if desired) YAML file.
+The `dodo::common::Application` reads its run-time configuration from a YAML file, typically presented to the container as a [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/). Framework objects can be iniltialized (constructed) with a YAML document fragment, so the application can retrieve its runtime configuration from a single source.
 
-Additionally, the `dodo::common::Application` implicitly installs signal handlers that are triggered on Docker stop requests, so that the container can shut down cleanly and quickly when requested.
+An `dodo::common::Application` instance implicitly installs signal handlers that are triggered on Docker stop requests, so that the container can shut down cleanly and quickly when requested.
 
 Logging (`dodo::common::Logger`) can be configured to write to one or more of these targets:
 
@@ -14,7 +19,7 @@ Logging (`dodo::common::Logger`) can be configured to write to one or more of th
   -  A syslog call to [rsyslog](https://www.rsyslog.com/).
   -  Console aka standard out of the container entrypoint.
 
-Docker healthchecks that run an in-container command (aka native healthchecks, such as say `pidof myservice`) are pretty costly, especially if the healthchecks need to be frequent or there are a lot of pods to healthcheck. The dodo::common::Application class can be instructed to setup a healthceck listener (dodo::common::Application::HealthChecker) that can be network-probed by the Docker host, which is much more efficient. This HealthChecker can be declared sick or healthy by the code at runtime.
+Docker healthchecks that run an in-container command (such as `pidof myservice`) are expensive on CPU, especially if the healthchecks need to be frequent or there are a lot of pods. The dodo::common::Application class can be instructed to setup a tiny healthceck listener (dodo::common::Application::HealthChecker) that responds to network-probed by the Docker host, which is much more efficient. This HealthChecker can be declared sick or healthy by application code as well.
 ### High level APIs to common functionality
 
 Most services will require at least some of the functionality dodo provides as high-level C++ abstractions without compromising low-level C/Linux performance.
@@ -24,10 +29,10 @@ Most services will require at least some of the functionality dodo provides as h
   - Transparent ipv4 and ipv6 Address classes, name resolution.
   - TCPSocket (insecure) and TLSSocket classes (encryption and trust).
   - TCPServer and TLSServer classes ready for subclassing a custom protocol.
-  - Protocols:
+  - Standard protocols:
     - HTTP
     - STOMP
-  - HTTP(S)Server and HTTP(S)Client to do HTTP server and client.
+  - HTTP(S)Server and HTTP(S)Client handling HTTP server and client red tape.
   - REST(S)Listener as a specialization of HTTP(S)Server where a YAML section specifies the REST API.
   - C++ APIs to persistency solutions:
     - SQLite relational database
@@ -54,7 +59,7 @@ The source code is documented for Doxygen and [automatically generated to github
 
 ## Maintaining the dodo framework
 
-See the [maintainer manual](@ref maintainer) for an overview.
+See the [maintainer manual](MAINTAINER.md) for an overview.
 
 ## Build
 

@@ -66,6 +66,10 @@ namespace dodo {
          */
         virtual common::SystemError underflow() = 0;
 
+        /**
+         * Return the number of times underflow() was invoked.
+         * @return The number of times underflow() was invoked.
+         */
         size_t getUnderflowCount() const { return underflows_; }
 
       protected:
@@ -81,6 +85,9 @@ namespace dodo {
          */
         ssize_t bufsize_;
 
+        /**
+         * The number underflow() invocations.
+         */
         size_t underflows_;
 
     };
@@ -180,8 +187,7 @@ namespace dodo {
 
         /**
          * Construct a FileReadBuffer.
-         * @param filename The file to read.
-         * @param bufsize The buffer size to use
+         * @param data The string data
          */
         explicit StringReadBuffer( const std::string &data ) { data_ = data; idx_ = 0; }
 
@@ -195,8 +201,14 @@ namespace dodo {
 
         virtual common::SystemError underflow() { return common::SystemError::ecOK; };
 
+        /**
+         * The string data backing the buffer.
+         */
         std::string data_;
 
+        /**
+         * The current index into the string buffer.
+         */
         size_t idx_;
 
     };

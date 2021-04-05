@@ -127,7 +127,6 @@ namespace dodo::common {
        * Signal handler called by the OS.
        * Depends on application_ to be valid.
        * @param signal the signal received.
-       * @return void
        */
       static void signal_handler( int signal );
 

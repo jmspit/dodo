@@ -17,7 +17,7 @@
 
 /**
  * @file bytes.hpp
- * Defines the dodo::common::Bytes class..
+ * Defines the dodo::common::Bytes class.
  */
 
 #ifndef common_bytes_hpp

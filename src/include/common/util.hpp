@@ -273,6 +273,7 @@ namespace dodo::common {
 
   /**
    * Escape a JSOn string.
+   * param s The JSON string to escape.
    * @return The escaped string.
    */
   std::string escapeJSON( const std::string &s );

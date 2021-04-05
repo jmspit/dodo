@@ -249,6 +249,7 @@ namespace dodo::common {
 
         /**
          * Returns true when this->errorcode_  == ecOK
+         * @return True when this->errorcode_  == ecOK
          */
         bool ok() const { return this->errorcode_ == ecOK; }
 

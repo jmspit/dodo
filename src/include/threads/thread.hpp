@@ -193,7 +193,6 @@ namespace dodo::threads {
 
       /**
        * Decsendants must override the run function.
-       * @return nothing
        */
       virtual void run() = 0;
 

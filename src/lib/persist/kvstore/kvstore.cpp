@@ -17,7 +17,7 @@
 
 /**
  * @file kvstore.cpp
- * Implements the dodo::persistent::KVStore class..
+ * Implements the dodo::persistent::KVStore class.
  */
 
 

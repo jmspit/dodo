@@ -17,7 +17,7 @@
 
 /**
  * @file datacrypt.cpp
- * Implements the dodo::common::DataCrypt class..
+ * Implements the dodo::common::DataCrypt class.
  */
 
 #include <common/datacrypt.hpp>
@@ -199,11 +199,14 @@ namespace dodo::common {
   }
 
   std::string DataCrypt::paddedKey( Cipher cipher, const std::string key ) {
-    std::string temp = key;
-    if ( temp.length() < (size_t)keyOctets( cipher ) ) {
-      temp += std::string( keyOctets( cipher ) - temp.length(), '#' );
+    if ( key.length() < 1 ) throw_Exception( "empty key");
+    std::stringstream ss;
+    size_t idx = 0;
+    while( ss.str().length() < (size_t)keyOctets( cipher ) ) {
+      ss << key[idx];
+      if ( ++idx > key.length() - 1 ) idx = 0;
     }
-    return temp.substr( 0, keyOctets( cipher ) );
+    return ss.str();
   }
 
 }

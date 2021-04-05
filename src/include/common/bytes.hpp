@@ -17,7 +17,7 @@
 
 /**
  * @file bytes.hpp
- * Defines the dodo::common::Bytes class..
+ * Defines the dodo::common::Bytes class.
  */
 
 #ifndef common_bytes_hpp
@@ -94,13 +94,11 @@ namespace dodo::common {
       std::string encodeBase64() const;
 
       /**
-       * Cast to a std::string. Be aware that the string is read to
-       * either the first zero (NULL) or up to size. So if the decoded data
-       * contains intermediate zeros the string will not cover all octets.
-       * @return A string representation of Bytes.
+       * Convert to a std::string. If the Octects contain an intermediate zero,
+       * an common::Exception is thrown, unless the zero is the last Octet. So use this
+       * only when you are sure the Bytes data is also a string.
+       * @return the Byte data as a std::string.
        */
-      //operator std::string() const;
-
       std::string asString() const;
 
       /**

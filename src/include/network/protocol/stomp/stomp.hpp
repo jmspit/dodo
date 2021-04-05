@@ -76,7 +76,6 @@ namespace dodo::network::protocol::stomp {
       /**
        * Generate a frame.
        * @param frame The generation destination, which is overwritten.
-       * @return void
        */
       virtual void generate( common::Bytes& frame ) const = 0;
 
@@ -125,7 +124,6 @@ namespace dodo::network::protocol::stomp {
       /**
        * Generate a STOMP (CONNECT) frame.
        * @param frame The generation destination, which is overwritten.
-       * @return void
        */
       virtual void generate( common::Bytes& frame ) const;
 
@@ -218,7 +216,6 @@ namespace dodo::network::protocol::stomp {
       /**
        * Generate a CONNECTED frame.
        * @param frame The generation destination, which is overwritten.
-       * @return void
        */
       virtual void generate( common::Bytes& frame ) const;
 

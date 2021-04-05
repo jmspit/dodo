@@ -180,7 +180,6 @@ namespace dodo::common {
        * @param key The key to encrypt with.
        * @param src The source data to encrypt.
        * @param dst The encrypted string
-       * @return void
        */
       static void encrypt( Cipher cipher,
                            const std::string &key,

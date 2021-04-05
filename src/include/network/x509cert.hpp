@@ -222,7 +222,6 @@ namespace dodo::network {
       /**
        * Free / clean an X509 object.
        * @param cert The X509_REQ object to free.
-       * @return nothing
        */
       static void free( X509_REQ* cert ) { X509_REQ_free( cert ); }
 
@@ -282,7 +281,6 @@ namespace dodo::network {
       /**
        * Free / clean an X509 object.
        * @param cert A pointer to the X509 certificate.
-       * @return nothing
        */
       static void free( X509* cert ) { X509_free( cert ); }
 

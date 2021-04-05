@@ -82,7 +82,6 @@ namespace dodo {
 
         /**
          * Run the TCPServer thread.
-         * @return void
          */
         virtual void run();
 
@@ -112,7 +111,6 @@ namespace dodo {
         /**
          * Override to perform a shutdown.
          * @param socket The socket to work on.
-         * @return void
          */
         virtual void shutDown( network::BaseSocket *socket ) = 0;
 

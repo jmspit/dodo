@@ -40,7 +40,6 @@ namespace dodo::persist {
      * @param context SQLite context.
      * @param argc The number of arguments to this function.
      * @param argv The arguments to this funcxtion.
-     * @return void
      */
     static void sqlite_ext_pow(sqlite3_context *context, int argc, sqlite3_value **argv) {
       assert( argc==2 );
@@ -64,7 +63,6 @@ namespace dodo::persist {
      * @param context SQLite context.
      * @param argc The number of arguments to this function.
      * @param argv The arguments to this funcxtion.
-     * @return void
      */
     static void sqlite_ext_log2(sqlite3_context *context, int argc, sqlite3_value **argv) {
       assert( argc==1 );
@@ -87,7 +85,6 @@ namespace dodo::persist {
      * @param context SQLite context.
      * @param argc The number of arguments to this function.
      * @param argv The arguments to this funcxtion.
-     * @return void
      */
     static void sqlite_ext_ceil(sqlite3_context *context, int argc, sqlite3_value **argv) {
       assert( argc==1 );
@@ -111,7 +108,6 @@ namespace dodo::persist {
      * @param context SQLite context.
      * @param argc The number of arguments to this function.
      * @param argv The arguments to this funcxtion.
-     * @return void
      */
     static void sqlite_ext_floor(sqlite3_context *context, int argc, sqlite3_value **argv) {
       assert( argc==1 );
@@ -426,7 +422,7 @@ namespace dodo::persist {
       }
     }
 
-    void DML::bind( int position, long value ) {
+    void DML::bind( int position, int64_t value ) {
       int r = sqlite3_bind_int64( stmt_, position, value );
       if ( r != SQLITE_OK ) {
         throw_Exception( sqlite3_errmsg( database_ ) );

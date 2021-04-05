@@ -229,7 +229,7 @@ namespace dodo::persist {
        * Insert a (key, Bytes) pair. Note that the size of the data cannot exceed INT_MAX, and
        * exception is thrown if the Bytes is larger.
        * @param key The key.
-       * @param oa The Bytes to insert.
+       * @param value The Bytes to insert.
        * @return True if the key was created, false if the key already exists.
        */
       bool insertKey( const std::string &key, const common::Bytes &value );
@@ -302,8 +302,10 @@ namespace dodo::persist {
       /** The filesystem path to the kvstore. */
       std::filesystem::path path_;
 
+      /** The database handle */
       sqlite::Database* db_;
 
+      /** check key existence statement handle. */
       sqlite::Query* stmt_exists_;
 
       /** Get-value-for-key statement handle. */

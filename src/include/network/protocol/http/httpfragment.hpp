@@ -138,6 +138,7 @@ namespace dodo {
 
         /**
          * Convert the HTTPFragment in a HTTP protocol string.
+         * @return The HTTPFragment as a string.
          */
         virtual std::string asString() const = 0;
 

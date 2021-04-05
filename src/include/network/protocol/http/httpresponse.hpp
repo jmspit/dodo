@@ -200,6 +200,10 @@ namespace dodo {
             HTTPCode    http_code_;
         };
 
+        /**
+         * Return a const reference to the HTTPResponseLine of this HTTPResponse.
+         * @return a const reference to the HTTPResponseLine of this HTTPResponse.
+         */
         const HTTPResponseLine& getResponseLine() const { return response_line_; };
 
         virtual ParseResult parse( VirtualReadBuffer& buffer );
@@ -208,6 +212,10 @@ namespace dodo {
 
         virtual common::SystemError send( BaseSocket* socket );
 
+        /**
+         * Return true when the response has a body.
+         * @return true when the response has a body.
+         */
         bool hasBody() const;
 
         /**
@@ -224,6 +232,7 @@ namespace dodo {
         static std::string HTTPCodeAsString( HTTPCode code );
 
       protected:
+        /** The HTTPResponseLIne of the HTTPResponse. */
         HTTPResponseLine response_line_;
 
     };

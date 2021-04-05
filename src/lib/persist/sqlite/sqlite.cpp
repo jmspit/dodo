@@ -422,7 +422,7 @@ namespace dodo::persist {
       }
     }
 
-    void DML::bind( int position, long value ) {
+    void DML::bind( int position, int64_t value ) {
       int r = sqlite3_bind_int64( stmt_, position, value );
       if ( r != SQLITE_OK ) {
         throw_Exception( sqlite3_errmsg( database_ ) );

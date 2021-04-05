@@ -1,0 +1,7 @@
+<map id="dodo::network::TLSContext::TLSContext" name="dodo::network::TLSContext::TLSContext">
+<area shape="rect" id="node1" title="Construct a TLSContext from a YAML node." alt="" coords="5,104,203,145"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1TLSContext.html#af9fcc3466f6f4ff92697e155386fe3a7" title="Construct the TLSContext." alt="" coords="253,5,451,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1TLSContext.html#a8eb4e37b249a3d2b2e3615f712653a1d" title="Get a PeerVerfication enum from a string." alt="" coords="251,71,453,112"/>
+<area shape="rect" id="node4" href="$classdodo_1_1network_1_1TLSContext.html#af7a4eaa35b0bf2894db8a48f5911a2e0" title="Convert the src string to a TLSVersion or throw a common::Exception if that mapping fails." alt="" coords="253,136,451,177"/>
+<area shape="rect" id="node5" href="$namespacedodo_1_1common.html#a6452258af37b6709bd3c51f039ce7dbb" title="Instantiate template YAML_read_key for bool." alt="" coords="271,201,433,243"/>
+</map>

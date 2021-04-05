@@ -1,4 +1,5 @@
 <map id="dodo::network::protocol::http::HTTPRequest::methodAllowsBody" name="dodo::network::protocol::http::HTTPRequest::methodAllowsBody">
-<area shape="rect" id="node1" title="Return true if the Method allows a body in the message." alt="" coords="265,5,551,47"/>
+<area shape="rect" id="node1" title="Return true if the Method allows a body in the message." alt="" coords="265,39,551,80"/>
 <area shape="rect" id="node2" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#ae342f35428abf1a32cfc485f8e6bc254" title="Return the HTTPRequest as a string." alt="" coords="5,5,217,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#a1224b5d49d3e2066f45e9b1260f9fd75" title="Send this HTTPMessage to the socket." alt="" coords="16,71,207,112"/>
 </map>

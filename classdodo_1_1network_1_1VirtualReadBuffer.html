@@ -123,8 +123,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3783344680f3919689860179a78819f0"><td class="memItemLeft" align="right" valign="top">virtual char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html#a3783344680f3919689860179a78819f0">get</a> () const =0</td></tr>
 <tr class="memdesc:a3783344680f3919689860179a78819f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current char from <a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html" title="Interface to read individual bytes whilst the implementation can read from an actual source (such as ...">VirtualReadBuffer</a>.  <a href="classdodo_1_1network_1_1VirtualReadBuffer.html#a3783344680f3919689860179a78819f0">More...</a><br /></td></tr>
 <tr class="separator:a3783344680f3919689860179a78819f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3880d2f74f5f3882383eb660a83e809d"><td class="memItemLeft" align="right" valign="top"><a id="a3880d2f74f5f3882383eb660a83e809d"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>getUnderflowCount</b> () const</td></tr>
+<tr class="memitem:a3880d2f74f5f3882383eb660a83e809d"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html#a3880d2f74f5f3882383eb660a83e809d">getUnderflowCount</a> () const</td></tr>
+<tr class="memdesc:a3880d2f74f5f3882383eb660a83e809d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the number of times <a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html#a1df81946ae41e23287c4f261540ee6eb" title="If the buffer_ underflows, the buffer_ must be reset refilledwith new data from the source.">underflow()</a> was invoked.  <a href="classdodo_1_1network_1_1VirtualReadBuffer.html#a3880d2f74f5f3882383eb660a83e809d">More...</a><br /></td></tr>
 <tr class="separator:a3880d2f74f5f3882383eb660a83e809d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac05023730c45272074424d02057df384"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classdodo_1_1common_1_1SystemError.html">common::SystemError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html#ac05023730c45272074424d02057df384">next</a> ()=0</td></tr>
 <tr class="memdesc:ac05023730c45272074424d02057df384"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move to the next char from the <a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html" title="Interface to read individual bytes whilst the implementation can read from an actual source (such as ...">VirtualReadBuffer</a>.  <a href="classdodo_1_1network_1_1VirtualReadBuffer.html#ac05023730c45272074424d02057df384">More...</a><br /></td></tr>
@@ -141,8 +141,8 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:ab6ae5bb02a761b7b91e9db187988b60d"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html#ab6ae5bb02a761b7b91e9db187988b60d">bufsize_</a></td></tr>
 <tr class="memdesc:ab6ae5bb02a761b7b91e9db187988b60d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The size of buffer_.  <a href="classdodo_1_1network_1_1VirtualReadBuffer.html#ab6ae5bb02a761b7b91e9db187988b60d">More...</a><br /></td></tr>
 <tr class="separator:ab6ae5bb02a761b7b91e9db187988b60d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4c78afea17b6110dd61c0c38b5c2178"><td class="memItemLeft" align="right" valign="top"><a id="aa4c78afea17b6110dd61c0c38b5c2178"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>underflows_</b></td></tr>
+<tr class="memitem:aa4c78afea17b6110dd61c0c38b5c2178"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html#aa4c78afea17b6110dd61c0c38b5c2178">underflows_</a></td></tr>
+<tr class="memdesc:aa4c78afea17b6110dd61c0c38b5c2178"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number <a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html#a1df81946ae41e23287c4f261540ee6eb" title="If the buffer_ underflows, the buffer_ must be reset refilledwith new data from the source.">underflow()</a> invocations.  <a href="classdodo_1_1network_1_1VirtualReadBuffer.html#aa4c78afea17b6110dd61c0c38b5c2178">More...</a><br /></td></tr>
 <tr class="separator:aa4c78afea17b6110dd61c0c38b5c2178"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -207,6 +207,38 @@ Here is the caller graph for this function:</div>
 <area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#a18fe8b7ca856d24a5580ffa82fb30c45" title="Parse an unsigned integer." alt="" coords="1207,291,1433,332"/>
 </map>
 </div>
+
+</div>
+</div>
+<a id="a3880d2f74f5f3882383eb660a83e809d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3880d2f74f5f3882383eb660a83e809d">&#9670;&nbsp;</a></span>getUnderflowCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t dodo::network::VirtualReadBuffer::getUnderflowCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the number of times <a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html#a1df81946ae41e23287c4f261540ee6eb" title="If the buffer_ underflows, the buffer_ must be reset refilledwith new data from the source.">underflow()</a> was invoked. </p>
+<dl class="section return"><dt>Returns</dt><dd>The number of times <a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html#a1df81946ae41e23287c4f261540ee6eb" title="If the buffer_ underflows, the buffer_ must be reset refilledwith new data from the source.">underflow()</a> was invoked. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="socketreadbuffer_8hpp_source.html#l00073">73</a> of file <a class="el" href="socketreadbuffer_8hpp_source.html">socketreadbuffer.hpp</a>.</p>
+
+<p class="reference">References <a class="el" href="socketreadbuffer_8hpp_source.html#l00091">underflows_</a>.</p>
 
 </div>
 </div>
@@ -320,7 +352,7 @@ Here is the caller graph for this function:</div>
 <p>The buffer. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html#ab6ae5bb02a761b7b91e9db187988b60d" title="The size of buffer_.">bufsize_</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="socketreadbuffer_8hpp_source.html#l00077">77</a> of file <a class="el" href="socketreadbuffer_8hpp_source.html">socketreadbuffer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="socketreadbuffer_8hpp_source.html#l00081">81</a> of file <a class="el" href="socketreadbuffer_8hpp_source.html">socketreadbuffer.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="socketreadbuffer_8cpp_source.html#l00063">dodo::network::FileReadBuffer::FileReadBuffer()</a>, <a class="el" href="socketreadbuffer_8cpp_source.html#l00054">dodo::network::SocketReadBuffer::get()</a>, <a class="el" href="socketreadbuffer_8cpp_source.html#l00091">dodo::network::FileReadBuffer::get()</a>, <a class="el" href="socketreadbuffer_8cpp_source.html#l00031">dodo::network::SocketReadBuffer::SocketReadBuffer()</a>, <a class="el" href="socketreadbuffer_8cpp_source.html#l00044">dodo::network::SocketReadBuffer::underflow()</a>, <a class="el" href="socketreadbuffer_8cpp_source.html#l00079">dodo::network::FileReadBuffer::underflow()</a>, and <a class="el" href="socketreadbuffer_8cpp_source.html#l00040">dodo::network::SocketReadBuffer::~SocketReadBuffer()</a>.</p>
 
@@ -348,9 +380,37 @@ Here is the caller graph for this function:</div>
 
 <p>The size of buffer_. </p>
 
-<p class="definition">Definition at line <a class="el" href="socketreadbuffer_8hpp_source.html#l00082">82</a> of file <a class="el" href="socketreadbuffer_8hpp_source.html">socketreadbuffer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="socketreadbuffer_8hpp_source.html#l00086">86</a> of file <a class="el" href="socketreadbuffer_8hpp_source.html">socketreadbuffer.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="socketreadbuffer_8cpp_source.html#l00063">dodo::network::FileReadBuffer::FileReadBuffer()</a>, <a class="el" href="socketreadbuffer_8cpp_source.html#l00031">dodo::network::SocketReadBuffer::SocketReadBuffer()</a>, <a class="el" href="socketreadbuffer_8cpp_source.html#l00044">dodo::network::SocketReadBuffer::underflow()</a>, and <a class="el" href="socketreadbuffer_8cpp_source.html#l00079">dodo::network::FileReadBuffer::underflow()</a>.</p>
+
+</div>
+</div>
+<a id="aa4c78afea17b6110dd61c0c38b5c2178"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4c78afea17b6110dd61c0c38b5c2178">&#9670;&nbsp;</a></span>underflows_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t dodo::network::VirtualReadBuffer::underflows_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The number <a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html#a1df81946ae41e23287c4f261540ee6eb" title="If the buffer_ underflows, the buffer_ must be reset refilledwith new data from the source.">underflow()</a> invocations. </p>
+
+<p class="definition">Definition at line <a class="el" href="socketreadbuffer_8hpp_source.html#l00091">91</a> of file <a class="el" href="socketreadbuffer_8hpp_source.html">socketreadbuffer.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="socketreadbuffer_8hpp_source.html#l00073">getUnderflowCount()</a>, <a class="el" href="socketreadbuffer_8cpp_source.html#l00044">dodo::network::SocketReadBuffer::underflow()</a>, and <a class="el" href="socketreadbuffer_8cpp_source.html#l00079">dodo::network::FileReadBuffer::underflow()</a>.</p>
 
 </div>
 </div>

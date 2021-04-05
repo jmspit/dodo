@@ -1,0 +1,5 @@
+<map id="dodo::common::SystemError::ok" name="dodo::common::SystemError::ok">
+<area shape="rect" id="node1" title="Returns true when this&#45;&gt;errorcode_ == ecOK." alt="" coords="253,46,484,73"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#a1224b5d49d3e2066f45e9b1260f9fd75" title="Send this HTTPMessage to the socket." alt="" coords="10,5,201,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse.html#a261dbaa3ba3b90b3c4358b008e5a44c9" title="Send this HTTPMessage to the socket." alt="" coords="5,71,205,112"/>
+</map>

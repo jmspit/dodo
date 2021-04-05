@@ -97,21 +97,109 @@ $(document).ready(function(){initNavTree('classFIFOQueue.html',''); initResizabl
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9265676fbb0dc443063342eb0ea8674c"><td class="memItemLeft" align="right" valign="top"><a id="a9265676fbb0dc443063342eb0ea8674c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>FIFOQueue</b> (const std::filesystem::path &amp;path)</td></tr>
+<tr class="memitem:a9265676fbb0dc443063342eb0ea8674c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFIFOQueue.html#a9265676fbb0dc443063342eb0ea8674c">FIFOQueue</a> (const std::filesystem::path &amp;path)</td></tr>
+<tr class="memdesc:a9265676fbb0dc443063342eb0ea8674c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a FIFO queue using the path a SQLite file.  <a href="classFIFOQueue.html#a9265676fbb0dc443063342eb0ea8674c">More...</a><br /></td></tr>
 <tr class="separator:a9265676fbb0dc443063342eb0ea8674c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc91e032cfd3bf6b4ae46c2449443ab9"><td class="memItemLeft" align="right" valign="top"><a id="abc91e032cfd3bf6b4ae46c2449443ab9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>consume</b> ()</td></tr>
-<tr class="separator:abc91e032cfd3bf6b4ae46c2449443ab9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae965225a5609b0a1f19bb2eae0256c86"><td class="memItemLeft" align="right" valign="top"><a id="ae965225a5609b0a1f19bb2eae0256c86"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>produce</b> ()</td></tr>
-<tr class="separator:ae965225a5609b0a1f19bb2eae0256c86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4cffe75f1e9c7f5ac79d1022d850483"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFIFOQueue.html#ab4cffe75f1e9c7f5ac79d1022d850483">~FIFOQueue</a> ()</td></tr>
+<tr class="memdesc:ab4cffe75f1e9c7f5ac79d1022d850483"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="classFIFOQueue.html#ab4cffe75f1e9c7f5ac79d1022d850483">More...</a><br /></td></tr>
+<tr class="separator:ab4cffe75f1e9c7f5ac79d1022d850483"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b3859a3d104c78121175ddf6cbc57e3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFIFOQueue.html#a8b3859a3d104c78121175ddf6cbc57e3">dequeue</a> ()</td></tr>
+<tr class="memdesc:a8b3859a3d104c78121175ddf6cbc57e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pop an item from the queue.  <a href="classFIFOQueue.html#a8b3859a3d104c78121175ddf6cbc57e3">More...</a><br /></td></tr>
+<tr class="separator:a8b3859a3d104c78121175ddf6cbc57e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80bd094032015696447f181e1dde72bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFIFOQueue.html#a80bd094032015696447f181e1dde72bc">enqueue</a> ()</td></tr>
+<tr class="memdesc:a80bd094032015696447f181e1dde72bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Place a new item on the queue.  <a href="classFIFOQueue.html#a80bd094032015696447f181e1dde72bc">More...</a><br /></td></tr>
+<tr class="separator:a80bd094032015696447f181e1dde72bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>First-In-First-Out queue backed by SQLite3. </p>
 
 <p class="definition">Definition at line <a class="el" href="fifoqueue_8hpp_source.html#l00032">32</a> of file <a class="el" href="fifoqueue_8hpp_source.html">fifoqueue.hpp</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a9265676fbb0dc443063342eb0ea8674c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9265676fbb0dc443063342eb0ea8674c">&#9670;&nbsp;</a></span>FIFOQueue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FIFOQueue::FIFOQueue </td>
+          <td>(</td>
+          <td class="paramtype">const std::filesystem::path &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Construct a FIFO queue using the path a SQLite file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>The path to the SQLite file. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab4cffe75f1e9c7f5ac79d1022d850483"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4cffe75f1e9c7f5ac79d1022d850483">&#9670;&nbsp;</a></span>~FIFOQueue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FIFOQueue::~FIFOQueue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destructor. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a8b3859a3d104c78121175ddf6cbc57e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b3859a3d104c78121175ddf6cbc57e3">&#9670;&nbsp;</a></span>dequeue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FIFOQueue::dequeue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pop an item from the queue. </p>
+
+</div>
+</div>
+<a id="a80bd094032015696447f181e1dde72bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80bd094032015696447f181e1dde72bc">&#9670;&nbsp;</a></span>enqueue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FIFOQueue::enqueue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Place a new item on the queue. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/include/persist/queuing/<a class="el" href="fifoqueue_8hpp_source.html">fifoqueue.hpp</a></li>
 </ul>
 </div><!-- contents -->

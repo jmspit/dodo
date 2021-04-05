@@ -1,4 +1,5 @@
 <map id="dodo::network::URI::reset" name="dodo::network::URI::reset">
-<area shape="rect" id="node1" title="Reste all data to empty strings." alt="" coords="200,5,347,47"/>
-<area shape="rect" id="node2" href="$classdodo_1_1network_1_1URI.html#a532e5121d1b7cf1378896739b80b64f9" title="Parse the string as an URI." alt="" coords="5,5,152,47"/>
+<area shape="rect" id="node1" title="Reste all data to empty strings." alt="" coords="231,35,377,76"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1URI.html#a532e5121d1b7cf1378896739b80b64f9" title="Parse the string as an URI." alt="" coords="21,5,167,47"/>
+<area shape="rect" id="node3" href="$classdodo_1_1network_1_1URI.html#addf0f60bf2332e044514dfc5db4943d8" title="Construct an empty URI." alt="" coords="5,71,183,98"/>
 </map>

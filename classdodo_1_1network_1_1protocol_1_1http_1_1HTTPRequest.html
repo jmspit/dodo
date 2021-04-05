@@ -185,8 +185,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a34e85973e9ecd39d54488ac96dafd188"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structdodo_1_1network_1_1protocol_1_1http_1_1HTTPFragment_1_1ParseResult.html">ParseResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#a34e85973e9ecd39d54488ac96dafd188">parseBody</a> (<a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html">VirtualReadBuffer</a> &amp;data)</td></tr>
 <tr class="memdesc:a34e85973e9ecd39d54488ac96dafd188"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse a body and resturn it as a single string.  <a href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#a34e85973e9ecd39d54488ac96dafd188">More...</a><br /></td></tr>
 <tr class="separator:a34e85973e9ecd39d54488ac96dafd188"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1224b5d49d3e2066f45e9b1260f9fd75"><td class="memItemLeft" align="right" valign="top"><a id="a1224b5d49d3e2066f45e9b1260f9fd75"></a>
-virtual <a class="el" href="classdodo_1_1common_1_1SystemError.html">common::SystemError</a>&#160;</td><td class="memItemRight" valign="bottom"><b>send</b> (<a class="el" href="classdodo_1_1network_1_1BaseSocket.html">BaseSocket</a> *socket)</td></tr>
+<tr class="memitem:a1224b5d49d3e2066f45e9b1260f9fd75"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classdodo_1_1common_1_1SystemError.html">common::SystemError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#a1224b5d49d3e2066f45e9b1260f9fd75">send</a> (<a class="el" href="classdodo_1_1network_1_1BaseSocket.html">BaseSocket</a> *socket)</td></tr>
+<tr class="memdesc:a1224b5d49d3e2066f45e9b1260f9fd75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send this <a class="el" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html" title="Generic HTTPMessage, parent to HTTPRequest and HTTPResponse.">HTTPMessage</a> to the socket.  <a href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#a1224b5d49d3e2066f45e9b1260f9fd75">More...</a><br /></td></tr>
 <tr class="separator:a1224b5d49d3e2066f45e9b1260f9fd75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a298a3dccd6d89ccf82cd9b5609961672"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#a298a3dccd6d89ccf82cd9b5609961672">setRequestLine</a> (const <a class="el" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_1_1HTTPRequestLine.html">HTTPRequestLine</a> &amp;req)</td></tr>
 <tr class="memdesc:a298a3dccd6d89ccf82cd9b5609961672"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the <a class="el" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_1_1HTTPRequestLine.html" title="HTTPRequestLine class.">HTTPRequestLine</a>.  <a href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#a298a3dccd6d89ccf82cd9b5609961672">More...</a><br /></td></tr>
@@ -216,8 +216,8 @@ virtual <a class="el" href="classdodo_1_1common_1_1SystemError.html">common::Sys
 <tr class="memitem:a1bfc405e692804972222daa2a04dff02 inherit pub_methods_classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#a1bfc405e692804972222daa2a04dff02">getHeaderValue</a> (const std::string &amp;key, unsigned long &amp;value) const</td></tr>
 <tr class="memdesc:a1bfc405e692804972222daa2a04dff02 inherit pub_methods_classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a header value as an unsigned long into value.  <a href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#a1bfc405e692804972222daa2a04dff02">More...</a><br /></td></tr>
 <tr class="separator:a1bfc405e692804972222daa2a04dff02 inherit pub_methods_classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade87ad47cc0ef282872bdd4bd04019b3 inherit pub_methods_classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage"><td class="memItemLeft" align="right" valign="top"><a id="ade87ad47cc0ef282872bdd4bd04019b3"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasHeader</b> (const std::string &amp;header) const</td></tr>
+<tr class="memitem:ade87ad47cc0ef282872bdd4bd04019b3 inherit pub_methods_classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#ade87ad47cc0ef282872bdd4bd04019b3">hasHeader</a> (const std::string &amp;header) const</td></tr>
+<tr class="memdesc:ade87ad47cc0ef282872bdd4bd04019b3 inherit pub_methods_classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return true when this header key exists in this <a class="el" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html" title="Generic HTTPMessage, parent to HTTPRequest and HTTPResponse.">HTTPMessage</a>'s headers.  <a href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#ade87ad47cc0ef282872bdd4bd04019b3">More...</a><br /></td></tr>
 <tr class="separator:ade87ad47cc0ef282872bdd4bd04019b3 inherit pub_methods_classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aae8e7ba5fbe23dd1a4016f1fdaaf6fb6 inherit pub_methods_classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#aae8e7ba5fbe23dd1a4016f1fdaaf6fb6">replaceHeader</a> (const std::string &amp;key, const std::string &amp;value)</td></tr>
 <tr class="memdesc:aae8e7ba5fbe23dd1a4016f1fdaaf6fb6 inherit pub_methods_classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replace the value of a header.  <a href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#aae8e7ba5fbe23dd1a4016f1fdaaf6fb6">More...</a><br /></td></tr>
@@ -375,7 +375,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line">        std::cout &lt;&lt; req.<a class="code" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#ae342f35428abf1a32cfc485f8e6bc254">asString</a>() &lt;&lt; std::endl;</div>
 <div class="line">        std::cout &lt;&lt; <span class="stringliteral">&quot;----------------------------------- END   REQ -----------------------------------&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">        <span class="comment">//syserr = sock.send( req.asString().c_str(), req.asString().length() );</span></div>
-<div class="line">        syserr = req.send( &amp;sock );</div>
+<div class="line">        syserr = req.<a class="code" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#a1224b5d49d3e2066f45e9b1260f9fd75">send</a>( &amp;sock );</div>
 <div class="line">        rtstats.send_time = sw.<a class="code" href="classdodo_1_1common_1_1StopWatch.html#a1966c6422bafa3766ccda85e69b81f15">getElapsedSeconds</a>();</div>
 <div class="line">        <span class="keywordflow">if</span> ( syserr.<a class="code" href="classdodo_1_1common_1_1SystemError.html#a4f620090edc70e3425e8a24505555ac9">ok</a>() ) {</div>
 <div class="line">          <a class="code" href="classdodo_1_1network_1_1SocketReadBuffer.html">SocketReadBuffer</a> rbuf( &amp;sock );</div>
@@ -483,7 +483,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="httprequest_8cpp_source.html#l00086">86</a> of file <a class="el" href="httprequest_8cpp_source.html">httprequest.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="httprequest_8cpp_source.html#l00077">dodo::network::protocol::http::HTTPRequest::HTTPRequestLine::asString()</a>, <a class="el" href="bytes_8cpp_source.html#l00098">dodo::common::Bytes::asString()</a>, <a class="el" href="httpmessage_8hpp_source.html#l00257">dodo::network::protocol::http::HTTPMessage::body_</a>, <a class="el" href="httpmessage_8hpp_source.html#l00047">dodo::network::protocol::http::HTTPMessage::charCR</a>, <a class="el" href="httpmessage_8hpp_source.html#l00052">dodo::network::protocol::http::HTTPMessage::charLF</a>, <a class="el" href="httprequest_8hpp_source.html#l00095">dodo::network::protocol::http::HTTPRequest::HTTPRequestLine::getMethod()</a>, <a class="el" href="bytes_8hpp_source.html#l00194">dodo::common::Bytes::getSize()</a>, <a class="el" href="httpmessage_8hpp_source.html#l00252">dodo::network::protocol::http::HTTPMessage::headers_</a>, <a class="el" href="httprequest_8cpp_source.html#l00060">methodAllowsBody()</a>, and <a class="el" href="httprequest_8hpp_source.html#l00208">request_line_</a>.</p>
+<p class="reference">References <a class="el" href="httprequest_8cpp_source.html#l00077">dodo::network::protocol::http::HTTPRequest::HTTPRequestLine::asString()</a>, <a class="el" href="bytes_8cpp_source.html#l00098">dodo::common::Bytes::asString()</a>, <a class="el" href="httpmessage_8hpp_source.html#l00267">dodo::network::protocol::http::HTTPMessage::body_</a>, <a class="el" href="httpmessage_8hpp_source.html#l00047">dodo::network::protocol::http::HTTPMessage::charCR</a>, <a class="el" href="httpmessage_8hpp_source.html#l00052">dodo::network::protocol::http::HTTPMessage::charLF</a>, <a class="el" href="httprequest_8hpp_source.html#l00095">dodo::network::protocol::http::HTTPRequest::HTTPRequestLine::getMethod()</a>, <a class="el" href="bytes_8hpp_source.html#l00192">dodo::common::Bytes::getSize()</a>, <a class="el" href="httpmessage_8hpp_source.html#l00262">dodo::network::protocol::http::HTTPMessage::headers_</a>, <a class="el" href="httprequest_8cpp_source.html#l00060">methodAllowsBody()</a>, and <a class="el" href="httprequest_8hpp_source.html#l00208">request_line_</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="httprequest_8cpp_source.html#l00249">write()</a>.</p>
 <div class="dynheader">
@@ -493,7 +493,7 @@ Here is the call graph for this function:</div>
 <map name="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_ae342f35428abf1a32cfc485f8e6bc254_cgraph" id="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_ae342f35428abf1a32cfc485f8e6bc254_cgraph">
 <area shape="rect" title="Return the HTTPRequest as a string." alt="" coords="5,159,217,201"/>
 <area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_1_1HTTPRequestLine.html#aa2c87d12fe2d422c960655d06593f2ef" title="Convert the HTTPRequestLine to a HTTP string." alt="" coords="285,5,531,61"/>
-<area shape="rect" href="classdodo_1_1common_1_1Bytes.html#a00fbc016ab1e4b6ff2264d05f610533c" title="Cast to a std::string." alt="" coords="326,86,490,127"/>
+<area shape="rect" href="classdodo_1_1common_1_1Bytes.html#a00fbc016ab1e4b6ff2264d05f610533c" title="Convert to a std::string." alt="" coords="326,86,490,127"/>
 <area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_1_1HTTPRequestLine.html#a285149a3b4a9d0fbf16982f5118ff98a" title="Get the HTTPRequest::Method." alt="" coords="285,152,531,208"/>
 <area shape="rect" href="classdodo_1_1common_1_1Bytes.html#afc34ec0de4068cd3ac41fd07668a7cde" title="Return the array size." alt="" coords="326,233,490,274"/>
 <area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#abc7de8b21cfebee0ecef0b9873e19f1e" title="Return true if the Method allows a body in the message." alt="" coords="265,298,551,339"/>
@@ -578,14 +578,15 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="httprequest_8cpp_source.html#l00060">60</a> of file <a class="el" href="httprequest_8cpp_source.html">httprequest.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="httprequest_8cpp_source.html#l00086">asString()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="httprequest_8cpp_source.html#l00086">asString()</a>, and <a class="el" href="httprequest_8cpp_source.html#l00099">send()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_abc7de8b21cfebee0ecef0b9873e19f1e_icgraph.png" border="0" usemap="#classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_abc7de8b21cfebee0ecef0b9873e19f1e_icgraph" alt=""/></div>
 <map name="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_abc7de8b21cfebee0ecef0b9873e19f1e_icgraph" id="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_abc7de8b21cfebee0ecef0b9873e19f1e_icgraph">
-<area shape="rect" title="Return true if the Method allows a body in the message." alt="" coords="265,5,551,47"/>
+<area shape="rect" title="Return true if the Method allows a body in the message." alt="" coords="265,39,551,80"/>
 <area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#ae342f35428abf1a32cfc485f8e6bc254" title="Return the HTTPRequest as a string." alt="" coords="5,5,217,47"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#a1224b5d49d3e2066f45e9b1260f9fd75" title="Send this HTTPMessage to the socket." alt="" coords="16,71,207,112"/>
 </map>
 </div>
 
@@ -783,7 +784,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="httprequest_8cpp_source.html#l00139">139</a> of file <a class="el" href="httprequest_8cpp_source.html">httprequest.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="bytes_8cpp_source.html#l00065">dodo::common::Bytes::append()</a>, <a class="el" href="httpmessage_8hpp_source.html#l00257">dodo::network::protocol::http::HTTPMessage::body_</a>, <a class="el" href="systemerror_8hpp_source.html#l00060">dodo::common::SystemError::ecOK</a>, <a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html#a3783344680f3919689860179a78819f0">dodo::network::VirtualReadBuffer::get()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00074">dodo::network::protocol::http::HTTPMessage::getHeaderValue()</a>, <a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html#ac05023730c45272074424d02057df384">dodo::network::VirtualReadBuffer::next()</a>, <a class="el" href="httpfragment_8hpp_source.html#l00093">dodo::network::protocol::http::HTTPFragment::ParseResult::ok()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00224">dodo::network::protocol::http::HTTPMessage::parseChunkedBody()</a>, <a class="el" href="httpfragment_8hpp_source.html#l00065">dodo::network::protocol::http::HTTPFragment::peInvalidTransferEncoding</a>, <a class="el" href="httpfragment_8hpp_source.html#l00064">dodo::network::protocol::http::HTTPFragment::peUnexpectedBody</a>, and <a class="el" href="httpfragment_8hpp_source.html#l00106">dodo::network::protocol::http::HTTPFragment::ParseResult::setSystemError()</a>.</p>
+<p class="reference">References <a class="el" href="bytes_8cpp_source.html#l00065">dodo::common::Bytes::append()</a>, <a class="el" href="httpmessage_8hpp_source.html#l00267">dodo::network::protocol::http::HTTPMessage::body_</a>, <a class="el" href="systemerror_8hpp_source.html#l00060">dodo::common::SystemError::ecOK</a>, <a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html#a3783344680f3919689860179a78819f0">dodo::network::VirtualReadBuffer::get()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00074">dodo::network::protocol::http::HTTPMessage::getHeaderValue()</a>, <a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html#ac05023730c45272074424d02057df384">dodo::network::VirtualReadBuffer::next()</a>, <a class="el" href="httpfragment_8hpp_source.html#l00093">dodo::network::protocol::http::HTTPFragment::ParseResult::ok()</a>, <a class="el" href="httpmessage_8cpp_source.html#l00224">dodo::network::protocol::http::HTTPMessage::parseChunkedBody()</a>, <a class="el" href="httpfragment_8hpp_source.html#l00065">dodo::network::protocol::http::HTTPFragment::peInvalidTransferEncoding</a>, <a class="el" href="httpfragment_8hpp_source.html#l00064">dodo::network::protocol::http::HTTPFragment::peUnexpectedBody</a>, and <a class="el" href="httpfragment_8hpp_source.html#l00106">dodo::network::protocol::http::HTTPFragment::ParseResult::setSystemError()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="httprequest_8cpp_source.html#l00114">parse()</a>.</p>
 <div class="dynheader">
@@ -808,6 +809,62 @@ Here is the caller graph for this function:</div>
 <map name="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_a34e85973e9ecd39d54488ac96dafd188_icgraph" id="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_a34e85973e9ecd39d54488ac96dafd188_icgraph">
 <area shape="rect" title="Parse a body and resturn it as a single string." alt="" coords="248,5,476,47"/>
 <area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#a7dcc012005ecf48a49e93ade07f0740d" title="Read the HTTPRequest from the socket." alt="" coords="5,5,200,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1224b5d49d3e2066f45e9b1260f9fd75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1224b5d49d3e2066f45e9b1260f9fd75">&#9670;&nbsp;</a></span>send()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classdodo_1_1common_1_1SystemError.html">common::SystemError</a> dodo::network::protocol::http::HTTPRequest::send </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classdodo_1_1network_1_1BaseSocket.html">BaseSocket</a> *&#160;</td>
+          <td class="paramname"><em>socket</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Send this <a class="el" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html" title="Generic HTTPMessage, parent to HTTPRequest and HTTPResponse.">HTTPMessage</a> to the socket. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">socket</td><td>The socket to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The commonSystemError that might accour. </dd></dl>
+
+<p>Implements <a class="el" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#ad8b3fd0157973359ed7c9ef4ea0b8582">dodo::network::protocol::http::HTTPMessage</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="httprequest_8cpp_source.html#l00099">99</a> of file <a class="el" href="httprequest_8cpp_source.html">httprequest.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="httprequest_8cpp_source.html#l00077">dodo::network::protocol::http::HTTPRequest::HTTPRequestLine::asString()</a>, <a class="el" href="httpmessage_8hpp_source.html#l00267">dodo::network::protocol::http::HTTPMessage::body_</a>, <a class="el" href="httpmessage_8hpp_source.html#l00047">dodo::network::protocol::http::HTTPMessage::charCR</a>, <a class="el" href="httpmessage_8hpp_source.html#l00052">dodo::network::protocol::http::HTTPMessage::charLF</a>, <a class="el" href="bytes_8hpp_source.html#l00186">dodo::common::Bytes::getArray()</a>, <a class="el" href="httprequest_8hpp_source.html#l00095">dodo::network::protocol::http::HTTPRequest::HTTPRequestLine::getMethod()</a>, <a class="el" href="bytes_8hpp_source.html#l00192">dodo::common::Bytes::getSize()</a>, <a class="el" href="httpmessage_8hpp_source.html#l00262">dodo::network::protocol::http::HTTPMessage::headers_</a>, <a class="el" href="httprequest_8cpp_source.html#l00060">methodAllowsBody()</a>, <a class="el" href="systemerror_8hpp_source.html#l00254">dodo::common::SystemError::ok()</a>, <a class="el" href="httprequest_8hpp_source.html#l00208">request_line_</a>, and <a class="el" href="classdodo_1_1network_1_1BaseSocket.html#a5400d3aef38ae1009e7c6c6c200e5228">dodo::network::BaseSocket::send()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_a1224b5d49d3e2066f45e9b1260f9fd75_cgraph.png" border="0" usemap="#classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_a1224b5d49d3e2066f45e9b1260f9fd75_cgraph" alt=""/></div>
+<map name="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_a1224b5d49d3e2066f45e9b1260f9fd75_cgraph" id="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_a1224b5d49d3e2066f45e9b1260f9fd75_cgraph">
+<area shape="rect" title="Send this HTTPMessage to the socket." alt="" coords="5,233,196,274"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_1_1HTTPRequestLine.html#aa2c87d12fe2d422c960655d06593f2ef" title="Convert the HTTPRequestLine to a HTTP string." alt="" coords="263,5,510,61"/>
+<area shape="rect" href="classdodo_1_1common_1_1Bytes.html#a8fec7dac8fec2167934b26ba865ea8eb" title="Return the array." alt="" coords="305,86,469,127"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_1_1HTTPRequestLine.html#a285149a3b4a9d0fbf16982f5118ff98a" title="Get the HTTPRequest::Method." alt="" coords="263,152,510,208"/>
+<area shape="rect" href="classdodo_1_1common_1_1Bytes.html#afc34ec0de4068cd3ac41fd07668a7cde" title="Return the array size." alt="" coords="305,233,469,274"/>
+<area shape="rect" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#abc7de8b21cfebee0ecef0b9873e19f1e" title="Return true if the Method allows a body in the message." alt="" coords="244,298,529,339"/>
+<area shape="rect" href="classdodo_1_1common_1_1SystemError.html#a4f620090edc70e3425e8a24505555ac9" title="Returns true when this&#45;&gt;errorcode_ == ecOK." alt="" coords="271,364,502,391"/>
+<area shape="rect" href="classdodo_1_1network_1_1BaseSocket.html#a5400d3aef38ae1009e7c6c6c200e5228" title="Send bytes on the socket." alt="" coords="287,415,486,457"/>
 </map>
 </div>
 
@@ -905,7 +962,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="httprequest_8hpp_source.html#l00208">208</a> of file <a class="el" href="httprequest_8hpp_source.html">httprequest.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="httprequest_8cpp_source.html#l00086">asString()</a>, <a class="el" href="httprequest_8hpp_source.html#l00170">getRequestLine()</a>, and <a class="el" href="httprequest_8cpp_source.html#l00114">parse()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="httprequest_8cpp_source.html#l00086">asString()</a>, <a class="el" href="httprequest_8hpp_source.html#l00170">getRequestLine()</a>, <a class="el" href="httprequest_8cpp_source.html#l00114">parse()</a>, and <a class="el" href="httprequest_8cpp_source.html#l00099">send()</a>.</p>
 
 </div>
 </div>
@@ -918,7 +975,7 @@ Here is the call graph for this function:</div>
 <div class="ttc" id="aclassdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage_html_a6810c76f15cfe1d084a1b3d36cfa9bef"><div class="ttname"><a href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#a6810c76f15cfe1d084a1b3d36cfa9bef">dodo::network::protocol::http::HTTPMessage::addHeader</a></div><div class="ttdeci">void addHeader(const std::string &amp;key, const std::string &amp;value)</div><div class="ttdoc">Add a header to the HTTPMessage.</div><div class="ttdef"><b>Definition:</b> <a href="httpmessage_8cpp_source.html#l00037">httpmessage.cpp:37</a></div></div>
 <div class="ttc" id="astructdodo_1_1network_1_1X509Common_1_1SAN_html"><div class="ttname"><a href="structdodo_1_1network_1_1X509Common_1_1SAN.html">dodo::network::X509Common::SAN</a></div><div class="ttdoc">Subject AltName record.</div><div class="ttdef"><b>Definition:</b> <a href="x509cert_8hpp_source.html#l00070">x509cert.hpp:70</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1TLSContext_html"><div class="ttname"><a href="classdodo_1_1network_1_1TLSContext.html">dodo::network::TLSContext</a></div><div class="ttdoc">TLS security context.</div><div class="ttdef"><b>Definition:</b> <a href="tlscontext_8hpp_source.html#l00050">tlscontext.hpp:50</a></div></div>
-<div class="ttc" id="aclassdodo_1_1network_1_1SocketReadBuffer_html"><div class="ttname"><a href="classdodo_1_1network_1_1SocketReadBuffer.html">dodo::network::SocketReadBuffer</a></div><div class="ttdoc">SocketReadBuffer is a VirtualReadBuffer that reads from the BaseSocket in chunks internally.</div><div class="ttdef"><b>Definition:</b> <a href="socketreadbuffer_8hpp_source.html#l00092">socketreadbuffer.hpp:92</a></div></div>
+<div class="ttc" id="aclassdodo_1_1network_1_1SocketReadBuffer_html"><div class="ttname"><a href="classdodo_1_1network_1_1SocketReadBuffer.html">dodo::network::SocketReadBuffer</a></div><div class="ttdoc">SocketReadBuffer is a VirtualReadBuffer that reads from the BaseSocket in chunks internally.</div><div class="ttdef"><b>Definition:</b> <a href="socketreadbuffer_8hpp_source.html#l00099">socketreadbuffer.hpp:99</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_html"><div class="ttname"><a href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html">dodo::network::protocol::http::HTTPRequest</a></div><div class="ttdoc">HTTPRequest class represents a HTTP request.</div><div class="ttdef"><b>Definition:</b> <a href="httprequest_8hpp_source.html#l00042">httprequest.hpp:42</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_1_1HTTPRequestLine_html_a9e4a458169136c6cb2fce56ca01f0b95"><div class="ttname"><a href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_1_1HTTPRequestLine.html#a9e4a458169136c6cb2fce56ca01f0b95">dodo::network::protocol::http::HTTPRequest::HTTPRequestLine::setMethod</a></div><div class="ttdeci">void setMethod(HTTPRequest::Method method)</div><div class="ttdoc">Set the HTTPRequest::Method.</div><div class="ttdef"><b>Definition:</b> <a href="httprequest_8hpp_source.html#l00101">httprequest.hpp:101</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1Address_html_a48e2963dd118fe591f15182c2e555ef3"><div class="ttname"><a href="classdodo_1_1network_1_1Address.html#a48e2963dd118fe591f15182c2e555ef3">dodo::network::Address::asString</a></div><div class="ttdeci">std::string asString(bool withport=false) const</div><div class="ttdoc">Return a string representation of this Address.</div><div class="ttdef"><b>Definition:</b> <a href="address_8cpp_source.html#l00107">address.cpp:107</a></div></div>
@@ -927,10 +984,11 @@ Here is the call graph for this function:</div>
 <div class="ttc" id="aclassdodo_1_1network_1_1protocol_1_1http_1_1HTTPVersion_html"><div class="ttname"><a href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPVersion.html">dodo::network::protocol::http::HTTPVersion</a></div><div class="ttdoc">HHTP version comprising a major and minor number, convertable from and to string as in HTTP requests.</div><div class="ttdef"><b>Definition:</b> <a href="httpversion_8hpp_source.html#l00038">httpversion.hpp:38</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1Address_html"><div class="ttname"><a href="classdodo_1_1network_1_1Address.html">dodo::network::Address</a></div><div class="ttdoc">Generic network Address, supporting ipv4 and ipv6 transparently.</div><div class="ttdef"><b>Definition:</b> <a href="address_8hpp_source.html#l00090">address.hpp:90</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1X509Common_html_a28f6911ae6633e3a518b92371d5a689ba1af3c8cd9ea46d2a701ae919c0a8c5a0"><div class="ttname"><a href="classdodo_1_1network_1_1X509Common.html#a28f6911ae6633e3a518b92371d5a689ba1af3c8cd9ea46d2a701ae919c0a8c5a0">dodo::network::X509Common::SANType::stDNS</a></div><div class="ttdeci">@ stDNS</div><div class="ttdoc">A DNS name such as myhost.mydomain.org.</div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1SystemError_html_a4f620090edc70e3425e8a24505555ac9"><div class="ttname"><a href="classdodo_1_1common_1_1SystemError.html#a4f620090edc70e3425e8a24505555ac9">dodo::common::SystemError::ok</a></div><div class="ttdeci">bool ok() const</div><div class="ttdoc">Returns true when this-&gt;errorcode_ == ecOK.</div><div class="ttdef"><b>Definition:</b> <a href="systemerror_8hpp_source.html#l00253">systemerror.hpp:253</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1SystemError_html_a4f620090edc70e3425e8a24505555ac9"><div class="ttname"><a href="classdodo_1_1common_1_1SystemError.html#a4f620090edc70e3425e8a24505555ac9">dodo::common::SystemError::ok</a></div><div class="ttdeci">bool ok() const</div><div class="ttdoc">Returns true when this-&gt;errorcode_ == ecOK.</div><div class="ttdef"><b>Definition:</b> <a href="systemerror_8hpp_source.html#l00254">systemerror.hpp:254</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1Address_html_a7a68ac2e0566d16ddaad9c5484053d12"><div class="ttname"><a href="classdodo_1_1network_1_1Address.html#a7a68ac2e0566d16ddaad9c5484053d12">dodo::network::Address::getHostAddrInfo</a></div><div class="ttdeci">static common::SystemError getHostAddrInfo(const std::string &amp;hostname, AddrInfo &amp;info)</div><div class="ttdoc">Get Address information on a host in a AddrInfo struct.</div><div class="ttdef"><b>Definition:</b> <a href="address_8cpp_source.html#l00144">address.cpp:144</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1SystemError_html_ab5557441d7c121a06e71f23febbec8fb"><div class="ttname"><a href="classdodo_1_1common_1_1SystemError.html#ab5557441d7c121a06e71f23febbec8fb">dodo::common::SystemError::asString</a></div><div class="ttdeci">std::string asString() const</div><div class="ttdoc">Get the system error string.</div><div class="ttdef"><b>Definition:</b> <a href="systemerror_8hpp_source.html#l00321">systemerror.hpp:321</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1SystemError_html_ab5557441d7c121a06e71f23febbec8fb"><div class="ttname"><a href="classdodo_1_1common_1_1SystemError.html#ab5557441d7c121a06e71f23febbec8fb">dodo::common::SystemError::asString</a></div><div class="ttdeci">std::string asString() const</div><div class="ttdoc">Get the system error string.</div><div class="ttdef"><b>Definition:</b> <a href="systemerror_8hpp_source.html#l00322">systemerror.hpp:322</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1TLSContext_html_a7151ee4f6b6e404c92722a155fceb343a09d4e1ecd9d58b5dca1a32f061f1d458"><div class="ttname"><a href="classdodo_1_1network_1_1TLSContext.html#a7151ee4f6b6e404c92722a155fceb343a09d4e1ecd9d58b5dca1a32f061f1d458">dodo::network::TLSContext::TLSVersion::tls1_1</a></div><div class="ttdeci">@ tls1_1</div><div class="ttdoc">TLS 1.1 disables SSLv2, SSLv3 and TLS 1.0.</div></div>
+<div class="ttc" id="aclassdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_html_a1224b5d49d3e2066f45e9b1260f9fd75"><div class="ttname"><a href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#a1224b5d49d3e2066f45e9b1260f9fd75">dodo::network::protocol::http::HTTPRequest::send</a></div><div class="ttdeci">virtual common::SystemError send(BaseSocket *socket)</div><div class="ttdoc">Send this HTTPMessage to the socket.</div><div class="ttdef"><b>Definition:</b> <a href="httprequest_8cpp_source.html#l00099">httprequest.cpp:99</a></div></div>
 <div class="ttc" id="aclassdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse_html_aee8714ea6f24935b7a1fb1e9f2aadc73"><div class="ttname"><a href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse.html#aee8714ea6f24935b7a1fb1e9f2aadc73">dodo::network::protocol::http::HTTPResponse::parse</a></div><div class="ttdeci">virtual ParseResult parse(VirtualReadBuffer &amp;buffer)</div><div class="ttdoc">Read a complete HTTPFragment from a VirtualReadBuffer.</div><div class="ttdef"><b>Definition:</b> <a href="httpresponse_8cpp_source.html#l00032">httpresponse.cpp:32</a></div></div>
 <div class="ttc" id="aclassdodo_1_1common_1_1StopWatch_html_a8dd562b17eab0417bfffe75f46c8ec5b"><div class="ttname"><a href="classdodo_1_1common_1_1StopWatch.html#a8dd562b17eab0417bfffe75f46c8ec5b">dodo::common::StopWatch::start</a></div><div class="ttdeci">void start()</div><div class="ttdoc">Start the stopwatch.</div><div class="ttdef"><b>Definition:</b> <a href="util_8hpp_source.html#l00069">util.hpp:69</a></div></div>
 <div class="ttc" id="anamespacedodo_1_1network_1_1protocol_1_1http_html"><div class="ttname"><a href="namespacedodo_1_1network_1_1protocol_1_1http.html">dodo::network::protocol::http</a></div><div class="ttdoc">The HTTP 1.1 protocol.</div><div class="ttdef"><b>Definition:</b> <a href="network_8hpp_source.html#l00076">network.hpp:76</a></div></div>

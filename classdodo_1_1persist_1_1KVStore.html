@@ -211,8 +211,8 @@ Protected Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a45ea73a892d6333bbdfa67e5985c0019"><td class="memItemLeft" align="right" valign="top"><a id="a45ea73a892d6333bbdfa67e5985c0019"></a>
-<a class="el" href="classdodo_1_1persist_1_1sqlite_1_1Database.html">sqlite::Database</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>db_</b></td></tr>
+<tr class="memitem:a45ea73a892d6333bbdfa67e5985c0019"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classdodo_1_1persist_1_1sqlite_1_1Database.html">sqlite::Database</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1persist_1_1KVStore.html#a45ea73a892d6333bbdfa67e5985c0019">db_</a></td></tr>
+<tr class="memdesc:a45ea73a892d6333bbdfa67e5985c0019"><td class="mdescLeft">&#160;</td><td class="mdescRight">The database handle.  <a href="classdodo_1_1persist_1_1KVStore.html#a45ea73a892d6333bbdfa67e5985c0019">More...</a><br /></td></tr>
 <tr class="separator:a45ea73a892d6333bbdfa67e5985c0019"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5da8dcd5d113152c235cd721b2d8274"><td class="memItemLeft" align="right" valign="top">std::filesystem::path&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1persist_1_1KVStore.html#af5da8dcd5d113152c235cd721b2d8274">path_</a></td></tr>
 <tr class="memdesc:af5da8dcd5d113152c235cd721b2d8274"><td class="mdescLeft">&#160;</td><td class="mdescRight">The filesystem path to the kvstore.  <a href="classdodo_1_1persist_1_1KVStore.html#af5da8dcd5d113152c235cd721b2d8274">More...</a><br /></td></tr>
@@ -220,8 +220,8 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a69202a04bbc673179fa1b501884bbc33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classdodo_1_1persist_1_1sqlite_1_1DML.html">sqlite::DML</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1persist_1_1KVStore.html#a69202a04bbc673179fa1b501884bbc33">stmt_delete_</a></td></tr>
 <tr class="memdesc:a69202a04bbc673179fa1b501884bbc33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete key pair statement handle.  <a href="classdodo_1_1persist_1_1KVStore.html#a69202a04bbc673179fa1b501884bbc33">More...</a><br /></td></tr>
 <tr class="separator:a69202a04bbc673179fa1b501884bbc33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3845ec1413590e7a6303b60c9ef31c6"><td class="memItemLeft" align="right" valign="top"><a id="aa3845ec1413590e7a6303b60c9ef31c6"></a>
-<a class="el" href="classdodo_1_1persist_1_1sqlite_1_1Query.html">sqlite::Query</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>stmt_exists_</b></td></tr>
+<tr class="memitem:aa3845ec1413590e7a6303b60c9ef31c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classdodo_1_1persist_1_1sqlite_1_1Query.html">sqlite::Query</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1persist_1_1KVStore.html#aa3845ec1413590e7a6303b60c9ef31c6">stmt_exists_</a></td></tr>
+<tr class="memdesc:aa3845ec1413590e7a6303b60c9ef31c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">check key existence statement handle.  <a href="classdodo_1_1persist_1_1KVStore.html#aa3845ec1413590e7a6303b60c9ef31c6">More...</a><br /></td></tr>
 <tr class="separator:aa3845ec1413590e7a6303b60c9ef31c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a262ca96ea27e33792bd53ab1b1171120"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classdodo_1_1persist_1_1sqlite_1_1Query.html">sqlite::Query</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1persist_1_1KVStore.html#a262ca96ea27e33792bd53ab1b1171120">stmt_getvalue_</a></td></tr>
 <tr class="memdesc:a262ca96ea27e33792bd53ab1b1171120"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get-value-for-key statement handle.  <a href="classdodo_1_1persist_1_1KVStore.html#a262ca96ea27e33792bd53ab1b1171120">More...</a><br /></td></tr>
@@ -396,7 +396,7 @@ Protected Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00034">34</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="kvstore_8cpp_source.html#l00072">createSchema()</a>, <a class="el" href="kvstore_8hpp_source.html#l00303">path_</a>, <a class="el" href="kvstore_8cpp_source.html#l00241">prepareSQL()</a>, <a class="el" href="kvstore_8hpp_source.html#l00316">stmt_delete_</a>, <a class="el" href="kvstore_8hpp_source.html#l00310">stmt_getvalue_</a>, <a class="el" href="kvstore_8hpp_source.html#l00313">stmt_insert_</a>, <a class="el" href="kvstore_8hpp_source.html#l00322">stmt_key_filter_</a>, <a class="el" href="kvstore_8hpp_source.html#l00325">stmt_key_value_filter_</a>, <a class="el" href="kvstore_8hpp_source.html#l00328">stmt_metadata_</a>, and <a class="el" href="kvstore_8hpp_source.html#l00319">stmt_update_</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8cpp_source.html#l00072">createSchema()</a>, <a class="el" href="kvstore_8hpp_source.html#l00306">db_</a>, <a class="el" href="kvstore_8hpp_source.html#l00303">path_</a>, <a class="el" href="kvstore_8cpp_source.html#l00241">prepareSQL()</a>, <a class="el" href="kvstore_8hpp_source.html#l00318">stmt_delete_</a>, <a class="el" href="kvstore_8hpp_source.html#l00309">stmt_exists_</a>, <a class="el" href="kvstore_8hpp_source.html#l00312">stmt_getvalue_</a>, <a class="el" href="kvstore_8hpp_source.html#l00315">stmt_insert_</a>, <a class="el" href="kvstore_8hpp_source.html#l00324">stmt_key_filter_</a>, <a class="el" href="kvstore_8hpp_source.html#l00327">stmt_key_value_filter_</a>, <a class="el" href="kvstore_8hpp_source.html#l00330">stmt_metadata_</a>, and <a class="el" href="kvstore_8hpp_source.html#l00321">stmt_update_</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -429,7 +429,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00050">50</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="kvstore_8cpp_source.html#l00064">checkpoint()</a>, <a class="el" href="kvstore_8cpp_source.html#l00235">optimize()</a>, <a class="el" href="kvstore_8hpp_source.html#l00316">stmt_delete_</a>, <a class="el" href="kvstore_8hpp_source.html#l00310">stmt_getvalue_</a>, <a class="el" href="kvstore_8hpp_source.html#l00313">stmt_insert_</a>, <a class="el" href="kvstore_8hpp_source.html#l00322">stmt_key_filter_</a>, <a class="el" href="kvstore_8hpp_source.html#l00325">stmt_key_value_filter_</a>, <a class="el" href="kvstore_8hpp_source.html#l00328">stmt_metadata_</a>, and <a class="el" href="kvstore_8hpp_source.html#l00319">stmt_update_</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8cpp_source.html#l00064">checkpoint()</a>, <a class="el" href="kvstore_8hpp_source.html#l00306">db_</a>, <a class="el" href="kvstore_8cpp_source.html#l00235">optimize()</a>, <a class="el" href="kvstore_8hpp_source.html#l00318">stmt_delete_</a>, <a class="el" href="kvstore_8hpp_source.html#l00309">stmt_exists_</a>, <a class="el" href="kvstore_8hpp_source.html#l00312">stmt_getvalue_</a>, <a class="el" href="kvstore_8hpp_source.html#l00315">stmt_insert_</a>, <a class="el" href="kvstore_8hpp_source.html#l00324">stmt_key_filter_</a>, <a class="el" href="kvstore_8hpp_source.html#l00327">stmt_key_value_filter_</a>, <a class="el" href="kvstore_8hpp_source.html#l00330">stmt_metadata_</a>, and <a class="el" href="kvstore_8hpp_source.html#l00321">stmt_update_</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -463,7 +463,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00064">64</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00299">dodo::persist::sqlite::Database::checkPointFull()</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00295">dodo::persist::sqlite::Database::checkPointFull()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00306">db_</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00050">~KVStore()</a>.</p>
 <div class="dynheader">
@@ -507,7 +507,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00068">68</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00251">dodo::persist::sqlite::Database::commit()</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00247">dodo::persist::sqlite::Database::commit()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00306">db_</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -547,7 +547,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00072">72</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00393">dodo::persist::sqlite::DDL::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00361">dodo::persist::sqlite::Statement::prepare()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00480">dodo::persist::sqlite::Query::step()</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00306">db_</a>, <a class="el" href="sqlite_8cpp_source.html#l00389">dodo::persist::sqlite::DDL::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00357">dodo::persist::sqlite::Statement::prepare()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00476">dodo::persist::sqlite::Query::step()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00034">KVStore()</a>.</p>
 <div class="dynheader">
@@ -600,7 +600,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00090">90</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00415">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00407">dodo::persist::sqlite::DML::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00372">dodo::persist::sqlite::Statement::reset()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00316">stmt_delete_</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00411">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00403">dodo::persist::sqlite::DML::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00368">dodo::persist::sqlite::Statement::reset()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00318">stmt_delete_</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -798,7 +798,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00127">127</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00415">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00496">dodo::persist::sqlite::Query::getInt()</a>, <a class="el" href="sqlite_8cpp_source.html#l00372">dodo::persist::sqlite::Statement::reset()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00480">dodo::persist::sqlite::Query::step()</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00411">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00492">dodo::persist::sqlite::Query::getInt()</a>, <a class="el" href="sqlite_8cpp_source.html#l00368">dodo::persist::sqlite::Statement::reset()</a>, <a class="el" href="sqlite_8cpp_source.html#l00476">dodo::persist::sqlite::Query::step()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00309">stmt_exists_</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -851,7 +851,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00135">135</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00415">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00508">dodo::persist::sqlite::Query::getText()</a>, <a class="el" href="sqlite_8cpp_source.html#l00372">dodo::persist::sqlite::Statement::reset()</a>, <a class="el" href="sqlite_8cpp_source.html#l00480">dodo::persist::sqlite::Query::step()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00322">stmt_key_filter_</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00411">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00504">dodo::persist::sqlite::Query::getText()</a>, <a class="el" href="sqlite_8cpp_source.html#l00368">dodo::persist::sqlite::Statement::reset()</a>, <a class="el" href="sqlite_8cpp_source.html#l00476">dodo::persist::sqlite::Query::step()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00324">stmt_key_filter_</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -894,7 +894,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00144">144</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00415">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00492">dodo::persist::sqlite::Query::getDataType()</a>, <a class="el" href="sqlite_8cpp_source.html#l00504">dodo::persist::sqlite::Query::getDouble()</a>, <a class="el" href="sqlite_8cpp_source.html#l00500">dodo::persist::sqlite::Query::getInt64()</a>, <a class="el" href="kvstore_8hpp_source.html#l00085">dodo::persist::KVStore::MetaData::last_modified</a>, <a class="el" href="sqlite_8cpp_source.html#l00372">dodo::persist::sqlite::Statement::reset()</a>, <a class="el" href="sqlite_8cpp_source.html#l00480">dodo::persist::sqlite::Query::step()</a>, <a class="el" href="kvstore_8hpp_source.html#l00328">stmt_metadata_</a>, <a class="el" href="kvstore_8hpp_source.html#l00089">dodo::persist::KVStore::MetaData::type</a>, and <a class="el" href="kvstore_8hpp_source.html#l00087">dodo::persist::KVStore::MetaData::update_count</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00411">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00488">dodo::persist::sqlite::Query::getDataType()</a>, <a class="el" href="sqlite_8cpp_source.html#l00500">dodo::persist::sqlite::Query::getDouble()</a>, <a class="el" href="sqlite_8cpp_source.html#l00496">dodo::persist::sqlite::Query::getInt64()</a>, <a class="el" href="kvstore_8hpp_source.html#l00085">dodo::persist::KVStore::MetaData::last_modified</a>, <a class="el" href="sqlite_8cpp_source.html#l00368">dodo::persist::sqlite::Statement::reset()</a>, <a class="el" href="sqlite_8cpp_source.html#l00476">dodo::persist::sqlite::Query::step()</a>, <a class="el" href="kvstore_8hpp_source.html#l00330">stmt_metadata_</a>, <a class="el" href="kvstore_8hpp_source.html#l00089">dodo::persist::KVStore::MetaData::type</a>, and <a class="el" href="kvstore_8hpp_source.html#l00087">dodo::persist::KVStore::MetaData::update_count</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -950,7 +950,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00189">189</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00415">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00513">dodo::persist::sqlite::Query::getBytes()</a>, <a class="el" href="sqlite_8cpp_source.html#l00372">dodo::persist::sqlite::Statement::reset()</a>, <a class="el" href="sqlite_8cpp_source.html#l00480">dodo::persist::sqlite::Query::step()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00310">stmt_getvalue_</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00411">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00509">dodo::persist::sqlite::Query::getBytes()</a>, <a class="el" href="sqlite_8cpp_source.html#l00368">dodo::persist::sqlite::Statement::reset()</a>, <a class="el" href="sqlite_8cpp_source.html#l00476">dodo::persist::sqlite::Query::step()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00312">stmt_getvalue_</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1004,7 +1004,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00167">167</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00415">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00504">dodo::persist::sqlite::Query::getDouble()</a>, <a class="el" href="sqlite_8cpp_source.html#l00372">dodo::persist::sqlite::Statement::reset()</a>, <a class="el" href="sqlite_8cpp_source.html#l00480">dodo::persist::sqlite::Query::step()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00310">stmt_getvalue_</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00411">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00500">dodo::persist::sqlite::Query::getDouble()</a>, <a class="el" href="sqlite_8cpp_source.html#l00368">dodo::persist::sqlite::Statement::reset()</a>, <a class="el" href="sqlite_8cpp_source.html#l00476">dodo::persist::sqlite::Query::step()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00312">stmt_getvalue_</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1058,7 +1058,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00178">178</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00415">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00500">dodo::persist::sqlite::Query::getInt64()</a>, <a class="el" href="sqlite_8cpp_source.html#l00372">dodo::persist::sqlite::Statement::reset()</a>, <a class="el" href="sqlite_8cpp_source.html#l00480">dodo::persist::sqlite::Query::step()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00310">stmt_getvalue_</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00411">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00496">dodo::persist::sqlite::Query::getInt64()</a>, <a class="el" href="sqlite_8cpp_source.html#l00368">dodo::persist::sqlite::Statement::reset()</a>, <a class="el" href="sqlite_8cpp_source.html#l00476">dodo::persist::sqlite::Query::step()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00312">stmt_getvalue_</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1112,7 +1112,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00156">156</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00415">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00508">dodo::persist::sqlite::Query::getText()</a>, <a class="el" href="sqlite_8cpp_source.html#l00372">dodo::persist::sqlite::Statement::reset()</a>, <a class="el" href="sqlite_8cpp_source.html#l00480">dodo::persist::sqlite::Query::step()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00310">stmt_getvalue_</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00411">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00504">dodo::persist::sqlite::Query::getText()</a>, <a class="el" href="sqlite_8cpp_source.html#l00368">dodo::persist::sqlite::Statement::reset()</a>, <a class="el" href="sqlite_8cpp_source.html#l00476">dodo::persist::sqlite::Query::step()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00312">stmt_getvalue_</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00097">ensureWithDefault()</a>.</p>
 <div class="dynheader">
@@ -1169,7 +1169,7 @@ Here is the caller graph for this function:</div>
 <p>Note that the size of the data cannot exceed INT_MAX, and exception is thrown if the Bytes is larger. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">key</td><td>The key. </td></tr>
-    <tr><td class="paramname">oa</td><td>The Bytes to insert. </td></tr>
+    <tr><td class="paramname">value</td><td>The Bytes to insert. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1177,7 +1177,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00226">226</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00415">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00407">dodo::persist::sqlite::DML::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00372">dodo::persist::sqlite::Statement::reset()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00313">stmt_insert_</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00411">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00403">dodo::persist::sqlite::DML::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00368">dodo::persist::sqlite::Statement::reset()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00315">stmt_insert_</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1230,7 +1230,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00208">208</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00415">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00407">dodo::persist::sqlite::DML::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00372">dodo::persist::sqlite::Statement::reset()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00313">stmt_insert_</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00411">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00403">dodo::persist::sqlite::DML::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00368">dodo::persist::sqlite::Statement::reset()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00315">stmt_insert_</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1283,7 +1283,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00217">217</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00415">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00407">dodo::persist::sqlite::DML::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00372">dodo::persist::sqlite::Statement::reset()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00313">stmt_insert_</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00411">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00403">dodo::persist::sqlite::DML::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00368">dodo::persist::sqlite::Statement::reset()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00315">stmt_insert_</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1336,7 +1336,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00200">200</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00415">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00407">dodo::persist::sqlite::DML::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00372">dodo::persist::sqlite::Statement::reset()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00313">stmt_insert_</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00411">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00403">dodo::persist::sqlite::DML::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00368">dodo::persist::sqlite::Statement::reset()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00315">stmt_insert_</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00097">ensureWithDefault()</a>.</p>
 <div class="dynheader">
@@ -1381,7 +1381,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00235">235</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00393">dodo::persist::sqlite::DDL::execute()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00361">dodo::persist::sqlite::Statement::prepare()</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00306">db_</a>, <a class="el" href="sqlite_8cpp_source.html#l00389">dodo::persist::sqlite::DDL::execute()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00357">dodo::persist::sqlite::Statement::prepare()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00050">~KVStore()</a>.</p>
 <div class="dynheader">
@@ -1433,7 +1433,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00241">241</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00393">dodo::persist::sqlite::DDL::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00361">dodo::persist::sqlite::Statement::prepare()</a>, <a class="el" href="kvstore_8hpp_source.html#l00316">stmt_delete_</a>, <a class="el" href="kvstore_8hpp_source.html#l00310">stmt_getvalue_</a>, <a class="el" href="kvstore_8hpp_source.html#l00313">stmt_insert_</a>, <a class="el" href="kvstore_8hpp_source.html#l00322">stmt_key_filter_</a>, <a class="el" href="kvstore_8hpp_source.html#l00325">stmt_key_value_filter_</a>, <a class="el" href="kvstore_8hpp_source.html#l00328">stmt_metadata_</a>, and <a class="el" href="kvstore_8hpp_source.html#l00319">stmt_update_</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00306">db_</a>, <a class="el" href="sqlite_8cpp_source.html#l00389">dodo::persist::sqlite::DDL::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00357">dodo::persist::sqlite::Statement::prepare()</a>, <a class="el" href="kvstore_8hpp_source.html#l00318">stmt_delete_</a>, <a class="el" href="kvstore_8hpp_source.html#l00309">stmt_exists_</a>, <a class="el" href="kvstore_8hpp_source.html#l00312">stmt_getvalue_</a>, <a class="el" href="kvstore_8hpp_source.html#l00315">stmt_insert_</a>, <a class="el" href="kvstore_8hpp_source.html#l00324">stmt_key_filter_</a>, <a class="el" href="kvstore_8hpp_source.html#l00327">stmt_key_value_filter_</a>, <a class="el" href="kvstore_8hpp_source.html#l00330">stmt_metadata_</a>, and <a class="el" href="kvstore_8hpp_source.html#l00321">stmt_update_</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00034">KVStore()</a>.</p>
 <div class="dynheader">
@@ -1478,7 +1478,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00256">256</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00259">dodo::persist::sqlite::Database::rollback()</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00306">db_</a>, and <a class="el" href="sqlite_8cpp_source.html#l00255">dodo::persist::sqlite::Database::rollback()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1529,7 +1529,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00284">284</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00415">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00407">dodo::persist::sqlite::DML::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00372">dodo::persist::sqlite::Statement::reset()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00319">stmt_update_</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00411">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00403">dodo::persist::sqlite::DML::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00368">dodo::persist::sqlite::Statement::reset()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00321">stmt_update_</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1582,7 +1582,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00268">268</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00415">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00407">dodo::persist::sqlite::DML::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00372">dodo::persist::sqlite::Statement::reset()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00319">stmt_update_</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00411">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00403">dodo::persist::sqlite::DML::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00368">dodo::persist::sqlite::Statement::reset()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00321">stmt_update_</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1635,7 +1635,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00276">276</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00415">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00407">dodo::persist::sqlite::DML::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00372">dodo::persist::sqlite::Statement::reset()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00319">stmt_update_</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00411">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00403">dodo::persist::sqlite::DML::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00368">dodo::persist::sqlite::Statement::reset()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00321">stmt_update_</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1688,7 +1688,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00260">260</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00415">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00407">dodo::persist::sqlite::DML::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00372">dodo::persist::sqlite::Statement::reset()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00319">stmt_update_</a>.</p>
+<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00411">dodo::persist::sqlite::DML::bind()</a>, <a class="el" href="sqlite_8cpp_source.html#l00403">dodo::persist::sqlite::DML::execute()</a>, <a class="el" href="sqlite_8cpp_source.html#l00368">dodo::persist::sqlite::Statement::reset()</a>, and <a class="el" href="kvstore_8hpp_source.html#l00321">stmt_update_</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1723,7 +1723,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00292">292</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00393">dodo::persist::sqlite::DDL::execute()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00361">dodo::persist::sqlite::Statement::prepare()</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00306">db_</a>, <a class="el" href="sqlite_8cpp_source.html#l00389">dodo::persist::sqlite::DDL::execute()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00357">dodo::persist::sqlite::Statement::prepare()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1756,7 +1756,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="kvstore_8cpp_source.html#l00298">298</a> of file <a class="el" href="kvstore_8cpp_source.html">kvstore.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="sqlite_8cpp_source.html#l00393">dodo::persist::sqlite::DDL::execute()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00361">dodo::persist::sqlite::Statement::prepare()</a>.</p>
+<p class="reference">References <a class="el" href="kvstore_8hpp_source.html#l00306">db_</a>, <a class="el" href="sqlite_8cpp_source.html#l00389">dodo::persist::sqlite::DDL::execute()</a>, and <a class="el" href="sqlite_8cpp_source.html#l00357">dodo::persist::sqlite::Statement::prepare()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1771,6 +1771,34 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <h2 class="groupheader">Field Documentation</h2>
+<a id="a45ea73a892d6333bbdfa67e5985c0019"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45ea73a892d6333bbdfa67e5985c0019">&#9670;&nbsp;</a></span>db_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classdodo_1_1persist_1_1sqlite_1_1Database.html">sqlite::Database</a>* dodo::persist::KVStore::db_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The database handle. </p>
+
+<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00306">306</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00064">checkpoint()</a>, <a class="el" href="kvstore_8cpp_source.html#l00068">commitTransaction()</a>, <a class="el" href="kvstore_8cpp_source.html#l00072">createSchema()</a>, <a class="el" href="kvstore_8cpp_source.html#l00034">KVStore()</a>, <a class="el" href="kvstore_8cpp_source.html#l00235">optimize()</a>, <a class="el" href="kvstore_8cpp_source.html#l00241">prepareSQL()</a>, <a class="el" href="kvstore_8cpp_source.html#l00256">rollbackTransaction()</a>, <a class="el" href="kvstore_8cpp_source.html#l00292">startTransaction()</a>, <a class="el" href="kvstore_8cpp_source.html#l00298">vacuum()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00050">~KVStore()</a>.</p>
+
+</div>
+</div>
 <a id="af5da8dcd5d113152c235cd721b2d8274"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af5da8dcd5d113152c235cd721b2d8274">&#9670;&nbsp;</a></span>path_</h2>
 
@@ -1821,9 +1849,37 @@ Here is the call graph for this function:</div>
 
 <p>Delete key pair statement handle. </p>
 
-<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00316">316</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00318">318</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00090">deleteKey()</a>, <a class="el" href="kvstore_8cpp_source.html#l00034">KVStore()</a>, <a class="el" href="kvstore_8cpp_source.html#l00241">prepareSQL()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00050">~KVStore()</a>.</p>
+
+</div>
+</div>
+<a id="aa3845ec1413590e7a6303b60c9ef31c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3845ec1413590e7a6303b60c9ef31c6">&#9670;&nbsp;</a></span>stmt_exists_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classdodo_1_1persist_1_1sqlite_1_1Query.html">sqlite::Query</a>* dodo::persist::KVStore::stmt_exists_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>check key existence statement handle. </p>
+
+<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00309">309</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00127">exists()</a>, <a class="el" href="kvstore_8cpp_source.html#l00034">KVStore()</a>, <a class="el" href="kvstore_8cpp_source.html#l00241">prepareSQL()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00050">~KVStore()</a>.</p>
 
 </div>
 </div>
@@ -1849,7 +1905,7 @@ Here is the call graph for this function:</div>
 
 <p>Get-value-for-key statement handle. </p>
 
-<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00310">310</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00312">312</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00156">getValue()</a>, <a class="el" href="kvstore_8cpp_source.html#l00034">KVStore()</a>, <a class="el" href="kvstore_8cpp_source.html#l00241">prepareSQL()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00050">~KVStore()</a>.</p>
 
@@ -1877,7 +1933,7 @@ Here is the call graph for this function:</div>
 
 <p>Insert key pair statement handle. </p>
 
-<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00313">313</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00315">315</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00200">insertKey()</a>, <a class="el" href="kvstore_8cpp_source.html#l00034">KVStore()</a>, <a class="el" href="kvstore_8cpp_source.html#l00241">prepareSQL()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00050">~KVStore()</a>.</p>
 
@@ -1905,7 +1961,7 @@ Here is the call graph for this function:</div>
 
 <p>Key filter statement handle. </p>
 
-<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00322">322</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00324">324</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00135">filterKeys()</a>, <a class="el" href="kvstore_8cpp_source.html#l00034">KVStore()</a>, <a class="el" href="kvstore_8cpp_source.html#l00241">prepareSQL()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00050">~KVStore()</a>.</p>
 
@@ -1933,7 +1989,7 @@ Here is the call graph for this function:</div>
 
 <p>Key + value filter statement handle. </p>
 
-<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00325">325</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00327">327</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00034">KVStore()</a>, <a class="el" href="kvstore_8cpp_source.html#l00241">prepareSQL()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00050">~KVStore()</a>.</p>
 
@@ -1961,7 +2017,7 @@ Here is the call graph for this function:</div>
 
 <p>Get metadata statement handle. </p>
 
-<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00328">328</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00330">330</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00144">getMetaData()</a>, <a class="el" href="kvstore_8cpp_source.html#l00034">KVStore()</a>, <a class="el" href="kvstore_8cpp_source.html#l00241">prepareSQL()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00050">~KVStore()</a>.</p>
 
@@ -1989,7 +2045,7 @@ Here is the call graph for this function:</div>
 
 <p>Update key pair statement handle. </p>
 
-<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00319">319</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kvstore_8hpp_source.html#l00321">321</a> of file <a class="el" href="kvstore_8hpp_source.html">kvstore.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="kvstore_8cpp_source.html#l00034">KVStore()</a>, <a class="el" href="kvstore_8cpp_source.html#l00241">prepareSQL()</a>, <a class="el" href="kvstore_8cpp_source.html#l00260">setKey()</a>, and <a class="el" href="kvstore_8cpp_source.html#l00050">~KVStore()</a>.</p>
 

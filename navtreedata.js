@@ -40,28 +40,30 @@ var NAVTREE =
       [ "Exception and error handling", "md_DEVELOPER.html#autotoc_md12", null ],
       [ "Deployment configuration", "md_DEVELOPER.html#autotoc_md13", null ],
       [ "Logging", "md_DEVELOPER.html#autotoc_md14", null ],
-      [ "Networking", "md_DEVELOPER.html#autotoc_md15", [
-        [ "Address", "md_DEVELOPER.html#autotoc_md16", null ]
+      [ "Bytes", "md_DEVELOPER.html#autotoc_md15", null ],
+      [ "Encryption", "md_DEVELOPER.html#autotoc_md16", null ],
+      [ "Networking", "md_DEVELOPER.html#autotoc_md17", [
+        [ "Address", "md_DEVELOPER.html#autotoc_md18", null ]
       ] ],
-      [ "Sockets", "md_DEVELOPER.html#autotoc_md17", [
+      [ "Sockets", "md_DEVELOPER.html#autotoc_md19", [
+        [ "Sockets", "md_DEVELOPER.html#autotoc_md20", null ],
         [ "Secure sockets", "md_DEVELOPER.html#developer_networking", [
-          [ "Asymmetric cryptography", "md_DEVELOPER.html#autotoc_md18", null ],
-          [ "Transport Layer Security (TLS)", "md_DEVELOPER.html#autotoc_md19", null ],
-          [ "Setup Certification Authority", "md_DEVELOPER.html#autotoc_md20", null ]
+          [ "Transport Layer Security (TLS)", "md_DEVELOPER.html#autotoc_md21", null ],
+          [ "Setup Certification Authority", "md_DEVELOPER.html#autotoc_md22", null ]
         ] ]
       ] ],
-      [ "TCPListener / TCPServer", "md_DEVELOPER.html#autotoc_md21", null ],
-      [ "Persistent data", "md_DEVELOPER.html#autotoc_md22", [
-        [ "SQLite wrapper", "md_DEVELOPER.html#autotoc_md23", null ],
-        [ "KVStore", "md_DEVELOPER.html#autotoc_md24", null ]
+      [ "TCPListener / TCPServer", "md_DEVELOPER.html#autotoc_md23", null ],
+      [ "Persistent data", "md_DEVELOPER.html#autotoc_md24", [
+        [ "SQLite wrapper", "md_DEVELOPER.html#autotoc_md25", null ],
+        [ "KVStore", "md_DEVELOPER.html#autotoc_md26", null ]
       ] ],
-      [ "Performance", "md_DEVELOPER.html#autotoc_md25", null ]
+      [ "Performance", "md_DEVELOPER.html#autotoc_md27", null ]
     ] ],
     [ "Maintainer manual", "maintainer.html", [
       [ "Coding style", "maintainer.html#coding_style", [
-        [ "Identifiers", "maintainer.html#autotoc_md26", null ],
-        [ "Variables", "maintainer.html#autotoc_md27", null ],
-        [ "Indentation and curly brackets", "maintainer.html#autotoc_md28", null ]
+        [ "Identifiers", "maintainer.html#autotoc_md28", null ],
+        [ "Variables", "maintainer.html#autotoc_md29", null ],
+        [ "Indentation and curly brackets", "maintainer.html#autotoc_md30", null ]
       ] ]
     ] ],
     [ "Todo List", "todo.html", null ],
@@ -102,11 +104,11 @@ var NAVTREEINDEX =
 "address_8cpp.html",
 "classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a0cf41f6752646be26ec44d2558cdb222",
 "classdodo_1_1network_1_1BaseSocket.html#ab81f21fe60cc0deade8f8f366a40b655",
-"classdodo_1_1network_1_1TLSContext.html#a95e33cbc84cbc95e0f17ee1e5999d43d",
-"classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse.html#a3556c2945a03f164ab5d8598d2fd4d7aa480f5eb07cc984967aa1eac99c7b12e3",
-"classdodo_1_1persist_1_1sqlite_1_1Statement.html#a7177089e0ded821a46626bbb905cd4ab",
-"md_DEVELOPER.html#autotoc_md14",
-"util_8cpp.html#ae1e4a7a218141abb2a29a277951612f6"
+"classdodo_1_1network_1_1TLSContext.html#a8ba59bffeb41e4f79342ba5c2bdd05d0",
+"classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse.html#a3556c2945a03f164ab5d8598d2fd4d7aa42143c07af13436e493fc3f65bfa5105",
+"classdodo_1_1persist_1_1sqlite_1_1Statement.html",
+"md_DEVELOPER.html#autotoc_md11",
+"util_8cpp.html#ac47589087895d0c62c858abb5e58dc0b"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

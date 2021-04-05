@@ -269,65 +269,64 @@ $(document).ready(function(){initNavTree('datacrypt_8hpp_source.html',''); initR
 <div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="comment">       * @param key The key to encrypt with.</span></div>
 <div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="comment">       * @param src The source data to encrypt.</span></div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="comment">       * @param dst The encrypted string</span></div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="comment">       * @return void</span></div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;      <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1common_1_1DataCrypt.html#a874b79bf3ef2b47eb59c7ca625a171ae">encrypt</a>( <a class="code" href="classdodo_1_1common_1_1DataCrypt.html#a868863bcb02a5b2b0b80d430ce66a68b">Cipher</a> cipher,</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                           <span class="keyword">const</span> std::string &amp;key,</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                           <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Bytes.html">Bytes</a>&amp; src,</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                           std::string &amp;dst );</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="comment">       * Decrypt data with a key.</span></div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="comment">       * @param key The key to decrypt with.</span></div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="comment">       * @param src The source data to decrypt.</span></div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="comment">       * @param dest The Bytes that will receive the decrypted data. The caller will become owner of the</span></div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="comment">       * pointer in Bytes and responsible for cleaning it up with free().</span></div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment">       * @return 0 if decryption ok, 1 if failure due to the format not being recognized, 2 if key was incorrect</span></div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment">       * or the data corrupted.</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;      <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classdodo_1_1common_1_1DataCrypt.html#aabf6cb0911efd72d438bc3fcb51a0db6">decrypt</a>( <span class="keyword">const</span> std::string &amp;key,</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                          <span class="keyword">const</span> std::string src,</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                          <a class="code" href="classdodo_1_1common_1_1Bytes.html">Bytes</a> &amp;dest );</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <span class="keyword">private</span>:<span class="comment"></span></div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="comment">       * Calculate the size of the encrypted data from the input size.</span></div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="comment">       * @param cipher The Cipher to calculate for.</span></div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="comment">       * @param octets The number of octets in the data to encrypt.</span></div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="comment">       * @return The size of the encrypted data.</span></div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00210"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1DataCrypt.html#a9479f00dc09d237396352c9315ad740f">  210</a></span>&#160;      <span class="keyword">static</span> <span class="keywordtype">size_t</span> <a class="code" href="classdodo_1_1common_1_1DataCrypt.html#a9479f00dc09d237396352c9315ad740f">cipherOctets</a>( <a class="code" href="classdodo_1_1common_1_1DataCrypt.html#a868863bcb02a5b2b0b80d430ce66a68b">Cipher</a> cipher, <span class="keywordtype">size_t</span> octets ) {</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        <span class="keywordflow">return</span> octets + <a class="code" href="classdodo_1_1common_1_1DataCrypt.html#ada81344357ec8dd7023ebcefb419c54c">blockOctets</a>( cipher ) - ( octets %  <a class="code" href="classdodo_1_1common_1_1DataCrypt.html#ada81344357ec8dd7023ebcefb419c54c">blockOctets</a>( cipher ) );</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;      }</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="comment">       * Decode an ENC[] string into its parts.</span></div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="comment">       * @param src The source encrypt string.</span></div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<span class="comment">       * @param cipher The cipher string part.</span></div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="comment">       * @param data The data string part.</span></div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="comment">       * @param iv The iv string part.</span></div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;<span class="comment">       * @param tag The tag string part.</span></div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="comment">       * @return false if the decode failed / invalid src string.</span></div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;      <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="classdodo_1_1common_1_1DataCrypt.html#af4d9d65829cde88dbdb61b00b71bce6a">decode</a>( <span class="keyword">const</span> std::string &amp;src,</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                          std::string &amp;cipher,</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                          std::string &amp;data,</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                          std::string &amp;iv,</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                          std::string &amp;tag );</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="comment">      /**</span></div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="comment">       * Pad or trim a key to match the key size for the Cipher.</span></div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="comment">       * @param cipher The Cipher to apply.</span></div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="comment">       * @param key The key to adjust</span></div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="comment">       * @return The adjusted key.</span></div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="comment">       */</span></div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;      <span class="keyword">static</span> std::string <a class="code" href="classdodo_1_1common_1_1DataCrypt.html#a63b83a80350883962324b08cfe5d2a0e">paddedKey</a>( <a class="code" href="classdodo_1_1common_1_1DataCrypt.html#a868863bcb02a5b2b0b80d430ce66a68b">Cipher</a> cipher, <span class="keyword">const</span> std::string key );</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160; </div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;  };</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160; </div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;}</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160; </div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;      <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classdodo_1_1common_1_1DataCrypt.html#a874b79bf3ef2b47eb59c7ca625a171ae">encrypt</a>( <a class="code" href="classdodo_1_1common_1_1DataCrypt.html#a868863bcb02a5b2b0b80d430ce66a68b">Cipher</a> cipher,</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;                           <span class="keyword">const</span> std::string &amp;key,</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                           <span class="keyword">const</span> <a class="code" href="classdodo_1_1common_1_1Bytes.html">Bytes</a>&amp; src,</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                           std::string &amp;dst );</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="comment">       * Decrypt data with a key.</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="comment">       * @param key The key to decrypt with.</span></div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="comment">       * @param src The source data to decrypt.</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="comment">       * @param dest The Bytes that will receive the decrypted data. The caller will become owner of the</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="comment">       * pointer in Bytes and responsible for cleaning it up with free().</span></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="comment">       * @return 0 if decryption ok, 1 if failure due to the format not being recognized, 2 if key was incorrect</span></div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment">       * or the data corrupted.</span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;      <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classdodo_1_1common_1_1DataCrypt.html#aabf6cb0911efd72d438bc3fcb51a0db6">decrypt</a>( <span class="keyword">const</span> std::string &amp;key,</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                          <span class="keyword">const</span> std::string src,</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                          <a class="code" href="classdodo_1_1common_1_1Bytes.html">Bytes</a> &amp;dest );</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160; </div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <span class="keyword">private</span>:<span class="comment"></span></div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="comment">       * Calculate the size of the encrypted data from the input size.</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="comment">       * @param cipher The Cipher to calculate for.</span></div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="comment">       * @param octets The number of octets in the data to encrypt.</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="comment">       * @return The size of the encrypted data.</span></div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00209"></a><span class="lineno"><a class="line" href="classdodo_1_1common_1_1DataCrypt.html#a9479f00dc09d237396352c9315ad740f">  209</a></span>&#160;      <span class="keyword">static</span> <span class="keywordtype">size_t</span> <a class="code" href="classdodo_1_1common_1_1DataCrypt.html#a9479f00dc09d237396352c9315ad740f">cipherOctets</a>( <a class="code" href="classdodo_1_1common_1_1DataCrypt.html#a868863bcb02a5b2b0b80d430ce66a68b">Cipher</a> cipher, <span class="keywordtype">size_t</span> octets ) {</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        <span class="keywordflow">return</span> octets + <a class="code" href="classdodo_1_1common_1_1DataCrypt.html#ada81344357ec8dd7023ebcefb419c54c">blockOctets</a>( cipher ) - ( octets %  <a class="code" href="classdodo_1_1common_1_1DataCrypt.html#ada81344357ec8dd7023ebcefb419c54c">blockOctets</a>( cipher ) );</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;      }</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="comment">       * Decode an ENC[] string into its parts.</span></div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="comment">       * @param src The source encrypt string.</span></div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="comment">       * @param cipher The cipher string part.</span></div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<span class="comment">       * @param data The data string part.</span></div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="comment">       * @param iv The iv string part.</span></div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="comment">       * @param tag The tag string part.</span></div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;<span class="comment">       * @return false if the decode failed / invalid src string.</span></div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;      <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="classdodo_1_1common_1_1DataCrypt.html#af4d9d65829cde88dbdb61b00b71bce6a">decode</a>( <span class="keyword">const</span> std::string &amp;src,</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;                          std::string &amp;cipher,</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                          std::string &amp;data,</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                          std::string &amp;iv,</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                          std::string &amp;tag );</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="comment">      /**</span></div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="comment">       * Pad or trim a key to match the key size for the Cipher.</span></div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="comment">       * @param cipher The Cipher to apply.</span></div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="comment">       * @param key The key to adjust</span></div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="comment">       * @return The adjusted key.</span></div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="comment">       */</span></div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;      <span class="keyword">static</span> std::string <a class="code" href="classdodo_1_1common_1_1DataCrypt.html#a63b83a80350883962324b08cfe5d2a0e">paddedKey</a>( <a class="code" href="classdodo_1_1common_1_1DataCrypt.html#a868863bcb02a5b2b0b80d430ce66a68b">Cipher</a> cipher, <span class="keyword">const</span> std::string key );</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160; </div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;  };</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160; </div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;}</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160; </div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aclassdodo_1_1common_1_1DataCrypt_html_ada81344357ec8dd7023ebcefb419c54c"><div class="ttname"><a href="classdodo_1_1common_1_1DataCrypt.html#ada81344357ec8dd7023ebcefb419c54c">dodo::common::DataCrypt::blockOctets</a></div><div class="ttdeci">static int blockOctets(Cipher cipher)</div><div class="ttdoc">Return the block size of the Cipher in octets.</div><div class="ttdef"><b>Definition:</b> <a href="datacrypt_8hpp_source.html#l00124">datacrypt.hpp:124</a></div></div>
@@ -337,7 +336,7 @@ $(document).ready(function(){initNavTree('datacrypt_8hpp_source.html',''); initR
 <div class="ttc" id="aclassdodo_1_1common_1_1DataCrypt_html_a868863bcb02a5b2b0b80d430ce66a68b"><div class="ttname"><a href="classdodo_1_1common_1_1DataCrypt.html#a868863bcb02a5b2b0b80d430ce66a68b">dodo::common::DataCrypt::Cipher</a></div><div class="ttdeci">Cipher</div><div class="ttdoc">Cipher selection.</div><div class="ttdef"><b>Definition:</b> <a href="datacrypt_8hpp_source.html#l00081">datacrypt.hpp:81</a></div></div>
 <div class="ttc" id="aclassdodo_1_1common_1_1DataCrypt_html_a9014a2a103a0742f919bd6a80fd8f7a5"><div class="ttname"><a href="classdodo_1_1common_1_1DataCrypt.html#a9014a2a103a0742f919bd6a80fd8f7a5">dodo::common::DataCrypt::string2Cipher</a></div><div class="ttdeci">static Cipher string2Cipher(const std::string &amp;s)</div><div class="ttdoc">Convert a string representation to an Cipher.</div><div class="ttdef"><b>Definition:</b> <a href="datacrypt_8hpp_source.html#l00169">datacrypt.hpp:169</a></div></div>
 <div class="ttc" id="aclassdodo_1_1common_1_1DataCrypt_html_a874b79bf3ef2b47eb59c7ca625a171ae"><div class="ttname"><a href="classdodo_1_1common_1_1DataCrypt.html#a874b79bf3ef2b47eb59c7ca625a171ae">dodo::common::DataCrypt::encrypt</a></div><div class="ttdeci">static void encrypt(Cipher cipher, const std::string &amp;key, const Bytes &amp;src, std::string &amp;dst)</div><div class="ttdoc">Encrypt data with a key into a string (so the encrypted data will not contain a 0/zero).</div><div class="ttdef"><b>Definition:</b> <a href="datacrypt_8cpp_source.html#l00033">datacrypt.cpp:33</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1DataCrypt_html_a9479f00dc09d237396352c9315ad740f"><div class="ttname"><a href="classdodo_1_1common_1_1DataCrypt.html#a9479f00dc09d237396352c9315ad740f">dodo::common::DataCrypt::cipherOctets</a></div><div class="ttdeci">static size_t cipherOctets(Cipher cipher, size_t octets)</div><div class="ttdoc">Calculate the size of the encrypted data from the input size.</div><div class="ttdef"><b>Definition:</b> <a href="datacrypt_8hpp_source.html#l00210">datacrypt.hpp:210</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1DataCrypt_html_a9479f00dc09d237396352c9315ad740f"><div class="ttname"><a href="classdodo_1_1common_1_1DataCrypt.html#a9479f00dc09d237396352c9315ad740f">dodo::common::DataCrypt::cipherOctets</a></div><div class="ttdeci">static size_t cipherOctets(Cipher cipher, size_t octets)</div><div class="ttdoc">Calculate the size of the encrypted data from the input size.</div><div class="ttdef"><b>Definition:</b> <a href="datacrypt_8hpp_source.html#l00209">datacrypt.hpp:209</a></div></div>
 <div class="ttc" id="aclassdodo_1_1common_1_1DataCrypt_html_a774a25f59fe20d51c3b6ec8545851f55"><div class="ttname"><a href="classdodo_1_1common_1_1DataCrypt.html#a774a25f59fe20d51c3b6ec8545851f55">dodo::common::DataCrypt::ivOctets</a></div><div class="ttdeci">static int ivOctets(Cipher cipher)</div><div class="ttdoc">Return the size of the IV (initialization vector) for the given Cipher in bits.</div><div class="ttdef"><b>Definition:</b> <a href="datacrypt_8hpp_source.html#l00109">datacrypt.hpp:109</a></div></div>
 <div class="ttc" id="aclassdodo_1_1common_1_1DataCrypt_html_ae0f9cab5afc09ea08418c9f67a164d88"><div class="ttname"><a href="classdodo_1_1common_1_1DataCrypt.html#ae0f9cab5afc09ea08418c9f67a164d88">dodo::common::DataCrypt::cipher2String</a></div><div class="ttdeci">static std::string cipher2String(const Cipher &amp;cipher)</div><div class="ttdoc">String representation of an Cipher instance.</div><div class="ttdef"><b>Definition:</b> <a href="datacrypt_8hpp_source.html#l00154">datacrypt.hpp:154</a></div></div>
 <div class="ttc" id="anamespacedodo_1_1common_html"><div class="ttname"><a href="namespacedodo_1_1common.html">dodo::common</a></div><div class="ttdoc">Common and utility interfaces.</div><div class="ttdef"><b>Definition:</b> <a href="application_8hpp_source.html#l00029">application.hpp:29</a></div></div>

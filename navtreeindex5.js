@@ -1,5 +1,8 @@
 var NAVTREEINDEX5 =
 {
+"classdodo_1_1persist_1_1sqlite_1_1Statement.html":[5,0,0,2,0,4],
+"classdodo_1_1persist_1_1sqlite_1_1Statement.html#a2e7c79e5a522bfdc0c861e4780c871ec":[5,0,0,2,0,4,4],
+"classdodo_1_1persist_1_1sqlite_1_1Statement.html#a44943fe59b91abb4b2a028345fb6b98b":[5,0,0,2,0,4,6],
 "classdodo_1_1persist_1_1sqlite_1_1Statement.html#a7177089e0ded821a46626bbb905cd4ab":[5,0,0,2,0,4,5],
 "classdodo_1_1persist_1_1sqlite_1_1Statement.html#a9a126dc9004edff369e6c9ea98d9dd10":[5,0,0,2,0,4,3],
 "classdodo_1_1persist_1_1sqlite_1_1Statement.html#aa391f4615b6de6ab6733d0b5516f564f":[5,0,0,2,0,4,1],
@@ -118,8 +121,8 @@ var NAVTREEINDEX5 =
 "functions_eval_p.html":[5,3,4,3],
 "functions_eval_s.html":[5,3,4,4],
 "functions_f.html":[5,3,0,5],
-"functions_func.html":[5,3,1,0],
 "functions_func.html":[5,3,1],
+"functions_func.html":[5,3,1,0],
 "functions_func_b.html":[5,3,1,1],
 "functions_func_c.html":[5,3,1,2],
 "functions_func_d.html":[5,3,1,3],
@@ -160,8 +163,8 @@ var NAVTREEINDEX5 =
 "functions_t.html":[5,3,0,19],
 "functions_u.html":[5,3,0,20],
 "functions_v.html":[5,3,0,21],
-"functions_vars.html":[5,3,2],
 "functions_vars.html":[5,3,2,0],
+"functions_vars.html":[5,3,2],
 "functions_vars_b.html":[5,3,2,1],
 "functions_vars_c.html":[5,3,2,2],
 "functions_vars_d.html":[5,3,2,3],
@@ -241,13 +244,10 @@ var NAVTREEINDEX5 =
 "logger_8hpp.html#aebe98277b4546bdfa50fe989a34d1737":[6,0,1,0,0,6,6],
 "logger_8hpp_source.html":[6,0,1,0,0,6],
 "maintainer.html":[2],
-"maintainer.html#autotoc_md26":[2,0,0],
-"maintainer.html#autotoc_md27":[2,0,1],
-"maintainer.html#autotoc_md28":[2,0,2],
+"maintainer.html#autotoc_md28":[2,0,0],
+"maintainer.html#autotoc_md29":[2,0,1],
+"maintainer.html#autotoc_md30":[2,0,2],
 "maintainer.html#coding_style":[2,0],
 "md_DEVELOPER.html":[1],
-"md_DEVELOPER.html#autotoc_md10":[1,0],
-"md_DEVELOPER.html#autotoc_md11":[1,1],
-"md_DEVELOPER.html#autotoc_md12":[1,2],
-"md_DEVELOPER.html#autotoc_md13":[1,3]
+"md_DEVELOPER.html#autotoc_md10":[1,0]
 };

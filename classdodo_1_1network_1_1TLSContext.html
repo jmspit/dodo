@@ -86,6 +86,8 @@ $(document).ready(function(){initNavTree('classdodo_1_1network_1_1TLSContext.htm
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-static-methods">Static Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a>  </div>
   <div class="headertitle">
@@ -125,8 +127,7 @@ Collaboration diagram for dodo::network::TLSContext:</div>
 Public Types</h2></td></tr>
 <tr class="memitem:ac52323d8c8ebb0024a917ab92640ee7d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1TLSContext.html#ac52323d8c8ebb0024a917ab92640ee7d">PeerVerification</a> { <a class="el" href="classdodo_1_1network_1_1TLSContext.html#ac52323d8c8ebb0024a917ab92640ee7dabc2760983296cae737de97348bc19a9d">PeerVerification::pvVerifyNone</a>, 
 <a class="el" href="classdodo_1_1network_1_1TLSContext.html#ac52323d8c8ebb0024a917ab92640ee7da59c4417e239a14944b29e82b8f68fcdb">PeerVerification::pvVerifyPeer</a>, 
-<a class="el" href="classdodo_1_1network_1_1TLSContext.html#ac52323d8c8ebb0024a917ab92640ee7dabb1355627929f6d13a5bf081139375d2">PeerVerification::pvVerifyFQDN</a>, 
-<a class="el" href="classdodo_1_1network_1_1TLSContext.html#ac52323d8c8ebb0024a917ab92640ee7da1c6e3f4f0ac2a58e3ccac79c1cefe3b1">PeerVerification::pvVerifyCustom</a>
+<a class="el" href="classdodo_1_1network_1_1TLSContext.html#ac52323d8c8ebb0024a917ab92640ee7dabb1355627929f6d13a5bf081139375d2">PeerVerification::pvVerifyFQDN</a>
  }</td></tr>
 <tr class="memdesc:ac52323d8c8ebb0024a917ab92640ee7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The TLS peer verification method.  <a href="classdodo_1_1network_1_1TLSContext.html#ac52323d8c8ebb0024a917ab92640ee7d">More...</a><br /></td></tr>
 <tr class="separator:ac52323d8c8ebb0024a917ab92640ee7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,6 +144,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2043e1cad68876c5c9cf9ba8da9fde4e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1TLSContext.html#a2043e1cad68876c5c9cf9ba8da9fde4e">TLSContext</a> (const <a class="el" href="classdodo_1_1network_1_1TLSContext.html#ac52323d8c8ebb0024a917ab92640ee7d">PeerVerification</a> &amp;peerverficiation=<a class="el" href="classdodo_1_1network_1_1TLSContext.html#ac52323d8c8ebb0024a917ab92640ee7dabb1355627929f6d13a5bf081139375d2">PeerVerification::pvVerifyFQDN</a>, const <a class="el" href="classdodo_1_1network_1_1TLSContext.html#a7151ee4f6b6e404c92722a155fceb343">TLSVersion</a> &amp;tlsversion=<a class="el" href="classdodo_1_1network_1_1TLSContext.html#a7151ee4f6b6e404c92722a155fceb343a326bb1352cb3209b1dcc0a0ba4013e4b">TLSVersion::tlsBest</a>, bool enableSNI=true, bool allowSANWildcards=true)</td></tr>
 <tr class="memdesc:a2043e1cad68876c5c9cf9ba8da9fde4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a TLS context.  <a href="classdodo_1_1network_1_1TLSContext.html#a2043e1cad68876c5c9cf9ba8da9fde4e">More...</a><br /></td></tr>
 <tr class="separator:a2043e1cad68876c5c9cf9ba8da9fde4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23b18787fbdcb4a32c95d86dbc934fbe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1TLSContext.html#a23b18787fbdcb4a32c95d86dbc934fbe">TLSContext</a> (const YAML::Node &amp;yaml)</td></tr>
+<tr class="memdesc:a23b18787fbdcb4a32c95d86dbc934fbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a <a class="el" href="classdodo_1_1network_1_1TLSContext.html" title="TLS security context.">TLSContext</a> from a YAML node.  <a href="classdodo_1_1network_1_1TLSContext.html#a23b18787fbdcb4a32c95d86dbc934fbe">More...</a><br /></td></tr>
+<tr class="separator:a23b18787fbdcb4a32c95d86dbc934fbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12594d06a5101deab59da7754e1a8a9a"><td class="memItemLeft" align="right" valign="top">SSL_CTX *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1TLSContext.html#a12594d06a5101deab59da7754e1a8a9a">getContext</a> () const</td></tr>
 <tr class="memdesc:a12594d06a5101deab59da7754e1a8a9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a pointer to the SSL_CTX.  <a href="classdodo_1_1network_1_1TLSContext.html#a12594d06a5101deab59da7754e1a8a9a">More...</a><br /></td></tr>
 <tr class="separator:a12594d06a5101deab59da7754e1a8a9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -162,13 +166,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aa77451d1c3a087066dad53d8a38120a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a private key, matching certificate and optional CA certificates (eg a truststore) from a PKCS12 file.  <a href="classdodo_1_1network_1_1TLSContext.html#aa77451d1c3a087066dad53d8a38120a4">More...</a><br /></td></tr>
 <tr class="separator:aa77451d1c3a087066dad53d8a38120a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf0edbabfe0ac8698a92a0827878d6bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1TLSContext.html#acf0edbabfe0ac8698a92a0827878d6bd">setCipherList</a> (const std::string &amp;cipherlist)</td></tr>
-<tr class="memdesc:acf0edbabfe0ac8698a92a0827878d6bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a list of ciphers the <a class="el" href="classdodo_1_1network_1_1TLSContext.html" title="TLS security context.">TLSContext</a> will accept.  <a href="classdodo_1_1network_1_1TLSContext.html#acf0edbabfe0ac8698a92a0827878d6bd">More...</a><br /></td></tr>
+<tr class="memdesc:acf0edbabfe0ac8698a92a0827878d6bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a list of ciphers, separated by a colon, the <a class="el" href="classdodo_1_1network_1_1TLSContext.html" title="TLS security context.">TLSContext</a> will accept.  <a href="classdodo_1_1network_1_1TLSContext.html#acf0edbabfe0ac8698a92a0827878d6bd">More...</a><br /></td></tr>
 <tr class="separator:acf0edbabfe0ac8698a92a0827878d6bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e70d501dfdea6e12817fa7fa89e995b"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1TLSContext.html#a3e70d501dfdea6e12817fa7fa89e995b">setOptions</a> (long option)</td></tr>
 <tr class="memdesc:a3e70d501dfdea6e12817fa7fa89e995b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set SSL options.  <a href="classdodo_1_1network_1_1TLSContext.html#a3e70d501dfdea6e12817fa7fa89e995b">More...</a><br /></td></tr>
 <tr class="separator:a3e70d501dfdea6e12817fa7fa89e995b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad6c2745f177eaa16b629e64fe213b766"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1TLSContext.html#ad6c2745f177eaa16b629e64fe213b766">setTrustPaths</a> (const std::string &amp;cafile, const std::string &amp;capath)</td></tr>
-<tr class="memdesc:ad6c2745f177eaa16b629e64fe213b766"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trust all certificates in the specified directory.  <a href="classdodo_1_1network_1_1TLSContext.html#ad6c2745f177eaa16b629e64fe213b766">More...</a><br /></td></tr>
+<tr class="memdesc:ad6c2745f177eaa16b629e64fe213b766"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trust all certificates (PEM format) in the specified file and/or directory.  <a href="classdodo_1_1network_1_1TLSContext.html#ad6c2745f177eaa16b629e64fe213b766">More...</a><br /></td></tr>
 <tr class="separator:ad6c2745f177eaa16b629e64fe213b766"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classdodo_1_1common_1_1DebugObject"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classdodo_1_1common_1_1DebugObject')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classdodo_1_1common_1_1DebugObject.html">dodo::common::DebugObject</a></td></tr>
 <tr class="memitem:a479d125862ddd33e8532516a171897d3 inherit pub_methods_classdodo_1_1common_1_1DebugObject"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1DebugObject.html#a479d125862ddd33e8532516a171897d3">DebugObject</a> ()</td></tr>
@@ -180,6 +184,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2fef1c1898f8432e96782fc7c743f8e9 inherit pub_methods_classdodo_1_1common_1_1DebugObject"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1DebugObject.html#a2fef1c1898f8432e96782fc7c743f8e9">debugString</a> () const</td></tr>
 <tr class="memdesc:a2fef1c1898f8432e96782fc7c743f8e9 inherit pub_methods_classdodo_1_1common_1_1DebugObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the object dump to string.  <a href="classdodo_1_1common_1_1DebugObject.html#a2fef1c1898f8432e96782fc7c743f8e9">More...</a><br /></td></tr>
 <tr class="separator:a2fef1c1898f8432e96782fc7c743f8e9 inherit pub_methods_classdodo_1_1common_1_1DebugObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a8eb4e37b249a3d2b2e3615f712653a1d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classdodo_1_1network_1_1TLSContext.html#ac52323d8c8ebb0024a917ab92640ee7d">PeerVerification</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1TLSContext.html#a8eb4e37b249a3d2b2e3615f712653a1d">peerVerficiationFromString</a> (const std::string &amp;src)</td></tr>
+<tr class="memdesc:a8eb4e37b249a3d2b2e3615f712653a1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a PeerVerfication enum from a string.  <a href="classdodo_1_1network_1_1TLSContext.html#a8eb4e37b249a3d2b2e3615f712653a1d">More...</a><br /></td></tr>
+<tr class="separator:a8eb4e37b249a3d2b2e3615f712653a1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7a4eaa35b0bf2894db8a48f5911a2e0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classdodo_1_1network_1_1TLSContext.html#a7151ee4f6b6e404c92722a155fceb343">TLSVersion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1TLSContext.html#af7a4eaa35b0bf2894db8a48f5911a2e0">tlsVersionFromString</a> (const std::string &amp;src)</td></tr>
+<tr class="memdesc:af7a4eaa35b0bf2894db8a48f5911a2e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the src string to a TLSVersion or throw a <a class="el" href="classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurrence should generally imply that t...">common::Exception</a> if that mapping fails.  <a href="classdodo_1_1network_1_1TLSContext.html#af7a4eaa35b0bf2894db8a48f5911a2e0">More...</a><br /></td></tr>
+<tr class="separator:af7a4eaa35b0bf2894db8a48f5911a2e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:af9fcc3466f6f4ff92697e155386fe3a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1network_1_1TLSContext.html#af9fcc3466f6f4ff92697e155386fe3a7">construct</a> (const <a class="el" href="classdodo_1_1network_1_1TLSContext.html#ac52323d8c8ebb0024a917ab92640ee7d">PeerVerification</a> &amp;peerverficiation, const <a class="el" href="classdodo_1_1network_1_1TLSContext.html#a7151ee4f6b6e404c92722a155fceb343">TLSVersion</a> &amp;tlsversion, bool enableSNI, bool allowSANWildcards)</td></tr>
+<tr class="memdesc:af9fcc3466f6f4ff92697e155386fe3a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct the <a class="el" href="classdodo_1_1network_1_1TLSContext.html" title="TLS security context.">TLSContext</a>.  <a href="classdodo_1_1network_1_1TLSContext.html#af9fcc3466f6f4ff92697e155386fe3a7">More...</a><br /></td></tr>
+<tr class="separator:af9fcc3466f6f4ff92697e155386fe3a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
@@ -268,8 +287,6 @@ Additional Inherited Members</h2></td></tr>
 <td class="markdownTableBodyNone">pvVerifyPeer </td><td class="markdownTableBodyNone">SSL_VERIFY_PEER | SSL_VERIFY_FAIL_IF_NO_PEER_CERT  </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">pvVerifyFQDN </td><td class="markdownTableBodyNone">SSL_VERIFY_PEER | SSL_VERIFY_FAIL_IF_NO_PEER_CERT  </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">pvVerifyCustom </td><td class="markdownTableBodyNone">SSL_VERIFY_PEER | SSL_VERIFY_FAIL_IF_NO_PEER_CERT  </td></tr>
 </table>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -280,22 +297,18 @@ Additional Inherited Members</h2></td></tr>
 <td class="markdownTableBodyNone">pvVerifyPeer </td><td class="markdownTableBodyNone">pvVerifyNone + client must present trusted cert </td><td class="markdownTableBodyNone">pvVerifyNone + server must present trusted cert  </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">pvVerifyFQDN </td><td class="markdownTableBodyNone">pvVerifyPeer </td><td class="markdownTableBodyNone">pvVerifyPeer + <a class="el" href="classdodo_1_1network_1_1X509Certificate.html#a137f46353086d8f7633db9b3bd72a3cb" title="Verify a peer name matches a SAN.">X509Certificate::verifyName()</a>  </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">pvVerifyCustom </td><td class="markdownTableBodyNone">pvVerifyPeer + custom </td><td class="markdownTableBodyNone">pvVerifyPeer + custom  </td></tr>
 </table>
 <dl class="section see"><dt>See also</dt><dd><a href="https://www.openssl.org/docs/man1.1.1/man3/SSL_CTX_set_verify.html">https://www.openssl.org/docs/man1.1.1/man3/SSL_CTX_set_verify.html</a> </dd></dl>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ac52323d8c8ebb0024a917ab92640ee7dabc2760983296cae737de97348bc19a9d"></a>pvVerifyNone&#160;</td><td class="fielddoc"><p>No peer verification - transmission is encrypted, peer cis accepted even if peer certificate is invalid and can read all data sent. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ac52323d8c8ebb0024a917ab92640ee7dabc2760983296cae737de97348bc19a9d"></a>pvVerifyNone&#160;</td><td class="fielddoc"><p>No peer verification - transmission is encrypted, peer is accepted even if peer certificate is invalid - so any peer can read all data sent. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ac52323d8c8ebb0024a917ab92640ee7da59c4417e239a14944b29e82b8f68fcdb"></a>pvVerifyPeer&#160;</td><td class="fielddoc"><p>The peer must have a trusted certificate (unless a anonymous cipher is used). </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ac52323d8c8ebb0024a917ab92640ee7dabb1355627929f6d13a5bf081139375d2"></a>pvVerifyFQDN&#160;</td><td class="fielddoc"><p>As pvVerifyPeer, but the remote DNS name must match either the peer cert commonname or match one of the peer cert subjectAltNames. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ac52323d8c8ebb0024a917ab92640ee7da1c6e3f4f0ac2a58e3ccac79c1cefe3b1"></a>pvVerifyCustom&#160;</td><td class="fielddoc"><p>As pvVerifyPeer, but with custom certificate validation logic. </p>
-</td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="tlscontext_8hpp_source.html#l00082">82</a> of file <a class="el" href="tlscontext_8hpp_source.html">tlscontext.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlscontext_8hpp_source.html#l00080">80</a> of file <a class="el" href="tlscontext_8hpp_source.html">tlscontext.hpp</a>.</p>
 
 </div>
 </div>
@@ -338,7 +351,7 @@ Additional Inherited Members</h2></td></tr>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2043e1cad68876c5c9cf9ba8da9fde4e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2043e1cad68876c5c9cf9ba8da9fde4e">&#9670;&nbsp;</a></span>TLSContext()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a2043e1cad68876c5c9cf9ba8da9fde4e">&#9670;&nbsp;</a></span>TLSContext() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -395,21 +408,166 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="tlscontext_8cpp_source.html#l00048">48</a> of file <a class="el" href="tlscontext_8cpp_source.html">tlscontext.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="tlscontext_8hpp_source.html#l00251">allow_san_wildcards_</a>, <a class="el" href="tlscontext_8hpp_source.html#l00246">enable_sni_</a>, <a class="el" href="util_8cpp_source.html#l00154">dodo::common::getSSLErrors()</a>, <a class="el" href="tlscontext_8hpp_source.html#l00241">passphrase_</a>, <a class="el" href="tlscontext_8hpp_source.html#l00236">peerverficiation_</a>, <a class="el" href="tlscontext_8cpp_source.html#l00098">pem_passwd_cb()</a>, <a class="el" href="classdodo_1_1network_1_1TLSContext.html#ac52323d8c8ebb0024a917ab92640ee7dabc2760983296cae737de97348bc19a9d">pvVerifyNone</a>, <a class="el" href="exception_8hpp_source.html#l00181">throw_ExceptionObject</a>, <a class="el" href="classdodo_1_1network_1_1TLSContext.html#a7151ee4f6b6e404c92722a155fceb343a09d4e1ecd9d58b5dca1a32f061f1d458">tls1_1</a>, <a class="el" href="classdodo_1_1network_1_1TLSContext.html#a7151ee4f6b6e404c92722a155fceb343a34ce5bbe8056e475564e2e2316a7b5be">tls1_2</a>, <a class="el" href="classdodo_1_1network_1_1TLSContext.html#a7151ee4f6b6e404c92722a155fceb343ab21e6d55ef15b3a52a1a656cc4a6bfba">tls1_3</a>, <a class="el" href="tlscontext_8hpp_source.html#l00226">tlsctx_</a>, and <a class="el" href="tlscontext_8hpp_source.html#l00231">tlsversion_</a>.</p>
+<p class="reference">References <a class="el" href="tlscontext_8cpp_source.html#l00064">construct()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classdodo_1_1network_1_1TLSContext_a2043e1cad68876c5c9cf9ba8da9fde4e_cgraph.png" border="0" usemap="#classdodo_1_1network_1_1TLSContext_a2043e1cad68876c5c9cf9ba8da9fde4e_cgraph" alt=""/></div>
 <map name="classdodo_1_1network_1_1TLSContext_a2043e1cad68876c5c9cf9ba8da9fde4e_cgraph" id="classdodo_1_1network_1_1TLSContext_a2043e1cad68876c5c9cf9ba8da9fde4e_cgraph">
-<area shape="rect" title="Construct a TLS context." alt="" coords="5,27,203,69"/>
-<area shape="rect" href="namespacedodo_1_1common.html#a92751bfc7a44e638a4d3efa4ab2c6300" title="Get all OpenSSL errors as a single string, and clear their error state." alt="" coords="251,5,460,32"/>
-<area shape="rect" href="classdodo_1_1network_1_1TLSContext.html#ae85e94b5c0598bc57102648c85d65ac7" title="Password callback, returns the passphrase set in the TLS context by the passphrase argument of loadCe..." alt="" coords="257,57,454,98"/>
+<area shape="rect" title="Construct a TLS context." alt="" coords="5,5,203,47"/>
+<area shape="rect" href="classdodo_1_1network_1_1TLSContext.html#af9fcc3466f6f4ff92697e155386fe3a7" title="Construct the TLSContext." alt="" coords="251,5,448,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a23b18787fbdcb4a32c95d86dbc934fbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23b18787fbdcb4a32c95d86dbc934fbe">&#9670;&nbsp;</a></span>TLSContext() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">dodo::network::TLSContext::TLSContext </td>
+          <td>(</td>
+          <td class="paramtype">const YAML::Node &amp;&#160;</td>
+          <td class="paramname"><em>yaml</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Construct a <a class="el" href="classdodo_1_1network_1_1TLSContext.html" title="TLS security context.">TLSContext</a> from a YAML node. </p>
+<div class="fragment"><div class="line">tlscontext:</div>
+<div class="line">  peer-verification: pvVerifyFQDN                    # mandatory</div>
+<div class="line">  tls-version: 1.3                                   # mandatory</div>
+<div class="line">  enable-sni: true                                   # mandatory</div>
+<div class="line">  allow-san-wildcards: true                          # mandatory</div>
+<div class="line">  trust:                                             # optional</div>
+<div class="line">    file: &lt;path to PEM file&gt;                         # at least one of file or path</div>
+<div class="line">    path: &lt;path to directory with PEM files&gt;         # at least one of file or path</div>
+<div class="line">  ciphers:                                           # mandatory</div>
+<div class="line">    - TLS_AES_256_GCM_SHA384                         # at least one entry</div>
+<div class="line">    - TLS_AES_128_GCM_SHA256</div>
+</div><!-- fragment --><p>If the PEM format is used to provide keys and passphrase: </p><div class="fragment"><div class="line">tlscontext:</div>
+<div class="line">  pem:</div>
+<div class="line">    private: &lt;path to private key PEM&gt;               # mandatory</div>
+<div class="line">    public: &lt;path to public key PEM&gt;                 # mandatory</div>
+<div class="line">    passphrase: &lt;ENC[...]&gt;                           # mandatory</div>
+</div><!-- fragment --><p>If the PKCS12 format is used to provide keys and passphrase: </p><div class="fragment"><div class="line">tlscontext:</div>
+<div class="line">  pkcs12:</div>
+<div class="line">    file: &lt;path to PKCS12 file&gt;                      # mandatory</div>
+<div class="line">    passphrase: &lt;ENC[...]&gt;                           # mandatory</div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">yaml</td><td>The YAML node to read from, which would be 'tlscontext' in the above examples. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="tlscontext_8cpp_source.html#l00056">56</a> of file <a class="el" href="tlscontext_8cpp_source.html">tlscontext.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="tlscontext_8cpp_source.html#l00064">construct()</a>, <a class="el" href="tlscontext_8cpp_source.html#l00184">peerVerficiationFromString()</a>, <a class="el" href="tlscontext_8cpp_source.html#l00226">tlsVersionFromString()</a>, and <a class="el" href="namespacedodo_1_1common.html#a6452258af37b6709bd3c51f039ce7dbb">dodo::common::YAML_read_key&lt; bool &gt;()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classdodo_1_1network_1_1TLSContext_a23b18787fbdcb4a32c95d86dbc934fbe_cgraph.png" border="0" usemap="#classdodo_1_1network_1_1TLSContext_a23b18787fbdcb4a32c95d86dbc934fbe_cgraph" alt=""/></div>
+<map name="classdodo_1_1network_1_1TLSContext_a23b18787fbdcb4a32c95d86dbc934fbe_cgraph" id="classdodo_1_1network_1_1TLSContext_a23b18787fbdcb4a32c95d86dbc934fbe_cgraph">
+<area shape="rect" title="Construct a TLSContext from a YAML node." alt="" coords="5,104,203,145"/>
+<area shape="rect" href="classdodo_1_1network_1_1TLSContext.html#af9fcc3466f6f4ff92697e155386fe3a7" title="Construct the TLSContext." alt="" coords="253,5,451,47"/>
+<area shape="rect" href="classdodo_1_1network_1_1TLSContext.html#a8eb4e37b249a3d2b2e3615f712653a1d" title="Get a PeerVerfication enum from a string." alt="" coords="251,71,453,112"/>
+<area shape="rect" href="classdodo_1_1network_1_1TLSContext.html#af7a4eaa35b0bf2894db8a48f5911a2e0" title="Convert the src string to a TLSVersion or throw a common::Exception if that mapping fails." alt="" coords="253,136,451,177"/>
+<area shape="rect" href="namespacedodo_1_1common.html#a6452258af37b6709bd3c51f039ce7dbb" title="Instantiate template YAML_read_key for bool." alt="" coords="271,201,433,243"/>
 </map>
 </div>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="af9fcc3466f6f4ff92697e155386fe3a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9fcc3466f6f4ff92697e155386fe3a7">&#9670;&nbsp;</a></span>construct()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void dodo::network::TLSContext::construct </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classdodo_1_1network_1_1TLSContext.html#ac52323d8c8ebb0024a917ab92640ee7d">PeerVerification</a> &amp;&#160;</td>
+          <td class="paramname"><em>peerverficiation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classdodo_1_1network_1_1TLSContext.html#a7151ee4f6b6e404c92722a155fceb343">TLSVersion</a> &amp;&#160;</td>
+          <td class="paramname"><em>tlsversion</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enableSNI</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>allowSANWildcards</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Construct the <a class="el" href="classdodo_1_1network_1_1TLSContext.html" title="TLS security context.">TLSContext</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">peerverficiation</td><td>The <a class="el" href="classdodo_1_1network_1_1TLSContext.html#ac52323d8c8ebb0024a917ab92640ee7d" title="The TLS peer verification method.">TLSContext::PeerVerification</a> method to use. </td></tr>
+    <tr><td class="paramname">tlsversion</td><td>The TLS version to use. Use of default is less future code hassle. </td></tr>
+    <tr><td class="paramname">enableSNI</td><td>Enable the Server Name Indication extension. Note that this exposes the target hostname </td></tr>
+    <tr><td class="paramname">allowSANWildcards</td><td>Allow SAN wildcard matching under pvVerifyFQDN </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="tlscontext_8cpp_source.html#l00064">64</a> of file <a class="el" href="tlscontext_8cpp_source.html">tlscontext.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="tlscontext_8hpp_source.html#l00315">allow_san_wildcards_</a>, <a class="el" href="tlscontext_8hpp_source.html#l00310">enable_sni_</a>, <a class="el" href="util_8cpp_source.html#l00154">dodo::common::getSSLErrors()</a>, <a class="el" href="tlscontext_8hpp_source.html#l00305">passphrase_</a>, <a class="el" href="tlscontext_8hpp_source.html#l00300">peerverficiation_</a>, <a class="el" href="tlscontext_8cpp_source.html#l00191">pem_passwd_cb()</a>, <a class="el" href="classdodo_1_1network_1_1TLSContext.html#ac52323d8c8ebb0024a917ab92640ee7dabc2760983296cae737de97348bc19a9d">pvVerifyNone</a>, <a class="el" href="exception_8hpp_source.html#l00181">throw_ExceptionObject</a>, <a class="el" href="classdodo_1_1network_1_1TLSContext.html#a7151ee4f6b6e404c92722a155fceb343a09d4e1ecd9d58b5dca1a32f061f1d458">tls1_1</a>, <a class="el" href="classdodo_1_1network_1_1TLSContext.html#a7151ee4f6b6e404c92722a155fceb343a34ce5bbe8056e475564e2e2316a7b5be">tls1_2</a>, <a class="el" href="classdodo_1_1network_1_1TLSContext.html#a7151ee4f6b6e404c92722a155fceb343ab21e6d55ef15b3a52a1a656cc4a6bfba">tls1_3</a>, <a class="el" href="tlscontext_8hpp_source.html#l00290">tlsctx_</a>, and <a class="el" href="tlscontext_8hpp_source.html#l00295">tlsversion_</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="tlscontext_8cpp_source.html#l00048">TLSContext()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classdodo_1_1network_1_1TLSContext_af9fcc3466f6f4ff92697e155386fe3a7_cgraph.png" border="0" usemap="#classdodo_1_1network_1_1TLSContext_af9fcc3466f6f4ff92697e155386fe3a7_cgraph" alt=""/></div>
+<map name="classdodo_1_1network_1_1TLSContext_af9fcc3466f6f4ff92697e155386fe3a7_cgraph" id="classdodo_1_1network_1_1TLSContext_af9fcc3466f6f4ff92697e155386fe3a7_cgraph">
+<area shape="rect" title="Construct the TLSContext." alt="" coords="5,27,203,69"/>
+<area shape="rect" href="namespacedodo_1_1common.html#a92751bfc7a44e638a4d3efa4ab2c6300" title="Get all OpenSSL errors as a single string, and clear their error state." alt="" coords="251,5,460,32"/>
+<area shape="rect" href="classdodo_1_1network_1_1TLSContext.html#ae85e94b5c0598bc57102648c85d65ac7" title="Password callback, returns the passphrase set in the TLS context by the passphrase argument of loadCe..." alt="" coords="257,57,454,98"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classdodo_1_1network_1_1TLSContext_af9fcc3466f6f4ff92697e155386fe3a7_icgraph.png" border="0" usemap="#classdodo_1_1network_1_1TLSContext_af9fcc3466f6f4ff92697e155386fe3a7_icgraph" alt=""/></div>
+<map name="classdodo_1_1network_1_1TLSContext_af9fcc3466f6f4ff92697e155386fe3a7_icgraph" id="classdodo_1_1network_1_1TLSContext_af9fcc3466f6f4ff92697e155386fe3a7_icgraph">
+<area shape="rect" title="Construct the TLSContext." alt="" coords="251,5,448,47"/>
+<area shape="rect" href="classdodo_1_1network_1_1TLSContext.html#a2043e1cad68876c5c9cf9ba8da9fde4e" title="Construct a TLS context." alt="" coords="5,5,203,47"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a12594d06a5101deab59da7754e1a8a9a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a12594d06a5101deab59da7754e1a8a9a">&#9670;&nbsp;</a></span>getContext()</h2>
 
@@ -436,9 +594,9 @@ Here is the call graph for this function:</div>
 <p>Return a pointer to the SSL_CTX. </p>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the SSL_CTX </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="tlscontext_8hpp_source.html#l00179">179</a> of file <a class="el" href="tlscontext_8hpp_source.html">tlscontext.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlscontext_8hpp_source.html#l00215">215</a> of file <a class="el" href="tlscontext_8hpp_source.html">tlscontext.hpp</a>.</p>
 
-<p class="reference">References <a class="el" href="tlscontext_8hpp_source.html#l00226">tlsctx_</a>.</p>
+<p class="reference">References <a class="el" href="tlscontext_8hpp_source.html#l00290">tlsctx_</a>.</p>
 
 </div>
 </div>
@@ -468,9 +626,9 @@ Here is the call graph for this function:</div>
 <p>Return the getPeerVerification mode. </p>
 <dl class="section return"><dt>Returns</dt><dd>the getPeerVerification. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="tlscontext_8hpp_source.html#l00185">185</a> of file <a class="el" href="tlscontext_8hpp_source.html">tlscontext.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlscontext_8hpp_source.html#l00221">221</a> of file <a class="el" href="tlscontext_8hpp_source.html">tlscontext.hpp</a>.</p>
 
-<p class="reference">References <a class="el" href="tlscontext_8hpp_source.html#l00236">peerverficiation_</a>.</p>
+<p class="reference">References <a class="el" href="tlscontext_8hpp_source.html#l00300">peerverficiation_</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="tlssocket_8cpp_source.html#l00057">dodo::network::TLSSocket::connect()</a>.</p>
 <div class="dynheader">
@@ -509,7 +667,6 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Initialize the SSL library. </p>
-<dl class="section return"><dt>Returns</dt><dd>nothing. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="tlscontext_8cpp_source.html#l00037">37</a> of file <a class="el" href="tlscontext_8cpp_source.html">tlscontext.cpp</a>.</p>
 
@@ -541,9 +698,9 @@ Here is the caller graph for this function:</div>
 <p>If true, TLS will allow SAN wildcard matching. </p>
 <dl class="section return"><dt>Returns</dt><dd>True if wildcard matching on the SAN is allowed. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="tlscontext_8hpp_source.html#l00197">197</a> of file <a class="el" href="tlscontext_8hpp_source.html">tlscontext.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlscontext_8hpp_source.html#l00233">233</a> of file <a class="el" href="tlscontext_8hpp_source.html">tlscontext.hpp</a>.</p>
 
-<p class="reference">References <a class="el" href="tlscontext_8hpp_source.html#l00251">allow_san_wildcards_</a>.</p>
+<p class="reference">References <a class="el" href="tlscontext_8hpp_source.html#l00315">allow_san_wildcards_</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="tlssocket_8cpp_source.html#l00057">dodo::network::TLSSocket::connect()</a>.</p>
 <div class="dynheader">
@@ -584,9 +741,9 @@ Here is the caller graph for this function:</div>
 <p>Return true when SNI (server Name Information) is to be enabled by <a class="el" href="classdodo_1_1network_1_1TLSSocket.html" title="Socket for TLS encrypted traffic between trusted endpoints.">TLSSocket</a> objects using this <a class="el" href="classdodo_1_1network_1_1TLSContext.html" title="TLS security context.">TLSContext</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>true when SNI is enabled. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="tlscontext_8hpp_source.html#l00191">191</a> of file <a class="el" href="tlscontext_8hpp_source.html">tlscontext.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlscontext_8hpp_source.html#l00227">227</a> of file <a class="el" href="tlscontext_8hpp_source.html">tlscontext.hpp</a>.</p>
 
-<p class="reference">References <a class="el" href="tlscontext_8hpp_source.html#l00246">enable_sni_</a>.</p>
+<p class="reference">References <a class="el" href="tlscontext_8hpp_source.html#l00310">enable_sni_</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="tlssocket_8cpp_source.html#l00040">dodo::network::TLSSocket::TLSSocket()</a>.</p>
 <div class="dynheader">
@@ -643,9 +800,9 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="tlscontext_8cpp_source.html#l00107">107</a> of file <a class="el" href="tlscontext_8cpp_source.html">tlscontext.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlscontext_8cpp_source.html#l00115">115</a> of file <a class="el" href="tlscontext_8cpp_source.html">tlscontext.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="util_8cpp_source.html#l00154">dodo::common::getSSLErrors()</a>, <a class="el" href="tlscontext_8hpp_source.html#l00241">passphrase_</a>, <a class="el" href="exception_8hpp_source.html#l00181">throw_ExceptionObject</a>, and <a class="el" href="tlscontext_8hpp_source.html#l00226">tlsctx_</a>.</p>
+<p class="reference">References <a class="el" href="util_8cpp_source.html#l00154">dodo::common::getSSLErrors()</a>, <a class="el" href="tlscontext_8hpp_source.html#l00305">passphrase_</a>, <a class="el" href="exception_8hpp_source.html#l00181">throw_ExceptionObject</a>, and <a class="el" href="tlscontext_8hpp_source.html#l00290">tlsctx_</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -693,9 +850,9 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="tlscontext_8cpp_source.html#l00123">123</a> of file <a class="el" href="tlscontext_8cpp_source.html">tlscontext.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlscontext_8cpp_source.html#l00131">131</a> of file <a class="el" href="tlscontext_8cpp_source.html">tlscontext.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="util_8cpp_source.html#l00154">dodo::common::getSSLErrors()</a>, <a class="el" href="tlscontext_8hpp_source.html#l00241">passphrase_</a>, <a class="el" href="exception_8hpp_source.html#l00181">throw_ExceptionObject</a>, and <a class="el" href="tlscontext_8hpp_source.html#l00226">tlsctx_</a>.</p>
+<p class="reference">References <a class="el" href="util_8cpp_source.html#l00154">dodo::common::getSSLErrors()</a>, <a class="el" href="tlscontext_8hpp_source.html#l00305">passphrase_</a>, <a class="el" href="exception_8hpp_source.html#l00181">throw_ExceptionObject</a>, and <a class="el" href="tlscontext_8hpp_source.html#l00290">tlsctx_</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -703,6 +860,56 @@ Here is the call graph for this function:</div>
 <map name="classdodo_1_1network_1_1TLSContext_aa77451d1c3a087066dad53d8a38120a4_cgraph" id="classdodo_1_1network_1_1TLSContext_aa77451d1c3a087066dad53d8a38120a4_cgraph">
 <area shape="rect" title="Loads a private key, matching certificate and optional CA certificates (eg a truststore) from a PKCS1..." alt="" coords="5,5,203,47"/>
 <area shape="rect" href="namespacedodo_1_1common.html#a92751bfc7a44e638a4d3efa4ab2c6300" title="Get all OpenSSL errors as a single string, and clear their error state." alt="" coords="251,13,460,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8eb4e37b249a3d2b2e3615f712653a1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8eb4e37b249a3d2b2e3615f712653a1d">&#9670;&nbsp;</a></span>peerVerficiationFromString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classdodo_1_1network_1_1TLSContext.html#ac52323d8c8ebb0024a917ab92640ee7d">TLSContext::PeerVerification</a> dodo::network::TLSContext::peerVerficiationFromString </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>src</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get a PeerVerfication enum from a string. </p>
+<p>The comparison is case sensitive and must match the enum name ( "pvVerifyNone", "pvVerifyPeer", "pvVerifyFQDN" ). If the name does not translate, a <a class="el" href="classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurrence should generally imply that t...">common::Exception</a> is thrown. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">src</td><td>The source string. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the PeerVerification. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="tlscontext_8cpp_source.html#l00184">184</a> of file <a class="el" href="tlscontext_8cpp_source.html">tlscontext.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="classdodo_1_1network_1_1TLSContext.html#ac52323d8c8ebb0024a917ab92640ee7dabb1355627929f6d13a5bf081139375d2">pvVerifyFQDN</a>, <a class="el" href="classdodo_1_1network_1_1TLSContext.html#ac52323d8c8ebb0024a917ab92640ee7dabc2760983296cae737de97348bc19a9d">pvVerifyNone</a>, <a class="el" href="classdodo_1_1network_1_1TLSContext.html#ac52323d8c8ebb0024a917ab92640ee7da59c4417e239a14944b29e82b8f68fcdb">pvVerifyPeer</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="tlscontext_8cpp_source.html#l00056">TLSContext()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classdodo_1_1network_1_1TLSContext_a8eb4e37b249a3d2b2e3615f712653a1d_icgraph.png" border="0" usemap="#classdodo_1_1network_1_1TLSContext_a8eb4e37b249a3d2b2e3615f712653a1d_icgraph" alt=""/></div>
+<map name="classdodo_1_1network_1_1TLSContext_a8eb4e37b249a3d2b2e3615f712653a1d_icgraph" id="classdodo_1_1network_1_1TLSContext_a8eb4e37b249a3d2b2e3615f712653a1d_icgraph">
+<area shape="rect" title="Get a PeerVerfication enum from a string." alt="" coords="251,5,453,47"/>
+<area shape="rect" href="classdodo_1_1network_1_1TLSContext.html#a23b18787fbdcb4a32c95d86dbc934fbe" title="Construct a TLSContext from a YAML node." alt="" coords="5,5,203,47"/>
 </map>
 </div>
 
@@ -766,18 +973,18 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the character length of the passphrase string. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="tlscontext_8cpp_source.html#l00098">98</a> of file <a class="el" href="tlscontext_8cpp_source.html">tlscontext.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlscontext_8cpp_source.html#l00191">191</a> of file <a class="el" href="tlscontext_8cpp_source.html">tlscontext.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="tlscontext_8hpp_source.html#l00241">passphrase_</a>.</p>
+<p class="reference">References <a class="el" href="tlscontext_8hpp_source.html#l00305">passphrase_</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="tlscontext_8cpp_source.html#l00048">TLSContext()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tlscontext_8cpp_source.html#l00064">construct()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classdodo_1_1network_1_1TLSContext_ae85e94b5c0598bc57102648c85d65ac7_icgraph.png" border="0" usemap="#classdodo_1_1network_1_1TLSContext_ae85e94b5c0598bc57102648c85d65ac7_icgraph" alt=""/></div>
 <map name="classdodo_1_1network_1_1TLSContext_ae85e94b5c0598bc57102648c85d65ac7_icgraph" id="classdodo_1_1network_1_1TLSContext_ae85e94b5c0598bc57102648c85d65ac7_icgraph">
 <area shape="rect" title="Password callback, returns the passphrase set in the TLS context by the passphrase argument of loadCe..." alt="" coords="251,5,448,47"/>
-<area shape="rect" href="classdodo_1_1network_1_1TLSContext.html#a2043e1cad68876c5c9cf9ba8da9fde4e" title="Construct a TLS context." alt="" coords="5,5,203,47"/>
+<area shape="rect" href="classdodo_1_1network_1_1TLSContext.html#af9fcc3466f6f4ff92697e155386fe3a7" title="Construct the TLSContext." alt="" coords="5,5,203,47"/>
 </map>
 </div>
 
@@ -799,7 +1006,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Set a list of ciphers the <a class="el" href="classdodo_1_1network_1_1TLSContext.html" title="TLS security context.">TLSContext</a> will accept. </p>
+<p>Set a list of ciphers, separated by a colon, the <a class="el" href="classdodo_1_1network_1_1TLSContext.html" title="TLS security context.">TLSContext</a> will accept. </p>
 <p>There are differences between TLSVersion tough,</p>
 <p>A few examples (note the hyphens and underscores)</p>
 <ul>
@@ -808,7 +1015,9 @@ Here is the caller graph for this function:</div>
 <li>TLS 1.1 DHE-RSA-AES256-GCM-SHA384</li>
 </ul>
 <dl class="section see"><dt>See also</dt><dd><a href="https://www.openssl.org/docs/manmaster/man3/SSL_CTX_set_cipher_list.html">https://www.openssl.org/docs/manmaster/man3/SSL_CTX_set_cipher_list.html</a></dd></dl>
-<p>Note that this call will not return a SystemError, but throws a <a class="el" href="classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurrence should generally imply that t...">dodo::common::Exception</a> when the cipher list is invalid.</p>
+<p>A list of available ciphers is given by </p><div class="fragment"><div class="line">$ openssl ciphers -tls1_2 -s</div>
+<div class="line">$ openssl ciphers -tls1_3 -s</div>
+</div><!-- fragment --><p>Note that this call will not return a SystemError, but throws a <a class="el" href="classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurrence should generally imply that t...">dodo::common::Exception</a> when the cipher list is invalid.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cipherlist</td><td>The cipherlist. </td></tr>
@@ -821,11 +1030,10 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a href="http://openssl.cs.utah.edu/docs/apps/ciphers.html">http://openssl.cs.utah.edu/docs/apps/ciphers.html</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="tlscontext_8cpp_source.html#l00176">176</a> of file <a class="el" href="tlscontext_8cpp_source.html">tlscontext.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlscontext_8cpp_source.html#l00200">200</a> of file <a class="el" href="tlscontext_8cpp_source.html">tlscontext.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="exception_8hpp_source.html#l00181">throw_ExceptionObject</a>, <a class="el" href="classdodo_1_1network_1_1TLSContext.html#a7151ee4f6b6e404c92722a155fceb343ab21e6d55ef15b3a52a1a656cc4a6bfba">tls1_3</a>, <a class="el" href="tlscontext_8hpp_source.html#l00226">tlsctx_</a>, and <a class="el" href="tlscontext_8hpp_source.html#l00231">tlsversion_</a>.</p>
+<p class="reference">References <a class="el" href="exception_8hpp_source.html#l00181">throw_ExceptionObject</a>, <a class="el" href="classdodo_1_1network_1_1TLSContext.html#a7151ee4f6b6e404c92722a155fceb343ab21e6d55ef15b3a52a1a656cc4a6bfba">tls1_3</a>, <a class="el" href="tlscontext_8hpp_source.html#l00290">tlsctx_</a>, and <a class="el" href="tlscontext_8hpp_source.html#l00295">tlsversion_</a>.</p>
 
 </div>
 </div>
@@ -855,9 +1063,9 @@ Here is the caller graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>The options applied. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a href="https://www.openssl.org/docs/man1.1.1/man3/SSL_CTX_set_options.html">https://www.openssl.org/docs/man1.1.1/man3/SSL_CTX_set_options.html</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="tlscontext_8cpp_source.html#l00187">187</a> of file <a class="el" href="tlscontext_8cpp_source.html">tlscontext.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlscontext_8cpp_source.html#l00211">211</a> of file <a class="el" href="tlscontext_8cpp_source.html">tlscontext.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="tlscontext_8hpp_source.html#l00226">tlsctx_</a>.</p>
+<p class="reference">References <a class="el" href="tlscontext_8hpp_source.html#l00290">tlsctx_</a>.</p>
 
 </div>
 </div>
@@ -887,7 +1095,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Trust all certificates in the specified directory. </p>
+<p>Trust all certificates (PEM format) in the specified file and/or directory. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cafile</td><td>A PEM file containing one or more certificates. If an empty string, unused. </td></tr>
@@ -896,15 +1104,15 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="tlscontext_8cpp_source.html#l00191">191</a> of file <a class="el" href="tlscontext_8cpp_source.html">tlscontext.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlscontext_8cpp_source.html#l00215">215</a> of file <a class="el" href="tlscontext_8cpp_source.html">tlscontext.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="util_8cpp_source.html#l00154">dodo::common::getSSLErrors()</a>, <a class="el" href="exception_8hpp_source.html#l00181">throw_ExceptionObject</a>, and <a class="el" href="tlscontext_8hpp_source.html#l00226">tlsctx_</a>.</p>
+<p class="reference">References <a class="el" href="util_8cpp_source.html#l00154">dodo::common::getSSLErrors()</a>, <a class="el" href="exception_8hpp_source.html#l00181">throw_ExceptionObject</a>, and <a class="el" href="tlscontext_8hpp_source.html#l00290">tlsctx_</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classdodo_1_1network_1_1TLSContext_ad6c2745f177eaa16b629e64fe213b766_cgraph.png" border="0" usemap="#classdodo_1_1network_1_1TLSContext_ad6c2745f177eaa16b629e64fe213b766_cgraph" alt=""/></div>
 <map name="classdodo_1_1network_1_1TLSContext_ad6c2745f177eaa16b629e64fe213b766_cgraph" id="classdodo_1_1network_1_1TLSContext_ad6c2745f177eaa16b629e64fe213b766_cgraph">
-<area shape="rect" title="Trust all certificates in the specified directory." alt="" coords="5,5,203,47"/>
+<area shape="rect" title="Trust all certificates (PEM format) in the specified file and/or directory." alt="" coords="5,5,203,47"/>
 <area shape="rect" href="namespacedodo_1_1common.html#a92751bfc7a44e638a4d3efa4ab2c6300" title="Get all OpenSSL errors as a single string, and clear their error state." alt="" coords="251,13,460,39"/>
 </map>
 </div>
@@ -935,9 +1143,58 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Shutdown the SSL library. </p>
-<dl class="section return"><dt>Returns</dt><dd>nothing. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="tlscontext_8cpp_source.html#l00043">43</a> of file <a class="el" href="tlscontext_8cpp_source.html">tlscontext.cpp</a>.</p>
+
+</div>
+</div>
+<a id="af7a4eaa35b0bf2894db8a48f5911a2e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7a4eaa35b0bf2894db8a48f5911a2e0">&#9670;&nbsp;</a></span>tlsVersionFromString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classdodo_1_1network_1_1TLSContext.html#a7151ee4f6b6e404c92722a155fceb343">TLSContext::TLSVersion</a> dodo::network::TLSContext::tlsVersionFromString </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>src</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert the src string to a TLSVersion or throw a <a class="el" href="classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurrence should generally imply that t...">common::Exception</a> if that mapping fails. </p>
+<p>TLSversion strings could be "1.1", "1.2" and "1.3". </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">src</td><td>The source string. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The TLSVersion specified by the string. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="tlscontext_8cpp_source.html#l00226">226</a> of file <a class="el" href="tlscontext_8cpp_source.html">tlscontext.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>, <a class="el" href="classdodo_1_1network_1_1TLSContext.html#a7151ee4f6b6e404c92722a155fceb343a09d4e1ecd9d58b5dca1a32f061f1d458">tls1_1</a>, <a class="el" href="classdodo_1_1network_1_1TLSContext.html#a7151ee4f6b6e404c92722a155fceb343a34ce5bbe8056e475564e2e2316a7b5be">tls1_2</a>, and <a class="el" href="classdodo_1_1network_1_1TLSContext.html#a7151ee4f6b6e404c92722a155fceb343ab21e6d55ef15b3a52a1a656cc4a6bfba">tls1_3</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="tlscontext_8cpp_source.html#l00056">TLSContext()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classdodo_1_1network_1_1TLSContext_af7a4eaa35b0bf2894db8a48f5911a2e0_icgraph.png" border="0" usemap="#classdodo_1_1network_1_1TLSContext_af7a4eaa35b0bf2894db8a48f5911a2e0_icgraph" alt=""/></div>
+<map name="classdodo_1_1network_1_1TLSContext_af7a4eaa35b0bf2894db8a48f5911a2e0_icgraph" id="classdodo_1_1network_1_1TLSContext_af7a4eaa35b0bf2894db8a48f5911a2e0_icgraph">
+<area shape="rect" title="Convert the src string to a TLSVersion or throw a common::Exception if that mapping fails." alt="" coords="251,5,448,47"/>
+<area shape="rect" href="classdodo_1_1network_1_1TLSContext.html#a23b18787fbdcb4a32c95d86dbc934fbe" title="Construct a TLSContext from a YAML node." alt="" coords="5,5,203,47"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -964,9 +1221,9 @@ Here is the call graph for this function:</div>
 
 <p>Allow SAN names to match agains wildcards (eg foo.domain.org matches *.domain.org). </p>
 
-<p class="definition">Definition at line <a class="el" href="tlscontext_8hpp_source.html#l00251">251</a> of file <a class="el" href="tlscontext_8hpp_source.html">tlscontext.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlscontext_8hpp_source.html#l00315">315</a> of file <a class="el" href="tlscontext_8hpp_source.html">tlscontext.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="tlscontext_8hpp_source.html#l00197">isAllowSANWildcards()</a>, and <a class="el" href="tlscontext_8cpp_source.html#l00048">TLSContext()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tlscontext_8cpp_source.html#l00064">construct()</a>, and <a class="el" href="tlscontext_8hpp_source.html#l00233">isAllowSANWildcards()</a>.</p>
 
 </div>
 </div>
@@ -992,7 +1249,7 @@ Here is the call graph for this function:</div>
 
 <p>Enable / disable CRL (Certificate Revocation List) checking. </p>
 
-<p class="definition">Definition at line <a class="el" href="tlscontext_8hpp_source.html#l00256">256</a> of file <a class="el" href="tlscontext_8hpp_source.html">tlscontext.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlscontext_8hpp_source.html#l00320">320</a> of file <a class="el" href="tlscontext_8hpp_source.html">tlscontext.hpp</a>.</p>
 
 </div>
 </div>
@@ -1018,9 +1275,9 @@ Here is the call graph for this function:</div>
 
 <p>Enable / disable SNI on <a class="el" href="classdodo_1_1network_1_1TLSSocket.html" title="Socket for TLS encrypted traffic between trusted endpoints.">TLSSocket</a> objects using this <a class="el" href="classdodo_1_1network_1_1TLSContext.html" title="TLS security context.">TLSContext</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="tlscontext_8hpp_source.html#l00246">246</a> of file <a class="el" href="tlscontext_8hpp_source.html">tlscontext.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlscontext_8hpp_source.html#l00310">310</a> of file <a class="el" href="tlscontext_8hpp_source.html">tlscontext.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="tlscontext_8hpp_source.html#l00191">isSNIEnabled()</a>, and <a class="el" href="tlscontext_8cpp_source.html#l00048">TLSContext()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tlscontext_8cpp_source.html#l00064">construct()</a>, and <a class="el" href="tlscontext_8hpp_source.html#l00227">isSNIEnabled()</a>.</p>
 
 </div>
 </div>
@@ -1046,9 +1303,9 @@ Here is the call graph for this function:</div>
 
 <p>The passphrase to decrypt encrypted private keys (may be empty when the key is not encrypted). </p>
 
-<p class="definition">Definition at line <a class="el" href="tlscontext_8hpp_source.html#l00241">241</a> of file <a class="el" href="tlscontext_8hpp_source.html">tlscontext.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlscontext_8hpp_source.html#l00305">305</a> of file <a class="el" href="tlscontext_8hpp_source.html">tlscontext.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="tlscontext_8cpp_source.html#l00107">loadPEMIdentity()</a>, <a class="el" href="tlscontext_8cpp_source.html#l00123">loadPKCS12()</a>, <a class="el" href="tlscontext_8cpp_source.html#l00098">pem_passwd_cb()</a>, and <a class="el" href="tlscontext_8cpp_source.html#l00048">TLSContext()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tlscontext_8cpp_source.html#l00064">construct()</a>, <a class="el" href="tlscontext_8cpp_source.html#l00115">loadPEMIdentity()</a>, <a class="el" href="tlscontext_8cpp_source.html#l00131">loadPKCS12()</a>, and <a class="el" href="tlscontext_8cpp_source.html#l00191">pem_passwd_cb()</a>.</p>
 
 </div>
 </div>
@@ -1074,9 +1331,9 @@ Here is the call graph for this function:</div>
 
 <p>The peer verification method used. </p>
 
-<p class="definition">Definition at line <a class="el" href="tlscontext_8hpp_source.html#l00236">236</a> of file <a class="el" href="tlscontext_8hpp_source.html">tlscontext.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlscontext_8hpp_source.html#l00300">300</a> of file <a class="el" href="tlscontext_8hpp_source.html">tlscontext.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="tlscontext_8hpp_source.html#l00185">getPeerVerification()</a>, and <a class="el" href="tlscontext_8cpp_source.html#l00048">TLSContext()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tlscontext_8cpp_source.html#l00064">construct()</a>, and <a class="el" href="tlscontext_8hpp_source.html#l00221">getPeerVerification()</a>.</p>
 
 </div>
 </div>
@@ -1102,9 +1359,9 @@ Here is the call graph for this function:</div>
 
 <p>The openssl SSL_CTX. </p>
 
-<p class="definition">Definition at line <a class="el" href="tlscontext_8hpp_source.html#l00226">226</a> of file <a class="el" href="tlscontext_8hpp_source.html">tlscontext.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlscontext_8hpp_source.html#l00290">290</a> of file <a class="el" href="tlscontext_8hpp_source.html">tlscontext.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="tlscontext_8hpp_source.html#l00179">getContext()</a>, <a class="el" href="tlscontext_8cpp_source.html#l00107">loadPEMIdentity()</a>, <a class="el" href="tlscontext_8cpp_source.html#l00123">loadPKCS12()</a>, <a class="el" href="tlscontext_8cpp_source.html#l00176">setCipherList()</a>, <a class="el" href="tlscontext_8cpp_source.html#l00187">setOptions()</a>, <a class="el" href="tlscontext_8cpp_source.html#l00191">setTrustPaths()</a>, and <a class="el" href="tlscontext_8cpp_source.html#l00048">TLSContext()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tlscontext_8cpp_source.html#l00064">construct()</a>, <a class="el" href="tlscontext_8hpp_source.html#l00215">getContext()</a>, <a class="el" href="tlscontext_8cpp_source.html#l00115">loadPEMIdentity()</a>, <a class="el" href="tlscontext_8cpp_source.html#l00131">loadPKCS12()</a>, <a class="el" href="tlscontext_8cpp_source.html#l00200">setCipherList()</a>, <a class="el" href="tlscontext_8cpp_source.html#l00211">setOptions()</a>, and <a class="el" href="tlscontext_8cpp_source.html#l00215">setTrustPaths()</a>.</p>
 
 </div>
 </div>
@@ -1130,9 +1387,9 @@ Here is the call graph for this function:</div>
 
 <p>The TLS version. </p>
 
-<p class="definition">Definition at line <a class="el" href="tlscontext_8hpp_source.html#l00231">231</a> of file <a class="el" href="tlscontext_8hpp_source.html">tlscontext.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tlscontext_8hpp_source.html#l00295">295</a> of file <a class="el" href="tlscontext_8hpp_source.html">tlscontext.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="tlscontext_8cpp_source.html#l00176">setCipherList()</a>, and <a class="el" href="tlscontext_8cpp_source.html#l00048">TLSContext()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tlscontext_8cpp_source.html#l00064">construct()</a>, and <a class="el" href="tlscontext_8cpp_source.html#l00200">setCipherList()</a>.</p>
 
 </div>
 </div>

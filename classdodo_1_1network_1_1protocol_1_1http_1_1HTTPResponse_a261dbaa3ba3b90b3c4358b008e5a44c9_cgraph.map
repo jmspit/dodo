@@ -1,0 +1,8 @@
+<map id="dodo::network::protocol::http::HTTPResponse::send" name="dodo::network::protocol::http::HTTPResponse::send">
+<area shape="rect" id="node1" title="Send this HTTPMessage to the socket." alt="" coords="5,151,205,193"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse_1_1HTTPResponseLine.html#a3a7154953563a33216a293c689c92274" title="Convert the HTTPResponseLine to a HTTP string." alt="" coords="265,5,472,61"/>
+<area shape="rect" id="node3" href="$classdodo_1_1common_1_1Bytes.html#a8fec7dac8fec2167934b26ba865ea8eb" title="Return the array." alt="" coords="287,86,451,127"/>
+<area shape="rect" id="node4" href="$classdodo_1_1common_1_1Bytes.html#afc34ec0de4068cd3ac41fd07668a7cde" title="Return the array size." alt="" coords="287,151,451,193"/>
+<area shape="rect" id="node5" href="$classdodo_1_1common_1_1SystemError.html#a4f620090edc70e3425e8a24505555ac9" title="Returns true when this&#45;&gt;errorcode_ == ecOK." alt="" coords="253,217,484,244"/>
+<area shape="rect" id="node6" href="$classdodo_1_1network_1_1BaseSocket.html#a5400d3aef38ae1009e7c6c6c200e5228" title="Send bytes on the socket." alt="" coords="269,269,468,310"/>
+</map>

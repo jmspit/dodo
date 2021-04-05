@@ -1,0 +1,4 @@
+<map id="dodo::network::protocol::http::HTTPResponse::hasBody" name="dodo::network::protocol::http::HTTPResponse::hasBody">
+<area shape="rect" id="node1" title="Return true when the response has a body." alt="" coords="5,5,181,61"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html#ac8da529ebf0824ec967dc8b4446ea9f8" title="Get a header value as a string into value." alt="" coords="229,13,497,54"/>
+</map>

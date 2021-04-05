@@ -200,6 +200,10 @@ namespace dodo {
             HTTPCode    http_code_;
         };
 
+        /**
+         * Return a const reference to the HTTPResponseLine of this HTTPResponse.
+         * @return a const reference to the HTTPResponseLine of this HTTPResponse.
+         */
         const HTTPResponseLine& getResponseLine() const { return response_line_; };
 
         virtual ParseResult parse( VirtualReadBuffer& buffer );

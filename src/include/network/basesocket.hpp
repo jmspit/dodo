@@ -87,7 +87,6 @@ namespace dodo::network {
 
       /**
        * Closes the socket, causing the connection, if it exists, to be terminated.
-       * @return nothing
        */
       virtual void close();
 

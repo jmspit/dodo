@@ -68,24 +68,21 @@ namespace dodo::network {
        * | pvVerifyNone     | SSL_VERIFY_NONE                                     |
        * | pvVerifyPeer     | SSL_VERIFY_PEER \| SSL_VERIFY_FAIL_IF_NO_PEER_CERT  |
        * | pvVerifyFQDN     | SSL_VERIFY_PEER \| SSL_VERIFY_FAIL_IF_NO_PEER_CERT  |
-       * | pvVerifyCustom   | SSL_VERIFY_PEER \| SSL_VERIFY_FAIL_IF_NO_PEER_CERT  |
        *
        * | PeerVerification | Server / accept | Client / connect |
        * |------------------|-----------------|------------------|
        * | pvVerifyNone     | encryption of traffic |  encryption of traffic |
        * | pvVerifyPeer     | pvVerifyNone + client must present trusted cert |  pvVerifyNone + server must present trusted cert |
        * | pvVerifyFQDN     | pvVerifyPeer |  pvVerifyPeer + X509Certificate::verifyName() |
-       * | pvVerifyCustom   | pvVerifyPeer + custom |  pvVerifyPeer + custom |
        *
        * @see https://www.openssl.org/docs/man1.1.1/man3/SSL_CTX_set_verify.html
        */
       enum class PeerVerification {
-        pvVerifyNone,           /**< No peer verification - transmission is encrypted, peer cis accepted even if
-                                     peer certificate is invalid and can read all data sent.*/
+        pvVerifyNone,           /**< No peer verification - transmission is encrypted, peer is accepted even if
+                                     peer certificate is invalid - so any peer can read all data sent.*/
         pvVerifyPeer,           /**< The peer must have a trusted certificate (unless a anonymous cipher is used). */
         pvVerifyFQDN,           /**< As pvVerifyPeer, but the remote DNS name must match either the peer cert commonname
                                      or match one of the peer cert subjectAltNames */
-        pvVerifyCustom,         /**< As pvVerifyPeer, but with custom certificate validation logic.*/
       };
 
       /**
@@ -113,6 +110,40 @@ namespace dodo::network {
                   bool  enableSNI = true,
                   bool allowSANWildcards = true );
 
+      /**
+       * Construct a TLSContext from a YAML node.
+       * ```YAML
+       * tlscontext:
+       *   peer-verification: pvVerifyFQDN                    # mandatory
+       *   tls-version: 1.3                                   # mandatory
+       *   enable-sni: true                                   # mandatory
+       *   allow-san-wildcards: true                          # mandatory
+       *   trust:                                             # optional
+       *     file: <path to PEM file>                         # at least one of file or path
+       *     path: <path to directory with PEM files>         # at least one of file or path
+       *   ciphers:                                           # mandatory
+       *     - TLS_AES_256_GCM_SHA384                         # at least one entry
+       *     - TLS_AES_128_GCM_SHA256
+       * ```
+       * If the PEM format is used to provide keys and passphrase:
+       * ```YAML
+       * tlscontext:
+       *   pem:
+       *     private: <path to private key PEM>               # mandatory
+       *     public: <path to public key PEM>                 # mandatory
+       *     passphrase: <ENC[...]>                           # mandatory
+       * ```
+       * If the PKCS12 format is used to provide keys and passphrase:
+       * ```YAML
+       * tlscontext:
+       *   pkcs12:
+       *     file: <path to PKCS12 file>                      # mandatory
+       *     passphrase: <ENC[...]>                           # mandatory
+       * ```
+       * @param yaml The YAML node to read from, which would be 'tlscontext' in the above examples.
+       */
+      TLSContext( const YAML::Node &yaml );
+
 
       virtual ~TLSContext();
 
@@ -137,7 +168,7 @@ namespace dodo::network {
                        const std::string &p12passphrase );
 
       /**
-       * Set a list of ciphers the TLSContext will accept. There are differences between TLSVersion tough,
+       * Set a list of ciphers, separated by a colon, the TLSContext will accept. There are differences between TLSVersion tough,
        *
        * A few examples (note the hyphens and underscores)
        *
@@ -147,12 +178,17 @@ namespace dodo::network {
        *
        * @see https://www.openssl.org/docs/manmaster/man3/SSL_CTX_set_cipher_list.html
        *
+       * A list of available ciphers is given by
+       * ```
+       * $ openssl ciphers -tls1_2 -s
+       * $ openssl ciphers -tls1_3 -s
+       * ```
+       *
        * Note that this call will not return a SystemError, but throws a dodo::common::Exception when the cipher list
        * is invalid.
        *
        * @param cipherlist The cipherlist.
        * @throw dodo::common::Exception
-       * @see http://openssl.cs.utah.edu/docs/apps/ciphers.html
        */
       void setCipherList( const std::string& cipherlist );
 
@@ -165,7 +201,7 @@ namespace dodo::network {
       long setOptions( long option );
 
       /**
-       * Trust all certificates in the specified directory.
+       * Trust all certificates (PEM format) in the specified file and/or directory.
        * @param cafile A PEM file containing one or more certificates. If an empty string, unused.
        * @param capath A directory containing certificate files. If an empty string, unused.
        */
@@ -196,18 +232,46 @@ namespace dodo::network {
        */
       bool isAllowSANWildcards() const { return allow_san_wildcards_; }
 
+
+      /**
+       * Get a PeerVerfication enum from a string. The comparison is case sensitive and must match the enum name
+       * ( "pvVerifyNone", "pvVerifyPeer", "pvVerifyFQDN" ).
+       * If the name does not translate, a common::Exception is thrown.
+       * @param src The source string.
+       * @return the PeerVerification.
+       */
+      static PeerVerification peerVerficiationFromString( const std::string &src );
+
+      /**
+       * Convert the src string to a TLSVersion or throw a common::Exception if that mapping fails. TLSversion strings
+       * could be "1.1", "1.2" and "1.3".
+       * @param src The source string.
+       * @return The TLSVersion specified by the string.
+       */
+      static TLSVersion tlsVersionFromString( const std::string &src );
+
     private:
       /**
        * Initialize the SSL library
-       * @return nothing.
        */
       static void InitializeSSL();
 
       /**
        * Shutdown the SSL library
-       * @return nothing.
        */
       static void ShutdownSSL();
+
+      /**
+       * Construct the TLSContext.
+       * @param peerverficiation The TLSContext::PeerVerification method to use.
+       * @param tlsversion The TLS version to use. Use of default is less future code hassle.
+       * @param enableSNI Enable the Server Name Indication extension. Note that this exposes the target hostname
+       * @param allowSANWildcards Allow SAN wildcard matching under pvVerifyFQDN
+       */
+      void construct( const PeerVerification& peerverficiation,
+                      const TLSVersion& tlsversion,
+                      bool  enableSNI,
+                      bool allowSANWildcards );
 
       /**
        * Password callback, returns the passphrase set in the TLS context by the passphrase argument of

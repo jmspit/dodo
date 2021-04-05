@@ -17,7 +17,7 @@
 
 /**
  * @file application.cpp
- * Implements the dodo::common::Application class..
+ * Implements the dodo::common::Application class.
  */
 
 #include <common/application.hpp>

@@ -24,6 +24,7 @@
 #define dodo_common_common_hpp
 
 #include <common/application.hpp>
+#include <common/cache.hpp>
 #include <common/config.hpp>
 #include <common/datacrypt.hpp>
 #include <common/exception.hpp>

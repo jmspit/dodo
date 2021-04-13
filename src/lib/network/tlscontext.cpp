@@ -27,6 +27,7 @@
 #include <openssl/x509_vfy.h>
 #include <openssl/x509v3.h>
 
+#include "common/datacrypt.hpp"
 #include "common/exception.hpp"
 #include "common/util.hpp"
 #include "network/tlscontext.hpp"
@@ -59,6 +60,16 @@ namespace dodo::network {
     bool enable_sni = common::YAML_read_key<bool>( yaml, "enable-sni" );
     bool allow_wildcards = common::YAML_read_key<bool>( yaml, "allow-san-wildcards" );
     construct( pv, tv, enable_sni, allow_wildcards );
+    if ( yaml["pem"] ) {
+      std::string priv = common::YAML_read_key<std::string>( yaml["pem"], "private" );
+      std::string pub = common::YAML_read_key<std::string>( yaml["pem"], "public" );
+      std::string pass = common::YAML_read_key<std::string>( yaml["pem"], "passphrase" );
+      common::Bytes bytes;
+      common::DataCrypt::decrypt( "key", pass, bytes );
+      passphrase_ = bytes.asString();
+      loadPEMIdentity( pub, priv, passphrase_ );
+    } else if ( yaml["pkcs12"] ) {
+    } else throw_Exception( "need either pem or pcks12 section");
   }
 
   void TLSContext::construct( const PeerVerification& peerverficiation,

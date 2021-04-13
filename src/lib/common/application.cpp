@@ -38,13 +38,25 @@ namespace dodo::common {
     hosttype_ = detectHostType();
     Config* config = Config::initialize( param.config );
     logger_ = Logger::initialize( *config );
-    logger_->log( Logger::LogLevel::Info, Puts() << config->getAppName() << " started" );
+    logger_->log( Logger::LogLevel::Info, Puts() << config->getAppName() << " started (" << getHostTypeAsString(hosttype_) << ")" );
   }
 
   Application::~Application() {
     if ( Logger::logger_ ) delete Logger::logger_;
     if ( Config::config_ ) delete Config::config_;
     dodo::closeLibrary();
+  }
+
+  std::string Application::getHostTypeAsString( HostType ht ) {
+      switch ( ht ) {
+        case HostType::BareMetal: return "bare metal";
+        case HostType::Docker: return "Docker container";
+        case HostType::VirtualBox: return "VirtualBox";
+        case HostType::VMWare: return "VMWare";
+        case HostType::KVM: return "KVM";
+        case HostType::GenericVM: return "Generic VM";
+        default: return "unknown";
+      }
   }
 
   void Application::signal_handler( int signal ) {

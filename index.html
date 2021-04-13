@@ -108,13 +108,14 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 DODO - C++ framework for Docker applications</h1>
 <h2><a class="anchor" id="autotoc_md1"></a>
 About</h2>
-<p>Dodo is a C++ framework to integrate seamlessly with Docker containers and k8s (<a href="https://kubernetes.io/">kubernetes</a>), hiding much of the red tape, as well as providing frameworks for typical demands such as DNS resolving, TLS-enabled TCP services, REST srevices, database accces and so on.</p>
-<p>Dodo applies c++17 features. It relies on and assumes the STL by using STL primitives such as std::string in interfaces. A dodo install comprises a bunch of header files and a shared library to which applicactions or 'services' are linked.</p>
+<p>Dodo is a C++ framework to integrate seamlessly with Docker containers and k8s (<a href="https://kubernetes.io/">kubernetes</a>), hiding much of the red tape, as well as providing frameworks for typical demands such as DNS resolving, TLS-enabled TCP services, REST services, database accces and so on.</p>
+<p>C++ offers high capability/requirement ratio, perfect for microservices.</p>
+<p>Dodo applies c++17 features. It relies on and assumes the STL by using STL primitives such as std::string in interfaces. A dodo install comprises a bunch of header files and a shared library to which applications or 'services' are linked.</p>
 <p>This is a pet project. Do not take it too seriously. </p>
 <h3><a class="anchor" id="autotoc_md2"></a>
 A skeleton for container services</h3>
 <p>The <code><a class="el" href="classdodo_1_1common_1_1Application.html" title="Red tape wrapper class for applications, from command line to services.">dodo::common::Application</a></code> reads its run-time configuration from a YAML file, typically presented to the container as a <a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/">ConfigMap</a>. Framework objects can be iniltialized (constructed) with a YAML document fragment, so the application can retrieve its runtime configuration from a single source.</p>
-<p>An <code><a class="el" href="classdodo_1_1common_1_1Application.html" title="Red tape wrapper class for applications, from command line to services.">dodo::common::Application</a></code> instance implicitly installs signal handlers that are triggered on container stop requests, so that the code can perform a clean shitdown.</p>
+<p>An <code><a class="el" href="classdodo_1_1common_1_1Application.html" title="Red tape wrapper class for applications, from command line to services.">dodo::common::Application</a></code> instance implicitly installs signal handlers that are triggered on container stop requests, allowing the application to shutdown cleanly.</p>
 <p>Logging (<code><a class="el" href="classdodo_1_1common_1_1Logger.html" title="A Logger interface.">dodo::common::Logger</a></code>) is implicit and can be configured to write to one or more of these targets:</p>
 <ul>
 <li>A directory with a configured trail (size, history) of log files.</li>

@@ -48,6 +48,12 @@ jobs:
       # The CMake binaries on the Github Actions machines are (as of this writing) 3.12
       run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
 
+    - name: Run cppcheck
+      working-directory: ${{github.workspace}}/build
+      shell: bash
+      # Execute cppcheck code quality check
+      run: cmake --build . --target cppcheck
+
     - name: Build binaries
       working-directory: ${{github.workspace}}/build
       shell: bash

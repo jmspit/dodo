@@ -103,8 +103,11 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Bytes.html">Bytes</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An array of Octets with size elements.  <a href="classdodo_1_1common_1_1Bytes.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Cache.html">Cache</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple thread-safe <a class="el" href="classdodo_1_1common_1_1Cache.html" title="Simple thread-safe Cache template for arbitrary Key-Value pairs.">Cache</a> template for arbitrary Key-Value pairs.  <a href="classdodo_1_1common_1_1Cache.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html">Config</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Singleton class representing the deployment configuration, combining deployment constants from the configuration file, environment variables (whose names start with the appname) and some operating system quantities useful to developers, like the CPU count or an imposed memory limit.  <a href="classdodo_1_1common_1_1Config.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Singleton interface to a (read-only) deployment configuration, combining data from the deployment configuration file, environment variables and some operating system attributes such as the CPU count, RAM and virtual memory size.  <a href="classdodo_1_1common_1_1Config.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1DataCrypt.html">DataCrypt</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface to encrypt and decrypt <a class="el" href="classdodo_1_1common_1_1Bytes.html" title="An array of Octets with size elements.">Bytes</a> data to/from a secure string.  <a href="classdodo_1_1common_1_1DataCrypt.html#details">More...</a><br /></td></tr>
@@ -380,7 +383,7 @@ Here is the caller graph for this function:</div>
 
 <p>Close the common library. </p>
 
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00057">57</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00058">58</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="dodo_8hpp_source.html#l00051">dodo::closeLibrary()</a>.</p>
 <div class="dynheader">
@@ -422,7 +425,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="util_8cpp_source.html#l00230">230</a> of file <a class="el" href="util_8cpp_source.html">util.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00182">dodo::common::Logger::getFileParams()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00180">dodo::common::Logger::getFileParams()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -462,7 +465,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="util_8cpp_source.html#l00239">239</a> of file <a class="el" href="util_8cpp_source.html">util.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00182">dodo::common::Logger::getFileParams()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00180">dodo::common::Logger::getFileParams()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -655,7 +658,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="util_8cpp_source.html#l00220">220</a> of file <a class="el" href="util_8cpp_source.html">util.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8cpp_source.html#l00073">dodo::common::Application::detectHostType()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8cpp_source.html#l00085">dodo::common::Application::detectHostType()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -754,6 +757,17 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
+<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00073">dodo::common::Config::checkConfig()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacedodo_1_1common_a22bce32e6326c4938f1bb95b6a01fd5e_icgraph.png" border="0" usemap="#namespacedodo_1_1common_a22bce32e6326c4938f1bb95b6a01fd5e_icgraph" alt=""/></div>
+<map name="namespacedodo_1_1common_a22bce32e6326c4938f1bb95b6a01fd5e_icgraph" id="namespacedodo_1_1common_a22bce32e6326c4938f1bb95b6a01fd5e_icgraph">
+<area shape="rect" title="Read the file as a single string." alt="" coords="221,13,440,39"/>
+<area shape="rect" href="classdodo_1_1common_1_1Config.html#a25b06453a51f90e573d104a77c73d8b3" title="Check for required elements in the config file." alt="" coords="5,5,173,47"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a5b9c34af62f134c8710faf5dc67d3b64"></a>
@@ -791,7 +805,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8cpp_source.html#l00073">dodo::common::Application::detectHostType()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8cpp_source.html#l00085">dodo::common::Application::detectHostType()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -879,7 +893,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="util_8cpp_source.html#l00262">262</a> of file <a class="el" href="util_8cpp_source.html">util.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00155">dodo::common::Logger::checkRotate()</a>, and <a class="el" href="logger_8cpp_source.html#l00208">dodo::common::Logger::formatMessage()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00153">dodo::common::Logger::checkRotate()</a>, and <a class="el" href="logger_8cpp_source.html#l00205">dodo::common::Logger::formatMessage()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -920,7 +934,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="util_8cpp_source.html#l00256">256</a> of file <a class="el" href="util_8cpp_source.html">util.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00155">dodo::common::Logger::checkRotate()</a>, and <a class="el" href="logger_8cpp_source.html#l00182">dodo::common::Logger::getFileParams()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00153">dodo::common::Logger::checkRotate()</a>, and <a class="el" href="logger_8cpp_source.html#l00180">dodo::common::Logger::getFileParams()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1027,7 +1041,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="util_8cpp_source.html#l00140">writeSSLErrors()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="tlssocket_8cpp_source.html#l00088">dodo::network::TLSSocket::accept()</a>, <a class="el" href="tlssocket_8cpp_source.html#l00057">dodo::network::TLSSocket::connect()</a>, <a class="el" href="tlscontext_8cpp_source.html#l00064">dodo::network::TLSContext::construct()</a>, <a class="el" href="datacrypt_8cpp_source.html#l00129">dodo::common::DataCrypt::decrypt()</a>, <a class="el" href="datacrypt_8cpp_source.html#l00033">dodo::common::DataCrypt::encrypt()</a>, <a class="el" href="x509cert_8cpp_source.html#l00121">dodo::network::X509CertificateSigningRequest::getFingerPrint()</a>, <a class="el" href="x509cert_8cpp_source.html#l00230">dodo::network::X509Certificate::getFingerPrint()</a>, <a class="el" href="x509cert_8cpp_source.html#l00092">dodo::network::X509CertificateSigningRequest::loadPEM()</a>, <a class="el" href="x509cert_8cpp_source.html#l00143">dodo::network::X509Certificate::loadPEM()</a>, <a class="el" href="tlscontext_8cpp_source.html#l00115">dodo::network::TLSContext::loadPEMIdentity()</a>, <a class="el" href="tlscontext_8cpp_source.html#l00131">dodo::network::TLSContext::loadPKCS12()</a>, <a class="el" href="tlssocket_8cpp_source.html#l00123">dodo::network::TLSSocket::receive()</a>, <a class="el" href="tlssocket_8cpp_source.html#l00105">dodo::network::TLSSocket::send()</a>, <a class="el" href="tlscontext_8cpp_source.html#l00215">dodo::network::TLSContext::setTrustPaths()</a>, and <a class="el" href="tlssocket_8cpp_source.html#l00040">dodo::network::TLSSocket::TLSSocket()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tlssocket_8cpp_source.html#l00088">dodo::network::TLSSocket::accept()</a>, <a class="el" href="tlssocket_8cpp_source.html#l00057">dodo::network::TLSSocket::connect()</a>, <a class="el" href="tlscontext_8cpp_source.html#l00075">dodo::network::TLSContext::construct()</a>, <a class="el" href="datacrypt_8cpp_source.html#l00129">dodo::common::DataCrypt::decrypt()</a>, <a class="el" href="datacrypt_8cpp_source.html#l00033">dodo::common::DataCrypt::encrypt()</a>, <a class="el" href="x509cert_8cpp_source.html#l00121">dodo::network::X509CertificateSigningRequest::getFingerPrint()</a>, <a class="el" href="x509cert_8cpp_source.html#l00230">dodo::network::X509Certificate::getFingerPrint()</a>, <a class="el" href="x509cert_8cpp_source.html#l00092">dodo::network::X509CertificateSigningRequest::loadPEM()</a>, <a class="el" href="x509cert_8cpp_source.html#l00143">dodo::network::X509Certificate::loadPEM()</a>, <a class="el" href="tlscontext_8cpp_source.html#l00126">dodo::network::TLSContext::loadPEMIdentity()</a>, <a class="el" href="tlscontext_8cpp_source.html#l00142">dodo::network::TLSContext::loadPKCS12()</a>, <a class="el" href="tlssocket_8cpp_source.html#l00123">dodo::network::TLSSocket::receive()</a>, <a class="el" href="tlssocket_8cpp_source.html#l00105">dodo::network::TLSSocket::send()</a>, <a class="el" href="tlscontext_8cpp_source.html#l00226">dodo::network::TLSContext::setTrustPaths()</a>, and <a class="el" href="tlssocket_8cpp_source.html#l00040">dodo::network::TLSSocket::TLSSocket()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1080,7 +1094,7 @@ Here is the caller graph for this function:</div>
 
 <p>Initialize the common library. </p>
 
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00047">47</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00048">48</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
 <p class="reference">References <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
@@ -1285,6 +1299,12 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the value of type T </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurrence should generally imply that t...">common::Exception</a></td><td>when the node does not exist. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p class="definition">Definition at line <a class="el" href="util_8cpp_source.html#l00276">276</a> of file <a class="el" href="util_8cpp_source.html">util.cpp</a>.</p>
 
@@ -1321,7 +1341,7 @@ template&lt;typename T &gt; </div>
 <p>Instantiate template YAML_read_key for bool. </p>
 <dl class="section return"><dt>Returns</dt><dd>the value as a bool </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="tlscontext_8cpp_source.html#l00056">dodo::network::TLSContext::TLSContext()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tlscontext_8cpp_source.html#l00057">dodo::network::TLSContext::TLSContext()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">

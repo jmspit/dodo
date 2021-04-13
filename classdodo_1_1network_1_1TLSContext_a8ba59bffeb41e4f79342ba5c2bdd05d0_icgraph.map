@@ -1,0 +1,4 @@
+<map id="dodo::network::TLSContext::loadPEMIdentity" name="dodo::network::TLSContext::loadPEMIdentity">
+<area shape="rect" id="node1" title="Load a certificate and the corresponding private key for an identity." alt="" coords="251,5,448,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1network_1_1TLSContext.html#a23b18787fbdcb4a32c95d86dbc934fbe" title="Construct a TLSContext from a YAML node." alt="" coords="5,5,203,47"/>
+</map>

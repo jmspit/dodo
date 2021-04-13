@@ -87,6 +87,7 @@ $(document).ready(function(){initNavTree('classdodo_1_1common_1_1Application.htm
 <a href="#nested-classes">Data Structures</a> &#124;
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-static-methods">Static Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
@@ -151,6 +152,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad51055776cccad0e23bfe57bbf124f33"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Application.html#ad51055776cccad0e23bfe57bbf124f33">run</a> ()</td></tr>
 <tr class="memdesc:ad51055776cccad0e23bfe57bbf124f33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Override.  <a href="classdodo_1_1common_1_1Application.html#ad51055776cccad0e23bfe57bbf124f33">More...</a><br /></td></tr>
 <tr class="separator:ad51055776cccad0e23bfe57bbf124f33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a5adbb5e2841e4ca8dc329b2c3e2808cc"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Application.html#a5adbb5e2841e4ca8dc329b2c3e2808cc">getHostTypeAsString</a> (<a class="el" href="classdodo_1_1common_1_1Application.html#afd6cd92042b86c5f7db83245ff85a14a">HostType</a> ht)</td></tr>
+<tr class="memdesc:a5adbb5e2841e4ca8dc329b2c3e2808cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a HostType to a human readable string.  <a href="classdodo_1_1common_1_1Application.html#a5adbb5e2841e4ca8dc329b2c3e2808cc">More...</a><br /></td></tr>
+<tr class="separator:a5adbb5e2841e4ca8dc329b2c3e2808cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -295,20 +302,21 @@ Static Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="application_8cpp_source.html#l00033">33</a> of file <a class="el" href="application_8cpp_source.html">application.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="application_8hpp_source.html#l00148">application_</a>, <a class="el" href="application_8hpp_source.html#l00080">dodo::common::Application::StartParameters::config</a>, <a class="el" href="application_8cpp_source.html#l00073">detectHostType()</a>, <a class="el" href="config_8hpp_source.html#l00131">dodo::common::Config::getAppName()</a>, <a class="el" href="application_8hpp_source.html#l00163">has_stop_request_</a>, <a class="el" href="application_8hpp_source.html#l00158">hosttype_</a>, <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba4059b0251f66a18cb56f544728796875">dodo::common::Logger::Info</a>, <a class="el" href="config_8cpp_source.html#l00042">dodo::common::Config::initialize()</a>, <a class="el" href="logger_8cpp_source.html#l00079">dodo::common::Logger::initialize()</a>, <a class="el" href="dodo_8hpp_source.html#l00041">dodo::initLibrary()</a>, <a class="el" href="application_8cpp_source.html#l00054">installSignalHandlers()</a>, <a class="el" href="logger_8cpp_source.html#l00090">dodo::common::Logger::log()</a>, and <a class="el" href="application_8hpp_source.html#l00168">logger_</a>.</p>
+<p class="reference">References <a class="el" href="application_8hpp_source.html#l00155">application_</a>, <a class="el" href="application_8hpp_source.html#l00080">dodo::common::Application::StartParameters::config</a>, <a class="el" href="application_8cpp_source.html#l00085">detectHostType()</a>, <a class="el" href="config_8hpp_source.html#l00174">dodo::common::Config::getAppName()</a>, <a class="el" href="application_8cpp_source.html#l00050">getHostTypeAsString()</a>, <a class="el" href="application_8hpp_source.html#l00170">has_stop_request_</a>, <a class="el" href="application_8hpp_source.html#l00165">hosttype_</a>, <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba4059b0251f66a18cb56f544728796875">dodo::common::Logger::Info</a>, <a class="el" href="logger_8cpp_source.html#l00077">dodo::common::Logger::initialize()</a>, <a class="el" href="config_8cpp_source.html#l00062">dodo::common::Config::initialize()</a>, <a class="el" href="dodo_8hpp_source.html#l00041">dodo::initLibrary()</a>, <a class="el" href="application_8cpp_source.html#l00066">installSignalHandlers()</a>, <a class="el" href="logger_8cpp_source.html#l00088">dodo::common::Logger::log()</a>, and <a class="el" href="application_8hpp_source.html#l00175">logger_</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classdodo_1_1common_1_1Application_a816f02777efe1660763c0bd514b9ee96_cgraph.png" border="0" usemap="#classdodo_1_1common_1_1Application_a816f02777efe1660763c0bd514b9ee96_cgraph" alt=""/></div>
 <map name="classdodo_1_1common_1_1Application_a816f02777efe1660763c0bd514b9ee96_cgraph" id="classdodo_1_1common_1_1Application_a816f02777efe1660763c0bd514b9ee96_cgraph">
-<area shape="rect" title="Construct an Application instance." alt="" coords="5,188,205,229"/>
+<area shape="rect" title="Construct an Application instance." alt="" coords="5,221,205,263"/>
 <area shape="rect" href="classdodo_1_1common_1_1Application.html#ab5280c1affb0e48ff6eb6fcdcf9847e6" title="Detect the HostType of the host the Application is running on." alt="" coords="253,5,453,47"/>
-<area shape="rect" href="classdodo_1_1common_1_1Config.html#a3035c95a79f163d1622ab87f79aebc95" title="Return the application name." alt="" coords="501,215,669,256"/>
-<area shape="rect" href="classdodo_1_1common_1_1Config.html#aba80b83aa9199ec638449f387e8a733c" title="Initialize the singleton." alt="" coords="269,123,437,164"/>
+<area shape="rect" href="classdodo_1_1common_1_1Config.html#a3035c95a79f163d1622ab87f79aebc95" title="Return the application name." alt="" coords="501,247,669,288"/>
+<area shape="rect" href="classdodo_1_1common_1_1Application.html#a5adbb5e2841e4ca8dc329b2c3e2808cc" title="Convert a HostType to a human readable string." alt="" coords="253,123,453,164"/>
 <area shape="rect" href="classdodo_1_1common_1_1Logger.html#a4a723e3a6f44cb0ec2996d5d91a13e5b" title="Initialize the Logger singleton." alt="" coords="268,188,439,229"/>
-<area shape="rect" href="namespacedodo.html#ae61f6a99a376fce96aaa28ef8fc99d24" title="Initialize the dodo library." alt="" coords="289,254,417,281"/>
-<area shape="rect" href="classdodo_1_1common_1_1Application.html#a892a9e6fbf188d831dbfc10916e7e3a6" title="Install the signal handlers." alt="" coords="253,305,453,347"/>
-<area shape="rect" href="classdodo_1_1common_1_1Logger.html#ac316d01b3f24be57e64217ec03092133" title="Log a log entry." alt="" coords="254,371,453,398"/>
+<area shape="rect" href="classdodo_1_1common_1_1Config.html#aba80b83aa9199ec638449f387e8a733c" title="Initialize the singleton." alt="" coords="269,253,437,295"/>
+<area shape="rect" href="namespacedodo.html#ae61f6a99a376fce96aaa28ef8fc99d24" title="Initialize the dodo library." alt="" coords="289,319,417,346"/>
+<area shape="rect" href="classdodo_1_1common_1_1Application.html#a892a9e6fbf188d831dbfc10916e7e3a6" title="Install the signal handlers." alt="" coords="253,371,453,412"/>
+<area shape="rect" href="classdodo_1_1common_1_1Logger.html#ac316d01b3f24be57e64217ec03092133" title="Log a log entry." alt="" coords="254,437,453,463"/>
 </map>
 </div>
 
@@ -341,7 +349,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="application_8cpp_source.html#l00044">44</a> of file <a class="el" href="application_8cpp_source.html">application.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="dodo_8hpp_source.html#l00051">dodo::closeLibrary()</a>, <a class="el" href="config_8hpp_source.html#l00154">dodo::common::Config::config_</a>, and <a class="el" href="logger_8hpp_source.html#l00228">dodo::common::Logger::logger_</a>.</p>
+<p class="reference">References <a class="el" href="dodo_8hpp_source.html#l00051">dodo::closeLibrary()</a>, <a class="el" href="config_8hpp_source.html#l00238">dodo::common::Config::config_</a>, and <a class="el" href="logger_8hpp_source.html#l00228">dodo::common::Logger::logger_</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -381,7 +389,7 @@ Here is the call graph for this function:</div>
 <p>Detect the HostType of the host the <a class="el" href="classdodo_1_1common_1_1Application.html" title="Red tape wrapper class for applications, from command line to services.">Application</a> is running on. </p>
 <dl class="section return"><dt>Returns</dt><dd>The HostType; </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="application_8cpp_source.html#l00073">73</a> of file <a class="el" href="application_8cpp_source.html">application.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8cpp_source.html#l00085">85</a> of file <a class="el" href="application_8cpp_source.html">application.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="classdodo_1_1common_1_1Application.html#afd6cd92042b86c5f7db83245ff85a14aaddcb67e8ba1538dd7f315ff111154cc5">BareMetal</a>, <a class="el" href="classdodo_1_1common_1_1Application.html#afd6cd92042b86c5f7db83245ff85a14aac5fd214cdd0d2b3b4272e73b022ba5c2">Docker</a>, <a class="el" href="util_8cpp_source.html#l00220">dodo::common::fileReadAccess()</a>, <a class="el" href="util_8cpp_source.html#l00170">dodo::common::fileReadStrings()</a>, <a class="el" href="classdodo_1_1common_1_1Application.html#afd6cd92042b86c5f7db83245ff85a14aa7b025b195ba305015998efc420ef23af">GenericVM</a>, <a class="el" href="classdodo_1_1common_1_1Application.html#afd6cd92042b86c5f7db83245ff85a14aad9817ded489aaa35d8ba40ab33bdfd4b">KVM</a>, <a class="el" href="classdodo_1_1common_1_1Application.html#afd6cd92042b86c5f7db83245ff85a14aae8e4d1f0fe99af04575c1e0815054845">VirtualBox</a>, and <a class="el" href="classdodo_1_1common_1_1Application.html#afd6cd92042b86c5f7db83245ff85a14aa7f8b37715b940736bc29a71b2f98126d">VMWare</a>.</p>
 
@@ -436,7 +444,57 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="application_8hpp_source.html#l00103">103</a> of file <a class="el" href="application_8hpp_source.html">application.hpp</a>.</p>
 
-<p class="reference">References <a class="el" href="application_8hpp_source.html#l00158">hosttype_</a>.</p>
+<p class="reference">References <a class="el" href="application_8hpp_source.html#l00165">hosttype_</a>.</p>
+
+</div>
+</div>
+<a id="a5adbb5e2841e4ca8dc329b2c3e2808cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5adbb5e2841e4ca8dc329b2c3e2808cc">&#9670;&nbsp;</a></span>getHostTypeAsString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string dodo::common::Application::getHostTypeAsString </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classdodo_1_1common_1_1Application.html#afd6cd92042b86c5f7db83245ff85a14a">HostType</a>&#160;</td>
+          <td class="paramname"><em>ht</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert a HostType to a human readable string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ht</td><td>The HostType to convert. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The string. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="application_8cpp_source.html#l00050">50</a> of file <a class="el" href="application_8cpp_source.html">application.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="classdodo_1_1common_1_1Application.html#afd6cd92042b86c5f7db83245ff85a14aaddcb67e8ba1538dd7f315ff111154cc5">BareMetal</a>, <a class="el" href="classdodo_1_1common_1_1Application.html#afd6cd92042b86c5f7db83245ff85a14aac5fd214cdd0d2b3b4272e73b022ba5c2">Docker</a>, <a class="el" href="classdodo_1_1common_1_1Application.html#afd6cd92042b86c5f7db83245ff85a14aa7b025b195ba305015998efc420ef23af">GenericVM</a>, <a class="el" href="classdodo_1_1common_1_1Application.html#afd6cd92042b86c5f7db83245ff85a14aad9817ded489aaa35d8ba40ab33bdfd4b">KVM</a>, <a class="el" href="classdodo_1_1common_1_1Application.html#afd6cd92042b86c5f7db83245ff85a14aae8e4d1f0fe99af04575c1e0815054845">VirtualBox</a>, and <a class="el" href="classdodo_1_1common_1_1Application.html#afd6cd92042b86c5f7db83245ff85a14aa7f8b37715b940736bc29a71b2f98126d">VMWare</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="application_8cpp_source.html#l00033">Application()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classdodo_1_1common_1_1Application_a5adbb5e2841e4ca8dc329b2c3e2808cc_icgraph.png" border="0" usemap="#classdodo_1_1common_1_1Application_a5adbb5e2841e4ca8dc329b2c3e2808cc_icgraph" alt=""/></div>
+<map name="classdodo_1_1common_1_1Application_a5adbb5e2841e4ca8dc329b2c3e2808cc_icgraph" id="classdodo_1_1common_1_1Application_a5adbb5e2841e4ca8dc329b2c3e2808cc_icgraph">
+<area shape="rect" title="Convert a HostType to a human readable string." alt="" coords="253,5,453,47"/>
+<area shape="rect" href="classdodo_1_1common_1_1Application.html#a816f02777efe1660763c0bd514b9ee96" title="Construct an Application instance." alt="" coords="5,5,205,47"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -468,7 +526,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="application_8hpp_source.html#l00109">109</a> of file <a class="el" href="application_8hpp_source.html">application.hpp</a>.</p>
 
-<p class="reference">References <a class="el" href="application_8hpp_source.html#l00163">has_stop_request_</a>.</p>
+<p class="reference">References <a class="el" href="application_8hpp_source.html#l00170">has_stop_request_</a>.</p>
 
 </div>
 </div>
@@ -497,9 +555,9 @@ Here is the caller graph for this function:</div>
 
 <p>Install the signal handlers. </p>
 
-<p class="definition">Definition at line <a class="el" href="application_8cpp_source.html#l00054">54</a> of file <a class="el" href="application_8cpp_source.html">application.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8cpp_source.html#l00066">66</a> of file <a class="el" href="application_8cpp_source.html">application.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="application_8cpp_source.html#l00050">signal_handler()</a>.</p>
+<p class="reference">References <a class="el" href="application_8cpp_source.html#l00062">signal_handler()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="application_8cpp_source.html#l00033">Application()</a>.</p>
 <div class="dynheader">
@@ -555,11 +613,11 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="application_8cpp_source.html#l00060">60</a> of file <a class="el" href="application_8cpp_source.html">application.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8cpp_source.html#l00072">72</a> of file <a class="el" href="application_8cpp_source.html">application.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="application_8hpp_source.html#l00163">has_stop_request_</a>, and <a class="el" href="logger_8hpp_source.html#l00283">log_Warning</a>.</p>
+<p class="reference">References <a class="el" href="application_8hpp_source.html#l00170">has_stop_request_</a>, and <a class="el" href="logger_8hpp_source.html#l00283">log_Warning</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8cpp_source.html#l00050">signal_handler()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8cpp_source.html#l00062">signal_handler()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -598,7 +656,7 @@ Here is the caller graph for this function:</div>
 <p>Override. </p>
 <dl class="section return"><dt>Returns</dt><dd>the return code as returned to the OS (exit code of the process). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="application_8hpp_source.html#l00117">117</a> of file <a class="el" href="application_8hpp_source.html">application.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8hpp_source.html#l00124">124</a> of file <a class="el" href="application_8hpp_source.html">application.hpp</a>.</p>
 
 </div>
 </div>
@@ -634,11 +692,11 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="application_8cpp_source.html#l00050">50</a> of file <a class="el" href="application_8cpp_source.html">application.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8cpp_source.html#l00062">62</a> of file <a class="el" href="application_8cpp_source.html">application.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="application_8hpp_source.html#l00148">application_</a>, and <a class="el" href="application_8cpp_source.html#l00060">onSignal()</a>.</p>
+<p class="reference">References <a class="el" href="application_8hpp_source.html#l00155">application_</a>, and <a class="el" href="application_8cpp_source.html#l00072">onSignal()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8cpp_source.html#l00054">installSignalHandlers()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8cpp_source.html#l00066">installSignalHandlers()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -683,9 +741,9 @@ Here is the caller graph for this function:</div>
 
 <p>Singleton <a class="el" href="classdodo_1_1common_1_1Application.html" title="Red tape wrapper class for applications, from command line to services.">Application</a> object. </p>
 
-<p class="definition">Definition at line <a class="el" href="application_8hpp_source.html#l00148">148</a> of file <a class="el" href="application_8hpp_source.html">application.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8hpp_source.html#l00155">155</a> of file <a class="el" href="application_8hpp_source.html">application.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8cpp_source.html#l00033">Application()</a>, and <a class="el" href="application_8cpp_source.html#l00050">signal_handler()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8cpp_source.html#l00033">Application()</a>, and <a class="el" href="application_8cpp_source.html#l00062">signal_handler()</a>.</p>
 
 </div>
 </div>
@@ -711,7 +769,7 @@ Here is the caller graph for this function:</div>
 
 <p>The configuration file name. </p>
 
-<p class="definition">Definition at line <a class="el" href="application_8hpp_source.html#l00153">153</a> of file <a class="el" href="application_8hpp_source.html">application.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8hpp_source.html#l00160">160</a> of file <a class="el" href="application_8hpp_source.html">application.hpp</a>.</p>
 
 </div>
 </div>
@@ -737,9 +795,9 @@ Here is the caller graph for this function:</div>
 
 <p>True when the <a class="el" href="classdodo_1_1common_1_1Application.html" title="Red tape wrapper class for applications, from command line to services.">Application</a> main pid got a signal to stop (SIGTERM). </p>
 
-<p class="definition">Definition at line <a class="el" href="application_8hpp_source.html#l00163">163</a> of file <a class="el" href="application_8hpp_source.html">application.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8hpp_source.html#l00170">170</a> of file <a class="el" href="application_8hpp_source.html">application.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8cpp_source.html#l00033">Application()</a>, <a class="el" href="application_8hpp_source.html#l00109">hasStopRequest()</a>, and <a class="el" href="application_8cpp_source.html#l00060">onSignal()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8cpp_source.html#l00033">Application()</a>, <a class="el" href="application_8hpp_source.html#l00109">hasStopRequest()</a>, and <a class="el" href="application_8cpp_source.html#l00072">onSignal()</a>.</p>
 
 </div>
 </div>
@@ -765,7 +823,7 @@ Here is the caller graph for this function:</div>
 
 <p>The HostType, detected once in the <a class="el" href="classdodo_1_1common_1_1Application.html" title="Red tape wrapper class for applications, from command line to services.">Application</a> constructor. </p>
 
-<p class="definition">Definition at line <a class="el" href="application_8hpp_source.html#l00158">158</a> of file <a class="el" href="application_8hpp_source.html">application.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8hpp_source.html#l00165">165</a> of file <a class="el" href="application_8hpp_source.html">application.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="application_8cpp_source.html#l00033">Application()</a>, and <a class="el" href="application_8hpp_source.html#l00103">getHostType()</a>.</p>
 
@@ -793,7 +851,7 @@ Here is the caller graph for this function:</div>
 
 <p>The <a class="el" href="classdodo_1_1common_1_1Logger.html" title="A Logger interface.">Logger</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="application_8hpp_source.html#l00168">168</a> of file <a class="el" href="application_8hpp_source.html">application.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8hpp_source.html#l00175">175</a> of file <a class="el" href="application_8hpp_source.html">application.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="application_8cpp_source.html#l00033">Application()</a>.</p>
 
@@ -808,7 +866,7 @@ Here is the caller graph for this function:</div>
 <div class="ttc" id="anamespacedodo_1_1common_html"><div class="ttname"><a href="namespacedodo_1_1common.html">dodo::common</a></div><div class="ttdoc">Common and utility interfaces.</div><div class="ttdef"><b>Definition:</b> <a href="application_8hpp_source.html#l00029">application.hpp:29</a></div></div>
 <div class="ttc" id="aclassdodo_1_1common_1_1Application_html"><div class="ttname"><a href="classdodo_1_1common_1_1Application.html">dodo::common::Application</a></div><div class="ttdoc">Red tape wrapper class for applications, from command line to services.</div><div class="ttdef"><b>Definition:</b> <a href="application_8hpp_source.html#l00061">application.hpp:61</a></div></div>
 <div class="ttc" id="aclassdodo_1_1common_1_1Application_html_a816f02777efe1660763c0bd514b9ee96"><div class="ttname"><a href="classdodo_1_1common_1_1Application.html#a816f02777efe1660763c0bd514b9ee96">dodo::common::Application::Application</a></div><div class="ttdeci">Application(const StartParameters &amp;param)</div><div class="ttdoc">Construct an Application instance.</div><div class="ttdef"><b>Definition:</b> <a href="application_8cpp_source.html#l00033">application.cpp:33</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1Application_html_ad51055776cccad0e23bfe57bbf124f33"><div class="ttname"><a href="classdodo_1_1common_1_1Application.html#ad51055776cccad0e23bfe57bbf124f33">dodo::common::Application::run</a></div><div class="ttdeci">virtual int run()</div><div class="ttdoc">Override.</div><div class="ttdef"><b>Definition:</b> <a href="application_8hpp_source.html#l00117">application.hpp:117</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1Application_html_ad51055776cccad0e23bfe57bbf124f33"><div class="ttname"><a href="classdodo_1_1common_1_1Application.html#ad51055776cccad0e23bfe57bbf124f33">dodo::common::Application::run</a></div><div class="ttdeci">virtual int run()</div><div class="ttdoc">Override.</div><div class="ttdef"><b>Definition:</b> <a href="application_8hpp_source.html#l00124">application.hpp:124</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

@@ -202,7 +202,7 @@ Protected Member Functions</h2></td></tr>
 <tr class="memdesc:ad9ad509249e35c7cea158a9563676e4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format a LogLine.  <a href="classdodo_1_1common_1_1Logger.html#ad9ad509249e35c7cea158a9563676e4c">More...</a><br /></td></tr>
 <tr class="separator:ad9ad509249e35c7cea158a9563676e4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5b18f36fae4dd78350f61756a6e1d70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Logger.html#aa5b18f36fae4dd78350f61756a6e1d70">getFileParams</a> (const <a class="el" href="classdodo_1_1common_1_1Config.html">Config</a> &amp;config)</td></tr>
-<tr class="memdesc:aa5b18f36fae4dd78350f61756a6e1d70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <a class="el" href="structdodo_1_1common_1_1Logger_1_1FileParams.html" title="File Logging parameters.">FileParams</a> from the <a class="el" href="classdodo_1_1common_1_1Config.html" title="Singleton class representing the deployment configuration, combining deployment constants from the co...">Config</a> into file_params_.  <a href="classdodo_1_1common_1_1Logger.html#aa5b18f36fae4dd78350f61756a6e1d70">More...</a><br /></td></tr>
+<tr class="memdesc:aa5b18f36fae4dd78350f61756a6e1d70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <a class="el" href="structdodo_1_1common_1_1Logger_1_1FileParams.html" title="File Logging parameters.">FileParams</a> from the <a class="el" href="classdodo_1_1common_1_1Config.html" title="Singleton interface to a (read-only) deployment configuration, combining data from the deployment con...">Config</a> into file_params_.  <a href="classdodo_1_1common_1_1Logger.html#aa5b18f36fae4dd78350f61756a6e1d70">More...</a><br /></td></tr>
 <tr class="separator:aa5b18f36fae4dd78350f61756a6e1d70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac316d01b3f24be57e64217ec03092133"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Logger.html#ac316d01b3f24be57e64217ec03092133">log</a> (<a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cb">LogLevel</a> level, const std::string &amp;message)</td></tr>
 <tr class="memdesc:ac316d01b3f24be57e64217ec03092133"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log a log entry.  <a href="classdodo_1_1common_1_1Logger.html#ac316d01b3f24be57e64217ec03092133">More...</a><br /></td></tr>
@@ -348,19 +348,20 @@ Friends</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00046">46</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="logger_8hpp_source.html#l00233">destinations_</a>, <a class="el" href="logger_8hpp_source.html#l00088">dodo::common::Logger::SyslogParams::facility</a>, <a class="el" href="config_8cpp_source.html#l00048">dodo::common::Config::getConfig()</a>, <a class="el" href="logger_8cpp_source.html#l00182">getFileParams()</a>, <a class="el" href="config_8hpp_source.html#l00113">dodo::common::Config::getYAML()</a>, <a class="el" href="logger_8hpp_source.html#l00243">hostname_</a>, <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba4059b0251f66a18cb56f544728796875">Info</a>, <a class="el" href="logger_8hpp_source.html#l00238">levels_</a>, <a class="el" href="logger_8hpp_source.html#l00223">mutex_</a>, <a class="el" href="logger_8hpp_source.html#l00258">rotate_throttle_counter_</a>, <a class="el" href="logger_8cpp_source.html#l00220">StringAsLogLevel()</a>, <a class="el" href="logger_8hpp_source.html#l00253">syslog_params_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="config_8hpp_source.html#l00098">dodo::common::Config::config_dodo_common_logger_console_level</a>, <a class="el" href="config_8hpp_source.html#l00101">dodo::common::Config::config_dodo_common_logger_file</a>, <a class="el" href="config_8hpp_source.html#l00116">dodo::common::Config::config_dodo_common_logger_syslog</a>, <a class="el" href="config_8hpp_source.html#l00122">dodo::common::Config::config_dodo_common_logger_syslog_facility</a>, <a class="el" href="config_8hpp_source.html#l00119">dodo::common::Config::config_dodo_common_logger_syslog_level</a>, <a class="el" href="logger_8hpp_source.html#l00233">destinations_</a>, <a class="el" href="config_8hpp_source.html#l00201">dodo::common::Config::exists()</a>, <a class="el" href="logger_8hpp_source.html#l00088">dodo::common::Logger::SyslogParams::facility</a>, <a class="el" href="config_8cpp_source.html#l00068">dodo::common::Config::getConfig()</a>, <a class="el" href="logger_8cpp_source.html#l00180">getFileParams()</a>, <a class="el" href="config_8hpp_source.html#l00187">dodo::common::Config::getValue()</a>, <a class="el" href="logger_8hpp_source.html#l00243">hostname_</a>, <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba4059b0251f66a18cb56f544728796875">Info</a>, <a class="el" href="logger_8hpp_source.html#l00238">levels_</a>, <a class="el" href="logger_8hpp_source.html#l00223">mutex_</a>, <a class="el" href="logger_8hpp_source.html#l00258">rotate_throttle_counter_</a>, <a class="el" href="logger_8cpp_source.html#l00217">StringAsLogLevel()</a>, <a class="el" href="logger_8hpp_source.html#l00253">syslog_params_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00079">initialize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00077">initialize()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classdodo_1_1common_1_1Logger_a802985a985e8ef1c4c52c8a02b42b06b_cgraph.png" border="0" usemap="#classdodo_1_1common_1_1Logger_a802985a985e8ef1c4c52c8a02b42b06b_cgraph" alt=""/></div>
 <map name="classdodo_1_1common_1_1Logger_a802985a985e8ef1c4c52c8a02b42b06b_cgraph" id="classdodo_1_1common_1_1Logger_a802985a985e8ef1c4c52c8a02b42b06b_cgraph">
-<area shape="rect" title="Construct against a config." alt="" coords="5,88,176,129"/>
-<area shape="rect" href="classdodo_1_1common_1_1Config.html#a955942da1c904f7a4b797eaf3883ac16" title="return the singleton." alt="" coords="444,5,612,47"/>
-<area shape="rect" href="classdodo_1_1common_1_1Logger.html#aa5b18f36fae4dd78350f61756a6e1d70" title="Get FileParams from the Config into file_params_." alt="" coords="224,59,395,100"/>
-<area shape="rect" href="classdodo_1_1common_1_1Config.html#aa452e6ffcaf296f309a871bb0d2ea059" title="Return a reference to the configuration YAML contents." alt="" coords="444,75,612,116"/>
-<area shape="rect" href="classdodo_1_1common_1_1Logger.html#adb742179864c2d409c23771f05b2d4c6" title="Return the string as a LogLevel." alt="" coords="443,149,613,191"/>
+<area shape="rect" title="Construct against a config." alt="" coords="5,112,176,153"/>
+<area shape="rect" href="classdodo_1_1common_1_1Config.html#a4c1c4788d7cd53ae8d1ba098ce65b4e5" title="Return true if the KeyPath exists." alt="" coords="444,5,612,47"/>
+<area shape="rect" href="classdodo_1_1common_1_1Config.html#a955942da1c904f7a4b797eaf3883ac16" title="return the singleton." alt="" coords="444,72,612,113"/>
+<area shape="rect" href="classdodo_1_1common_1_1Logger.html#aa5b18f36fae4dd78350f61756a6e1d70" title="Get FileParams from the Config into file_params_." alt="" coords="224,112,395,153"/>
+<area shape="rect" href="classdodo_1_1common_1_1Config.html#a47d8cd25b62495aee457a4a421228246" title="Get the value at keypath." alt="" coords="444,140,612,181"/>
+<area shape="rect" href="classdodo_1_1common_1_1Logger.html#adb742179864c2d409c23771f05b2d4c6" title="Return the string as a LogLevel." alt="" coords="443,211,613,252"/>
 </map>
 </div>
 <div class="dynheader">
@@ -400,7 +401,7 @@ Here is the caller graph for this function:</div>
 
 <p>Destructor. </p>
 
-<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00073">73</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00071">71</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="logger_8hpp_source.html#l00078">dodo::common::Logger::FileParams::file</a>, <a class="el" href="logger_8hpp_source.html#l00248">file_params_</a>, and <a class="el" href="logger_8hpp_source.html#l00223">mutex_</a>.</p>
 
@@ -432,11 +433,11 @@ Here is the caller graph for this function:</div>
 
 <p>Check and rotate the log file if it exceeds the size limit, delete older logs if needed. </p>
 
-<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00155">155</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00153">153</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="logger_8hpp_source.html#l00076">dodo::common::Logger::FileParams::active_log</a>, <a class="el" href="logger_8hpp_source.html#l00070">dodo::common::Logger::FileParams::directory</a>, <a class="el" href="logger_8hpp_source.html#l00078">dodo::common::Logger::FileParams::file</a>, <a class="el" href="logger_8hpp_source.html#l00248">file_params_</a>, <a class="el" href="logger_8hpp_source.html#l00080">dodo::common::Logger::FileParams::filesize</a>, <a class="el" href="util_8cpp_source.html#l00262">dodo::common::formatDateTimeUTC()</a>, <a class="el" href="util_8cpp_source.html#l00256">dodo::common::getFileSize()</a>, <a class="el" href="logger_8hpp_source.html#l00074">dodo::common::Logger::FileParams::max_file_trail</a>, and <a class="el" href="logger_8hpp_source.html#l00072">dodo::common::Logger::FileParams::max_size_mib</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00090">log()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00088">log()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -483,9 +484,9 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00134">134</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00132">132</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cbaa603905470e2a5b8c13e96b579ef0dba">Debug</a>, and <a class="el" href="logger_8cpp_source.html#l00090">log()</a>.</p>
+<p class="reference">References <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cbaa603905470e2a5b8c13e96b579ef0dba">Debug</a>, and <a class="el" href="logger_8cpp_source.html#l00088">log()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -522,9 +523,9 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00118">118</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00116">116</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba902b0d55fddef6f8d651fe1035b7d4bd">Error</a>, and <a class="el" href="logger_8cpp_source.html#l00090">log()</a>.</p>
+<p class="reference">References <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba902b0d55fddef6f8d651fe1035b7d4bd">Error</a>, and <a class="el" href="logger_8cpp_source.html#l00088">log()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -561,9 +562,9 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00114">114</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00112">112</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba882384ec38ce8d9582b57e70861730e4">Fatal</a>, and <a class="el" href="logger_8cpp_source.html#l00090">log()</a>.</p>
+<p class="reference">References <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba882384ec38ce8d9582b57e70861730e4">Fatal</a>, and <a class="el" href="logger_8cpp_source.html#l00088">log()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -620,11 +621,11 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A formatted log line. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00208">208</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00205">205</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="util_8cpp_source.html#l00262">dodo::common::formatDateTimeUTC()</a>, <a class="el" href="config_8hpp_source.html#l00131">dodo::common::Config::getAppName()</a>, <a class="el" href="config_8cpp_source.html#l00048">dodo::common::Config::getConfig()</a>, <a class="el" href="logger_8hpp_source.html#l00243">hostname_</a>, and <a class="el" href="logger_8cpp_source.html#l00231">LogLevelAsString()</a>.</p>
+<p class="reference">References <a class="el" href="util_8cpp_source.html#l00262">dodo::common::formatDateTimeUTC()</a>, <a class="el" href="config_8hpp_source.html#l00174">dodo::common::Config::getAppName()</a>, <a class="el" href="config_8cpp_source.html#l00068">dodo::common::Config::getConfig()</a>, <a class="el" href="logger_8hpp_source.html#l00243">hostname_</a>, and <a class="el" href="logger_8cpp_source.html#l00228">LogLevelAsString()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00090">log()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00088">log()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -673,17 +674,17 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Get <a class="el" href="structdodo_1_1common_1_1Logger_1_1FileParams.html" title="File Logging parameters.">FileParams</a> from the <a class="el" href="classdodo_1_1common_1_1Config.html" title="Singleton class representing the deployment configuration, combining deployment constants from the co...">Config</a> into file_params_. </p>
+<p>Get <a class="el" href="structdodo_1_1common_1_1Logger_1_1FileParams.html" title="File Logging parameters.">FileParams</a> from the <a class="el" href="classdodo_1_1common_1_1Config.html" title="Singleton interface to a (read-only) deployment configuration, combining data from the deployment con...">Config</a> into file_params_. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">config</td><td>The <a class="el" href="classdodo_1_1common_1_1Config.html" title="Singleton class representing the deployment configuration, combining deployment constants from the co...">Config</a> to get the <a class="el" href="structdodo_1_1common_1_1Logger_1_1FileParams.html" title="File Logging parameters.">FileParams</a> from. </td></tr>
+    <tr><td class="paramname">config</td><td>The <a class="el" href="classdodo_1_1common_1_1Config.html" title="Singleton interface to a (read-only) deployment configuration, combining data from the deployment con...">Config</a> to get the <a class="el" href="structdodo_1_1common_1_1Logger_1_1FileParams.html" title="File Logging parameters.">FileParams</a> from. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00182">182</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00180">180</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="logger_8hpp_source.html#l00076">dodo::common::Logger::FileParams::active_log</a>, <a class="el" href="logger_8hpp_source.html#l00070">dodo::common::Logger::FileParams::directory</a>, <a class="el" href="util_8cpp_source.html#l00230">dodo::common::directoryExists()</a>, <a class="el" href="util_8cpp_source.html#l00239">dodo::common::directoryWritable()</a>, <a class="el" href="logger_8hpp_source.html#l00078">dodo::common::Logger::FileParams::file</a>, <a class="el" href="logger_8hpp_source.html#l00248">file_params_</a>, <a class="el" href="logger_8hpp_source.html#l00080">dodo::common::Logger::FileParams::filesize</a>, <a class="el" href="config_8hpp_source.html#l00131">dodo::common::Config::getAppName()</a>, <a class="el" href="config_8cpp_source.html#l00048">dodo::common::Config::getConfig()</a>, <a class="el" href="util_8cpp_source.html#l00256">dodo::common::getFileSize()</a>, <a class="el" href="config_8hpp_source.html#l00113">dodo::common::Config::getYAML()</a>, <a class="el" href="logger_8hpp_source.html#l00238">levels_</a>, <a class="el" href="logger_8hpp_source.html#l00074">dodo::common::Logger::FileParams::max_file_trail</a>, <a class="el" href="logger_8hpp_source.html#l00072">dodo::common::Logger::FileParams::max_size_mib</a>, <a class="el" href="logger_8cpp_source.html#l00220">StringAsLogLevel()</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="logger_8hpp_source.html#l00076">dodo::common::Logger::FileParams::active_log</a>, <a class="el" href="config_8hpp_source.html#l00107">dodo::common::Config::config_dodo_common_logger_file_directory</a>, <a class="el" href="config_8hpp_source.html#l00104">dodo::common::Config::config_dodo_common_logger_file_level</a>, <a class="el" href="config_8hpp_source.html#l00113">dodo::common::Config::config_dodo_common_logger_file_max_file_trail</a>, <a class="el" href="config_8hpp_source.html#l00110">dodo::common::Config::config_dodo_common_logger_file_max_size_mib</a>, <a class="el" href="logger_8hpp_source.html#l00070">dodo::common::Logger::FileParams::directory</a>, <a class="el" href="util_8cpp_source.html#l00230">dodo::common::directoryExists()</a>, <a class="el" href="util_8cpp_source.html#l00239">dodo::common::directoryWritable()</a>, <a class="el" href="config_8hpp_source.html#l00201">dodo::common::Config::exists()</a>, <a class="el" href="logger_8hpp_source.html#l00078">dodo::common::Logger::FileParams::file</a>, <a class="el" href="logger_8hpp_source.html#l00248">file_params_</a>, <a class="el" href="logger_8hpp_source.html#l00080">dodo::common::Logger::FileParams::filesize</a>, <a class="el" href="config_8hpp_source.html#l00174">dodo::common::Config::getAppName()</a>, <a class="el" href="config_8cpp_source.html#l00068">dodo::common::Config::getConfig()</a>, <a class="el" href="util_8cpp_source.html#l00256">dodo::common::getFileSize()</a>, <a class="el" href="config_8hpp_source.html#l00187">dodo::common::Config::getValue()</a>, <a class="el" href="logger_8hpp_source.html#l00238">levels_</a>, <a class="el" href="logger_8hpp_source.html#l00074">dodo::common::Logger::FileParams::max_file_trail</a>, <a class="el" href="logger_8hpp_source.html#l00072">dodo::common::Logger::FileParams::max_size_mib</a>, <a class="el" href="logger_8cpp_source.html#l00217">StringAsLogLevel()</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00046">Logger()</a>.</p>
 <div class="dynheader">
@@ -691,14 +692,15 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classdodo_1_1common_1_1Logger_aa5b18f36fae4dd78350f61756a6e1d70_cgraph.png" border="0" usemap="#classdodo_1_1common_1_1Logger_aa5b18f36fae4dd78350f61756a6e1d70_cgraph" alt=""/></div>
 <map name="classdodo_1_1common_1_1Logger_aa5b18f36fae4dd78350f61756a6e1d70_cgraph" id="classdodo_1_1common_1_1Logger_aa5b18f36fae4dd78350f61756a6e1d70_cgraph">
-<area shape="rect" title="Get FileParams from the Config into file_params_." alt="" coords="5,173,176,214"/>
+<area shape="rect" title="Get FileParams from the Config into file_params_." alt="" coords="5,206,176,247"/>
 <area shape="rect" href="namespacedodo_1_1common.html#a9bca9a04a61b100970ab9849736c0974" title="Return true when the directory exists." alt="" coords="232,5,456,32"/>
 <area shape="rect" href="namespacedodo_1_1common.html#ac47589087895d0c62c858abb5e58dc0b" title="Return true when the directory exists and is writable to the caller." alt="" coords="224,56,464,83"/>
-<area shape="rect" href="classdodo_1_1common_1_1Config.html#a3035c95a79f163d1622ab87f79aebc95" title="Return the application name." alt="" coords="260,107,428,149"/>
-<area shape="rect" href="classdodo_1_1common_1_1Config.html#a955942da1c904f7a4b797eaf3883ac16" title="return the singleton." alt="" coords="260,173,428,214"/>
-<area shape="rect" href="namespacedodo_1_1common.html#ae1e4a7a218141abb2a29a277951612f6" title="Return the size of the file." alt="" coords="245,239,443,265"/>
-<area shape="rect" href="classdodo_1_1common_1_1Config.html#aa452e6ffcaf296f309a871bb0d2ea059" title="Return a reference to the configuration YAML contents." alt="" coords="260,290,428,331"/>
-<area shape="rect" href="classdodo_1_1common_1_1Logger.html#adb742179864c2d409c23771f05b2d4c6" title="Return the string as a LogLevel." alt="" coords="259,355,429,397"/>
+<area shape="rect" href="classdodo_1_1common_1_1Config.html#a4c1c4788d7cd53ae8d1ba098ce65b4e5" title="Return true if the KeyPath exists." alt="" coords="260,107,428,149"/>
+<area shape="rect" href="classdodo_1_1common_1_1Config.html#a3035c95a79f163d1622ab87f79aebc95" title="Return the application name." alt="" coords="260,173,428,214"/>
+<area shape="rect" href="classdodo_1_1common_1_1Config.html#a955942da1c904f7a4b797eaf3883ac16" title="return the singleton." alt="" coords="260,238,428,279"/>
+<area shape="rect" href="namespacedodo_1_1common.html#ae1e4a7a218141abb2a29a277951612f6" title="Return the size of the file." alt="" coords="245,304,443,331"/>
+<area shape="rect" href="classdodo_1_1common_1_1Config.html#a47d8cd25b62495aee457a4a421228246" title="Get the value at keypath." alt="" coords="260,355,428,397"/>
+<area shape="rect" href="classdodo_1_1common_1_1Logger.html#adb742179864c2d409c23771f05b2d4c6" title="Return the string as a LogLevel." alt="" coords="259,421,429,462"/>
 </map>
 </div>
 <div class="dynheader">
@@ -739,13 +741,13 @@ Here is the caller graph for this function:</div>
 <p>Get the <a class="el" href="classdodo_1_1common_1_1Logger.html" title="A Logger interface.">Logger</a> singleton - <a class="el" href="classdodo_1_1common_1_1Logger.html#a4a723e3a6f44cb0ec2996d5d91a13e5b" title="Initialize the Logger singleton.">initialize()</a> must have been called first. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">config</td><td>The <a class="el" href="classdodo_1_1common_1_1Config.html" title="Singleton class representing the deployment configuration, combining deployment constants from the co...">Config</a> to use. </td></tr>
+    <tr><td class="paramname">config</td><td>The <a class="el" href="classdodo_1_1common_1_1Config.html" title="Singleton interface to a (read-only) deployment configuration, combining data from the deployment con...">Config</a> to use. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the singleton. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00085">85</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00083">83</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="logger_8hpp_source.html#l00228">logger_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
@@ -775,9 +777,9 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00126">126</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00124">124</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba4059b0251f66a18cb56f544728796875">Info</a>, and <a class="el" href="logger_8cpp_source.html#l00090">log()</a>.</p>
+<p class="reference">References <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba4059b0251f66a18cb56f544728796875">Info</a>, and <a class="el" href="logger_8cpp_source.html#l00088">log()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -817,13 +819,13 @@ Here is the call graph for this function:</div>
 <p>Initialize the <a class="el" href="classdodo_1_1common_1_1Logger.html" title="A Logger interface.">Logger</a> singleton. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">config</td><td>The <a class="el" href="classdodo_1_1common_1_1Config.html" title="Singleton class representing the deployment configuration, combining deployment constants from the co...">Config</a> to use. </td></tr>
+    <tr><td class="paramname">config</td><td>The <a class="el" href="classdodo_1_1common_1_1Config.html" title="Singleton interface to a (read-only) deployment configuration, combining data from the deployment con...">Config</a> to use. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the singleton. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00079">79</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00077">77</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="logger_8cpp_source.html#l00046">Logger()</a>, <a class="el" href="logger_8hpp_source.html#l00228">logger_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
@@ -884,7 +886,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Log a log entry. </p>
-<p>The entry is only written when level &lt;= the loglevel specified in the <a class="el" href="classdodo_1_1common_1_1Config.html" title="Singleton class representing the deployment configuration, combining deployment constants from the co...">Config</a>, and silently ignored otherwise. Calling is thread-safe, but the lock is not acquired at all if the entry is ignored by level. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>The entry is only written when level &lt;= the loglevel specified in the <a class="el" href="classdodo_1_1common_1_1Config.html" title="Singleton interface to a (read-only) deployment configuration, combining data from the deployment con...">Config</a>, and silently ignored otherwise. Calling is thread-safe, but the lock is not acquired at all if the entry is ignored by level. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">level</td><td>The logLevel of the messsage. </td></tr>
     <tr><td class="paramname">message</td><td>The log message. </td></tr>
@@ -892,11 +894,11 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00090">90</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00088">88</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="logger_8cpp_source.html#l00155">checkRotate()</a>, <a class="el" href="logger_8hpp_source.html#l00233">destinations_</a>, <a class="el" href="logger_8hpp_source.html#l00088">dodo::common::Logger::SyslogParams::facility</a>, <a class="el" href="logger_8hpp_source.html#l00078">dodo::common::Logger::FileParams::file</a>, <a class="el" href="logger_8hpp_source.html#l00248">file_params_</a>, <a class="el" href="logger_8hpp_source.html#l00080">dodo::common::Logger::FileParams::filesize</a>, <a class="el" href="logger_8cpp_source.html#l00208">formatMessage()</a>, <a class="el" href="config_8hpp_source.html#l00131">dodo::common::Config::getAppName()</a>, <a class="el" href="config_8cpp_source.html#l00048">dodo::common::Config::getConfig()</a>, <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba4059b0251f66a18cb56f544728796875">Info</a>, <a class="el" href="logger_8hpp_source.html#l00238">levels_</a>, <a class="el" href="logger_8cpp_source.html#l00231">LogLevelAsString()</a>, <a class="el" href="logger_8cpp_source.html#l00142">mapLeveltoSyslog()</a>, <a class="el" href="logger_8hpp_source.html#l00223">mutex_</a>, and <a class="el" href="logger_8hpp_source.html#l00253">syslog_params_</a>.</p>
+<p class="reference">References <a class="el" href="logger_8cpp_source.html#l00153">checkRotate()</a>, <a class="el" href="logger_8hpp_source.html#l00233">destinations_</a>, <a class="el" href="logger_8hpp_source.html#l00088">dodo::common::Logger::SyslogParams::facility</a>, <a class="el" href="logger_8hpp_source.html#l00078">dodo::common::Logger::FileParams::file</a>, <a class="el" href="logger_8hpp_source.html#l00248">file_params_</a>, <a class="el" href="logger_8hpp_source.html#l00080">dodo::common::Logger::FileParams::filesize</a>, <a class="el" href="logger_8cpp_source.html#l00205">formatMessage()</a>, <a class="el" href="config_8hpp_source.html#l00174">dodo::common::Config::getAppName()</a>, <a class="el" href="config_8cpp_source.html#l00068">dodo::common::Config::getConfig()</a>, <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba4059b0251f66a18cb56f544728796875">Info</a>, <a class="el" href="logger_8hpp_source.html#l00238">levels_</a>, <a class="el" href="logger_8cpp_source.html#l00228">LogLevelAsString()</a>, <a class="el" href="logger_8cpp_source.html#l00140">mapLeveltoSyslog()</a>, <a class="el" href="logger_8hpp_source.html#l00223">mutex_</a>, and <a class="el" href="logger_8hpp_source.html#l00253">syslog_params_</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8cpp_source.html#l00033">dodo::common::Application::Application()</a>, <a class="el" href="logger_8cpp_source.html#l00134">debug()</a>, <a class="el" href="logger_8cpp_source.html#l00118">error()</a>, <a class="el" href="logger_8cpp_source.html#l00114">fatal()</a>, <a class="el" href="logger_8cpp_source.html#l00126">info()</a>, <a class="el" href="logger_8cpp_source.html#l00130">statistics()</a>, <a class="el" href="logger_8cpp_source.html#l00138">trace()</a>, and <a class="el" href="logger_8cpp_source.html#l00122">warning()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8cpp_source.html#l00033">dodo::common::Application::Application()</a>, <a class="el" href="logger_8cpp_source.html#l00132">debug()</a>, <a class="el" href="logger_8cpp_source.html#l00116">error()</a>, <a class="el" href="logger_8cpp_source.html#l00112">fatal()</a>, <a class="el" href="logger_8cpp_source.html#l00124">info()</a>, <a class="el" href="logger_8cpp_source.html#l00128">statistics()</a>, <a class="el" href="logger_8cpp_source.html#l00136">trace()</a>, and <a class="el" href="logger_8cpp_source.html#l00120">warning()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -974,11 +976,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A string representation of the LogLevel. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00231">231</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00228">228</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cbaa603905470e2a5b8c13e96b579ef0dba">Debug</a>, <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba902b0d55fddef6f8d651fe1035b7d4bd">Error</a>, <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba882384ec38ce8d9582b57e70861730e4">Fatal</a>, <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba4059b0251f66a18cb56f544728796875">Info</a>, <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cbac33e404a441c6ba9648f88af3c68a1ca">Statistics</a>, <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cbadd4ec0ac4e58f7c32a01244ae91150b1">Trace</a>, and <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba0eaadb4fcb48a0a0ed7bc9868be9fbaa">Warning</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00208">formatMessage()</a>, and <a class="el" href="logger_8cpp_source.html#l00090">log()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00205">formatMessage()</a>, and <a class="el" href="logger_8cpp_source.html#l00088">log()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1025,11 +1027,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The mapped syslog level. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00142">142</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00140">140</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cbaa603905470e2a5b8c13e96b579ef0dba">Debug</a>, <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba902b0d55fddef6f8d651fe1035b7d4bd">Error</a>, <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba882384ec38ce8d9582b57e70861730e4">Fatal</a>, <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba4059b0251f66a18cb56f544728796875">Info</a>, <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cbac33e404a441c6ba9648f88af3c68a1ca">Statistics</a>, <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cbadd4ec0ac4e58f7c32a01244ae91150b1">Trace</a>, and <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba0eaadb4fcb48a0a0ed7bc9868be9fbaa">Warning</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00090">log()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00088">log()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1066,9 +1068,9 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00130">130</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00128">128</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="logger_8cpp_source.html#l00090">log()</a>, and <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cbac33e404a441c6ba9648f88af3c68a1ca">Statistics</a>.</p>
+<p class="reference">References <a class="el" href="logger_8cpp_source.html#l00088">log()</a>, and <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cbac33e404a441c6ba9648f88af3c68a1ca">Statistics</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1114,11 +1116,11 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The LogLevel. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00220">220</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00217">217</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
 
 <p class="reference">References <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cbaa603905470e2a5b8c13e96b579ef0dba">Debug</a>, <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba902b0d55fddef6f8d651fe1035b7d4bd">Error</a>, <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba882384ec38ce8d9582b57e70861730e4">Fatal</a>, <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba4059b0251f66a18cb56f544728796875">Info</a>, <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cbac33e404a441c6ba9648f88af3c68a1ca">Statistics</a>, <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cbadd4ec0ac4e58f7c32a01244ae91150b1">Trace</a>, and <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba0eaadb4fcb48a0a0ed7bc9868be9fbaa">Warning</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00182">getFileParams()</a>, and <a class="el" href="logger_8cpp_source.html#l00046">Logger()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00180">getFileParams()</a>, and <a class="el" href="logger_8cpp_source.html#l00046">Logger()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1156,9 +1158,9 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00138">138</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00136">136</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="logger_8cpp_source.html#l00090">log()</a>, and <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cbadd4ec0ac4e58f7c32a01244ae91150b1">Trace</a>.</p>
+<p class="reference">References <a class="el" href="logger_8cpp_source.html#l00088">log()</a>, and <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cbadd4ec0ac4e58f7c32a01244ae91150b1">Trace</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1195,9 +1197,9 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00122">122</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8cpp_source.html#l00120">120</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="logger_8cpp_source.html#l00090">log()</a>, and <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba0eaadb4fcb48a0a0ed7bc9868be9fbaa">Warning</a>.</p>
+<p class="reference">References <a class="el" href="logger_8cpp_source.html#l00088">log()</a>, and <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cba0eaadb4fcb48a0a0ed7bc9868be9fbaa">Warning</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1262,7 +1264,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="logger_8hpp_source.html#l00233">233</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00090">log()</a>, and <a class="el" href="logger_8cpp_source.html#l00046">Logger()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00088">log()</a>, and <a class="el" href="logger_8cpp_source.html#l00046">Logger()</a>.</p>
 
 </div>
 </div>
@@ -1290,7 +1292,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="logger_8hpp_source.html#l00248">248</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00155">checkRotate()</a>, <a class="el" href="logger_8cpp_source.html#l00182">getFileParams()</a>, <a class="el" href="logger_8cpp_source.html#l00090">log()</a>, and <a class="el" href="logger_8cpp_source.html#l00073">~Logger()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00153">checkRotate()</a>, <a class="el" href="logger_8cpp_source.html#l00180">getFileParams()</a>, <a class="el" href="logger_8cpp_source.html#l00088">log()</a>, and <a class="el" href="logger_8cpp_source.html#l00071">~Logger()</a>.</p>
 
 </div>
 </div>
@@ -1318,7 +1320,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="logger_8hpp_source.html#l00243">243</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00208">formatMessage()</a>, and <a class="el" href="logger_8cpp_source.html#l00046">Logger()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00205">formatMessage()</a>, and <a class="el" href="logger_8cpp_source.html#l00046">Logger()</a>.</p>
 
 </div>
 </div>
@@ -1346,7 +1348,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="logger_8hpp_source.html#l00238">238</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00182">getFileParams()</a>, <a class="el" href="logger_8cpp_source.html#l00090">log()</a>, and <a class="el" href="logger_8cpp_source.html#l00046">Logger()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00180">getFileParams()</a>, <a class="el" href="logger_8cpp_source.html#l00088">log()</a>, and <a class="el" href="logger_8cpp_source.html#l00046">Logger()</a>.</p>
 
 </div>
 </div>
@@ -1374,7 +1376,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="logger_8hpp_source.html#l00228">228</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00085">getLogger()</a>, <a class="el" href="logger_8cpp_source.html#l00079">initialize()</a>, and <a class="el" href="application_8cpp_source.html#l00044">dodo::common::Application::~Application()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00083">getLogger()</a>, <a class="el" href="logger_8cpp_source.html#l00077">initialize()</a>, and <a class="el" href="application_8cpp_source.html#l00044">dodo::common::Application::~Application()</a>.</p>
 
 </div>
 </div>
@@ -1402,7 +1404,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="logger_8hpp_source.html#l00223">223</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00090">log()</a>, <a class="el" href="logger_8cpp_source.html#l00046">Logger()</a>, and <a class="el" href="logger_8cpp_source.html#l00073">~Logger()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00088">log()</a>, <a class="el" href="logger_8cpp_source.html#l00046">Logger()</a>, and <a class="el" href="logger_8cpp_source.html#l00071">~Logger()</a>.</p>
 
 </div>
 </div>
@@ -1458,7 +1460,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="logger_8hpp_source.html#l00253">253</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00090">log()</a>, and <a class="el" href="logger_8cpp_source.html#l00046">Logger()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00088">log()</a>, and <a class="el" href="logger_8cpp_source.html#l00046">Logger()</a>.</p>
 
 </div>
 </div>

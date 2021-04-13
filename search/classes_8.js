@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['kvstore_1102',['KVStore',['../classdodo_1_1persist_1_1KVStore.html',1,'dodo::persist']]]
+  ['kvstore_1156',['KVStore',['../classdodo_1_1persist_1_1KVStore.html',1,'dodo::persist']]]
 ];

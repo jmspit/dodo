@@ -92,7 +92,8 @@ $(document).ready(function(){initNavTree('functions_func_g.html',''); initResiza
 , <a class="el" href="classdodo_1_1network_1_1protocol_1_1stomp_1_1Frame.html#a7aa5fdd4cd93145f42a056d21ae3602c">dodo::network::protocol::stomp::Frame</a>
 </li>
 <li>get()
-: <a class="el" href="classdodo_1_1network_1_1FileReadBuffer.html#aa6a5e771b5caa07c657974ba0b9700cd">dodo::network::FileReadBuffer</a>
+: <a class="el" href="classdodo_1_1common_1_1Cache.html#a0e2e048ff4434184a4fc0ee71cb97e03">dodo::common::Cache&lt; Key, Value &gt;</a>
+, <a class="el" href="classdodo_1_1network_1_1FileReadBuffer.html#aa6a5e771b5caa07c657974ba0b9700cd">dodo::network::FileReadBuffer</a>
 , <a class="el" href="classdodo_1_1network_1_1SocketReadBuffer.html#af99d5e271cd78db1f1dba5cfa21233dd">dodo::network::SocketReadBuffer</a>
 , <a class="el" href="classdodo_1_1network_1_1StringReadBuffer.html#abf4e44c9e9169e022db34c7bd68efe7b">dodo::network::StringReadBuffer</a>
 , <a class="el" href="classdodo_1_1network_1_1VirtualReadBuffer.html#a3783344680f3919689860179a78819f0">dodo::network::VirtualReadBuffer</a>
@@ -178,6 +179,9 @@ $(document).ready(function(){initNavTree('functions_func_g.html',''); initResiza
 <li>getConfig()
 : <a class="el" href="classdodo_1_1common_1_1Config.html#a955942da1c904f7a4b797eaf3883ac16">dodo::common::Config</a>
 </li>
+<li>getConfigPath()
+: <a class="el" href="classdodo_1_1common_1_1Config.html#a4a3861177baed77695b7ba841bf33ea0">dodo::common::Config</a>
+</li>
 <li>getContext()
 : <a class="el" href="classdodo_1_1network_1_1TLSContext.html#a12594d06a5101deab59da7754e1a8a9a">dodo::network::TLSContext</a>
 </li>
@@ -193,6 +197,9 @@ $(document).ready(function(){initNavTree('functions_func_g.html',''); initResiza
 <li>getDB()
 : <a class="el" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#ad661b24a692424210763beb32286e362">dodo::persist::sqlite::Database</a>
 </li>
+<li>getDecryptedValue()
+: <a class="el" href="classdodo_1_1common_1_1Config.html#afa1917b4bdcd3785d97a623104d71544">dodo::common::Config</a>
+</li>
 <li>getDescription()
 : <a class="el" href="classdodo_1_1BuildEnv.html#a2794ed3291bdbb31cdf7ea7d953824b7">dodo::BuildEnv</a>
 </li>
@@ -201,6 +208,9 @@ $(document).ready(function(){initNavTree('functions_func_g.html',''); initResiza
 </li>
 <li>getElapsedSeconds()
 : <a class="el" href="classdodo_1_1common_1_1StopWatch.html#a1966c6422bafa3766ccda85e69b81f15">dodo::common::StopWatch</a>
+</li>
+<li>getExpiries()
+: <a class="el" href="classdodo_1_1common_1_1Cache.html#ac56332ef04cec118cf24fba375c5022f">dodo::common::Cache&lt; Key, Value &gt;</a>
 </li>
 <li>getFD()
 : <a class="el" href="classdodo_1_1network_1_1BaseSocket.html#ab5864bc9317e07e2957ee5d2ebf13f24">dodo::network::BaseSocket</a>
@@ -230,15 +240,21 @@ $(document).ready(function(){initNavTree('functions_func_g.html',''); initResiza
 <li>getHeartbeatOut()
 : <a class="el" href="classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect.html#ac664e656a227b06d10600aec58888ea2">dodo::network::protocol::stomp::Connect</a>
 </li>
+<li>getHits()
+: <a class="el" href="classdodo_1_1common_1_1Cache.html#a0bfd5e2dd07bbeafe3311b3636f470fb">dodo::common::Cache&lt; Key, Value &gt;</a>
+</li>
 <li>getHost()
 : <a class="el" href="classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect.html#a764fcaf29073e3e37a4103c1090a5c7a">dodo::network::protocol::stomp::Connect</a>
 , <a class="el" href="classdodo_1_1network_1_1URI.html#a5f5a5238611b76c4bcc134be15d9ce49">dodo::network::URI</a>
 </li>
 <li>getHostAddrInfo()
-: <a class="el" href="classdodo_1_1network_1_1Address.html#a7a68ac2e0566d16ddaad9c5484053d12">dodo::network::Address</a>
+: <a class="el" href="classdodo_1_1network_1_1Address.html#aa1672ec99e8696e1d8654999cdca72de">dodo::network::Address</a>
 </li>
 <li>getHostType()
 : <a class="el" href="classdodo_1_1common_1_1Application.html#a7438e676a938132b1efa8d2951817d55">dodo::common::Application</a>
+</li>
+<li>getHostTypeAsString()
+: <a class="el" href="classdodo_1_1common_1_1Application.html#a5adbb5e2841e4ca8dc329b2c3e2808cc">dodo::common::Application</a>
 </li>
 <li>getHTTPCode()
 : <a class="el" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse_1_1HTTPResponseLine.html#a398f0918218984704c14f8e143d11410">dodo::network::protocol::http::HTTPResponse::HTTPResponseLine</a>
@@ -310,8 +326,8 @@ $(document).ready(function(){initNavTree('functions_func_g.html',''); initResiza
 <li>getMinor()
 : <a class="el" href="classdodo_1_1network_1_1protocol_1_1http_1_1HTTPVersion.html#ad443541516b0ebff1d5726dcdaaca76f">dodo::network::protocol::http::HTTPVersion</a>
 </li>
-<li>getMutex()
-: <a class="el" href="classdodo_1_1common_1_1Config.html#a31227126ea1ddb82e9bbaa1ad3ca6e54">dodo::common::Config</a>
+<li>getMisses()
+: <a class="el" href="classdodo_1_1common_1_1Cache.html#a7d89a491114c0f8137d94389781afe42">dodo::common::Cache&lt; Key, Value &gt;</a>
 </li>
 <li>getNameInfo()
 : <a class="el" href="classdodo_1_1network_1_1Address.html#aad90170a6c48cc7756de3ed2e920aaa6">dodo::network::Address</a>
@@ -326,8 +342,7 @@ $(document).ready(function(){initNavTree('functions_func_g.html',''); initResiza
 : <a class="el" href="classdodo_1_1network_1_1protocol_1_1stomp_1_1Connect.html#afc7ad5317a93f0de91f018151dabc6e1">dodo::network::protocol::stomp::Connect</a>
 </li>
 <li>getPath()
-: <a class="el" href="classdodo_1_1common_1_1Config.html#a44e13b6a0bcf48d2e59b0a4c62d4e179">dodo::common::Config</a>
-, <a class="el" href="classdodo_1_1network_1_1URI.html#af9bc6b7824e83cbbcaab36e0dbbd6a52">dodo::network::URI</a>
+: <a class="el" href="classdodo_1_1network_1_1URI.html#af9bc6b7824e83cbbcaab36e0dbbd6a52">dodo::network::URI</a>
 </li>
 <li>getPeerAddress()
 : <a class="el" href="classdodo_1_1network_1_1BaseSocket.html#a9c2508f9fd34604542c7c53e9c64e58d">dodo::network::BaseSocket</a>
@@ -389,6 +404,9 @@ $(document).ready(function(){initNavTree('functions_func_g.html',''); initResiza
 </li>
 <li>getScheme()
 : <a class="el" href="classdodo_1_1network_1_1URI.html#a5e148caca5c0929ae22739f847f0d800">dodo::network::URI</a>
+</li>
+<li>getSecret()
+: <a class="el" href="classdodo_1_1common_1_1Config.html#ad0d67f7d632b51cbfe78aec827a2974b">dodo::common::Config</a>
 </li>
 <li>getSendBufSize()
 : <a class="el" href="classdodo_1_1network_1_1BaseSocket.html#a28c9456798a203e9ac5909c073933448">dodo::network::BaseSocket</a>
@@ -453,10 +471,8 @@ $(document).ready(function(){initNavTree('functions_func_g.html',''); initResiza
 : <a class="el" href="classdodo_1_1persist_1_1sqlite_1_1Database.html#a872f275b261bf66390ea023e08e1468b">dodo::persist::sqlite::Database</a>
 </li>
 <li>getValue()
-: <a class="el" href="classdodo_1_1persist_1_1KVStore.html#a42cdd191f2ba7ebefb914ab62698a7e6">dodo::persist::KVStore</a>
-</li>
-<li>getYAML()
-: <a class="el" href="classdodo_1_1common_1_1Config.html#aa452e6ffcaf296f309a871bb0d2ea059">dodo::common::Config</a>
+: <a class="el" href="classdodo_1_1common_1_1Config.html#a47d8cd25b62495aee457a4a421228246">dodo::common::Config</a>
+, <a class="el" href="classdodo_1_1persist_1_1KVStore.html#ab01e1f217122ee85bf2c0436888e6ad3">dodo::persist::KVStore</a>
 </li>
 </ul>
 </div><!-- contents -->

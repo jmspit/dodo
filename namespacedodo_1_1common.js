@@ -2,6 +2,7 @@ var namespacedodo_1_1common =
 [
     [ "Application", "classdodo_1_1common_1_1Application.html", "classdodo_1_1common_1_1Application" ],
     [ "Bytes", "classdodo_1_1common_1_1Bytes.html", "classdodo_1_1common_1_1Bytes" ],
+    [ "Cache", "classdodo_1_1common_1_1Cache.html", "classdodo_1_1common_1_1Cache" ],
     [ "Config", "classdodo_1_1common_1_1Config.html", "classdodo_1_1common_1_1Config" ],
     [ "DataCrypt", "classdodo_1_1common_1_1DataCrypt.html", "classdodo_1_1common_1_1DataCrypt" ],
     [ "DebugObject", "classdodo_1_1common_1_1DebugObject.html", "classdodo_1_1common_1_1DebugObject" ],

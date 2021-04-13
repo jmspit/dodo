@@ -1,9 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPFragment.html" title="Generic HTTP fragment, either a complete (such as HTTPRequest) or incomplete HTTP fragment (ssuch as ..." alt="" coords="5,140,181,181"/>
-<area shape="rect" id="node2" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPMessage.html" title="Generic HTTPMessage, parent to HTTPRequest and HTTPResponse." alt="" coords="278,37,454,79"/>
-<area shape="rect" id="node5" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest_1_1HTTPRequestLine.html" title="HTTPRequestLine class." alt="" coords="229,103,503,144"/>
-<area shape="rect" id="node6" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse_1_1HTTPResponseLine.html" title="A HTTP response line." alt="" coords="278,169,454,225"/>
-<area shape="rect" id="node7" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPVersion.html" title="HHTP version comprising a major and minor number, convertable from and to string as in HTTP requests." alt="" coords="278,249,454,291"/>
-<area shape="rect" id="node3" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html" title="HTTPRequest class represents a HTTP request." alt="" coords="551,5,727,47"/>
-<area shape="rect" id="node4" href="$classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse.html" title="HTTPResponse class." alt="" coords="551,71,727,112"/>
+<area shape="rect" id="node1" href="$structdodo_1_1network_1_1AddrInfo.html" title="Address info, comprising the canonical name of a host, and list of address info items for the host." alt="" coords="5,5,184,32"/>
 </map>

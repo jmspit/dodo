@@ -13,6 +13,7 @@ var classdodo_1_1common_1_1Application =
     [ "~Application", "classdodo_1_1common_1_1Application.html#a8060f9e3a4c3d5744bbbf1a9918008cc", null ],
     [ "detectHostType", "classdodo_1_1common_1_1Application.html#ab5280c1affb0e48ff6eb6fcdcf9847e6", null ],
     [ "getHostType", "classdodo_1_1common_1_1Application.html#a7438e676a938132b1efa8d2951817d55", null ],
+    [ "getHostTypeAsString", "classdodo_1_1common_1_1Application.html#a5adbb5e2841e4ca8dc329b2c3e2808cc", null ],
     [ "hasStopRequest", "classdodo_1_1common_1_1Application.html#a9e36d45fde650e9a0414457521b30d6e", null ],
     [ "installSignalHandlers", "classdodo_1_1common_1_1Application.html#a892a9e6fbf188d831dbfc10916e7e3a6", null ],
     [ "onSignal", "classdodo_1_1common_1_1Application.html#a72f09296731e0c44be9fea0347712a3a", null ],

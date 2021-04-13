@@ -84,8 +84,10 @@ $(document).ready(function(){initNavTree('classdodo_1_1common_1_1Config.html',''
 
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#pro-static-attribs">Static Protected Attributes</a> &#124;
@@ -95,7 +97,7 @@ $(document).ready(function(){initNavTree('classdodo_1_1common_1_1Config.html',''
 </div><!--header-->
 <div class="contents">
 
-<p>Singleton class representing the deployment configuration, combining deployment constants from the configuration file, environment variables (whose names start with the appname) and some operating system quantities useful to developers, like the CPU count or an imposed memory limit.  
+<p>Singleton interface to a (read-only) deployment configuration, combining data from the deployment configuration file, environment variables and some operating system attributes such as the CPU count, RAM and virtual memory size.  
  <a href="classdodo_1_1common_1_1Config.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="config_8hpp_source.html">config.hpp</a>&gt;</code></p>
@@ -104,48 +106,118 @@ Collaboration diagram for dodo::common::Config:</div>
 <div class="dyncontent">
 <div class="center"><img src="classdodo_1_1common_1_1Config__coll__graph.png" border="0" usemap="#dodo_1_1common_1_1Config_coll__map" alt="Collaboration graph"/></div>
 <map name="dodo_1_1common_1_1Config_coll__map" id="dodo_1_1common_1_1Config_coll__map">
-<area shape="rect" title="Singleton class representing the deployment configuration, combining deployment constants from the co..." alt="" coords="81,95,249,121"/>
+<area shape="rect" title="Singleton interface to a (read&#45;only) deployment configuration, combining data from the deployment con..." alt="" coords="56,388,224,415"/>
 <area shape="rect" title=" " alt="" coords="5,5,61,32"/>
-<area shape="rect" href="classdodo_1_1threads_1_1Mutex.html" title="A Mutex to synchronize access to resources between threads." alt="" coords="85,5,245,32"/>
-<area shape="rect" title="STL class." alt="" coords="270,5,357,32"/>
+<area shape="rect" title="STL class." alt="" coords="86,5,194,32"/>
+<area shape="rect" title="STL class." alt="" coords="349,5,435,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a8a41a5310502865a08cd55d3fc661deb"><td class="memItemLeft" align="right" valign="top">typedef std::list&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">KeyPath</a></td></tr>
+<tr class="memdesc:a8a41a5310502865a08cd55d3fc661deb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used by getValue, enable use of list initializers as path specification, eg.  <a href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">More...</a><br /></td></tr>
+<tr class="separator:a8a41a5310502865a08cd55d3fc661deb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a95fc7013c86d765a135f445d6d2379ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a95fc7013c86d765a135f445d6d2379ac">Config</a> (const <a class="el" href="classdodo_1_1common_1_1Config.html">Config</a> &amp;)=delete</td></tr>
 <tr class="memdesc:a95fc7013c86d765a135f445d6d2379ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disallow the copy constructor as this is a singleton.  <a href="classdodo_1_1common_1_1Config.html#a95fc7013c86d765a135f445d6d2379ac">More...</a><br /></td></tr>
 <tr class="separator:a95fc7013c86d765a135f445d6d2379ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c1c4788d7cd53ae8d1ba098ce65b4e5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a4c1c4788d7cd53ae8d1ba098ce65b4e5">exists</a> (const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">KeyPath</a> &amp;keypath) const</td></tr>
+<tr class="memdesc:a4c1c4788d7cd53ae8d1ba098ce65b4e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return true if the KeyPath exists.  <a href="classdodo_1_1common_1_1Config.html#a4c1c4788d7cd53ae8d1ba098ce65b4e5">More...</a><br /></td></tr>
+<tr class="separator:a4c1c4788d7cd53ae8d1ba098ce65b4e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3035c95a79f163d1622ab87f79aebc95"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a3035c95a79f163d1622ab87f79aebc95">getAppName</a> () const</td></tr>
 <tr class="memdesc:a3035c95a79f163d1622ab87f79aebc95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the application name.  <a href="classdodo_1_1common_1_1Config.html#a3035c95a79f163d1622ab87f79aebc95">More...</a><br /></td></tr>
 <tr class="separator:a3035c95a79f163d1622ab87f79aebc95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31227126ea1ddb82e9bbaa1ad3ca6e54"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classdodo_1_1threads_1_1Mutex.html">threads::Mutex</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a31227126ea1ddb82e9bbaa1ad3ca6e54">getMutex</a> ()</td></tr>
-<tr class="memdesc:a31227126ea1ddb82e9bbaa1ad3ca6e54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a reference to the serializing <a class="el" href="classdodo_1_1threads_1_1Mutex.html" title="A Mutex to synchronize access to resources between threads.">threads::Mutex</a>.  <a href="classdodo_1_1common_1_1Config.html#a31227126ea1ddb82e9bbaa1ad3ca6e54">More...</a><br /></td></tr>
-<tr class="separator:a31227126ea1ddb82e9bbaa1ad3ca6e54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44e13b6a0bcf48d2e59b0a4c62d4e179"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a44e13b6a0bcf48d2e59b0a4c62d4e179">getPath</a> () const</td></tr>
-<tr class="memdesc:a44e13b6a0bcf48d2e59b0a4c62d4e179"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the path of the configuration file.  <a href="classdodo_1_1common_1_1Config.html#a44e13b6a0bcf48d2e59b0a4c62d4e179">More...</a><br /></td></tr>
-<tr class="separator:a44e13b6a0bcf48d2e59b0a4c62d4e179"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa452e6ffcaf296f309a871bb0d2ea059"><td class="memItemLeft" align="right" valign="top">YAML::Node &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#aa452e6ffcaf296f309a871bb0d2ea059">getYAML</a> ()</td></tr>
-<tr class="memdesc:aa452e6ffcaf296f309a871bb0d2ea059"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a reference to the configuration YAML contents.  <a href="classdodo_1_1common_1_1Config.html#aa452e6ffcaf296f309a871bb0d2ea059">More...</a><br /></td></tr>
-<tr class="separator:aa452e6ffcaf296f309a871bb0d2ea059"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a3861177baed77695b7ba841bf33ea0"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a4a3861177baed77695b7ba841bf33ea0">getConfigPath</a> () const</td></tr>
+<tr class="memdesc:a4a3861177baed77695b7ba841bf33ea0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the path of the configuration file.  <a href="classdodo_1_1common_1_1Config.html#a4a3861177baed77695b7ba841bf33ea0">More...</a><br /></td></tr>
+<tr class="separator:a4a3861177baed77695b7ba841bf33ea0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa1917b4bdcd3785d97a623104d71544"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#afa1917b4bdcd3785d97a623104d71544">getDecryptedValue</a> (const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">KeyPath</a> &amp;keypath, <a class="el" href="classdodo_1_1common_1_1Bytes.html">Bytes</a> &amp;decrypted)</td></tr>
+<tr class="memdesc:afa1917b4bdcd3785d97a623104d71544"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the decrypted value from KeyPath - decrypted using the secret from <a class="el" href="classdodo_1_1common_1_1Config.html#ad0d67f7d632b51cbfe78aec827a2974b" title="Get the application secret.">getSecret()</a>.  <a href="classdodo_1_1common_1_1Config.html#afa1917b4bdcd3785d97a623104d71544">More...</a><br /></td></tr>
+<tr class="separator:afa1917b4bdcd3785d97a623104d71544"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0d67f7d632b51cbfe78aec827a2974b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#ad0d67f7d632b51cbfe78aec827a2974b">getSecret</a> () const</td></tr>
+<tr class="memdesc:ad0d67f7d632b51cbfe78aec827a2974b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the application secret.  <a href="classdodo_1_1common_1_1Config.html#ad0d67f7d632b51cbfe78aec827a2974b">More...</a><br /></td></tr>
+<tr class="separator:ad0d67f7d632b51cbfe78aec827a2974b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47d8cd25b62495aee457a4a421228246"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a47d8cd25b62495aee457a4a421228246"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a47d8cd25b62495aee457a4a421228246">getValue</a> (const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">KeyPath</a> &amp;keypath) const</td></tr>
+<tr class="memdesc:a47d8cd25b62495aee457a4a421228246"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the value at keypath.  <a href="classdodo_1_1common_1_1Config.html#a47d8cd25b62495aee457a4a421228246">More...</a><br /></td></tr>
+<tr class="separator:a47d8cd25b62495aee457a4a421228246"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d8cf1d79b840533492b2febbc7be97f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classdodo_1_1common_1_1Config.html">Config</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a1d8cf1d79b840533492b2febbc7be97f">operator=</a> (const <a class="el" href="classdodo_1_1common_1_1Config.html">Config</a> &amp;)=delete</td></tr>
-<tr class="memdesc:a1d8cf1d79b840533492b2febbc7be97f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disallow assignment from another <a class="el" href="classdodo_1_1common_1_1Config.html" title="Singleton class representing the deployment configuration, combining deployment constants from the co...">Config</a>, as this is a singleton.  <a href="classdodo_1_1common_1_1Config.html#a1d8cf1d79b840533492b2febbc7be97f">More...</a><br /></td></tr>
+<tr class="memdesc:a1d8cf1d79b840533492b2febbc7be97f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disallow assignment from another <a class="el" href="classdodo_1_1common_1_1Config.html" title="Singleton interface to a (read-only) deployment configuration, combining data from the deployment con...">Config</a>, as this is a singleton.  <a href="classdodo_1_1common_1_1Config.html#a1d8cf1d79b840533492b2febbc7be97f">More...</a><br /></td></tr>
 <tr class="separator:a1d8cf1d79b840533492b2febbc7be97f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd667f494e54a9d32aa9b7c2ff70c7d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#acd667f494e54a9d32aa9b7c2ff70c7d1">readConfig</a> ()</td></tr>
-<tr class="memdesc:acd667f494e54a9d32aa9b7c2ff70c7d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Re-read the configuration file.  <a href="classdodo_1_1common_1_1Config.html#acd667f494e54a9d32aa9b7c2ff70c7d1">More...</a><br /></td></tr>
+<tr class="memdesc:acd667f494e54a9d32aa9b7c2ff70c7d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the configuration file.  <a href="classdodo_1_1common_1_1Config.html#acd667f494e54a9d32aa9b7c2ff70c7d1">More...</a><br /></td></tr>
 <tr class="separator:acd667f494e54a9d32aa9b7c2ff70c7d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3e6aa6b309aefb836570b42d57c0fe3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#af3e6aa6b309aefb836570b42d57c0fe3">writeConfig</a> ()</td></tr>
-<tr class="memdesc:af3e6aa6b309aefb836570b42d57c0fe3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write out the configuration file.  <a href="classdodo_1_1common_1_1Config.html#af3e6aa6b309aefb836570b42d57c0fe3">More...</a><br /></td></tr>
-<tr class="separator:af3e6aa6b309aefb836570b42d57c0fe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ab19fb0c13d2cbdd4b9ef7a7c75a067cd"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#ab19fb0c13d2cbdd4b9ef7a7c75a067cd">flattenKeyPath</a> (const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">KeyPath</a> &amp;keypath)</td></tr>
+<tr class="memdesc:ab19fb0c13d2cbdd4b9ef7a7c75a067cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transform a keypath to a string with ":" as seperator between levels.  <a href="classdodo_1_1common_1_1Config.html#ab19fb0c13d2cbdd4b9ef7a7c75a067cd">More...</a><br /></td></tr>
+<tr class="separator:ab19fb0c13d2cbdd4b9ef7a7c75a067cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a955942da1c904f7a4b797eaf3883ac16"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classdodo_1_1common_1_1Config.html">Config</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a955942da1c904f7a4b797eaf3883ac16">getConfig</a> ()</td></tr>
 <tr class="memdesc:a955942da1c904f7a4b797eaf3883ac16"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the singleton.  <a href="classdodo_1_1common_1_1Config.html#a955942da1c904f7a4b797eaf3883ac16">More...</a><br /></td></tr>
 <tr class="separator:a955942da1c904f7a4b797eaf3883ac16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba80b83aa9199ec638449f387e8a733c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classdodo_1_1common_1_1Config.html">Config</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#aba80b83aa9199ec638449f387e8a733c">initialize</a> (const std::string path)</td></tr>
 <tr class="memdesc:aba80b83aa9199ec638449f387e8a733c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the singleton.  <a href="classdodo_1_1common_1_1Config.html#aba80b83aa9199ec638449f387e8a733c">More...</a><br /></td></tr>
 <tr class="separator:aba80b83aa9199ec638449f387e8a733c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a2443b9d08a97e1ed11d673eaa7246dc3"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a2443b9d08a97e1ed11d673eaa7246dc3">config_dodo</a> = {&quot;dodo&quot;}</td></tr>
+<tr class="memdesc:a2443b9d08a97e1ed11d673eaa7246dc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The dodo root node.  <a href="classdodo_1_1common_1_1Config.html#a2443b9d08a97e1ed11d673eaa7246dc3">More...</a><br /></td></tr>
+<tr class="separator:a2443b9d08a97e1ed11d673eaa7246dc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80c18473b4e278baffb3a57f65ed94e8"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a80c18473b4e278baffb3a57f65ed94e8">config_dodo_common</a> = {&quot;dodo&quot;,&quot;common&quot;}</td></tr>
+<tr class="memdesc:a80c18473b4e278baffb3a57f65ed94e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="namespacedodo_1_1common.html" title="Common and utility interfaces.">dodo.common</a> node.  <a href="classdodo_1_1common_1_1Config.html#a80c18473b4e278baffb3a57f65ed94e8">More...</a><br /></td></tr>
+<tr class="separator:a80c18473b4e278baffb3a57f65ed94e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa69781670da604eb02057fb30cec322"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#aaa69781670da604eb02057fb30cec322">config_dodo_common_application</a> = {&quot;dodo&quot;,&quot;common&quot;,&quot;application&quot;}</td></tr>
+<tr class="memdesc:aaa69781670da604eb02057fb30cec322"><td class="mdescLeft">&#160;</td><td class="mdescRight">The dodo.common.application node.  <a href="classdodo_1_1common_1_1Config.html#aaa69781670da604eb02057fb30cec322">More...</a><br /></td></tr>
+<tr class="separator:aaa69781670da604eb02057fb30cec322"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9152b028ccc554bf4fb04e1fa10cfaec"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a9152b028ccc554bf4fb04e1fa10cfaec">config_dodo_common_application_name</a> = {&quot;dodo&quot;,&quot;common&quot;,&quot;application&quot;,&quot;name&quot;}</td></tr>
+<tr class="memdesc:a9152b028ccc554bf4fb04e1fa10cfaec"><td class="mdescLeft">&#160;</td><td class="mdescRight">The dodo.common.application.name node.  <a href="classdodo_1_1common_1_1Config.html#a9152b028ccc554bf4fb04e1fa10cfaec">More...</a><br /></td></tr>
+<tr class="separator:a9152b028ccc554bf4fb04e1fa10cfaec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44ce06a515da335008bd91ddd978a1b7"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a44ce06a515da335008bd91ddd978a1b7">config_dodo_common_application_secret</a> = {&quot;dodo&quot;,&quot;common&quot;,&quot;application&quot;,&quot;secret&quot;}</td></tr>
+<tr class="memdesc:a44ce06a515da335008bd91ddd978a1b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The dodo.common.application.secret node.  <a href="classdodo_1_1common_1_1Config.html#a44ce06a515da335008bd91ddd978a1b7">More...</a><br /></td></tr>
+<tr class="separator:a44ce06a515da335008bd91ddd978a1b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99efad3d5c1c06244cda2d07cf2cfba0"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a99efad3d5c1c06244cda2d07cf2cfba0">config_dodo_common_application_secret_env</a> = {&quot;dodo&quot;,&quot;common&quot;,&quot;application&quot;,&quot;secret&quot;,&quot;env&quot;}</td></tr>
+<tr class="memdesc:a99efad3d5c1c06244cda2d07cf2cfba0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The dodo.common.application.secret.env node.  <a href="classdodo_1_1common_1_1Config.html#a99efad3d5c1c06244cda2d07cf2cfba0">More...</a><br /></td></tr>
+<tr class="separator:a99efad3d5c1c06244cda2d07cf2cfba0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeec169aaea483ab13d16e20e3b8902e4"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#aeec169aaea483ab13d16e20e3b8902e4">config_dodo_common_application_secret_file</a> = {&quot;dodo&quot;,&quot;common&quot;,&quot;application&quot;,&quot;secret&quot;,&quot;file&quot;}</td></tr>
+<tr class="memdesc:aeec169aaea483ab13d16e20e3b8902e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The dodo.common.application.secret.file node.  <a href="classdodo_1_1common_1_1Config.html#aeec169aaea483ab13d16e20e3b8902e4">More...</a><br /></td></tr>
+<tr class="separator:aeec169aaea483ab13d16e20e3b8902e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7238bc6d2f4914d5b96c5713ec052ed"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#af7238bc6d2f4914d5b96c5713ec052ed">config_dodo_common_logger</a> = {&quot;dodo&quot;,&quot;common&quot;,&quot;logger&quot;}</td></tr>
+<tr class="memdesc:af7238bc6d2f4914d5b96c5713ec052ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">The dodo.common.logger node.  <a href="classdodo_1_1common_1_1Config.html#af7238bc6d2f4914d5b96c5713ec052ed">More...</a><br /></td></tr>
+<tr class="separator:af7238bc6d2f4914d5b96c5713ec052ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b4263c2e0b4ac9c34b4e4d00db77651"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a3b4263c2e0b4ac9c34b4e4d00db77651">config_dodo_common_logger_console</a> = {&quot;dodo&quot;,&quot;common&quot;,&quot;logger&quot;,&quot;console&quot;}</td></tr>
+<tr class="memdesc:a3b4263c2e0b4ac9c34b4e4d00db77651"><td class="mdescLeft">&#160;</td><td class="mdescRight">The dodo.common.logger.console node.  <a href="classdodo_1_1common_1_1Config.html#a3b4263c2e0b4ac9c34b4e4d00db77651">More...</a><br /></td></tr>
+<tr class="separator:a3b4263c2e0b4ac9c34b4e4d00db77651"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a556bf66eedcc357f65200a847bebcc65"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a556bf66eedcc357f65200a847bebcc65">config_dodo_common_logger_console_level</a> = {&quot;dodo&quot;,&quot;common&quot;,&quot;logger&quot;,&quot;console&quot;,&quot;level&quot;}</td></tr>
+<tr class="memdesc:a556bf66eedcc357f65200a847bebcc65"><td class="mdescLeft">&#160;</td><td class="mdescRight">The dodo.common.logger.console.level node.  <a href="classdodo_1_1common_1_1Config.html#a556bf66eedcc357f65200a847bebcc65">More...</a><br /></td></tr>
+<tr class="separator:a556bf66eedcc357f65200a847bebcc65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c425be0195d5f2c699167a166b7a314"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a1c425be0195d5f2c699167a166b7a314">config_dodo_common_logger_file</a> = {&quot;dodo&quot;,&quot;common&quot;,&quot;logger&quot;,&quot;file&quot;}</td></tr>
+<tr class="memdesc:a1c425be0195d5f2c699167a166b7a314"><td class="mdescLeft">&#160;</td><td class="mdescRight">The dodo.common.logger.file node.  <a href="classdodo_1_1common_1_1Config.html#a1c425be0195d5f2c699167a166b7a314">More...</a><br /></td></tr>
+<tr class="separator:a1c425be0195d5f2c699167a166b7a314"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af831d344589991d71bf2fac33b1f5214"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#af831d344589991d71bf2fac33b1f5214">config_dodo_common_logger_file_directory</a> = {&quot;dodo&quot;,&quot;common&quot;,&quot;logger&quot;,&quot;file&quot;,&quot;directory&quot;}</td></tr>
+<tr class="memdesc:af831d344589991d71bf2fac33b1f5214"><td class="mdescLeft">&#160;</td><td class="mdescRight">The dodo.common.logger.file.directory node.  <a href="classdodo_1_1common_1_1Config.html#af831d344589991d71bf2fac33b1f5214">More...</a><br /></td></tr>
+<tr class="separator:af831d344589991d71bf2fac33b1f5214"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a989dadea02769d394f5a60c920b41934"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a989dadea02769d394f5a60c920b41934">config_dodo_common_logger_file_level</a> = {&quot;dodo&quot;,&quot;common&quot;,&quot;logger&quot;,&quot;file&quot;,&quot;level&quot;}</td></tr>
+<tr class="memdesc:a989dadea02769d394f5a60c920b41934"><td class="mdescLeft">&#160;</td><td class="mdescRight">The dodo.common.logger.file.level node.  <a href="classdodo_1_1common_1_1Config.html#a989dadea02769d394f5a60c920b41934">More...</a><br /></td></tr>
+<tr class="separator:a989dadea02769d394f5a60c920b41934"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d4ede8e594407a33cfb62c14d236540"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a1d4ede8e594407a33cfb62c14d236540">config_dodo_common_logger_file_max_file_trail</a> = {&quot;dodo&quot;,&quot;common&quot;,&quot;logger&quot;,&quot;file&quot;,&quot;max-file-trail&quot;}</td></tr>
+<tr class="memdesc:a1d4ede8e594407a33cfb62c14d236540"><td class="mdescLeft">&#160;</td><td class="mdescRight">The dodo.common.logger.file.max-file-trail node.  <a href="classdodo_1_1common_1_1Config.html#a1d4ede8e594407a33cfb62c14d236540">More...</a><br /></td></tr>
+<tr class="separator:a1d4ede8e594407a33cfb62c14d236540"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76a2def69e3c023c915c92bb33c27ed7"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a76a2def69e3c023c915c92bb33c27ed7">config_dodo_common_logger_file_max_size_mib</a> = {&quot;dodo&quot;,&quot;common&quot;,&quot;logger&quot;,&quot;file&quot;,&quot;max-size-mib&quot;}</td></tr>
+<tr class="memdesc:a76a2def69e3c023c915c92bb33c27ed7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The dodo.common.logger.file.max-size-mib node.  <a href="classdodo_1_1common_1_1Config.html#a76a2def69e3c023c915c92bb33c27ed7">More...</a><br /></td></tr>
+<tr class="separator:a76a2def69e3c023c915c92bb33c27ed7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d4b45a4bcac933e40210e411998e65c"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a0d4b45a4bcac933e40210e411998e65c">config_dodo_common_logger_syslog</a> = {&quot;dodo&quot;,&quot;common&quot;,&quot;logger&quot;,&quot;syslog&quot;}</td></tr>
+<tr class="memdesc:a0d4b45a4bcac933e40210e411998e65c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The dodo.common.logger.syslog node.  <a href="classdodo_1_1common_1_1Config.html#a0d4b45a4bcac933e40210e411998e65c">More...</a><br /></td></tr>
+<tr class="separator:a0d4b45a4bcac933e40210e411998e65c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c6ab665d83dc0d51be786bd701e40e6"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a8c6ab665d83dc0d51be786bd701e40e6">config_dodo_common_logger_syslog_facility</a> = {&quot;dodo&quot;,&quot;common&quot;,&quot;logger&quot;,&quot;syslog&quot;,&quot;facility&quot;}</td></tr>
+<tr class="memdesc:a8c6ab665d83dc0d51be786bd701e40e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The dodo.common.logger.syslog.facility node.  <a href="classdodo_1_1common_1_1Config.html#a8c6ab665d83dc0d51be786bd701e40e6">More...</a><br /></td></tr>
+<tr class="separator:a8c6ab665d83dc0d51be786bd701e40e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f12b0d72d0f8170c2b90defe20859f1"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a9f12b0d72d0f8170c2b90defe20859f1">config_dodo_common_logger_syslog_level</a> = {&quot;dodo&quot;,&quot;common&quot;,&quot;logger&quot;,&quot;syslog&quot;,&quot;level&quot;}</td></tr>
+<tr class="memdesc:a9f12b0d72d0f8170c2b90defe20859f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The dodo.common.logger.syslog.level node.  <a href="classdodo_1_1common_1_1Config.html#a9f12b0d72d0f8170c2b90defe20859f1">More...</a><br /></td></tr>
+<tr class="separator:a9f12b0d72d0f8170c2b90defe20859f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -161,6 +233,9 @@ Protected Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr class="memitem:a2ad180dec505e5afe0e3a474f391c10d"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a2ad180dec505e5afe0e3a474f391c10d">secret_</a></td></tr>
+<tr class="memdesc:a2ad180dec505e5afe0e3a474f391c10d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The encryption secret / key.  <a href="classdodo_1_1common_1_1Config.html#a2ad180dec505e5afe0e3a474f391c10d">More...</a><br /></td></tr>
+<tr class="separator:a2ad180dec505e5afe0e3a474f391c10d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5aecaf5e5190c38c15ca6617bb99847b"><td class="memItemLeft" align="right" valign="top">YAML::Node&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a5aecaf5e5190c38c15ca6617bb99847b">yaml_</a></td></tr>
 <tr class="memdesc:a5aecaf5e5190c38c15ca6617bb99847b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The root YAML node.  <a href="classdodo_1_1common_1_1Config.html#a5aecaf5e5190c38c15ca6617bb99847b">More...</a><br /></td></tr>
 <tr class="separator:a5aecaf5e5190c38c15ca6617bb99847b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -170,9 +245,6 @@ Static Protected Attributes</h2></td></tr>
 <tr class="memitem:a4b03979fd5b0d1288d15cb3eed518359"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classdodo_1_1common_1_1Config.html">Config</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a4b03979fd5b0d1288d15cb3eed518359">config_</a> = nullptr</td></tr>
 <tr class="memdesc:a4b03979fd5b0d1288d15cb3eed518359"><td class="mdescLeft">&#160;</td><td class="mdescRight">The singleton pointer.  <a href="classdodo_1_1common_1_1Config.html#a4b03979fd5b0d1288d15cb3eed518359">More...</a><br /></td></tr>
 <tr class="separator:a4b03979fd5b0d1288d15cb3eed518359"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a401894fca18ef00660e9954c9ab22059"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classdodo_1_1threads_1_1Mutex.html">threads::Mutex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#a401894fca18ef00660e9954c9ab22059">mutex_</a></td></tr>
-<tr class="memdesc:a401894fca18ef00660e9954c9ab22059"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Mutex to serialize configuration data access.  <a href="classdodo_1_1common_1_1Config.html#a401894fca18ef00660e9954c9ab22059">More...</a><br /></td></tr>
-<tr class="separator:a401894fca18ef00660e9954c9ab22059"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea86fa3396ec39e9364e2ee38a4cbce9"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdodo_1_1common_1_1Config.html#aea86fa3396ec39e9364e2ee38a4cbce9">path_</a> = &quot;&quot;</td></tr>
 <tr class="memdesc:aea86fa3396ec39e9364e2ee38a4cbce9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The path to the configuration file.  <a href="classdodo_1_1common_1_1Config.html#aea86fa3396ec39e9364e2ee38a4cbce9">More...</a><br /></td></tr>
 <tr class="separator:aea86fa3396ec39e9364e2ee38a4cbce9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -184,24 +256,40 @@ Friends</h2></td></tr>
 <tr class="separator:a23f25bcc02a0e94c2f5a4188496b04d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Singleton class representing the deployment configuration, combining deployment constants from the configuration file, environment variables (whose names start with the appname) and some operating system quantities useful to developers, like the CPU count or an imposed memory limit. </p>
-<p>Configuration files are YAML files. Configuration values may use the encryption format of the <a class="el" href="classdodo_1_1common_1_1DataCrypt.html" title="Interface to encrypt and decrypt Bytes data to/from a secure string.">DataCrypt</a> interface, so that secrets can safely be stored in YAML configuration files.</p>
-<div class="fragment"><div class="line">service:</div>
-<div class="line">  fqdn: remote.server.org</div>
-<div class="line">  port: 1827</div>
-<div class="line">  client_id: ENC[]</div>
-<div class="line">  client_secret: ENC[]</div>
-</div><!-- fragment --><p>Each <a class="el" href="classdodo_1_1common_1_1Application.html" title="Red tape wrapper class for applications, from command line to services.">Application</a> will have only one configuration file, and its location must be known when the singleton <a class="el" href="classdodo_1_1common_1_1Config.html" title="Singleton class representing the deployment configuration, combining deployment constants from the co...">Config</a> instance is created, developers need to call <a class="el" href="classdodo_1_1common_1_1Config.html#aba80b83aa9199ec638449f387e8a733c" title="Initialize the singleton.">initialize()</a> first. All subsequent calls to <a class="el" href="classdodo_1_1common_1_1Config.html#a955942da1c904f7a4b797eaf3883ac16" title="return the singleton.">getConfig()</a> will return the same pointer without the need to specify the configuration file path each time.</p>
-<p>The <a class="el" href="classdodo_1_1common_1_1Config.html" title="Singleton class representing the deployment configuration, combining deployment constants from the co...">Config</a> class exposes the configuration data as const YAML::Node reference. So to modify or</p>
+<div class="textblock"><p>Singleton interface to a (read-only) deployment configuration, combining data from the deployment configuration file, environment variables and some operating system attributes such as the CPU count, RAM and virtual memory size. </p>
 <p>As multiple threads may be reading and modifying the configuration data, access must be serialized. However, as the data is exposed as a reference to a YAML::Node, this class cannot control serialization transparently. Developers know when they are done reading or writing the configuration data. For example</p>
 <div class="fragment"><div class="line">{</div>
-<div class="line">  threads::Mutexer( <a class="code" href="classdodo_1_1common_1_1Config.html#a955942da1c904f7a4b797eaf3883ac16">getConfig</a>()-&gt;<a class="code" href="classdodo_1_1common_1_1Config.html#a31227126ea1ddb82e9bbaa1ad3ca6e54">getMutex</a>() );</div>
+<div class="line">  threads::Mutexer( <a class="code" href="classdodo_1_1common_1_1Config.html#a955942da1c904f7a4b797eaf3883ac16">getConfig</a>()-&gt;getMutex() );</div>
 <div class="line">  <span class="keyword">const</span> std::string username = config[<span class="stringliteral">&quot;username&quot;</span>].as&lt;std::string&gt;();</div>
 <div class="line">}</div>
 <div class="line"><span class="comment">// Mutexer is out of scope, destructed and the getConfig()-&gt;getMutex() lock is released.</span></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00070">70</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00052">52</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a8a41a5310502865a08cd55d3fc661deb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a41a5310502865a08cd55d3fc661deb">&#9670;&nbsp;</a></span>KeyPath</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::list&lt;std::string&gt; <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">dodo::common::Config::KeyPath</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Used by getValue, enable use of list initializers as path specification, eg. </p>
+<div class="fragment"><div class="line">std::string s = getvalue&lt;std::string&gt;( { <span class="stringliteral">&quot;level1&quot;</span>,<span class="stringliteral">&quot;level2&quot;</span>,<span class="stringliteral">&quot;level2&quot;</span>} )</div>
+</div><!-- fragment --><p> on this YAML </p><div class="fragment"><div class="line">level1:</div>
+<div class="line">  level2:</div>
+<div class="line">    level3: foo</div>
+</div><!-- fragment --><p> would set s to "foo". A KeyPath cannot index into arrays. </p>
+
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00068">68</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a95fc7013c86d765a135f445d6d2379ac"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a95fc7013c86d765a135f445d6d2379ac">&#9670;&nbsp;</a></span>Config() <span class="overload">[1/2]</span></h2>
 
@@ -228,7 +316,7 @@ Friends</h2></td></tr>
 
 <p>Disallow the copy constructor as this is a singleton. </p>
 
-<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00042">initialize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00062">initialize()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -273,16 +361,16 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="config_8cpp_source.html#l00037">37</a> of file <a class="el" href="config_8cpp_source.html">config.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="config_8cpp_source.html#l00057">57</a> of file <a class="el" href="config_8cpp_source.html">config.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="config_8hpp_source.html#l00159">path_</a>, and <a class="el" href="config_8cpp_source.html#l00083">readConfig()</a>.</p>
+<p class="reference">References <a class="el" href="config_8hpp_source.html#l00243">path_</a>, and <a class="el" href="config_8cpp_source.html#l00117">readConfig()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classdodo_1_1common_1_1Config_a3ccee1909272c4c4684c8f0b93f2cb4c_cgraph.png" border="0" usemap="#classdodo_1_1common_1_1Config_a3ccee1909272c4c4684c8f0b93f2cb4c_cgraph" alt=""/></div>
 <map name="classdodo_1_1common_1_1Config_a3ccee1909272c4c4684c8f0b93f2cb4c_cgraph" id="classdodo_1_1common_1_1Config_a3ccee1909272c4c4684c8f0b93f2cb4c_cgraph">
 <area shape="rect" title="Constructor called by initialize()." alt="" coords="5,5,173,47"/>
-<area shape="rect" href="classdodo_1_1common_1_1Config.html#acd667f494e54a9d32aa9b7c2ff70c7d1" title="Re&#45;read the configuration file." alt="" coords="221,5,389,47"/>
+<area shape="rect" href="classdodo_1_1common_1_1Config.html#acd667f494e54a9d32aa9b7c2ff70c7d1" title="Read the configuration file." alt="" coords="221,5,389,47"/>
 </map>
 </div>
 
@@ -313,7 +401,7 @@ Here is the call graph for this function:</div>
 
 <p>Destructor. </p>
 
-<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00144">144</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00228">228</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
 
 </div>
 </div>
@@ -343,18 +431,131 @@ Here is the call graph for this function:</div>
 
 <p>Check for required elements in the config file. </p>
 
-<p class="definition">Definition at line <a class="el" href="config_8cpp_source.html#l00053">53</a> of file <a class="el" href="config_8cpp_source.html">config.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="config_8cpp_source.html#l00073">73</a> of file <a class="el" href="config_8cpp_source.html">config.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="config_8hpp_source.html#l00159">path_</a>, <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>, and <a class="el" href="config_8hpp_source.html#l00164">yaml_</a>.</p>
+<p class="reference">References <a class="el" href="config_8hpp_source.html#l00071">config_dodo</a>, <a class="el" href="config_8hpp_source.html#l00074">config_dodo_common</a>, <a class="el" href="config_8hpp_source.html#l00077">config_dodo_common_application</a>, <a class="el" href="config_8hpp_source.html#l00080">config_dodo_common_application_name</a>, <a class="el" href="config_8hpp_source.html#l00083">config_dodo_common_application_secret</a>, <a class="el" href="config_8hpp_source.html#l00089">config_dodo_common_application_secret_env</a>, <a class="el" href="config_8hpp_source.html#l00086">config_dodo_common_application_secret_file</a>, <a class="el" href="config_8hpp_source.html#l00092">config_dodo_common_logger</a>, <a class="el" href="config_8hpp_source.html#l00095">config_dodo_common_logger_console</a>, <a class="el" href="config_8hpp_source.html#l00098">config_dodo_common_logger_console_level</a>, <a class="el" href="config_8hpp_source.html#l00101">config_dodo_common_logger_file</a>, <a class="el" href="config_8hpp_source.html#l00107">config_dodo_common_logger_file_directory</a>, <a class="el" href="config_8hpp_source.html#l00104">config_dodo_common_logger_file_level</a>, <a class="el" href="config_8hpp_source.html#l00116">config_dodo_common_logger_syslog</a>, <a class="el" href="config_8hpp_source.html#l00119">config_dodo_common_logger_syslog_level</a>, <a class="el" href="config_8hpp_source.html#l00201">exists()</a>, <a class="el" href="util_8cpp_source.html#l00161">dodo::common::fileReadString()</a>, <a class="el" href="config_8cpp_source.html#l00127">flattenKeyPath()</a>, <a class="el" href="config_8hpp_source.html#l00243">path_</a>, <a class="el" href="config_8hpp_source.html#l00253">secret_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00083">readConfig()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00117">readConfig()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classdodo_1_1common_1_1Config_a25b06453a51f90e573d104a77c73d8b3_cgraph.png" border="0" usemap="#classdodo_1_1common_1_1Config_a25b06453a51f90e573d104a77c73d8b3_cgraph" alt=""/></div>
+<map name="classdodo_1_1common_1_1Config_a25b06453a51f90e573d104a77c73d8b3_cgraph" id="classdodo_1_1common_1_1Config_a25b06453a51f90e573d104a77c73d8b3_cgraph">
+<area shape="rect" title="Check for required elements in the config file." alt="" coords="5,64,173,105"/>
+<area shape="rect" href="classdodo_1_1common_1_1Config.html#a4c1c4788d7cd53ae8d1ba098ce65b4e5" title="Return true if the KeyPath exists." alt="" coords="247,5,415,47"/>
+<area shape="rect" href="namespacedodo_1_1common.html#a22bce32e6326c4938f1bb95b6a01fd5e" title="Read the file as a single string." alt="" coords="221,71,440,98"/>
+<area shape="rect" href="classdodo_1_1common_1_1Config.html#ab19fb0c13d2cbdd4b9ef7a7c75a067cd" title="Transform a keypath to a string with &quot;:&quot; as seperator between levels." alt="" coords="247,123,415,164"/>
+</map>
+</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classdodo_1_1common_1_1Config_a25b06453a51f90e573d104a77c73d8b3_icgraph.png" border="0" usemap="#classdodo_1_1common_1_1Config_a25b06453a51f90e573d104a77c73d8b3_icgraph" alt=""/></div>
 <map name="classdodo_1_1common_1_1Config_a25b06453a51f90e573d104a77c73d8b3_icgraph" id="classdodo_1_1common_1_1Config_a25b06453a51f90e573d104a77c73d8b3_icgraph">
 <area shape="rect" title="Check for required elements in the config file." alt="" coords="221,5,389,47"/>
-<area shape="rect" href="classdodo_1_1common_1_1Config.html#acd667f494e54a9d32aa9b7c2ff70c7d1" title="Re&#45;read the configuration file." alt="" coords="5,5,173,47"/>
+<area shape="rect" href="classdodo_1_1common_1_1Config.html#acd667f494e54a9d32aa9b7c2ff70c7d1" title="Read the configuration file." alt="" coords="5,5,173,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4c1c4788d7cd53ae8d1ba098ce65b4e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c1c4788d7cd53ae8d1ba098ce65b4e5">&#9670;&nbsp;</a></span>exists()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool dodo::common::Config::exists </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">KeyPath</a> &amp;&#160;</td>
+          <td class="paramname"><em>keypath</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return true if the KeyPath exists. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">keypath</td><td>The KeyPath to check. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the keypath exists. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00201">201</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+
+<p class="reference">References <a class="el" href="config_8hpp_source.html#l00248">yaml_</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00073">checkConfig()</a>, <a class="el" href="logger_8cpp_source.html#l00180">dodo::common::Logger::getFileParams()</a>, and <a class="el" href="logger_8cpp_source.html#l00046">dodo::common::Logger::Logger()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classdodo_1_1common_1_1Config_a4c1c4788d7cd53ae8d1ba098ce65b4e5_icgraph.png" border="0" usemap="#classdodo_1_1common_1_1Config_a4c1c4788d7cd53ae8d1ba098ce65b4e5_icgraph" alt=""/></div>
+<map name="classdodo_1_1common_1_1Config_a4c1c4788d7cd53ae8d1ba098ce65b4e5_icgraph" id="classdodo_1_1common_1_1Config_a4c1c4788d7cd53ae8d1ba098ce65b4e5_icgraph">
+<area shape="rect" title="Return true if the KeyPath exists." alt="" coords="443,71,611,112"/>
+<area shape="rect" href="classdodo_1_1common_1_1Config.html#a25b06453a51f90e573d104a77c73d8b3" title="Check for required elements in the config file." alt="" coords="225,5,393,47"/>
+<area shape="rect" href="classdodo_1_1common_1_1Logger.html#aa5b18f36fae4dd78350f61756a6e1d70" title="Get FileParams from the Config into file_params_." alt="" coords="224,71,395,112"/>
+<area shape="rect" href="classdodo_1_1common_1_1Logger.html#a802985a985e8ef1c4c52c8a02b42b06b" title="Construct against a config." alt="" coords="5,100,176,141"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab19fb0c13d2cbdd4b9ef7a7c75a067cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab19fb0c13d2cbdd4b9ef7a7c75a067cd">&#9670;&nbsp;</a></span>flattenKeyPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string dodo::common::Config::flattenKeyPath </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">KeyPath</a> &amp;&#160;</td>
+          <td class="paramname"><em>keypath</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Transform a keypath to a string with ":" as seperator between levels. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">keypath</td><td>The KeyPath to flatten. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The flattened keypath. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="config_8cpp_source.html#l00127">127</a> of file <a class="el" href="config_8cpp_source.html">config.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00073">checkConfig()</a>, <a class="el" href="config_8cpp_source.html#l00136">getDecryptedValue()</a>, and <a class="el" href="config_8hpp_source.html#l00187">getValue()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classdodo_1_1common_1_1Config_ab19fb0c13d2cbdd4b9ef7a7c75a067cd_icgraph.png" border="0" usemap="#classdodo_1_1common_1_1Config_ab19fb0c13d2cbdd4b9ef7a7c75a067cd_icgraph" alt=""/></div>
+<map name="classdodo_1_1common_1_1Config_ab19fb0c13d2cbdd4b9ef7a7c75a067cd_icgraph" id="classdodo_1_1common_1_1Config_ab19fb0c13d2cbdd4b9ef7a7c75a067cd_icgraph">
+<area shape="rect" title="Transform a keypath to a string with &quot;:&quot; as seperator between levels." alt="" coords="221,71,389,112"/>
+<area shape="rect" href="classdodo_1_1common_1_1Config.html#a25b06453a51f90e573d104a77c73d8b3" title="Check for required elements in the config file." alt="" coords="5,5,173,47"/>
+<area shape="rect" href="classdodo_1_1common_1_1Config.html#afa1917b4bdcd3785d97a623104d71544" title="Get the decrypted value from KeyPath &#45; decrypted using the secret from getSecret()." alt="" coords="5,71,173,112"/>
+<area shape="rect" href="classdodo_1_1common_1_1Config.html#a47d8cd25b62495aee457a4a421228246" title="Get the value at keypath." alt="" coords="5,136,173,177"/>
 </map>
 </div>
 
@@ -386,11 +587,9 @@ Here is the caller graph for this function:</div>
 <p>Return the application name. </p>
 <dl class="section return"><dt>Returns</dt><dd>the application name. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00131">131</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00174">174</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
 
-<p class="reference">References <a class="el" href="config_8hpp_source.html#l00164">yaml_</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="application_8cpp_source.html#l00033">dodo::common::Application::Application()</a>, <a class="el" href="logger_8cpp_source.html#l00208">dodo::common::Logger::formatMessage()</a>, <a class="el" href="logger_8cpp_source.html#l00182">dodo::common::Logger::getFileParams()</a>, and <a class="el" href="logger_8cpp_source.html#l00090">dodo::common::Logger::log()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8cpp_source.html#l00033">dodo::common::Application::Application()</a>, <a class="el" href="logger_8cpp_source.html#l00205">dodo::common::Logger::formatMessage()</a>, <a class="el" href="logger_8cpp_source.html#l00180">dodo::common::Logger::getFileParams()</a>, and <a class="el" href="logger_8cpp_source.html#l00088">dodo::common::Logger::log()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -430,7 +629,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>return the singleton. </p>
-<dl class="section return"><dt>Returns</dt><dd>a pointer to the <a class="el" href="classdodo_1_1common_1_1Config.html" title="Singleton class representing the deployment configuration, combining deployment constants from the co...">Config</a> instance. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a pointer to the <a class="el" href="classdodo_1_1common_1_1Config.html" title="Singleton interface to a (read-only) deployment configuration, combining data from the deployment con...">Config</a> instance. </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname"><a class="el" href="classdodo_1_1common_1_1Exception.html" title="An Exception is thrown in exceptional circumstances, and its occurrence should generally imply that t...">Exception</a></td><td>when </td></tr>
@@ -438,11 +637,11 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="config_8cpp_source.html#l00048">48</a> of file <a class="el" href="config_8cpp_source.html">config.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="config_8cpp_source.html#l00068">68</a> of file <a class="el" href="config_8cpp_source.html">config.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="config_8hpp_source.html#l00154">config_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="config_8hpp_source.html#l00238">config_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00208">dodo::common::Logger::formatMessage()</a>, <a class="el" href="logger_8cpp_source.html#l00182">dodo::common::Logger::getFileParams()</a>, <a class="el" href="logger_8cpp_source.html#l00090">dodo::common::Logger::log()</a>, and <a class="el" href="logger_8cpp_source.html#l00046">dodo::common::Logger::Logger()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00205">dodo::common::Logger::formatMessage()</a>, <a class="el" href="logger_8cpp_source.html#l00180">dodo::common::Logger::getFileParams()</a>, <a class="el" href="logger_8cpp_source.html#l00088">dodo::common::Logger::log()</a>, and <a class="el" href="logger_8cpp_source.html#l00046">dodo::common::Logger::Logger()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -458,8 +657,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a31227126ea1ddb82e9bbaa1ad3ca6e54"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a31227126ea1ddb82e9bbaa1ad3ca6e54">&#9670;&nbsp;</a></span>getMutex()</h2>
+<a id="a4a3861177baed77695b7ba841bf33ea0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a3861177baed77695b7ba841bf33ea0">&#9670;&nbsp;</a></span>getConfigPath()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -468,39 +667,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classdodo_1_1threads_1_1Mutex.html">threads::Mutex</a>&amp; dodo::common::Config::getMutex </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Return a reference to the serializing <a class="el" href="classdodo_1_1threads_1_1Mutex.html" title="A Mutex to synchronize access to resources between threads.">threads::Mutex</a>. </p>
-<dl class="section return"><dt>Returns</dt><dd>A reference to the internal <a class="el" href="classdodo_1_1threads_1_1Mutex.html" title="A Mutex to synchronize access to resources between threads.">threads::Mutex</a>. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00119">119</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
-
-<p class="reference">References <a class="el" href="config_8hpp_source.html#l00169">mutex_</a>.</p>
-
-</div>
-</div>
-<a id="a44e13b6a0bcf48d2e59b0a4c62d4e179"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a44e13b6a0bcf48d2e59b0a4c62d4e179">&#9670;&nbsp;</a></span>getPath()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string dodo::common::Config::getPath </td>
+          <td class="memname">std::string dodo::common::Config::getConfigPath </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -516,14 +683,66 @@ Here is the caller graph for this function:</div>
 <p>Return the path of the configuration file. </p>
 <dl class="section return"><dt>Returns</dt><dd>The path of the configuration file. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00125">125</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00162">162</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
 
-<p class="reference">References <a class="el" href="config_8hpp_source.html#l00159">path_</a>.</p>
+<p class="reference">References <a class="el" href="config_8hpp_source.html#l00243">path_</a>.</p>
 
 </div>
 </div>
-<a id="aa452e6ffcaf296f309a871bb0d2ea059"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa452e6ffcaf296f309a871bb0d2ea059">&#9670;&nbsp;</a></span>getYAML()</h2>
+<a id="afa1917b4bdcd3785d97a623104d71544"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa1917b4bdcd3785d97a623104d71544">&#9670;&nbsp;</a></span>getDecryptedValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void dodo::common::Config::getDecryptedValue </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">KeyPath</a> &amp;&#160;</td>
+          <td class="paramname"><em>keypath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classdodo_1_1common_1_1Bytes.html">Bytes</a> &amp;&#160;</td>
+          <td class="paramname"><em>decrypted</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the decrypted value from KeyPath - decrypted using the secret from <a class="el" href="classdodo_1_1common_1_1Config.html#ad0d67f7d632b51cbfe78aec827a2974b" title="Get the application secret.">getSecret()</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">keypath</td><td>The KeyPath to the the value for. </td></tr>
+    <tr><td class="paramname">decrypted</td><td>Receives the decrypted <a class="el" href="classdodo_1_1common_1_1Bytes.html" title="An array of Octets with size elements.">Bytes</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="config_8cpp_source.html#l00136">136</a> of file <a class="el" href="config_8cpp_source.html">config.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="datacrypt_8cpp_source.html#l00129">dodo::common::DataCrypt::decrypt()</a>, <a class="el" href="config_8cpp_source.html#l00127">flattenKeyPath()</a>, <a class="el" href="config_8hpp_source.html#l00180">getSecret()</a>, <a class="el" href="config_8hpp_source.html#l00243">path_</a>, <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>, and <a class="el" href="config_8hpp_source.html#l00248">yaml_</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classdodo_1_1common_1_1Config_afa1917b4bdcd3785d97a623104d71544_cgraph.png" border="0" usemap="#classdodo_1_1common_1_1Config_afa1917b4bdcd3785d97a623104d71544_cgraph" alt=""/></div>
+<map name="classdodo_1_1common_1_1Config_afa1917b4bdcd3785d97a623104d71544_cgraph" id="classdodo_1_1common_1_1Config_afa1917b4bdcd3785d97a623104d71544_cgraph">
+<area shape="rect" title="Get the decrypted value from KeyPath &#45; decrypted using the secret from getSecret()." alt="" coords="5,71,173,112"/>
+<area shape="rect" href="classdodo_1_1common_1_1DataCrypt.html#aabf6cb0911efd72d438bc3fcb51a0db6" title="Decrypt data with a key." alt="" coords="221,5,415,47"/>
+<area shape="rect" href="classdodo_1_1common_1_1Config.html#ab19fb0c13d2cbdd4b9ef7a7c75a067cd" title="Transform a keypath to a string with &quot;:&quot; as seperator between levels." alt="" coords="234,71,402,112"/>
+<area shape="rect" href="classdodo_1_1common_1_1Config.html#ad0d67f7d632b51cbfe78aec827a2974b" title="Get the application secret." alt="" coords="234,136,402,177"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad0d67f7d632b51cbfe78aec827a2974b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0d67f7d632b51cbfe78aec827a2974b">&#9670;&nbsp;</a></span>getSecret()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -532,10 +751,10 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">YAML::Node&amp; dodo::common::Config::getYAML </td>
+          <td class="memname">std::string dodo::common::Config::getSecret </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -545,20 +764,81 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Return a reference to the configuration YAML contents. </p>
-<p>Callers must serialize access by locking the <a class="el" href="classdodo_1_1common_1_1Config.html#a31227126ea1ddb82e9bbaa1ad3ca6e54" title="Return a reference to the serializing threads::Mutex.">getMutex()</a> Mutex (or use a <a class="el" href="classdodo_1_1threads_1_1Mutexer.html" title="Waits for and locks the Mutex on construction, unlocks the Mutex when this Mutexer is destructed.">threads::Mutexer</a> on it). </p><dl class="section return"><dt>Returns</dt><dd>The YAML::Node reference to the YAML root. </dd></dl>
+<p>Get the application secret. </p>
+<dl class="section return"><dt>Returns</dt><dd>The secret. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00113">113</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00180">180</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
 
-<p class="reference">References <a class="el" href="config_8hpp_source.html#l00164">yaml_</a>.</p>
+<p class="reference">References <a class="el" href="config_8hpp_source.html#l00253">secret_</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00182">dodo::common::Logger::getFileParams()</a>, and <a class="el" href="logger_8cpp_source.html#l00046">dodo::common::Logger::Logger()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00136">getDecryptedValue()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classdodo_1_1common_1_1Config_aa452e6ffcaf296f309a871bb0d2ea059_icgraph.png" border="0" usemap="#classdodo_1_1common_1_1Config_aa452e6ffcaf296f309a871bb0d2ea059_icgraph" alt=""/></div>
-<map name="classdodo_1_1common_1_1Config_aa452e6ffcaf296f309a871bb0d2ea059_icgraph" id="classdodo_1_1common_1_1Config_aa452e6ffcaf296f309a871bb0d2ea059_icgraph">
-<area shape="rect" title="Return a reference to the configuration YAML contents." alt="" coords="443,35,611,76"/>
+<div class="center"><img src="classdodo_1_1common_1_1Config_ad0d67f7d632b51cbfe78aec827a2974b_icgraph.png" border="0" usemap="#classdodo_1_1common_1_1Config_ad0d67f7d632b51cbfe78aec827a2974b_icgraph" alt=""/></div>
+<map name="classdodo_1_1common_1_1Config_ad0d67f7d632b51cbfe78aec827a2974b_icgraph" id="classdodo_1_1common_1_1Config_ad0d67f7d632b51cbfe78aec827a2974b_icgraph">
+<area shape="rect" title="Get the application secret." alt="" coords="221,5,389,47"/>
+<area shape="rect" href="classdodo_1_1common_1_1Config.html#afa1917b4bdcd3785d97a623104d71544" title="Get the decrypted value from KeyPath &#45; decrypted using the secret from getSecret()." alt="" coords="5,5,173,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a47d8cd25b62495aee457a4a421228246"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47d8cd25b62495aee457a4a421228246">&#9670;&nbsp;</a></span>getValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T dodo::common::Config::getValue </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">KeyPath</a> &amp;&#160;</td>
+          <td class="paramname"><em>keypath</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the value at keypath. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">keypath</td><td>The KeyPath to get the value for. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The value. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00187">187</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+
+<p class="reference">References <a class="el" href="config_8cpp_source.html#l00127">flattenKeyPath()</a>, <a class="el" href="config_8hpp_source.html#l00243">path_</a>, <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>, and <a class="el" href="config_8hpp_source.html#l00248">yaml_</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00180">dodo::common::Logger::getFileParams()</a>, and <a class="el" href="logger_8cpp_source.html#l00046">dodo::common::Logger::Logger()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classdodo_1_1common_1_1Config_a47d8cd25b62495aee457a4a421228246_cgraph.png" border="0" usemap="#classdodo_1_1common_1_1Config_a47d8cd25b62495aee457a4a421228246_cgraph" alt=""/></div>
+<map name="classdodo_1_1common_1_1Config_a47d8cd25b62495aee457a4a421228246_cgraph" id="classdodo_1_1common_1_1Config_a47d8cd25b62495aee457a4a421228246_cgraph">
+<area shape="rect" title="Get the value at keypath." alt="" coords="5,5,173,47"/>
+<area shape="rect" href="classdodo_1_1common_1_1Config.html#ab19fb0c13d2cbdd4b9ef7a7c75a067cd" title="Transform a keypath to a string with &quot;:&quot; as seperator between levels." alt="" coords="221,5,389,47"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classdodo_1_1common_1_1Config_a47d8cd25b62495aee457a4a421228246_icgraph.png" border="0" usemap="#classdodo_1_1common_1_1Config_a47d8cd25b62495aee457a4a421228246_icgraph" alt=""/></div>
+<map name="classdodo_1_1common_1_1Config_a47d8cd25b62495aee457a4a421228246_icgraph" id="classdodo_1_1common_1_1Config_a47d8cd25b62495aee457a4a421228246_icgraph">
+<area shape="rect" title="Get the value at keypath." alt="" coords="443,35,611,76"/>
 <area shape="rect" href="classdodo_1_1common_1_1Logger.html#aa5b18f36fae4dd78350f61756a6e1d70" title="Get FileParams from the Config into file_params_." alt="" coords="224,5,395,47"/>
 <area shape="rect" href="classdodo_1_1common_1_1Logger.html#a802985a985e8ef1c4c52c8a02b42b06b" title="Construct against a config." alt="" coords="5,35,176,76"/>
 </map>
@@ -591,17 +871,17 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Initialize the singleton. </p>
-<p>Once initialize is called, subsequent calls to <a class="el" href="classdodo_1_1common_1_1Config.html#a955942da1c904f7a4b797eaf3883ac16" title="return the singleton.">getConfig()</a> will return the same pointer. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Once initialize is called, subsequent calls to <a class="el" href="classdodo_1_1common_1_1Config.html#a955942da1c904f7a4b797eaf3883ac16" title="return the singleton.">getConfig()</a> will return the same pointer as returned by this function. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">path</td><td>The path to the configuration file. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a pointer to the <a class="el" href="classdodo_1_1common_1_1Config.html" title="Singleton class representing the deployment configuration, combining deployment constants from the co...">Config</a> singleton. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a pointer to the <a class="el" href="classdodo_1_1common_1_1Config.html" title="Singleton interface to a (read-only) deployment configuration, combining data from the deployment con...">Config</a> singleton. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="config_8cpp_source.html#l00042">42</a> of file <a class="el" href="config_8cpp_source.html">config.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="config_8cpp_source.html#l00062">62</a> of file <a class="el" href="config_8cpp_source.html">config.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="classdodo_1_1common_1_1Config.html#a95fc7013c86d765a135f445d6d2379ac">Config()</a>, <a class="el" href="config_8hpp_source.html#l00154">config_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
+<p class="reference">References <a class="el" href="classdodo_1_1common_1_1Config.html#a95fc7013c86d765a135f445d6d2379ac">Config()</a>, <a class="el" href="config_8hpp_source.html#l00238">config_</a>, and <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="application_8cpp_source.html#l00033">dodo::common::Application::Application()</a>.</p>
 <div class="dynheader">
@@ -649,7 +929,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Disallow assignment from another <a class="el" href="classdodo_1_1common_1_1Config.html" title="Singleton class representing the deployment configuration, combining deployment constants from the co...">Config</a>, as this is a singleton. </p>
+<p>Disallow assignment from another <a class="el" href="classdodo_1_1common_1_1Config.html" title="Singleton interface to a (read-only) deployment configuration, combining data from the deployment con...">Config</a>, as this is a singleton. </p>
 
 </div>
 </div>
@@ -668,20 +948,19 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Re-read the configuration file. </p>
-<p>This call locks the internal <a class="el" href="classdodo_1_1common_1_1Config.html#a31227126ea1ddb82e9bbaa1ad3ca6e54" title="Return a reference to the serializing threads::Mutex.">getMutex()</a>. </p>
+<p>Read the configuration file. </p>
 
-<p class="definition">Definition at line <a class="el" href="config_8cpp_source.html#l00083">83</a> of file <a class="el" href="config_8cpp_source.html">config.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="config_8cpp_source.html#l00117">117</a> of file <a class="el" href="config_8cpp_source.html">config.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="config_8cpp_source.html#l00053">checkConfig()</a>, <a class="el" href="config_8hpp_source.html#l00169">mutex_</a>, <a class="el" href="config_8hpp_source.html#l00159">path_</a>, and <a class="el" href="config_8hpp_source.html#l00164">yaml_</a>.</p>
+<p class="reference">References <a class="el" href="config_8cpp_source.html#l00073">checkConfig()</a>, <a class="el" href="config_8hpp_source.html#l00243">path_</a>, <a class="el" href="exception_8hpp_source.html#l00174">throw_Exception</a>, and <a class="el" href="config_8hpp_source.html#l00248">yaml_</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00037">Config()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00057">Config()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classdodo_1_1common_1_1Config_acd667f494e54a9d32aa9b7c2ff70c7d1_cgraph.png" border="0" usemap="#classdodo_1_1common_1_1Config_acd667f494e54a9d32aa9b7c2ff70c7d1_cgraph" alt=""/></div>
 <map name="classdodo_1_1common_1_1Config_acd667f494e54a9d32aa9b7c2ff70c7d1_cgraph" id="classdodo_1_1common_1_1Config_acd667f494e54a9d32aa9b7c2ff70c7d1_cgraph">
-<area shape="rect" title="Re&#45;read the configuration file." alt="" coords="5,5,173,47"/>
+<area shape="rect" title="Read the configuration file." alt="" coords="5,5,173,47"/>
 <area shape="rect" href="classdodo_1_1common_1_1Config.html#a25b06453a51f90e573d104a77c73d8b3" title="Check for required elements in the config file." alt="" coords="221,5,389,47"/>
 </map>
 </div>
@@ -690,34 +969,10 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classdodo_1_1common_1_1Config_acd667f494e54a9d32aa9b7c2ff70c7d1_icgraph.png" border="0" usemap="#classdodo_1_1common_1_1Config_acd667f494e54a9d32aa9b7c2ff70c7d1_icgraph" alt=""/></div>
 <map name="classdodo_1_1common_1_1Config_acd667f494e54a9d32aa9b7c2ff70c7d1_icgraph" id="classdodo_1_1common_1_1Config_acd667f494e54a9d32aa9b7c2ff70c7d1_icgraph">
-<area shape="rect" title="Re&#45;read the configuration file." alt="" coords="221,5,389,47"/>
+<area shape="rect" title="Read the configuration file." alt="" coords="221,5,389,47"/>
 <area shape="rect" href="classdodo_1_1common_1_1Config.html#a3ccee1909272c4c4684c8f0b93f2cb4c" title="Constructor called by initialize()." alt="" coords="5,5,173,47"/>
 </map>
 </div>
-
-</div>
-</div>
-<a id="af3e6aa6b309aefb836570b42d57c0fe3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af3e6aa6b309aefb836570b42d57c0fe3">&#9670;&nbsp;</a></span>writeConfig()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void dodo::common::Config::writeConfig </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Write out the configuration file. </p>
-<p>This call locks the internal <a class="el" href="classdodo_1_1common_1_1Config.html#a31227126ea1ddb82e9bbaa1ad3ca6e54" title="Return a reference to the serializing threads::Mutex.">getMutex()</a>. </p>
-
-<p class="definition">Definition at line <a class="el" href="config_8cpp_source.html#l00089">89</a> of file <a class="el" href="config_8cpp_source.html">config.cpp</a>.</p>
-
-<p class="reference">References <a class="el" href="config_8hpp_source.html#l00169">mutex_</a>, <a class="el" href="config_8hpp_source.html#l00159">path_</a>, and <a class="el" href="config_8hpp_source.html#l00164">yaml_</a>.</p>
 
 </div>
 </div>
@@ -744,7 +999,7 @@ Here is the caller graph for this function:</div>
 
 <p><a class="el" href="classdodo_1_1common_1_1Application.html#a8060f9e3a4c3d5744bbbf1a9918008cc" title="Destructor.">Application::~Application()</a> will destruct this singleton. </p>
 
-<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00174">174</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00258">258</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
 
 </div>
 </div>
@@ -771,14 +1026,14 @@ Here is the caller graph for this function:</div>
 
 <p>The singleton pointer. </p>
 
-<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00154">154</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00238">238</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00048">getConfig()</a>, <a class="el" href="config_8cpp_source.html#l00042">initialize()</a>, and <a class="el" href="application_8cpp_source.html#l00044">dodo::common::Application::~Application()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00068">getConfig()</a>, <a class="el" href="config_8cpp_source.html#l00062">initialize()</a>, and <a class="el" href="application_8cpp_source.html#l00044">dodo::common::Application::~Application()</a>.</p>
 
 </div>
 </div>
-<a id="a401894fca18ef00660e9954c9ab22059"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a401894fca18ef00660e9954c9ab22059">&#9670;&nbsp;</a></span>mutex_</h2>
+<a id="a2443b9d08a97e1ed11d673eaa7246dc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2443b9d08a97e1ed11d673eaa7246dc3">&#9670;&nbsp;</a></span>config_dodo</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -787,21 +1042,497 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classdodo_1_1threads_1_1Mutex.html">threads::Mutex</a> dodo::common::Config::mutex_</td>
+          <td class="memname">const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a> dodo::common::Config::config_dodo = {&quot;dodo&quot;}</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>The Mutex to serialize configuration data access. </p>
+<p>The dodo root node. </p>
 
-<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00169">169</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00071">71</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8hpp_source.html#l00119">getMutex()</a>, <a class="el" href="config_8cpp_source.html#l00083">readConfig()</a>, and <a class="el" href="config_8cpp_source.html#l00089">writeConfig()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00073">checkConfig()</a>.</p>
+
+</div>
+</div>
+<a id="a80c18473b4e278baffb3a57f65ed94e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80c18473b4e278baffb3a57f65ed94e8">&#9670;&nbsp;</a></span>config_dodo_common</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a> dodo::common::Config::config_dodo_common = {&quot;dodo&quot;,&quot;common&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The <a class="el" href="namespacedodo_1_1common.html" title="Common and utility interfaces.">dodo.common</a> node. </p>
+
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00074">74</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00073">checkConfig()</a>.</p>
+
+</div>
+</div>
+<a id="aaa69781670da604eb02057fb30cec322"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa69781670da604eb02057fb30cec322">&#9670;&nbsp;</a></span>config_dodo_common_application</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a> dodo::common::Config::config_dodo_common_application = {&quot;dodo&quot;,&quot;common&quot;,&quot;application&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The dodo.common.application node. </p>
+
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00077">77</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00073">checkConfig()</a>.</p>
+
+</div>
+</div>
+<a id="a9152b028ccc554bf4fb04e1fa10cfaec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9152b028ccc554bf4fb04e1fa10cfaec">&#9670;&nbsp;</a></span>config_dodo_common_application_name</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a> dodo::common::Config::config_dodo_common_application_name = {&quot;dodo&quot;,&quot;common&quot;,&quot;application&quot;,&quot;name&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The dodo.common.application.name node. </p>
+
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00080">80</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00073">checkConfig()</a>.</p>
+
+</div>
+</div>
+<a id="a44ce06a515da335008bd91ddd978a1b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44ce06a515da335008bd91ddd978a1b7">&#9670;&nbsp;</a></span>config_dodo_common_application_secret</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a> dodo::common::Config::config_dodo_common_application_secret = {&quot;dodo&quot;,&quot;common&quot;,&quot;application&quot;,&quot;secret&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The dodo.common.application.secret node. </p>
+
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00083">83</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00073">checkConfig()</a>.</p>
+
+</div>
+</div>
+<a id="a99efad3d5c1c06244cda2d07cf2cfba0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99efad3d5c1c06244cda2d07cf2cfba0">&#9670;&nbsp;</a></span>config_dodo_common_application_secret_env</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a> dodo::common::Config::config_dodo_common_application_secret_env = {&quot;dodo&quot;,&quot;common&quot;,&quot;application&quot;,&quot;secret&quot;,&quot;env&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The dodo.common.application.secret.env node. </p>
+
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00089">89</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00073">checkConfig()</a>.</p>
+
+</div>
+</div>
+<a id="aeec169aaea483ab13d16e20e3b8902e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeec169aaea483ab13d16e20e3b8902e4">&#9670;&nbsp;</a></span>config_dodo_common_application_secret_file</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a> dodo::common::Config::config_dodo_common_application_secret_file = {&quot;dodo&quot;,&quot;common&quot;,&quot;application&quot;,&quot;secret&quot;,&quot;file&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The dodo.common.application.secret.file node. </p>
+
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00086">86</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00073">checkConfig()</a>.</p>
+
+</div>
+</div>
+<a id="af7238bc6d2f4914d5b96c5713ec052ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7238bc6d2f4914d5b96c5713ec052ed">&#9670;&nbsp;</a></span>config_dodo_common_logger</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a> dodo::common::Config::config_dodo_common_logger = {&quot;dodo&quot;,&quot;common&quot;,&quot;logger&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The dodo.common.logger node. </p>
+
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00092">92</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00073">checkConfig()</a>.</p>
+
+</div>
+</div>
+<a id="a3b4263c2e0b4ac9c34b4e4d00db77651"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b4263c2e0b4ac9c34b4e4d00db77651">&#9670;&nbsp;</a></span>config_dodo_common_logger_console</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a> dodo::common::Config::config_dodo_common_logger_console = {&quot;dodo&quot;,&quot;common&quot;,&quot;logger&quot;,&quot;console&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The dodo.common.logger.console node. </p>
+
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00095">95</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00073">checkConfig()</a>.</p>
+
+</div>
+</div>
+<a id="a556bf66eedcc357f65200a847bebcc65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a556bf66eedcc357f65200a847bebcc65">&#9670;&nbsp;</a></span>config_dodo_common_logger_console_level</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a> dodo::common::Config::config_dodo_common_logger_console_level = {&quot;dodo&quot;,&quot;common&quot;,&quot;logger&quot;,&quot;console&quot;,&quot;level&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The dodo.common.logger.console.level node. </p>
+
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00098">98</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00073">checkConfig()</a>, and <a class="el" href="logger_8cpp_source.html#l00046">dodo::common::Logger::Logger()</a>.</p>
+
+</div>
+</div>
+<a id="a1c425be0195d5f2c699167a166b7a314"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c425be0195d5f2c699167a166b7a314">&#9670;&nbsp;</a></span>config_dodo_common_logger_file</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a> dodo::common::Config::config_dodo_common_logger_file = {&quot;dodo&quot;,&quot;common&quot;,&quot;logger&quot;,&quot;file&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The dodo.common.logger.file node. </p>
+
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00101">101</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00073">checkConfig()</a>, and <a class="el" href="logger_8cpp_source.html#l00046">dodo::common::Logger::Logger()</a>.</p>
+
+</div>
+</div>
+<a id="af831d344589991d71bf2fac33b1f5214"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af831d344589991d71bf2fac33b1f5214">&#9670;&nbsp;</a></span>config_dodo_common_logger_file_directory</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a> dodo::common::Config::config_dodo_common_logger_file_directory = {&quot;dodo&quot;,&quot;common&quot;,&quot;logger&quot;,&quot;file&quot;,&quot;directory&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The dodo.common.logger.file.directory node. </p>
+
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00107">107</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00073">checkConfig()</a>, and <a class="el" href="logger_8cpp_source.html#l00180">dodo::common::Logger::getFileParams()</a>.</p>
+
+</div>
+</div>
+<a id="a989dadea02769d394f5a60c920b41934"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a989dadea02769d394f5a60c920b41934">&#9670;&nbsp;</a></span>config_dodo_common_logger_file_level</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a> dodo::common::Config::config_dodo_common_logger_file_level = {&quot;dodo&quot;,&quot;common&quot;,&quot;logger&quot;,&quot;file&quot;,&quot;level&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The dodo.common.logger.file.level node. </p>
+
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00104">104</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00073">checkConfig()</a>, and <a class="el" href="logger_8cpp_source.html#l00180">dodo::common::Logger::getFileParams()</a>.</p>
+
+</div>
+</div>
+<a id="a1d4ede8e594407a33cfb62c14d236540"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d4ede8e594407a33cfb62c14d236540">&#9670;&nbsp;</a></span>config_dodo_common_logger_file_max_file_trail</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a> dodo::common::Config::config_dodo_common_logger_file_max_file_trail = {&quot;dodo&quot;,&quot;common&quot;,&quot;logger&quot;,&quot;file&quot;,&quot;max-file-trail&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The dodo.common.logger.file.max-file-trail node. </p>
+
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00113">113</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00180">dodo::common::Logger::getFileParams()</a>.</p>
+
+</div>
+</div>
+<a id="a76a2def69e3c023c915c92bb33c27ed7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76a2def69e3c023c915c92bb33c27ed7">&#9670;&nbsp;</a></span>config_dodo_common_logger_file_max_size_mib</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a> dodo::common::Config::config_dodo_common_logger_file_max_size_mib = {&quot;dodo&quot;,&quot;common&quot;,&quot;logger&quot;,&quot;file&quot;,&quot;max-size-mib&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The dodo.common.logger.file.max-size-mib node. </p>
+
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00110">110</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00180">dodo::common::Logger::getFileParams()</a>.</p>
+
+</div>
+</div>
+<a id="a0d4b45a4bcac933e40210e411998e65c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d4b45a4bcac933e40210e411998e65c">&#9670;&nbsp;</a></span>config_dodo_common_logger_syslog</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a> dodo::common::Config::config_dodo_common_logger_syslog = {&quot;dodo&quot;,&quot;common&quot;,&quot;logger&quot;,&quot;syslog&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The dodo.common.logger.syslog node. </p>
+
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00116">116</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00073">checkConfig()</a>, and <a class="el" href="logger_8cpp_source.html#l00046">dodo::common::Logger::Logger()</a>.</p>
+
+</div>
+</div>
+<a id="a8c6ab665d83dc0d51be786bd701e40e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c6ab665d83dc0d51be786bd701e40e6">&#9670;&nbsp;</a></span>config_dodo_common_logger_syslog_facility</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a> dodo::common::Config::config_dodo_common_logger_syslog_facility = {&quot;dodo&quot;,&quot;common&quot;,&quot;logger&quot;,&quot;syslog&quot;,&quot;facility&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The dodo.common.logger.syslog.facility node. </p>
+
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00122">122</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="logger_8cpp_source.html#l00046">dodo::common::Logger::Logger()</a>.</p>
+
+</div>
+</div>
+<a id="a9f12b0d72d0f8170c2b90defe20859f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f12b0d72d0f8170c2b90defe20859f1">&#9670;&nbsp;</a></span>config_dodo_common_logger_syslog_level</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classdodo_1_1common_1_1Config.html#a8a41a5310502865a08cd55d3fc661deb">Config::KeyPath</a> dodo::common::Config::config_dodo_common_logger_syslog_level = {&quot;dodo&quot;,&quot;common&quot;,&quot;logger&quot;,&quot;syslog&quot;,&quot;level&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The dodo.common.logger.syslog.level node. </p>
+
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00119">119</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00073">checkConfig()</a>, and <a class="el" href="logger_8cpp_source.html#l00046">dodo::common::Logger::Logger()</a>.</p>
 
 </div>
 </div>
@@ -827,9 +1558,37 @@ Here is the caller graph for this function:</div>
 
 <p>The path to the configuration file. </p>
 
-<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00159">159</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00243">243</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00053">checkConfig()</a>, <a class="el" href="config_8cpp_source.html#l00037">Config()</a>, <a class="el" href="config_8hpp_source.html#l00125">getPath()</a>, <a class="el" href="config_8cpp_source.html#l00083">readConfig()</a>, and <a class="el" href="config_8cpp_source.html#l00089">writeConfig()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00073">checkConfig()</a>, <a class="el" href="config_8cpp_source.html#l00057">Config()</a>, <a class="el" href="config_8hpp_source.html#l00162">getConfigPath()</a>, <a class="el" href="config_8cpp_source.html#l00136">getDecryptedValue()</a>, <a class="el" href="config_8hpp_source.html#l00187">getValue()</a>, and <a class="el" href="config_8cpp_source.html#l00117">readConfig()</a>.</p>
+
+</div>
+</div>
+<a id="a2ad180dec505e5afe0e3a474f391c10d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ad180dec505e5afe0e3a474f391c10d">&#9670;&nbsp;</a></span>secret_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string dodo::common::Config::secret_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The encryption secret / key. </p>
+
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00253">253</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00073">checkConfig()</a>, and <a class="el" href="config_8hpp_source.html#l00180">getSecret()</a>.</p>
 
 </div>
 </div>
@@ -855,9 +1614,9 @@ Here is the caller graph for this function:</div>
 
 <p>The root YAML node. </p>
 
-<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00164">164</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="config_8hpp_source.html#l00248">248</a> of file <a class="el" href="config_8hpp_source.html">config.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="config_8cpp_source.html#l00053">checkConfig()</a>, <a class="el" href="config_8hpp_source.html#l00131">getAppName()</a>, <a class="el" href="config_8hpp_source.html#l00113">getYAML()</a>, <a class="el" href="config_8cpp_source.html#l00083">readConfig()</a>, and <a class="el" href="config_8cpp_source.html#l00089">writeConfig()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="config_8hpp_source.html#l00201">exists()</a>, <a class="el" href="config_8cpp_source.html#l00136">getDecryptedValue()</a>, <a class="el" href="config_8hpp_source.html#l00187">getValue()</a>, and <a class="el" href="config_8cpp_source.html#l00117">readConfig()</a>.</p>
 
 </div>
 </div>
@@ -867,8 +1626,7 @@ Here is the caller graph for this function:</div>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclassdodo_1_1common_1_1Config_html_a955942da1c904f7a4b797eaf3883ac16"><div class="ttname"><a href="classdodo_1_1common_1_1Config.html#a955942da1c904f7a4b797eaf3883ac16">dodo::common::Config::getConfig</a></div><div class="ttdeci">static Config * getConfig()</div><div class="ttdoc">return the singleton.</div><div class="ttdef"><b>Definition:</b> <a href="config_8cpp_source.html#l00048">config.cpp:48</a></div></div>
-<div class="ttc" id="aclassdodo_1_1common_1_1Config_html_a31227126ea1ddb82e9bbaa1ad3ca6e54"><div class="ttname"><a href="classdodo_1_1common_1_1Config.html#a31227126ea1ddb82e9bbaa1ad3ca6e54">dodo::common::Config::getMutex</a></div><div class="ttdeci">threads::Mutex &amp; getMutex()</div><div class="ttdoc">Return a reference to the serializing threads::Mutex.</div><div class="ttdef"><b>Definition:</b> <a href="config_8hpp_source.html#l00119">config.hpp:119</a></div></div>
+<div class="ttc" id="aclassdodo_1_1common_1_1Config_html_a955942da1c904f7a4b797eaf3883ac16"><div class="ttname"><a href="classdodo_1_1common_1_1Config.html#a955942da1c904f7a4b797eaf3883ac16">dodo::common::Config::getConfig</a></div><div class="ttdeci">static Config * getConfig()</div><div class="ttdoc">return the singleton.</div><div class="ttdef"><b>Definition:</b> <a href="config_8cpp_source.html#l00068">config.cpp:68</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

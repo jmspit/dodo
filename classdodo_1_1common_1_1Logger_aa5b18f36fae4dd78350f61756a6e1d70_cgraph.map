@@ -1,10 +1,11 @@
 <map id="dodo::common::Logger::getFileParams" name="dodo::common::Logger::getFileParams">
-<area shape="rect" id="node1" title="Get FileParams from the Config into file_params_." alt="" coords="5,173,176,214"/>
+<area shape="rect" id="node1" title="Get FileParams from the Config into file_params_." alt="" coords="5,206,176,247"/>
 <area shape="rect" id="node2" href="$namespacedodo_1_1common.html#a9bca9a04a61b100970ab9849736c0974" title="Return true when the directory exists." alt="" coords="232,5,456,32"/>
 <area shape="rect" id="node3" href="$namespacedodo_1_1common.html#ac47589087895d0c62c858abb5e58dc0b" title="Return true when the directory exists and is writable to the caller." alt="" coords="224,56,464,83"/>
-<area shape="rect" id="node4" href="$classdodo_1_1common_1_1Config.html#a3035c95a79f163d1622ab87f79aebc95" title="Return the application name." alt="" coords="260,107,428,149"/>
-<area shape="rect" id="node5" href="$classdodo_1_1common_1_1Config.html#a955942da1c904f7a4b797eaf3883ac16" title="return the singleton." alt="" coords="260,173,428,214"/>
-<area shape="rect" id="node6" href="$namespacedodo_1_1common.html#ae1e4a7a218141abb2a29a277951612f6" title="Return the size of the file." alt="" coords="245,239,443,265"/>
-<area shape="rect" id="node7" href="$classdodo_1_1common_1_1Config.html#aa452e6ffcaf296f309a871bb0d2ea059" title="Return a reference to the configuration YAML contents." alt="" coords="260,290,428,331"/>
-<area shape="rect" id="node8" href="$classdodo_1_1common_1_1Logger.html#adb742179864c2d409c23771f05b2d4c6" title="Return the string as a LogLevel." alt="" coords="259,355,429,397"/>
+<area shape="rect" id="node4" href="$classdodo_1_1common_1_1Config.html#a4c1c4788d7cd53ae8d1ba098ce65b4e5" title="Return true if the KeyPath exists." alt="" coords="260,107,428,149"/>
+<area shape="rect" id="node5" href="$classdodo_1_1common_1_1Config.html#a3035c95a79f163d1622ab87f79aebc95" title="Return the application name." alt="" coords="260,173,428,214"/>
+<area shape="rect" id="node6" href="$classdodo_1_1common_1_1Config.html#a955942da1c904f7a4b797eaf3883ac16" title="return the singleton." alt="" coords="260,238,428,279"/>
+<area shape="rect" id="node7" href="$namespacedodo_1_1common.html#ae1e4a7a218141abb2a29a277951612f6" title="Return the size of the file." alt="" coords="245,304,443,331"/>
+<area shape="rect" id="node8" href="$classdodo_1_1common_1_1Config.html#a47d8cd25b62495aee457a4a421228246" title="Get the value at keypath." alt="" coords="260,355,428,397"/>
+<area shape="rect" id="node9" href="$classdodo_1_1common_1_1Logger.html#adb742179864c2d409c23771f05b2d4c6" title="Return the string as a LogLevel." alt="" coords="259,421,429,462"/>
 </map>

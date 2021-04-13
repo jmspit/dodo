@@ -1,4 +1,4 @@
 <map id="dodo::common::Config::checkConfig" name="dodo::common::Config::checkConfig">
 <area shape="rect" id="node1" title="Check for required elements in the config file." alt="" coords="221,5,389,47"/>
-<area shape="rect" id="node2" href="$classdodo_1_1common_1_1Config.html#acd667f494e54a9d32aa9b7c2ff70c7d1" title="Re&#45;read the configuration file." alt="" coords="5,5,173,47"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1Config.html#acd667f494e54a9d32aa9b7c2ff70c7d1" title="Read the configuration file." alt="" coords="5,5,173,47"/>
 </map>

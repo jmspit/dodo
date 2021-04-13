@@ -1,0 +1,8 @@
+<map id="dodo::common::Cache&lt; Key, Value &gt;" name="dodo::common::Cache&lt; Key, Value &gt;">
+<area shape="rect" id="node1" title="Simple thread&#45;safe Cache template for arbitrary Key&#45;Value pairs." alt="" coords="352,97,519,138"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,220,32"/>
+<area shape="rect" id="node3" title=" " alt="" coords="75,56,150,83"/>
+<area shape="rect" id="node4" href="$classdodo_1_1threads_1_1Mutex.html" title="A Mutex to synchronize access to resources between threads." alt="" coords="33,107,193,133"/>
+<area shape="rect" id="node5" title=" " alt="" coords="83,193,143,220"/>
+<area shape="rect" id="node6" title=" " alt="" coords="29,244,196,300"/>
+</map>

@@ -225,17 +225,30 @@ Exception and error handling</h1>
 <p>The <a class="el" href="classdodo_1_1common_1_1SystemError.html" title="Linux system error primitive to provide a consistent interface to Linux error codes.">dodo::common::SystemError</a> is declared <code>[[nodiscard]]</code> so that the compiler issues a warning if any function returns a <a class="el" href="classdodo_1_1common_1_1SystemError.html" title="Linux system error primitive to provide a consistent interface to Linux error codes.">dodo::common::SystemError</a> that is ignored.</p>
 <h1><a class="anchor" id="autotoc_md13"></a>
 Deployment configuration</h1>
-<p>The <a class="el" href="classdodo_1_1common_1_1Config.html" title="Singleton class representing the deployment configuration, combining deployment constants from the co...">dodo::common::Config</a> interface enforces the use of a YAML configuration file with mandatory keys that configure mandatory configuration items</p>
-<div class="fragment"><div class="line">dodo:</div>
-<div class="line">  common:</div>
-<div class="line">    application:</div>
-<div class="line">      name: myapp</div>
-<div class="line">    logger:</div>
-<div class="line">      console:</div>
-<div class="line">        level: info</div>
-</div><!-- fragment --><p>A dodo Application configuration requires at least a name (myapp) and a <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cb" title="The level of a log entry.">dodo::common::Logger::LogLevel</a> (info) for logging to console or standard out.</p>
-<p>The dodo mandatory key tree can appear anywhere in the YAML as long as it is a root node. Configuration formats of other dodo components are described, below, but may be present in the same file.</p>
-<h1><a class="anchor" id="autotoc_md14"></a>
+<p>The <a class="el" href="classdodo_1_1common_1_1Config.html" title="Singleton interface to a (read-only) deployment configuration, combining data from the deployment con...">dodo::common::Config</a> interface enforces the use of a YAML configuration file with mandatory keys:</p>
+<div class="fragment"><div class="line">dodo:                 # mandatory must be a root key</div>
+<div class="line">  common:             # mandatory</div>
+<div class="line">    application:      # mandatory</div>
+<div class="line">      name: myapp     # an arbitrary name for the application</div>
+<div class="line">    logger:           # mandatory</div>
+<div class="line">      console:        # at least one of &#39;console&#39;, &#39;file&#39;, &#39;syslog&#39;</div>
+<div class="line">        level: info   # mandatory</div>
+</div><!-- fragment --><p>A dodo Application configuration requires at least a name ('myapp') and a <a class="el" href="classdodo_1_1common_1_1Logger.html#a598af7d276b90b90c48b7f824b8ed2cb" title="The level of a log entry.">dodo::common::Logger::LogLevel</a> ('info') and a log destination ('console','file','syslog').</p>
+<p>The dodo mandatory key tree can appear anywhere in the YAML as long as <code>dodo</code> is a root node. Other dodo interfaces read from this configuration file as well, such as <a class="el" href="classdodo_1_1network_1_1TLSContext.html" title="TLS security context.">dodo::network::TLSContext</a>.</p>
+<p>Values can either by strings, integers, floating point or boolean values. Some of this data may sensisitive and thus needs to be in encrypted form. To decrypt a secret is required, whose source is specified by the configuration file:</p>
+<div class="fragment"><div class="line">dodo:                           # mandatory must be a root key</div>
+<div class="line">  common:                       # mandatory</div>
+<div class="line">    application:                # mandatory</div>
+<div class="line">      name: myapp               # an arbitrary name for the application</div>
+<div class="line">      secret:                   # either &#39;file&#39; ir &#39;env&#39;</div>
+<div class="line">        file: &lt;mounted secret&gt;  # path to the mounted secret</div>
+<div class="line">        env: &lt;name of env var&gt;  # name of the ENV var</div>
+<div class="line">    logger:                     # mandatory</div>
+<div class="line">      console:                  # at least one of &#39;console&#39;, &#39;file&#39;, &#39;syslog&#39;</div>
+<div class="line">        level: info             # mandatory</div>
+<div class="line"> </div>
+<div class="line">sensitive: ENC[chipher:...]     # some sensitive data</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md14"></a>
 Logging</h1>
 <p>A logging framework is available to write log entries to one or more destinations. The available destinations are</p>
 <ul>
@@ -244,7 +257,7 @@ Logging</h1>
 <li>the syslog</li>
 </ul>
 <p>The logging interface is thread-safe.</p>
-<p>The <a class="el" href="classdodo_1_1common_1_1Logger.html" title="A Logger interface.">dodo::common::Logger</a> is configured through the <a class="el" href="classdodo_1_1common_1_1Config.html" title="Singleton class representing the deployment configuration, combining deployment constants from the co...">dodo::common::Config</a> configuration file. Minimally, the Logger requires</p>
+<p>The <a class="el" href="classdodo_1_1common_1_1Logger.html" title="A Logger interface.">dodo::common::Logger</a> is configured through the <a class="el" href="classdodo_1_1common_1_1Config.html" title="Singleton interface to a (read-only) deployment configuration, combining data from the deployment con...">dodo::common::Config</a> configuration file. Minimally, the Logger requires</p>
 <div class="fragment"><div class="line">dodo:</div>
 <div class="line">  common:</div>
 <div class="line">    logger:</div>

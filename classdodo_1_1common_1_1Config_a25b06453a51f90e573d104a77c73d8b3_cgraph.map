@@ -1,0 +1,6 @@
+<map id="dodo::common::Config::checkConfig" name="dodo::common::Config::checkConfig">
+<area shape="rect" id="node1" title="Check for required elements in the config file." alt="" coords="5,64,173,105"/>
+<area shape="rect" id="node2" href="$classdodo_1_1common_1_1Config.html#a4c1c4788d7cd53ae8d1ba098ce65b4e5" title="Return true if the KeyPath exists." alt="" coords="247,5,415,47"/>
+<area shape="rect" id="node3" href="$namespacedodo_1_1common.html#a22bce32e6326c4938f1bb95b6a01fd5e" title="Read the file as a single string." alt="" coords="221,71,440,98"/>
+<area shape="rect" id="node4" href="$classdodo_1_1common_1_1Config.html#ab19fb0c13d2cbdd4b9ef7a7c75a067cd" title="Transform a keypath to a string with &quot;:&quot; as seperator between levels." alt="" coords="247,123,415,164"/>
+</map>

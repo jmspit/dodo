@@ -84,6 +84,7 @@ var NAVTREE =
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", "functions_vars" ],
+        [ "Typedefs", "functions_type.html", null ],
         [ "Enumerations", "functions_enum.html", null ],
         [ "Enumerator", "functions_eval.html", "functions_eval" ],
         [ "Related Functions", "functions_rela.html", null ]
@@ -102,13 +103,13 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "address_8cpp.html",
-"classdodo_1_1common_1_1SystemError.html#aad3936b7c50b6a3ab23ec6c6623a7d22a0cf41f6752646be26ec44d2558cdb222",
-"classdodo_1_1network_1_1BaseSocket.html#ab81f21fe60cc0deade8f8f366a40b655",
-"classdodo_1_1network_1_1TLSContext.html#a8ba59bffeb41e4f79342ba5c2bdd05d0",
-"classdodo_1_1network_1_1protocol_1_1http_1_1HTTPResponse.html#a3556c2945a03f164ab5d8598d2fd4d7aa42143c07af13436e493fc3f65bfa5105",
-"classdodo_1_1persist_1_1sqlite_1_1Statement.html",
-"md_DEVELOPER.html#autotoc_md11",
-"util_8cpp.html#ac47589087895d0c62c858abb5e58dc0b"
+"classdodo_1_1common_1_1Puts.html#a11f675a94dbb0e4f9a13ca2d622f92ff",
+"classdodo_1_1network_1_1Address.html#aad90170a6c48cc7756de3ed2e920aaa6",
+"classdodo_1_1network_1_1TCPListenerTimer.html",
+"classdodo_1_1network_1_1protocol_1_1http_1_1HTTPRequest.html#a1224b5d49d3e2066f45e9b1260f9fd75",
+"classdodo_1_1persist_1_1sqlite_1_1DML.html#a6fbcb3947c2b3faaa865d69d91fc7773",
+"httpfragment_8cpp.html",
+"tcplistener_8hpp.html#a8bf2983a527322f4407184c15f771bb8"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

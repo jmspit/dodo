@@ -4,6 +4,8 @@ var hierarchy =
     [ "dodo::common::Application", "classdodo_1_1common_1_1Application.html", null ],
     [ "dodo::common::Application::StartParameters", "structdodo_1_1common_1_1Application_1_1StartParameters.html", null ],
     [ "dodo::common::Bytes", "classdodo_1_1common_1_1Bytes.html", null ],
+    [ "dodo::common::Cache< Key, Value >", "classdodo_1_1common_1_1Cache.html", null ],
+    [ "dodo::common::Cache< Key, Value >::CacheEntry", "structdodo_1_1common_1_1Cache_1_1CacheEntry.html", null ],
     [ "dodo::common::Config", "classdodo_1_1common_1_1Config.html", null ],
     [ "dodo::common::DataCrypt", "classdodo_1_1common_1_1DataCrypt.html", null ],
     [ "dodo::common::DebugObject", "classdodo_1_1common_1_1DebugObject.html", [

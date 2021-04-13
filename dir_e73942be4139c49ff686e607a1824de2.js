@@ -5,6 +5,10 @@ var dir_e73942be4139c49ff686e607a1824de2 =
       [ "StartParameters", "structdodo_1_1common_1_1Application_1_1StartParameters.html", "structdodo_1_1common_1_1Application_1_1StartParameters" ]
     ] ],
     [ "bytes.hpp", "bytes_8hpp.html", "bytes_8hpp" ],
+    [ "cache.hpp", "cache_8hpp.html", [
+      [ "Cache", "classdodo_1_1common_1_1Cache.html", "classdodo_1_1common_1_1Cache" ],
+      [ "CacheEntry", "structdodo_1_1common_1_1Cache_1_1CacheEntry.html", "structdodo_1_1common_1_1Cache_1_1CacheEntry" ]
+    ] ],
     [ "common.hpp", "common_8hpp.html", "common_8hpp" ],
     [ "config.hpp", "config_8hpp.html", [
       [ "Config", "classdodo_1_1common_1_1Config.html", "classdodo_1_1common_1_1Config" ]

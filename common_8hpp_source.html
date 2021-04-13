@@ -113,56 +113,58 @@ $(document).ready(function(){initNavTree('common_8hpp_source.html',''); initResi
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#define dodo_common_common_hpp</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="application_8hpp.html">common/application.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="config_8hpp.html">common/config.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="datacrypt_8hpp.html">common/datacrypt.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="exception_8hpp.html">common/exception.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="bytes_8hpp.html">common/bytes.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="puts_8hpp.html">common/puts.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="systemerror_8hpp.html">common/systemerror.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="util_8hpp.html">common/util.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;openssl/rand.h&gt;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacedodo.html">dodo</a> {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">  /**</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">   * Common and utility interfaces.</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <span class="keyword">namespace </span>common {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">    /**</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">     * Initialize the common library.</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="namespacedodo_1_1common.html#a8d800522d84309481a1d76477e19874c">   47</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacedodo_1_1common.html#a8d800522d84309481a1d76477e19874c">initLibrary</a>() {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;      <span class="comment">// Tell OpenSSL where to get entropy</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;      <span class="keywordflow">if</span> ( RAND_load_file( <span class="stringliteral">&quot;/dev/urandom&quot;</span>, 32 ) != 32 ) {</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <a class="code" href="exception_8hpp.html#adbbe8bef2f0a542a39a49064f0498f29">throw_Exception</a>( <span class="stringliteral">&quot;unable to seed from /dev/urandom&quot;</span> );</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;      }</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">    /**</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">     * Close the common library.</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="namespacedodo_1_1common.html#ac6e176ee8fbbed0948ea3358d7905513">   57</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacedodo_1_1common.html#ac6e176ee8fbbed0948ea3358d7905513">closeLibrary</a>() {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    }</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  }</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="cache_8hpp.html">common/cache.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="config_8hpp.html">common/config.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="datacrypt_8hpp.html">common/datacrypt.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="exception_8hpp.html">common/exception.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="bytes_8hpp.html">common/bytes.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="puts_8hpp.html">common/puts.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="systemerror_8hpp.html">common/systemerror.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="util_8hpp.html">common/util.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &lt;openssl/rand.h&gt;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacedodo.html">dodo</a> {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">  /**</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">   * Common and utility interfaces.</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <span class="keyword">namespace </span>common {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">    /**</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">     * Initialize the common library.</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="namespacedodo_1_1common.html#a8d800522d84309481a1d76477e19874c">   48</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacedodo_1_1common.html#a8d800522d84309481a1d76477e19874c">initLibrary</a>() {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;      <span class="comment">// Tell OpenSSL where to get entropy</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;      <span class="keywordflow">if</span> ( RAND_load_file( <span class="stringliteral">&quot;/dev/urandom&quot;</span>, 32 ) != 32 ) {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <a class="code" href="exception_8hpp.html#adbbe8bef2f0a542a39a49064f0498f29">throw_Exception</a>( <span class="stringliteral">&quot;unable to seed from /dev/urandom&quot;</span> );</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;      }</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">    /**</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">     * Close the common library.</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="namespacedodo_1_1common.html#ac6e176ee8fbbed0948ea3358d7905513">   58</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacedodo_1_1common.html#ac6e176ee8fbbed0948ea3358d7905513">closeLibrary</a>() {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    }</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aconfig_8hpp_html"><div class="ttname"><a href="config_8hpp.html">config.hpp</a></div></div>
 <div class="ttc" id="aputs_8hpp_html"><div class="ttname"><a href="puts_8hpp.html">puts.hpp</a></div></div>
-<div class="ttc" id="anamespacedodo_1_1common_html_ac6e176ee8fbbed0948ea3358d7905513"><div class="ttname"><a href="namespacedodo_1_1common.html#ac6e176ee8fbbed0948ea3358d7905513">dodo::common::closeLibrary</a></div><div class="ttdeci">void closeLibrary()</div><div class="ttdoc">Close the common library.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00057">common.hpp:57</a></div></div>
+<div class="ttc" id="anamespacedodo_1_1common_html_ac6e176ee8fbbed0948ea3358d7905513"><div class="ttname"><a href="namespacedodo_1_1common.html#ac6e176ee8fbbed0948ea3358d7905513">dodo::common::closeLibrary</a></div><div class="ttdeci">void closeLibrary()</div><div class="ttdoc">Close the common library.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00058">common.hpp:58</a></div></div>
 <div class="ttc" id="anamespacedodo_html"><div class="ttname"><a href="namespacedodo.html">dodo</a></div><div class="ttdoc">A C++ platform interface to lean Linux services tailored for containerized deployment.</div><div class="ttdef"><b>Definition:</b> <a href="application_8hpp_source.html#l00029">application.hpp:29</a></div></div>
-<div class="ttc" id="anamespacedodo_1_1common_html_a8d800522d84309481a1d76477e19874c"><div class="ttname"><a href="namespacedodo_1_1common.html#a8d800522d84309481a1d76477e19874c">dodo::common::initLibrary</a></div><div class="ttdeci">void initLibrary()</div><div class="ttdoc">Initialize the common library.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00047">common.hpp:47</a></div></div>
+<div class="ttc" id="anamespacedodo_1_1common_html_a8d800522d84309481a1d76477e19874c"><div class="ttname"><a href="namespacedodo_1_1common.html#a8d800522d84309481a1d76477e19874c">dodo::common::initLibrary</a></div><div class="ttdeci">void initLibrary()</div><div class="ttdoc">Initialize the common library.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00048">common.hpp:48</a></div></div>
 <div class="ttc" id="aexception_8hpp_html_adbbe8bef2f0a542a39a49064f0498f29"><div class="ttname"><a href="exception_8hpp.html#adbbe8bef2f0a542a39a49064f0498f29">throw_Exception</a></div><div class="ttdeci">#define throw_Exception(what)</div><div class="ttdoc">Throws an Exception, passes FILE and LINE to constructor.</div><div class="ttdef"><b>Definition:</b> <a href="exception_8hpp_source.html#l00174">exception.hpp:174</a></div></div>
 <div class="ttc" id="adatacrypt_8hpp_html"><div class="ttname"><a href="datacrypt_8hpp.html">datacrypt.hpp</a></div></div>
 <div class="ttc" id="aapplication_8hpp_html"><div class="ttname"><a href="application_8hpp.html">application.hpp</a></div></div>
 <div class="ttc" id="aexception_8hpp_html"><div class="ttname"><a href="exception_8hpp.html">exception.hpp</a></div></div>
 <div class="ttc" id="asystemerror_8hpp_html"><div class="ttname"><a href="systemerror_8hpp.html">systemerror.hpp</a></div></div>
+<div class="ttc" id="acache_8hpp_html"><div class="ttname"><a href="cache_8hpp.html">cache.hpp</a></div></div>
 <div class="ttc" id="abytes_8hpp_html"><div class="ttname"><a href="bytes_8hpp.html">bytes.hpp</a></div></div>
 <div class="ttc" id="autil_8hpp_html"><div class="ttname"><a href="util_8hpp.html">util.hpp</a></div></div>
 <!-- start footer part -->

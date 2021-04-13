@@ -1,6 +1,6 @@
 <map id="dodo::common::Config" name="dodo::common::Config">
-<area shape="rect" id="node1" title="Singleton class representing the deployment configuration, combining deployment constants from the co..." alt="" coords="81,95,249,121"/>
+<area shape="rect" id="node1" title="Singleton interface to a (read&#45;only) deployment configuration, combining data from the deployment con..." alt="" coords="56,388,224,415"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,5,61,32"/>
-<area shape="rect" id="node3" href="$classdodo_1_1threads_1_1Mutex.html" title="A Mutex to synchronize access to resources between threads." alt="" coords="85,5,245,32"/>
-<area shape="rect" id="node4" title="STL class." alt="" coords="270,5,357,32"/>
+<area shape="rect" id="node3" title="STL class." alt="" coords="86,5,194,32"/>
+<area shape="rect" id="node4" title="STL class." alt="" coords="349,5,435,32"/>
 </map>

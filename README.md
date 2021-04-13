@@ -1,4 +1,5 @@
 [![Maintenance](https://img.shields.io/badge/Under%20construction-yes-red.svg)](https://bitbucket.org/lbesson/ansi-colors)
+[![Maintenance](https://img.shields.io/badge/Pet%20project-yes-red.svg)](https://bitbucket.org/lbesson/ansi-colors)
 
 
 [TOC]
@@ -6,25 +7,30 @@
 # DODO - C++ framework for Docker applications
 ## About
 
-Dodo is a C++ framework to GNU/Linux development and aims to integrate seamlessly with Docker containers and k8s ([kubernetes](https://kubernetes.io/)). Capable by itself, projects can obviously add other dependenices to realize any type of service at C++ speed and resource requirements.
-### A skeleton for services
+Dodo is a C++ framework to integrate seamlessly with Docker containers and k8s ([kubernetes](https://kubernetes.io/)), hiding much of the red tape, as well as providing frameworks for typical demands such as DNS resolving, TLS-enabled TCP services, REST srevices, database accces and so on.
+
+Dodo applies c++17 features. It relies on and assumes the STL by using STL primitives such as std::string in interfaces. A dodo install comprises a bunch of header files and a shared library
+to which applicactions or 'services' are linked.
+
+This is a pet project. Do not take it too seriously.
+### A skeleton for container services
 
 The `dodo::common::Application` reads its run-time configuration from a YAML file, typically presented to the container as a [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/). Framework objects can be iniltialized (constructed) with a YAML document fragment, so the application can retrieve its runtime configuration from a single source.
 
-An `dodo::common::Application` instance implicitly installs signal handlers that are triggered on Docker stop requests, so that the container can shut down cleanly and quickly when requested.
+An `dodo::common::Application` instance implicitly installs signal handlers that are triggered on container stop requests, so that the code can perform a clean shitdown.
 
-Logging (`dodo::common::Logger`) can be configured to write to one or more of these targets:
+Logging (`dodo::common::Logger`) is implicit and can be configured to write to one or more of these targets:
 
   -  A directory with a configured trail (size, history) of log files.
   -  A syslog call to [rsyslog](https://www.rsyslog.com/).
   -  Console aka standard out of the container entrypoint.
 
-Docker healthchecks that run an in-container command (such as `pidof myservice`) are expensive on CPU, especially if the healthchecks need to be frequent or there are a lot of pods. The dodo::common::Application class can be instructed to setup a tiny healthceck listener (dodo::common::Application::HealthChecker) that responds to network-probed by the Docker host, which is much more efficient. This HealthChecker can be declared sick or healthy by application code as well.
+Docker healthchecks that run an in-container command (such as `pidof myservice`) are expensive on CPU, especially if the healthchecks need to be frequent or there are a lot of pods. The dodo::common::Application class starts a tiny TCP healthcheck listener (dodo::common::Application::HealthChecker) that responds to network-probes by the Docker host, which is much more efficient. The HealthChecker stops reponding when the Application exits.
 ### High level APIs to common functionality
 
 Most services will require at least some of the functionality dodo provides as high-level C++ abstractions without compromising low-level C/Linux performance.
 
-  - Binary data as the `dodo::common::Bytes` datatype used by a variety of the other interfaces.
+  - Binary data as the `dodo::common::Bytes` datatype used as primitive by dodo interfaces.
   - Encryption and compression.
   - Transparent ipv4 and ipv6 Address classes, name resolution.
   - TCPSocket (insecure) and TLSSocket classes (encryption and trust).
@@ -37,7 +43,7 @@ Most services will require at least some of the functionality dodo provides as h
   - C++ APIs to persistency solutions:
     - SQLite relational database
     - PostgreSQL relational database
-    - MongoDB relational database
+    - MongoDB object store
   - Explicit persistent data stores implemented against [SQLite](https://sqlite.org/index.html)
     - Persistent key-value store
     - Persistent fifo queue.
@@ -72,9 +78,18 @@ cd dodo && \
    cmake --build . && \
    cmake --install .
 ```
-If installed to a location outside the library paths the link-loader searches, set the `LD_LIBRARY_PATH` to `<CMAKE_INSTALL_PREFIX>/lib`.
+If installed to a location outside the system library paths, set the `LD_LIBRARY_PATH` to `<CMAKE_INSTALL_PREFIX>/lib`.
 
-To generate Doxygen API documentation, `make doc` will generate doxygen documentation in the build/doxygen/html directory, which contains an index.html.
+### Build targets
+
+In the configured build directory
+
+| target | build command | What |
+|--------|---------------|------|
+| all    | `cmake --build .` | builds the dodo library, examples and tests |
+| dodo    | `cmake --build . --target dodo` | Only builds `libdodo.so` |
+| doc    | `cmake --build . --target doc` | Creates the doxygen documentation in `./doxygen/html`. |
+| cppcheck | `cmake --build . --target cppcheck` | Run cppcheck code quality check |
 
 ## Docker
 

@@ -126,22 +126,40 @@ dodo::common::SystemError that is ignored.
 
 # Deployment configuration
 
-The dodo::common::Config interface enforces the use of a YAML configuration file with mandatory keys that configure mandatory configuration items
+The dodo::common::Config interface enforces the use of a YAML configuration file with mandatory keys:
 
 ```YAML
-dodo:
-  common:
-    application:
-      name: myapp
-    logger:
-      console:
-        level: info
+dodo:                 # mandatory must be a root key
+  common:             # mandatory
+    application:      # mandatory
+      name: myapp     # an arbitrary name for the application
+    logger:           # mandatory
+      console:        # at least one of 'console', 'file', 'syslog'
+        level: info   # mandatory
 ```
 
-A dodo Application configuration requires at least a name (myapp) and a dodo::common::Logger::LogLevel (info) for logging to console or
-standard out.
+A dodo Application configuration requires at least a name ('myapp') and a dodo::common::Logger::LogLevel ('info') and a log destination ('console','file','syslog').
 
-The dodo mandatory key tree can appear anywhere in the YAML as long as it is a root node. Configuration formats of other dodo components are described, below, but may be present in the same file.
+The dodo mandatory key tree can appear anywhere in the YAML as long as `dodo` is a root node. Other dodo interfaces read from this configuration file as well,
+such as dodo::network::TLSContext.
+
+Values can either by strings, integers, floating point or boolean values. Some of this data may sensisitive and thus needs to be in encrypted form. To decrypt a secret
+is required, whose source is specified by the configuration file:
+
+```YAML
+dodo:                           # mandatory must be a root key
+  common:                       # mandatory
+    application:                # mandatory
+      name: myapp               # an arbitrary name for the application
+      secret:                   # either 'file' ir 'env'
+        file: <mounted secret>  # path to the mounted secret
+        env: <name of env var>  # name of the ENV var
+    logger:                     # mandatory
+      console:                  # at least one of 'console', 'file', 'syslog'
+        level: info             # mandatory
+
+sensitive: ENC[chipher:...]     # some sensitive data
+```
 
 # Logging
 
@@ -234,6 +252,29 @@ dodo:
 The syslog facility should be either 1 for `user-level messages` or in the range `local0` to `local7` or 16 through 23
 as the remaining values are reserved for other use.
 
+# Bytes
+
+Dodo provides the dodo::common::Bytes class as a primitive used by other interfaces suchs as dodo::network::BaseSocket, dodo::common::DataCrypt,
+dodo::network::protocol::http::HTTPResponse, dodo::persist::sqlite::Query and so on. A Bytes object is just a sequence of dodo::common::Octet (an alias for uint8_t,  a group of 8 bits). The class allows to append other things (C++ primitives, and other Bytes) and handles memory management internally. It provides functions to encode / decode to base64 strings, or generate random data through the openssl library.
+
+A difference between Bytes and a 'string' is that Bytes are not zero terminated, nor does it attribute any special meaning to any Octet value. This means that a Bytes object is not always translatable to a 'string' (the Bytes may include intermediate zeros), but any string can always be represented by a Bytes object.
+
+# Encryption
+
+Dodo provides the dodo::common::DataCrypt interface to encrypt and decrypt secret dodo::common::Bytes, such as a passphrase in a YAML configuration file. The DataCrypt interface uses a formatted string
+
+```
+$ echo -n "Hello world" | bin/cryptstr -e -c EVP_aes_256_gcm -kval:secret
+ENC[cipher:EVP_aes_256_gcm,data:8GIwcMJW8YKNHwQ=,iv:CdwuYqQ0u/cLsI0EGAiA+A==,tag:s1YHIH3/6x1G/IpVLXWsrg==]
+```
+The format specifies all information to decrypt the data (except obviously the key aka passphrase), and uses openssl encryption internally. The cryptstr tool is provided in the dodo repository. To decrypt the above data in appliction code, do something like
+
+```C
+const std::string &key = whatever;
+const Bytes src = "ENC[cipher:EVP_aes_256_gcm,data:3r+TAD2bmQNXE4+t,iv:TSq6XIUI3rdzAphofSTUJg==,tag:z+T1aC99QaJ8G77+lypD1w==]";
+Bytes dest;
+DataCrypt::decrypt( key, src, dest );
+```
 
 # Networking
 
@@ -259,24 +300,29 @@ common::SystemError error = network::Address::getHostAddrInfo( host, sock_params
 
 # Sockets
 
-All sockets descend from dodo::network::BaseSocket.
+Both dodo::network::Socket and dodo::network::TLSSocket classes implement the from dodo::network::BaseSocket interface.
+
+## Sockets
+
+Dodo provides the dodo::network::Socket interface to manage network sockets.
 
 ## Secure sockets {#developer_networking}
 
 Dodo supports TLS through dodo::network::TLSContext and dodo::network::TLSSocket.
 
 
-### Asymmetric cryptography
+### Transport Layer Security (TLS)
 
 ![Test Image 4](https://raw.githubusercontent.com/jmspit/dodo/master/src/doc/img/asymmetric_key_encryption.png)
 
 The core principle to asymmetric cryptography is a mathematical mapping that is cheap to
 compute in one direction, and computationally infeasible in the other. Typically, the ease of muliplying primes
-and the difficulty in finding prime roots of integers is used.
+and the difficulty in finding prime roots of integers is applied.
 
 In an asymmetric communication handshake, each endpoint has a private key, a *secret* filled with as much entropy
-(randomness) as possible, typically stored as a file which is (can be) in turn encrypted and protected by a passphrase.
-The private key is and must not be shared with anyone.
+as possible, typically stored as a file which is (or should be) in turn encrypted and protected by a passphrase.
+The private key is and must not be shared with anyone. The passphrase redces the risk when the private key leaks,
+and must not be allowed to be empty.
 
 The private key includes public bits that map uniquely to a public key, which can thus be extracted from the
 private key. The private and its public key share the same *modulus*, so a public key can be matched to a private key
@@ -288,7 +334,7 @@ can only be decrypted by the owner of the matching private key.
 In digital signing, the signature is encrypted with the private key of the signer, and decrypted with
 the public key of the signer.
 
-### Transport Layer Security (TLS)
+
 
 TLS is a secure communication protocol that use an asymmetric cryptographic handshake to negotiate and share a session
 key, which will be used for both encryption and decryption.
@@ -343,8 +389,8 @@ In order to verify a peer certificate, there is dodo::network::TLSContext::PeerV
   - dodo::network::TLSContext::PeerVerification::pvVerifyFQDN - In addition to pvVerifyPeer, the client verifies that
     the target FQDN of the server either matches its CN (common name) or one of its
     [SAN](https://en.wikipedia.org/wiki/Subject_Alternative_Name) entries.
-  - dodo::network::TLSContext::PeerVerification::pvVerifyCustom - In addition to pvVerifyPeer, the developer provides
-    custom verification of the peer certificate.
+
+On top of the verification methods provided by openSSL, one can obviously add additional checks, such as matching the fingerprint of the peer's certificate against a whitelist, inspecting additional SAN fields and so on.
 
 #### Trust stores
 

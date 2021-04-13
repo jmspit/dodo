@@ -32,12 +32,26 @@
 class FIFOQueue {
 
   public:
+    /**
+     * Construct a FIFO queue using the path a SQLite file.
+     * @param path The path to the SQLite file.
+     */
     FIFOQueue( const std::filesystem::path &path );
+
+    /**
+     * Destructor.
+     */
     ~FIFOQueue();
 
-    void produce();
+    /**
+     * Place a new item on the queue.
+     */
+    void enqueue();
 
-    void consume();
+    /**
+     * Pop an item from the queue.
+     */
+    void dequeue();
 
 };
 

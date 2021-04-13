@@ -24,6 +24,7 @@
 #include <string>
 
 #include <yaml-cpp/yaml.h>
+#include <common/bytes.hpp>
 #include <common/exception.hpp>
 #include <threads/mutex.hpp>
 
@@ -33,27 +34,8 @@
 namespace dodo::common {
 
   /**
-   * Singleton class representing the deployment configuration, combining deployment constants from the configuration
-   * file, environment variables (whose names start with the appname) and some operating system quantities useful to
-   * developers, like the CPU count or an imposed memory limit.
-   *
-   * Configuration files are YAML files. Configuration values may use the encryption format of the DataCrypt
-   * interface, so that secrets can safely be stored in YAML configuration files.
-   *
-   * @code
-   * service:
-   *   fqdn: remote.server.org
-   *   port: 1827
-   *   client_id: ENC[]
-   *   client_secret: ENC[]
-   * @endcode
-   *
-   * Each Application will have only one configuration file, and its location must be known when the singleton
-   * Config instance is created, developers need to call initialize() first. All subsequent calls to getConfig() will
-   * return the same pointer without the need to specify the configuration file path each time.
-   *
-   *
-   * The Config class exposes the configuration data as const YAML::Node reference. So to modify or
+   * Singleton interface to a (read-only) deployment configuration, combining data from the deployment configuration
+   * file, environment variables and some operating system attributes such as the CPU count, RAM and virtual memory size.
    *
    * As multiple threads may be reading and modifying the configuration data, access must be serialized. However, as the
    * data is exposed as a reference to a YAML::Node, this class cannot control serialization transparently. Developers
@@ -71,6 +53,84 @@ namespace dodo::common {
     public:
 
       /**
+       * Used by getValue, enable use of list initializers as path specification, eg
+       * @code
+       * std::string s = getvalue<std::string>( { "level1","level2","level2"} )
+       * @endcode
+       * on this YAML
+       * @code
+       * level1:
+       *   level2:
+       *     level3: foo
+       * @endcode
+       * would set s to "foo". A KeyPath cannot index into arrays.
+       */
+      typedef std::list<std::string> KeyPath;
+
+      /** The dodo root node */
+      static const Config::KeyPath config_dodo;
+
+      /** The dodo.common node */
+      static const Config::KeyPath config_dodo_common;
+
+      /** The dodo.common.application node */
+      static const Config::KeyPath config_dodo_common_application;
+
+      /** The dodo.common.application.name node */
+      static const Config::KeyPath config_dodo_common_application_name;
+
+      /** The dodo.common.application.secret node */
+      static const Config::KeyPath config_dodo_common_application_secret;
+
+      /** The dodo.common.application.secret.file node */
+      static const Config::KeyPath config_dodo_common_application_secret_file;
+
+      /** The dodo.common.application.secret.env node */
+      static const Config::KeyPath config_dodo_common_application_secret_env;
+
+      /** The dodo.common.logger node */
+      static const Config::KeyPath config_dodo_common_logger;
+
+      /** The dodo.common.logger.console node */
+      static const Config::KeyPath config_dodo_common_logger_console;
+
+      /** The dodo.common.logger.console.level node */
+      static const Config::KeyPath config_dodo_common_logger_console_level;
+
+      /** The dodo.common.logger.file node */
+      static const Config::KeyPath config_dodo_common_logger_file;
+
+      /** The dodo.common.logger.file.level node */
+      static const Config::KeyPath config_dodo_common_logger_file_level;
+
+      /** The dodo.common.logger.file.directory node */
+      static const Config::KeyPath config_dodo_common_logger_file_directory;
+
+      /** The dodo.common.logger.file.max-size-mib node */
+      static const Config::KeyPath config_dodo_common_logger_file_max_size_mib;
+
+      /** The dodo.common.logger.file.max-file-trail node */
+      static const Config::KeyPath config_dodo_common_logger_file_max_file_trail;
+
+      /** The dodo.common.logger.syslog node */
+      static const Config::KeyPath config_dodo_common_logger_syslog;
+
+      /** The dodo.common.logger.syslog.level node */
+      static const Config::KeyPath config_dodo_common_logger_syslog_level;
+
+      /** The dodo.common.logger.syslog.facility node */
+      static const Config::KeyPath config_dodo_common_logger_syslog_facility;
+
+
+
+      /**
+       * Transform a keypath to a string with ":" as seperator between levels.
+       * @param keypath The KeyPath to flatten.
+       * @return The flattened keypath.
+       */
+      static std::string flattenKeyPath( const KeyPath& keypath );
+
+      /**
        * Disallow the copy constructor as this is a singleton.
        */
       Config( const Config& ) = delete;
@@ -82,7 +142,7 @@ namespace dodo::common {
 
       /**
        * Initialize the singleton. Once initialize is called, subsequent calls
-       * to getConfig() will return the same pointer.
+       * to getConfig() will return the same pointer as returned by this function.
        * @param path The path to the configuration file.
        * @return a pointer to the Config singleton.
        */
@@ -96,39 +156,63 @@ namespace dodo::common {
       static Config* getConfig();
 
       /**
-       * Re-read the configuration file. This call locks the internal getMutex().
-       */
-      void readConfig();
-
-      /**
-       * Write out the configuration file. This call locks the internal getMutex().
-       */
-      void writeConfig();
-
-      /**
-       * Return a reference to the configuration YAML contents. Callers must serialize access by locking
-       * the getMutex() Mutex (or use a threads::Mutexer on it).
-       * @return The YAML::Node reference to the YAML root.
-       */
-      YAML::Node& getYAML() { return yaml_; }
-
-      /**
-       * Return a reference to the serializing threads::Mutex.
-       * @return A reference to the internal threads::Mutex.
-       */
-      threads::Mutex& getMutex() { return mutex_; }
-
-      /**
        * Return the path of the configuration file.
        * @return The path of the configuration file.
        */
-      std::string getPath() const { return path_; }
+      std::string getConfigPath() const { return path_; }
+
+      /**
+       * Read the configuration file.
+       */
+      void readConfig();
+
 
       /**
        * Return the application name.
        * @return the application name.
        */
-      std::string getAppName() const { return yaml_["dodo"]["common"]["application"]["name"].as<std::string>(); }
+      std::string getAppName() const { return getValue<std::string>( {"dodo","common","application","name"} ); }
+
+      /**
+       * Get the application secret.
+       * @return The secret.
+       */
+      std::string getSecret() const { return secret_; }
+
+      /**
+       * Get the value at keypath.
+       * @param keypath The KeyPath to get the value for.
+       * @return The value.
+       */
+      template <typename T> T getValue( const KeyPath &keypath ) const {
+        YAML::Node ref = Clone( yaml_ );
+        for( const auto &k : keypath ) {
+          if ( ! ref[k] ) throw_Exception( "key " << flattenKeyPath(keypath) << " not found in " << path_ );
+          ref = ref[k];
+        }
+        return ref.as<T>();
+      }
+
+      /**
+       * Return true if the KeyPath exists.
+       * @param keypath The KeyPath to check.
+       * @return True if the keypath exists.
+       */
+      bool exists( const KeyPath &keypath ) const {
+        YAML::Node ref = Clone( yaml_ );
+        for( const auto &k : keypath ) {
+          if ( ! ref[k] ) return false;
+          ref = ref[k];
+        }
+        return true;
+      }
+
+      /**
+       * Get the decrypted value from KeyPath - decrypted using the secret from getSecret().
+       * @param keypath The KeyPath to the the value for.
+       * @param decrypted Receives the decrypted Bytes.
+       */
+      void getDecryptedValue( const KeyPath &keypath, Bytes &decrypted );
 
     protected:
 
@@ -164,9 +248,9 @@ namespace dodo::common {
       YAML::Node yaml_;
 
       /**
-       * The Mutex to serialize configuration data access.
+       * The encryption secret / key.
        */
-      static threads::Mutex mutex_;
+      std::string secret_;
 
     /**
      * Application::~Application() will destruct this singleton

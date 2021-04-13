@@ -57,7 +57,6 @@ namespace dodo::common {
 
       /**
        * Virtual to implement the test.
-       * @return nothing
        */
       virtual void doRun() = 0;
 

@@ -397,7 +397,6 @@ namespace dodo {
 
         /**
          * Entrypoint, override of Thread::run()
-         * @return void
          */
         virtual void run();
 

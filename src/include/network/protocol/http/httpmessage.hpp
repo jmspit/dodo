@@ -97,6 +97,11 @@ namespace dodo {
          */
         const std::map<std::string,std::string>& getHeaders() const { return headers_; };
 
+        /**
+         * Return true when this header key exists in this HTTPMessage's headers.
+         * @param header The header key to check for (lowercase).
+         * @return True then the header exists in this HTTPMessage's headers.
+         */
         bool hasHeader( const std::string &header ) const { return headers_.find(header) != headers_.end(); }
 
         /**
@@ -133,6 +138,11 @@ namespace dodo {
          */
         void setBody( const std::string& body );
 
+        /**
+         * Send this HTTPMessage to the socket.
+         * @param socket The socket to write to.
+         * @return The commonSystemError that might accour.
+         */
         virtual common::SystemError send( BaseSocket* socket ) = 0;
 
 

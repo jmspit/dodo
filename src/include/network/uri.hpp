@@ -36,8 +36,21 @@ namespace dodo {
     class URI {
       public:
 
+        /**
+         * Construct an empty URI.
+         */
         URI() { reset(); };
 
+        /**
+         * Construct an URI from iits components.
+         * @param scheme The scheme.
+         * @param userinfo The userinfo.
+         * @param host The host.
+         * @param port The port.
+         * @param path The path.
+         * @param query The query.
+         * @param fragment The fragment.
+         */
         URI( const std::string &scheme,
              const std::string &userinfo,
              const std::string &host,

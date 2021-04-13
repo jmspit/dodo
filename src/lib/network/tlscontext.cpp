@@ -27,6 +27,7 @@
 #include <openssl/x509_vfy.h>
 #include <openssl/x509v3.h>
 
+#include "common/datacrypt.hpp"
 #include "common/exception.hpp"
 #include "common/util.hpp"
 #include "network/tlscontext.hpp"
@@ -49,6 +50,32 @@ namespace dodo::network {
                           const TLSVersion& tlsversion,
                           bool  enableSNI,
                           bool allowSANWildcards ) {
+    construct( peerverficiation, tlsversion, enableSNI, allowSANWildcards );
+
+  }
+
+  TLSContext::TLSContext( const YAML::Node &yaml ) {
+    PeerVerification pv = peerVerficiationFromString( common::YAML_read_key<std::string>( yaml, "peer-verification" ) );
+    TLSVersion tv = tlsVersionFromString( common::YAML_read_key<std::string>( yaml, "tls-version" ) );
+    bool enable_sni = common::YAML_read_key<bool>( yaml, "enable-sni" );
+    bool allow_wildcards = common::YAML_read_key<bool>( yaml, "allow-san-wildcards" );
+    construct( pv, tv, enable_sni, allow_wildcards );
+    if ( yaml["pem"] ) {
+      std::string priv = common::YAML_read_key<std::string>( yaml["pem"], "private" );
+      std::string pub = common::YAML_read_key<std::string>( yaml["pem"], "public" );
+      std::string pass = common::YAML_read_key<std::string>( yaml["pem"], "passphrase" );
+      common::Bytes bytes;
+      common::DataCrypt::decrypt( "key", pass, bytes );
+      passphrase_ = bytes.asString();
+      loadPEMIdentity( pub, priv, passphrase_ );
+    } else if ( yaml["pkcs12"] ) {
+    } else throw_Exception( "need either pem or pcks12 section");
+  }
+
+  void TLSContext::construct( const PeerVerification& peerverficiation,
+                              const TLSVersion& tlsversion,
+                              bool  enableSNI,
+                              bool allowSANWildcards ) {
     tlsversion_ = tlsversion;
     peerverficiation_ = peerverficiation;
     enable_sni_ = enableSNI;
@@ -88,20 +115,12 @@ namespace dodo::network {
     rc = SSL_CTX_set_default_verify_paths(tlsctx_);
     if ( rc == 0 ) throw_ExceptionObject( "SSL_CTX_set_default_verify_paths failed"
                                           << common::Puts::endl() << common::getSSLErrors( '\n' ), this  );
+
   }
 
   TLSContext::~TLSContext() {
     passphrase_ = "";
     SSL_CTX_free( tlsctx_ );
-  }
-
-  int TLSContext::pem_passwd_cb( char *buf, int size, int rwflag, void *userdata ) {
-    TLSContext* tlsctx = static_cast<TLSContext*>(userdata);
-    if ( size > static_cast<int>( strlen( tlsctx->passphrase_.c_str() ) ) ) {
-      strncpy( buf, tlsctx->passphrase_.c_str(), size );
-    } else buf[0] = 0;
-    buf[size-1] = 0;
-    return static_cast<int>( strlen( tlsctx->passphrase_.c_str() ) );
   }
 
   void TLSContext::loadPEMIdentity( const std::string& certfile,
@@ -173,6 +192,22 @@ namespace dodo::network {
                                   << common::Puts::endl() << common::getSSLErrors( '\n' ), this  );
   }
 
+  TLSContext::PeerVerification TLSContext::peerVerficiationFromString( const std::string &src ) {
+    if ( src == "pvVerifyNone" ) return TLSContext::PeerVerification::pvVerifyNone;
+    else if ( src == "pvVerifyPeer" ) return TLSContext::PeerVerification::pvVerifyPeer;
+    else if ( src == "pvVerifyFQDN" ) return TLSContext::PeerVerification::pvVerifyFQDN;
+    else throw_Exception( "invalid TLSContext::PeerVerification '" << src << "'" );
+  }
+
+  int TLSContext::pem_passwd_cb( char *buf, int size, int rwflag, void *userdata ) {
+    TLSContext* tlsctx = static_cast<TLSContext*>(userdata);
+    if ( size > static_cast<int>( strlen( tlsctx->passphrase_.c_str() ) ) ) {
+      strncpy( buf, tlsctx->passphrase_.c_str(), size );
+    } else buf[0] = 0;
+    buf[size-1] = 0;
+    return static_cast<int>( strlen( tlsctx->passphrase_.c_str() ) );
+  }
+
   void TLSContext::setCipherList( const std::string& cipherlist ) {
     int rc = 0;
     if ( tlsversion_ == TLSVersion::tls1_3 ) {
@@ -197,6 +232,13 @@ namespace dodo::network {
     if ( !SSL_CTX_load_verify_locations( tlsctx_, cafile_ptr, capath_ptr ) )
       throw_ExceptionObject( "SSL_CTX_load_verify_locations failed"
                              << common::Puts::endl() << common::getSSLErrors( '\n' ), this  );
+  }
+
+  TLSContext::TLSVersion TLSContext::tlsVersionFromString( const std::string &src ) {
+    if ( src == "1.1" ) return TLSVersion::tls1_1;
+    else if ( src == "1.2" ) return TLSVersion::tls1_2;
+    else if ( src == "1.3" ) return TLSVersion::tls1_3;
+    else throw_Exception( "invalid TLSContext::TLSVersion '" << src << "'" );
   }
 
 }

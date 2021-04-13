@@ -17,7 +17,7 @@
 
 /**
  * @file application.cpp
- * Implements the dodo::common::Application class..
+ * Implements the dodo::common::Application class.
  */
 
 #include <common/application.hpp>
@@ -38,13 +38,25 @@ namespace dodo::common {
     hosttype_ = detectHostType();
     Config* config = Config::initialize( param.config );
     logger_ = Logger::initialize( *config );
-    logger_->log( Logger::LogLevel::Info, Puts() << config->getAppName() << " started" );
+    logger_->log( Logger::LogLevel::Info, Puts() << config->getAppName() << " started (" << getHostTypeAsString(hosttype_) << ")" );
   }
 
   Application::~Application() {
     if ( Logger::logger_ ) delete Logger::logger_;
     if ( Config::config_ ) delete Config::config_;
-    //dodo::closeLibrary();
+    dodo::closeLibrary();
+  }
+
+  std::string Application::getHostTypeAsString( HostType ht ) {
+      switch ( ht ) {
+        case HostType::BareMetal: return "bare metal";
+        case HostType::Docker: return "Docker container";
+        case HostType::VirtualBox: return "VirtualBox";
+        case HostType::VMWare: return "VMWare";
+        case HostType::KVM: return "KVM";
+        case HostType::GenericVM: return "Generic VM";
+        default: return "unknown";
+      }
   }
 
   void Application::signal_handler( int signal ) {
@@ -73,29 +85,25 @@ namespace dodo::common {
   Application::HostType Application::detectHostType() {
     const std::string initcgroup = "/proc/1/cgroup";
     if ( common::fileReadAccess( initcgroup ) ) {
-      std::vector res = fileReadStrings( initcgroup, std::regex("^0::/docker$") );
+      auto res = fileReadStrings( initcgroup, std::regex("^0::/docker$") );
       if ( res.size() == 1 ) return HostType::Docker;
     }
 
     const std::string product_name = "/sys/class/dmi/id/product_name";
     if ( common::fileReadAccess( product_name ) ) {
-      std::vector res = fileReadStrings( product_name, std::regex("^VirtualBox$") );
+      auto res = fileReadStrings( product_name, std::regex("^VirtualBox$") );
       if ( res.size() == 1 ) return HostType::VirtualBox;
-    }
 
-    if ( common::fileReadAccess( product_name ) ) {
-      std::vector res = fileReadStrings( product_name, std::regex("^VMware Virtual Platform$") );
+      res = fileReadStrings( product_name, std::regex("^VMware Virtual Platform$") );
       if ( res.size() == 1 ) return HostType::VMWare;
-    }
 
-    if ( common::fileReadAccess( product_name ) ) {
-      std::vector res = fileReadStrings( product_name, std::regex("^KVM$") );
+      res = fileReadStrings( product_name, std::regex("^KVM$") );
       if ( res.size() == 1 ) return HostType::KVM;
     }
 
     const std::string cpuinfo = "/proc/cpuinfo";
     if ( common::fileReadAccess( cpuinfo ) ) {
-      std::vector res = fileReadStrings( cpuinfo, std::regex("^flags.*:.*hypervisor") );
+      auto res = fileReadStrings( cpuinfo, std::regex("^flags.*:.*hypervisor") );
       if ( res.size() > 0 ) return HostType::GenericVM;
     }
 

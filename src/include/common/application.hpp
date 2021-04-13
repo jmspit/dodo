@@ -108,6 +108,13 @@ namespace dodo::common {
        */
       bool hasStopRequest() const { return has_stop_request_; }
 
+      /**
+       * Convert a HostType to a human readable string.
+       * @param ht The HostType to convert.
+       * @return The string.
+       */
+      static std::string getHostTypeAsString( HostType ht );
+
 
 
       /**
@@ -127,7 +134,6 @@ namespace dodo::common {
        * Signal handler called by the OS.
        * Depends on application_ to be valid.
        * @param signal the signal received.
-       * @return void
        */
       static void signal_handler( int signal );
 

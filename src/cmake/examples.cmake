@@ -10,6 +10,12 @@ add_executable(${EXAMPLE_CRYPTSTR} ${${EXAMPLE_CRYPTSTR}_objects} )
 target_link_libraries( ${EXAMPLE_CRYPTSTR} ${LIB_DODO} )
 install( TARGETS ${EXAMPLE_CRYPTSTR} RUNTIME DESTINATION bin )
 
+set( EXAMPLE_CACHE  "cache" )
+set( ${EXAMPLE_CACHE}_objects  src/examples/${EXAMPLE_CACHE}/${EXAMPLE_CACHE}.cpp )
+add_executable(${EXAMPLE_CACHE} ${${EXAMPLE_CACHE}_objects} )
+target_link_libraries( ${EXAMPLE_CACHE} ${LIB_DODO} )
+install( TARGETS ${EXAMPLE_CACHE} RUNTIME DESTINATION bin )
+
 set( EXAMPLE_SYSINFO  "sysinfo" )
 set( ${EXAMPLE_SYSINFO}_objects  src/examples/${EXAMPLE_SYSINFO}/${EXAMPLE_SYSINFO}.cpp )
 add_executable(${EXAMPLE_SYSINFO} ${${EXAMPLE_SYSINFO}_objects} )

@@ -18,14 +18,15 @@ class MyApp : public Application {
 
     virtual int run() {
       try {
-        listener_ = new TCPListener( Config::getConfig()->getYAML()["server"] );
-        listener_->start( new Server(*listener_) );
-        while ( !hasStopRequest() ) {
-          std::this_thread::sleep_for( std::chrono::milliseconds(50) );
-        }
-        listener_->stop();
-        listener_->wait();
-        log_Info( Config::getConfig()->getAppName() << " finished" );
+        //listener_ = new TCPListener( Config::getConfig()->getYAML()["server"] );
+        //listener_->start( new Server(*listener_) );
+        //while ( !hasStopRequest() ) {
+        //  std::this_thread::sleep_for( std::chrono::milliseconds(50) );
+       // }
+        //listener_->stop();
+        //listener_->wait();
+        //log_Info( Config::getConfig()->getYAML()["dodo"]["common"]["application"]["name"].as<std::string>() << " finished" );
+        log_Info( Config::getConfig()->getValue<std::string>( {"dodo","common","application","name"} ) << " finished" );
       }
       catch ( const std::exception &e ) {
         log_Fatal( e.what() );

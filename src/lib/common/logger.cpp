@@ -50,28 +50,26 @@ namespace dodo::common {
     gethostname( hostname, 256 );
     hostname_ = hostname;
     threads::Mutexer lock( mutex_ );
-    YAML::Node &yaml = config.getConfig()->getYAML();
-    levels_[Console] = StringAsLogLevel( yaml["dodo"]["common"]["logger"]["console"]["level"].as<std::string>() );
+    levels_[Console] = StringAsLogLevel( config.getConfig()->getValue<std::string>( Config::config_dodo_common_logger_console_level ) );
 
-    if ( yaml["dodo"]["common"]["logger"]["file"] ) {
+    if ( config.getConfig()->exists( Config::config_dodo_common_logger_file ) ) {
       destinations_  = destinations_ | File;
       getFileParams(config);
     }
 
-    if ( yaml["dodo"]["common"]["logger"]["syslog"] ) {
+    if ( config.getConfig()->exists( Config::config_dodo_common_logger_syslog ) ) {
       destinations_  = destinations_ | Syslog;
-      if ( yaml["dodo"]["common"]["logger"]["syslog"]["facility"] ) {
-        syslog_params_.facility = yaml["dodo"]["common"]["logger"]["syslog"]["facility"].as<int>();
+      if ( config.getConfig()->exists( Config::config_dodo_common_logger_syslog_facility ) ) {
+        syslog_params_.facility = config.getConfig()->getValue<int>( Config::config_dodo_common_logger_syslog_facility );
       } else syslog_params_.facility = 1;
-
-      levels_[Syslog] = StringAsLogLevel( yaml["dodo"]["common"]["logger"]["syslog"]["level"].as<std::string>() );
+      levels_[Syslog] = StringAsLogLevel( config.getConfig()->getValue<std::string>( Config::config_dodo_common_logger_syslog_level ) );
       if ( levels_[Syslog] > LogLevel::Info ) throw_Exception( "syslog LogLevel cannot be higher than info" );
     }
 
   }
 
   Logger::~Logger() {
-    // wait until other trades have released. they may be writing.
+    // wait until other threads have released. they may be writing.
     threads::Mutexer lock( mutex_ );
     file_params_.file.close();
   }
@@ -180,24 +178,23 @@ namespace dodo::common {
   }
 
   void Logger::getFileParams( const Config& config ) {
-    YAML::Node &yaml = config.getConfig()->getYAML();
-    levels_[File] = StringAsLogLevel( yaml["dodo"]["common"]["logger"]["file"]["level"].as<std::string>() );
-    file_params_.directory = yaml["dodo"]["common"]["logger"]["file"]["directory"].as<std::string>();
+    levels_[File] = StringAsLogLevel( config.getConfig()->getValue<std::string>(Config::config_dodo_common_logger_file_level) );
+    file_params_.directory = config.getConfig()->getValue<std::string>(Config::config_dodo_common_logger_file_directory);
 
-    if ( yaml["dodo"]["common"]["logger"]["file"]["max-size-mib"] )
-      file_params_.max_size_mib = yaml["dodo"]["common"]["logger"]["file"]["max-size-mib"].as<size_t>();
+    if ( config.getConfig()->exists(Config::config_dodo_common_logger_file_max_size_mib) )
+      file_params_.max_size_mib = config.getConfig()->getValue<size_t>(Config::config_dodo_common_logger_file_max_size_mib);
     else
       file_params_.max_size_mib = 10;
 
-    if ( yaml["dodo"]["common"]["logger"]["file"]["max-file-trail"] )
-      file_params_.max_file_trail = yaml["dodo"]["common"]["logger"]["file"]["max-file-trail"].as<size_t>();
+    if ( config.getConfig()->exists(Config::config_dodo_common_logger_file_max_file_trail) )
+      file_params_.max_file_trail = config.getConfig()->getValue<size_t>(Config::config_dodo_common_logger_file_max_file_trail);
     else
       file_params_.max_file_trail = 4;
 
     if ( !directoryExists( file_params_.directory ) )
       throw_Exception( "directory '" << file_params_.directory << "' does not exist" );
     if ( !directoryWritable( file_params_.directory ) )
-      throw_Exception( "directory '" << file_params_.directory << "' does not allow write access" );
+      throw_Exception( "directory '" << file_params_.directory << "' not writable" );
     file_params_.active_log = file_params_.directory + "/" + config.getAppName() + ".log";
     file_params_.file.open( file_params_.active_log, std::ofstream::out | std::ofstream::app );
     file_params_.filesize = getFileSize( file_params_.active_log );

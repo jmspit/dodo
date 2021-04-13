@@ -22,15 +22,35 @@
 
 #include <fstream>
 #include <iostream>
+#include <sstream>
 
 #include <common/config.hpp>
+#include <common/datacrypt.hpp>
 #include <common/exception.hpp>
+#include <common/util.hpp>
 
 namespace dodo::common {
 
-  Config* Config::config_ = nullptr;
+  const Config::KeyPath Config::config_dodo = {"dodo"};
+  const Config::KeyPath Config::config_dodo_common = {"dodo","common"};
+  const Config::KeyPath Config::config_dodo_common_application = {"dodo","common","application"};
+  const Config::KeyPath Config::config_dodo_common_application_name = {"dodo","common","application","name"};
+  const Config::KeyPath Config::config_dodo_common_application_secret = {"dodo","common","application","secret"};
+  const Config::KeyPath Config::config_dodo_common_application_secret_file = {"dodo","common","application","secret","file"};
+  const Config::KeyPath Config::config_dodo_common_application_secret_env = {"dodo","common","application","secret","env"};
+  const Config::KeyPath Config::config_dodo_common_logger = {"dodo","common","logger"};
+  const Config::KeyPath Config::config_dodo_common_logger_console = {"dodo","common","logger","console"};
+  const Config::KeyPath Config::config_dodo_common_logger_console_level = {"dodo","common","logger","console","level"};
+  const Config::KeyPath Config::config_dodo_common_logger_file = {"dodo","common","logger","file"};
+  const Config::KeyPath Config::config_dodo_common_logger_file_level = {"dodo","common","logger","file","level"};
+  const Config::KeyPath Config::config_dodo_common_logger_file_directory = {"dodo","common","logger","file","directory"};
+  const Config::KeyPath Config::config_dodo_common_logger_file_max_size_mib = {"dodo","common","logger","file","max-size-mib"};
+  const Config::KeyPath Config::config_dodo_common_logger_file_max_file_trail = {"dodo","common","logger","file","max-file-trail"};
+  const Config::KeyPath Config::config_dodo_common_logger_syslog = {"dodo","common","logger","syslog"};
+  const Config::KeyPath Config::config_dodo_common_logger_syslog_level = {"dodo","common","logger","syslog","level"};
+  const Config::KeyPath Config::config_dodo_common_logger_syslog_facility = {"dodo","common","logger","syslog","facility"};
 
-  threads::Mutex Config::mutex_;
+  Config* Config::config_ = nullptr;
 
   std::string Config::path_ = "";
 
@@ -51,45 +71,76 @@ namespace dodo::common {
   }
 
   void Config::checkConfig() {
-    if ( yaml_["dodo"] ) {
-      if ( yaml_["dodo"]["common"] ) {
-        if ( yaml_["dodo"]["common"]["application"] ) {
+    try {
+      if ( exists(config_dodo) ) {
+        if ( exists(config_dodo_common) ) {
+          if ( exists(config_dodo_common_application) ) {
+            if ( !exists(config_dodo_common_application_name) ) throw_Exception( flattenKeyPath(config_dodo_common_application_name)
+                                                                                   << " node missing" );
+            if ( exists(config_dodo_common_application_secret) ) {
+              if ( exists(config_dodo_common_application_secret_file) ) {
+                secret_ = common::fileReadString( getValue<std::string>(config_dodo_common_application_secret_file) );
+              } else if ( exists(config_dodo_common_application_secret_env) ) {
+                char* c = secure_getenv( getValue<std::string>(config_dodo_common_application_secret_env).c_str() );
+                if ( c ) secret_ = c;
+                else throw_Exception( "ENV var " <<  getValue<std::string>( config_dodo_common_application_secret_env ) << " does not exist" );
+              } else throw_Exception( flattenKeyPath( config_dodo_common_application_secret ) << " must have one of 'file' or 'env'" );
+            }
+          } else throw_Exception( flattenKeyPath( config_dodo_common_application ) << " node missing" );
+          if ( exists(config_dodo_common_logger) ) {
 
-        } else throw_Exception( path_ << " : dodo.common.application node missing" );
-        if ( yaml_["dodo"]["common"]["logger"] ) {
+            if ( exists(config_dodo_common_logger_console) ) {
+              if ( exists(config_dodo_common_logger_console_level) ) {
+              } else throw_Exception( flattenKeyPath(config_dodo_common_logger_console_level) << " node missing" );
+            } else throw_Exception( flattenKeyPath(config_dodo_common_logger_console) << " node missing" );
 
-          if ( yaml_["dodo"]["common"]["logger"]["console"] ) {
-            if ( yaml_["dodo"]["common"]["logger"]["console"]["level"] ) {
-            } else throw_Exception( "dodo.common.logger.console.level node missing" );
-          } else throw_Exception( "dodo.common.logger.console node missing" );
+            if ( exists(config_dodo_common_logger_file) ) {
+              if ( exists(config_dodo_common_logger_file_level) ) {
+              } else throw_Exception( flattenKeyPath(config_dodo_common_logger_file_level) << " node missing" );
+              if ( exists(config_dodo_common_logger_file_directory) ) {
+              } else throw_Exception( flattenKeyPath(config_dodo_common_logger_file_directory) << " node missing" );
+            }
 
-          if ( yaml_["dodo"]["common"]["logger"]["file"] ) {
-            if ( yaml_["dodo"]["common"]["logger"]["file"]["level"] ) {
-            } else throw_Exception( " : dodo.common.logger.file.level node missing" );
-            if ( yaml_["dodo"]["common"]["logger"]["file"]["directory"] ) {
-            } else throw_Exception( "dodo.common.logger.file.directory node missing" );
-          }
-
-          if ( yaml_["dodo"]["common"]["logger"]["syslog"] ) {
-            if ( yaml_["dodo"]["common"]["logger"]["syslog"]["level"] ) {
-            } else throw_Exception( "dodo.common.logger.syslog.level node missing" );
-          }
-
-        } else throw_Exception( "dodo.common.logger node missing" );
-      } else throw_Exception( "dodo.common node missing" );
-    } else throw_Exception( " dodo node missing" );
+            if ( exists(config_dodo_common_logger_syslog) ) {
+              if ( exists(config_dodo_common_logger_syslog_level) ) {
+              } else throw_Exception( flattenKeyPath(config_dodo_common_logger_syslog_level) << " node missing" );
+            }
+          } else throw_Exception( flattenKeyPath(config_dodo_common_logger) << " node missing" );
+        } else throw_Exception( flattenKeyPath(config_dodo_common) << " node missing" );
+      } else throw_Exception( flattenKeyPath(config_dodo) << " node missing" );
+    }
+    catch ( const std::exception &e ) {
+      throw_Exception( "Config file '" << path_ << "' content error: " << e.what() );
+    }
   }
 
   void Config::readConfig() {
-    threads::Mutexer lock( mutex_ );
-    yaml_ = YAML::LoadFile(path_);
+    try {
+      yaml_ = YAML::LoadFile(path_);
+    }
+    catch ( const std::exception &e ) {
+      throw_Exception( "Config file '" << path_ << "' parse error: " << e.what() );
+    }
     checkConfig();
   }
 
-  void Config::writeConfig() {
-    threads::Mutexer lock( mutex_ );
-    std::ofstream fout(path_);
-    fout << yaml_;
+  std::string Config::flattenKeyPath( const KeyPath& keypath ) {
+    std::stringstream ss;
+    for ( const auto &k : keypath ) {
+      if ( ss.str().size() ) ss << "::";
+      ss << k;
+    }
+    return ss.str();
   }
+
+  void Config::getDecryptedValue( const KeyPath &keypath, Bytes &decrypted ) {
+    YAML::Node ref = Clone( yaml_ );
+    for( const auto &k : keypath ) {
+      if ( ! ref[k] ) throw_Exception( "key " << flattenKeyPath(keypath) << " not found in " << path_ );
+      ref = ref[k];
+    }
+    DataCrypt::decrypt( getSecret(), ref.as<std::string>(), decrypted );
+  }
+
 
 }

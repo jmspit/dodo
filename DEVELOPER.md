@@ -126,22 +126,40 @@ dodo::common::SystemError that is ignored.
 
 # Deployment configuration
 
-The dodo::common::Config interface enforces the use of a YAML configuration file with mandatory keys that configure mandatory configuration items
+The dodo::common::Config interface enforces the use of a YAML configuration file with mandatory keys:
 
 ```YAML
-dodo:
-  common:
-    application:
-      name: myapp
-    logger:
-      console:
-        level: info
+dodo:                 # mandatory must be a root key
+  common:             # mandatory
+    application:      # mandatory
+      name: myapp     # an arbitrary name for the application
+    logger:           # mandatory
+      console:        # at least one of 'console', 'file', 'syslog'
+        level: info   # mandatory
 ```
 
-A dodo Application configuration requires at least a name (myapp) and a dodo::common::Logger::LogLevel (info) for logging to console or
-standard out.
+A dodo Application configuration requires at least a name ('myapp') and a dodo::common::Logger::LogLevel ('info') and a log destination ('console','file','syslog').
 
-The dodo mandatory key tree can appear anywhere in the YAML as long as it is a root node. Configuration formats of other dodo components are described, below, but may be present in the same file.
+The dodo mandatory key tree can appear anywhere in the YAML as long as `dodo` is a root node. Other dodo interfaces read from this configuration file as well,
+such as dodo::network::TLSContext.
+
+Values can either by strings, integers, floating point or boolean values. Some of this data may sensisitive and thus needs to be in encrypted form. To decrypt a secret
+is required, whose source is specified by the configuration file:
+
+```YAML
+dodo:                           # mandatory must be a root key
+  common:                       # mandatory
+    application:                # mandatory
+      name: myapp               # an arbitrary name for the application
+      secret:                   # either 'file' ir 'env'
+        file: <mounted secret>  # path to the mounted secret
+        env: <name of env var>  # name of the ENV var
+    logger:                     # mandatory
+      console:                  # at least one of 'console', 'file', 'syslog'
+        level: info             # mandatory
+
+sensitive: ENC[chipher:...]     # some sensitive data
+```
 
 # Logging
 

@@ -284,6 +284,7 @@ namespace dodo::common {
    * @param node The YAML::Node containing the key-value pair
    * @param key The YAML::Node name.
    * @return the value of type T
+   * @throw common::Exception when the node does not exist.
    */
   template <typename T> T YAML_read_key( const YAML::Node &node, const std::string& key );
 

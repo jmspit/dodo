@@ -7,17 +7,19 @@
 # DODO - C++ framework for Docker applications
 ## About
 
-Dodo is a C++ framework to integrate seamlessly with Docker containers and k8s ([kubernetes](https://kubernetes.io/)), hiding much of the red tape, as well as providing frameworks for typical demands such as DNS resolving, TLS-enabled TCP services, REST srevices, database accces and so on.
+Dodo is a C++ framework to integrate seamlessly with Docker containers and k8s ([kubernetes](https://kubernetes.io/)), hiding much of the red tape, as well as providing frameworks for typical demands such as DNS resolving, TLS-enabled TCP services, REST services, database accces and so on.
+
+C++ offers high capability/requirement ratio, perfect for microservices.
 
 Dodo applies c++17 features. It relies on and assumes the STL by using STL primitives such as std::string in interfaces. A dodo install comprises a bunch of header files and a shared library
-to which applicactions or 'services' are linked.
+to which applications or 'services' are linked.
 
 This is a pet project. Do not take it too seriously.
 ### A skeleton for container services
 
 The `dodo::common::Application` reads its run-time configuration from a YAML file, typically presented to the container as a [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/). Framework objects can be iniltialized (constructed) with a YAML document fragment, so the application can retrieve its runtime configuration from a single source.
 
-An `dodo::common::Application` instance implicitly installs signal handlers that are triggered on container stop requests, so that the code can perform a clean shitdown.
+An `dodo::common::Application` instance implicitly installs signal handlers that are triggered on container stop requests, allowing the application to shutdown cleanly.
 
 Logging (`dodo::common::Logger`) is implicit and can be configured to write to one or more of these targets:
 

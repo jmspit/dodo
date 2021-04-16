@@ -88,9 +88,9 @@ In the configured build directory
 
 | target | build command | What |
 |--------|---------------|------|
-| all    | `cmake --build .` | builds the dodo library, examples and tests |
+| all    | `cmake --build .` | Builds the dodo library, examples and tests |
 | dodo    | `cmake --build . --target dodo` | Only builds `libdodo.so` |
-| doc    | `cmake --build . --target doc` | Creates the doxygen documentation in `./doxygen/html`. |
+| doc    | `cmake --build . --target doc` | Creates the doxygen documentation in `./doxygen/html` |
 | cppcheck | `cmake --build . --target cppcheck` | Run cppcheck code quality check |
 
 ## Docker

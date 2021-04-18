@@ -476,25 +476,24 @@ SNI is enabled only if explicitly specified in the dodo::network::TLSContext::TL
 
 ### Setup Certification Authority
 
-The source tree contains a simplistic CA install that allows to operate as a root CA. The installation
-uses intermediate CA to do the actual signing. The installation can create signed server and client certificates
-to be shared with their Subjects (including private key and passphrase). Alternatively, external identities
-can provide a CSR that can be signed - ot nor.
+The source tree contains a simplistic yet functional root CA. The root CA issues intermediate CAs
+to sign external certificates. The installation can create full signed server and client certificates
+(including the passsphrase-protected private key). Alternatively, external identities
+can provide a CSR to be signed.
 
 The root CA install is protected by a single master passphrase. The root CA and intermediate CA private keys are
-protected with a individual passphrases, which are stored as a (readonly) files, each protected by the master
+protected with a individual passphrases, which are stored as a (readonly) files, each encrypted by the master
 passphrase. No readable secrets are stored. It is crucial that the master passphrase is strong and is remembered or
-safely kept - once it is lost the install is lost as well.
+safely kept - once it is lost the install can no lonher be operaed on.
 
-The scripts to install are part of the source, under `src/examples/tls/artefacts`. This install uses the confd tool,
-so that must be present in the PATH, as well as the openssl bianry.
+The scripts to install a root CA environment are part of the source, under `src/examples/tls/artefacts`. This install
+uses the confd tool, so that must be present in the PATH, as well as the openssl binary.
 
 Copy `config.yaml` and customize the copy. The `ca::root::directory` entry specifies the installation directory
 for the root CA directory tree. The `create-ca.sh` script will ask for the master passphrase.
 
 Passphrases are passed to the openssl tools through ENV vars, and ENV vars of any user are readable to the root user,
-at least during the time they exist (only when installed scripts are running), so one must either be root or trust root
-if any serious use is considered.
+so one must trust the root account if any serious use is considered.
 
 
 ```
@@ -508,31 +507,30 @@ The `ca::root::directory` from `myconfig.yaml` now contains the root CA with a s
 intermediate CA. Intermediate CA's are used to sign CSR's. Specify a descriptive name for the intermediate CA.
 
 ```
-$ cd [ca::root::directory]
-$ bin/create-intermediate.sh
+$ ca/root/bin/create-intermediate.sh
 ```
 
-the intermediate CA is now created, along with its certificate that is signed by the root CA created earlier.
+the intermediate CA is now created in `ca/root/intermediates/<intermediate-name>/`, along with its certificate signed by the root CA created earlier.
 
-Create a server identity (private key + passphrase, signing request). Note that the common name is expected to be the
+Create a server identity (private key + passphrase, certificate signing request). Note that the common name is expected to be the
 FQDN of the server, but SAN (subject altnames) can be specified to widen the certificate's applicability. Examples
 of SAN entries are
 
-  - DNS:our.domain.org
+  - DNS:server.domain.org
   - IP: 127.0.0.1
   - IP: ::1
 
 ```
-$ bin/create-server.sh
+$ ca/root/bin/create-server.sh
 ```
 
-Alternatively, the subject can create its own certificate, and just send a CSR. In case a CSR is received, best put it
-in `ca::root::directory/ext/servers` or `ca::root::directory/ext/servers` depending on the certificate's intended use.
+Alternatively, the subject can create its own certificate, and just send a CSR. Best store external CSRs
+in `ca::root::directory/ext/servers` or `ca::root::directory/ext/clients` depending on the certificate's intended use.
 
 Either way, the CSR can now be signed:
 
 ```
-$ intermediates/<intermediatename>/bin/sign-server-csr.sh <CSR file>
+$ intermediates/<intermediatename>/bin/sign-[server|client]-csr.sh <CSR file>
 ```
 
 which will produce two files:
@@ -543,9 +541,6 @@ which will produce two files:
 the former is the signed certificate, and the latter a PKCS12 file containing the signed certificate and
 the trust chain, both the intermediate and root certificates used to sign ().
 
-
-
-`<server commonname>.cert.pem` to be returned to the server identity.
 
 ```
 $ openssl s_server -accept 12345 -cert ca/root/ext/servers/localhost.cert.pem -CAfile ca/root/certs/ca.cert.pem -chainCAfile ca/root/intermediates/signer1/certs/ca-chain.cert.pem -key ca/root/ext/servers/localhost.key.pem

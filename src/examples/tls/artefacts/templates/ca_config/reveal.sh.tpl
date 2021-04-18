@@ -15,9 +15,7 @@ if [ "${SWITCH}" != "server" -a "${SWITCH}" != "client" ]; then
 fi
 test -z "${COMMON_NAME}" && exitError "specify a common name"
 
-
-#CA_ROOT_DIR="$(realpath {{getv "/ca/root/directory"}})"
-CA_ROOT_DIR=/home/spjm/projects/dodo/src/examples/tls/artefacts/ca/root
+CA_ROOT_DIR="$(realpath {{getv "/ca/root/directory"}})"
 EXT_DIR="${CA_ROOT_DIR}/ext/${SWITCH}s"
 test -d "${EXT_DIR}" || exitError "directory ${EXT_DIR} not found"
 CN_PASSPHRASE_FILE="${EXT_DIR}/${COMMON_NAME}.passphrase"

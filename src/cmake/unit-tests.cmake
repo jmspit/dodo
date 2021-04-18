@@ -50,6 +50,14 @@ add_executable(${TEST_NETWORK_X509} ${${TEST_NETWORK_X509}_objects} )
 target_link_libraries( ${TEST_NETWORK_X509} ${LIB_DODO} )
 add_test (NAME "network::X509Certificate=${TEST_NETWORK_X509}" COMMAND ${TEST_NETWORK_X509} )
 
+configure_file( tests/network/test-network-tlscontext.yaml ${CMAKE_CURRENT_BINARY_DIR}/test-network-tlscontext.yaml @ONLY)
+
+set( TEST_NETWORK_TLSCONTEXT  "test-network-tlscontext" )
+set( ${TEST_NETWORK_TLSCONTEXT}_objects  tests/network/${TEST_NETWORK_TLSCONTEXT}.cpp )
+add_executable(${TEST_NETWORK_TLSCONTEXT} ${${TEST_NETWORK_TLSCONTEXT}_objects} )
+target_link_libraries( ${TEST_NETWORK_TLSCONTEXT} ${LIB_DODO} )
+add_test (NAME "network::TLSConext=${TEST_NETWORK_TLSCONTEXT}" COMMAND ${TEST_NETWORK_TLSCONTEXT} )
+
 set( TEST_NETWORK_URI  "test-network-uri" )
 set( ${TEST_NETWORK_URI}_objects  tests/network/${TEST_NETWORK_URI}.cpp )
 add_executable(${TEST_NETWORK_URI} ${${TEST_NETWORK_URI}_objects} )

@@ -54,22 +54,31 @@ namespace dodo::network {
 
   }
 
-  TLSContext::TLSContext( const YAML::Node &yaml ) {
-    PeerVerification pv = peerVerficiationFromString( common::YAML_read_key<std::string>( yaml, "peer-verification" ) );
-    TLSVersion tv = tlsVersionFromString( common::YAML_read_key<std::string>( yaml, "tls-version" ) );
-    bool enable_sni = common::YAML_read_key<bool>( yaml, "enable-sni" );
-    bool allow_wildcards = common::YAML_read_key<bool>( yaml, "allow-san-wildcards" );
+  TLSContext::TLSContext( const common::Config& config, const common::Config::KeyPath& path ) {
+    PeerVerification pv = peerVerficiationFromString( config.getValue<std::string>( path, { "peer-verification" } ) );
+    TLSVersion tv = tlsVersionFromString( config.getValue<std::string>( path, { "tls-version" } ) );
+    bool enable_sni = config.getValue<bool>( path, { "enable-sni" } );
+    bool allow_wildcards = config.getValue<bool>( path, { "allow-san-wildcards" } );
     construct( pv, tv, enable_sni, allow_wildcards );
-    if ( yaml["pem"] ) {
-      std::string priv = common::YAML_read_key<std::string>( yaml["pem"], "private" );
-      std::string pub = common::YAML_read_key<std::string>( yaml["pem"], "public" );
-      std::string pass = common::YAML_read_key<std::string>( yaml["pem"], "passphrase" );
-      common::Bytes bytes;
-      common::DataCrypt::decrypt( "key", pass, bytes );
-      passphrase_ = bytes.asString();
-      loadPEMIdentity( pub, priv, passphrase_ );
-    } else if ( yaml["pkcs12"] ) {
-    } else throw_Exception( "need either pem or pcks12 section");
+    if ( config.exists( path, {"identity"} ) ) {
+      if ( config.exists( path, {"identity","pem"} ) ) {
+        std::string priv = config.getValue<std::string>( path, {"identity","pem","private"} );
+        std::string pub = config.getValue<std::string>( path, {"identity","pem","public"} );
+        std::string pass = config.getValue<std::string>( path, {"identity","pem","passphrase"} );
+        common::Bytes bytes;
+        common::DataCrypt::decrypt( config.getSecret(), pass, bytes );
+        passphrase_ = bytes.asString();
+        std::cout << passphrase_ << std::endl;
+        loadPEMIdentity( pub, priv, passphrase_ );
+      } else if (  config.exists( path, {"identity","pkcs12"} ) ) {
+        std::string file = config.getValue<std::string>( path, {"identity","pkcs12","file"} );
+        std::string pass = config.getValue<std::string>( path, {"identity","pkcs12","passphrase"} );
+        common::Bytes bytes;
+        common::DataCrypt::decrypt( config.getSecret(), pass, bytes );
+        passphrase_ = bytes.asString();
+        loadPKCS12( file, passphrase_ );
+      } else throw_Exception( "identity requires either pem or pkcs12 node" );
+    }
   }
 
   void TLSContext::construct( const PeerVerification& peerverficiation,

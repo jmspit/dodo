@@ -30,6 +30,7 @@
 #include <openssl/ssl.h>
 #include <string>
 
+#include "common/config.hpp"
 #include "common/exception.hpp"
 #include "common/systemerror.hpp"
 
@@ -38,8 +39,20 @@
 namespace dodo::network {
 
   /**
-   * TLS security context. A single TLSContext can be shared among multiple TLSSocket classes.
+   * TLS security context defines the environment for TLSSocket. A TLSContext specifices (or can specify)
    *
+   *   - Configuring trust (either system or custom)
+   *   - Set minimum TLS version required
+   *   - Define peer verfiication method, (dis)allow SAN wildcards, enable SNI
+   *   - Specify an identity by PEM or PKCS12
+   *   - limit negotiated ciphers
+   *
+   * A single TLSContext can be shared among multiple TLSSocket classes. As a TLSContext is a common deployment configuration
+   * artifact, there is TLSContext( const Config& config, const KeyPath& path ) to initialize.
+   *
+   * A TLSContext in client perepective may need to support a variety of TLS servers and thus be more lenient in the minimum
+   * TLS version and or ciphers negotiated. A local scope server can be hardened by limiting TLS versions to TLS 1.3 and
+   * configuring just the strongest cipher.
    *
    * See @ref developer_networking for more information on the role of this class.
    *
@@ -111,7 +124,7 @@ namespace dodo::network {
                   bool allowSANWildcards = true );
 
       /**
-       * Construct a TLSContext from a YAML node.
+       * Construct a TLSContext from a dodo::common::Config as a dodo::common::Config::KeyPath.
        * ```YAML
        * tlscontext:
        *   peer-verification: pvVerifyFQDN                    # mandatory
@@ -140,9 +153,27 @@ namespace dodo::network {
        *     file: <path to PKCS12 file>                      # mandatory
        *     passphrase: <ENC[...]>                           # mandatory
        * ```
-       * @param yaml The YAML node to read from, which would be 'tlscontext' in the above examples.
+       * The tlscontext node can have any name and appear anywhere in the YAML file
+       * ```YAML
+       * dodo:
+       *   common:
+       *     ...
+       * my-server:
+       *   tls:
+       *     peer-verification: pvVerifyFQDN
+       *     ...
+       *
+       * ```
+       * in which case the TLSContext can be read as
+       * ```C
+       * common::Config *config = common::Config::initialize( "my-config.yaml" );
+       * network::TLSContext tlscontext( *config, {"my-server","tls"} );
+       * ```
+       *
+       * @param config The dodo::common::Config to read from.
+       * @param path The KeyPath to the root of the TLSContext
        */
-      TLSContext( const YAML::Node &yaml );
+      TLSContext( const common::Config& config, const common::Config::KeyPath& path );
 
 
       virtual ~TLSContext();
@@ -168,15 +199,19 @@ namespace dodo::network {
                        const std::string &p12passphrase );
 
       /**
-       * Set a list of ciphers, separated by a colon, the TLSContext will accept. There are differences between TLSVersion tough,
+       * Set a list of ciphers, separated by a colon, the TLSContext will accept. This overrides the default
+       * behavior of opennsel. Use setCipherList() for < TLS1.3 and setCipherSuite for TLS1.3 and higher.
        *
-       * A few examples (note the hyphens and underscores)
+       * When the TLSContext is used in a client that must connect to a variety of servers, the acceptable ciphers
+       * likely need to be more lenient, but local-scope servers may limit to the strongest cipher available by
+       * overriding.
        *
-       *   - TLS 1.3 TLS_AES_256_GCM_SHA384
-       *   - TLS 1.2 DHE-RSA-AES256-GCM-SHA384
-       *   - TLS 1.1 DHE-RSA-AES256-GCM-SHA384
+       * @code
+       * context.setCipherList( "ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384" );
+       * @endcode
        *
        * @see https://www.openssl.org/docs/manmaster/man3/SSL_CTX_set_cipher_list.html
+       * @see https://www.openssl.org/docs/man1.1.1/man1/ciphers.html
        *
        * A list of available ciphers is given by
        * ```
@@ -191,6 +226,35 @@ namespace dodo::network {
        * @throw dodo::common::Exception
        */
       void setCipherList( const std::string& cipherlist );
+
+      /**
+       * Set a suite of ciphers, separated by a colon, the TLSContext will accept for TLV1.3 handshakes. This overrides
+       * the default behavior of opennsel. Use setCipherList() for < TLS1.3 and setCipherSuite for TLS1.3 and higher.
+       *
+       * When the TLSContext is used in a client that must connect to a variety of servers, the acceptable ciphers
+       * likely need to be more lenient, but local-scope servers may limit to the strongest cipher available by
+       * overriding.
+       *
+       * @code
+       * context.setCipherList( "ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384" );
+       * @endcode
+       *
+       * @see https://www.openssl.org/docs/manmaster/man3/SSL_CTX_set_cipher_list.html
+       * @see https://www.openssl.org/docs/man1.1.1/man1/ciphers.html
+       *
+       * A list of available ciphers is given by
+       * ```
+       * $ openssl ciphers -tls1_2 -s
+       * $ openssl ciphers -tls1_3 -s
+       * ```
+       *
+       * Note that this call will not return a SystemError, but throws a dodo::common::Exception when the cipher suite
+       * is invalid.
+       *
+       * @param ciphersuite The ciphersuite.
+       * @throw dodo::common::Exception
+       */
+      void setCipherSuite( const std::string& ciphersuite );
 
       /**
        * Set SSL options

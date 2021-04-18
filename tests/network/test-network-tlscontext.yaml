@@ -1,0 +1,25 @@
+dodo:
+  common:
+    application:
+      name: test-network-tlscontext
+      secret:
+        env: DODO_SECRET
+    logger:
+      console:
+        level: info
+tlscontext:
+  peer-verification: pvVerifyFQDN
+  tls-version: 1.3
+  enable-sni: true
+  allow-san-wildcards: true
+  identity:
+    pem:
+      private: @CMAKE_CURRENT_SOURCE_DIR@/tests/network/localhost.key.pem
+      public: @CMAKE_CURRENT_SOURCE_DIR@/tests/network/localhost.cert.pem
+      passphrase: ENC[cipher:EVP_aes_256_gcm,data:ggBlF/3mVmM3QKahRFMBFLhYufjVLC+l24Xi7R2p2jE=,iv:6U9Zl6cbKNBY3KUmZuTu6A==,tag:bn2YoEQH/aWwIRxQGLfVZg==]
+  trust:
+    file: @CMAKE_CURRENT_SOURCE_DIR@/tests/network/ca-chain.cert.pem
+    path: /etc/ssl/certs/
+  ciphers:
+    - TLS_AES_256_GCM_SHA384
+    - TLS_AES_128_GCM_SHA256

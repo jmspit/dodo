@@ -121,8 +121,6 @@ namespace dodo::common {
       /** The dodo.common.logger.syslog.facility node */
       static const Config::KeyPath config_dodo_common_logger_syslog_facility;
 
-
-
       /**
        * Transform a keypath to a string with ":" as seperator between levels.
        * @param keypath The KeyPath to flatten.
@@ -193,6 +191,11 @@ namespace dodo::common {
         return ref.as<T>();
       }
 
+      template <typename T> T getValue( const KeyPath &base, const KeyPath &sub ) const {
+        KeyPath t = add( base, sub );
+        return getValue<T>( t );
+      }
+
       /**
        * Return true if the KeyPath exists.
        * @param keypath The KeyPath to check.
@@ -205,6 +208,11 @@ namespace dodo::common {
           ref = ref[k];
         }
         return true;
+      }
+
+      bool exists( const KeyPath &keypath, const KeyPath& sub ) const {
+        KeyPath t = add( keypath, sub );
+        return exists( t );
       }
 
       /**
@@ -231,6 +239,12 @@ namespace dodo::common {
        * Check for required elements in the config file.
        */
       void checkConfig();
+
+      inline static KeyPath add( const KeyPath& k1, const KeyPath& k2 ) {
+        KeyPath t = k1;
+        for( const auto &i : k2 ) t.push_back( i );
+        return t;
+      }
 
       /**
        * The singleton pointer.
